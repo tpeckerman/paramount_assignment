@@ -1,0 +1,252 @@
+Skip to content
+Topics 
+Menu
+Ofcom's work 
+Menu
+Complaints 
+Menu
+Licences 
+Menu
+Global Search
+Cymraeg
+Home
+TV, radio and on-demand
+Broadcast standards
+Section one: Protecting the under-eighteens
+Section one: Protecting the under-eighteens
+TV, radio and on-demand Broadcast standards Information for industry
+Published: 3 March 2021
+Last updated: 16 March 2023
+
+This section outlines the rules around scheduling and content information in programmes with regard to protecting children under the age of eighteen.
+
+Guidance notes: Section one – protecting the under-eighteens (PDF, 181.6 KB)
+Guidance notes: Protecting the under-eighteens – observing the watershed on television and music videos (PDF, 89.7 KB)
+
+(Relevant legislation includes, in particular, sections 3(4)(h) and 319(2)(a) and (f) of the Communications Act 2003, Article 27 of the Audiovisual Media Services Directive, Article 10 of the European Convention on Human Rights, and the BBC Charter and Agreement.)
+
+This section must be read in conjunction with Section Two: Harm and Offence.
+
+Principle
+
+To ensure that people under eighteen are protected.
+
+Rules[1]
+Scheduling and content information
+
+1.1: Material that might seriously impair the physical, mental or moral development of people under eighteen must not be broadcast.
+
+1.2: In the provision of services, broadcasters must take all reasonable steps to protect people under eighteen.
+
+1.3: Children must also be protected by appropriate scheduling from material that is unsuitable for them. Although scheduling requirements in this section are not relevant to the provision of programmes on demand, the BBC must put in place appropriate measures on BBC ODPS that provide equivalent protection for children.
+
+Meaning of "children"
+
+Children are people under the age of fifteen years.
+
+Meaning of "appropriate scheduling"
+
+Appropriate scheduling should be judged according to:
+
+the nature of the content;
+the likely number and age range of children in the audience, taking into
+account school time, weekends and holidays;
+the start time and finish time of the programme;
+the nature of the channel or station and the particular programme; and
+the likely expectations of the audience for a particular channel or station
+at a particular time and on a particular day.
+
+Broadcasters of services received in ECTT Parties should have regard to any relevant time differences in the country of reception.
+
+1.4: Television broadcasters must observe the watershed.
+
+Meaning of "the watershed"
+
+The watershed only applies to television. The watershed is at 2100. Material unsuitable for children should not, in general, be shown before 2100 or after 0530.
+
+On premium subscription film services which are not protected as set out in Rule 1.24 the watershed is at 2000. The watershed does not apply to channels when mandatory daytime protection is in place (see Rules 1.24 and 1.25).
+
+1.5: Radio broadcasters must have particular regard to times when children are particularly likely to be listening.
+
+Meaning of "when children are particularly likely to be listening"
+
+This phrase particularly refers to the school run and breakfast time, but might include other times.
+
+1.6: The transition to more adult material must not be unduly abrupt at the watershed (in the case of television) or after the time when children are particularly likely to be listening (in the case of radio). For television, the strongest material should appear later in the schedule.
+
+1.7: For television programmes broadcast before the watershed, or for radio programmes broadcast when children are particularly likely to be listening, or for BBC ODPS content that is likely to be accessed by children, clear information about content that may distress some children should be given, if appropriate, to the audience (taking into account the context).
+
+(For the meaning of “context” see Section Two: Harm and Offence.)
+
+Meaning of "likely to be accessed by children"
+
+Factors affecting whether content is likely to be accessed by children include (but are not limited to):
+
+the nature of the content – whether it is aimed at or has particular appeal to children; and
+the nature of access to the content e.g. whether there are measures in place that are intended to prevent children from viewing and/or listening to the content.
+
+The coverage of sexual and other offences in the UK involving under-eighteens
+
+1.8: Where statutory or other legal restrictions apply preventing personal identification, broadcasters should also be particularly careful not to provide clues which may lead to the identification of those who are not yet adult (the defining age may differ in different parts of the UK) and who are, or might be, involved as a victim, witness, defendant or other perpetrator in the case of sexual offences featured in criminal, civil or family court proceedings:
+
+by reporting limited information which may be pieced together with other information available elsewhere, for example in newspaper reports (the ‘jigsaw effect’);
+inadvertently, for example by describing an offence as “incest”; or
+in any other indirect way.
+
+(Note: Broadcasters should be aware that there may be statutory reporting restrictions that apply even if a court has not specifically made an order to that effect.)
+
+1.9: When covering any pre-trial investigation into an alleged criminal offence in the UK, broadcasters should pay particular regard to the potentially vulnerable position of any person who is not yet adult who is involved as a witness or victim, before broadcasting their name, address, identity of school or other educational establishment, place of work, or any still or moving picture of them. Particular justification is also required for the broadcast of such material relating to the identity of any person who is not yet adult who is involved in the defence as a defendant or potential defendant.
+
+Drugs, smoking, solvents and alcohol
+
+1.10: The use of illegal drugs, the abuse of drugs, smoking, solvent abuse and the misuse of alcohol:
+
+must not be featured in programmes made primarily for children unless there is strong editorial justification;
+must generally be avoided and in any case must not be condoned, encouraged or glamorised in other programmes broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS) unless there is editorial justification;
+must not be condoned, encouraged or glamorised in other programmes likely to be widely seen, heard or accessed by under-eighteens unless there is editorial justification.
+Violence and dangerous behaviour
+
+1.11: Violence, its after-effects and descriptions of violence, whether verbal or physical, must be appropriately limited in programmes broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio) or when content is likely to be accessed by children (in the case of BBC ODPS) and must also be justified by the context.
+
+1.12: Violence, whether verbal or physical, that is easily imitable by children in a manner that is harmful or dangerous:
+
+must not be featured in programmes made primarily for children unless there is strong editorial justification;
+must not be broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS), unless there is editorial justification.
+
+1.13: Dangerous behaviour, or the portrayal of dangerous behaviour, that is likely to be easily imitable by children in a manner that is harmful:
+
+must not be featured in programmes made primarily for children unless there is strong editorial justification;
+must not be broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS), unless there is editorial justification.
+
+(Regarding Rules 1.11 to 1.13 see Rules 2.4 and 2.5 in Section Two: Harm and Offence.)
+
+Offensive language
+
+1.14: The most offensive language must not be broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS).
+
+1.15: Offensive language must not be used in programmes made for younger children except in the most exceptional circumstances.
+
+1.16: Offensive language must not be broadcast before the watershed (in the case of television), when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS), unless it is justified by the context. In any event, frequent use of such language must be avoided before the watershed.
+
+(Regarding Rules 1.14 to 1.16 see Rule 2.3 in Section Two: Harm and Offence.)
+
+Sexual material
+
+1.17: Material equivalent to the British Board of Film Classification (“BBFC”) R18-rating must not be broadcast at any time.
+
+1.18: ‘Adult sex material’ – material that contains images and/or language of a strong sexual nature which is broadcast for the primary purpose of sexual arousal or stimulation – must not be broadcast at any time other than between 2200 and 0530 on premium subscription services and pay per view/night services which operate with mandatory restricted access.
+In addition, measures must be in place to ensure that the subscriber is an adult.
+
+Meaning of "mandatory restricted access"
+
+Mandatory restricted access means there is a PIN protected system (or other   equivalent protection) which cannot be removed by the user, that restricts access solely to those authorised to view.
+
+1.19: Broadcasters must ensure that material broadcast after the watershed, or made available on BBC ODPS, which contains images and/or language of a strong or explicit sexual nature, but is not ‘adult sex material’ as defined in Rule 1.18 above, is justified by the context.
+
+(See Rules 1.6 and 1.18 and Rule 2.3 in Section Two: Harm and Offence which includes meaning of “context”.)
+
+1.20: Representations of sexual intercourse must not occur before the watershed (in the case of television) , when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS), unless there is a serious educational purpose. Any discussion on, or portrayal of, sexual behaviour must be editorially justified if included before the watershed, when children are particularly likely to be listening, or when content is likely to be accessed by children on BBC ODPS, and must be appropriately limited.
+
+Nudity
+
+1.21: Nudity before the watershed, or when content is likely to be accessed by children (in the case of BBC ODPS), must be justified by the context.
+
+Films and mandatory daytime protection
+
+Meaning of "mandatory daytime protection"
+
+Mandatory daytime protection means there is a PIN protection system in place pre-2100 and post-0530 which cannot be removed by the user and restricts access solely to those authorised to view. This does not apply to ‘adult sex material’ which under Rule 1.18 can only be shown between 2200 and 0530 and must be behind mandatory restricted access (see Rule 1.18).
+
+1.22: No film refused classification by the British Board of Film Classification (BBFC) may be broadcast, unless it has subsequently been classified or the BBFC has confirmed that it would not be rejected according to the standards currently operating. Also, no film cut as a condition of classification by the BBFC may be transmitted in a version which includes the cut material unless:
+
+the BBFC has confirmed that the material was cut to allow the film to pass at a lower category; or
+the BBFC has confirmed that the film would not be subject to compulsory cuts according to the standards currently operating.
+
+1.23: BBFC 18-rated films or their equivalent must not be broadcast before 2100, on any service (except behind mandatory daytime protection), and even then they may be unsuitable for broadcast at that time.
+
+1.24: Provided that mandatory daytime protection is in place pre-2100 and post-0530 (or pre-2000 and post 0530 for up to BBFC 15-rated films or their equivalent on premium subscription film services), programmes that are unsuitable for children that would usually be scheduled after the watershed, and films up to BBFC 18-rated or equivalent, may be broadcast on television at any time of day. Clear information must be provided with programme and film content that will assist adults to assess its suitability for children, and the mandatory daytime protection which is in place must be clearly explained to all viewers.
+
+When not using mandatory daytime protection, broadcasters must comply with Ofcom’s rules on scheduling and the watershed (see Rules 1.1 to 1.7).
+
+Note:
+
+"Clear information about programme and film content" may include but is not limited to:
+
+information about the programme provided in the EPG referring to any potentially unsuitable material such as “strong language”, “nudity”, “scenes of graphic violence”, or “sexual images”;
+ratings (BBFC or equivalent); and/or
+information given in continuity announcements.
+
+1.25: Pay per view services may broadcast up to BBFC 18-rated films or their equivalent, at any time of day provided that mandatory daytime protection is in place pre-2100 and post-0530.
+
+In addition:
+
+information must be provided about programme content that will assist adults
+to assess its suitability for children;
+there must be a detailed billing system for subscribers which clearly itemises
+all viewing including viewing times and dates; and
+those security systems which are in place to protect children must be clearly explained to all subscribers.
+
+(See meaning of “mandatory daytime protection” above.)
+
+1.26: BBFC R18-rated films must not be broadcast.
+
+Exorcism, the occult and the paranormal
+
+1.27: Demonstrations of exorcisms, occult practices and the paranormal (which purport to be real), must not be shown before the watershed (in the case of television) or when children are particularly likely to be listening (in the case of radio), or when content is likely to be accessed by children (in the case of BBC ODPS). Paranormal practices which are for entertainment purposes must not be broadcast when significant numbers of children may be expected to be watching, or are particularly likely to be listening, or when content is likely to be accessed by children (in the case of BBC ODPS), (This rule does not apply to drama, film or comedy.)
+
+(See Rules 2.6 to 2.8 in Section Two: Harm and Offence and Rule 4.7 in Section Four: Religion.)
+
+The involvement of people under eighteen in programmes
+
+1.28: Due care must be taken over the welfare and the dignity of people under eighteen who take part or are otherwise involved in programmes. This is irrespective of any consent given by the participant or
+by a parent, guardian or other person over the age of eighteen in loco parentis.
+
+1.29: People under eighteen must not be caused unjustified distress or anxiety by their involvement in programmes or by the broadcast of those programmes.
+
+1.30: Prizes aimed at children must be appropriate to the age range of both the  target audience and the participants.
+
+(See Rule 2.16 in Section Two: Harm and Offence.)
+
+Footnotes:
+
+[1] Scheduling requirements in Rules 1.3, 1.4, 1.5 and 1.6 do not apply to BBC ODPS.
+
+See also...
+Online Safety Act compliance guide for providers of online services
+
+Guidance for providers of online services about how to comply with Online Safety Act duties.
+
+Archived: The General Authorisation Regime
+
+Archived information and guidance on the General Conditions of Entitlement, the regulatory rules that all communications providers must follow to operate in the UK. This information was superseded on 1 October 2018.
+
+Section two: Harm and offence
+
+This section of the Broadcasting Code outlines standards for broadcast content so as to provide adequate protection for members of the public from harmful and/or offensive material.
+
+Section eight: Privacy
+
+This section of the Broadcasting Code is to ensure that broadcasters avoid any unwarranted infringement of privacy in programmes and in connection with obtaining material included in programmes.
+
+Subscribe to email updates 
+Follow us
+x-twitter
+facebook
+linkedin
+youtube
+instagram
+tiktok
+About Ofcom
+What is Ofcom?
+Contact us
+Nations and regions
+Jobs
+General Privacy Statement
+Modern slavery statement
+Our work in Welsh
+About this website
+Accessibility
+Cookies policy
+Terms of use
+Copyright and information re-use
+© Ofcom 2026
