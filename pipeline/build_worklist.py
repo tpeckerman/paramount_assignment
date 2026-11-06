@@ -143,17 +143,18 @@ style_sheet(ws, [30, 110])
 
 # ---------------------------------------------------- 2. Download worklist
 ws = wb.create_sheet("Download_worklist")
-HEAD = ["priority", "doc_id", "title", "host", "why_blocked", "url", "save_as",
-        "must_contain", "format", "tier", "state", "status_when_saved"]
+HEAD = ["priority", "doc_id", "title", "host", "why_blocked", "url", "landing_page",
+        "save_as", "must_contain", "format", "tier", "state", "status_when_saved"]
 ws.append(HEAD)
 for r in outstanding:
     ws.append([
         PRIORITY.get(r["doc_id"], f"{TIER_RANK.get(r['tier'], 9) + 2} - {r['tier']}"),
         r["doc_id"], r["title"], r["_host"], r["_reason"], r["url"],
+        r.get("landing_page", ""),
         r["target_filename"], r["expect"], r["format"], r["tier"],
         r["_state"], "",
     ])
-style_sheet(ws, [18, 10, 46, 24, 34, 62, 40, 30, 11, 14, 10, 18])
+style_sheet(ws, [18, 10, 46, 24, 34, 58, 52, 40, 30, 11, 14, 10, 18])
 ws.auto_filter.ref = f"A1:{get_column_letter(len(HEAD))}{ws.max_row}"
 
 i_state, i_status, i_url = HEAD.index("state") + 1, HEAD.index("status_when_saved") + 1, HEAD.index("url") + 1

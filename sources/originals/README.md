@@ -70,6 +70,37 @@ most likely to hit this are flagged in `notes`: `FR-R1`, `FR-L1`, `FR-R1c`, `FR-
 `FR-A1`, `FR-A2b`, `FR-S1c`. If one does, save the PDF by hand into this folder under the
 row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
 
+## HTML beats PDF where both exist
+
+An HTML page **keeps its address across revisions**. A PDF does not — Ofcom's `/siteassets/`
+PDFs carry a `?v=NNNNNN` version parameter, and legislation.gov.uk and EUR-Lex mint a separate
+path per format. Pin a PDF URL and it rots silently at the next revision; pin the HTML page and
+the citation stays good *and* always resolves to the current text.
+
+So the manifest prefers stable HTML. Three rows were switched on that basis:
+
+| doc | was | now |
+|---|---|---|
+| `UK-L1` | `/ukpga/2003/21/section/319/data.pdf` | `/ukpga/2003/21/section/319` |
+| `EU-D1` | `/eudr/2010/13/article/6a/data.pdf` | `/eudr/2010/13/article/6a` |
+| `EU-D1b` | EUR-Lex CELEX PDF | EUR-Lex CELEX HTML |
+
+Current split: **13 HTML → text, 6 PDF.**
+
+### The six that stay PDF, and the landing_page column
+
+Ofcom's guidance notes, its statements, its enforcement decisions and Arcom's mises en demeure
+are published *only* as PDFs — there is no HTML equivalent to prefer. For those, a
+`landing_page` column records the **stable HTML page the current PDF is always reachable
+from**, so a rotted PDF link is recoverable rather than a dead end:
+
+| doc | landing page |
+|---|---|
+| `UK-G1`, `UK-G2`, `UK-G3` | the programme-guidance index |
+| `UK-M1` | the mandatory-daytime-protection statement page |
+| `UK-P1` | the Broadcast and On Demand Bulletin decisions hub |
+| `FR-V1` | **none recorded** — flagged in its notes; Arcom's decisions index was not located |
+
 ## Only current materials are carried
 
 The manifest holds **19 documents, all current**. The `version_status` and `contained_in`

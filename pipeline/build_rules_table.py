@@ -39,14 +39,14 @@ U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/sect
 U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
-U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
+U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"  # stable HTML
 U_FR1 = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000446802"  # 2005 ORIGINAL
 U_FR1C = ("https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes")  # CURRENT consolidated French text - cite this for current law
 U_FR2 = "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/deliberation-no-2014-17-march-5-2014-amending-notice-no-2005-5-june-7-2005-television-service-editors-concerning-youth-signage-and-classification-programmes"
 U_FRV = "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france"
 U_FRL = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205"
 U_CONV = "https://www.arcom.fr/sites/default/files/2023-05/MeD_C8.pdf"
-U_EU = "https://www.legislation.gov.uk/eudr/2010/13/article/6a"
+U_EU = "https://www.legislation.gov.uk/eudr/2010/13/article/6a"  # stable HTML
 
 C02 = ("C-02 RESOLVED 2026-11-06. The service mapping was originally taken from Arcom's "
        "garbled English machine translation. Now confirmed against the FRENCH text from two "
@@ -1026,7 +1026,7 @@ legend += [
     ["human_review_required", "Escalate before relying on this row.", "yes / no"],
     ["source_doc", "Source ID from the Sources tab.", "e.g. UK-S1, FR-R1, EU-D1"],
     ["clause_ref", "Clause within the source.", "e.g. Rule 1.4, art. 3, AVMSD art. 6a(1)"],
-    ["source_url", "Canonical URL (hyperlinked).", "For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."],
+    ["source_url", "Canonical URL (hyperlinked).", "PREFER A STABLE HTML PAGE over a PDF where the publisher offers one: an HTML page keeps its address across revisions, whereas PDF URLs are minted per revision (Ofcom /siteassets/ PDFs carry a ?v=NNNNNN parameter), so a pinned PDF link rots silently at the next update. For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."],
     ["valid_from", "Date the provision took effect.", "ISO date, or blank if undated guidance"],
     ["valid_to", "End of validity.", "open / unknown / ISO date"],
     ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical. NOTE: the manifest carries only CURRENT materials, so a superseded rule row would have no retrievable source; superseded wordings are recorded in the Open_Questions entry for the conflict that found them. A rule_id in the 9xx range is reserved for a historical version if one is ever carried again."],
@@ -1048,6 +1048,7 @@ howto += [
     ["Scoring by determinacy", "bright_line: exact match; any deviation is a defect. conditional: the correct answer, OR a correct missing-information request when the gating input was absent - both pass. judgment_based: score the cited rule and the reasoning, accept a band of outcomes, and require escalation near a threshold. Scoring a judgment_based row by exact match measures the test set, not the model."],
     ["Before using as ground truth", "Filter status = approved. Rows marked draft or unverified have open conflicts (see Open_Questions) and must be resolved first. Currently 74 of 83 rows are approved. The remaining: all FR category V rows are unverified (C-03), FR-CNV-001 is draft (channel conventions not collected, C-06), and FR-CLS-903 is a deliberately retained superseded row."],
     ["Avoiding correlated error", "The biggest risk is that this table and the prompt share an author and therefore share mistakes - the exact failure Task 2 asks about. Mitigation: the bright-line rows (times, absolute prohibitions) should be INDEPENDENTLY RE-DERIVED from primary sources by a second pass that has not seen this table, then compared. verbatim_quote and source_url let a reviewer check a row without reading the prompt at all."],
+    ["Source form", "Prefer the publisher's stable HTML page to a PDF wherever one exists. An HTML page keeps its URL across revisions and shows the current text, so the citation stays good; a PDF URL is minted per revision and rots silently. Where a document is genuinely PDF-only - Ofcom guidance notes, statements, enforcement decisions - the manifest records a landing_page: the stable HTML page the current PDF is always reachable from, so a dead PDF link is recoverable rather than a dead end."],
     ["Versioning", "Never delete a row. When a source is replaced, set valid_to and status = superseded on the old row and add a new row. That preserves the ability to say which rule version produced a past decision."],
     ["Required inputs the rules imply", "country; service_type (free-to-air vs cinema channel vs pay-per-view vs premium subscription film); access measures in place (none / mandatory_daytime_protection / mandatory_restricted_access / decoder_lock); intended broadcast DATE and time (France has day-of-week and school-holiday rules); whether the asset is a theatrical film and its existing BBFC/CNC classification; whether it is a trailer or a music video. If any of these is missing and a candidate rule depends on it, the correct output is a missing-information flag, NOT an assumption."],
     ["Known hard pre-checks", "Absolute prohibitions should be enforced in CODE, not left to prompt reasoning: UK-GEN-001 (seriously impair), UK-SEX-001 (R18-equivalent), UK-FLM-001 (refused classification), UK-FLM-006 (R18 films), FR-LAW-001 (nuire gravement), FR-PRO-001/002/003 (human dignity, child pornography, extreme violence). No contextual argument or access measure should be able to override these."],

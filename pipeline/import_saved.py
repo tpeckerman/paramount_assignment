@@ -37,8 +37,9 @@ INCOMING = ORIGINALS / "incoming"
 MANIFEST = ORIGINALS / "MANIFEST.csv"
 LOCKFILE = ORIGINALS / "originals.lock.json"
 
-FIELDS = ["doc_id", "country", "regulator", "title", "url", "target_filename", "format",
-          "tier", "download_status", "blocked_by", "expect", "notes"]
+FIELDS = ["doc_id", "country", "regulator", "title", "url", "landing_page",
+          "target_filename", "format", "tier", "download_status", "blocked_by",
+          "expect", "notes"]
 
 TAGS = re.compile(rb"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.I | re.S)
 

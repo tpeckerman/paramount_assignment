@@ -189,8 +189,9 @@ def _refresh_manifest_status() -> None:
         else:
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
             r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc, "fetch failed")
-    fields = ["doc_id", "country", "regulator", "title", "url", "target_filename",
-              "format", "tier", "download_status", "blocked_by", "expect", "notes"]
+    fields = ["doc_id", "country", "regulator", "title", "url", "landing_page",
+              "target_filename", "format", "tier", "download_status", "blocked_by",
+              "expect", "notes"]
     buf = _io.StringIO()
     w = csv.DictWriter(buf, fieldnames=fields, lineterminator="\n")
     w.writeheader()
