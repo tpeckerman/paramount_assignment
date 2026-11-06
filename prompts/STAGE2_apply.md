@@ -90,6 +90,19 @@ the answer depends on it rather than applying the rule. Treat
 `is_made_primarily_for_children` the same way: several rules attach to intended audience
 rather than to depicted content.
 
+**1b. Decide per TRANSMISSION, not per asset.** If `observations.transmissions` holds more
+than one showing, produce a separate decision for each, and say so plainly when two showings
+of the identical file differ. A `+1` service is the common case: the same material an hour
+later, which can move it out of school hours and into the time children are home. If only one
+showing is given, ask whether a timeshift service carries it rather than assuming not.
+
+**1c. Check the DATE against audience-composition factors, not just the clock.** School
+holidays and cultural or religious festivals raise the likely child audience without changing
+the hour or the content. Which festivals matter depends on the community that channel serves,
+so this is never inferable from a public-holiday table — if the channel has a
+high-child-audience date list, apply it; if it does not, and the date is unknown, say the
+answer is provisional rather than assuming an ordinary day.
+
 **2. Check service applicability before applying any rule.** A rule scoped to
 `cinema_channels; pay_per_view` does not bind a free-to-air broadcast. If `service_type` is
 `not_stated`, do not pick one. Produce the decision for each plausible service type and say

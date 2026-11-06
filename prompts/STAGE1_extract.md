@@ -35,6 +35,15 @@ A single JSON object. No prose before or after it.
     "is_news_or_current_affairs": "yes | no | not_stated",
     "is_made_primarily_for_children": "yes | no | not_stated"
   },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "channel name, or not_stated",
+      "date": "YYYY-MM-DD or not_stated",
+      "start_time": "HH:MM or not_stated",
+      "is_timeshift_of": "the id of the transmission this +1 service repeats, or null"
+    }
+  ],
   "observations": [
     {
       "id": "o1",
@@ -102,7 +111,18 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    start all feed real rules. Preserve them exactly as given; never normalise or estimate.
 8. **No empty output.** A description with no classifiable events still returns the JSON with
    an empty `observations` array and a populated `not_stated`.
-9. **The two asset-level flags are routers, not ratings.** `is_news_or_current_affairs`
+9. **A decision is about a TRANSMISSION, not about the asset.** List every showing you are
+   told about, separately. The same file can be compliant on one and not on another with no
+   edit between them: a `+1` service re-broadcasts an hour later, so content placed while
+   children are at school lands after they are home. If the description mentions one slot,
+   record one transmission and put the possibility of a timeshift service in `not_stated` —
+   do not assume there isn't one.
+10. **Always record the DATE, not only the time.** Audience composition moves with the
+   calendar: school holidays, and cultural or religious festivals when families gather. A
+   regulator has already treated a festival date as raising the likely child audience. A time
+   without a date cannot be checked against any of that, so `date: not_stated` is itself a
+   finding worth reporting.
+11. **The two asset-level flags are routers, not ratings.** `is_news_or_current_affairs`
    matters because news is regulated under a different Code section, so getting it wrong
    applies a harm-and-offence rule that does not bind. `is_made_primarily_for_children`
    matters because several rules attach to the programme's intended audience rather than to

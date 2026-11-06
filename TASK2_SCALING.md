@@ -177,6 +177,32 @@ review-queue; metrics; the rule that service type is never assumed.
 
 the instruments, the categories, the hours, the escape clauses, the vocabulary mappings.
 
+### A third level the first draft missed: channel
+
+Two levels — shared and country — do not fit the facts. The Toofan decision turned partly on
+the broadcast falling during Eid-ul-Adha, because **that channel serves a Muslim audience**.
+The identical date on a different channel in the same country, under identical law, carries
+no such weight.
+
+That is not shared logic and it is not country data. It is **channel** data, and it cannot be
+researched centrally or derived from a public-holiday calendar. A system that infers festival
+dates from a country table will be wrong in both directions: flagging dates that do not matter
+for that audience, and missing ones that do.
+
+| level | example | who owns it | how often it changes |
+|---|---|---|---|
+| shared | the schema, the quote checker, three-pass decisions | platform team | rarely |
+| country | instruments, categories, hours, escape clauses | local lawyer | on amendment |
+| **channel** | high-child-audience dates, whether a +1 exists, the service's type under local rules, any channel-specific agreement with the regulator | the channel's own compliance contact | annually |
+
+Channel data is small — perhaps ten to twenty dates and a handful of flags per channel — but it
+cannot be bought, scraped or inferred. **This changes the staffing model.** "One lawyer per
+country" does not cover it; you also need a named contact per channel, and the thing you need
+from them takes an hour a year, not a retainer.
+
+In France this level already exists formally: each channel's convention with the regulator can
+be stricter than the general law. The same shape, arrived at from a different direction.
+
 **The dangerous middle: what looks shared and is not.**
 
 - *"There is an age rating."* The UK issues **none** for linear TV. A shared model with a
@@ -184,6 +210,11 @@ the instruments, the categories, the hours, the escape clauses, the vocabulary m
 - *"The watershed is a time."* It is 21:00, or 20:00 on unprotected premium film services, or
   disapplied entirely behind a gate.
 - *"Hours depend on the rating."* In France they depend on service type and weekday.
+- *"A decision is about a programme."* It is not. It is about **a transmission**. A +1
+  service re-broadcasts the same file an hour later, so content placed while children are at
+  school lands after they are home — identical file, identical channel brand, different
+  answer. One programme shown four times is four decisions. A data model keyed to the asset
+  cannot represent this at all, and the error is invisible because the asset passed.
 - *"Scope is obvious."* I scoped the Code by one phrase and wrongly excluded a whole section
   that enters through a different door — a context clause that imports time of broadcast.
   **Scope every country by enumerating its escape clauses, not by searching for a phrase.**
@@ -293,6 +324,11 @@ Track **coverage gaps** explicitly. An observation matching no rule is informati
 **Automate:** fetching and hashing; currency and link checks; quote integrity; vocabulary and
 schema conformance; first-pass extraction; rule selection; applying bright-line rules;
 routing; metrics; amendment alerts.
+
+**Needs a human, but not a lawyer:** the channel-level data above. High-child-audience
+dates, whether a +1 service exists, the channel's service type under local rules. The
+channel's own compliance contact knows these; no amount of research reproduces them. Budget an
+hour a year per channel, not a retainer.
 
 **Local expert, always:**
 
