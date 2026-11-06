@@ -70,6 +70,34 @@ most likely to hit this are flagged in `notes`: `FR-R1`, `FR-L1`, `FR-R1c`, `FR-
 `FR-A1`, `FR-A2b`, `FR-S1c`. If one does, save the PDF by hand into this folder under the
 row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
 
+## What the full Code PDF does and does not cover
+
+`UK-S0` is `broadcast-code-full.pdf` — the whole Ofcom Broadcasting Code in one file. It is
+worth having, but it is **not a shortcut to the whole corpus**. It covers **3 of the 29**
+documents here:
+
+| Covered by UK-S0 | Not covered |
+|---|---|
+| `UK-S1` Section One | **Guidance** (`UK-G1`, `UK-G2`, `UK-G3`) — published separately; the Code PDF contains rules, not guidance |
+| `UK-S2` Section Two | `UK-M1` the mandatory-daytime-protection statement — the Code has the rules, the statement has the platform eligibility |
+| `UK-S4` Section Four | `UK-P1` enforcement bulletin · `UK-L1`/`UK-L2` legislation · `UK-C1` BBFC |
+| | **all 13 French and 2 EU documents** — it is the UK Code only |
+
+So fetching `UK-S0` takes the required list from 19 to 16, not to 1.
+
+### The trap worth naming
+
+"I have the Code, so I have the rules" is wrong in a specific way. The Code gives the rules;
+it does not give the **thresholds**. Everything that tells you *how much* violence is
+"appropriately limited", what counts as "the most offensive language", or how fast content may
+get stronger after 21:00 lives in the **guidance** and the **enforcement bulletins** — neither
+of which is in the Code PDF.
+
+`UK-G1` matters most of all: it is the only source with operational detail on **music videos**
+and on the post-watershed ramp, and music videos are one of the content types the assignment
+suggests for test cases. Of the 29 rule rows marked `judgment_based`, none of their thresholds
+can be calibrated from `UK-S0` alone.
+
 ## What lands here
 
 `MANIFEST.csv` lists 28 documents in three tiers:
