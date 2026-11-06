@@ -1,4 +1,4 @@
-# Stage 0, Build the rules table from source documents
+# the BUILD prompt, Build the rules table from source documents
 
 This is the prompt that produces `rules/csv/Rules.csv` from the documents in
 `sources/originals/`. It runs **once per document**, not once per decision. That separation

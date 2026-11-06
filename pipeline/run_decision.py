@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Assemble the Stage 2 context for a decision: prompt + the rule slice that applies.
+"""Assemble the RUN 2 context for a decision: prompt + the rule slice that applies.
 
-This is the "compile once, query many" payoff. Stage 2 never reads a regulatory source
+This is the "compile once, query many" payoff. RUN 2 never reads a regulatory source
 document. It reads rows from rules/csv/Rules.csv, which were compiled from those documents
 once and are quote-checked against them. Three things follow:
 
@@ -27,9 +27,9 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RULES = ROOT / "rules/csv/Rules.csv"
-STAGE2 = ROOT / "prompts/STAGE2_apply.md"
+DECIDE_PROMPT = ROOT / "prompts/RUN_2_decide.md"
 
-# Columns Stage 2 is given. Deliberately not every column: last_checked, extraction_confidence
+# Columns RUN 2 is given. Deliberately not every column: last_checked, extraction_confidence
 # and quote_lang are provenance for humans and auditors, not inputs to a decision. Sending
 # them invites the model to reason about its own confidence instead of about the rule.
 DECISION_COLS = [
@@ -39,7 +39,7 @@ DECISION_COLS = [
     "determinacy", "human_review_required", "clause_ref", "verbatim_quote",
 ]
 
-# Categories that must travel with every request regardless of what Stage 1 saw. These carry
+# Categories that must travel with every request regardless of what RUN 1 saw. These carry
 # the scheme itself, the scheduling frame and the definitions. Filtering them out produces a
 # model that knows a title has violence in it but not what a watershed is.
 ALWAYS_INCLUDE = {
@@ -70,7 +70,7 @@ def load_rules() -> list[dict]:
 def service_matches(rule_scope: str, requested: str | None) -> bool:
     """A rule binds if its scope names the requested service, or is service-agnostic.
 
-    When the service is unknown we return True for everything: Stage 2 is instructed to
+    When the service is unknown we return True for everything: RUN 2 is instructed to
     branch and label, and withholding rows here would silently narrow the branches it can
     see. Dropping a rule because we cannot confirm it applies is how a pipeline produces a
     confident answer that omits the rule that mattered.
@@ -99,7 +99,7 @@ def select(rules, countries, service=None, categories=None):
             dropped.append((r["rule_id"], f"category={r['content_category']}"))
             continue
         out.append(r)
-    # Lower authority_rank first: Stage 2 resolves conflicts by rank, so presenting the rows
+    # Lower authority_rank first: RUN 2 resolves conflicts by rank, so presenting the rows
     # in rank order means the binding instrument is read before the guidance about it.
     out.sort(key=lambda r: (r["country"], int(r["authority_rank"] or 9), r["rule_id"]))
     return out, dropped
@@ -116,7 +116,7 @@ def main() -> None:
     p.add_argument("--service", default=None)
     p.add_argument("--categories", nargs="*", default=None)
     p.add_argument("--stage1", type=pathlib.Path,
-                   help="Stage 1 JSON; categories are taken from its observations")
+                   help="RUN 1 JSON; categories are taken from its observations")
     p.add_argument("--measure", action="store_true",
                    help="report the size of the rule slice against the source corpus")
     p.add_argument("-o", "--out", type=pathlib.Path)
@@ -143,7 +143,7 @@ def main() -> None:
         print(f"  {c}: {n} rules, {jb} judgment_based, {hr} needing human review",
               file=sys.stderr)
     if not sel:
-        print("  WARNING: empty slice. Stage 2 is instructed to stop rather than fall back "
+        print("  WARNING: empty slice. RUN 2 is instructed to stop rather than fall back "
               "on general knowledge.", file=sys.stderr)
 
     if a.measure:
@@ -156,7 +156,7 @@ def main() -> None:
             print(f"  ratio          : {corpus / len(slice_json):>9.1f}x smaller, and the "
                   f"corpus is still incomplete", file=sys.stderr)
 
-    doc = STAGE2.read_text(encoding="utf-8")
+    doc = DECIDE_PROMPT.read_text(encoding="utf-8")
     parts = [doc, "\n\n---\n\n## `rules` for this request\n\n```json\n" + slice_json + "\n```"]
     if obs_block:
         parts.append("\n\n## `observations` for this request\n\n```json\n"

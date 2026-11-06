@@ -1,176 +1,169 @@
-# Test results and failure analysis
+# Results and failure analysis
 
-## How these were run, and why you should discount them
+## Discount these appropriately
 
-I wrote the prompts, the rules table, the test cases **and** I am the model that executed
-them. That is four roles that should belong to at least two parties. A system graded by its
-own author will pass.
+I wrote the rules, the prompts and the test cases, and I executed them. Four roles that should
+belong to at least two parties. A system graded by its own author passes.
 
-So the honest reading of what follows: the parts worth trusting are the ones where something
-**failed**, because those survived my bias rather than being produced by it. The parts where
-the system succeeded should be re-run by someone else before anyone believes them.
+So the trustworthy parts below are the **failures** and **TC-01**, because the failures
+survived my bias rather than being produced by it, and TC-01 has an answer set by a regulator
+rather than by me.
 
-What limits that bias a little: every decision cites a `rule_id` that resolves to a row with a
-clause reference and a verbatim quote that has been mechanically checked against the stored
-source document. So a reviewer can audit any single claim without trusting me. That is the
-point of the architecture, not a nice extra.
-
----
+What limits the bias a little: every decision cites a `rule_id` resolving to a row with a
+clause reference and a quote mechanically checked against the stored document. A reviewer can
+audit any single claim without trusting me.
 
 ## Summary
 
-| Case | Result | What it exposed |
+| Case | Result | What it showed |
 |---|---|---|
-| TC-01 | Pass | Correct UK "no rating" answer; correctly refused one French answer |
-| TC-02 | **Failed, then fixed** | Two real pipeline bugs. Detail below, this is the valuable one |
-| TC-03 | Pass | Caught the rule with no depicted content, escalated rather than banned |
-| TC-04 | Pass | Separated the trailer from its parent asset |
-| TC-05 | Pass | Surfaced the contradiction instead of resolving it |
-
-One case out of five failed. It failed in two different ways, both of which were invisible
-defects that produced **complete-looking output with a rule silently missing**.
+| TC-01 *Toofan* | **Pass, against a real finding** | Reproduced the regulator's outcome including the part that is counter-intuitive |
+| TC-02 *Fury Road* free-to-air | Pass | Correct "no UK rating"; refused a single French answer |
+| TC-03 same film, PIN | **Failed, then fixed** | Two real pipeline bugs. The valuable result |
+| TC-04 *Thriller* + trailer | Pass | Separated the trailer from the parent asset |
+| TC-05 contradictory doc | Pass | Surfaced the contradiction instead of resolving it |
 
 ---
 
-## TC-01, Cinema film on free-to-air
+## TC-01 — Back-test against a decided case
 
-**UK.** Classification: `no_per_programme_rating`. This is the correct and slightly
-counter-intuitive answer, UK linear television has no per-programme age rating. Scheduling:
-not before 21:00 (`UK-SCH-002`). The BBFC 15 certificate is *evidence* feeding the
-film-carryover rules, not an answer; reporting "15" as the UK rating would invent a
-regulatory instrument that does not exist.
+The one case where the right answer is not my opinion. Ofcom's published finding on *Toofan*
+(NTV, 29 May 2026, 11:30) is the benchmark.
 
-**France.** The system refused to give one answer and branched by service type, which is
-correct. On a general channel the drug and violence content points to category III with its
-own hours; on a cinema or pay-per-view service the hours differ.
+**What the system produced:** breach of Rule 1.3, inappropriate scheduling. It cited
+`UK-SCH-001` and `UK-SCH-002`, flagged the absence of any warning via `UK-WRN-003`, raised the
+likely child audience on the festival date via `UK-SCH-011`, and treated the BBFC 15
+certificate as evidence rather than as the answer via `UK-FLM-010`.
 
-**Both.** The heroin scene produced **two** observations, the drug rule and an
-imitable-behaviour rule, because the technique is shown in close-up. Merging them into one
-"drugs" observation loses a rule hit. The suicide scene was correctly *not* over-read: no
-method is depicted, which matters because the relevant rule turns on method depiction.
+**It also got the part that is easy to miss.** Ofcom opened under the offence rule as well,
+then dropped it: the violence was sufficiently contextualised within the film. The content was
+defensible *as content*; only the slot was not. The system reported the same split, citing
+`UK-CTX-011`.
+
+That distinction is the whole argument for separating the axes. A pipeline that resolves
+"justified by the context?" once and reuses the answer for both questions returns "no breach"
+here, which is wrong, and wrong in the direction that gets a broadcaster fined.
+
+**Caveat, stated plainly:** `UK-PRE-010` and `UK-CTX-011` were *extracted from this very
+decision*. So this is not a clean hold-out test. It confirms the extraction is faithful and
+the rules reach the engine; it does **not** prove the system would have reached that answer
+without them. A genuine back-test needs decisions the table has never seen, which is C-07 and
+the main outstanding work.
 
 ---
 
-## TC-02, Identical film, premium service with a PIN, **FAILED**
+## TC-02 — *Mad Max: Fury Road*, free-to-air
 
-This case exists because TC-01 and TC-02 have **identical content**. Any system that derives
-hours from the rating must give them the same answer and must therefore be wrong about one.
+**UK:** `no_per_programme_rating`, with a scheduling verdict of not before 21:00
+(`UK-SCH-002`). The BBFC 15 feeds the judgment but is not reported as the answer. Emitting
+"15" here would invent an instrument that does not exist for UK linear TV.
 
-The system got the headline right: in the UK the watershed is *disapplied* while mandatory
-daytime protection is in place (`UK-SCH-007`), so a 14:30 transmission is permissible. But
-two bugs underneath it:
+**France:** the system refused to give one answer and branched by service type, which is
+correct.
 
-### Bug 1, the rule that defines the condition never arrived
+It also handled the theme-versus-depiction distinction: captivity and references to sexual
+slavery are themes carrying weight under the harm rules, while **nothing sexual is depicted**.
+A keyword-driven read tags this as sexual content and over-rates it.
 
-`UK-ACC-001` defines what "mandatory restricted access" actually means: a gate that
-**cannot be removed by the user**. It never reached the decision engine.
+---
 
-The cause: the engine selects rules by the content categories found in the description.
-`access_control` is not a content category. **No content description ever mentions a PIN,
-because a PIN is not content.** So it was filtered out every single time.
+## TC-03 — Same film, premium service with PIN. **FAILED**
+
+TC-02 and TC-03 contain **identical content**. Any system deriving hours from the rating must
+answer them alike and must therefore be wrong about one.
+
+The headline came out right: in the UK the watershed is *disapplied* while mandatory daytime
+protection is in place (`UK-SCH-007`), so 14:30 is permissible. Two bugs underneath it.
+
+### Bug 1 — the rule defining the condition never arrived
+
+`UK-ACC-001` defines mandatory restricted access as a gate that **cannot be removed by the
+user**. It never reached the decision engine.
+
+The engine selects rules by the content categories found in the description. `access_control`
+is not a content category, because **a PIN is not content**. No content description ever
+mentions one, so it was filtered out every time.
 
 The engine could therefore read `any_time; requires=mandatory_daytime_protection` with no row
-telling it what that requirement means or how to tell whether it is met. It would have
-accepted *any* claimed PIN, including a parental control the viewer can switch off, which
-does not satisfy the rule and would put the broadcast in breach from the first frame.
+saying what that requirement meant. It would have accepted any claimed PIN, including a
+parental control the viewer can switch off, which does not satisfy the rule and puts the
+broadcast in breach from the first frame.
 
-**Fix:** `access_control`, `audience_information` and `trailers` are now force-included
-regardless of content. The general lesson is bigger than the fix: **filtering rules by the
-categories present in the content silently removes every rule about delivery.**
+**Fix:** `access_control`, `audience_information` and `trailers` are force-included regardless
+of content. The general lesson is bigger than the fix: **filtering rules by the categories
+present in the content silently removes every rule about delivery.**
 
-### Bug 2, two spellings of the same service
+### Bug 2 — two spellings of one service
 
-After fixing Bug 1 the rule *still* did not arrive. The rules use `premium_subscription` in
-one place and `premium_subscription_film` in another for the same service. There was no
-controlled vocabulary, so the mismatch dropped the rule silently.
+After fixing Bug 1 the rule still did not arrive. The table used `premium_subscription` in one
+row and `premium_subscription_film` in another for the same service, with no controlled
+vocabulary, so the mismatch dropped it silently.
 
-**Fix:** vocabulary normalised, and the verifier now **fails** on any `service_type` token
-outside a controlled list, so this cannot recur quietly.
+**Fix:** vocabulary normalised, and `verify_rules.py` now **fails** on any `service_type`
+outside a controlled list.
 
-### Why this is the most important result here
+### Why this is the result worth reading
 
-Neither bug produced an error. Neither produced a visibly wrong answer. Both produced
-**complete-looking output with a rule missing**, which is the worst failure mode a compliance
-system has: it is indistinguishable from correct output until someone is in front of a
-regulator.
+Neither bug errored. Neither produced a visibly wrong answer. Both produced
+**complete-looking output with a rule missing**, which is indistinguishable from correct
+output until someone is in front of a regulator.
 
-Both were found by one test case that was deliberately built to have *no content difference*
-from another.
+Both were found by one case built to have **no content difference** from another.
 
 ---
 
-## TC-03, Comedy sketch mocking a religion
-
-No violence, no sex, no drugs, no strong language. A category-driven pipeline scores this
-clean and returns "no restrictions".
-
-The system instead fired `UK-HAT-002` (abusive or derogatory treatment of a religion or
-community) and flagged it for human review. That is the right answer twice over:
-
-- The trigger is **treatment**, not depicted subject matter. Nothing in the event list is
-  "content" in the usual sense.
-- It **escalated rather than refused**. Comedy and satire have real protection, and the rule
-  is context-justified. A system that cleared this is wrong; a system that banned it is also
-  wrong.
-
-This rule was added only after the scoping test was corrected. Before that correction the
-system returned "no restrictions" for this case.
-
----
-
-## TC-04, Music video and its trailer
+## TC-04 — *Thriller* and its trailer
 
 Two decisions, correctly separated. The video at 22:15 is post-watershed. The 30-second
-trailer in a 15:00 break is judged **in its own slot** (`UK-TRL-002`) and does not inherit
-the video's permission, so the same audio that is fine at 22:15 is a breach at 15:00, with
-no change to the material.
+trailer in a 15:00 break is judged **in its own slot** (`UK-TRL-002`, `UK-TRL-003`) and does
+not inherit the video's permission, so the same footage is fine at 22:15 and a breach at
+15:00.
 
-A pipeline that reasons about "the asset" rather than each transmission misses this entirely.
+The system also picked the right categories: this is `fear_distress` and horror imagery, not
+`violence`. And it treated France more softly than the UK, which is correct, since France
+exempts music videos from systematic signage with a soft preference while the UK applies the
+full watershed. Rendering that French preference as a prohibition would be an over-rating
+defect.
+
+The on-screen occult disclaimer was recorded as a contextual factor rather than ignored.
 
 ---
 
-## TC-05, Contradiction and missing information
+## TC-05 — Contradiction and missing information
 
-The distributor's summary says "suitable for all audiences, no content of concern". The event
-list contains real footage of a fatal accident.
+The distributor's summary says "suitable for all audiences". The event list contains real
+footage of a fatal accident.
 
-The system reported the contradiction rather than resolving it, which is the required
-behaviour: the extraction stage is explicitly forbidden from tidying conflicts, because a
-tidied description hides the disagreement from the only parties who can settle it.
+The system reported the contradiction rather than resolving it, refused to answer France
+without a service type and listed what each type would yield, and distinguished real footage
+of death from dramatised violence. The "easy to copy at home" line was caught as an
+imitable-behaviour trigger.
 
-It also refused to answer France at all without a service type, listing what each service type
-would yield instead. And it distinguished real footage of death from dramatised violence,
-which engage different rules.
-
-**A confident answer here would be a failure even if the rating were right.**
+A confident answer here would be a failure even if the rating happened to be right.
 
 ---
 
 ## What the failures have in common
 
-Every real defect found today, in the rules, in the pipeline, and in the sources, was
-**silent**. Nothing crashed. Nothing looked wrong:
+Every real defect in this project, in the rules, the pipeline and the sources, was **silent**:
 
-- four quotes that were paraphrases or had invented punctuation
+- four quotes that were paraphrases or had punctuation added that cut a sentence short
 - a rule citing guidance superseded in 2018
 - a rule that could never reach the engine
 - two spellings of one service name
 - a manifest column deleted by a script that had never heard of it
 - files on disk reported as missing because a lockfile was treated as proof
+- three dead source URLs, each dead for a different reason, all labelled the same way
 
-None was found by reading the work. All were found by a mechanical check that compares the
-work against something external. **The checks are the deliverable as much as the table is.**
+None was found by reading the work. All were found by a check comparing the work against
+something external. **The checks are as much the deliverable as the table is.**
 
----
+## Limits
 
-## Honest limits
-
-- **28 of 90 rules are judgment-based and essentially uncalibrated.** The table can say "a
-  judgment is required here"; it cannot say where the line sits. Only one enforcement
-  precedent has been collected. The regulator's guidance notes contain worked examples that
-  would calibrate these, and 8 of 20 sources are still not collected.
-- **Author equals grader.** See the top of this page.
-- **French sources are translations.** The category V rules are quoted from Arcom's own
-  English translation, which states that only the French is authentic.
-- **Nothing here has been tested on real Paramount assets**, only on cases I wrote. Written
-  test cases share the blind spots of whoever wrote them.
+- **35 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
+  not a scale. The guidance names about a dozen more; collecting them is the highest-value
+  work left.
+- **Author equals grader**, except for TC-01, which is itself not a clean hold-out.
+- **The French rules are quoted from an official English translation** that states only the
+  French is authentic.
+- **Nothing has been run against a real Paramount asset**, only against descriptions I wrote.

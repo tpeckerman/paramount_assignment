@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Import documents you saved from a browser, whatever form they came in.
 
-    1. open the url from DOWNLOAD_THESE.md in your browser
+    1. open the url from sources/originals/MANIFEST.csv in your browser
     2. save the page ANY way that is convenient:
          Cmd/Ctrl+S  -> .html  (choose "Web Page, HTML Only" if offered)
          Cmd/Ctrl+P  -> "Save as PDF"
@@ -114,7 +114,7 @@ def main() -> int:
              if p.is_file() and not p.name.startswith(".")]
     if not files:
         print(f"Nothing in {INCOMING.relative_to(ROOT)}/")
-        print("\nSave the pages listed in DOWNLOAD_THESE.md there (any filename, .html or")
+        print("\nSave the pages listed in MANIFEST.csv there (any filename, .html or")
         print(".pdf), then run this again. Browser: Cmd/Ctrl+S for HTML, Cmd/Ctrl+P ->")
         print("Save as PDF for PDF. Either works.")
         return 0
@@ -228,7 +228,6 @@ def main() -> int:
     if claimed and not args.dry_run:
         print("\nNext:")
         print("  python pipeline/verify_rules.py --with-quotes")
-        print("  python pipeline/build_worklist.py      # refresh DOWNLOAD_THESE.md + workbook")
     return 1 if (rejected or unmatched) else 0
 
 

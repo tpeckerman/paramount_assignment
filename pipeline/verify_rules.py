@@ -279,6 +279,23 @@ def check_service_vocab(rows):
                 bad.append((r["rule_id"], tok))
     return bad
 
+def check_sources_tab(rows):
+    """Every collected document must appear in the Sources tab.
+
+    The tab also lists sources considered and rejected, which is useful context, so this is
+    one-directional. It exists because the two lists drifted: the tab carried nine documents
+    that had been removed from the manifest and was missing four that had been added.
+    """
+    import csv as _csv, pathlib as _pl
+    base = _pl.Path(__file__).resolve().parent.parent
+    src = base / "rules/csv/Sources.csv"
+    man = base / "sources/originals/MANIFEST.csv"
+    if not (src.exists() and man.exists()):
+        return []
+    have = {r["source_id"] for r in _csv.DictReader(src.open(encoding="utf-8"))}
+    need = {r["doc_id"] for r in _csv.DictReader(man.open(encoding="utf-8"))}
+    return sorted(need - have)
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -293,6 +310,8 @@ def main() -> int:
     print(f"loaded {len(rows)} rules from {WORKBOOK.relative_to(ROOT)}")
 
     problems = check(rows) + check_manifest_coverage(rows)
+    problems += [f"{d}: collected but missing from the Sources tab"
+                 for d in check_sources_tab(rows)]
     problems += [f"{rid}: service_type '{tok}' is not in the controlled vocabulary"
                  for rid, tok in check_service_vocab(rows)]
     if args.with_quotes:

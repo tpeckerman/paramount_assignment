@@ -6,22 +6,22 @@ informative part of this.
 
 | Deliverable | Where |
 |---|---|
-| Sources and rule table | `sources/originals/MANIFEST.csv`, `rules/RULES_TABLE_v1.xlsx`, `rules/csv/` |
-| The prompt | `prompts/STAGE1_extract.md`, `prompts/STAGE2_apply.md` |
-| The prompt that *builds* the table | `prompts/STAGE0_build_rules_table.md` |
+| Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `rules/RULES_TABLE_v1.xlsx`, `rules/csv/Rules.csv` |
+| The prompt | `prompts/RUN_1_describe_content.md`, `prompts/RUN_2_decide.md` |
+| The prompt that *builds* the table | `prompts/BUILD_rules_from_sources.md` |
 | Test cases and results | `tests/CASES.md`, `tests/RESULTS.md` |
-| Scope reasoning | `SCOPE_DECISION.md` |
+| Scope reasoning | `SCOPE.md` |
 | Design choices and tools | this file |
 
-**Current state:** 90 rules, 87 approved, 12 of 20 sources collected, 32 quotes verified
+**Current state:** 103 rules, 87 approved, 12 of 20 sources collected, 32 quotes verified
 against stored sources, 0 failing.
 
 ---
 
 ## Design choice 1, Two stages, not one
 
-**Chosen:** Stage 1 turns the description into timecoded observations. Stage 2 applies rules.
-Stage 1 **does not know the rules exist.**
+**Chosen:** RUN 1 turns the description into timecoded observations. RUN 2 applies rules.
+RUN 1 **does not know the rules exist.**
 
 A single prompt doing both is smaller and cheaper. It is also unauditable: there is nothing
 separating "what the rule says" from "what I decided", so a misreading cannot be caught. And
@@ -29,7 +29,7 @@ an extractor that knows the thresholds will shade its descriptions toward the ra
 expects, write "graphic violence" rather than "a man is struck with a bottle; blood is
 visible" and the decision is already made, invisibly, by an adjective.
 
-**Cost:** two calls, and Stage 1 sometimes produces observations no rule uses. That turned
+**Cost:** two calls, and RUN 1 sometimes produces observations no rule uses. That turned
 out to be a feature. An observation matching no rule is a **coverage gap**, which is how you
 discover a missing rule.
 
@@ -106,7 +106,7 @@ news is regulated elsewhere and applying a harm rule to it would be wrong.
 ## Design choice 7, "Not stated" is an output, not a failure
 
 The worst outcome is a confident decision on absent information. `not_stated` is a
-first-class value and Stage 2 is forbidden from resolving it by assumption, it branches and
+first-class value and RUN 2 is forbidden from resolving it by assumption, it branches and
 labels instead. Service type is the critical one: French hours depend on it, so a single
 unqualified French answer is almost always wrong.
 
@@ -147,7 +147,7 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **28 of 90 rules are judgment-based and uncalibrated.** One enforcement precedent collected.
+- **28 of 103 rules are judgment-based and uncalibrated.** One enforcement precedent collected.
   The table can say "a human must decide"; it cannot say where the line sits. The regulator's
   guidance notes contain worked examples that would fix this, they are among the 8
   uncollected sources.
@@ -174,7 +174,7 @@ the accent and ligature folding the French quote checks need.
 
 **Pipeline** (`pipeline/`): `build_rules_table.py`, `verify_rules.py` (integrity + quote
 check + vocabulary), `fetch_originals.py`, `fetch_with_browser.py` (Playwright),
-`import_saved.py`, `build_worklist.py`, `run_decision.py`.
+`import_saved.py`, `run_decision.py`, `build_inventory.py`, `build_timeline.py`.
 
 **GitHub Actions**, CI runs the verifier, the quote check and a regenerate-and-diff of the
 CSV mirrors so the binary table cannot drift unnoticed. A second workflow fetches sources.

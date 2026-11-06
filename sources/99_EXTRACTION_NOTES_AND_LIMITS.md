@@ -1,132 +1,117 @@
-# Extraction Notes, Limits and Verification Status
+# Limits and verification status
 
-Compiled: 2026-11-06
+Read this before using the rule table as ground truth.
 
-Read this before using `RULES_TABLE_v1` as ground truth.
+An earlier version of this file duplicated the conflict log and went stale: it still showed
+two conflicts as open after they had been closed, was missing four that had been opened since,
+and pointed at a file that had been deleted. **The conflict log lives in
+`rules/csv/Open_Questions.csv` and nowhere else.** This file covers the limits that are not
+conflicts.
 
----
+## Where things stand
 
-## 1. What these files are, and what they are not
+- 103 rules, 102 approved. The one exception is `FR-CNV-001`, draft because French channel
+  conventions have not been collected.
+- 20 of 20 source documents collected and on disk.
+- 50 quotes verified against their stored source, 0 failing, 0 skipped.
+- Conflicts: see `rules/csv/Open_Questions.csv`. Four remain open; the substantive one is
+  **C-07**, below.
 
-**They are structured extracts with canonical source URLs. They are not the official full text.**
+## The limit that matters most: judgment rules are barely calibrated
 
-This matters and should be stated in the assignment submission, because it changes what the ground-truth
-table can legitimately be used for.
+**35 of 103 rules are `judgment_based`**, and exactly **one** decided case has been collected.
 
-### Why full verbatim text could not be captured
+One case is an anchor, not a scale. It tells you that a BBFC 15 film with sustained graphic
+violence at 11:30 in the morning breached, which is useful, but it does not tell you where the
+line sits. Every `judgment_based` row should be treated as **routing to a human**, not as
+deciding anything.
 
-Two independent blocks:
+The fix is known and unglamorous: the guidance notes name roughly a dozen further decisions
+(*The X Factor Final*, *Candy Bar Girls*, *Emmerdale*, *Coronation Street*, *EastEnders*,
+*Ice Road Truckers*, *Taggart*, *Midsomer Murders*, *Hell's Kitchen USA*, *Amores Perros*,
+*Stylista*). Collecting those bulletins is the highest-value remaining work on this table.
 
-1. **No direct network access from the execution environment.** Outbound requests to `ofcom.org.uk`,
-   `arcom.fr` and `legifrance.gouv.fr` are refused by the egress proxy
-   (`connect_rejected`, host not on the session allowlist). Verified by direct test:
-   `curl https://www.ofcom.org.uk/.../Broadcast-code-Section-1.pdf` → `CONNECT tunnel failed, response 403`.
-2. **The available web-fetch path returns summaries, not source text.** It renders the page and then answers
-   a prompt against it with a separate model, which declines to reproduce documents in full
-   ("I can't reproduce the full verbatim text"). Several fetches returned exactly that.
+Tracked as **C-07**.
 
-Additional specific failures encountered:
-- `ofcom.org.uk/.../section-one-protecting-under-eighteens` → site-level `client_error`.
-- `ofcom.org.uk/.../section-two-harm-offence` → not on fetch allowlist.
-- The `csa.fr` canonical URL for délibération 2014-17 → rejected, *"url exceeds the maximum fetchable length"*.
-  Worked around via the `arcom.fr` English equivalent.
+## Two kinds of ambiguity, which must not be merged
 
-### Consequence for the `verbatim_quote` column
+**`determinacy`** is a property of the **rule**.
 
-The column holds **short quoted fragments that came through the fetch intact** (e.g. the MDP definition,
-the AVMSD "most harmful content" sentence). It is **not** a complete quotation of each rule, and it
-**cannot currently support an automated quote-integrity check**, because there is no local copy of the
-source to check against.
+- `bright_line`: a clock time or an absolute prohibition. Score by exact match; any deviation
+  is a defect.
+- `conditional`: the answer depends on an input such as service type. Either the right answer
+  **or** a correct missing-information request passes, depending on whether the input was
+  supplied.
+- `judgment_based`: accept a band of outcomes, score the cited rule and the reasoning, and
+  require escalation near a threshold. Scoring these by exact match measures the test set, not
+  the model.
 
-### What would fix it (and why this is a Task 2 finding, not just a Task 1 caveat)
+**`ambiguity_flag`** is a property of **the extraction**: `clear`,
+`conflicting_sources`, `translation_uncertain`, `unverified`,
+`out_of_scope_for_asset_decision`.
 
-An automated rule-ingestion pipeline **must not** depend on model-mediated fetching for legal text.
-It needs either:
-- an allowlisted direct fetch of the source documents (PDF/HTML bytes), or
-- manual deposit of the official PDFs into the Drive source folder.
+They are independent. A bright-line rule can be translation-uncertain; a judgment-based rule
+can be perfectly clear. Merging them loses the most useful state of all: *this rule is crisp
+and I am not confident it was transcribed correctly.*
 
-Either gives a local canonical copy, which then makes the central integrity control possible:
-**every extracted row must carry a verbatim quote that is programmatically confirmed to appear in the
-stored source file.** Without that control, extraction errors are silent. This is the single most important
-structural recommendation for Task 2.
+## What the sources cannot tell you
 
----
+**The French rules are quoted from an English translation.** The category V document is
+Arcom's own machine rendering, and the page states that only the French original is authentic.
+Every quote drawn from it is English and needs re-checking by someone who reads French.
 
-## 2. Two different kinds of "ambiguous", do not merge them
+**One UK document is a landing page, not the document.** `UK-M1` carries the fact that the
+protection rules were extended on 1 January 2019 but not the reasoning. The statement itself
+was never retrieved.
 
-The table carries **two separate columns** because these are different problems with different remedies.
+**One enforcement decision concerns a channel that no longer exists.** C8 stopped broadcasting
+on 1 March 2025. The decision remains a valid reading of the rule it interprets, but say so
+when citing it.
 
-### `determinacy`, a property of the rule itself
-| Value | Meaning | Example |
-|---|---|---|
-| `bright_line` | One correct answer, mechanically checkable. | Ofcom 1.4 watershed = 21:00. FR cat. IV on non-cinema channels = after 22:30. |
-| `conditional` | Bright line, but gated on a condition that must be supplied as input. | Ofcom 1.23-18-rated film before 21:00 **unless** MDP in place. FR cat. III derogation after 20:30 except Tue/Fri/Sat/holiday-eve/school holidays. |
-| `judgment_based` | Requires evaluative assessment; a *range* of defensible answers. | Ofcom 1.11 "appropriately limited... justified by the context". FR art. 1 violence "perceived as continuous". |
+Per-source detail is in `sources/originals/NOTES.md`.
 
-**This column governs how the test set is scored.** Scoring a `judgment_based` row with exact-match is
-a measurement error, not a model failure. Suggested scoring:
-- `bright_line` → exact match required; any deviation is a defect.
-- `conditional` → correct answer **or** a correct missing-information request if the condition was absent.
-- `judgment_based` → score the **reasoning and the cited rule**, accept a band of outcomes, and require
-  escalation when near a threshold.
+## Deliberate gaps
 
-### `ambiguity_flag`, a property of *our extraction*
-| Value | Meaning |
-|---|---|
-| `clear` | Extraction is unambiguous and corroborated. |
-| `conflicting_sources` | Two sources disagree; resolved by authority rank, resolution recorded. |
-| `translation_uncertain` | Derived from a machine translation whose wording is unreliable. |
-| `unverified` | Not confirmed against current official text; currency in doubt. |
-| `out_of_scope_for_asset_decision` | A real obligation, but not answerable per-asset (quotas, contracts, bundles). |
+- **French channel conventions** (C-06). Each channel's agreement with the regulator can be
+  stricter than the general law, and they are not consolidated anywhere. This is channel-level
+  data: two channels in the same country, under identical law, can need different answers. The schema for it is set out in TASK2_SCALING.md.
+- **BBFC classification guidelines.** The Code refers to BBFC ratings, but the guidelines
+  behind those ratings are not collected. A certificate is treated as evidence, never as an
+  answer.
+- **Overseas France.**
+- **Everything outside the age and time decision.** Impartiality, fairness, privacy and
+  commercial references are excluded by a deliberate scope choice, set out in
+  `SCOPE.md`. Note that the news section genuinely **binds** this broadcaster, since
+  a commercial PSB licence carries news obligations. It is out of scope because it yields no
+  rating and no hour, not because it does not apply.
 
-**Rows with `ambiguity_flag != clear` must not be used as ground truth until resolved.**
-They are currently `status = draft` or `unverified`, never `approved`.
+## The structural limit
 
----
+The rules, the prompts, the tests and the checker share an author, so they share their
+mistakes. That is the exact failure mode Task 2 asks about, and it cannot be fixed by more
+care from the same person.
 
-## 3. Open conflicts and their current resolution
+The mitigation is independent re-derivation: someone who has **not** seen this table should
+derive the bright-line rows from primary sources and diff. `verbatim_quote` and `source_url`
+exist so a reviewer can check any single row without reading the prompt at all.
 
-| ID | Issue | Resolution | Still to do |
-|---|---|---|---|
-| **C-01** ✅ | Arcom's public summary page describes **-12** as daytime-permitted "under certain conditions", identical to its **-10** wording. Binding text says not before 22:00 on non-cinema channels. | **CLOSED.** Binding text wins (rank 2 over rank 5), and is now confirmed in French (C-02). FR-S1 must not be used as a rule source. | None. Retained as the worked example of authority-rank conflict resolution. |
-| **C-02** ✅ | Arcom's **English machine translation** of art. 3 duplicates the cinema-channel sentence for cat. III, then says "before 10 pm", leaving the service mapping ambiguous. | **CLOSED 2026-11-06.** Confirmed against the **French** text from two independent sources: Légifrance `JORFTEXT000000446802` and the csa.fr consolidated page carrying the *"Modifiée par la délibération n° 2014-17"* banner. Non-cinema → not before **22:00**; cinema/PPV → not **Wednesdays before 20:30**; cat. IV → **22:30** / **20:30**. All affected rows promoted to `approved`. | Confirm the derogation's "16/year, max 4" quota numbers in French, still attested only in the English rendering. Does not block the hours. |
-| **C-09** ✅ | Closing C-02 exposed an extraction error of our own: délibération 2014-17 replaced art. 2's fifth alinéa and **broadened** the cat. III definition, but the table carried the 2005 wording. `leur scénario recourt de façon répétée **et systématique**` → `le programme recourt de façon répétée`. | **CLOSED 2026-11-06.** `FR-CLS-003` corrected; the pre-2014 wording retained as `FR-CLS-903`, `status=superseded`, `valid_to=2014-04-08`. | None for the rule. The lesson: the error survived because the EN translation and the pre-2014 French text **agreed with each other**, so cross-source corroboration did not catch it, only reading the amending instrument did. Never trust a page labelled "consolidated"; diff the amending deliberation. |
-| **C-03** | **Recommandation 2004-7** (the sole source of the French **-18** hours, 00:00-05:00) dates from 2004 with deadlines of 2005/2006/2008, all elapsed. CSA→Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it. | None, flagged. | Check the current Arcom legal register for amendment/replacement. All cat. V rows are `unverified`. |
-| **C-04** | No verbatim source text available locally (section 1 above). | Documented; URLs recorded on every row. | Obtain official PDFs to enable quote-integrity checking. |
-| **C-05** | Ofcom Section One uses **"children" = under 15** while the section's principle covers **under 18**. Easy to conflate. | Both recorded explicitly in `UK_01`. | Nothing, but note it in the prompt, since it affects rules 1.3, 1.10, 1.13, 1.27. |
-| **C-06** | French **channel conventions** can be stricter than the general recommendation and are not consolidated anywhere. | Out of scope for v1; `channel_specific_override` concept noted. | For Task 2: per-licensee data source, requires local expert. |
+Tracked as **C-08**.
 
----
+## What the checks already caught
 
-## 4. Known gaps in v1 (deliberate, documented)
+Worth stating, because it is the argument for the checks rather than for the table:
 
-- **Ofcom Guidance Notes for Sections One and Two** were identified but not extracted in detail.
-  They would sharpen the `judgment_based` thresholds.
-- **Ofcom enforcement precedent** is represented by a single example (*Toofan*, NTV, 29 May 2026, Rule 1.3
-  breach, violent film at 11:30). A real system should ingest the bulletins systematically: they are the
-  only source of *applied* thresholds, which is exactly what `judgment_based` rows lack.
-- **BBFC classification guidelines** are referenced but not extracted. Needed only for the film path.
-- **French channel conventions**, not collected (see C-06).
-- **Overseas France** (recommandation du 26 juillet 2005), noted, not extracted.
-- **Trailers** are covered for France (FR-R1 art. 5) and partially for the UK (UK-G1 guidance), but the UK
-  Code's trailer treatment sits across Sections One and Two and is not fully mapped.
+- Four defective quotes, found the moment real sources landed. Two were paraphrases written as
+  quotes; one cited the wrong document; one had a full stop added mid-sentence, cutting off
+  the words "which cannot be removed by the user" that make the rule enforceable.
+- A French category definition broadened by a 2014 amendment, where the table carried the
+  older, narrower wording and would have **under-rated** content. It survived review because
+  the translation and the pre-amendment original agreed with each other. Cross-checking cannot
+  catch that; only reading the amending instrument can.
+- The same class of error a second time, in rules written hours after that lesson was recorded.
+- A rule that could never reach the decision engine, because it described delivery rather than
+  content.
+- Two spellings of one service name, silently dropping a rule from every decision slice that
+  used the other.
 
----
-
-## 5. Recommended immediate next steps
-
-1. ~~Resolve C-02 against Légifrance~~, **done 2026-11-06.** The French scheduling rows are `approved`.
-   Residue: confirm the derogation's "16/year, max 4" quota numbers in French.
-2. **Resolve C-03** so the -18 window can be trusted. This is now the main blocker.
-3. **Deposit official PDFs** of UK-S1, UK-S2, FR-R1 and FR-R2 into the Drive source folder,
-   then add the quote-integrity check.
-4. Only then freeze v1 as ground truth and begin prompt testing.
-
-> **A note on using this as ground truth.** Because the extraction and the prompt would otherwise share the
-> same author and the same reasoning, there is a real risk of correlated error, the exact failure mode the
-> assignment's Task 2 asks about ("how will you prevent the same error appearing in both the solution and the
-> test answer?"). Two mitigations are already available here:
-> (a) the `verbatim_quote` + `source_url` columns let a reviewer check a row **without** reading the prompt;
-> (b) the bright-line rows (times, absolute prohibitions) are checkable against primary sources by someone
-> with no knowledge of the solution. Recommend that the **bright-line rows be independently re-derived from
-> the primary sources by a second pass that does not see this table**, and the two compared.
+None of these was found by reading the work.

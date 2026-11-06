@@ -38,7 +38,7 @@ flowchart TB
         A1[Identify instruments<br/>enumerate escape clauses] --> A2[Collect sources<br/>primary first]
         A2 --> A3{Currency gate<br/>amended by?}
         A3 -- superseded --> A2
-        A3 -- current --> A4[Extract rules<br/>Stage 0 prompt]
+        A3 -- current --> A4[Extract rules<br/>the BUILD prompt prompt]
         A4 --> A5{Quote check<br/>verbatim in source?}
         A5 -- fail --> A4
         A5 -- pass --> A6{Local expert<br/>sign-off}
@@ -47,10 +47,10 @@ flowchart TB
     end
 
     subgraph PD ["Per asset: runs thousands of times"]
-        B1[Content description] --> B2[Stage 1<br/>extract observations<br/>BLIND to rules]
+        B1[Content description] --> B2[RUN 1<br/>extract observations<br/>BLIND to rules]
         B2 --> B3[Select rule slice<br/>country + service + category]
         A7 --> B3
-        B3 --> B4[Stage 2<br/>3 independent passes]
+        B3 --> B4[RUN 2<br/>3 independent passes]
         B4 --> B5{Confident<br/>and bright-line?}
         B5 -- yes --> B6[Decision + rule_ids]
         B5 -- no --> B7[Human review queue]
@@ -312,7 +312,7 @@ rule, not at "the model". Then:
 - one rule, one country → threshold miscalibrated
 - one rule, every country → shared logic bug
 - one country, many rules → extraction or translation problem at the source
-- observation absent entirely → Stage 1 failure, not a rules problem
+- observation absent entirely → RUN 1 failure, not a rules problem
 - no rule matched → a genuine coverage gap; log it as a rule to collect
 
 Track **coverage gaps** explicitly. An observation matching no rule is information, not noise.

@@ -36,6 +36,8 @@ def add(rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm, exc,
 # ----------------------------------------------------------------- URLs
 U_S1 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens"
 U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence"
+U_FRS1C = ("https://www.arcom.fr/en/find-out-more/educational-resources/protection-young-people-and-persons-under-18")
+U_EUB = "https://eur-lex.europa.eu/eli/dir/2018/1808/oj"
 U_S3 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse"
 U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
@@ -399,7 +401,7 @@ add("UK-HAT-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "abusive or derogatory treatment of individuals", "EN", "medium")
 
 # --- "Other restrictions" limb of the requirement. In scope because each CONDITIONS or
-# --- SUBSTITUTES FOR the age/time answer rather than sitting alongside it (SCOPE_DECISION.md).
+# --- SUBSTITUTES FOR the age/time answer rather than sitting alongside it (SCOPE.md).
 # --- Without UK-ACC-001 the token `requires=mandatory_daytime_protection` is an unexplained
 # --- string and the any-hour permission it gates cannot be audited.
 add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
@@ -637,7 +639,7 @@ add("UK-IMI-010", "UK", "Ofcom", "guidance", 3, "yes",
     "not_before=21:00;judgment:imitability_and_setting",
     "The operative test is IMITABILITY plus SETTING, not the presence of the act. A period "
     "drama and a contemporary bedroom scene are judged differently on identical events, which "
-    "is why Stage 1 records `treatment` as a separate field from what happens.",
+    "is why RUN 1 records `treatment` as a separate field from what happens.",
     "judgment_based", "clear",
     "Overlaps with the suicide and self-harm rules and must never be auto-decided. Escalate "
     "to a UK compliance reviewer in every case.",
@@ -1445,13 +1447,13 @@ def sheet(title, rows, widths, head_height=28):
 # ---- Legend tab
 legend = [["column", "what it holds", "allowed values / notes"]]
 legend += [
-    ["rule_id", "Stable identifier. Format: (UK|FR|EU)-[A-Z]{2,4}-nnn.", "Cite this in prompt output so every decision is traceable to a row. Mnemonics: SCH scheduling, VIO violence, SEX sexual content, NUD nudity, LNG language, DRG drugs, IMI imitable behaviour, SUI suicide/self-harm, FLM film carry-over, MUS music videos, TRL trailers, SIG signage, CLS classification scheme, CV category V regime, PRO absolute prohibition, GEN general duty, DEF definition, LAW legal basis, SVC service scope, CNV channel convention, OCC occult, WEL participant welfare, OFF offence, FRM framework."],
+    ["rule_id", "Stable identifier. Format: (UK|FR|EU)-[A-Z]{2,4}-nnn.", "Cite this in prompt output so every decision is traceable to a row. Mnemonics: SCH scheduling, VIO violence, SEX sexual content, NUD nudity, LNG language, DRG drugs, IMI imitable behaviour, SUI suicide/self-harm, FLM film carry-over, MUS music videos, TRL trailers, SIG signage, CLS classification scheme, CV category V regime, PRO absolute prohibition, GEN general duty, DEF definition, LAW legal basis, SVC service scope, CNV channel convention, OCC occult, WEL participant welfare, OFF offence, FRM framework, ACC access control, HAT hatred and abuse, REL religion, CTX context, WRN warnings, PRE enforcement precedent."],
     ["country", "Jurisdiction.", "UK / FR / EU"],
     ["regulator", "Body that issued the text.", "Ofcom / Arcom / Parliament / EU-ERGA"],
     ["source_type", "Nature of the source.", "statute / regulator_binding / regulator_guidance / precedent / regulator_summary / classification_body / secondary"],
     ["authority_rank", "Conflict resolution. LOWER WINS.", "1 statute, 2 regulator_binding, 3 guidance, 4 precedent, 5 regulator_summary, 6 classification_body, 7 secondary"],
     ["use_for_decision", "Whether a per-asset decision may rely on this row.", "yes / definition_only / framework_only / pointer / scope_rule / no_out_of_scope"],
-    ["service_type", "Which services the rule binds. SEMICOLON-SEPARATED.", "free_to_air, cinema_channels, pay_per_view, premium_subscription_film, other_than_cinema_channels, music_channels, bbc_odps, all_linear_tv, per_channel, pay_tv_bundles, all_avms"],
+    ["service_type", "Which services the rule binds. SEMICOLON-SEPARATED.", "CONTROLLED VOCABULARY, enforced by verify_rules.py: an unknown value now fails the build. free_to_air, cinema_channels, pay_per_view, premium_subscription_film, scheduled_channels_with_mdp, other_than_cinema_channels, music_channels, high_production_commitment_channels, bbc_odps, all_linear_tv, per_channel, pay_tv_bundles, all_avms. The check exists because two spellings of one service once silently dropped a rule from every decision slice using the other."],
     ["content_category", "Shared harm vocabulary across countries. THIS IS THE JOIN KEY to the content-extraction stage.", "violence, sexual_content, nudity, drugs_alcohol_smoking, strong_language, fear_distress, suicide_self_harm, imitable_behaviour, human_dignity, occult_paranormal, religion, music_videos, trailers, film_carryover, signage, access_control, scheduling_general, classification_scheme, serious_harm, offence_general, participant_welfare, commercial_conditions, data_protection, legal_basis, definition, scope"],
     ["classification", "The age label or UK equivalent.", "FR: I_tous_publics, II_-10, III_-12, IV_-16, V_-18. UK: context_dependent, watershed_bound, prohibited, any_time_with_protection, restricted_window. Also: category_independent, exempt, soft_restriction, n/a"],
     ["threshold_description", "What the rule actually says, in structured prose.", "Free text. Capitals mark the operative words."],
@@ -1484,13 +1486,13 @@ howto += [
     ["Resolving conflicts", "Sort by authority_rank ascending; the lowest rank wins. Record the resolution in ambiguity_note. Worked example: C-01, where Arcom's own public summary page contradicted its binding text on the -12 hours and the binding text won."],
     ["Two kinds of ambiguity", "determinacy describes THE RULE (is it a bright line or a judgment call?). ambiguity_flag describes OUR EXTRACTION (are we sure we read it right?). They are independent: a bright_line rule can be translation_uncertain, and a judgment_based rule can be perfectly clear. Merging them makes the test set unscoreable."],
     ["Scoring by determinacy", "bright_line: exact match; any deviation is a defect. conditional: the correct answer, OR a correct missing-information request when the gating input was absent - both pass. judgment_based: score the cited rule and the reasoning, accept a band of outcomes, and require escalation near a threshold. Scoring a judgment_based row by exact match measures the test set, not the model."],
-    ["Before using as ground truth", "Filter status = approved. Rows marked draft or unverified have open conflicts (see Open_Questions) and must be resolved first. Currently 74 of 83 rows are approved. The remaining: all FR category V rows are unverified (C-03), FR-CNV-001 is draft (channel conventions not collected, C-06), and FR-CLS-903 is a deliberately retained superseded row."],
+    ["Before using as ground truth", "Filter status = approved. 102 of 103 rows are approved. The one exception is FR-CNV-001, still draft because French channel conventions have not been collected (C-06). Every other row is verified against a stored source document: the quote check reports 50 verified, 0 failed, 0 skipped. Approved does NOT mean safe to automate - 35 rows are judgment_based and must route to a human (see Scoring by determinacy)."],
     ["Avoiding correlated error", "The biggest risk is that this table and the prompt share an author and therefore share mistakes - the exact failure Task 2 asks about. Mitigation: the bright-line rows (times, absolute prohibitions) should be INDEPENDENTLY RE-DERIVED from primary sources by a second pass that has not seen this table, then compared. verbatim_quote and source_url let a reviewer check a row without reading the prompt at all."],
     ["Source form", "Prefer the publisher's stable HTML page to a PDF wherever one exists. An HTML page keeps its URL across revisions and shows the current text, so the citation stays good; a PDF URL is minted per revision and rots silently. Where a document is genuinely PDF-only - Ofcom guidance notes, statements, enforcement decisions - the manifest records a landing_page: the stable HTML page the current PDF is always reachable from, so a dead PDF link is recoverable rather than a dead end."],
     ["Versioning", "Never delete a row. When a source is replaced, set valid_to and status = superseded on the old row and add a new row. That preserves the ability to say which rule version produced a past decision."],
     ["Required inputs the rules imply", "country; service_type (free-to-air vs cinema channel vs pay-per-view vs premium subscription film); access measures in place (none / mandatory_daytime_protection / mandatory_restricted_access / decoder_lock); intended broadcast DATE and time (France has day-of-week and school-holiday rules); whether the asset is a theatrical film and its existing BBFC/CNC classification; whether it is a trailer or a music video. If any of these is missing and a candidate rule depends on it, the correct output is a missing-information flag, NOT an assumption."],
     ["Known hard pre-checks", "Absolute prohibitions should be enforced in CODE, not left to prompt reasoning: UK-GEN-001 (seriously impair), UK-SEX-001 (R18-equivalent), UK-FLM-001 (refused classification), UK-FLM-006 (R18 films), FR-LAW-001 (nuire gravement), FR-PRO-001/002/003 (human dignity, child pornography, extreme violence). No contextual argument or access measure should be able to override these."],
-    ["What is NOT in v1", "French channel conventions (C-06); Ofcom Guidance Notes for Sections One and Two; systematic Ofcom enforcement precedent; BBFC classification guidelines; overseas France. See 99_EXTRACTION_NOTES_AND_LIMITS."],
+    ["What is NOT in v1", "French channel conventions, which can be stricter than the general law (C-06). Systematic enforcement precedent: ONE decided case is collected against 35 judgment_based rules, so thresholds are largely uncalibrated (C-07); the guidance names about a dozen further decisions and collecting those bulletins is the highest-value work left. BBFC classification guidelines. Overseas France. Also deliberately absent: everything outside the age/time decision - impartiality, fairness, privacy, commercial references - a scope choice recorded in SCOPE.md. The Ofcom Guidance Notes for Sections One and Two ARE now collected and mined; they supplied 9 rules the Code text alone does not yield. See 99_EXTRACTION_NOTES_AND_LIMITS."],
 ]
 sheet("How_to_use", howto, [30, 130], 22)
 
@@ -1588,6 +1590,18 @@ src += [
     ["EU-D1", "AVMSD - Directive 2010/13/EU as amended by Directive (EU) 2018/1808, Article 6a", "EU / ERGA", "statute", 1,
      "Binds Member States, NOT directly applicable to a broadcast.", U_EU, "2018/1808",
      "The common ancestor of both national frameworks. Mandates an OUTCOME and permits time, age verification or other technical measures as ALTERNATIVES - the root cause of the rating-vs-hours asymmetry."],
+    ["UK-S3", "Ofcom Broadcasting Code, Section Three - Crime, Disorder, Hatred and Abuse", "Ofcom", "regulator_binding", 2,
+     "All Ofcom-licensed TV and radio.", U_S3, "current",
+     "IN SCOPE via the context route, not the watershed. Rules 3.2/3.3 are permitted 'except where it is justified by the context', and context is Section Two's defined term whose third factor is the TIME OF BROADCAST. Wrongly excluded at first by a scoping test that searched for a single phrase (C-11)."],
+    ["FR-R1c", "Arcom recommandation du 7 juin 2005, consolidated (as amended by deliberations 2012-57 and 2014-17)", "Arcom (ex-CSA)", "regulator_binding", 2,
+     "French linear television services.", U_FR1C, "current consolidated",
+     "THE operative French scheduling text, and it must be read consolidated: the 2014 amendment broadened the category III definition, so a row carrying the 2005 wording would UNDER-RATE content (C-09)."],
+    ["FR-S1c", "Arcom - Protection of young people and persons under 18 (educational resources)", "Arcom", "regulator_summary", 5,
+     "Public explainer covering all French services.", U_FRS1C, "current",
+     "SECONDARY: corroboration only, never a rule source, because Arcom's own summary page has contradicted its binding text before (C-01). Its earlier URL was an internal STAGING hostname that never resolved, which the link triage had misreported as bot-blocked."],
+    ["EU-D1b", "Directive (EU) 2018/1808, the amending directive", "EU", "statute", 1,
+     "Amends 2010/13/EU. Binds Member States.", U_EUB, "CELEX 32018L1808",
+     "PROVENANCE, not current rule text: the consolidated article is EU-D1. Held because amendment tracking requires knowing what changed and when, which is the check two separate extraction errors slipped past (C-09, C-14)."],
     ["EU-O1", "European Audiovisual Observatory - protection of minors / AVMSD spotlight", "Council of Europe", "secondary", 7,
      "Comparative mapping across Member States.", "https://www.obs.coe.int/en/web/observatoire/protection-of-minors",
      "ongoing", "Useful starting point for Task 2 scaling to dozens of countries."],
@@ -1743,11 +1757,17 @@ _RULES_DIR.mkdir(parents=True, exist_ok=True)
 _XLSX = _RULES_DIR / "RULES_TABLE_v1.xlsx"
 wb.save(_XLSX)
 
-# Diffable CSV mirrors, one per tab. These are what make a rule change reviewable
-# in a pull request; the workbook itself is a binary blob git cannot diff.
+# Diffable CSV mirrors. The workbook is a binary blob git cannot diff, so a rule change
+# would otherwise be unreviewable in a pull request.
+#
+# Only two tabs are mirrored. Rules.csv because the decision pipeline READS it, and
+# Open_Questions.csv because the conflict log is worth reading on its own. The other four
+# tabs (Legend, How_to_use, Sources, Pivot_Readable) are reference material that already
+# exists inside the workbook; mirroring them doubled the file count for no reader.
+_MIRROR = {"Rules", "Open_Questions"}
 _CSV_DIR = _RULES_DIR / "csv"
 _CSV_DIR.mkdir(exist_ok=True)
-for _name in wb.sheetnames:
+for _name in [n for n in wb.sheetnames if n in _MIRROR]:
     _ws = wb[_name]
     with (_CSV_DIR / f"{_name}.csv").open("w", newline="", encoding="utf-8") as _fh:
         _w = _csv.writer(_fh, quoting=_csv.QUOTE_ALL, lineterminator="\n")
