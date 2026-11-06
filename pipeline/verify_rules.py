@@ -43,7 +43,7 @@ TIME_TOKEN = re.compile(
     r"|window=\d{2}:\d{2}-\d{2}:\d{2}"
     r"|restricted_window=\d{2}:\d{2}-\d{2}:\d{2}"
     r"|soft_prefer_not_before=\d{2}:\d{2}"
-    r"|not_within=.+|not_near=.+|prohibited_in=.+"
+    r"|not_within=.+|not_near=.+|not_when=.+|prohibited_in=.+"
     r"|days=.+|except_days=.+|unless=.+|requires=.+|gate=.+|override=.+"
     r"|annual_quota=.+|sub_quota=.+|standard=.+|frequency_cap=.+|exempt=.+"
     r"|see=.+|judgment:.+|framework:.+"

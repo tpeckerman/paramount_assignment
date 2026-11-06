@@ -36,6 +36,7 @@ def add(rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm, exc,
 # ----------------------------------------------------------------- URLs
 U_S1 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens"
 U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence"
+U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
 U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
@@ -351,6 +352,25 @@ add("UK-OCC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "The fiction exemption is a frequent over-rating trap.", "no",
     "UK-S1", "Rule 1.27", U_S1, "2021-03-03", "open", "approved",
     "", "EN", "high")
+
+add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
+    "all_linear_tv", "religion", "audience_based",
+    "Religious programmes containing claims that a LIVING PERSON (or group) has SPECIAL POWERS "
+    "OR ABILITIES must treat such claims with due objectivity AND must not broadcast such claims "
+    "when significant numbers of children may be expected to be watching.",
+    "No clock time. Restriction is keyed to the likely child audience, not the watershed.",
+    "not_when=significant_numbers_of_children_watching",
+    "Double test, like Rule 2.5: due objectivity AND the audience restriction. Section Four "
+    "otherwise concerns religious content standards and is out of scope.",
+    "judgment_based", "clear",
+    "THIS RULE SITS OUTSIDE SECTION ONE and was missing from v1. Found by reviewing sections "
+    "3-10 for relevance. It is the close cousin of Rule 1.27 (occult/paranormal as "
+    "entertainment), which uses the same 'significant numbers of children' test rather than the "
+    "watershed - so a solution that only reads Section One misses a genuine child-audience "
+    "broadcast restriction. Note the test is AUDIENCE-based, not time-based: there is no hour "
+    "that automatically satisfies it.",
+    "yes", "UK-S4", "Rule 4.7", U_S4, "2020-12-31", "open", "approved",
+    "special powers or abilities", "EN", "high")
 
 add("UK-WEL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "participant_welfare", "context_dependent",
@@ -1022,11 +1042,11 @@ legend += [
     ["authority_rank", "Conflict resolution. LOWER WINS.", "1 statute, 2 regulator_binding, 3 guidance, 4 precedent, 5 regulator_summary, 6 classification_body, 7 secondary"],
     ["use_for_decision", "Whether a per-asset decision may rely on this row.", "yes / definition_only / framework_only / pointer / scope_rule / no_out_of_scope"],
     ["service_type", "Which services the rule binds. SEMICOLON-SEPARATED.", "free_to_air, cinema_channels, pay_per_view, premium_subscription_film, other_than_cinema_channels, music_channels, bbc_odps, all_linear_tv, per_channel, pay_tv_bundles, all_avms"],
-    ["content_category", "Shared harm vocabulary across countries. THIS IS THE JOIN KEY to the content-extraction stage.", "violence, sexual_content, nudity, drugs_alcohol_smoking, strong_language, fear_distress, suicide_self_harm, imitable_behaviour, human_dignity, occult_paranormal, music_videos, trailers, film_carryover, signage, access_control, scheduling_general, classification_scheme, serious_harm, offence_general, participant_welfare, commercial_conditions, data_protection, legal_basis, definition, scope"],
+    ["content_category", "Shared harm vocabulary across countries. THIS IS THE JOIN KEY to the content-extraction stage.", "violence, sexual_content, nudity, drugs_alcohol_smoking, strong_language, fear_distress, suicide_self_harm, imitable_behaviour, human_dignity, occult_paranormal, religion, music_videos, trailers, film_carryover, signage, access_control, scheduling_general, classification_scheme, serious_harm, offence_general, participant_welfare, commercial_conditions, data_protection, legal_basis, definition, scope"],
     ["classification", "The age label or UK equivalent.", "FR: I_tous_publics, II_-10, III_-12, IV_-16, V_-18. UK: context_dependent, watershed_bound, prohibited, any_time_with_protection, restricted_window. Also: category_independent, exempt, soft_restriction, n/a"],
     ["threshold_description", "What the rule actually says, in structured prose.", "Free text. Capitals mark the operative words."],
     ["time_restriction_text", "The time effect in words.", "Free text."],
-    ["time_rule_machine", "The time effect in a parseable form, for code. Semicolon-separated tokens.", "none | prohibited | any_time | n/a | not_before=HH:MM | window=HH:MM-HH:MM | restricted_window=HH:MM-HH:MM | soft_prefer_not_before=HH:MM | not_within=... | not_near=... | prohibited_in=... | days=... | except_days=... | unless=... | requires=... | gate=... | override=... | annual_quota=... | sub_quota=... | standard=... | frequency_cap=... | exempt=... | see=RULE_ID | judgment:... | framework:..."],
+    ["time_rule_machine", "The time effect in a parseable form, for code. Semicolon-separated tokens.", "none | prohibited | any_time | n/a | not_before=HH:MM | window=HH:MM-HH:MM | restricted_window=HH:MM-HH:MM | soft_prefer_not_before=HH:MM | not_within=... | not_near=... | not_when=... | prohibited_in=... | days=... | except_days=... | unless=... | requires=... | gate=... | override=... | annual_quota=... | sub_quota=... | standard=... | frequency_cap=... | exempt=... | see=RULE_ID | judgment:... | framework:..."],
     ["exceptions_conditions", "Carve-outs, gates and inputs the rule depends on.", "Free text."],
     ["determinacy", "PROPERTY OF THE RULE. Governs how the test set is scored.", "bright_line = one correct answer, exact match required. conditional = bright line gated on an input; a correct missing-information request also passes. judgment_based = evaluative; score the reasoning and cited rule, accept a band, require escalation near thresholds."],
     ["ambiguity_flag", "PROPERTY OF OUR EXTRACTION. Do NOT merge with determinacy.", "clear / conflicting_sources / translation_uncertain / unverified / out_of_scope_for_asset_decision"],
@@ -1073,6 +1093,14 @@ src += [
     ["UK-S2", "Ofcom Broadcasting Code, Section Two: Harm and Offence", "Ofcom", "regulator_binding", 2,
      "Same as UK-S1.", U_S2, "HTML, last updated 2024-02-19 (the PDF edition is January 2019)",
      "Supplies the BINDING DEFINITION OF 'CONTEXT', on which Section One depends. Time of broadcast is one of its eight factors."],
+    ["UK-S0", "Ofcom Broadcasting Code - FULL PDF (all ten sections + Cross-promotion Code + ODPS rules)",
+     "Ofcom", "regulator_binding", 2,
+     "Everything in one file. Covers all programmes broadcast on or after 23:00 on 2020-12-31.",
+     "https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-codes/code---jan-2019/broadcast-code-full.pdf?v=323671", "footers read January 2019 (see note)",
+     "THE comprehensive document. Caveat: its footers and CMS folder say January 2019 but it contains post-2019 provisions (Rule 4.5 cites BBC ODPS), so that string looks like a stale template rather than the edition date. For current law prefer the per-section HTML, which carries real last-updated dates."],
+    ["UK-S4", "Ofcom Broadcasting Code, Section Four: Religion", "Ofcom", "regulator_binding", 2,
+     "In scope for Rule 4.7 only.", "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion", "HTML, current",
+     "Rule 4.7 bars claims of special powers when significant numbers of children may be watching - a child-audience restriction outside Section One. Rest of Section Four out of scope."],
     ["UK-G1", "Ofcom Guidance: Protecting the Under-Eighteens - Observing the watershed on television and music videos",
      "Ofcom", "regulator_guidance", 3, "Television.", U_G1, "undated issue",
      "The ONLY UK source with operational detail on MUSIC VIDEOS and on the post-watershed ramp."],
@@ -1183,6 +1211,11 @@ oq += [
      "Still open. All category V rows remain unverified. Attempted 2026-11-06: the Arcom page for reco. 2004-7 was fetched but returned 12,493 characters of pure site NAVIGATION and no rule text - it renders its body via JavaScript. The fetcher now detects this (per-document `expect` assertion) instead of storing the shell as a source copy.",
      "Obtain the real text: use the page's Telecharger/Imprimer PDF, or the JORF of 23 December 2004, and set format=pdf in the manifest. Then confirm (a) that the 00:00-05:00 window is still in force, and (b) whether the 2021 AVMSD transposition decree altered the category V regime. This is now the main blocker on the French side.",
      "local expert", "YES"],
+    ["C-11", "Only Code Sections One and Two had been reviewed. Sections Three to Ten were assumed irrelevant to age ratings and broadcast hours.",
+     "UK-REL-001 (added)",
+     "REVIEWED 2026-11-06. The assumption was mostly right but not entirely: Rule 4.7 (Religion) bars claims that a living person has special powers 'when significant numbers of children may be expected to be watching' - a child-audience broadcast restriction outside Section One. Added as UK-REL-001. Sections Three (crime, disorder, hatred, abuse), Five and Six (impartiality, elections), Seven and Eight (fairness, privacy) and Nine and Ten (commercial references) carry no age-rating or broadcast-hour restriction and stay out of scope.",
+     "Worth one more pass by a UK compliance reviewer to confirm nothing else in sections 3-10 keys off a child audience or a time of day. The pattern to look for is not the watershed but the phrase 'significant numbers of children'.",
+     "closed (one pass done)", "no"],
     ["C-04", "No verbatim source text could be captured. The execution environment has no outbound access to ofcom.org.uk / arcom.fr / legifrance.gouv.fr (egress proxy refuses: connect_rejected), and the available web-fetch path returns model-written summaries, declining full reproduction.",
      "ALL rows (verbatim_quote column)",
      "Documented. Canonical URLs recorded on every row so authoritative wording can be checked by hand.",

@@ -1,6 +1,6 @@
 # Documents to download
 
-**23 outstanding, 5 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
+**24 outstanding, 5 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
 
 Network access from the workspace is open, but these publishers gate automated clients
 behind browser challenges or render the document body in JavaScript. Open each in a
@@ -36,7 +36,7 @@ check what landed.
 > only outstanding document that changes the rule table's status today (conflict C-03).
 > The other 23 convert `skipped` quote checks into `verified` ones - worth having, not blocking.
 
-## Required (14)
+## Required (16)
 
 | ✓ | doc | what it is | save as | why blocked | url |
 |---|---|---|---|---|---|
@@ -52,8 +52,10 @@ check what landed.
 | [ ] | `UK-L1` | Communications Act 2003 section 319 | `UK-L1_communications_act_2003_s319.pdf` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/ukpga/2003/21/section/319/data.pdf) |
 | [ ] | `UK-G1` | Guidance - Observing the watershed on television and music vi... | `UK-G1_ofcom_watershed_music_videos.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf) |
 | [ ] | `UK-M1` | Statement - Review of the mandatory daytime protection rules | `UK-M1_ofcom_mandatory_daytime_protection.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf) |
+| [ ] | `UK-S0` | Ofcom Broadcasting Code - FULL PDF (all ten sections + Cross-... | `UK-S0_ofcom_broadcast_code_full_jan2019.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-codes/code---jan-2019/broadcast-code-full.pdf?v=323671) |
 | [ ] | `UK-S1` | Broadcasting Code Section One - Protecting the Under-Eighteens | `UK-S1_ofcom_code_section_1.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens) |
 | [ ] | `UK-S2` | Broadcasting Code Section Two - Harm and Offence | `UK-S2_ofcom_code_section_2.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence) |
+| [ ] | `UK-S4` | Ofcom Broadcasting Code, Section Four: Religion | `UK-S4_ofcom_code_section_4.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion) |
 
 ## Recommended (6)
 
@@ -66,13 +68,12 @@ check what landed.
 | [ ] | `UK-G3` | Guidance Notes Section Two | `UK-G3_ofcom_guidance_section_2.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0023/104657/Section-2-Guidance-Notes.pdf) |
 | [ ] | `UK-P1` | Enforcement decision - Toofan NTV 29 May 2026 (Rule 1.3 breach) | `UK-P1_ofcom_decision_toofan.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf) |
 
-## Optional (3)
+## Optional (2)
 
 | ✓ | doc | what it is | save as | why blocked | url |
 |---|---|---|---|---|---|
 | [ ] | `FR-R3` | Recommandation du 26 juillet 2005 - category V overseas France | `FR-R3_reco_2005_category_V_overseas.txt` | Connection reset on this path | [link](https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/notice-july-26-2005-television-service-editors-and-distributors-showing-category-v-programs-overseas-france) |
 | [ ] | `FR-X1` | Deliberation 2011-64 du 20 decembre 2011 - on-demand (SMAD) s... | `FR-X1_delib_2011-64_smad.pdf` | Not attempted (optional tier) | [link](https://www.lexing.law/wp-content/uploads/22492432.pdf) |
-| [ ] | `UK-S0` | Ofcom Broadcasting Code, full PDF (January 2019 print edition) | `UK-S0_ofcom_broadcast_code_full_jan2019.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-codes/code---jan-2019/broadcast-code-full.pdf?v=323671) |
 
 ## Already verified
 
