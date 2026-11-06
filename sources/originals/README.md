@@ -44,7 +44,7 @@ there too.
 
 ## What lands here
 
-`MANIFEST.csv` lists 26 documents in three tiers:
+`MANIFEST.csv` lists 28 documents in three tiers:
 
 - **required** — needed to verify the rules currently in the table
 - **recommended** — identified but not yet extracted; would sharpen the `judgment_based` rows
@@ -60,10 +60,13 @@ rather than overwritten (`COLAB_rule_pipeline_starter.ipynb`, cell 4).
 
 ## Two caveats on the manifest
 
-- **`FR-A2b`** — the Légifrance JORF id for délibération 2014-17 is **unconfirmed**. Verify it
-  before trusting that row. It matters: FR-A2b and FR-R1 are the two documents that resolve
-  **C-02**, the garbled translation of the French category III scheduling rule, which is what
-  currently keeps four rows at `draft`.
+- **`FR-A2b` was corrected.** The Légifrance JORF id originally guessed for délibération 2014-17
+  (`JORFTEXT000028728754`) returns a **search page** — it was wrong, and no Légifrance id for this
+  deliberation was located. `FR-A2b` now points at the **Arcom French** text instead, and `FR-R1c` /
+  `FR-R1d` were added as the French consolidated texts on arcom.fr and csa.fr. Those, together with
+  Légifrance `JORFTEXT000000446802` (the 2005 original, which *is* valid), are what closed **C-02**.
+- **`FR-R1d`'s URL is very long** and exceeds some fetch-proxy URL-length limits. Plain `curl` and
+  `fetch_originals.py` handle it; a browser-based fetcher may not.
 - **Légifrance and Arcom pages may return a JavaScript shell** rather than the text. The
   fetcher rejects a non-PDF served as a PDF, but it cannot tell prose from an empty
   single-page app. If a fetched HTML file has no rule text in it, use the page's

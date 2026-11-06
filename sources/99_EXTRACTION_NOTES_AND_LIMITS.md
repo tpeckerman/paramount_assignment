@@ -88,8 +88,9 @@ They are currently `status = draft` or `unverified`, never `approved`.
 
 | ID | Issue | Resolution | Still to do |
 |---|---|---|---|
-| **C-01** | Arcom's public summary page describes **-12** as daytime-permitted "under certain conditions", identical to its **-10** wording. Binding text says not before 22:00 on non-cinema channels. | Binding text wins (rank 2 over rank 5). | Confirm against the live Arcom page; the summary may have been extracted imperfectly from a visually repetitive layout. |
-| **C-02** | Arcom's **English machine translation** of art. 3 duplicates the cinema-channel sentence for cat. III, then says "before 10 pm", leaving the service mapping ambiguous. | Resolved via `solidarites.gouv.fr` (French government) + multiple French parliamentary answers: non-cinema → not before **22:00**; cinema → not **Wednesdays before 20:30**. | **Confirm against the French original on Légifrance.** Affected rows stay `draft`. |
+| **C-01** ✅ | Arcom's public summary page describes **-12** as daytime-permitted "under certain conditions", identical to its **-10** wording. Binding text says not before 22:00 on non-cinema channels. | **CLOSED.** Binding text wins (rank 2 over rank 5), and is now confirmed in French (C-02). FR-S1 must not be used as a rule source. | None. Retained as the worked example of authority-rank conflict resolution. |
+| **C-02** ✅ | Arcom's **English machine translation** of art. 3 duplicates the cinema-channel sentence for cat. III, then says "before 10 pm", leaving the service mapping ambiguous. | **CLOSED 2026-11-06.** Confirmed against the **French** text from two independent sources: Légifrance `JORFTEXT000000446802` and the csa.fr consolidated page carrying the *"Modifiée par la délibération n° 2014-17"* banner. Non-cinema → not before **22:00**; cinema/PPV → not **Wednesdays before 20:30**; cat. IV → **22:30** / **20:30**. All affected rows promoted to `approved`. | Confirm the derogation's "16/year, max 4" quota numbers in French — still attested only in the English rendering. Does not block the hours. |
+| **C-09** ✅ | Closing C-02 exposed an extraction error of our own: délibération 2014-17 replaced art. 2's fifth alinéa and **broadened** the cat. III definition, but the table carried the 2005 wording. `leur scénario recourt de façon répétée **et systématique**` → `le programme recourt de façon répétée`. | **CLOSED 2026-11-06.** `FR-CLS-003` corrected; the pre-2014 wording retained as `FR-CLS-903`, `status=superseded`, `valid_to=2014-04-08`. | None for the rule. The lesson: the error survived because the EN translation and the pre-2014 French text **agreed with each other**, so cross-source corroboration did not catch it — only reading the amending instrument did. Never trust a page labelled "consolidated"; diff the amending deliberation. |
 | **C-03** | **Recommandation 2004-7** (the sole source of the French **-18** hours, 00:00–05:00) dates from 2004 with deadlines of 2005/2006/2008, all elapsed. CSA→Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it. | None — flagged. | Check the current Arcom legal register for amendment/replacement. All cat. V rows are `unverified`. |
 | **C-04** | No verbatim source text available locally (section 1 above). | Documented; URLs recorded on every row. | Obtain official PDFs to enable quote-integrity checking. |
 | **C-05** | Ofcom Section One uses **"children" = under 15** while the section's principle covers **under 18**. Easy to conflate. | Both recorded explicitly in `UK_01`. | Nothing — but note it in the prompt, since it affects rules 1.3, 1.10, 1.13, 1.27. |
@@ -114,9 +115,9 @@ They are currently `status = draft` or `unverified`, never `approved`.
 
 ## 5. Recommended immediate next steps
 
-1. **Resolve C-02** against Légifrance so the French scheduling rows can move to `approved`.
-   These are the highest-value rows in the table — they are the bright lines the prompt will be judged on.
-2. **Resolve C-03** so the -18 window can be trusted.
+1. ~~Resolve C-02 against Légifrance~~ — **done 2026-11-06.** The French scheduling rows are `approved`.
+   Residue: confirm the derogation's "16/year, max 4" quota numbers in French.
+2. **Resolve C-03** so the -18 window can be trusted. This is now the main blocker.
 3. **Deposit official PDFs** of UK-S1, UK-S2, FR-R1 and FR-R2 into the Drive source folder,
    then add the quote-integrity check.
 4. Only then freeze v1 as ground truth and begin prompt testing.

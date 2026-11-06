@@ -46,9 +46,15 @@ U_FRL = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205"
 U_CONV = "https://www.arcom.fr/sites/default/files/2023-05/MeD_C8.pdf"
 U_EU = "https://www.legislation.gov.uk/eudr/2010/13/article/6a"
 
-C02 = ("Service mapping for cat. III comes from a garbled Arcom machine translation; "
-       "resolved via solidarites.gouv.fr + French parliamentary answers. "
-       "MUST be confirmed against French original on Legifrance before approval. (C-02)")
+C02 = ("C-02 RESOLVED 2026-11-06. The service mapping was originally taken from Arcom's "
+       "garbled English machine translation. Now confirmed against the FRENCH text from two "
+       "independent sources: Legifrance JORFTEXT000000446802 (the 2005 original) and the "
+       "csa.fr consolidated page carrying the 'Modifiee par la deliberation n. 2014-17 du "
+       "5 mars 2014' banner. Both read identically: 'pour les chaines cinema et les services "
+       "de paiement a la seance, ces programmes ne doivent pas etre diffuses le mercredi avant "
+       "20 h 30. Pour les autres services de television, ces programmes ne doivent pas etre "
+       "diffuses avant 22 heures.' The Arcom French page for 2014-17 confirms art. 3 was "
+       "replaced with the same wording.")
 C03 = ("Source text dates from 2004 with compliance deadlines of 2005/2006/2008 all elapsed; "
        "CSA->Arcom (2022) and the 2021 AVMSD transposition decree both postdate it. "
        "Not confirmed still in force unamended. (C-03)")
@@ -529,13 +535,38 @@ add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
 
 add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "classification_scheme", "III_-12",
-    "Category III (-12) - cinematographic works BANNED TO UNDER-12s IN CINEMAS, and programmes liable to DISTURB under-12s, in particular where the scenario resorts in a REPEATED AND SYSTEMATIC way to physical or psychological violence.",
+    "Category III (-12) - cinematographic works BANNED TO UNDER-12s IN CINEMAS, and programmes "
+    "liable to DISTURB under-12s, in particular where THE PROGRAMME resorts in a REPEATED way "
+    "to physical or psychological violence.",
     "See FR-SCH-002/003/004.", "see=FR-SCH-002",
     "A cinema -12 interdiction pulls a film into at least this category. Per CSA practice a film carrying a CNC 'avertissement' is classified -12 for TV.",
     "judgment_based", "clear",
-    "'Repeated and systematic' is a frequency/pattern test, not a severity test - requires counting across the asset.",
-    "no", "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
-    "de facon repetee et systematique a la violence physique ou psychologique", "FR", "high")
+    "'Repeated' is a frequency/pattern test, not a severity test - requires counting across the "
+    "asset. IMPORTANT: delib. 2014-17 replaced the fifth alinea of art. 2 and BROADENED this "
+    "definition twice over - 'leur scenario recourt de facon repetee ET SYSTEMATIQUE' became "
+    "'le programme recourt de facon repetee'. So (a) repetition alone now suffices, systematic "
+    "use is no longer required, and (b) the test is the programme as a whole, not just its "
+    "scenario. An extraction working from the pre-2014 wording UNDER-RATES. The superseded "
+    "wording is kept as FR-CLS-903.",
+    "no", "FR-R1 (as amd. FR-A2)", "art. 2 al. 5", U_FR1, "2014-04-09", "open", "approved",
+    "les programmes pouvant troubler les mineurs de 12 ans, notamment lorsque le programme "
+    "recourt de facon repetee a la violence physique ou psychologique", "FR", "high")
+
+add("FR-CLS-903", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
+    "all_linear_tv", "classification_scheme", "III_-12",
+    "SUPERSEDED (2005-2014 wording). Category III (-12) - programmes liable to disturb "
+    "under-12s, in particular where THEIR SCENARIO resorts in a repeated AND SYSTEMATIC way to "
+    "physical or psychological violence.",
+    "n/a - historical", "see=FR-CLS-003",
+    "Replaced by delib. 2014-17 (JORF 2014-04-09), which removed 'et systematique' and changed "
+    "'leur scenario' to 'le programme'.",
+    "judgment_based", "clear",
+    "Retained to demonstrate the versioning rule: a replaced provision is closed with a "
+    "valid_to and status=superseded, never overwritten, so a past decision can still be "
+    "explained by the rule version in force at the time. Naming convention: 9xx = historical.",
+    "no", "FR-R1", "art. 2 al. 5", U_FR1, "2005-07-08", "2014-04-08", "superseded",
+    "leur scenario recourt de facon repetee et systematique a la violence physique ou "
+    "psychologique", "FR", "high")
 
 add("FR-CLS-004", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "classification_scheme", "IV_-16",
@@ -588,18 +619,20 @@ add("FR-SCH-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Category III (-12) on services OTHER THAN cinema channels and pay-per-view: must not be broadcast BEFORE 22:00.",
     "Not before 22:00.", "not_before=22:00",
     "Subject to the exceptional derogation in FR-SCH-004.",
-    "bright_line", "translation_uncertain", C02, "yes",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "draft",
-    "ces programmes ne doivent pas etre diffuses avant 22h", "FR", "medium")
+    "bright_line", "clear", C02, "no",
+    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "Pour les autres services de television, ces programmes ne doivent pas etre diffuses "
+    "avant 22 heures.", "FR", "high")
 
 add("FR-SCH-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; pay_per_view", "scheduling_general", "III_-12",
     "Category III (-12) on CINEMA CHANNELS and PAY-PER-VIEW services: must not be broadcast ON WEDNESDAYS BEFORE 20:30.",
     "Not Wednesdays before 20:30.", "not_before=20:30;days=Wed",
     "A day-of-week-specific rule. Historically tied to the French school week.",
-    "bright_line", "translation_uncertain", C02, "yes",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "draft",
-    "ces programmes ne doivent pas etre diffuses le mercredi avant 20h30", "FR", "medium")
+    "bright_line", "clear", C02, "no",
+    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "pour les chaines cinema et les services de paiement a la seance, ces programmes ne "
+    "doivent pas etre diffuses le mercredi avant 20 h 30.", "FR", "high")
 
 add("FR-SCH-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "scheduling_general", "III_-12",
@@ -607,10 +640,16 @@ add("FR-SCH-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "After 20:30, with day and holiday exclusions.",
     "not_before=20:30;except_days=Tue,Fri,Sat,holiday_eve,school_holidays;annual_quota=16;sub_quota=4_cinema_banned_u12",
     "REQUIRES the broadcast DATE (not just time) and the French school-holiday calendar. The annual quota cannot be verified from a single asset description.",
-    "conditional", "translation_uncertain",
-    C02 + " Additionally: the 16/year and 4/year quotas are channel-level facts; a per-asset prompt cannot verify them and must flag this for channel-level review.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "draft",
-    "", "FR", "medium")
+    "conditional", "clear",
+    C02 + " The after-20:30 derogation and its day/holiday exclusions are confirmed in the "
+    "French text. NOT yet confirmed in French: the '16 programmes per year, of which at most "
+    "4 cinema-banned-to-under-12s' quota, which so far rests only on the Arcom English "
+    "rendering - treat the numbers as indicative. Separately, the quotas are channel-level "
+    "facts: a per-asset prompt cannot verify them and must flag this for channel-level review.",
+    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "A titre exceptionnel, il peut etre admis une diffusion, apres 20 h 30, de programmes de "
+    "cette categorie, sauf les mardis, vendredis, samedis, veilles de jours feries et pendant "
+    "les periodes de vacances scolaires.", "FR", "high")
 
 add("FR-SCH-005", "FR", "Arcom", "regulator_binding", 2, "yes",
     "free_to_air; other_than_cinema_channels", "scheduling_general", "IV_-16",
@@ -990,7 +1029,7 @@ legend += [
     ["source_url", "Canonical URL (hyperlinked).", ""],
     ["valid_from", "Date the provision took effect.", "ISO date, or blank if undated guidance"],
     ["valid_to", "End of validity.", "open / unknown / ISO date"],
-    ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical, retained for versioning."],
+    ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical, retained for versioning. NAMING: a rule_id in the 9xx range is a superseded version of the matching 0xx rule (FR-CLS-903 is the pre-2014 wording of FR-CLS-003)."],
     ["verbatim_quote", "Short quoted fragment that survived retrieval.", "INCOMPLETE - see 99_EXTRACTION_NOTES. Cannot yet support an automated quote-integrity check because no local copy of the source exists."],
     ["quote_lang", "Language of the quote.", "EN / FR"],
     ["extraction_confidence", "Confidence in this extraction.", "high / medium / low"],
@@ -1007,7 +1046,7 @@ howto += [
     ["Resolving conflicts", "Sort by authority_rank ascending; the lowest rank wins. Record the resolution in ambiguity_note. Worked example: C-01, where Arcom's own public summary page contradicted its binding text on the -12 hours and the binding text won."],
     ["Two kinds of ambiguity", "determinacy describes THE RULE (is it a bright line or a judgment call?). ambiguity_flag describes OUR EXTRACTION (are we sure we read it right?). They are independent: a bright_line rule can be translation_uncertain, and a judgment_based rule can be perfectly clear. Merging them makes the test set unscoreable."],
     ["Scoring by determinacy", "bright_line: exact match; any deviation is a defect. conditional: the correct answer, OR a correct missing-information request when the gating input was absent - both pass. judgment_based: score the cited rule and the reasoning, accept a band of outcomes, and require escalation near a threshold. Scoring a judgment_based row by exact match measures the test set, not the model."],
-    ["Before using as ground truth", "Filter status = approved. Rows marked draft or unverified have open conflicts (see Open_Questions) and must be resolved first. Currently all FR category III scheduling rows are draft (C-02) and all category V rows are unverified (C-03)."],
+    ["Before using as ground truth", "Filter status = approved. Rows marked draft or unverified have open conflicts (see Open_Questions) and must be resolved first. Currently 74 of 83 rows are approved. The remaining: all FR category V rows are unverified (C-03), FR-CNV-001 is draft (channel conventions not collected, C-06), and FR-CLS-903 is a deliberately retained superseded row."],
     ["Avoiding correlated error", "The biggest risk is that this table and the prompt share an author and therefore share mistakes - the exact failure Task 2 asks about. Mitigation: the bright-line rows (times, absolute prohibitions) should be INDEPENDENTLY RE-DERIVED from primary sources by a second pass that has not seen this table, then compared. verbatim_quote and source_url let a reviewer check a row without reading the prompt at all."],
     ["Versioning", "Never delete a row. When a source is replaced, set valid_to and status = superseded on the old row and add a new row. That preserves the ability to say which rule version produced a past decision."],
     ["Required inputs the rules imply", "country; service_type (free-to-air vs cinema channel vs pay-per-view vs premium subscription film); access measures in place (none / mandatory_daytime_protection / mandatory_restricted_access / decoder_lock); intended broadcast DATE and time (France has day-of-week and school-holiday rules); whether the asset is a theatrical film and its existing BBFC/CNC classification; whether it is a trailer or a music video. If any of these is missing and a candidate rule depends on it, the correct output is a missing-information flag, NOT an assumption."],
@@ -1065,7 +1104,7 @@ src += [
      "JORF 2012-11-20", ""],
     ["FR-A2", "Deliberation n. 2014-17 du 5 mars 2014 modifying FR-R1", "Arcom (ex-CSA)", "regulator_binding", 2,
      "Replaced arts. 1, 3, 4; amended art. 2; inserted a new art. 5 (trailers and music videos).", U_FR2,
-     "JORF 2014-04-09", "THE CURRENT OPERATIVE TEXT for French scheduling. The Arcom English page is a DeepL machine translation and is garbled at art. 3 (C-02)."],
+     "JORF 2014-04-09", "THE CURRENT OPERATIVE TEXT for French scheduling. The Arcom ENGLISH page is a DeepL machine translation and is garbled at art. 3 - that was conflict C-02, now closed against the French text (FR-A2b / FR-R1c / FR-R1d). It also replaced the fifth alinea of art. 2, broadening the cat. III definition - see C-09. Always read the French."],
     ["FR-R2", "Recommandation n. 2004-7 du 15 decembre 2004 - category V programmes", "Arcom (ex-CSA)", "regulator_binding", 2,
      "Editors AND distributors broadcasting category V (-18), mainland France and overseas departements.", U_FRV,
      "JORF 2004-12-23",
@@ -1094,7 +1133,7 @@ src += [
     ["FR-S2", "solidarites.gouv.fr - Classification et signaletique de la television", "French government", "secondary", 7,
      "Government summary of the signaletique regime.", "https://solidarites.gouv.fr/classification-et-signaletique-de-la-television",
      "current",
-     "USED TO DISAMBIGUATE the garbled Arcom English translation of art. 3 (C-02). States plainly: non-cinema channels not before 22h for -12; cinema channels not Wednesdays before 20h30; -16 after 22h30 / 20h30."],
+     "Corroborated C-02 before the French primary text was located. States plainly: non-cinema channels not before 22h for -12; cinema channels not Wednesdays before 20h30; -16 after 22h30 / 20h30. Superseded as evidence by FR-R1 (Legifrance) and FR-R1d (csa.fr), both in French."],
     ["FR-X1", "Deliberation n. 2011-64 du 20 decembre 2011 - protection of minors, ON-DEMAND (SMAD) services",
      "Arcom (ex-CSA)", "regulator_binding", 2, "NON-LINEAR services established in France.",
      "https://www.lexing.law/wp-content/uploads/22492432.pdf", "JORF 2011-12-31",
@@ -1113,14 +1152,19 @@ oq = [["id", "issue", "affected_rows", "current_resolution", "action_required", 
 oq += [
     ["C-01", "Arcom's own public summary page (FR-S1) describes -12 as broadcastable 'during the day, under certain conditions' - the identical wording it uses for -10. The binding text says not before 22:00 on non-cinema channels.",
      "FR-SCH-002, FR-SCH-003, FR-SCH-004",
-     "Binding text wins (authority_rank 2 beats 5). FR-S1 treated as unreliable for -12.",
-     "Confirm against the live Arcom page - the summary may have been extracted imperfectly from a visually repetitive layout. Either way the binding text governs.",
-     "analyst", "no"],
-    ["C-02", "The Arcom English page is an explicit DeepL machine translation and duplicates the cinema-channel sentence for category III before stating 'may not be shown before 10 pm', leaving the service mapping ambiguous.",
-     "FR-SCH-002, FR-SCH-003, FR-SCH-004",
-     "Resolved via FR-S2 (French government) plus multiple French parliamentary answers: non-cinema channels not before 22:00; cinema channels not Wednesdays before 20:30.",
-     "CONFIRM AGAINST THE FRENCH ORIGINAL ON LEGIFRANCE. These are the highest-value bright-line rows in the table - they are what the prompt will be judged on.",
-     "French-speaking reviewer / local expert", "YES"],
+     "CLOSED 2026-11-06. Binding text wins (authority_rank 2 beats 5), and that binding text is now confirmed in French from two independent sources (see C-02). FR-S1 is unreliable for -12 and must not be used as a rule source.",
+     "None. Retained as the worked example of authority-rank conflict resolution, and as the reason regulator summary pages sit at rank 5 rather than rank 2.",
+     "closed", "no"],
+    ["C-02", "Arcom's English machine translation of art. 3 duplicated the cinema-channel sentence for cat. III and then said 'before 10 pm', leaving the service mapping ambiguous.",
+     "FR-SCH-002, FR-SCH-003, FR-SCH-004, FR-CLS-003",
+     "CLOSED 2026-11-06. Confirmed against the FRENCH text from two independent sources: Legifrance JORFTEXT000000446802 (the 2005 original) and the csa.fr consolidated page carrying the 'Modifiee par la deliberation n. 2014-17 du 5 mars 2014' banner. Both read identically: 'pour les chaines cinema et les services de paiement a la seance, ces programmes ne doivent pas etre diffuses le mercredi avant 20 h 30. Pour les autres services de television, ces programmes ne doivent pas etre diffuses avant 22 heures.' The Arcom French page for 2014-17 confirms art. 3 was replaced with the same wording. All affected rows promoted to approved.",
+     "One residue: the '16 programmes per year, of which at most 4 cinema-banned-to-under-12s' quota in the cat. III derogation is still attested only in the English rendering. Confirm those two numbers in French. Does not block the hours.",
+     "closed (quota numbers outstanding)", "no"],
+    ["C-09", "Working C-02 exposed a substantive extraction error of our own. Delib. 2014-17 replaced the fifth alinea of art. 2 and BROADENED the category III definition, but the table still carried the 2005 wording: 'leur scenario recourt de facon repetee ET SYSTEMATIQUE' became 'le programme recourt de facon repetee'.",
+     "FR-CLS-003 (corrected), FR-CLS-903 (superseded row added)",
+     "CLOSED 2026-11-06. FR-CLS-003 now carries the current wording. The pre-2014 wording is retained as FR-CLS-903, status=superseded, valid_to=2014-04-08.",
+     "None for the rule itself. The lesson matters more: the error survived because the English translation and the pre-2014 French text AGREED with each other, so cross-source corroboration did not catch it - only reading the amending instrument did. Treat any source whose amendment history is not explicit as suspect, and always diff the amending deliberation rather than trusting a page labelled 'consolidated'.",
+     "closed", "no"],
     ["C-03", "Recommandation 2004-7 - the sole source of the French -18 hours - dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed. The CSA->Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it.",
      "FR-CV-001 to FR-CV-007",
      "None. All category V rows flagged unverified.",
@@ -1162,12 +1206,12 @@ piv += [
     ["FR", "II - -10", "all", "no clock restriction; NOT within children's programmes",
      "certain scenes liable to shock under-10s", "conditional", "approved", "FR-CLS-002, FR-SCH-001"],
     ["FR", "III - -12", "other than cinema channels / PPV", "22:00",
-     "liable to disturb under-12s; repeated and systematic physical or psychological violence; cinema -12 interdiction",
-     "bright_line", "DRAFT (C-02)", "FR-CLS-003, FR-SCH-002"],
+     "liable to disturb under-12s; REPEATED physical or psychological violence (2014-17 dropped 'et systematique'); cinema -12 interdiction",
+     "bright_line", "approved", "FR-CLS-003, FR-SCH-002"],
     ["FR", "III - -12", "cinema channels, pay-per-view", "20:30 on Wednesdays (restriction is Wednesday-specific)",
-     "as above", "bright_line", "DRAFT (C-02)", "FR-SCH-003"],
+     "as above", "bright_line", "approved", "FR-SCH-003"],
     ["FR", "III - -12 (derogation)", "all", "20:30, except Tue/Fri/Sat/holiday eve/school holidays; max 16 per year (max 4 cinema-banned-u12)",
-     "as above", "conditional", "DRAFT (C-02)", "FR-SCH-004"],
+     "as above", "conditional", "approved (quota numbers indicative)", "FR-SCH-004"],
     ["FR", "IV - -16", "other than cinema channels / PPV", "22:30",
      "erotic character or great violence; liable to harm under-16s", "bright_line", "approved", "FR-CLS-004, FR-SCH-005"],
     ["FR", "IV - -16", "cinema channels, pay-per-view", "20:30", "as above", "bright_line", "approved", "FR-SCH-006"],

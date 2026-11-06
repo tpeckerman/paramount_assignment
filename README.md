@@ -20,11 +20,11 @@ sources/                        the regulatory corpus
   EU_01_avmsd_article_6a.md     the framework both countries implement
   99_EXTRACTION_NOTES_*.md      READ BEFORE USING AS GROUND TRUTH - limits and open conflicts
   originals/
-    MANIFEST.csv                26 source documents: URLs, filenames, tier
+    MANIFEST.csv                28 source documents: URLs, filenames, tier
     originals.lock.json         sha256 of each, written by fetch_originals.py
 
 rules/
-  RULES_TABLE_v1.xlsx           the rule table - 82 rules, 6 tabs
+  RULES_TABLE_v1.xlsx           the rule table - 83 rules, 6 tabs
   csv/                          per-tab CSV mirrors, so rule changes are diffable in a PR
 
 pipeline/
@@ -86,8 +86,8 @@ Scoring, by determinacy:
   require escalation near a threshold. Grading these by exact match measures your test set,
   not the model.
 
-Current spread: **38** bright-line, **17** conditional, **27** judgment-based.
-**24** rows flagged `human_review_required`.
+Current spread: **38** bright-line, **17** conditional, **28** judgment-based.
+**22** rows flagged `human_review_required`.
 
 ---
 
@@ -97,9 +97,24 @@ Filter `status == 'approved'` — **71 of 82**.
 
 | status | n | why |
 |---|---|---|
-| `approved` | 71 | usable |
-| `draft` | 4 | French category III (-12) scheduling + channel conventions. Conflict **C-02**: Arcom's English text is a machine translation and is garbled at art. 3. Resolved via a French government page, but needs confirming against the Légifrance original. |
-| `unverified` | 7 | All French category V (-18) rows. Conflict **C-03**: the sole source dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed, and predates both the CSA→Arcom transition and the 2021 AVMSD transposition. |
+| `approved` | 74 | usable |
+| `unverified` | 7 | All French category V (-18) rows. Conflict **C-03**: the sole source dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed, and predates both the CSA→Arcom transition and the 2021 AVMSD transposition. **This is now the main blocker.** |
+| `draft` | 1 | `FR-CNV-001`, French channel conventions — not collected (**C-06**). |
+| `superseded` | 1 | `FR-CLS-903`, the pre-2014 category III wording, retained on purpose to demonstrate the versioning rule. |
+
+**C-02 is closed** (2026-11-06). The French category III scheduling rows were confirmed against the
+French text from two independent sources — Légifrance `JORFTEXT000000446802` and the csa.fr consolidated
+page carrying the *"Modifiée par la délibération n° 2014-17"* banner — and promoted to `approved`.
+One residue: the derogation's *"16 programmes per year, max 4 cinema-banned-to-under-12s"* quota is still
+attested only in Arcom's English rendering, so treat those two numbers as indicative.
+
+Closing it surfaced **C-09**, an error in this table rather than in a source: délibération 2014-17 also
+amended the category III *definition*, broadening
+`leur scénario recourt de façon répétée **et systématique**` to `le programme recourt de façon répétée`.
+Repetition alone now suffices and the test is the programme as a whole, so the old wording **under-rates**.
+It survived initial review because the English translation and the pre-2014 French text agreed with each
+other — cross-source corroboration did not catch it, only reading the amending instrument did. Worth
+remembering for Task 2: a page labelled "consolidated" is not evidence of currency.
 
 Open conflicts **C-01 … C-08** are in `rules/csv/Open_Questions.csv` and
 `sources/99_EXTRACTION_NOTES_AND_LIMITS.md`.

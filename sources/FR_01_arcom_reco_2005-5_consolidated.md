@@ -41,7 +41,7 @@ The editor applies one of five degrees and the corresponding on-screen signage.
 |---|---|---|
 | **I** | none | Programmes for all audiences (*tous publics*). |
 | **II** | white circle, black **-10** | Programmes **certain scenes of which are liable to shock** younger viewers / minors under 10. |
-| **III** | white circle, black **-12** | Cinematographic works **banned to under-12s in cinemas**, and programmes **liable to disturb** under-12s, **in particular where the scenario resorts in a repeated and systematic way to physical or psychological violence**. |
+| **III** | white circle, black **-12** | Cinematographic works **banned to under-12s in cinemas**, and programmes **liable to disturb** under-12s, **in particular where the programme resorts in a repeated way to physical or psychological violence**. ⚠ *Délibération 2014-17 replaced the fifth alinéa of art. 2 and broadened this: `leur scénario recourt de façon répétée **et systématique**` became `le programme recourt de façon répétée`. Repetition alone now suffices, and the test is the programme as a whole rather than its scenario. See conflict C-09.* |
 | **IV** | white circle, black **-16** | Cinematographic works banned to under-16s in cinemas, and programmes **of an erotic character or of great violence**, liable to harm the physical, mental or moral development of under-16s. |
 | **V** | white circle, black **-18** | Cinematographic works banned to under-18s in cinemas, and **pornographic programmes or programmes of very great violence**, reserved for a **warned adult audience** and liable to harm the physical, mental or moral development of under-18s. |
 
@@ -79,13 +79,31 @@ Programmes which **offend human dignity** — in particular those depicting **se
 degradation** — are **banned from broadcast**. The same applies to **pornographic programmes depicting
 under-18s** and to programmes of **extreme or gratuitous violence**.
 
-> **Conflict C-02 (resolved).** The Arcom English page duplicates the cinema-channel sentence for category III
-> and then states "may not be shown before 10 pm", leaving the service mapping ambiguous. The French
-> government page (`solidarites.gouv.fr`, FR-S2) states it unambiguously: *"Sur les chaînes autres que cinéma,
-> ces programmes ne doivent pas être diffusés avant 22h… Sur les chaînes cinéma, ces programmes ne doivent pas
-> être diffusés le mercredi avant 20h30."* Multiple French parliamentary answers corroborate
-> (-12 before 22:00; -16 before 22:30). **Still to do: confirm against the French original on Légifrance
-> before marking the affected rows `approved`.**
+> **Conflict C-02 — CLOSED 2026-11-06.** The Arcom *English* page duplicates the cinema-channel sentence
+> for category III and then states "may not be shown before 10 pm", leaving the service mapping ambiguous.
+> Now confirmed directly against the **French** text, from two independent sources:
+>
+> - **Légifrance** `JORFTEXT000000446802` (the 2005 original), and
+> - the **csa.fr** consolidated page carrying the banner *"Modifiée par la délibération n° 2014-17 du
+>   5 mars 2014 — Journal officiel du 9 avril 2014"*.
+>
+> Both read identically: *"catégorie III : pour les chaînes cinéma et les services de paiement à la séance,
+> ces programmes ne doivent pas être diffusés le mercredi avant 20 h 30. Pour les autres services de
+> télévision, ces programmes ne doivent pas être diffusés avant 22 heures."* And for category IV:
+> *"réservés à un public averti, ces programmes sont diffusables seulement après 20 h 30 sur les chaînes
+> cinéma et les services de paiement à la séance et après 22 h 30 sur les autres services de télévision."*
+> The Arcom **French** page for délibération 2014-17 confirms art. 3 was replaced with this wording.
+> All affected rows are now `approved`.
+>
+> **One residue:** the derogation's *"16 programmes per year, of which at most 4 cinema-banned-to-under-12s"*
+> quota is still attested only in the English rendering. The French text confirms the after-20:30 derogation
+> and its day/holiday exclusions, but those two numbers should be confirmed in French. Treat them as
+> indicative.
+>
+> **Note for the method (C-09).** Closing C-02 exposed an error of our own: the category III *definition* had
+> been carried over from the 2005 wording even though 2014-17 amended it. It survived because the English
+> translation and the pre-2014 French text agreed with each other — cross-source corroboration did not catch
+> it. **Only reading the amending instrument did.**
 
 > **Conflict C-01 (resolved against the summary page).** Arcom's own public awareness page (FR-S1) describes
 > **-12** as broadcastable "during the day, under certain conditions" — the same wording it gives for -10.
