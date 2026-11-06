@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Assemble the Stage 2 context for a decision: prompt + the rule slice that applies.
+
+This is the "compile once, query many" payoff. Stage 2 never reads a regulatory source
+document. It reads rows from rules/csv/Rules.csv, which were compiled from those documents
+once and are quote-checked against them. Three things follow:
+
+  1. The decision context is small enough to be reliable. Feeding whole codes to a model
+     and asking for a rating puts the extraction and the application in one step, where a
+     wrong reading is invisible because nothing separates "what the rule says" from
+     "what I decided".
+  2. Updating a rule is a row edit with a provenance trail, not a re-read of everything.
+  3. Every decision cites a rule_id that resolves to a row, a clause and a verbatim quote.
+
+Usage:
+    python3 run_decision.py --countries UK FR --service free_to_air --categories violence
+    python3 run_decision.py --stage1 tests/case01.stage1.json --countries UK FR
+    python3 run_decision.py --countries UK --measure
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+RULES = ROOT / "rules/csv/Rules.csv"
+STAGE2 = ROOT / "prompts/STAGE2_apply.md"
+
+# Columns Stage 2 is given. Deliberately not every column: last_checked, extraction_confidence
+# and quote_lang are provenance for humans and auditors, not inputs to a decision. Sending
+# them invites the model to reason about its own confidence instead of about the rule.
+DECISION_COLS = [
+    "rule_id", "country", "regulator", "authority_rank", "service_type",
+    "content_category", "classification", "threshold_description",
+    "time_restriction_text", "time_rule_machine", "exceptions_conditions",
+    "determinacy", "human_review_required", "clause_ref", "verbatim_quote",
+]
+
+# Categories that must travel with every request regardless of what Stage 1 saw. These carry
+# the scheme itself, the scheduling frame and the definitions. Filtering them out produces a
+# model that knows a title has violence in it but not what a watershed is.
+ALWAYS_INCLUDE = {
+    "scheduling_general", "definition", "classification_scheme", "legal_basis",
+    "scope", "signage", "film_carryover",
+}
+
+
+def load_rules() -> list[dict]:
+    if not RULES.exists():
+        sys.exit(f"missing {RULES} - run pipeline/build_rules_table.py first")
+    with RULES.open(newline="", encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
+
+
+def service_matches(rule_scope: str, requested: str | None) -> bool:
+    """A rule binds if its scope names the requested service, or is service-agnostic.
+
+    When the service is unknown we return True for everything: Stage 2 is instructed to
+    branch and label, and withholding rows here would silently narrow the branches it can
+    see. Dropping a rule because we cannot confirm it applies is how a pipeline produces a
+    confident answer that omits the rule that mattered.
+    """
+    if requested in (None, "", "not_stated"):
+        return True
+    tokens = {t.strip() for t in rule_scope.split(";") if t.strip()}
+    if {"all_linear_tv", "all_avms", "all_linear_tv_default"} & tokens:
+        return True
+    return requested in tokens
+
+
+def select(rules, countries, service=None, categories=None):
+    out, dropped = [], []
+    wanted = set(categories or []) | ALWAYS_INCLUDE if categories else None
+    for r in rules:
+        if r["status"] != "approved":
+            dropped.append((r["rule_id"], f"status={r['status']}"))
+            continue
+        if r["country"] not in countries:
+            continue
+        if not service_matches(r["service_type"], service):
+            dropped.append((r["rule_id"], f"service_type={r['service_type']}"))
+            continue
+        if wanted and r["content_category"] not in wanted:
+            dropped.append((r["rule_id"], f"category={r['content_category']}"))
+            continue
+        out.append(r)
+    # Lower authority_rank first: Stage 2 resolves conflicts by rank, so presenting the rows
+    # in rank order means the binding instrument is read before the guidance about it.
+    out.sort(key=lambda r: (r["country"], int(r["authority_rank"] or 9), r["rule_id"]))
+    return out, dropped
+
+
+def build(selected: list[dict]) -> str:
+    rows = [{c: r.get(c, "") for c in DECISION_COLS} for r in selected]
+    return json.dumps(rows, ensure_ascii=False, indent=1)
+
+
+def main() -> None:
+    p = argparse.ArgumentParser()
+    p.add_argument("--countries", nargs="+", default=["UK", "FR"])
+    p.add_argument("--service", default=None)
+    p.add_argument("--categories", nargs="*", default=None)
+    p.add_argument("--stage1", type=pathlib.Path,
+                   help="Stage 1 JSON; categories are taken from its observations")
+    p.add_argument("--measure", action="store_true",
+                   help="report the size of the rule slice against the source corpus")
+    p.add_argument("-o", "--out", type=pathlib.Path)
+    a = p.parse_args()
+
+    rules = load_rules()
+    cats = a.categories
+    obs_block = ""
+    if a.stage1:
+        s1 = json.loads(a.stage1.read_text(encoding="utf-8"))
+        cats = sorted({o["category"] for o in s1.get("observations", [])})
+        obs_block = json.dumps(s1, ensure_ascii=False, indent=1)
+        print(f"categories from {a.stage1.name}: {cats or '(none)'}", file=sys.stderr)
+
+    sel, dropped = select(rules, set(a.countries), a.service, cats)
+    slice_json = build(sel)
+
+    print(f"selected {len(sel)} of {len(rules)} rules "
+          f"({len(dropped)} filtered out)", file=sys.stderr)
+    for c in a.countries:
+        n = sum(1 for r in sel if r["country"] == c)
+        hr = sum(1 for r in sel if r["country"] == c and r["human_review_required"] == "yes")
+        jb = sum(1 for r in sel if r["country"] == c and r["determinacy"] == "judgment_based")
+        print(f"  {c}: {n} rules, {jb} judgment_based, {hr} needing human review",
+              file=sys.stderr)
+    if not sel:
+        print("  WARNING: empty slice. Stage 2 is instructed to stop rather than fall back "
+              "on general knowledge.", file=sys.stderr)
+
+    if a.measure:
+        corpus = sum(f.stat().st_size for f in (ROOT / "sources/originals").glob("*.txt"))
+        corpus += sum(f.stat().st_size for f in (ROOT / "sources/originals").glob("*.pdf"))
+        print(f"\n  rule slice     : {len(slice_json):>9,} bytes", file=sys.stderr)
+        print(f"  source corpus  : {corpus:>9,} bytes (downloaded so far, "
+              f"of 20 documents)", file=sys.stderr)
+        if corpus:
+            print(f"  ratio          : {corpus / len(slice_json):>9.1f}x smaller, and the "
+                  f"corpus is still incomplete", file=sys.stderr)
+
+    doc = STAGE2.read_text(encoding="utf-8")
+    parts = [doc, "\n\n---\n\n## `rules` for this request\n\n```json\n" + slice_json + "\n```"]
+    if obs_block:
+        parts.append("\n\n## `observations` for this request\n\n```json\n"
+                     + obs_block + "\n```")
+    parts.append(f"\n\n## `request`\n\n```json\n" + json.dumps({
+        "countries": a.countries,
+        "service_type": a.service or "not_stated",
+        "intended_slot": "not_stated",
+    }, indent=1) + "\n```\n")
+    assembled = "".join(parts)
+
+    if a.out:
+        a.out.write_text(assembled, encoding="utf-8")
+        print(f"wrote {a.out} ({len(assembled):,} bytes)", file=sys.stderr)
+    else:
+        sys.stdout.write(assembled)
+
+
+if __name__ == "__main__":
+    main()

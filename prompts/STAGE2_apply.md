@@ -21,7 +21,25 @@ slice does not cover something, that is a gap to report, never a gap to fill.
 
 ---
 
-## The one structural trap, and how this prompt avoids it
+## The structural trap, and how this prompt avoids it
+
+There are **three** independent outputs, not two: a classification, a set of permitted hours,
+and a set of other restrictions. None implies another, and the third is not a footnote to the
+second — it is frequently the thing that decides whether a title can air at all.
+
+**Worse than independent: the three are substitutes.** The EU framework that both countries
+implement requires an *outcome* and permits scheduling **or** technical measures as
+alternatives. So a stricter access control can buy you hours you would otherwise be barred
+from. The table contains the clean case:
+
+> `any_time; requires=mandatory_daytime_protection` — permitted at **any hour**, including
+> the middle of a weekday afternoon, *provided* a PIN gate is in place. Remove the PIN and
+> the same title is barred before 21:00.
+
+A system that reports only a rating and an hour will state "any time" and be catastrophically
+wrong, because it dropped the condition that earned it. It will equally report "barred before
+21:00" and be wrong in the other direction, having missed that an available technical measure
+lifts the restriction entirely.
 
 **An age rating does not imply broadcast hours, and broadcast hours do not imply an age
 rating.** They are separate outputs of separate rules and in these two jurisdictions they

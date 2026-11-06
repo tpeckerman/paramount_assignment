@@ -39,6 +39,7 @@ U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/sect
 U_S3 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse"
 U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
+U_G2 = ("https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674")
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
 U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"  # stable HTML
 U_FR1 = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000446802"  # 2005 ORIGINAL
@@ -394,6 +395,70 @@ add("UK-HAT-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "no violence, sex or drugs can still breach this. Escalate to a UK compliance reviewer.",
     "yes", "UK-S3", "Rule 3.3", U_S3, "2020-12-31", "open", "approved",
     "abusive or derogatory treatment of individuals", "EN", "medium")
+
+# --- "Other restrictions" limb of the requirement. In scope because each CONDITIONS or
+# --- SUBSTITUTES FOR the age/time answer rather than sitting alongside it (SCOPE_DECISION.md).
+# --- Without UK-ACC-001 the token `requires=mandatory_daytime_protection` is an unexplained
+# --- string and the any-hour permission it gates cannot be audited.
+add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
+    "premium_subscription; pay_per_view", "access_control", "n/a",
+    "DEFINITION. 'Mandatory restricted access' means a PIN-protected system, or other "
+    "equivalent protection, which CANNOT BE REMOVED BY THE USER and which restricts access "
+    "solely to those authorised to view.",
+    "Not a time rule. This is the definition the any-hour permissions are conditional on.",
+    "n/a;standard=cannot_be_removed_by_user",
+    "The operative words are 'cannot be removed by the user'. A service-level parental "
+    "control the viewer can switch off is NOT mandatory restricted access, so a title relying "
+    "on it for an any-hour permission is in breach. Distinct from 'mandatory daytime "
+    "protection', the pre-2100/post-0530 variant - the two are not interchangeable.",
+    "bright_line", "clear", "", "no",
+    "UK-S1", "Rule 1.18 (meaning)", U_S1, "2020-12-31", "open", "approved",
+    "which cannot be removed by the user", "EN", "high")
+
+add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
+    "premium_subscription; pay_per_view", "access_control", "n/a",
+    "IMPLEMENTATION. Restricted access must be provided AS THE DEFAULT. A service may not "
+    "satisfy the requirement by offering a PIN the viewer has to set up; the gate must be on "
+    "before the viewer arrives.",
+    "Not a time rule. Determines whether the any-hour permission is validly engaged.",
+    "n/a;standard=on_by_default",
+    "The most commonly misread requirement in the access-control set, because an opt-in PIN "
+    "looks like compliance and is not. Guidance rather than Code text, hence rank 3, but it "
+    "states how Ofcom reads a binding rule.",
+    "bright_line", "clear", "", "no",
+    "UK-G2", "Guidance Notes Section One, Rules 1.24-1.25", U_G2, "2015-03-30", "open",
+    "approved",
+    "as the default, rather than requiring PIN setting by the viewer", "EN", "medium")
+
+add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
+    "premium_subscription; pay_per_view", "audience_information", "n/a",
+    "CONDITIONS PRECEDENT to the any-hour film permissions: audience information about "
+    "programme content sufficient to help adults assess suitability for children must be "
+    "provided, and a detailed billing system must be in place.",
+    "Not a time rule itself, but the any-hour permission does not exist unless satisfied.",
+    "n/a;requires=audience_information;requires=detailed_billing",
+    "These read as housekeeping and are not - they are conditions on the permission. The "
+    "UK's nearest analogue to the French signaletique, discharged by INFORMATION rather than "
+    "a pictogram, so a pipeline looking for a French-style on-screen symbol will report the "
+    "UK as having no equivalent, which is wrong.",
+    "conditional", "clear",
+    "The sufficiency of the information is a judgment; its ABSENCE is not. Treat a missing "
+    "information commitment as a bright-line fail and the adequacy of wording as a review item.",
+    "yes", "UK-S1", "Rules 1.24, 1.25", U_S1, "2020-12-31", "open", "approved",
+    "information must be provided about programme content that will assist", "EN", "medium")
+
+add("UK-TRL-002", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "trailers", "watershed_bound",
+    "Trailers are caught by the under-eighteens scheduling rules in their own right. A "
+    "trailer does NOT inherit the permission of the programme it advertises.",
+    "The trailer is assessed against the slot it occupies, not the slot of its feature.",
+    "standard=assessed_in_own_slot",
+    "The practical trap: a compliant post-watershed film generates a trailer that runs in a "
+    "daytime break and breaches, with no change to the trailer's content. A pipeline that "
+    "reasons only about the feature asset cannot see this.",
+    "bright_line", "clear", "", "no",
+    "UK-G2", "Guidance Notes Section One", U_G2, "2015-03-30", "open", "approved",
+    "both programmes and trailers are subject to this rule", "EN", "medium")
 
 add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "religion", "audience_based",
