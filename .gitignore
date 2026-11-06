@@ -1,10 +1,9 @@
-# Fetched source documents are deliberately not committed: each copy should be
-# retrieved from the publisher and hash-recorded, not passed around. See
-# sources/originals/README.md. The MANIFEST and the lockfile ARE committed.
-sources/originals/*
-!sources/originals/README.md
-!sources/originals/MANIFEST.csv
-!sources/originals/originals.lock.json
+# The fetched source documents ARE committed. A reviewer should be able to clone
+# this repo and have the actual regulatory texts, and committing them is what
+# makes the quote-integrity check (verify_rules.py --with-quotes) runnable in CI
+# rather than permanently skipped. originals.lock.json records the sha256 and
+# retrieval date of each, so a committed copy is still provably the published one.
+# Run: python pipeline/fetch_originals.py
 
 # Python
 __pycache__/

@@ -69,6 +69,14 @@ rather than overwritten (`COLAB_rule_pipeline_starter.ipynb`, cell 4).
   single-page app. If a fetched HTML file has no rule text in it, use the page's
   *Télécharger / PDF* link instead and update `MANIFEST.csv`.
 
+## These files are committed
+
+Once fetched, the documents are **committed to the repo** (`.gitignore` does not exclude them).
+A reviewer cloning this repo gets the actual regulatory texts, and
+`verify_rules.py --with-quotes` becomes runnable in CI rather than permanently skipped.
+`originals.lock.json` records the sha256 and retrieval date of each, so a committed copy is
+still provably the published one.
+
 ## Licensing
 
 These are official regulatory and legislative texts, retrieved for compliance analysis.
