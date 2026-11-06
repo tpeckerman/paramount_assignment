@@ -46,7 +46,7 @@ TIME_TOKEN = re.compile(
     r"|not_within=.+|not_near=.+|not_when=.+|prohibited_in=.+"
     r"|days=.+|except_days=.+|unless=.+|requires=.+|gate=.+|override=.+"
     r"|annual_quota=.+|sub_quota=.+|standard=.+|frequency_cap=.+|exempt=.+"
-    r"|see=.+|judgment:.+|framework:.+"
+    r"|see=.+|judgment:.+|framework:.+|precedent=.+"
     r")$")
 
 ENUMS = {

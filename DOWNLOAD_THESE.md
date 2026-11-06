@@ -1,6 +1,6 @@
 # Documents to download
 
-**8 outstanding, 12 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
+**0 outstanding, 20 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
 
 Network access from the workspace is open, but these publishers gate automated clients
 behind browser challenges or render the document body in JavaScript. Open each in a
@@ -36,37 +36,27 @@ check what landed.
 > only outstanding document that changes the rule table's status today (conflict C-03).
 > The other 23 convert `skipped` quote checks into `verified` ones - worth having, not blocking.
 
-## Required (3)
-
-| ✓ | doc | what it is | save as | why blocked | url |
-|---|---|---|---|---|---|
-| [ ] | `EU-D1` | AVMSD Directive 2010/13/EU article 6a (consolidated) | `EU-D1_avmsd_article_6a.txt` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/eudr/2010/13/article/6a) |
-| [ ] | `UK-G1` | Guidance - Observing the watershed on television and music vi... | `UK-G1_ofcom_watershed_music_videos.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/watershed-on-tv.pdf?v=335370) |
-| [ ] | `UK-S3` | Ofcom Broadcasting Code Section Three - Crime, Disorder, Hatr... | `UK-S3_ofcom_code_section_3.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse) |
-
-## Recommended (5)
-
-| ✓ | doc | what it is | save as | why blocked | url |
-|---|---|---|---|---|---|
-| [ ] | `EU-D1b` | Directive (EU) 2018/1808 (amending directive) | `EU-D1b_directive_2018_1808.txt` | AWS WAF challenge (202, empty body) | [link](https://eur-lex.europa.eu/eli/dir/2018/1808/oj) |
-| [ ] | `FR-S1c` | La signaletique jeunesse (CSA/Arcom FRENCH public page) | `FR-S1c_signaletique_jeunesse_fr.txt` | Connection reset on this path | [link](https://www.arcom.fr/en/find-out-more/educational-resources/protection-young-people-and-persons-under-18) |
-| [ ] | `UK-G2` | Guidance Notes Section One | `UK-G2_ofcom_guidance_section_1.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674) |
-| [ ] | `UK-G3` | Guidance Notes Section Two | `UK-G3_ofcom_guidance_section_2.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622) |
-| [ ] | `UK-P1` | Enforcement decision - Toofan NTV 29 May 2026 (Rule 1.3 breach) | `UK-P1_ofcom_decision_toofan.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf) |
-
 ## Already verified
 
 | doc | file | size |
 |---|---|---|
 | `UK-S1` | `UK-S1_ofcom_code_section_1.txt` |  bytes |
 | `UK-S2` | `UK-S2_ofcom_code_section_2.txt` |  bytes |
+| `UK-S3` | `UK-S3_ofcom_code_section_3.txt` |  bytes |
 | `UK-S4` | `UK-S4_ofcom_code_section_4.txt` |  bytes |
+| `UK-G1` | `UK-G1_ofcom_watershed_music_videos.pdf` |  bytes |
+| `UK-G2` | `UK-G2_ofcom_guidance_section_1.pdf` |  bytes |
+| `UK-G3` | `UK-G3_ofcom_guidance_section_2.pdf` |  bytes |
 | `UK-M1` | `UK-M1_ofcom_mdp_statement.txt` |  bytes |
+| `UK-P1` | `UK-P1_ofcom_decision_toofan.pdf` |  bytes |
 | `UK-L1` | `UK-L1_communications_act_2003_s319.txt` | 18693 bytes |
 | `UK-L2` | `UK-L2_avms_regulations_2020_note.txt` | 12976 bytes |
 | `FR-R1c` | `FR-R1c_reco_2005-5_arcom_fr.txt` | 15662 bytes |
 | `FR-R2` | `FR-R2_reco_2004-7_category_V.txt` | 12515 bytes |
+| `FR-S1c` | `FR-S1c_signaletique_jeunesse_fr.txt` |  bytes |
 | `FR-S2` | `FR-S2_solidarites_classification.txt` |  bytes |
 | `FR-L1` | `FR-L1_loi_86-1067.txt` |  bytes |
 | `FR-V1` | `FR-V1_arcom_mise_en_demeure_C8.pdf` | 251754 bytes |
 | `FR-C1` | `FR-C1_cnc_classification.txt` | 23415 bytes |
+| `EU-D1` | `EU-D1_avmsd_article_6a.txt` |  bytes |
+| `EU-D1b` | `EU-D1b_directive_2018_1808.txt` |  bytes |

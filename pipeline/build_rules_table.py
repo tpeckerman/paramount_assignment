@@ -39,6 +39,8 @@ U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/sect
 U_S3 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse"
 U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
+U_P1 = ("https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf")
+U_G3 = ("https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622")
 U_G2 = ("https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674")
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
 U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"  # stable HTML
@@ -427,14 +429,15 @@ add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
     "states how Ofcom reads a binding rule.",
     "bright_line", "clear", "", "no",
     "UK-G2", "Guidance Notes Section One, Rules 1.24-1.25", U_G2, "2015-03-30", "open",
-    "unverified",
+    "approved",
     "as the default, rather than requiring PIN setting by the viewer", "EN", "medium")
 
 add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp", "audience_information", "n/a",
-    "CONDITIONS PRECEDENT to the any-hour film permissions: audience information about "
-    "programme content sufficient to help adults assess suitability for children must be "
-    "provided, and a detailed billing system must be in place.",
+    "CONDITIONS PRECEDENT to the any-hour permission, from the CURRENT Code text. Clear "
+    "information must be provided with the content to help adults assess its suitability "
+    "for children, AND the mandatory daytime protection in place must be CLEARLY EXPLAINED "
+    "TO ALL VIEWERS. A gate nobody has been told about does not satisfy the rule.",
     "Not a time rule itself, but the any-hour permission does not exist unless satisfied.",
     "n/a;requires=audience_information;requires=detailed_billing",
     "These read as housekeeping and are not - they are conditions on the permission. The "
@@ -444,8 +447,8 @@ add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "The sufficiency of the information is a judgment; its ABSENCE is not. Treat a missing "
     "information commitment as a bright-line fail and the adequacy of wording as a review item.",
-    "yes", "UK-S1", "Rules 1.24, 1.25", U_S1, "2020-12-31", "open", "unverified",
-    "information must be provided about programme content that will assist", "EN", "medium")
+    "yes", "UK-S1", "Rules 1.24, 1.25", U_S1, "2020-12-31", "open", "approved",
+    "must be clearly explained to all viewers", "EN", "high")
 
 add("UK-TRL-002", "UK", "Ofcom", "guidance", 3, "yes",
     "all_linear_tv", "trailers", "watershed_bound",
@@ -522,6 +525,271 @@ add("FR-CV-009", "FR", "Arcom", "regulator_binding", 2, "yes",
     "FR-R2", "notice of 15 Dec 2004, II.B.2 and III.B", U_FRV, "2004-12-15", "open",
     "approved",
     "a report on the implementation of the measures taken", "EN", "high")
+
+# ===================== FROM THE GUIDANCE: calibration and worked examples =====================
+# These come from guidance rather than Code text. Several describe situations the Code does not
+# mention, and the most useful are the ones that contradict a natural assumption.
+
+# --- The watershed is not a cliff edge. A scheduler treating 21:00 as a gate can pass every
+# --- bright-line check and still breach.
+add("UK-SCH-008", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "scheduling_general", "watershed_bound",
+    "TRANSITION. Material scheduled to start before but continue past 21:00 must not ABRUPTLY "
+    "become unsuitable, and content commencing after the watershed must observe a SMOOTH "
+    "TRANSITION to more adult material. It must not open with the strongest content it holds.",
+    "Applies across the 21:00 and 05:30 boundaries rather than at a single instant.",
+    "not_before=21:00;standard=smooth_transition",
+    "The watershed is a ramp, not a gate. A film cleared for 21:00 that opens on its most "
+    "violent scene breaches this even though every clock-time check passes. REGULATOR "
+    "EXAMPLES: Hell's Kitchen USA (ITV2) and Amores Perros (TCM) were both decided on this "
+    "point. Viewers can be concerned at strong adult material immediately after the watershed "
+    "when a significant number of children could still be watching.",
+    "judgment_based", "clear",
+    "Needs the running order, not just the start time - information a content description "
+    "usually does not carry. Flag whenever a post-watershed asset's first scene is among its "
+    "strongest.",
+    "yes", "UK-G1", "Rule 1.6 guidance", U_G1, "2015-03-30", "open", "approved",
+    "It should not commence with the strongest material", "EN", "high")
+
+# --- A +1 channel makes the identical file compliant on one service and not on the other.
+add("UK-SCH-009", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "scheduling_general", "watershed_bound",
+    "TIMESHIFT (+1) SERVICES. Where the same content is broadcast an hour later on a +1 "
+    "service, the later transmission must itself be suitable for the audience it will then "
+    "reach. Broadcasters may need to schedule EARLIER on the main service so the +1 "
+    "transmission still concludes before children return from school.",
+    "Effective hours differ between a service and its +1 by one hour, in both directions.",
+    "not_before=21:00;override=plus_one_shifts_effective_slot",
+    "The same file is compliant on one service and in breach on the other, with no editorial "
+    "change whatsoever. A pipeline keyed to 'the asset' cannot represent this; it must reason "
+    "per transmission. Note the risk runs the counter-intuitive way too: content placed while "
+    "children are at school lands an hour later, when they are home.",
+    "conditional", "clear",
+    "Requires knowing whether a +1 service exists for the channel and whether the asset is "
+    "carried on it. Rarely present in a content description - ask.",
+    "yes", "UK-G1", "+1 services guidance", U_G1, "2015-03-30", "open", "approved",
+    "the same content is broadcast an hour later", "EN", "high")
+
+# --- Why trailers do not inherit: the viewer cannot opt out of something unannounced.
+add("UK-TRL-003", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "trailers", "watershed_bound",
+    "TRAILERS ARE UNANNOUNCED. Because trailers are not signposted in advance, viewers meet "
+    "them unawares, so a trailer for post-watershed content shown pre-watershed must contain "
+    "ONLY pre-watershed-appropriate material. Trailers restricted away from children's "
+    "programmes should also be kept away from sport and family entertainment, which attract "
+    "significant child audiences.",
+    "Judged in its own slot, never inheriting the advertised programme's permission.",
+    "standard=assessed_in_own_slot;not_near=children_programmes;not_near=family_audience_programmes",
+    "This supplies the REASON behind the inheritance rule and extends it: the restriction is "
+    "not only around children's programming but around anything drawing a child audience, "
+    "which includes live sport - a slot nobody thinks of as a child-protection risk. "
+    "REGULATOR EXAMPLES: Candy Bar Girls (Channel 5) and the Stylista trailer (Channel Five).",
+    "conditional", "clear",
+    "A trailer carrying images that would warrant a warning before the full programme is "
+    "unlikely to be acceptable pre-watershed at all.",
+    "yes", "UK-G1", "Trailers guidance", U_G1, "2015-03-30", "open", "approved",
+    "so they come across them unawares", "EN", "high")
+
+# --- Bleeping is not a cure.
+add("UK-LAN-010", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "strong_language", "watershed_bound",
+    "MASKING IS NOT AUTOMATIC COMPLIANCE. Where masked ('bleeped') offensive language is "
+    "frequent, the cumulative effect on viewers can be similar to that of the unedited "
+    "language. Frequent use may require more rigorous editing, or may mean the programme is "
+    "not appropriate pre-watershed at all.",
+    "Does not create its own window; governs whether a pre-watershed edit works.",
+    "judgment:cumulative_effect_of_masking",
+    "The common and expensive mistake: assume a post-watershed programme can be made "
+    "daytime-safe by bleeping. Frequency is the trigger, not the presence of masking, so an "
+    "edit can be technically thorough and still fail. Some content cannot be edited down to "
+    "pre-watershed at all because of adult THEMES rather than specific words.",
+    "judgment_based", "clear",
+    "Requires a count and distribution of instances, which a content description rarely "
+    "gives. Escalate any pre-watershed broadcast of material originally made for after it.",
+    "yes", "UK-G1", "Post-watershed content edited for pre-watershed transmission",
+    U_G1, "2015-03-30", "open", "approved",
+    "cumulative effect on viewers similar to that of", "EN", "high")
+
+add("UK-SCH-010", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "scheduling_general", "watershed_bound",
+    "AUDIENCE COMPOSITION BEFORE 21:00 IS NOT UNIFORM. The watershed matters most for children "
+    "aged 5 to 8, and trust in pre-watershed programming is essential particularly in the "
+    "approach to 19:30. Programmes starting before the watershed and ending after it may hold "
+    "special appeal for children, ESPECIALLY DURING SCHOOL HOLIDAYS.",
+    "The nearer to 19:30, the stronger the expectation - a gradient, not a flat pre-21:00 band.",
+    "not_before=21:00;judgment:proximity_to_1930;judgment:school_holidays",
+    "Contradicts the intuition that 20:55 is nearly post-watershed and therefore nearly free. "
+    "And school holidays change the audience without changing the clock, so the same slot on "
+    "the same channel carries a different risk in August.",
+    "judgment_based", "clear",
+    "Transmission DATE is needed, not only the time. A content description that gives a slot "
+    "but no date cannot settle this.",
+    "yes", "UK-G2", "Guidance Notes Section One, Rules 1.3-1.6", U_G2, "2015-03-30", "open",
+    "approved",
+    "especially during school holidays", "EN", "high")
+
+add("UK-IMI-010", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "imitable_behaviour", "watershed_bound",
+    "EASILY IMITABLE METHODS. Hanging, or preparations for hanging, must be treated with "
+    "particular care if easily imitable, above all before the watershed, unless the setting "
+    "gives strong grounds for believing imitation is unlikely.",
+    "Pre-watershed is the aggravating factor; the concern does not vanish after 21:00.",
+    "not_before=21:00;judgment:imitability_and_setting",
+    "The operative test is IMITABILITY plus SETTING, not the presence of the act. A period "
+    "drama and a contemporary bedroom scene are judged differently on identical events, which "
+    "is why Stage 1 records `treatment` as a separate field from what happens.",
+    "judgment_based", "clear",
+    "Overlaps with the suicide and self-harm rules and must never be auto-decided. Escalate "
+    "to a UK compliance reviewer in every case.",
+    "yes", "UK-G2", "Guidance Notes Section One, Rule 1.13", U_G2, "2015-03-30", "open",
+    "approved",
+    "if easily imitable", "EN", "high")
+
+add("UK-CTX-010", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "definition", "n/a",
+    "AUDIENCE SIZE AND BROADCASTER SIZE. A larger audience, such as on a mainstream channel "
+    "with popular appeal, raises the contextual justification required. A small broadcaster is "
+    "NOT thereby permitted to transmit potentially harmful material without adequate "
+    "protection: the obligation applies to all programmes regardless of reach.",
+    "Not a time rule. Expands the time-of-broadcast factor in the context definition.",
+    "n/a;judgment:audience_size",
+    "Resolves a real asymmetry: audience size can make a decision STRICTER but never looser. "
+    "Expect the reverse argument from a niche channel; it is not available.",
+    "judgment_based", "clear",
+    "The channel's typical audience size and profile is required, and is almost never in a "
+    "content description.",
+    "yes", "UK-G3", "Guidance Notes Section 2, meaning of context", U_G3, "2017-07-18",
+    "open", "approved",
+    "The timing of a broadcast may affect the composition of its audience", "EN", "high")
+
+add("UK-WRN-002", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "audience_information", "n/a",
+    "WARNINGS MUST BE ADEQUATE, NOT MERELY PRESENT. The effectiveness of a warning depends on "
+    "its frequency and its positioning within the programme. For a longer programme a single "
+    "message at the beginning may not be sufficient.",
+    "Not a time rule. Governs whether an information-based mitigation actually works.",
+    "n/a;requires=warning;standard=frequency_and_positioning",
+    "Matters because a warning is one of the main ways a broadcaster earns a slot it would "
+    "not otherwise get. A pipeline that records 'warning: yes' as a boolean cannot represent "
+    "this, and will credit an inadequate warning with mitigation it has not earned.",
+    "judgment_based", "clear",
+    "Needs the warning's wording, placement and repetition - not just that one exists. Treat "
+    "a bare 'warning given' claim as unverified.",
+    "yes", "UK-G3", "Guidance Notes Section 2, Rule 2.3", U_G3, "2017-07-18", "open",
+    "approved",
+    "a single message at the beginning", "EN", "high")
+
+# --- The clearest authority for this system's central architectural claim, and it is Ofcom's
+# --- own words rather than my inference. The Code deliberately BROKE the old link between a
+# --- film's certificate and its permitted slot.
+add("UK-FLM-010", "UK", "Ofcom", "guidance", 3, "yes",
+    "all_linear_tv", "film_carryover", "watershed_bound",
+    "A BBFC CERTIFICATE DOES NOT SET THE SLOT. The legacy ITC code scheduled films by strict "
+    "reference to their BBFC rating; the Ofcom Code has in the main DISPENSED with that link. "
+    "Films are scheduled like any other content, appropriately for the audience. A recent BBFC "
+    "classification is a useful INDICATION of suitability, not a determinant.",
+    "No window of its own. Governs how much weight a certificate carries in the hours decision.",
+    "judgment:certificate_is_evidence_not_determinant",
+    "The single most important row for anyone building on this table, because it is the "
+    "regulator stating the rating/hours separation directly rather than me inferring it. "
+    "CALIBRATION the guidance supplies: since 'children' means people under fifteen and "
+    "material unsuitable for children should not generally be shown before 2100, it is "
+    "UNLIKELY that a recently BBFC 15-rated film could be scheduled during the day. That is a "
+    "usable threshold for a judgment rule - a presumption against, not a prohibition.",
+    "judgment_based", "clear",
+    "Treat a BBFC certificate as evidence feeding the scheduling judgment, never as the "
+    "answer. Reporting a certificate as though it were a broadcast decision is a category "
+    "error this rule exists to prevent.",
+    "yes", "UK-G2", "Guidance Notes Section One, Rules 1.22-1.26", U_G2, "2015-03-30",
+    "open", "approved",
+    "dispensed with these rules relating scheduling to ratings", "EN", "high")
+
+# ===================== FROM ENFORCEMENT: Toofan (NTV), bulletin 553, 7 Sep 2026 ==============
+# The only decided case in the table. It calibrates where the Code only gestures.
+
+add("UK-PRE-010", "UK", "Ofcom", "precedent", 4, "yes",
+    "all_linear_tv", "violence", "watershed_bound",
+    "DECIDED CASE. A BBFC 15 action film containing frequent graphic violence - mass "
+    "shootings, a beheading with the severed head then carried on screen, a man choked to "
+    "death - broadcast at 11:30 BREACHED Rule 1.3. Ofcom weighed the BBFC 15 certificate as "
+    "indicating unsuitability for under-15s, the absence of any warning or signposting, and "
+    "the repeated depictions of killing as unsuitable for daytime viewing.",
+    "11:30 is far pre-watershed; the finding does not fix a permissible hour, only that this "
+    "one was not.",
+    "not_before=21:00;precedent=bbfc15_graphic_violence_breaches_at_1130",
+    "The table's only hard calibration point for violence. Useful as an ANCHOR, not a "
+    "threshold: it says this combination at this hour breached, not where the line sits. "
+    "Note what did NOT save the broadcaster - an apology, an internal investigation, the "
+    "explanation that a newly appointed scheduler made an unintentional error, and refresher "
+    "training already completed. Mitigation after transmission does not undo a breach, which "
+    "is the whole argument for catching it beforehand.",
+    "judgment_based", "clear",
+    "One case is not a calibration set. Treat as the single datum it is, and collect more "
+    "before relying on interpolation between it and anything else.",
+    "yes", "UK-P1", "Bulletin issue 553, Toofan, NTV", U_P1, "2026-09-07", "open", "approved",
+    "well before the watershed without any warning or signposting", "EN", "high")
+
+# --- The axes are independent, demonstrated by a regulator rather than argued by me.
+add("UK-CTX-011", "UK", "Ofcom", "precedent", 4, "yes",
+    "all_linear_tv", "definition", "n/a",
+    "CONTEXT CAN JUSTIFY THE CONTENT AND STILL NOT JUSTIFY THE SLOT. In Toofan, Ofcom opened "
+    "under both the scheduling rule and the offence rule, then DROPPED the offence limb - the "
+    "violence was sufficiently contextualised within the film - while still finding a "
+    "SCHEDULING breach on the same broadcast.",
+    "Not a time rule. Governs how the offence and scheduling determinations relate.",
+    "n/a;standard=offence_and_scheduling_decided_separately",
+    "The strongest available authority for this system's three-axis design, and it comes from "
+    "a decided case rather than from inference. Editorial context defended the material as "
+    "material; it did nothing for the hour. So a pipeline that resolves 'is this justified by "
+    "the context?' once, and reuses the answer for both questions, will reach the wrong "
+    "result in exactly this shape of case - and this shape is common, because a competent "
+    "film almost always contextualises its own violence.",
+    "bright_line", "clear",
+    "Run the offence and scheduling determinations separately and report both. Never let a "
+    "finding of editorial justification discharge the scheduling question.",
+    "yes", "UK-P1", "Bulletin issue 553, footnote 2 and Rule 1.3 decision", U_P1,
+    "2026-09-07", "open", "approved",
+    "sufficiently contextualised within the film", "EN", "high")
+
+# --- A factor the Code does not mention and I did not have.
+add("UK-SCH-011", "UK", "Ofcom", "precedent", 4, "yes",
+    "all_linear_tv", "scheduling_general", "watershed_bound",
+    "THE CULTURAL AND RELIGIOUS CALENDAR AFFECTS AUDIENCE COMPOSITION. Ofcom weighed that the "
+    "broadcast fell during the three-day Eid-ul-Adha celebrations, when many Muslim families "
+    "and communities gather together, as increasing the likelihood that children were in the "
+    "audience.",
+    "Does not move the watershed. Raises the expected child audience within existing hours.",
+    "not_before=21:00;judgment:cultural_or_religious_calendar",
+    "Nothing in the Code text says this; it emerges only from a decided case. It generalises "
+    "badly and that is the point - the relevant festivals depend on the channel's community, "
+    "so a system scaled across countries CANNOT infer them from a single calendar. Pairs with "
+    "the school-holidays factor: both change who is watching without changing the clock or "
+    "the content.",
+    "judgment_based", "clear",
+    "Needs the transmission DATE and knowledge of the channel's audience. A date alone is not "
+    "enough without knowing which communities the service serves - ask a local expert rather "
+    "than deriving it from a public-holiday table.",
+    "yes", "UK-P1", "Bulletin issue 553, Rule 1.3 decision", U_P1, "2026-09-07", "open",
+    "approved",
+    "increasing the likelihood that children could have been watching", "EN", "high")
+
+add("UK-WRN-003", "UK", "Ofcom", "precedent", 4, "yes",
+    "all_linear_tv", "audience_information", "n/a",
+    "WARNINGS SHOULD CONVEY SEVERITY, NOT ONLY PRESENCE. Ofcom's research found audiences "
+    "expect content warnings to indicate not only that violence is present but how severe it "
+    "is, using terms such as 'graphic' or 'explicit'. Audiences also expect graphic and "
+    "realistic violence to be post-watershed and rely on warnings to manage viewing.",
+    "Not a time rule. Determines whether a warning earns the mitigation claimed for it.",
+    "n/a;requires=warning;standard=indicates_severity",
+    "Makes a boolean 'warning: yes' field inadequate. A warning saying 'contains violence' "
+    "before content audiences would describe as graphic does not meet the expectation this "
+    "describes, so it should not be credited as mitigation.",
+    "judgment_based", "clear",
+    "Capture the warning's actual wording. Treat an unquoted claim that a warning was given "
+    "as unverified.",
+    "yes", "UK-P1", "Bulletin issue 553, audience research cited in the decision", U_P1,
+    "2026-09-07", "open", "approved",
+    "not only the presence of violence but also its severity", "EN", "high")
 
 add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "religion", "audience_based",
@@ -1354,11 +1622,11 @@ oq += [
      "CLOSED 2026-11-06. The instrument is the Arcom notice of 15 December 2004. Its page body is drawn by JavaScript, so no fetch could ever retrieve it - every automated attempt returned an empty shell, and one early attempt returned 12,493 characters of pure site navigation that passed a naive length check. The user saved it from a browser, where the text had already rendered. CONFIRMED VERBATIM: 'Category V programs can only be shown between midnight and 5am.' The eligibility gate, the 208-per-year commercial threshold, the on-screen warning with article 227-22, and the six locking criteria are all confirmed against the primary.",
      "Six of the seven predicted rules verified verbatim; the rows had also carried the WRONG DATE for the instrument (23 rather than 15 December), now corrected. FR-CV-003 is SOUND BUT WEAKLY SOURCED - its proof quote is from a government summary while the primary says only that the regulator 'only authorizes' eligible services, so a total ban elsewhere is an inference, flagged in-row for a French regulatory lawyer. The doubt that created C-03 resolves in the OPPOSITE direction from the one feared: the deadlines have elapsed, meaning fully in force with no transitional relief. FINALLY, the stored text is Arcom's own ENGLISH translation, which warns that only the original French is authentic - every quote here is EN and a French-qualified reviewer must re-check them.",
      "closed", "no"],
-    ["C-14", "UK access-control rows cite guidance that predates the 2018 MDP restructure",
-     "UK-ACC-002, UK-ACC-003 (demoted to unverified)",
-     "OPEN, and self-inflicted on 2026-11-06. UK-G2 is Guidance Notes Issue Six of 30 March 2015. It describes the PRE-2018 regime: premium subscription film services capped at BBFC 15, pay-per-view at 18, the whole framing being 'mandatory restricted access'. Ofcom's statement of 5 November 2018 (UK-M1) restructured this, extending MANDATORY DAYTIME PROTECTION to scheduled television channels and permitting films up to BBFC 18 at any time of day behind the gate. So these two rows rest on guidance written about a rule structure that no longer stands.",
-     "EXACTLY the C-09 pattern, committed hours after the C-09 lesson was written down: wording that is internally coherent, corroborated by other sources of the same vintage, and quietly superseded by an amending instrument nobody read. Corroboration cannot catch this - only reading the amending instrument can. Rows demoted to unverified rather than deleted, because the substance (a gate the viewer can switch off is not a gate) is probably still correct. ACTION: re-derive both from the current Section One text plus UK-M1, then restore to approved. UK-G2 should be re-dated or replaced with current guidance. GENERAL LESSON FOR TASK 2: every source needs an 'amended by' field, and no row should reach approved while citing guidance older than the most recent amendment to the rule it interprets.",
-     "open", "yes"],
+    ["C-14", "UK access-control rows cited guidance predating the 2018 MDP restructure",
+     "UK-ACC-002, UK-ACC-003 (both now approved)",
+     "CLOSED 2026-11-06, and it resolved better than expected. With the current Section One text in hand, the substance of UK-ACC-003 turns out to be in the CURRENT CODE rather than only in the 2015 guidance: Rule 1.24 requires both that clear information be provided to help adults assess suitability AND - a condition the table did not have at all - that the mandatory daytime protection in place be CLEARLY EXPLAINED TO ALL VIEWERS. A gate nobody has been told about does not satisfy the rule. The row is re-sourced from guidance to binding text, raising its authority rank from 3 to 2. UK-ACC-002 stays on guidance, because the default-PIN point is an elaboration rather than Code text, but the requirement it elaborates - that the protection cannot be removed by the user - is in the current Code, so it explains a rule that still stands.",
+     "The lesson survives the closure and should carry into Task 2: this was found only by reading the amending instrument's effect on the current consolidated text, exactly as C-09 was. Corroboration between same-vintage sources could never have surfaced it. The CI rule stands - no row may be approved while citing guidance older than the most recent amendment to the rule it interprets, unless the current binding text has been checked and the guidance confirmed still applicable, which is what happened here.",
+     "closed", "no"],
     ["C-11", "Only Code Sections One and Two had been reviewed. Sections Three to Ten were assumed irrelevant to age ratings and broadcast hours.",
      "UK-REL-001 (added)",
      "CLOSED 2026-11-06, after the first answer was WRONG. I originally scoped the Code with one test - the phrase 'significant numbers of children', which is how Rules 1.27 and 4.7 key their child-audience restrictions - and concluded Sections Three and Five-Ten were out of scope. Section Three does not contain that phrase, so the test cleared it. But Rules 3.2 (hate speech) and 3.3 (abusive or derogatory treatment) are permitted 'except where it is justified by the context', and 'context' is Section Two's DEFINED term whose third factor is the TIME OF BROADCAST. So a Section Three judgment can turn on the hour. The test could not see that, so it was the wrong test, and everything it cleared was unproven rather than cleared. Added UK-HAT-001 and UK-HAT-002.",
@@ -1369,11 +1637,11 @@ oq += [
      "NO - CLOSED 2026-11-06. It is the January 2019 print edition and predates the Code in force. Ofcom's 31 Dec 2020 statement states the Code 'is now published on the Ofcom website and is no longer available in print', so no consolidated PDF has been maintained since. The Code in force covers programmes broadcast on or after 23:00 on 31 Dec 2020; the 31 Dec 2020 amendments changed the Section Three hate-speech definition and Section Nine product placement plus minor updates; and Sections One and Two were revised again on 2023-03-16 and 2024-02-19. UK-S0 demoted to optional/original_superseded.",
      "None. But note the near-miss: an earlier version of this repo recorded UK-S0 as CONTAINING UK-S1/S2/S4 and advised fetching it to save three downloads. Following that advice would have pinned the UK rules to 2019 text and silently dropped the 2023 and 2024 revisions - the same class of error as C-09, where an outdated edition got treated as current. The lesson is that a bundle is only a shortcut if its currency is established FIRST, and 'it is a single tidy file' is exactly the kind of convenience that discourages checking.",
      "closed", "no"],
-    ["C-04", "No verbatim source text could be captured. The execution environment has no outbound access to ofcom.org.uk / arcom.fr / legifrance.gouv.fr (egress proxy refuses: connect_rejected), and the available web-fetch path returns model-written summaries, declining full reproduction.",
-     "ALL rows (verbatim_quote column)",
-     "Documented. Canonical URLs recorded on every row so authoritative wording can be checked by hand.",
-     "Obtain the official PDFs (allowlisted direct fetch, or manual deposit into the Drive source folder), then add the quote-integrity check: every row's verbatim_quote must be programmatically confirmed to appear in the stored source file. Without that control, extraction errors are silent.",
-     "engineering", "partially - limits automated verification"],
+    ["C-04", "Source documents not collected, so quote integrity could not be checked",
+     "the whole table",
+     "CLOSED 2026-11-06. ALL 20 of 20 sources are now on disk and every quote resolves: 45 verified, 0 failed, 0 inconclusive, 0 skipped. The automated hosts refused automated clients, so the user retrieved the blocked documents from a browser; a Playwright fetcher on a GitHub runner collected two more before datacenter IPs were refused by Cloudflare.",
+     "Collecting them was not a formality - it CHANGED THE TABLE. The quote check failed four rules the moment real sources landed: two paraphrases written as quotes, one citing the wrong document, and one whose quote ended in a full stop I had added, cutting the sentence before the words 'which cannot be removed by the user' that make the rule enforceable. Mining the guidance then added nine rules the Code text alone does not yield, including the fact that the watershed is a ramp rather than a gate, that a +1 service makes the identical file compliant on one channel and not another, and that bleeping does not automatically make a programme daytime-safe.",
+     "closed", "no"],
     ["C-05", "Ofcom Section One uses 'children' = under FIFTEEN while the section's principle protects under-EIGHTEENS.",
      "UK-DEF-001, UK-SCH-001, UK-DRG-001, UK-IMI-001, UK-OCC-001",
      "Both recorded explicitly. No conflict - just a conflation trap.",
@@ -1384,11 +1652,11 @@ oq += [
      "Out of scope for v1. The channel_specific_override concept is recorded.",
      "For Task 2: treat conventions as a per-licensee data feed. Cannot be scraped generically; needs a local expert or a licensee-supplied extract.",
      "local expert", "no - but caps achievable accuracy for France"],
-    ["C-07", "Ofcom enforcement precedent is represented by a single example. Precedent is the ONLY source of applied thresholds, which is exactly what the judgment_based rows lack.",
-     "all UK judgment_based rows",
-     "One example recorded (UK-P1).",
-     "Ingest the Ofcom bulletins systematically and attach decided cases to the judgment_based rows as calibration anchors.",
-     "engineering", "no - but caps achievable accuracy on judgment rows"],
+    ["C-07", "Judgment-based thresholds are uncalibrated - almost no decided cases collected",
+     "35 judgment_based rules",
+     "PARTLY ADDRESSED 2026-11-06, not closed. The Toofan decision (bulletin 553, 7 Sep 2026) is now collected and mined, yielding four rules: a real threshold anchor (BBFC 15 with sustained graphic violence at 11:30 breaches Rule 1.3), proof from a regulator that the offence and scheduling determinations are separate, the cultural and religious calendar as an audience-composition factor that appears nowhere in the Code text, and the finding that warnings must convey SEVERITY rather than mere presence. The guidance notes added nine further rules with worked examples and named prior decisions.",
+     "STILL THE TABLE'S WEAKEST AREA. 35 of 99 rules are judgment-based and ONE decided case cannot calibrate them - it is an anchor, not a scale: it says this combination at this hour breached, not where the line sits. The guidance cites roughly a dozen further decisions by name (The X Factor Final, Candy Bar Girls, Emmerdale, Coronation Street, EastEnders, Ice Road Truckers, Taggart, Midsomer Murders, Hell's Kitchen USA, Amores Perros, Stylista); collecting those bulletins is the single highest-value remaining work on this table. Until then, treat every judgment_based rule as routing to a human rather than as deciding anything.",
+     "open", "yes"],
     ["C-08", "Correlated error risk: this table and the prompt would share an author and therefore share mistakes - the exact failure mode Task 2 asks about.",
      "ALL rows",
      "Two mitigations available: verbatim_quote + source_url let a reviewer check a row without reading the prompt; bright-line rows are checkable against primary sources with no knowledge of the solution.",

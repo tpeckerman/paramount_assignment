@@ -1,0 +1,145 @@
+Skip to content
+Topics 
+Menu
+Ofcom's work 
+Menu
+Complaints 
+Menu
+Licences 
+Menu
+Global Search
+Cymraeg
+Home
+TV, radio and on-demand
+Broadcast standards
+Section three: Crime, disorder, hatred and abuse
+Section three: Crime, disorder, hatred and abuse
+TV, radio and on-demand Broadcast standards Information for industry
+Published: 22 February 2024
+
+This section of the Code covers material that is likely to incite crime or disorder, reflecting Ofcom’s duty to prohibit the broadcast of this type of programming.
+
+There are also rules in this section covering material containing hatred, abusive and derogatory treatment, and portrayals of crime and criminal proceedings. These are relevant to Ofcom’s duty to provide adequate protection for members of the public from the inclusion in television and radio services of offensive and harmful material. (See also Section two: Harm and offence).
+
+The rules in this section are intended to reflect broadcasters’ right to freedom of expression and audiences’ right to receive information and ideas. For example, broadcasters may wish to report on or interview people or organisations with extreme or challenging views in news and current affairs coverage, which is clearly in the public interest. There are various editorial approaches broadcasters can take to provide context when featuring extreme and/or offensive views in broadcast material, some of which are set out below.
+
+As with other sections of the Code, no rule should be read in isolation but in the context of the whole Code and the supporting notes provided. Broadcasters should also refer to Ofcom’s published guidance for more information on complying material under this Section.
+
+Guidance notes: Section three – Crime, disorder, hatred and abuse (PDF, 75.5 KB)
+
+(Relevant legislation includes, in particular, sections 3(4)(j) and 319(2)(b) and (f) of the Communications Act 2003, Article 7 of the European Convention on Transfrontier Television (for ECTT Services only), Article 6 of the Audiovisual Media Services Directive, Article 10 of the European Convention on Human Rights, and the BBC Charter and Agreement.)
+
+Principle
+
+To ensure that material likely to encourage or incite the commission of crime or to lead to disorder is not included in television or radio services or BBC ODPS.
+
+Rules
+Incitement of crime and disorder
+
+3.1: Material likely to encourage or incite the commission of crime or to lead to disorder must not be included in television or radio services or BBC ODPS.
+
+Note: Under Rule 3.1, “material” may include but is not limited to:
+
+content which directly or indirectly amounts to a call to criminal action or disorder;
+material promoting or encouraging engagement in terrorism or other forms of criminal activity or disorder; and/or
+hate speech which is likely to encourage criminal activity or lead to disorder.
+
+Meaning of “terrorism”
+
+See the definition in section 1 of the Terrorism Act 2000, which is also summarised in Ofcom’s guidance to this section of the Code.
+
+Meaning of “hate speech”
+
+All forms of expression which spread, incite, promote or justify hatred based on intolerance on the grounds of disability, ethnicity, social origin , gender, sex, gender reassignment, nationality, race, religion or belief, sexual orientation, colour, genetic features, language, political or any other opinion, membership of a national minority, property, birth or age.
+
+Meaning of “crime”
+
+This may relate to any offence under law that is punishable by imprisonment or by a fine.
+
+Meaning of “disorder”
+
+This includes but is not limited to the criminal offence of civil disorder.
+
+Meaning of “likely to encourage or to incite the commission of crime or to lead to disorder”
+
+A portrayal of crime, or of incitement to crime, will not necessarily result in a breach of Rule 3.1. The likelihood of content inciting crime or leading to disorder will depend on the nature of the material as well as the context in which it is presented to the audience.
+
+Significant contextual factors under Rule 3.1 may include (but are not limited to):
+
+the editorial purpose of the programme;
+the status or position of anyone featured in the material; and/or
+whether sufficient challenge is provided to the material.
+
+For example, there may be greater potential for material to encourage or incite the commission of crime if a programme sets out to influence the audience on a subject or theme, or provides an uncritical platform for an authoritative figure to advocate criminal activity or disorder.
+
+There may be less potential for a breach of Rule 3.1 if opposing viewpoints and sufficient challenge are provided to people or organisations who advocate criminal activity or disorder, or where a programme seeks to provide an examination of or commentary on criminal activity or disorder in the public interest.
+
+Other examples of contextual factors are provided in Ofcom’s guidance to this Section of the Code.
+
+Hatred and abuse
+
+Note: Rules 3.2 and 3.3 reflect the standards objective on the provision of adequate protection for members of the public from the inclusion of offensive and harmful material (section 319(2)(f) of the Communications Act 2003).
+
+3.2: Material which contains hate speech must not be included in television and radio programmes or BBC ODPS except where it is justified by the context.
+
+Broadcasters’ attention is drawn to sections 22 and 29F of the Public Order Act 1986, which sets out criminal offences arising from the broadcast of material stirring up hatred relating to race, religion, or sexual orientation.
+
+3.3: Material which contains abusive or derogatory treatment of individuals, groups, religions or communities, must not be included in television and radio services or BBC ODPS except where it is justified by the context. (See also Rule 4.2).
+
+Meaning of "context" under Rule 3.2 and Rule 3.3
+
+Key contextual factors may include, but are not limited to:
+
+the genre and editorial content of the programme, programmes or series and the likely audience expectations. For example, there are certain genres such as drama, comedy or satire where there is likely to be editorial justification for including challenging or extreme views in keeping with audience expectations, provided there is sufficient context. The greater the risk for the material to cause harm or offence, the greater the need for more contextual justification;
+the extent to which sufficient challenge is provided;
+the status or position of anyone featured in the material;
+the service on which the material is broadcast; and
+the likely size and composition of the potential audience and likely expectation of the audience.
+
+Portrayals of crime and criminal proceedings
+
+3.4: Descriptions or demonstrations of criminal techniques which contain essential details which could enable the commission of crime must not be broadcast unless editorially justified.
+
+3.5: No payment, promise of payment, or payment in kind, may be made to convicted or confessed criminals whether directly or indirectly for a programme contribution by the criminal (or any other person) relating to his/her crime/s. The only exception is where it is in the public interest.
+
+3.6: While criminal proceedings are active, no payment or promise of payment may be made, directly or indirectly, to any witness or any person who may reasonably be expected to be called as a witness. Nor should any payment be suggested or made dependent on the outcome of the trial. Only actual expenditure or loss of earnings necessarily incurred during the making of a programme contribution may be reimbursed.
+
+3.7: Where criminal proceedings are likely and foreseeable, payments should not be made to people who might reasonably be expected to be witnesses unless there is a clear public interest, such as investigating crime or serious wrongdoing, and the payment is necessary to elicit the information. Where such a payment is made it will be appropriate to disclose the payment to both defence and prosecution if the person becomes a witness in any subsequent trial.
+
+3.8: Broadcasters must use their best endeavours so as not to broadcast material that could endanger lives or prejudice the success of attempts to deal with a hijack or kidnapping.
+
+See also...
+Online Safety Act compliance guide for providers of online services
+
+Guidance for providers of online services about how to comply with Online Safety Act duties.
+
+The Ofcom Broadcasting Code (with the Cross-promotion Code and the On Demand Programme Service Rules)
+
+Ofcom's code covering standards in programmes, sponsorship, product placement in television programmes, fairness and privacy.
+
+Programme-related guidance
+
+This section includes information for the broadcast industry, covering the Broadcasting Code and other programme-related guidance
+
+Subscribe to email updates 
+Follow us
+x-twitter
+facebook
+linkedin
+youtube
+instagram
+tiktok
+About Ofcom
+What is Ofcom?
+Contact us
+Nations and regions
+Jobs
+General Privacy Statement
+Modern slavery statement
+Our work in Welsh
+About this website
+Accessibility
+Cookies policy
+Terms of use
+Copyright and information re-use
+© Ofcom 2026

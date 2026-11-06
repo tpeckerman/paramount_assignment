@@ -1,0 +1,1874 @@
+An official website of the European Union
+How do you know?
+
+This site uses cookies. Visit our cookies policy page or click the link in any footer for more information and to change your preferences.
+
+Accept all cookies
+Accept only essential cookies
+Skip to main content
+My EUR-Lex
+English
+EUR-Lex
+Access to European Union law
+<a href="https://eur-lex.europa.eu/content/help/eurlex-content/experimental-features.html" target="_blank">More about the experimental features corner</a>
+	Experimental features 
+You are here
+EUROPA 
+EUR-Lex home 
+Directive - 2018/1808 - EN - EUR-Lex
+Help
+ Print
+MENU
+Quick search
+Use quotation marks to search for an "exact phrase". Append an asterisk (*) to a search term to find variations of it (transp*, 32019R*). Use a question mark (?) instead of a single character in your search term to find variations of it (ca?e finds case, cane, care).
+ 
+  Search tips
+Need more search options? Use the Advanced search
+
+Document 32018L1808
+
+Text
+Document information
+Procedure
+National transposition
+Up-to-date link
+Permanent link
+Download notice
+Save to My items
+Create an email alert
+Create an RSS alert
+  Table of contents
+
+Directive (EU) 2018/1808 of the European Parliament and of the Council of 14 November 2018 amending Directive 2010/13/EU on the coordination of certain provisions laid down by law, regulation or administrative action in Member States concerning the provision of audiovisual media services (Audiovisual Media Services Directive) in view of changing market realities
+
+PE/33/2018/REV/1
+
+OJ L 303, 28.11.2018, pp. 69–92 (BG, ES, CS, DA, DE, ET, EL, EN, FR, GA, HR, IT, LV, LT, HU, MT, NL, PL, PT, RO, SK, SL, FI, SV)
+
+
+In force
+
+ELI: http://data.europa.eu/eli/dir/2018/1808/oj
+
+ Expand all
+ Collapse all
+
+ 
+Languages, formats and link to OJ
+
+Language
+	
+BG
+	
+ES
+	
+CS
+	
+DA
+	
+DE
+	
+ET
+	
+EL
+	
+EN
+	
+FR
+	
+GA
+	
+HR
+	
+IT
+	
+LV
+	
+LT
+	
+HU
+	
+MT
+	
+NL
+	
+PL
+	
+PT
+	
+RO
+	
+SK
+	
+SL
+	
+FI
+	
+SV
+
+HTML	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+PDF	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+Official Journal	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+	
+ 
+
+ 
+Multilingual display
+
+Language 1
+English (en)
+Bulgarian (bg)
+Spanish (es)
+Czech (cs)
+Danish (da)
+German (de)
+Estonian (et)
+Greek (el)
+English (en)
+French (fr)
+Irish (ga)
+Croatian (hr)
+Italian (it)
+Latvian (lv)
+Lithuanian (lt)
+Hungarian (hu)
+Maltese (mt)
+Dutch (nl)
+Polish (pl)
+Portuguese (pt)
+Romanian (ro)
+Slovak (sk)
+Slovenian (sl)
+Finnish (fi)
+Swedish (sv)
+ 
+Language 2
+Please choose
+Bulgarian (bg)
+Spanish (es)
+Czech (cs)
+Danish (da)
+German (de)
+Estonian (et)
+Greek (el)
+English (en)
+French (fr)
+Irish (ga)
+Croatian (hr)
+Italian (it)
+Latvian (lv)
+Lithuanian (lt)
+Hungarian (hu)
+Maltese (mt)
+Dutch (nl)
+Polish (pl)
+Portuguese (pt)
+Romanian (ro)
+Slovak (sk)
+Slovenian (sl)
+Finnish (fi)
+Swedish (sv)
+ 
+Language 3
+Please choose
+Bulgarian (bg)
+Spanish (es)
+Czech (cs)
+Danish (da)
+German (de)
+Estonian (et)
+Greek (el)
+English (en)
+French (fr)
+Irish (ga)
+Croatian (hr)
+Italian (it)
+Latvian (lv)
+Lithuanian (lt)
+Hungarian (hu)
+Maltese (mt)
+Dutch (nl)
+Polish (pl)
+Portuguese (pt)
+Romanian (ro)
+Slovak (sk)
+Slovenian (sl)
+Finnish (fi)
+Swedish (sv)
+ Display
+
+Text
+
+28.11.2018   
+
+	
+
+EN
+
+	
+
+Official Journal of the European Union
+
+	
+
+L 303/69
+
+DIRECTIVE (EU) 2018/1808 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL
+
+of 14 November 2018
+
+amending Directive 2010/13/EU on the coordination of certain provisions laid down by law, regulation or administrative action in Member States concerning the provision of audiovisual media services (Audiovisual Media Services Directive) in view of changing market realities
+
+THE EUROPEAN PARLIAMENT AND THE COUNCIL OF THE EUROPEAN UNION,
+
+Having regard to the Treaty on the Functioning of the European Union, and in particular Article 53(1) and Article 62 thereof,
+
+Having regard to the proposal from the European Commission,
+
+After transmission of the draft legislative act to the national parliaments,
+
+Having regard to the opinion of the European Economic and Social Committee (1),
+
+Having regard to the opinion of the Committee of the Regions (2),
+
+Acting in accordance with the ordinary legislative procedure (3),
+
+Whereas:
+
+(1)
+
+	
+
+The last substantive amendment to Council Directive 89/552/EEC (4), subsequently codified by Directive 2010/13/EU of the European Parliament and of the Council (5), was made in 2007 with the adoption of Directive 2007/65/EC of the European Parliament and of the Council (6). Since then, the audiovisual media services market has evolved significantly and rapidly due to the ongoing convergence of television and internet services. Technical developments have allowed for new types of services and user experiences. Viewing habits, particularly those of younger generations, have changed significantly. While the main TV screen remains an important device for sharing audiovisual experiences, many viewers have moved to other, portable devices to watch audiovisual content. Traditional TV content still accounts for a major share of the average daily viewing time.
+
+However, new types of content, such as video clips or user-generated content, have gained an increasing importance and new players, including providers of video-on-demand services and video-sharing platforms, are now well-established. This convergence of media requires an updated legal framework in order to reflect developments in the market and to achieve a balance between access to online content services, consumer protection and competitiveness.
+
+(2)
+
+	
+
+On 6 May 2015, the Commission adopted a communication entitled ‘A Digital Single Market Strategy for Europe’ in which it announced a review of Directive 2010/13/EU.
+
+(3)
+
+	
+
+Directive 2010/13/EU should remain applicable only to those services the principal purpose of which is the provision of programmes in order to inform, entertain or educate. The principal purpose requirement should also be considered to be met if the service has audiovisual content and form which are dissociable from the main activity of the service provider, such as stand-alone parts of online newspapers featuring audiovisual programmes or user-generated videos where those parts can be considered dissociable from their main activity. A service should be considered to be merely an indissociable complement to the main activity as a result of the links between the audiovisual offer and the main activity such as providing news in written form. As such, channels or any other audiovisual services under the editorial responsibility of a provider can constitute audiovisual media services in themselves, even if they are offered on a video-sharing platform which is characterised by the absence of editorial responsibility. In such cases, it will fall to the providers with editorial responsibility to comply with Directive 2010/13/EU.
+
+(4)
+
+	
+
+Video-sharing platform services provide audiovisual content which is increasingly accessed by the general public, in particular by young people. This is also true with regard to social media services, which have become an important medium to share information and to entertain and educate, including by providing access to programmes and user-generated videos. Those social media services need to be included in the scope of Directive 2010/13/EU because they compete for the same audiences and revenues as audiovisual media services. Furthermore, they also have a considerable impact in that they facilitate the possibility for users to shape and influence the opinions of other users. Therefore, in order to protect minors from harmful content and all citizens from incitement to hatred, violence and terrorism, those services should be covered by Directive 2010/13/EU to the extent that they meet the definition of a video-sharing platform service.
+
+(5)
+
+	
+
+While the aim of Directive 2010/13/EU is not to regulate social media services as such, a social media service should be covered if the provision of programmes and user-generated videos constitutes an essential functionality of that service. The provision of programmes and user-generated videos could be considered to constitute an essential functionality of the social media service if the audiovisual content is not merely ancillary to, or does not constitute a minor part of, the activities of that social media service. In order to ensure clarity, effectiveness and consistency of implementation, the Commission should, where necessary, issue guidelines, after consulting the Contact Committee, on the practical application of the essential functionality criterion of the definition of a ‘video-sharing platform service’. Those guidelines should be drafted with due regard for the general public interest objectives to be achieved by the measures to be taken by video-sharing platform providers and the right to freedom of expression.
+
+(6)
+
+	
+
+Where a dissociable section of a service constitutes a video-sharing platform service for the purposes of Directive 2010/13/EU, only that section should be covered by that Directive, and only as regards programmes and user-generated videos. Video clips embedded in the editorial content of electronic versions of newspapers and magazines and animated images such as GIFs should not be covered by Directive 2010/13/EU. The definition of a video-sharing platform service should not cover non-economic activities, such as the provision of audiovisual content on private websites and non-commercial communities of interest.
+
+(7)
+
+	
+
+In order to ensure the effective implementation of Directive 2010/13/EU, it is crucial that Member States establish and maintain up-to-date records of the media service providers and video-sharing platform providers under their jurisdiction and that they regularly share those records with their competent independent regulatory authorities or bodies and the Commission. Those records should include information about the criteria on which jurisdiction is based.
+
+(8)
+
+	
+
+Establishing jurisdiction requires an assessment of factual situations against the criteria laid down in Directive 2010/13/EU. The assessment of such factual situations might lead to conflicting results. In applying the cooperation procedures provided for in that Directive, it is important that the Commission can base its findings on reliable facts. The European Regulators Group for Audiovisual Media Services (ERGA) should therefore be empowered to provide opinions on jurisdiction upon the Commission's request. Where the Commission, in applying those cooperation procedures, decides to consult ERGA, it should inform the Contact Committee, including about notifications received from Member States under those cooperation procedures and about ERGA's opinion.
+
+(9)
+
+	
+
+The procedures and conditions for restricting freedom to provide and receive audiovisual media services should be the same for both linear and non-linear services.
+
+(10)
+
+	
+
+In accordance with the case-law of the Court of Justice of the European Union (the ‘Court’), it is possible to restrict the freedom to provide services guaranteed under the Treaty for overriding reasons in the general public interest, such as obtaining a high level of consumer protection, provided that such restrictions are justified, proportionate and necessary. Therefore, a Member State should be able to take certain measures to ensure respect for its consumer protection rules which do not fall in the fields coordinated by Directive 2010/13/EU. Measures taken by a Member State to enforce its national consumer protection regime, including in relation to gambling advertising, would need to be justified, proportionate to the objective pursued, and necessary as required under the Court's case-law. In any event, a receiving Member State must not take any measures which would prevent the re-transmission, in its territory, of television broadcasts coming from another Member State.
+
+(11)
+
+	
+
+A Member State, when notifying the Commission that a media service provider has established itself in the Member State having jurisdiction in order to circumvent the stricter rules in the fields coordinated by Directive 2010/13/EU, which would be applicable to that provider if it were established in the notifying Member State, should adduce credible and duly substantiated evidence to that effect. Such evidence should detail a set of corroborating facts allowing for such circumvention to be reasonably established.
+
+(12)
+
+	
+
+In its Communication to the European Parliament and to the Council on Better Regulation for Better Results – an EU Agenda, the Commission stressed that, when considering policy solutions, it would consider both regulatory and non-regulatory means, modelled on the Community of practice and the Principles for Better Self- and Co-regulation. A number of codes of conduct set up in the fields coordinated by Directive 2010/13/EU have proved to be well designed, in line with the Principles for Better Self- and Co-regulation. The existence of a legislative backstop was considered an important success factor in promoting compliance with a self- or co-regulatory code. It is equally important that such codes establish specific targets and objectives allowing for the regular, transparent and independent monitoring and evaluation of the objectives aimed at by the codes of conduct. The codes of conduct should also provide for effective enforcement. These principles should be followed by the self- and co-regulatory codes adopted in the fields coordinated by Directive 2010/13/EU.
+
+(13)
+
+	
+
+Experience has shown that both self- and co-regulatory instruments, implemented in accordance with the different legal traditions of the Member States, can play an important role in delivering a high level of consumer protection. Measures aimed at achieving general public interest objectives in the emerging audiovisual media services sector are more effective if they are taken with the active support of the service providers themselves.
+
+(14)
+
+	
+
+Self-regulation constitutes a type of voluntary initiative which enables economic operators, social partners, non-governmental organisations and associations to adopt common guidelines amongst themselves and for themselves. They are responsible for developing, monitoring and enforcing compliance with those guidelines. Member States should, in accordance with their different legal traditions, recognise the role which effective self-regulation can play as a complement to the legislative, judicial and administrative mechanisms in place and its useful contribution to the achievement of the objectives of Directive 2010/13/EU. However, while self-regulation might be a complementary method of implementing certain provisions of Directive 2010/13/EU, it should not constitute a substitute for the obligations of the national legislator. Co-regulation provides, in its minimal form, a legal link between self-regulation and the national legislator in accordance with the legal traditions of the Member States. In co-regulation, the regulatory role is shared between stakeholders and the government or the national regulatory authorities or bodies. The role of the relevant public authorities includes recognition of the co-regulatory scheme, auditing of its processes and funding of the scheme. Co-regulation should allow for the possibility of state intervention in the event of its objectives not being met. Without prejudice to the formal obligations of the Member States regarding transposition, Directive 2010/13/EU encourages the use of self- and co-regulation. This should neither oblige Member States to set up self- or co-regulation regimes, or both, nor disrupt or jeopardise current co-regulation initiatives which are already in place in Member States and which are functioning effectively.
+
+(15)
+
+	
+
+Transparency of media ownership is directly linked to the freedom of expression, a cornerstone of democratic systems. Information concerning the ownership structure of media service providers, where such ownership results in the control of, or the exercise of a significant influence over, the content of the services provided, allows users to make an informed judgement about such content. Member States should be able to determine whether and to what extent information about the ownership structure of a media service provider should be accessible to users, provided that the essence of the fundamental rights and freedoms concerned is respected and that such measures are necessary and proportionate.
+
+(16)
+
+	
+
+Because of the specific nature of audiovisual media services, especially the impact of those services on the way people form opinions, users have a legitimate interest in knowing who is responsible for the content of those services. In order to strengthen freedom of expression, and, by extension, to promote media pluralism and avoid conflicts of interest, it is important for Member States to ensure that users have easy and direct access at any time to information about media service providers. It is for each Member State to decide, in particular with respect to the information which may be provided on ownership structure and beneficial owners.
+
+(17)
+
+	
+
+In order to ensure coherence and legal certainty for businesses and Member States' authorities, the notion of ‘incitement to violence or hatred’ should, to the appropriate extent, be understood within the meaning of Council Framework Decision 2008/913/JHA (7).
+
+(18)
+
+	
+
+Considering the evolution of the means by which content is disseminated via electronic communications networks, it is important to protect the general public from incitement to terrorism. Directive 2010/13/EU should therefore ensure that audiovisual media services do not contain public provocation to commit a terrorist offence. In order to ensure coherence and legal certainty for businesses and Member States' authorities, the notion of ‘public provocation to commit a terrorist offence’ should be understood within the meaning of Directive (EU) 2017/541 of the European Parliament and of the Council (8).
+
+(19)
+
+	
+
+In order to empower viewers, including parents and minors, to make informed decisions about the content to be watched, it is necessary that media service providers provide sufficient information about content that may impair minors' physical, mental or moral development. That could be done, for example, through a system of content descriptors, an acoustic warning, a visual symbol or any other means, describing the nature of the content.
+
+(20)
+
+	
+
+The appropriate measures for the protection of minors applicable to television broadcasting services should also apply to on-demand audiovisual media services. That should increase the level of protection. The minimum harmonisation approach allows Member States to develop a higher degree of protection for content which may impair the physical, mental or moral development of minors. The most harmful content, which may impair the physical, mental or moral development of minors, but is not necessarily a criminal offence, should be subject to the strictest measures such as encryption and effective parental controls, without prejudice to the adoption of stricter measures by Member States.
+
+(21)
+
+	
+
+Regulation (EU) 2016/679 of the European Parliament and the Council (9) recognises that children merit specific protection with regard to the processing of their personal data. The establishment of child protection mechanisms by media service providers inevitably leads to the processing of the personal data of minors. Given that such mechanisms aim at protecting children, personal data of minors processed in the framework of technical child protection measures should not be used for commercial purposes.
+
+(22)
+
+	
+
+Ensuring the accessibility of audiovisual content is an essential requirement in the context of the commitments taken under the United Nations Convention on the Rights of Persons with Disabilities. In the context of Directive 2010/13/EU, the term ‘persons with disabilities’ should be interpreted in light of the nature of the services covered by that Directive, which are audiovisual media services. The right of persons with an impairment and of the elderly to participate and be integrated in the social and cultural life of the Union is linked to the provision of accessible audiovisual media services. Therefore, Member States should, without undue delay, ensure that media service providers under their jurisdiction actively seek to make content accessible to persons with disabilities, in particular with a visual or hearing impairment. Accessibility requirements should be met through a progressive and continuous process, while taking into account the practical and unavoidable constraints that could prevent full accessibility, such as programmes or events broadcast in real time. In order to measure the progress that media service providers have made in making their services progressively accessible to people with visual or hearing disabilities, Member States should require media service providers established on their territory to report to them on a regular basis.
+
+(23)
+
+	
+
+The means to achieve the accessibility of audiovisual media services under Directive 2010/13/EU should include, but need not be limited to, sign language, subtitling for the deaf and hard of hearing, spoken subtitles, and audio description. However, that Directive does not cover features or services providing access to audiovisual media services, nor does it cover accessibility features of electronic programme guides (EPGs). Therefore, that Directive is without prejudice to Union law aiming to harmonise the accessibility of services providing access to audiovisual media services, such as websites, online applications and EPGs, or the provision of information on accessibility and in accessible formats.
+
+(24)
+
+	
+
+In some cases, it might not be possible to provide emergency information in a manner that is accessible to persons with disabilities. However, such exceptional cases should not prevent emergency information from being made public through audiovisual media services.
+
+(25)
+
+	
+
+Directive 2010/13/EU is without prejudice to the ability of Member States to impose obligations to ensure the appropriate prominence of content of general interest under defined general interest objectives such as media pluralism, freedom of speech and cultural diversity. Such obligations should only be imposed where they are necessary to meet general interest objectives clearly defined by Member States in accordance with Union law. Where Member States decide to impose rules on appropriate prominence, they should only impose proportionate obligations on undertakings in the interests of legitimate public policy considerations.
+
+(26)
+
+	
+
+In order to protect the editorial responsibility of media service providers and the audiovisual value chain, it is essential to be able to guarantee the integrity of programmes and audiovisual media services supplied by media service providers. Programmes and audiovisual media services should not be transmitted in a shortened form, altered or interrupted, or overlaid for commercial purposes, without the explicit consent of the media service provider. Member States should ensure that overlays solely initiated or authorised by the recipient of the service for private use, such as overlays resulting from services for individual communications, do not require the consent of the media service provider. Control elements of any user interface necessary for the operation of the device or programme navigation, such as volume bars, search functions, navigation menus or lists of channels, should not be covered. Legitimate overlays, such as warning information, general public interest information, subtitles or commercial communications overlays provided by the media service provider, should also not be covered. Without prejudice to Article 3(3) of Regulation (EU) 2015/2120 of the European Parliament and of the Council (10), data compression techniques which reduce the size of a data file and other techniques to adapt a service to the distribution means, such as resolution and coding, without any modification of the content, should not be covered either.
+
+Measures to protect the integrity of programmes and audiovisual media services should be imposed where they are necessary to meet general interest objectives clearly defined by Member States in accordance with Union law. Such measures should impose proportionate obligations on undertakings in the interest of legitimate public policy considerations.
+
+(27)
+
+	
+
+With the exception of sponsorship and product placement, audiovisual commercial communications for alcoholic beverages in on-demand audiovisual media services should comply with the criteria applicable to television advertising and teleshopping for alcoholic beverages laid down in Directive 2010/13/EU. The more detailed criteria applicable to television advertising and teleshopping for alcoholic beverages are limited to spot advertising, which is by its nature separated from the programme, and therefore excludes other commercial communications which are linked to the programme or are an integral part of the programme, such as sponsorship and product placement. Consequently, those criteria should not apply to sponsorship and product placement in on-demand audiovisual media services.
+
+(28)
+
+	
+
+Certain widely recognised nutritional guidelines exist at national and international level, such as the World Health Organisation Regional Office for Europe's nutrient profile model, in order to differentiate foods on the basis of their nutritional composition in the context of television advertising of foods to children. Member States should be encouraged to ensure that self- and co-regulation, including through codes of conduct, is used to effectively reduce the exposure of children to audiovisual commercial communications regarding foods and beverages that are high in salt, sugars, fat, saturated fats or trans-fatty acids or that otherwise do not fit those national or international nutritional guidelines.
+
+(29)
+
+	
+
+Similarly, Member States should be encouraged to ensure that self- and co-regulatory codes of conduct are used to effectively reduce the exposure of children and minors to audiovisual commercial communications for alcoholic beverages. Certain self- or co-regulatory systems exist at Union and national level in order to market alcoholic beverages responsibly, including in audiovisual commercial communications. Those systems should be further encouraged, in particular those aiming at ensuring that responsible drinking messages accompany audiovisual commercial communications for alcoholic beverages.
+
+(30)
+
+	
+
+It is important that minors are effectively protected from exposure to audiovisual commercial communications relating to the promotion of gambling. In this context, several self- or co-regulatory systems exist at Union and national level for the promotion of responsible gambling, including in audiovisual commercial communications.
+
+(31)
+
+	
+
+In order to remove barriers to the free circulation of cross-border services within the Union, it is necessary to ensure the effectiveness of self- and co-regulatory measures aiming, in particular, at protecting consumers or public health.
+
+(32)
+
+	
+
+The market for television broadcasting has evolved and there is, therefore, a need for more flexibility with regard to audiovisual commercial communications, in particular for quantitative rules for linear audiovisual media services and product placement. The emergence of new services, including those without advertising, has led to a greater choice for viewers, who can easily switch to alternative offers.
+
+(33)
+
+	
+
+The liberalisation of product placement has not brought about the expected take-up of this form of audiovisual commercial communication. In particular, the general prohibition of product placement, albeit with some exceptions, has not created legal certainty for media service providers. Product placement should thus be allowed in all audiovisual media services and video-sharing platform services, subject to exceptions.
+
+(34)
+
+	
+
+Product placement should not be allowed in news and current affairs programmes, consumer affairs programmes, religious programmes and children's programmes. In particular, evidence has shown that product placement and embedded advertisements can affect children's behaviour as children are often not able to recognise the commercial content. There is thus a need to continue to prohibit product placement in children's programmes. Consumer affairs programmes are programmes offering advice to viewers or including reviews on the purchase of products and services. Allowing product placement in such programmes would blur the distinction between advertising and editorial content for viewers who may expect a genuine and honest review of products or services in such programmes.
+
+(35)
+
+	
+
+Providers of on-demand audiovisual media services should promote the production and distribution of European works by ensuring that their catalogues contain a minimum share of European works and that they are given sufficient prominence. The labelling in metadata of audiovisual content that qualifies as a European work should be encouraged so that such metadata are available to media service providers. Prominence involves promoting European works through facilitating access to such works. Prominence can be ensured through various means such as a dedicated section for European works that is accessible from the service homepage, the possibility to search for European works in the search tool available as part of that service, the use of European works in campaigns of that service or a minimum percentage of European works promoted from that service's catalogue, for example by using banners or similar tools.
+
+(36)
+
+	
+
+In order to ensure adequate levels of investment in European works, Member States should be able to impose financial obligations on media service providers established on their territory. Those obligations can take the form of direct contributions to the production of and acquisition of rights in European works. The Member States could also impose levies payable to a fund, on the basis of the revenues generated by audiovisual media services that are provided in and targeted towards their territory. This Directive clarifies that, given the direct link between financial obligations and Member States' different cultural policies, a Member State is also allowed to impose such financial obligations on media service providers established in another Member State that target its territory. In that case, financial obligations should only be charged on the revenues generated through the audience in the targeted Member State. Media service providers that are required to contribute to film funding schemes in a targeted Member State should be able to benefit in a non-discriminatory way, even in the absence of an establishment in that Member State, from the aid available under respective film funding schemes to media service providers.
+
+(37)
+
+	
+
+Broadcasters currently invest more in European audiovisual works than providers of on-demand audiovisual media services. Therefore, if a targeted Member State chooses to impose a financial obligation on a broadcaster that is under the jurisdiction of another Member State, the direct contributions to the production and acquisition of rights in European works, in particular co-productions, made by that broadcaster, should be taken into account, with due consideration for the principle of proportionality. This is without prejudice to the Member States' competence to establish, in accordance with their cultural policy and subject to compatibility with State aid rules, the level of financial contributions payable by media service providers under their jurisdiction.
+
+(38)
+
+	
+
+A Member State, when assessing, on a case-by-case basis, whether an on-demand audiovisual media service established in another Member State is targeting audiences in its territory, should refer to indicators such as advertisement or other promotions specifically aiming at customers in its territory, the main language of the service or the existence of content or commercial communications aiming specifically at the audience in the Member State of reception.
+
+(39)
+
+	
+
+Where a Member State imposes financial contributions on media service providers, such contributions should strive for an adequate promotion of European works while avoiding the risk of double imposition for media service providers. In this way, if the Member State where the media service provider is established imposes such a financial contribution, it should take into account any financial contributions imposed by targeted Member States.
+
+(40)
+
+	
+
+In order to ensure that obligations relating to the promotion of European works do not undermine market development and in order to allow for the entry of new players in the market, providers with no significant presence on the market should not be subject to such requirements. This is particularly the case for providers with a low turnover or low audience. A low audience can be determined, for example, on the basis of a viewing time or sales, depending on the nature of the service, while the determination of low turnover should take into account the different sizes of audiovisual markets in Member States. It might also be inappropriate to impose such requirements in cases where, given the nature or theme of the audiovisual media services, they would be impracticable or unjustified.
+
+(41)
+
+	
+
+It is important that broadcasters have more flexibility and are able to decide when to place advertising in order to maximise advertisers' demand and viewers' flow. It is also necessary, however, to maintain a sufficient level of consumer protection in that regard because such flexibility could expose viewers to an excessive amount of advertising during prime time. Specific limits should therefore apply within the period from 6.00 to 18.00 and from 18.00 to 24.00.
+
+(42)
+
+	
+
+Neutral frames separate editorial content from television advertising or teleshopping spots, as well as separate individual spots. They allow the viewer to clearly distinguish when one type of audiovisual content ends and the other begins. It is necessary to clarify that neutral frames are excluded from the quantitative limit set out for television advertising. This is in order to ensure that the time used in neutral frames does not impact on the time used for advertising and that revenues generated from the advertising are not negatively affected.
+
+(43)
+
+	
+
+Transmission time allotted to announcements made by the broadcaster in connection with its own programmes and ancillary products directly derived from those programmes, or to public service announcements and charity appeals broadcast free of charge, with the exception of the costs incurred for the transmission of such appeals, should not be included in the maximum amounts of transmission time that may be allotted to television advertising and teleshopping. In addition, many broadcasters are part of larger broadcasting groups and make announcements not only in connection with their own programmes and ancillary products directly derived from those programmes, but also in relation to programmes and audiovisual media services from other entities belonging to the same broadcasting group. Transmission time allotted to such announcements should also not be included in the maximum amounts of transmission time that may be allotted to television advertising and teleshopping.
+
+(44)
+
+	
+
+The video-sharing platform providers covered by Directive 2010/13/EU provide information society services within the meaning of Directive 2000/31/EC of the European Parliament and of the Council (11). Those providers are consequently subject to the provisions on the internal market set out in that Directive, if they are established in a Member State. It is appropriate to ensure that the same rules also apply to video-sharing platform providers which are not established in a Member State with a view to safeguarding the effectiveness of the measures to protect minors and the general public set out in Directive 2010/13/EU and ensuring as much as possible a level playing field, in so far as those providers have either a parent undertaking or a subsidiary undertaking which is established in a Member State or where those providers are part of a group and another undertaking of that group is established in a Member State. Therefore, the definitions set out in Directive 2010/13/EU should be principles-based and should ensure that it is not possible for an undertaking to exclude itself from the scope of that Directive by creating a group structure containing multiple layers of undertakings established inside or outside the Union. The Commission should be informed of the providers under each Member State's jurisdiction pursuant to the rules on establishment set out in Directives 2000/31/EC and 2010/13/EU.
+
+(45)
+
+	
+
+There are new challenges, in particular in connection with video-sharing platforms, on which users, particularly minors, increasingly consume audiovisual content. In this context, harmful content and hate speech provided on video-sharing platform services have increasingly given rise to concern. In order to protect minors and the general public from such content, it is necessary to set out proportionate rules on those matters.
+
+(46)
+
+	
+
+Commercial communications on video-sharing platform services are already regulated by Directive 2005/29/EC of the European Parliament and of the Council (12), which prohibits unfair business-to-consumer commercial practices, including misleading and aggressive practices occurring in information society services.
+
+As regards commercial communications concerning tobacco and related products in video-sharing platforms, the existing prohibitions provided for in Directive 2003/33/EC of the European Parliament and of the Council (13), as well as the prohibitions applicable to commercial communications concerning electronic cigarettes and refill containers pursuant to Directive 2014/40/EU of the European Parliament and of the Council (14), ensure that consumers are sufficiently protected from tobacco and related products. Since users increasingly rely on video-sharing platform services to access audiovisual content, it is necessary to ensure a sufficient level of consumer protection by aligning the rules on audiovisual commercial communications, to the appropriate extent, amongst all providers. It is therefore important that audiovisual commercial communications on video-sharing platforms are clearly identified and respect a set of minimum qualitative requirements.
+
+(47)
+
+	
+
+A significant share of the content provided on video-sharing platform services is not under the editorial responsibility of the video-sharing platform provider. However, those providers typically determine the organisation of the content, namely programmes, user-generated videos and audiovisual commercial communications, including by automatic means or algorithms. Therefore, those providers should be required to take appropriate measures to protect minors from content that may impair their physical, mental or moral development. They should also be required to take appropriate measures to protect the general public from content that contains incitement to violence or hatred directed against a group or a member of a group on any of the grounds referred to in Article 21 of the Charter of Fundamental Rights of the European Union (the ‘Charter’), or the dissemination of which constitutes a criminal offence under Union law.
+
+(48)
+
+	
+
+In light of the nature of the providers' involvement with the content provided on video-sharing platform services, the appropriate measures to protect minors and the general public should relate to the organisation of the content and not to the content as such. The requirements in this regard as set out in Directive 2010/13/EU should therefore apply without prejudice to Articles 12 to 14 of Directive 2000/31/EC, which provide for an exemption from liability for illegal information transmitted, or automatically, intermediately and temporarily stored, or stored by certain providers of information society services. When providing services covered by Articles 12 to 14 of Directive 2000/31/EC, those requirements should also apply without prejudice to Article 15 of that Directive, which precludes general obligations to monitor such information and to actively seek facts or circumstances indicating illegal activity from being imposed on those providers, without however concerning monitoring obligations in specific cases and, in particular, without affecting orders by national authorities in accordance with national law.
+
+(49)
+
+	
+
+It is appropriate to involve video-sharing platform providers as much as possible when implementing the appropriate measures to be taken pursuant to Directive 2010/13/EU. Co-regulation should therefore be encouraged. It should also remain possible for video-sharing platform providers to take stricter measures on a voluntary basis in accordance with Union law, respecting the freedom of expression and information and media pluralism.
+
+(50)
+
+	
+
+The right to an effective remedy and the right to a fair trial are fundamental rights laid down in Article 47 of the Charter. The provisions of Directive 2010/13/EU should not, therefore, be construed in a way that would prevent parties from exercising their right of access to the judicial system.
+
+(51)
+
+	
+
+When taking the appropriate measures to protect minors from harmful content and to protect the general public from content containing incitement to violence, hatred and terrorism in accordance with Directive 2010/13/EU, the applicable fundamental rights, as laid down in the Charter, should be carefully balanced. That concerns, in particular and as the case may be, the right to respect for private and family life and the protection of personal data, the freedom of expression and information, the freedom to conduct a business, the prohibition of discrimination and the rights of the child.
+
+(52)
+
+	
+
+The Contact Committee aims at facilitating an effective implementation of Directive 2010/13/EU and should be regularly consulted on any practical problems arising from its application. The work of the Contact Committee should not be limited to the existing audiovisual policy issues, but should also cover the relevant developments arising in this sector. It is composed of representatives of the relevant national authorities of the Member States. When appointing their representatives, Member States are encouraged to promote gender parity in the composition of the Contact Committee.
+
+(53)
+
+	
+
+Member States should ensure that their national regulatory authorities or bodies are legally distinct from the government. However, this should not preclude Member States from exercising supervision in accordance with their national constitutional law. National regulatory authorities or bodies should be considered to have achieved the requisite degree of independence if those authorities or bodies, including those that are constituted as public authorities or bodies, are functionally and effectively independent of their respective governments and of any other public or private body. That is considered essential to ensure the impartiality of decisions taken by a national regulatory authority or body. The requirement of independence should be without prejudice to the possibility for Member States to establish regulatory authorities that have oversight over different sectors, such as the audiovisual and telecommunications sectors. National regulatory authorities or bodies should have the enforcement powers and resources necessary for the fulfilment of their tasks, in terms of staffing, expertise and financial means. The activities of national regulatory authorities or bodies established under Directive 2010/13/EU should ensure respect for the objectives of media pluralism, cultural diversity, consumer protection, the proper functioning of the internal market and the promotion of fair competition.
+
+(54)
+
+	
+
+As one of the purposes of audiovisual media services is to serve the interests of individuals and shape public opinion, it is essential that such services are able to inform individuals and society as completely as possible and with the highest level of variety. That purpose can only be achieved if editorial decisions remain free from any state interference or influence by national regulatory authorities or bodies that goes beyond the mere implementation of law and which does not serve to safeguard a legally protected right which is to be protected regardless of a particular opinion.
+
+(55)
+
+	
+
+Effective appeal mechanisms should exist at national level. The relevant appeal body should be independent from the parties involved. Such body may be a court. The appeal procedure should be without prejudice to the division of competences within national judicial systems.
+
+(56)
+
+	
+
+With a view to ensuring the consistent application of the Union audiovisual regulatory framework across all Member States, the Commission established ERGA by Commission Decision of 3 February 2014 (15). ERGA's role is to provide technical expertise to the Commission in its work to ensure a consistent implementation of Directive 2010/13/EU in all Member States and to facilitate cooperation among the national regulatory authorities or bodies, and between the national regulatory authorities or bodies and the Commission.
+
+(57)
+
+	
+
+ERGA has made a positive contribution to consistent regulatory practice and has provided high-level advice to the Commission on implementation matters. This calls for the formal recognition and reinforcement of its role in Directive 2010/13/EU. ERGA should therefore be established by virtue of that Directive.
+
+(58)
+
+	
+
+The Commission should be free to consult ERGA on any matter relating to audiovisual media services and video-sharing platforms. ERGA should assist the Commission by providing technical expertise and advice and by facilitating the exchange of best practices, including on self- and co-regulatory codes of conduct. In particular, the Commission should consult ERGA in the application of Directive 2010/13/EU with a view to facilitating its convergent implementation. Upon the Commission's request, ERGA should provide non-binding opinions on jurisdiction, on measures derogating from freedom of reception and on measures addressing the circumvention of jurisdiction. ERGA should also be able to provide technical advice on any regulatory matter related to the audiovisual media services framework, including in the area of hate speech and the protection of minors, as well as on the content of audiovisual commercial communications for foods high in fat, salt or sodium and sugars.
+
+(59)
+
+	
+
+‘Media literacy’ refers to skills, knowledge and understanding that allow citizens to use media effectively and safely. In order to enable citizens to access information and to use, critically assess and create media content responsibly and safely, citizens need to possess advanced media literacy skills. Media literacy should not be limited to learning about tools and technologies, but should aim to equip citizens with the critical thinking skills required to exercise judgment, analyse complex realities and recognise the difference between opinion and fact. It is therefore necessary that both media service providers and video-sharing platforms providers, in cooperation with all relevant stakeholders, promote the development of media literacy in all sections of society, for citizens of all ages, and for all media and that progress in that regard is followed closely.
+
+(60)
+
+	
+
+Directive 2010/13/EU is without prejudice to the obligation of the Member States to respect and protect human dignity. It respects the fundamental rights and observes the principles recognised, in particular, by the Charter. In particular, Directive 2010/13/EU seeks to ensure full respect for the right to freedom of expression, the freedom to conduct a business, the right to judicial review and to promote the application of the rights of the child enshrined in the Charter.
+
+(61)
+
+	
+
+Any measure taken by Member States under Directive 2010/13/EU is to respect the freedom of expression and information and media pluralism, as well as cultural and linguistic diversity, in accordance with the Unesco Convention on the Protection and Promotion of the Diversity of Cultural Expressions.
+
+(62)
+
+	
+
+The right to access political news programmes is crucial to safeguard the fundamental freedom to receive information and to ensure that the interests of viewers in the Union are fully and properly protected. Given the ever-growing importance of audiovisual media services for societies and democracy, broadcasts of political news should, to the greatest extent possible, and without prejudice to copyright rules, be made available cross-border in the Union.
+
+(63)
+
+	
+
+Directive 2010/13/EU does not concern rules of private international law, in particular rules governing the jurisdiction of the courts and the law applicable to contractual and non-contractual obligations.
+
+(64)
+
+	
+
+In accordance with the Joint Political Declaration of 28 September 2011 of Member States and the Commission on explanatory documents (16), Member States have undertaken to accompany, in justified cases, the notification of their transposition measures by one or more documents explaining the relationship between the components of a directive and the corresponding parts of national transposition instruments. With regard to this Directive, the legislator considers the transmission of such documents to be justified.
+
+(65)
+
+	
+
+Directive 2010/13/EU should therefore be amended accordingly,
+
+HAVE ADOPTED THIS DIRECTIVE:
+
+Article 1
+
+Directive 2010/13/EU is amended as follows:
+
+(1)
+
+	
+
+In Article 1, paragraph 1 is amended as follows:
+
+(a)
+
+	
+
+point (a) is replaced by the following:
+
+‘(a)
+
+	
+
+“audiovisual media service” means:
+
+(i)
+
+	
+
+a service as defined by Articles 56 and 57 of the Treaty on the Functioning of the European Union, where the principal purpose of the service or a dissociable section thereof is devoted to providing programmes, under the editorial responsibility of a media service provider, to the general public, in order to inform, entertain or educate, by means of electronic communications networks within the meaning of point (a) of Article 2 of Directive 2002/21/EC; such an audiovisual media service is either a television broadcast as defined in point (e) of this paragraph or an on-demand audiovisual media service as defined in point (g) of this paragraph;
+
+(ii)
+
+	
+
+audiovisual commercial communication;’;
+
+(b)
+
+	
+
+the following point is inserted:
+
+‘(aa)
+
+	
+
+“video-sharing platform service” means a service as defined by Articles 56 and 57 of the Treaty on the Functioning of the European Union, where the principal purpose of the service or of a dissociable section thereof or an essential functionality of the service is devoted to providing programmes, user-generated videos, or both, to the general public, for which the video-sharing platform provider does not have editorial responsibility, in order to inform, entertain or educate, by means of electronic communications networks within the meaning of point (a) of Article 2 of Directive 2002/21/EC and the organisation of which is determined by the video-sharing platform provider, including by automatic means or algorithms in particular by displaying, tagging and sequencing.’;
+
+(c)
+
+	
+
+point (b) is replaced by the following:
+
+‘(b)
+
+	
+
+“programme” means a set of moving images with or without sound constituting an individual item, irrespective of its length, within a schedule or a catalogue established by a media service provider, including feature-length films, video clips, sports events, situation comedies, documentaries, children's programmes and original drama;’;
+
+(d)
+
+	
+
+the following points are inserted:
+
+‘(ba)
+
+	
+
+“user-generated video” means a set of moving images with or without sound constituting an individual item, irrespective of its length, that is created by a user and uploaded to a video-sharing platform by that user or any other user;
+
+(bb)
+
+	
+
+“editorial decision” means a decision which is taken on a regular basis for the purpose of exercising editorial responsibility and linked to the day-to-day operation of the audiovisual media service;’;
+
+(e)
+
+	
+
+the following point is inserted:
+
+‘(da)
+
+	
+
+“video-sharing platform provider” means the natural or legal person who provides a video-sharing platform service;’;
+
+(f)
+
+	
+
+point (h) is replaced by the following:
+
+‘(h)
+
+	
+
+“audiovisual commercial communication” means images with or without sound which are designed to promote, directly or indirectly, the goods, services or image of a natural or legal person pursuing an economic activity; such images accompany, or are included in, a programme or user-generated video in return for payment or for similar consideration or for self-promotional purposes. Forms of audiovisual commercial communication include, inter alia, television advertising, sponsorship, teleshopping and product placement;’;
+
+(g)
+
+	
+
+point (k) is replaced by the following:
+
+‘(k)
+
+	
+
+“sponsorship” means any contribution made by public or private undertakings or natural persons not engaged in providing audiovisual media services or video-sharing platform services or in producing audiovisual works to the financing of audiovisual media services, video-sharing platform services, user-generated videos or programmes with a view to promoting their name, trade mark, image, activities or products;’;
+
+(h)
+
+	
+
+point (m) is replaced by the following:
+
+‘(m)
+
+	
+
+“product placement” means any form of audiovisual commercial communication consisting of the inclusion of, or reference to, a product, a service or the trade mark thereof so that it is featured within a programme or a user-generated video in return for payment or for similar consideration;’;
+
+(2)
+
+	
+
+the title of Chapter II is replaced by the following:
+
+‘ GENERAL PROVISIONS FOR AUDIOVISUAL MEDIA SERVICES ’;
+
+(3)
+
+	
+
+Article 2 is amended as follows:
+
+(a)
+
+	
+
+in paragraph 3, point (b) is replaced by the following:
+
+‘(b)
+
+	
+
+if a media service provider has its head office in one Member State but editorial decisions on the audiovisual media service are taken in another Member State, the media service provider shall be deemed to be established in the Member State where a significant part of the workforce involved in the pursuit of the programme-related audiovisual media service activity operates. If a significant part of the workforce involved in the pursuit of the programme-related audiovisual media service activity operates in each of those Member States, the media service provider shall be deemed to be established in the Member State where it has its head office. If a significant part of the workforce involved in the pursuit of the programme-related audiovisual media service activity operates in neither of those Member States, the media service provider shall be deemed to be established in the Member State where it first began its activity in accordance with the law of that Member State, provided that it maintains a stable and effective link with the economy of that Member State;’;
+
+(b)
+
+	
+
+the following paragraphs are inserted:
+
+‘5a.   Member States shall ensure that media service providers inform the competent national regulatory authorities or bodies about any changes that may affect the determination of jurisdiction in accordance with paragraphs 2, 3 and 4.
+
+5b.   Member States shall establish and maintain an up-to-date list of the media service providers under their jurisdiction and indicate on which of the criteria set out in paragraphs 2 to 5 their jurisdiction is based. Member States shall communicate that list, including any updates thereto, to the Commission.
+
+The Commission shall ensure that such lists are made available in a centralised database. In the event of inconsistencies between the lists, the Commission shall contact the Member States concerned in order to find a solution. The Commission shall ensure that the national regulatory authorities or bodies have access to that database. The Commission shall make information in the database publicly available.
+
+5c.   Where, in applying Article 3 or 4, the Member States concerned do not agree on which Member State has jurisdiction, they shall bring the matter to the Commission's attention without undue delay. The Commission may request the European Regulators Group for Audiovisual Media Services (ERGA) to provide an opinion on the matter in accordance with point (d) of Article 30b(3). ERGA shall provide such an opinion within 15 working days from the submission of the Commission's request. The Commission shall keep the Contact Committee established by Article 29 duly informed.
+
+When the Commission adopts a decision pursuant to Article 3(2) or (3), or Article 4(5), it shall also decide which Member State has jurisdiction.’;
+
+(4)
+
+	
+
+Article 3 is replaced by the following:
+
+‘Article 3
+
+1.   Member States shall ensure freedom of reception and shall not restrict retransmissions on their territory of audiovisual media services from other Member States for reasons which fall within the fields coordinated by this Directive.
+
+2.   A Member State may provisionally derogate from paragraph 1 of this Article where an audiovisual media service provided by a media service provider under the jurisdiction of another Member State manifestly, seriously and gravely infringes point (a) of Article 6(1) or Article 6a(1) or prejudices or presents a serious and grave risk of prejudice to public health.
+
+The derogation referred to in the first subparagraph shall be subject to the following conditions:
+
+(a)
+
+	
+
+during the previous 12 months, the media service provider has on at least two prior occasions already performed one or more instances of conduct described in the first subparagraph;
+
+(b)
+
+	
+
+the Member State concerned has notified the media service provider, the Member State having jurisdiction over that provider and the Commission in writing of the alleged infringements and of the proportionate measures it intends to take should any such infringement occur again;
+
+(c)
+
+	
+
+the Member State concerned has respected the right of defence of the media service provider and, in particular, has given that provider the opportunity to express its views on the alleged infringements; and
+
+(d)
+
+	
+
+consultations with the Member State having jurisdiction over the media service provider and the Commission have not resulted in an amicable settlement within one month of the Commission's receipt of the notification referred to in point (b).
+
+Within three months of the receipt of the notification of the measures taken by the Member State concerned and after having requested ERGA to provide an opinion in accordance with point (d) of Article 30b(3), the Commission shall take a decision on whether those measures are compatible with Union law. The Commission shall keep the Contact Committee duly informed. Where the Commission decides that those measures are not compatible with Union law, it shall require the Member State concerned to put an end to the measures in question as a matter of urgency.
+
+3.   A Member State may provisionally derogate from paragraph 1 of this Article where an audiovisual media service provided by a media service provider under the jurisdiction of another Member State manifestly, seriously and gravely infringes point (b) of Article 6(1) or prejudices or presents a serious and grave risk of prejudice to public security, including the safeguarding of national security and defence.
+
+The derogation referred to in the first subparagraph shall be subject to the following conditions:
+
+(a)
+
+	
+
+during the previous 12 months the conduct referred to in the first subparagraph occurred at least on one prior occasion;
+
+and
+
+(b)
+
+	
+
+the Member State concerned has notified the media service provider, the Member State having jurisdiction over that provider and the Commission in writing of the alleged infringement and of the proportionate measures it intends to take should any such infringement occur again.
+
+The Member State concerned shall respect the rights of defence of the media service provider concerned and, in particular, give that provider the opportunity to express its views on the alleged infringements.
+
+Within three months of the receipt of the notification of the measures taken by the Member State concerned and after having requested ERGA to provide an opinion in accordance with point (d) of Article 30b(3), the Commission shall take a decision on whether those measures are compatible with Union law. The Commission shall keep the Contact Committee duly informed. Where the Commission decides that those measures are not compatible with Union law, it shall require the Member State concerned to put an end to the measures in question as a matter of urgency.
+
+4.   Paragraphs 2 and 3 shall be without prejudice to the application of any procedure, remedy or sanction to the infringements in question in the Member State which has jurisdiction over the media service provider concerned.
+
+5.   Member States may, in urgent cases, no later than one month after the alleged infringement, derogate from the conditions laid down in points (a) and (b) of paragraph 3. Where this is the case, the measures taken shall be notified in the shortest possible time to the Commission and to the Member State under whose jurisdiction the media service provider falls, indicating the reasons for which the Member State considers that there is urgency. The Commission shall examine the compatibility of the notified measures with Union law in the shortest possible time. Where it comes to the conclusion that the measures are incompatible with Union law, the Commission shall require the Member State in question to urgently put an end to those measures.
+
+6.   If the Commission lacks information necessary to take a decision pursuant to paragraph 2 or 3, it shall, within one month of the receipt of the notification, request from the Member State concerned all information necessary to reach that decision. The time limit within which the Commission is to take the decision shall be suspended until that Member State has provided such necessary information. In any case, the suspension of the time limit shall not last longer than one month.
+
+7.   Member States and the Commission shall regularly exchange experiences and best practices regarding the procedure set out in this Article in the framework of the Contact Committee and ERGA.’;
+
+(5)
+
+	
+
+Article 4 is replaced by the following:
+
+‘Article 4
+
+1.   Member States shall remain free to require media service providers under their jurisdiction to comply with more detailed or stricter rules in the fields coordinated by this Directive, provided that such rules are in compliance with Union law.
+
+2.   Where a Member State:
+
+(a)
+
+	
+
+has exercised its freedom under paragraph 1 to adopt more detailed or stricter rules of general public interest; and
+
+(b)
+
+	
+
+assesses that a media service provider under the jurisdiction of another Member State provides an audiovisual media service which is wholly or mostly directed towards its territory,
+
+it may request the Member State having jurisdiction to address any problems identified in relation to this paragraph. Both Member States shall cooperate sincerely and swiftly with a view to achieving a mutually satisfactory solution.
+
+Upon receiving a substantiated request under the first subparagraph, the Member State having jurisdiction shall request the media service provider to comply with the rules of general public interest in question. The Member State having jurisdiction shall regularly inform the requesting Member State of the steps taken to address the problems identified. Within two months of the receipt of the request, the Member State having jurisdiction shall inform the requesting Member State and the Commission of the results obtained and explain the reasons where a solution could not be found.
+
+Either Member State may invite the Contact Committee to examine the case at any time.
+
+3.   The Member State concerned may adopt appropriate measures against the media service provider concerned where:
+
+(a)
+
+	
+
+it assesses that the results achieved through the application of paragraph 2 are not satisfactory; and
+
+(b)
+
+	
+
+it has adduced evidence showing that the media service provider in question has established itself in the Member State having jurisdiction in order to circumvent the stricter rules, in the fields coordinated by this Directive, which would be applicable to it if it were established in the Member State concerned; such evidence shall allow for such circumvention to be reasonably established, without the need to prove the media service provider's intention to circumvent those stricter rules.
+
+Such measures shall be objectively necessary, applied in a non-discriminatory manner and proportionate to the objectives which they pursue.
+
+4.   A Member State may take measures pursuant to paragraph 3 only where the following conditions are met:
+
+(a)
+
+	
+
+it has notified the Commission and the Member State in which the media service provider is established of its intention to take such measures while substantiating the grounds on which it bases its assessment;
+
+(b)
+
+	
+
+it has respected the rights of defence of the media service provider concerned and, in particular, has given that media service provider the opportunity to express its views on the alleged circumvention and the measures the notifying Member State intends to take; and
+
+(c)
+
+	
+
+the Commission has decided, after having requested ERGA to provide an opinion in accordance with point (d) of Article 30b(3), that the measures are compatible with Union law, in particular that assessments made by the Member State taking the measures under paragraphs 2 and 3 of this Article are correctly founded; the Commission shall keep the Contact Committee duly informed.
+
+5.   Within three months of the receipt of the notification provided for in point (a) of paragraph 4, the Commission shall take the decision on whether those measures are compatible with Union law. Where the Commission decides that those measures are not compatible with Union law, it shall require the Member State concerned to refrain from taking the intended measures.
+
+If the Commission lacks information necessary to take the decision pursuant to the first subparagraph, it shall, within one month of the receipt of the notification, request from the Member State concerned all information necessary to reach that decision. The time limit within which the Commission is to take the decision shall be suspended until that Member State has provided such necessary information. In any case, the suspension of the time limit shall not last longer than one month.
+
+6.   Member States shall, by appropriate means, ensure, within the framework of their national law, that media service providers under their jurisdiction effectively comply with this Directive.
+
+7.   Directive 2000/31/EC shall apply unless otherwise provided for in this Directive. In the event of a conflict between Directive 2000/31/EC and this Directive, this Directive shall prevail, unless otherwise provided for in this Directive.’;
+
+(6)
+
+	
+
+the following article is inserted:
+
+‘Article 4a
+
+1.   Member States shall encourage the use of co-regulation and the fostering of self-regulation through codes of conduct adopted at national level in the fields coordinated by this Directive to the extent permitted by their legal systems. Those codes shall:
+
+(a)
+
+	
+
+be such that they are broadly accepted by the main stakeholders in the Member States concerned;
+
+(b)
+
+	
+
+clearly and unambiguously set out their objectives;
+
+(c)
+
+	
+
+provide for regular, transparent and independent monitoring and evaluation of the achievement of the objectives aimed at; and
+
+(d)
+
+	
+
+provide for effective enforcement including effective and proportionate sanctions.
+
+2.   Member States and the Commission may foster self-regulation through Union codes of conduct drawn up by media service providers, video-sharing platform service providers or organisations representing them, in cooperation, as necessary, with other sectors such as industry, trade, professional and consumer associations or organisations. Those codes shall be such that they are broadly accepted by the main stakeholders at Union level and shall comply with points (b) to (d) of paragraph 1. The Union codes of conduct shall be without prejudice to the national codes of conduct.
+
+In cooperation with the Member States, the Commission shall facilitate the development of Union codes of conduct, where appropriate, in accordance with the principles of subsidiarity and proportionality.
+
+The signatories of Union codes of conduct shall submit the drafts of those codes and amendments thereto to the Commission. The Commission shall consult the Contact Committee on those draft codes or amendments thereto.
+
+The Commission shall make the Union codes of conduct publicly available and may give them appropriate publicity.
+
+3.   Member States shall remain free to require media service providers under their jurisdiction to comply with more detailed or stricter rules in compliance with this Directive and Union law, including where their national independent regulatory authorities or bodies conclude that any code of conduct or parts thereof have proven not to be sufficiently effective. Member States shall report such rules to the Commission without undue delay.’;
+
+(7)
+
+	
+
+the title of Chapter III is replaced by the following:
+
+‘ PROVISIONS APPLICABLE TO AUDIOVISUAL MEDIA SERVICES ’;
+
+(8)
+
+	
+
+Article 5 is replaced by the following:
+
+‘Article 5
+
+1.   Each Member State shall ensure that a media service provider under its jurisdiction shall make easily, directly and permanently accessible to the recipients of a service at least the following information:
+
+(a)
+
+	
+
+its name;
+
+(b)
+
+	
+
+the geographical address at which it is established;
+
+(c)
+
+	
+
+the details, including its email address or website, which allow it to be contacted rapidly in a direct and effective manner;
+
+(d)
+
+	
+
+the Member State having jurisdiction over it and the competent regulatory authorities or bodies or supervisory bodies.
+
+2.   Member States may adopt legislative measures providing that, in addition to the information listed in paragraph 1, media service providers under their jurisdiction make accessible information concerning their ownership structure, including the beneficial owners. Such measures shall respect the fundamental rights concerned, such as the private and family life of beneficial owners. Such measures shall be necessary and proportionate and shall aim to pursue an objective of general interest.’;
+
+(9)
+
+	
+
+Article 6 is replaced by the following:
+
+‘Article 6
+
+1.   Without prejudice to the obligation of Member States to respect and protect human dignity, Member States shall ensure by appropriate means that audiovisual media services provided by media service providers under their jurisdiction do not contain any:
+
+(a)
+
+	
+
+incitement to violence or hatred directed against a group of persons or a member of a group based on any of the grounds referred to in Article 21 of the Charter;
+
+(b)
+
+	
+
+public provocation to commit a terrorist offence as set out in Article 5 of Directive (EU) 2017/541.
+
+2.   The measures taken for the purposes of this Article shall be necessary and proportionate and shall respect the rights and observe principles set out in the Charter.’;
+
+(10)
+
+	
+
+the following article is inserted:
+
+‘Article 6a
+
+1.   Member States shall take appropriate measures to ensure that audiovisual media services provided by media service providers under their jurisdiction which may impair the physical, mental or moral development of minors are only made available in such a way as to ensure that minors will not normally hear or see them. Such measures may include selecting the time of the broadcast, age verification tools or other technical measures. They shall be proportionate to the potential harm of the programme.
+
+The most harmful content, such as gratuitous violence and pornography, shall be subject to the strictest measures.
+
+2.   Personal data of minors collected or otherwise generated by media service providers pursuant to paragraph 1 shall not be processed for commercial purposes, such as direct marketing, profiling and behaviourally targeted advertising.
+
+3.   Member States shall ensure that media service providers provide sufficient information to viewers about content which may impair the physical, mental or moral development of minors. For this purpose, media service providers shall use a system describing the potentially harmful nature of the content of an audiovisual media service.
+
+For the implementation of this paragraph, Member States shall encourage the use of co-regulation as provided for in Article 4a(1).
+
+4.   The Commission shall encourage media service providers to exchange best practices on co-regulatory codes of conduct. Member States and the Commission may foster self-regulation, for the purposes of this Article, through Union codes of conduct as referred to in Article 4a(2).’;
+
+(11)
+
+	
+
+Article 7 is replaced by the following:
+
+‘Article 7
+
+1.   Member States shall ensure, without undue delay, that services provided by media service providers under their jurisdiction are made continuously and progressively more accessible to persons with disabilities through proportionate measures.
+
+2.   Member States shall ensure that media service providers report on a regular basis to the national regulatory authorities or bodies on the implementation of the measures referred to in paragraph 1. By 19 December 2022 and every three years thereafter, Member States shall report to the Commission on the implementation of paragraph 1.
+
+3.   Member States shall encourage media service providers to develop accessibility action plans in respect of continuously and progressively making their services more accessible to persons with disabilities. Any such action plan shall be communicated to national regulatory authorities or bodies.
+
+4.   Each Member State shall designate a single, easily accessible, including by persons with disabilities, and publicly available online point of contact for providing information and receiving complaints regarding any accessibility issues referred to in this Article.
+
+5.   Member States shall ensure that emergency information, including public communications and announcements in natural disaster situations, which is made available to the public through audiovisual media services, is provided in a manner which is accessible to persons with disabilities.’;
+
+(12)
+
+	
+
+the following articles are inserted:
+
+‘Article 7a
+
+Member States may take measures to ensure the appropriate prominence of audiovisual media services of general interest.
+
+Article 7b
+
+Member States shall take appropriate and proportionate measures to ensure that audiovisual media services provided by media service providers are not, without the explicit consent of those providers, overlaid for commercial purposes or modified.
+
+For the purposes of this Article, Member States shall specify the regulatory details, including exceptions, notably in relation to safeguarding the legitimate interests of users while taking into account the legitimate interests of the media service providers that originally provided the audiovisual media services.’;
+
+(13)
+
+	
+
+Article 9 is replaced by the following:
+
+‘Article 9
+
+1.   Member States shall ensure that audiovisual commercial communications provided by media service providers under their jurisdiction comply with the following requirements:
+
+(a)
+
+	
+
+audiovisual commercial communications shall be readily recognisable as such; surreptitious audiovisual commercial communication shall be prohibited;
+
+(b)
+
+	
+
+audiovisual commercial communications shall not use subliminal techniques;
+
+(c)
+
+	
+
+audiovisual commercial communications shall not:
+
+(i)
+
+	
+
+prejudice respect for human dignity;
+
+(ii)
+
+	
+
+include or promote any discrimination based on sex, racial or ethnic origin, nationality, religion or belief, disability, age or sexual orientation;
+
+(iii)
+
+	
+
+encourage behaviour prejudicial to health or safety;
+
+(iv)
+
+	
+
+encourage behaviour grossly prejudicial to the protection of the environment;
+
+(d)
+
+	
+
+all forms of audiovisual commercial communications for cigarettes and other tobacco products, as well as for electronic cigarettes and refill containers shall be prohibited;
+
+(e)
+
+	
+
+audiovisual commercial communications for alcoholic beverages shall not be aimed specifically at minors and shall not encourage immoderate consumption of such beverages;
+
+(f)
+
+	
+
+audiovisual commercial communications for medicinal products and medical treatment available only on prescription in the Member State within whose jurisdiction the media service provider falls shall be prohibited;
+
+(g)
+
+	
+
+audiovisual commercial communications shall not cause physical, mental or moral detriment to minors; therefore, they shall not directly exhort minors to buy or hire a product or service by exploiting their inexperience or credulity, directly encourage them to persuade their parents or others to purchase the goods or services being advertised, exploit the special trust minors place in parents, teachers or other persons, or unreasonably show minors in dangerous situations.
+
+2.   Audiovisual commercial communications for alcoholic beverages in on-demand audiovisual media services, with the exception of sponsorship and product placement, shall comply with the criteria set out in Article 22.
+
+3.   Member States shall encourage the use of co-regulation and the fostering of self-regulation through codes of conduct as provided for in Article 4a(1) regarding inappropriate audiovisual commercial communications for alcoholic beverages. Those codes shall aim to effectively reduce the exposure of minors to audiovisual commercial communications for alcoholic beverages.
+
+4.   Member States shall encourage the use of co-regulation and the fostering of self-regulation through codes of conduct as provided for in Article 4a(1) regarding inappropriate audiovisual commercial communications, accompanying or included in children's programmes, for foods and beverages containing nutrients and substances with a nutritional or physiological effect, in particular fat, trans-fatty acids, salt or sodium and sugars, of which excessive intakes in the overall diet are not recommended.
+
+Those codes shall aim to effectively reduce the exposure of children to audiovisual commercial communications for such foods and beverages. They shall aim to provide that such audiovisual commercial communications do not emphasise the positive quality of the nutritional aspects of such foods and beverages.
+
+5.   Member States and the Commission may foster self-regulation, for the purposes of this Article, through Union codes of conduct as referred to in Article 4a(2).’;
+
+(14)
+
+	
+
+Article 10 is amended as follows:
+
+(a)
+
+	
+
+paragraph 2 is replaced by the following:
+
+‘2.   Audiovisual media services or programmes shall not be sponsored by undertakings whose principal activity is the manufacture or sale of cigarettes and other tobacco products, as well as electronic cigarettes and refill containers.’;
+
+(b)
+
+	
+
+paragraph 4 is replaced by the following:
+
+‘4.   News and current affairs programmes shall not be sponsored. Member States may prohibit the sponsorship of children's programmes. Member States may choose to prohibit the showing of a sponsorship logo during children's programmes, documentaries and religious programmes.’;
+
+(15)
+
+	
+
+Article 11 is replaced by the following:
+
+‘Article 11
+
+1.   This Article shall apply only to programmes produced after 19 December 2009.
+
+2.   Product placement shall be allowed in all audiovisual media services, except in news and current affairs programmes, consumer affairs programmes, religious programmes and children's programmes.
+
+3.   Programmes that contain product placement shall meet the following requirements:
+
+(a)
+
+	
+
+their content and organisation within a schedule, in the case of television broadcasting, or within a catalogue in the case of on-demand audiovisual media services, shall under no circumstances be influenced in such a way as to affect the responsibility and editorial independence of the media service provider;
+
+(b)
+
+	
+
+they shall not directly encourage the purchase or rental of goods or services, in particular by making special promotional references to those goods or services;
+
+(c)
+
+	
+
+they shall not give undue prominence to the product in question;
+
+(d)
+
+	
+
+viewers shall be clearly informed of the existence of product placement by an appropriate identification at the start and at the end of the programme, and when a programme resumes after an advertising break, in order to avoid any confusion on the part of the viewer.
+
+Member States may waive the requirements set out in point (d) except for programmes produced or commissioned by a media service provider or by a company affiliated with that media service provider.
+
+4.   In any event programmes shall not contain product placement of:
+
+(a)
+
+	
+
+cigarettes and other tobacco products, as well as electronic cigarettes and refill containers, or product placement from undertakings whose principal activity is the manufacture or sale of those products;
+
+(b)
+
+	
+
+specific medicinal products or medical treatments available only on prescription in the Member State under whose jurisdiction the media service provider falls.’;
+
+(16)
+
+	
+
+the title of Chapter IV is deleted;
+
+(17)
+
+	
+
+Article 12 is deleted;
+
+(18)
+
+	
+
+Article 13 is replaced by the following:
+
+‘Article 13
+
+1.   Member States shall ensure that media service providers of on-demand audiovisual media services under their jurisdiction secure at least a 30 % share of European works in their catalogues and ensure prominence of those works.
+
+2.   Where Member States require media service providers under their jurisdiction to contribute financially to the production of European works, including via direct investment in content and contribution to national funds, they may also require media service providers targeting audiences in their territories, but established in other Member States to make such financial contributions, which shall be proportionate and non-discriminatory.
+
+3.   In the case referred to in paragraph 2, the financial contribution shall be based only on the revenues earned in the targeted Member States. If the Member State where the provider is established imposes such a financial contribution, it shall take into account any financial contributions imposed by targeted Member States. Any financial contribution shall comply with Union law, in particular with State aid rules.
+
+4.   Member States shall report to the Commission by 19 December 2021 and every two years thereafter on the implementation of paragraphs 1 and 2.
+
+5.   The Commission shall, on the basis of the information provided by Member States and of an independent study, report to the European Parliament and to the Council on the application of paragraphs 1 and 2, taking into account the market and technological developments and the objective of cultural diversity.
+
+6.   The obligation imposed pursuant to paragraph 1 and the requirement on media service providers targeting audiences in other Member States set out in paragraph 2 shall not apply to media service providers with a low turnover or a low audience. Member States may also waive such obligations or requirements where they would be impracticable or unjustified by reason of the nature or theme of the audiovisual media services.
+
+7.   The Commission shall issue guidelines regarding the calculation of the share of European works referred to in paragraph 1 and regarding the definition of low audience and low turnover referred to in paragraph 6, after consulting the Contact Committee.’;
+
+(19)
+
+	
+
+in Article 19, paragraph 2 is replaced by the following:
+
+‘2.   Isolated television advertising and teleshopping spots shall be admissible in sports events. Isolated television advertising and teleshopping spots, other than in transmissions of sports events, shall remain the exception.’;
+
+(20)
+
+	
+
+in Article 20, paragraph 2 is replaced by the following:
+
+‘2.   The transmission of films made for television (excluding series, serials and documentaries), cinematographic works and news programmes may be interrupted by television advertising, teleshopping, or both, once for each scheduled period of at least 30 minutes. The transmission of children's programmes may be interrupted by television advertising once for each scheduled period of at least 30 minutes, provided that the scheduled duration of the programme is greater than 30 minutes. The transmission of teleshopping shall be prohibited during children's programmes. No television advertising or teleshopping shall be inserted during religious services.’;
+
+(21)
+
+	
+
+Article 23 is replaced by the following:
+
+‘Article 23
+
+1.   The proportion of television advertising spots and teleshopping spots within the period between 6.00 and 18.00 shall not exceed 20 % of that period. The proportion of television advertising spots and teleshopping spots within the period between 18.00 and 24.00 shall not exceed 20 % of that period.
+
+2.   Paragraph 1 shall not apply to:
+
+(a)
+
+	
+
+announcements made by the broadcaster in connection with its own programmes and ancillary products directly derived from those programmes or with programmes and audiovisual media services from other entities belonging to the same broadcasting group;
+
+(b)
+
+	
+
+sponsorship announcements;
+
+(c)
+
+	
+
+product placements;
+
+(d)
+
+	
+
+neutral frames between editorial content and television advertising or teleshopping spots, and between individual spots.’;
+
+(22)
+
+	
+
+Chapter VIII is deleted;
+
+(23)
+
+	
+
+the following Chapter is inserted:
+
+‘CHAPTER IXA
+
+PROVISIONS APPLICABLE TO VIDEO-SHARING PLATFORM SERVICES
+
+Article 28a
+
+1.   For the purposes of this Directive, a video-sharing platform provider established on the territory of a Member State within the meaning of Article 3(1) of Directive 2000/31/EC shall be under the jurisdiction of that Member State.
+
+2.   A video-sharing platform provider which is not established on the territory of a Member State pursuant to paragraph 1 shall be deemed to be established on the territory of a Member State for the purposes of this Directive if that video-sharing platform provider:
+
+(a)
+
+	
+
+has a parent undertaking or a subsidiary undertaking that is established on the territory of that Member State; or
+
+(b)
+
+	
+
+is part of a group and another undertaking of that group is established on the territory of that Member State.
+
+For the purposes of this Article:
+
+(a)
+
+	
+
+“parent undertaking” means an undertaking which controls one or more subsidiary undertakings;
+
+(b)
+
+	
+
+“subsidiary undertaking” means an undertaking controlled by a parent undertaking, including any subsidiary undertaking of an ultimate parent undertaking;
+
+(c)
+
+	
+
+“group” means a parent undertaking, all its subsidiary undertakings and all other undertakings having economic and legal organisational links to them.
+
+3.   For the purposes of applying paragraph 2, where the parent undertaking, the subsidiary undertaking or the other undertakings of the group are each established in different Member States, the video-sharing platform provider shall be deemed to be established in the Member State where its parent undertaking is established or, in the absence of such an establishment, in the Member State where its subsidiary undertaking is established or, in the absence of such an establishment, in the Member State where the other undertaking of the group is established.
+
+4.   For the purposes of applying paragraph 3, where there are several subsidiary undertakings and each of them is established in a different Member State, the video-sharing platform provider shall be deemed to be established in the Member State where one of the subsidiary undertakings first began its activity, provided that it maintains a stable and effective link with the economy of that Member State.
+
+Where there are several other undertakings which are part of the group and each of them is established in a different Member State, the video-sharing platform provider shall be deemed to be established in the Member State where one of these undertakings first began its activity, provided that it maintains a stable and effective link with the economy of that Member State.
+
+5.   For the purposes of this Directive, Article 3 and Articles 12 to 15 of Directive 2000/31/EC shall apply to video-sharing platform providers deemed to be established in a Member State in accordance with paragraph 2 of this Article.
+
+6.   Member States shall establish and maintain an up-to-date list of the video-sharing platform providers established or deemed to be established on their territory and indicate on which of the criteria set out in paragraphs 1 to 4 their jurisdiction is based. Member States shall communicate that list, including any updates thereto, to the Commission.
+
+The Commission shall ensure that such lists are made available in a centralised database. In the event of inconsistencies between the lists, the Commission shall contact the Member States concerned in order to find a solution. The Commission shall ensure that the national regulatory authorities or bodies have access to that database. The Commission shall make information in the database publicly available.
+
+7.   Where, in applying this Article, the Member States concerned do not agree on which Member State has jurisdiction, they shall bring the matter to the Commission's attention without undue delay. The Commission may request ERGA to provide an opinion on the matter in accordance with point (d) of Article 30b(3). ERGA shall provide such an opinion within 15 working days from the submission of the Commission's request. The Commission shall keep the Contact Committee duly informed.
+
+Article 28b
+
+1.   Without prejudice to Articles 12 to 15 of Directive 2000/31/EC, Member States shall ensure that video-sharing platform providers under their jurisdiction take appropriate measures to protect:
+
+(a)
+
+	
+
+minors from programmes, user-generated videos and audiovisual commercial communications which may impair their physical, mental or moral development in accordance with Article 6a(1);
+
+(b)
+
+	
+
+the general public from programmes, user-generated videos and audiovisual commercial communications containing incitement to violence or hatred directed against a group of persons or a member of a group based on any of the grounds referred to in Article 21 of the Charter;
+
+(c)
+
+	
+
+the general public from programmes, user-generated videos and audiovisual commercial communications containing content the dissemination of which constitutes an activity which is a criminal offence under Union law, namely public provocation to commit a terrorist offence as set out in Article 5 of Directive (EU) 2017/541, offences concerning child pornography as set out in Article 5(4) of Directive 2011/93/EU of the European Parliament and of the Council (*1) and offences concerning racism and xenophobia as set out in Article 1 of Framework Decision 2008/913/JHA.
+
+2.   Member States shall ensure that video-sharing platform providers under their jurisdiction comply with the requirements set out in Article 9(1) with respect to audiovisual commercial communications that are marketed, sold or arranged by those video-sharing platform providers.
+
+Member States shall ensure that the video-sharing platform providers under their jurisdiction take appropriate measures to comply with the requirements set out in Article 9(1) with respect to audiovisual commercial communications that are not marketed, sold or arranged by those video-sharing platform providers, taking into account the limited control exercised by those video-sharing platforms over those audiovisual commercial communications.
+
+Member States shall ensure that video-sharing platform providers clearly inform users where programmes and user-generated videos contain audiovisual commercial communications, provided that such communications are declared under point (c) of the third subparagraph of paragraph 3 or the provider has knowledge of that fact.
+
+Member States shall encourage the use of co-regulation and the fostering of self-regulation through codes of conduct as provided for in Article 4a(1) aiming at effectively reducing the exposure of children to audiovisual commercial communications for foods and beverages containing nutrients and substances with a nutritional or physiological effect, in particular fat, trans-fatty acids, salt or sodium and sugars, of which excessive intakes in the overall diet are not recommended. Those codes shall aim to provide that such audiovisual commercial communications do not emphasise the positive quality of the nutritional aspects of such foods and beverages.
+
+3.   For the purposes of paragraphs 1 and 2, the appropriate measures shall be determined in light of the nature of the content in question, the harm it may cause, the characteristics of the category of persons to be protected as well as the rights and legitimate interests at stake, including those of the video-sharing platform providers and the users having created or uploaded the content as well as the general public interest.
+
+Member States shall ensure that all video-sharing platform providers under their jurisdiction apply such measures. Those measures shall be practicable and proportionate, taking into account the size of the video-sharing platform service and the nature of the service that is provided. Those measures shall not lead to any ex-ante control measures or upload-filtering of content which do not comply with Article 15 of Directive 2000/31/EC. For the purposes of the protection of minors, provided for in point (a) of paragraph 1 of this Article, the most harmful content shall be subject to the strictest access control measures.
+
+Those measures shall consist of, as appropriate:
+
+(a)
+
+	
+
+including and applying in the terms and conditions of the video-sharing platform services the requirements referred to in paragraph 1;
+
+(b)
+
+	
+
+including and applying in the terms and conditions of the video-sharing platform services the requirements set out in Article 9(1) for audiovisual commercial communications that are not marketed, sold or arranged by the video-sharing platform providers;
+
+(c)
+
+	
+
+having a functionality for users who upload user-generated videos to declare whether such videos contain audiovisual commercial communications as far as they know or can be reasonably expected to know;
+
+(d)
+
+	
+
+establishing and operating transparent and user-friendly mechanisms for users of a video-sharing platform to report or flag to the video-sharing platform provider concerned the content referred to in paragraph 1 provided on its platform;
+
+(e)
+
+	
+
+establishing and operating systems through which video-sharing platform providers explain to users of video-sharing platforms what effect has been given to the reporting and flagging referred to in point (d);
+
+(f)
+
+	
+
+establishing and operating age verification systems for users of video-sharing platforms with respect to content which may impair the physical, mental or moral development of minors;
+
+(g)
+
+	
+
+establishing and operating easy-to-use systems allowing users of video-sharing platforms to rate the content referred to in paragraph 1;
+
+(h)
+
+	
+
+providing for parental control systems that are under the control of the end-user with respect to content which may impair the physical, mental or moral development of minors;
+
+(i)
+
+	
+
+establishing and operating transparent, easy-to-use and effective procedures for the handling and resolution of users' complaints to the video-sharing platform provider in relation to the implementation of the measures referred to in points (d) to (h);
+
+(j)
+
+	
+
+providing for effective media literacy measures and tools and raising users' awareness of those measures and tools.
+
+Personal data of minors collected or otherwise generated by video-sharing platform providers pursuant to points (f) and (h) of the third subparagraph shall not be processed for commercial purposes, such as direct marketing, profiling and behaviourally targeted advertising.
+
+4.   For the purposes of the implementation of the measures referred to in paragraphs 1 and 3 of this Article, Member States shall encourage the use of co-regulation as provided for in Article 4a(1).
+
+5.   Member States shall establish the necessary mechanisms to assess the appropriateness of the measures referred to in paragraph 3 taken by video-sharing platform providers. Member States shall entrust the assessment of those measures to the national regulatory authorities or bodies.
+
+6.   Member States may impose on video-sharing platform providers measures that are more detailed or stricter than the measures referred to in paragraph 3 of this Article. When adopting such measures, Member States shall comply with the requirements set out by applicable Union law, such as those set out in Articles 12 to 15 of Directive 2000/31/EC or Article 25 of Directive 2011/93/EU.
+
+7.   Member States shall ensure that out-of-court redress mechanisms are available for the settlement of disputes between users and video-sharing platform providers relating to the application of paragraphs 1 and 3. Such mechanisms shall enable disputes to be settled impartially and shall not deprive the user of the legal protection afforded by national law.
+
+8.   Member States shall ensure that users can assert their rights before a court in relation to video-sharing platform providers pursuant to paragraphs 1 and 3.
+
+9.   The Commission shall encourage video-sharing platform providers to exchange best practices on co-regulatory codes of conduct referred to in paragraph 4.
+
+10.   Member States and the Commission may foster self-regulation through Union codes of conduct referred to in Article 4a(2).
+
+(*1)  Directive 2011/93/EU of the European Parliament and of the Council of 13 December 2011 on combating the sexual abuse and sexual exploitation of children and child pornography, and replacing Council Framework Decision 2004/68/JHA (OJ L 335, 17.12.2011, p. 1).’;"
+
+(24)
+
+	
+
+the title of Chapter XI is replaced by the following:
+
+‘ REGULATORY AUTHORITIES AND BODIES OF THE MEMBER STATES ’;
+
+(25)
+
+	
+
+Article 30 is replaced by the following:
+
+‘Article 30
+
+1.   Each Member State shall designate one or more national regulatory authorities, bodies, or both. Member States shall ensure that they are legally distinct from the government and functionally independent of their respective governments and of any other public or private body. This shall be without prejudice to the possibility for Member States to set up regulators having oversight over different sectors.
+
+2.   Member States shall ensure that national regulatory authorities or bodies exercise their powers impartially and transparently and in accordance with the objectives of this Directive, in particular media pluralism, cultural and linguistic diversity, consumer protection, accessibility, non-discrimination, the proper functioning of the internal market and the promotion of fair competition.
+
+National regulatory authorities or bodies shall not seek or take instructions from any other body in relation to the exercise of the tasks assigned to them under national law implementing Union law. This shall not prevent supervision in accordance with national constitutional law.
+
+3.   Member States shall ensure that the competences and powers of the national regulatory authorities or bodies, as well as the ways of making them accountable are clearly defined in law.
+
+4.   Member States shall ensure that national regulatory authorities or bodies have adequate financial and human resources and enforcement powers to carry out their functions effectively and to contribute to the work of ERGA. Member States shall ensure that national regulatory authorities or bodies are provided with their own annual budgets, which shall be made public.
+
+5.   Member States shall lay down in their national law the conditions and the procedures for the appointment and dismissal of the heads of national regulatory authorities and bodies or the members of the collegiate body fulfilling that function, including the duration of the mandate. The procedures shall be transparent, non-discriminatory and guarantee the requisite degree of independence. The head of a national regulatory authority or body or the members of the collegiate body fulfilling that function within a national regulatory authority or body may be dismissed if they no longer fulfil the conditions required for the performance of their duties which are laid down in advance at national level. A dismissal decision shall be duly justified, subject to prior notification and made available to the public.
+
+6.   Member States shall ensure that effective appeal mechanisms exist at national level. The appeal body, which may be a court, shall be independent of the parties involved in the appeal.
+
+Pending the outcome of the appeal, the decision of the national regulatory authority or body shall stand, unless interim measures are granted in accordance with national law.’;
+
+(26)
+
+	
+
+the following articles are inserted:
+
+‘Article 30a
+
+1.   Member States shall ensure that national regulatory authorities or bodies take appropriate measures to provide each other and the Commission with the information necessary for the application of this Directive, in particular Articles 2, 3 and 4.
+
+2.   In the context of the information exchange under paragraph 1, when national regulatory authorities or bodies receive information from a media service provider under their jurisdiction that it will provide a service wholly or mostly directed at the audience of another Member State, the national regulatory authority or body in the Member State having jurisdiction shall inform the national regulatory authority or body of the targeted Member State.
+
+3.   If the regulatory authority or body of a Member State whose territory is targeted by a media service provider under the jurisdiction of another Member State sends a request concerning the activities of that provider to the regulatory authority or body of the Member State having jurisdiction over it, the latter regulatory authority or body shall do its utmost to address the request within two months, without prejudice to stricter time limits applicable pursuant to this Directive. When requested, the regulatory authority or body of the targeted Member State shall provide any information to the regulatory authority or body of the Member State having jurisdiction that may assist it in addressing the request.
+
+Article 30b
+
+1.   The European Regulators Group for Audiovisual Media Services (ERGA) is hereby established.
+
+2.   It shall be composed of representatives of national regulatory authorities or bodies in the field of audiovisual media services with primary responsibility for overseeing audiovisual media services, or where there is no national regulatory authority or body, by other representatives as chosen through their procedures. A Commission representative shall participate in ERGA meetings.
+
+3.   ERGA shall have the following tasks:
+
+(a)
+
+	
+
+to provide technical expertise to the Commission:
+
+—
+
+	
+
+in its task to ensure a consistent implementation of this Directive in all Member States,
+
+—
+
+	
+
+on matters related to audiovisual media services within its competence;
+
+(b)
+
+	
+
+to exchange experience and best practices on the application of the regulatory framework for audiovisual media services, including on accessibility and media literacy;
+
+(c)
+
+	
+
+to cooperate and provide its members with the information necessary for the application of this Directive, in particular as regards Articles 3, 4 and 7;
+
+(d)
+
+	
+
+to give opinions, when requested by the Commission, on the technical and factual aspects of the issues pursuant to Article 2(5c), Article 3(2) and (3), point (c) of Article 4(4) and Article 28a(7).
+
+4.   ERGA shall adopt its rules of procedure.’;
+
+(27)
+
+	
+
+Article 33 is replaced by the following:
+
+‘Article 33
+
+The Commission shall monitor Member States' application of this Directive.
+
+By 19 December 2022 at the latest, and every three years thereafter, the Commission shall submit to the European Parliament, to the Council and to the European Economic and Social Committee a report on the application of this Directive.
+
+By 19 December 2026 at the latest, the Commission shall submit to the European Parliament and the Council an ex post evaluation, accompanied where appropriate by proposals for its review, of the impact of this Directive and its added value.
+
+The Commission shall keep the Contact Committee and ERGA duly informed of the others' work and activities.
+
+The Commission shall ensure that information received from Member States on any measure that they have taken in the fields coordinated by this Directive is communicated to the Contact Committee and ERGA.’;
+
+(28)
+
+	
+
+the following article is inserted:
+
+‘Article 33a
+
+1.   Member States shall promote and take measures for the development of media literacy skills.
+
+2.   By 19 December 2022 and every three years thereafter, Member States shall report to the Commission on the implementation of paragraph 1.
+
+3.   The Commission shall, after consulting the Contact Committee, issue guidelines regarding the scope of such reports.’.
+
+Article 2
+
+1.   Member States shall bring into force the laws, regulations and administrative provisions necessary to comply with this Directive by 19 September 2020. They shall immediately communicate the text of those provisions to the Commission.
+
+When Member States adopt those provisions, they shall contain a reference to this Directive or be accompanied by such a reference on the occasion of their official publication. Member States shall determine how such reference is to be made.
+
+2.   Member States shall communicate to the Commission the text of the main provisions of national law which they adopt in the field covered by this Directive.
+
+Article 3
+
+This Directive shall enter into force on the twentieth day following that of its publication in the Official Journal of the European Union.
+
+Article 4
+
+This Directive is addressed to the Member States.
+
+Done at Strasbourg, 14 November 2018.
+
+For the European Parliament
+
+The President
+
+A. TAJANI
+
+For the Council
+
+The President
+
+K. EDTSTADLER
+
+(1)   OJ C 34, 2.2.2017, p. 157.
+
+(2)   OJ C 185, 9.6.2017, p. 41.
+
+(3)  Position of the European Parliament of 2 October 2018 (not yet published in the Official Journal) and decision of the Council of 6 November 2018.
+
+(4)  Council Directive 89/552/EEC of 3 October 1989 on the coordination of certain provisions laid down by law, regulation or administrative action in Member States concerning the pursuit of television broadcasting activities (OJ L 298, 17.10.1989, p. 23).
+
+(5)  Directive 2010/13/EU of the European Parliament and of the Council of 10 March 2010 on the coordination of certain provisions laid down by law, regulation or administrative action in Member States concerning the provision of audiovisual media services (Audiovisual Media Services Directive) (OJ L 95, 15.4.2010, p. 1).
+
+(6)  Directive 2007/65/EC of the European Parliament and of the Council of 11 December 2007 amending Council Directive 89/552/EEC on the coordination of certain provisions laid down by law, regulation or administrative action in Member States concerning the pursuit of television broadcasting activities (OJ L 332, 18.12.2007, p. 27).
+
+(7)  Council Framework Decision 2008/913/JHA of 28 November 2008 on combating certain forms and expressions of racism and xenophobia by means of criminal law (OJ L 328, 6.12.2008, p. 55).
+
+(8)  Directive (EU) 2017/541 of the European Parliament and of the Council of 15 March 2017 on combating terrorism and replacing Council Framework Decision 2002/475/JHA and amending Council Decision 2005/671/JHA (OJ L 88, 31.3.2017, p. 6).
+
+(9)  Regulation (EU) 2016/679 of the European Parliament and the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation) (OJ L 119, 4.5.2016, p. 1).
+
+(10)  Regulation (EU) 2015/2120 of the European Parliament and of the Council of 25 November 2015 laying down measures concerning open internet access and amending Directive 2002/22/EC on universal service and users' rights relating to electronic communications networks and services and Regulation (EU) No 531/2012 on roaming on public mobile communications networks within the Union (OJ L 310, 26.11.2015, p. 1).
+
+(11)  Directive 2000/31/EC of the European Parliament and of the Council of 8 June 2000 on certain legal aspects of information society services, in particular electronic commerce, in the Internal Market (OJ L 178, 17.7.2000, p. 1).
+
+(12)  Directive 2005/29/EC of the European Parliament and of the Council of 11 May 2005 concerning unfair business-to-consumer commercial practices in the internal market and amending Council Directive 84/450/EEC, Directives 97/7/EC, 98/27/EC and 2002/65/EC of the European Parliament and of the Council and Regulation (EC) No 2006/2004 of the European Parliament and of the Council (‘Unfair Commercial Practices Directive’) (OJ L 149, 11.6.2005, p. 22).
+
+(13)  Directive 2003/33/EC of the European Parliament and of the Council of 26 May 2003 on the approximation of the laws, regulations and administrative provisions of the Member States relating to the advertising and sponsorship of tobacco products (OJ L 152, 20.6.2003, p. 16).
+
+(14)  Directive 2014/40/EU of the European Parliament and of the Council of 3 April 2014 on the approximation of the laws, regulations and administrative provisions of the Member States concerning the manufacture, presentation and sale of tobacco and related products and repealing Directive 2001/37/EC (OJ L 127, 29.4.2014, p. 1).
+
+(15)  Commission Decision C(2014) 462 final of 3 February 2014 on establishing the European Regulators Group for Audiovisual Media Services.
+
+(16)   OJ C 369, 17.12.2011, p. 14.
+
+Top
+This site is managed by the Publications Office of the European Union
+Need help?
+Help pages
+Contact
+Sitemap
+Legal
+Legal notice
+Cookies policy
+Accessibility
+Privacy statement
+Information
+About EUR-Lex
+Newsletter
+Useful links
+Other services
+European Data
+EU tenders
+EU research results
+EU Whoiswho
+EU publications
+N-Lex
+EU Law Tracker
+Discover more on europa.eu
+Contact the EU
+Call us 00 800 6 7 8 9 10 11
+Use other telephone options
+Write to us via our contact form
+Meet us at one of the EU centres
+Social media
+Search for EU social media channels
+Legal
+Languages on our websites
+Privacy policy
+Legal notice
+Cookies
+EU institutions
+European Parliament
+European Council
+Council of the European Union
+European Commission
+Court of Justice of the European Union (CJEU)
+European Central Bank (ECB)
+European Court of Auditors
+European External Action Service (EEAS)
+European Economic and Social Committee
+European Committee of Regions (CoR)
+European Investment Bank
+European Ombudsman
+European Data Protection Supervisor (EDPS)
+European Data Protection Board
+European Personnel Selection Office
+Publications Office of the European Union
+Agencies
