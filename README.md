@@ -241,3 +241,8 @@ frameworks look so different.
 **Ruled out:** ASA/BCAP advertising codes, radio, and on-demand/VSP regimes.
 
 Full detail with authority ranks: `sources/00_SOURCE_INVENTORY.md`.
+
+## Saving the blocked sources
+
+See [DOWNLOAD_SNIPPET.md](DOWNLOAD_SNIPPET.md) for the F12 console snippet that saves each
+bot-blocked HTML page as a verified `.txt` with the right filename.
