@@ -179,16 +179,29 @@ def _refresh_manifest_status() -> None:
     }
     for r in rows:
         dest = ORIGINALS / r["target_filename"]
-        if r["doc_id"] in lock and dest.exists():
+        # Status is decided by THE FILE ON DISK, never by the lockfile. The condition used to
+        # be `doc_id in lock and dest.exists()`, which meant a file placed by hand - saved
+        # from a browser, say - was reported NEEDS_MANUAL_DOWNLOAD while sitting in the
+        # directory, and was handed a `blocked_by` reason invented from the table below. That
+        # asserted a Cloudflare challenge that had never happened, for a document already
+        # collected. A missing lock entry means unknown provenance, which is worth recording,
+        # not grounds for declaring the file absent.
+        if dest.exists():
             shell = (dest.suffix == ".txt" and r.get("expect")
                      and _fold(r["expect"]) not in _fold(
                          dest.read_text(encoding="utf-8", errors="replace")))
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD" if shell else "verified"
-            r["blocked_by"] = ("stored file is site navigation, not the document"
-                               if shell else "")
+            if shell:
+                r["blocked_by"] = "stored file does not contain its expect phrase"
+            elif r["doc_id"] not in lock:
+                r["blocked_by"] = "placed manually; no fetch hash recorded"
+            else:
+                r["blocked_by"] = ""
         else:
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
-            r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc, "fetch failed")
+            # Only report a cause we actually observed for this host; otherwise say so.
+            r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc,
+                                          "not downloaded; cause not established")
     # Preserve every column the file actually has, in its existing order, and only append
     # ones we know about but the file lacks. A hardcoded list here silently DELETED the
     # link_health column when this ran on a GitHub runner: the rewrite dropped a column the

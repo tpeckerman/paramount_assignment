@@ -62,8 +62,11 @@ lock = json.loads((ORIG / "originals.lock.json").read_text()) if (ORIG / "origin
 
 def state(r: dict) -> str:
     """verified | shell | absent - matches fetch_originals.py --check."""
+    # Same bug as fetch_originals.py had: the lockfile was treated as proof of existence, so
+    # a file saved by hand and copied in was reported "absent" while sitting on disk. The file
+    # decides; a missing lock entry only means the provenance hash was never recorded.
     p = ORIG / r["target_filename"]
-    if r["doc_id"] not in lock or not p.exists():
+    if not p.exists():
         return "absent"
     if p.suffix == ".txt" and r.get("expect"):
         if fold(r["expect"]) not in fold(p.read_text(encoding="utf-8", errors="replace")):
