@@ -36,6 +36,7 @@ def add(rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm, exc,
 # ----------------------------------------------------------------- URLs
 U_S1 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens"
 U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence"
+U_S3 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse"
 U_S4 = ("https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion")
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
@@ -352,6 +353,47 @@ add("UK-OCC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "The fiction exemption is a frequent over-rating trap.", "no",
     "UK-S1", "Rule 1.27", U_S1, "2021-03-03", "open", "approved",
     "", "EN", "high")
+
+# --- Section Three. In scope via the context route, NOT the watershed. Rules 3.2/3.3 are
+# --- permitted "except where it is justified by the context", and "context" is Section Two's
+# --- defined term whose third factor is the time of broadcast. Added after the
+# --- "significant numbers of children" scoping test was shown to be too narrow (C-11).
+add("UK-HAT-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
+    "all_linear_tv", "hatred_discrimination", "context_dependent",
+    "Material which contains HATE SPEECH must not be included in television services "
+    "except where it is justified by the context.",
+    "No clock time of its own. The context test imports the time of broadcast as one of its "
+    "eight factors, so the hour is an input to the judgment but never determines it.",
+    "judgment:context_includes_time_of_broadcast",
+    "Hate speech is defined expansively (intolerance on grounds of disability, ethnicity, "
+    "social origin, gender, sex, gender reassignment, nationality, race, religion or belief, "
+    "sexual orientation, colour, genetic features, language, political or any other opinion, "
+    "membership of a national minority, property, birth or age). Distinct from Rule 3.1, "
+    "which is an ABSOLUTE prohibition on incitement with no context escape.",
+    "judgment_based", "clear",
+    "Weigh against Article 10 freedom of expression; Ofcom decisions here turn on editorial "
+    "framing (debate, drama, news) more than on the hour. Never resolve this automatically: "
+    "a later hour does not cure hate speech, it is only one factor among eight. Escalate every "
+    "hit to a UK compliance reviewer.",
+    "yes", "UK-S3", "Rule 3.2", U_S3, "2020-12-31", "open", "approved",
+    "spread, incite, promote or justify hatred", "EN", "medium")
+
+add("UK-HAT-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
+    "all_linear_tv", "hatred_discrimination", "context_dependent",
+    "Material which contains ABUSIVE OR DEROGATORY TREATMENT of individuals, groups, "
+    "religions or communities must not be included in television services except where it "
+    "is justified by the context.",
+    "No clock time of its own. Same context route as Rule 3.2.",
+    "judgment:context_includes_time_of_broadcast",
+    "Lower threshold than Rule 3.2: abuse or derogatory treatment need not reach hate speech. "
+    "Cross-refers to Rule 4.2 (Religion). Catches comedy and satire aimed at a community, "
+    "which is the common false-negative for an automated classifier.",
+    "judgment_based", "clear",
+    "The most likely rule in the whole table to be missed by a content-description pipeline, "
+    "because the trigger is TREATMENT rather than depicted subject matter: a description listing "
+    "no violence, sex or drugs can still breach this. Escalate to a UK compliance reviewer.",
+    "yes", "UK-S3", "Rule 3.3", U_S3, "2020-12-31", "open", "approved",
+    "abusive or derogatory treatment of individuals", "EN", "medium")
 
 add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "religion", "audience_based",
@@ -1186,9 +1228,9 @@ oq += [
      "local expert", "YES"],
     ["C-11", "Only Code Sections One and Two had been reviewed. Sections Three to Ten were assumed irrelevant to age ratings and broadcast hours.",
      "UK-REL-001 (added)",
-     "REVIEWED 2026-11-06. The assumption was mostly right but not entirely: Rule 4.7 (Religion) bars claims that a living person has special powers 'when significant numbers of children may be expected to be watching' - a child-audience broadcast restriction outside Section One. Added as UK-REL-001. Sections Three (crime, disorder, hatred, abuse), Five and Six (impartiality, elections), Seven and Eight (fairness, privacy) and Nine and Ten (commercial references) carry no age-rating or broadcast-hour restriction and stay out of scope.",
-     "Worth one more pass by a UK compliance reviewer to confirm nothing else in sections 3-10 keys off a child audience or a time of day. The pattern to look for is not the watershed but the phrase 'significant numbers of children'.",
-     "closed (one pass done)", "no"],
+     "CLOSED 2026-11-06, after the first answer was WRONG. I originally scoped the Code with one test - the phrase 'significant numbers of children', which is how Rules 1.27 and 4.7 key their child-audience restrictions - and concluded Sections Three and Five-Ten were out of scope. Section Three does not contain that phrase, so the test cleared it. But Rules 3.2 (hate speech) and 3.3 (abusive or derogatory treatment) are permitted 'except where it is justified by the context', and 'context' is Section Two's DEFINED term whose third factor is the TIME OF BROADCAST. So a Section Three judgment can turn on the hour. The test could not see that, so it was the wrong test, and everything it cleared was unproven rather than cleared. Added UK-HAT-001 and UK-HAT-002.",
+     "THE RIGHT TEST IS TWO DOORS, NOT ONE: (a) 'significant numbers of children may be expected to be watching' -> Rules 1.27, 4.7; (b) 'justified by the context', which imports the time-of-broadcast factor -> Sections One, Two, Three. Sections Five-Eight instead use 'editorially justified', a narrower test that does NOT import the context definition and so never turns on the hour - verified against the live Section Five page, which uses 'editorially justified' only at Rule 5.3, uses 'justified by the context' in no rule, and mentions neither children nor the watershed nor any time of day. Sections Nine and Ten govern commercial references; Section Ten does use a context test, but for programmes about commercial companies - a sponsorship question, not a content-harm question - so it is out of scope on the same reasoning that excludes the ASA/BCAP advertising codes. IN SCOPE: Sections One, Two, Three, Four. LESSON: a single lexical test is not a scoping method. Any future country should be scoped by enumerating the escape clauses, not by searching for one phrase.",
+     "closed (test corrected and re-run)", "no"],
     ["C-12", "Is broadcast-code-full.pdf (UK-S0) a usable substitute for the per-section HTML? It is one file covering all ten sections, which is operationally attractive.",
      "UK-S1, UK-S2, UK-S4, UK-S0",
      "NO - CLOSED 2026-11-06. It is the January 2019 print edition and predates the Code in force. Ofcom's 31 Dec 2020 statement states the Code 'is now published on the Ofcom website and is no longer available in print', so no consolidated PDF has been maintained since. The Code in force covers programmes broadcast on or after 23:00 on 31 Dec 2020; the 31 Dec 2020 amendments changed the Section Three hate-speech definition and Section Nine product placement plus minor updates; and Sections One and Two were revised again on 2023-03-16 and 2024-02-19. UK-S0 demoted to optional/original_superseded.",
