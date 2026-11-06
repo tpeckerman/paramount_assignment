@@ -41,6 +41,13 @@ pipeline/
 **[`DOWNLOAD_THESE.md`](DOWNLOAD_THESE.md)** — 24 documents still to fetch, as a tick-list with
 exact filenames. `rules/SOURCE_WORKLIST.xlsx` is the same thing as a spreadsheet.
 
+To add one: open its url, save the page however is easiest (`Cmd/Ctrl+S` for HTML or
+`Cmd/Ctrl+P` → Save as PDF — the filename does not matter), drop it in
+`sources/originals/incoming/`, and run `python pipeline/import_saved.py`. It identifies the
+document from its *content*, converts HTML to text, renames and sets `format` itself, and
+refuses anything that does not contain that document's required string — so a cookie banner
+cannot land as a source copy.
+
 The same status lives in `sources/originals/MANIFEST.csv` (`download_status`, `blocked_by`),
 which `fetch_originals.py --check` rewrites on every run so it cannot go stale. Both of those
 views are generated — `DOWNLOAD_THESE.md` and the workbook come from

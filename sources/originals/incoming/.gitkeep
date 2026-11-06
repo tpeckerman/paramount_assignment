@@ -1,0 +1,2 @@
+Drop browser-saved documents here, any filename, .html or .pdf.
+Then: python pipeline/import_saved.py
