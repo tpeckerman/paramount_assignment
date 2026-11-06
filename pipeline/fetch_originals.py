@@ -88,7 +88,21 @@ def html_to_text(raw: bytes) -> str:
 MIN_TEXT_CHARS = 2000
 
 
-def fetch(url: str, dest: Path, fmt: str = "pdf", timeout: int = 60) -> tuple[bool, str]:
+def _fold(t: str) -> str:
+    """Fold accents, ligatures, dashes and quotes so ASCII `expect` strings match
+    accented French source text. NFKD alone does not decompose oe/ae ligatures."""
+    import unicodedata
+    for a, b in (("\u0153", "oe"), ("\u0152", "OE"), ("\u00e6", "ae"),
+                 ("\u00c6", "AE"), ("\u2014", "-"), ("\u2013", "-"),
+                 ("\u2019", "'"), ("\u2018", "'"), ("\u00a0", " ")):
+        t = t.replace(a, b)
+    t = unicodedata.normalize("NFKD", t)
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    return re.sub(r"\s+", " ", t).casefold()
+
+
+def fetch(url: str, dest: Path, fmt: str = "pdf", expect: str = "",
+          timeout: int = 60) -> tuple[bool, str]:
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
         "Accept": "text/html,application/pdf,application/xhtml+xml,*/*",
@@ -112,6 +126,17 @@ def fetch(url: str, dest: Path, fmt: str = "pdf", timeout: int = 60) -> tuple[bo
         if not body.startswith(b"%PDF"):
             return False, f"not a PDF (content-type {ctype!r}, {len(body)} bytes)"
         dest.write_bytes(body)
+        if expect:
+            try:
+                import io as _io
+                import pypdf
+                txt = "\n".join((p.extract_text() or "")
+                                for p in pypdf.PdfReader(_io.BytesIO(body)).pages)
+                if _fold(expect) not in _fold(txt):
+                    return False, (f"PDF stored but expected text {expect!r} is absent "
+                                   f"({len(txt)} chars extracted) - wrong document?")
+            except ImportError:
+                return True, f"PDF, {len(body)} bytes (expect not checked: pip install pypdf)"
         return True, f"PDF, {len(body)} bytes"
 
     # html2txt: store readable TEXT, not markup. Everything in this folder is
@@ -120,8 +145,14 @@ def fetch(url: str, dest: Path, fmt: str = "pdf", timeout: int = 60) -> tuple[bo
     dest.write_text(text, encoding="utf-8")
     if len(text) < MIN_TEXT_CHARS:
         return False, (f"only {len(text)} chars of text extracted - almost certainly a "
-                       f"JavaScript shell, not the document. Saved anyway for inspection; "
-                       f"use the page's Telecharger/PDF link instead and set format=pdf")
+                       f"JavaScript shell. Saved for inspection; use the page's "
+                       f"Telecharger/PDF link instead and set format=pdf")
+    # Length alone is not enough: a large navigation menu clears the threshold
+    # while carrying no rule text at all. Require the document's own content.
+    if expect and _fold(expect) not in _fold(text):
+        return False, (f"{len(text)} chars extracted but expected text {expect!r} is "
+                       f"ABSENT - this is site navigation, not the document. Saved for "
+                       f"inspection; use the page's Telecharger/PDF link and set format=pdf")
     return True, f"text, {len(text)} chars (from {len(body)} bytes of HTML)"
 
 
@@ -176,6 +207,12 @@ def main() -> int:
             if not dest.exists():
                 print(f"  ABSENT   {r['doc_id']:8s} {r['target_filename']}")
                 absent += 1
+            elif (r.get("expect") and dest.suffix == ".txt"
+                  and _fold(r["expect"]) not in _fold(
+                      dest.read_text(encoding="utf-8", errors="replace"))):
+                print(f"  SHELL    {r['doc_id']:8s} {r['target_filename']}"
+                      "  <- on disk but expected text absent: navigation, not the document")
+                drift += 1
             elif r["doc_id"] in lock and lock[r["doc_id"]]["sha256"] != sha256(dest):
                 print(f"  CHANGED  {r['doc_id']:8s} {r['target_filename']}"
                       "  <- source document changed since it was locked")
@@ -198,7 +235,8 @@ def main() -> int:
             continue
 
         print(f"  fetch    {doc_id:8s} {r['url'][:78]}")
-        ok, detail = fetch(r["url"], dest, r.get("format", "pdf"))
+        ok, detail = fetch(r["url"], dest, r.get("format", "pdf"),
+                           r.get("expect", ""))
         if ok:
             digest = sha256(dest)
             prior = lock.get(doc_id, {}).get("sha256")

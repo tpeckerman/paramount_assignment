@@ -548,13 +548,14 @@ add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "'le programme recourt de facon repetee'. So (a) repetition alone now suffices, systematic "
     "use is no longer required, and (b) the test is the programme as a whole, not just its "
     "scenario. An extraction working from the pre-2014 wording UNDER-RATES. The superseded "
-    "wording is kept as FR-CLS-903. Confirmed by three independent French sources (C-09). "
-    "OPEN (C-10): Arcom's own FRENCH public page (FR-S1c) states the -12 test as '...recourt "
-    "de facon repetee a la violence physique ou psychologique, OU EVOQUE LA SEXUALITE ADULTE'. "
-    "That adult-sexuality limb is NOT in the binding wording we hold. It is either a later "
-    "amendment we have not located or a practice gloss. If binding it would pull adult-sexuality "
-    "content into -12 independently of violence, so it must be resolved before this row is "
-    "relied on for sexual-content cases.",
+    "wording is kept as FR-CLS-903. Verified 2026-11-06 against the STORED French primary "
+    "text (FR-R1c/FR-R1d), which reads '...notamment lorsque le programme recourt de facon "
+    "repetee a la violence physique ou psychologique'. C-10 RESOLVED by the same check: the "
+    "words 'sexualite adulte' do NOT occur anywhere in the binding recommendation, so the "
+    "'ou evoque la sexualite adulte' limb on Arcom's public page (FR-S1c) is a PRACTICE GLOSS, "
+    "not binding text. Do not treat adult sexuality as an independent -12 trigger; the "
+    "binding trigger is repeated violence. Arcom may still apply the gloss in practice, so "
+    "flag borderline sexual-content cases for review rather than clearing them.",
     "yes", "FR-R1 (as amd. FR-A2)", "art. 2 al. 5", U_FR1C, "2014-04-09", "open", "approved",
     "les programmes pouvant troubler les mineurs de 12 ans, notamment lorsque le programme "
     "recourt de facon repetee a la violence physique ou psychologique", "FR", "high")
@@ -648,15 +649,15 @@ add("FR-SCH-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "not_before=20:30;except_days=Tue,Fri,Sat,holiday_eve,school_holidays;annual_quota=16;sub_quota=4_cinema_banned_u12",
     "REQUIRES the broadcast DATE (not just time) and the French school-holiday calendar. The annual quota cannot be verified from a single asset description.",
     "conditional", "clear",
-    C02 + " The after-20:30 derogation and its day/holiday exclusions are confirmed in the "
-    "French text. NOT yet confirmed in French: the '16 programmes per year, of which at most "
-    "4 cinema-banned-to-under-12s' quota, which so far rests only on the Arcom English "
-    "rendering - treat the numbers as indicative. Separately, the quotas are channel-level "
-    "facts: a per-asset prompt cannot verify them and must flag this for channel-level review.",
+    C02 + " QUOTA ALSO CONFIRMED in the French primary text (2026-11-06): 'Ces diffusions "
+    "exceptionnelles ne peuvent exceder seize programmes par an, dont au maximum quatre oeuvres "
+    "cinematographiques interdites en salles aux mineurs de 12 ans'. The earlier caveat that the "
+    "16/4 numbers rested only on the English rendering is withdrawn. Note the quotas remain "
+    "channel-level facts: a per-asset prompt cannot verify them and must flag this for "
+    "channel-level review.",
     "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
-    "A titre exceptionnel, il peut etre admis une diffusion, apres 20 h 30, de programmes de "
-    "cette categorie, sauf les mardis, vendredis, samedis, veilles de jours feries et pendant "
-    "les periodes de vacances scolaires.", "FR", "high")
+    "Ces diffusions exceptionnelles ne peuvent exceder seize programmes par an, dont au "
+    "maximum quatre oeuvres cinematographiques interdites en salles aux mineurs de 12 ans", "FR", "high")
 
 add("FR-SCH-005", "FR", "Arcom", "regulator_binding", 2, "yes",
     "free_to_air; other_than_cinema_channels", "scheduling_general", "IV_-16",
@@ -1175,12 +1176,12 @@ oq += [
     ["C-10", "Arcom's own FRENCH public page (FR-S1c) states the category III (-12) test as 'recourt de facon repetee a la violence physique ou psychologique, OU EVOQUE LA SEXUALITE ADULTE'. That adult-sexuality limb does not appear in the binding art. 2 wording we hold (as replaced by delib. 2014-17).",
      "FR-CLS-003",
      "None yet. Found 2026-11-06 while searching for the Legifrance id of delib. 2014-17.",
-     "Determine whether this is (a) a later amendment to the recommendation that we have not located, or (b) a practice gloss on Arcom's public page. If binding, it pulls adult-sexuality content into -12 INDEPENDENTLY of violence, which would widen the category materially. Until resolved, do not rely on FR-CLS-003 for sexual-content cases - the violence limb is unaffected.",
-     "French-speaking reviewer", "no - but caps confidence on -12 sexual content"],
+     "CLOSED 2026-11-06. The French primary text was downloaded and searched: 'sexualite' does not occur anywhere in the binding recommendation. The limb is a PRACTICE GLOSS on Arcom's public page, not binding text. The binding -12 trigger is repeated violence. Arcom may still apply the gloss when it classifies, so borderline sexual-content cases should be flagged for review rather than cleared - but the rule table should not encode an independent adult-sexuality trigger.",
+     "closed", "no"],
     ["C-03", "Recommandation 2004-7 - the sole source of the French -18 hours - dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed. The CSA->Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it.",
      "FR-CV-001 to FR-CV-007",
-     "None. All category V rows flagged unverified.",
-     "Check the current Arcom legal register for amendment or replacement.",
+     "Still open. All category V rows remain unverified. Attempted 2026-11-06: the Arcom page for reco. 2004-7 was fetched but returned 12,493 characters of pure site NAVIGATION and no rule text - it renders its body via JavaScript. The fetcher now detects this (per-document `expect` assertion) instead of storing the shell as a source copy.",
+     "Obtain the real text: use the page's Telecharger/Imprimer PDF, or the JORF of 23 December 2004, and set format=pdf in the manifest. Then confirm (a) that the 00:00-05:00 window is still in force, and (b) whether the 2021 AVMSD transposition decree altered the category V regime. This is now the main blocker on the French side.",
      "local expert", "YES"],
     ["C-04", "No verbatim source text could be captured. The execution environment has no outbound access to ofcom.org.uk / arcom.fr / legifrance.gouv.fr (egress proxy refuses: connect_rejected), and the available web-fetch path returns model-written summaries, declining full reproduction.",
      "ALL rows (verbatim_quote column)",

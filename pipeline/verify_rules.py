@@ -21,6 +21,7 @@ import argparse
 import csv
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 try:
@@ -160,8 +161,29 @@ def check_quotes(rows: list[dict]) -> list[str]:
     if not MANIFEST.exists():
         return [f"missing {MANIFEST.relative_to(ROOT)}"]
     with MANIFEST.open(newline="", encoding="utf-8") as fh:
-        files = {r["doc_id"]: ORIGINALS / r["target_filename"]
-                 for r in csv.DictReader(fh)}
+        man = list(csv.DictReader(fh))
+    files = {r["doc_id"]: ORIGINALS / r["target_filename"] for r in man}
+    # A row's source_url is the authoritative pointer to the text that actually
+    # holds its quote, and after the provenance fix that URL is often the
+    # consolidated edition (FR-R1c/FR-R1d) rather than the doc named in
+    # source_doc. Resolve by URL as well, or every French quote is skipped.
+    by_url = {r["url"]: r["doc_id"] for r in man}
+
+    def fold(t: str) -> str:
+        """Compare accent- and case-insensitively.
+
+        The table stores quotes ASCII-folded so the CSV mirrors stay pure ASCII and
+        diff cleanly, but the sources are accented French. Without folding both
+        sides, every French quote fails spuriously - which is exactly what the first
+        run of this check reported.
+        """
+        for a, b in (("\u0153", "oe"), ("\u0152", "OE"), ("\u00e6", "ae"),
+                     ("\u00c6", "AE"), ("\u2014", "-"), ("\u2013", "-"),
+                     ("\u2019", "'"), ("\u2018", "'"), ("\u00a0", " ")):
+            t = t.replace(a, b)
+        t = unicodedata.normalize("NFKD", t)
+        t = "".join(c for c in t if not unicodedata.combining(c))
+        return re.sub(r"\s+", " ", t).casefold()
 
     cache: dict[str, str | None] = {}
 
@@ -186,32 +208,50 @@ def check_quotes(rows: list[dict]) -> list[str]:
         else:
             txt = raw.decode("utf-8", "replace")
             txt = re.sub(r"<[^>]+>", " ", txt)          # crude de-tag
-        txt = re.sub(r"\s+", " ", txt).lower()
+        txt = fold(re.sub(r"\s+", " ", txt))
         cache[doc_id] = txt
         return txt
 
     bad, checked, skipped = [], 0, 0
+    inconclusive: list[str] = []
     for r in rows:
         q = r["verbatim_quote"].strip()
         if not q:
             continue
-        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Z0-9]{1,3}\b", r["source_doc"])
-        hay = next((t for t in (text_of(d) for d in refs) if t), None)
-        if hay is None:
+        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Za-z0-9]{1,4}\b", r["source_doc"])
+        if r["source_url"] in by_url:
+            refs.append(by_url[r["source_url"]])
+        refs = [d for i, d in enumerate(refs) if d in files and d not in refs[:i]]
+        hays = [(d, t) for d, t in ((d, text_of(d)) for d in refs) if t]
+        if not hays:
             skipped += 1
             continue
-        # quotes are stored with ellipses where text was elided, and accents stripped
-        for frag in (f.strip() for f in q.split("...")):
-            if len(frag) < 12:
-                continue
-            needle = re.sub(r"\s+", " ", frag).lower()
-            if needle not in hay:
-                bad.append(f"{r['rule_id']}: quote not found in {refs}: {frag[:70]!r}")
-                break
-        checked += 1
+        complete = len(hays) == len(refs)
+        # A quote may legitimately live in any one of a row's cited sources, so a
+        # hit in ANY of them passes. Quotes use "..." where text was elided.
+        frags = [f.strip() for f in q.split("...") if len(f.strip()) >= 12]
+        if not frags:
+            continue
+        found = any(all(fold(re.sub(r"\s+", " ", fr)) in hay for fr in frags)
+                    for _, hay in hays)
+        if found:
+            checked += 1
+        elif complete:
+            # every cited source is on disk and none contains the quote -> defect
+            bad.append(f"{r['rule_id']}: quote not found in "
+                       f"{[d for d, _ in hays]}: {frags[0][:70]!r}")
+            checked += 1
+        else:
+            # a cited source is missing, so absence here proves nothing
+            missing = [d for d in refs if d not in {x for x, _ in hays}]
+            inconclusive.append(f"{r['rule_id']}: not in {[d for d, _ in hays]}, "
+                                f"but {missing} not downloaded")
 
-    print(f"  quote check: {checked} verified, {skipped} skipped "
-          f"(source not downloaded), {len(bad)} failed")
+    print(f"  quote check: {checked - len(bad)} VERIFIED against the stored source, "
+          f"{len(bad)} FAILED, {len(inconclusive)} inconclusive, "
+          f"{skipped} skipped (no source on disk)")
+    for line in inconclusive:
+        print(f"    inconclusive: {line}")
     if skipped and not checked:
         print("  -> run  python pipeline/fetch_originals.py  first "
               "(see conflict C-04 in sources/99_EXTRACTION_NOTES_AND_LIMITS.md)")
