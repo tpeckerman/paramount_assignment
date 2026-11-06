@@ -26,5 +26,21 @@
     "filename": "FR-V1_arcom_mise_en_demeure_C8.pdf",
     "sha256": "3e31654f67feecc793e85e24661965e5388ea9a8d0d68b6a0a15c76210ea6142",
     "url": "https://www.arcom.fr/sites/default/files/2023-05/MeD_C8.pdf"
+  },
+  "UK-L1": {
+    "bytes": 18693,
+    "fetched_at": "2026-11-06T15:04:49+00:00",
+    "filename": "UK-L1_communications_act_2003_s319.txt",
+    "sha256": "5bc3d3d26cc77b3a050c7f480b7889a1535d274189444d65d52946860bd04759",
+    "source": "manual browser save via import_saved.py",
+    "url": "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
+  },
+  "UK-L2": {
+    "bytes": 12976,
+    "fetched_at": "2026-11-06T15:04:49+00:00",
+    "filename": "UK-L2_avms_regulations_2020_note.txt",
+    "sha256": "52561e6a2c77fa329660ce6fcdd1e91e85e772ed59f98277305412ae623faa4d",
+    "source": "manual browser save via import_saved.py",
+    "url": "https://www.legislation.gov.uk/uksi/2020/1062/note/made"
   }
 }
