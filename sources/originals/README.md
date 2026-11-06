@@ -70,33 +70,45 @@ most likely to hit this are flagged in `notes`: `FR-R1`, `FR-L1`, `FR-R1c`, `FR-
 `FR-A1`, `FR-A2b`, `FR-S1c`. If one does, save the PDF by hand into this folder under the
 row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
 
-## What the full Code PDF does and does not cover
+## The full Code PDF is NOT a shortcut - it is the January 2019 edition
 
-`UK-S0` is `broadcast-code-full.pdf` — the whole Ofcom Broadcasting Code in one file. It is
-worth having, but it is **not a shortcut to the whole corpus**. It covers **3 of the 29**
-documents here:
+`UK-S0` is `broadcast-code-full.pdf`. It is tempting: all ten sections, the Cross-promotion
+Code and the ODPS rules in one file. **Do not use it for current law.**
 
-| Covered by UK-S0 | Not covered |
-|---|---|
-| `UK-S1` Section One | **Guidance** (`UK-G1`, `UK-G2`, `UK-G3`) — published separately; the Code PDF contains rules, not guidance |
-| `UK-S2` Section Two | `UK-M1` the mandatory-daytime-protection statement — the Code has the rules, the statement has the platform eligibility |
-| `UK-S4` Section Four | `UK-P1` enforcement bulletin · `UK-L1`/`UK-L2` legislation · `UK-C1` BBFC |
-| | **all 13 French and 2 EU documents** — it is the UK Code only |
+Ofcom's statement of 31 December 2020 settles it:
 
-So fetching `UK-S0` takes the required list from 19 to 16, not to 1.
+> as the Broadcasting Code is now published on the Ofcom website and is no longer available
+> in print
 
-### The trap worth naming
+Ofcom **stopped producing a consolidated print edition.** The Jan 2019 PDF is the last one, and
+it predates the Code in force, which covers programmes broadcast on or after 23:00 on
+31 December 2020. The 31 Dec 2020 amendments changed the Section Three hate-speech definition
+and Section Nine product placement, plus minor updates; Sections One and Two were then revised
+again on **2023-03-16** and **2024-02-19**.
 
-"I have the Code, so I have the rules" is wrong in a specific way. The Code gives the rules;
-it does not give the **thresholds**. Everything that tells you *how much* violence is
-"appropriately limited", what counts as "the most offensive language", or how fast content may
-get stronger after 21:00 lives in the **guidance** and the **enforcement bulletins** — neither
-of which is in the Code PDF.
+So the authoritative text is the **per-section HTML** — `UK-S1`, `UK-S2`, `UK-S4` — which is
+the only maintained version and the only one carrying a real last-updated date.
+`UK-S0` is kept at `optional` / `original_superseded`, useful only to diff what changed
+since 2019.
 
-`UK-G1` matters most of all: it is the only source with operational detail on **music videos**
-and on the post-watershed ramp, and music videos are one of the content types the assignment
-suggests for test cases. Of the 29 rule rows marked `judgment_based`, none of their thresholds
-can be calibrated from `UK-S0` alone.
+### A near-miss worth recording
+
+An earlier version of this repo recorded `UK-S0` as *containing* `UK-S1`/`UK-S2`/`UK-S4` and
+advised fetching it to save three downloads. Following that would have pinned the UK rules to
+2019 text and silently dropped the 2023 and 2024 revisions — the same class of error as
+**C-09**, where an outdated edition was treated as current.
+
+The lesson: a bundle is only a shortcut once its currency is established, and "it is one tidy
+file" is exactly the kind of convenience that discourages checking. Logged as **C-12**.
+
+### What is genuinely not in the Code at all
+
+Separately from the currency problem, the Code — in any form — contains rules but **not
+thresholds**. What counts as "appropriately limited" violence, what "the most offensive
+language" includes, how fast content may strengthen after 21:00: all of that lives in the
+**guidance** (`UK-G1`, `UK-G2`, `UK-G3`) and the **enforcement bulletins** (`UK-P1`), which are
+published separately. None of the 29 `judgment_based` rows can be calibrated from the Code
+alone, and `UK-G1` is the only source with operational detail on **music videos**.
 
 ## What lands here
 
