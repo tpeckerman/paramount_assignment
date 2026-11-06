@@ -146,7 +146,7 @@ def check_manifest_coverage(rows: list[dict]) -> list[str]:
     bad = []
     for r in rows:
         # source_doc may be compound, e.g. "FR-R1 (as amd. FR-A2)" or "UK-S1 + UK-M1"
-        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Z0-9]{1,3}\b", r["source_doc"])
+        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Za-z0-9]{1,4}\b", r["source_doc"])
         if not refs:
             bad.append(f"{r['rule_id']}: source_doc {r['source_doc']!r} names no doc_id")
         for ref in refs:

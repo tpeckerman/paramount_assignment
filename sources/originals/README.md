@@ -70,45 +70,60 @@ most likely to hit this are flagged in `notes`: `FR-R1`, `FR-L1`, `FR-R1c`, `FR-
 `FR-A1`, `FR-A2b`, `FR-S1c`. If one does, save the PDF by hand into this folder under the
 row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
 
-## The full Code PDF is NOT a shortcut - it is the January 2019 edition
+## Only current materials are carried
 
-`UK-S0` is `broadcast-code-full.pdf`. It is tempting: all ten sections, the Cross-promotion
-Code and the ODPS rules in one file. **Do not use it for current law.**
+The manifest holds **19 documents, all current**. The `version_status` and `contained_in`
+columns are gone: with nothing historical left, they had one value each.
 
-Ofcom's statement of 31 December 2020 settles it:
+### The test is the publisher, not the date
 
-> as the Broadcasting Code is now published on the Ofcom website and is no longer available
-> in print
+What was removed is not "anything that looks old". Ofcom's live guidance page lists its
+Section One guidance as **Mar 2015** and the watershed/music-video guidance as **Sep 2011** —
+those *are* the current versions, Ofcom simply has not reissued them. Dropping them for looking
+old would have thrown away the only operational detail on music videos in the whole corpus.
 
-Ofcom **stopped producing a consolidated print edition.** The Jan 2019 PDF is the last one, and
-it predates the Code in force, which covers programmes broadcast on or after 23:00 on
-31 December 2020. The 31 Dec 2020 amendments changed the Section Three hate-speech definition
-and Section Nine product placement, plus minor updates; Sections One and Two were then revised
-again on **2023-03-16** and **2024-02-19**.
+So the test applied is whether the publisher still presents the document as current.
 
-So the authoritative text is the **per-section HTML** — `UK-S1`, `UK-S2`, `UK-S4` — which is
-the only maintained version and the only one carrying a real last-updated date.
-`UK-S0` is kept at `optional` / `original_superseded`, useful only to diff what changed
-since 2019.
+### Removed as superseded
 
-### A near-miss worth recording
+| doc | why |
+|---|---|
+| `UK-S0` | Jan 2019 print edition. Ofcom's 31 Dec 2020 statement: the Code "is now published on the Ofcom website and is no longer available in print". |
+| `FR-R1` | the 2005 JORF original — superseded by the 2012 and 2014 amendments |
+| `FR-A1`, `FR-A2`, `FR-A2b` | amending instruments; their changes are consolidated into `FR-R1c` |
 
-An earlier version of this repo recorded `UK-S0` as *containing* `UK-S1`/`UK-S2`/`UK-S4` and
-advised fetching it to save three downloads. Following that would have pinned the UK rules to
-2019 text and silently dropped the 2023 and 2024 revisions — the same class of error as
-**C-09**, where an outdated edition was treated as current.
+### Removed as a redundant copy of a current source
 
-The lesson: a bundle is only a shortcut once its currency is established, and "it is one tidy
-file" is exactly the kind of convenience that discourages checking. Logged as **C-12**.
+| doc | why |
+|---|---|
+| `FR-R1d` | csa.fr copy of the same text as `FR-R1c`; arcom.fr is the live domain, csa.fr the legacy one |
+| `FR-R1b` | Arcom **English** machine translation of the same text — and the garbled one that caused **C-02**. The French is authoritative. |
+| `FR-S1` | Arcom **English** public summary — unreliable (**C-01**) and redundant against `FR-S1c` |
 
-### What is genuinely not in the Code at all
+`FR-R3` (overseas France) and `FR-X1` (on-demand SMAD) were dropped as out of scope, which is a
+separate judgement from currency.
 
-Separately from the currency problem, the Code — in any form — contains rules but **not
-thresholds**. What counts as "appropriately limited" violence, what "the most offensive
-language" includes, how fast content may strengthen after 21:00: all of that lives in the
-**guidance** (`UK-G1`, `UK-G2`, `UK-G3`) and the **enforcement bulletins** (`UK-P1`), which are
-published separately. None of the 29 `judgment_based` rows can be calibrated from the Code
-alone, and `UK-G1` is the only source with operational detail on **music videos**.
+### What this cost, and what it caught
+
+Dropping `FR-R1` left the deliberately-retained superseded rule row `FR-CLS-903` with no
+retrievable source, so it went too. Both wordings are recorded verbatim in the **C-09** entry in
+`Open_Questions`, so nothing is lost informationally — but the table no longer carries a live
+example of the versioning mechanism.
+
+Repointing the French rows from "FR-R1 (as amd. FR-A2)" to `FR-R1c` had an unplanned benefit:
+it made 23 rows resolvable against a source actually on disk, so the quote check ran on them for
+the first time — and **immediately failed two**. `FR-SCH-005` and `FR-SCH-006` carried quotes
+paraphrased from a government summary rather than the primary text. Replaced with the real
+wording: *"réservés à un public averti, ces programmes sont diffusables seulement après 20 h 30
+sur les chaînes cinéma et les services de paiement à la séance et après 22 h 30 sur les autres
+services de télévision"*. Verified quotes went 7 → 10, failures 0.
+
+### What no Code edition contains, in any form
+
+The Code gives rules but **not thresholds**. What counts as "appropriately limited" violence,
+what "the most offensive language" includes, how fast content may strengthen after 21:00 — all
+of that lives in the **guidance** (`UK-G1`, `UK-G2`, `UK-G3`) and the **enforcement bulletins**
+(`UK-P1`). None of the 26 `judgment_based` rows can be calibrated from the Code alone.
 
 ## What lands here
 

@@ -515,7 +515,7 @@ add("FR-VIO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "CATEGORY-INDEPENDENT: a programme can be category I or II and still breach this. Replaced by delib. 2014-17.",
     "judgment_based", "clear",
     "A solution that only reasons about the I-V categories will miss this rule entirely.", "yes",
-    "FR-R1 (as amd. FR-A2)", "art. 1", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 1", U_FR2, "2014-04-09", "open", "approved",
     "la violence, meme psychologique", "FR", "high")
 
 add("FR-VIO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -525,7 +525,7 @@ add("FR-VIO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "not_before=22:00;unless=educational_support_beyond_warning",
     "A warning alone is expressly insufficient.",
     "conditional", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 1", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 1", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-VIO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -534,7 +534,7 @@ add("FR-VIO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Applies at all times.", "n/a;requires=advance_warning",
     "Applies to news, which France otherwise exempts from classification.",
     "conditional", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 1", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 1", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-CLS-001", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -543,7 +543,7 @@ add("FR-CLS-001", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "No restriction.", "none",
     "The editor classifies via an internal commission de visionnage.",
     "bright_line", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
+    "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "categorie I (aucune signaletique) : les programmes pour tous publics", "FR", "high")
 
 add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -551,7 +551,7 @@ add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "Category II (-10) - programmes CERTAIN SCENES of which are liable to shock minors under 10.",
     "See FR-SCH-001.", "see=FR-SCH-001", "",
     "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
+    "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -568,7 +568,8 @@ add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "'le programme recourt de facon repetee'. So (a) repetition alone now suffices, systematic "
     "use is no longer required, and (b) the test is the programme as a whole, not just its "
     "scenario. An extraction working from the pre-2014 wording UNDER-RATES. The superseded "
-    "wording is kept as FR-CLS-903. Verified 2026-11-06 against the STORED French primary "
+    "pre-2014 wording is recorded in the C-09 conflict entry rather than as a rule row, since "
+    "the manifest now carries only current materials. Verified 2026-11-06 against the STORED French primary "
     "text (FR-R1c/FR-R1d), which reads '...notamment lorsque le programme recourt de facon "
     "repetee a la violence physique ou psychologique'. C-10 RESOLVED by the same check: the "
     "words 'sexualite adulte' do NOT occur anywhere in the binding recommendation, so the "
@@ -576,41 +577,9 @@ add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "not binding text. Do not treat adult sexuality as an independent -12 trigger; the "
     "binding trigger is repeated violence. Arcom may still apply the gloss in practice, so "
     "flag borderline sexual-content cases for review rather than clearing them.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 2 al. 5", U_FR1C, "2014-04-09", "open", "approved",
+    "yes", "FR-R1c", "art. 2 al. 5", U_FR1C, "2014-04-09", "open", "approved",
     "les programmes pouvant troubler les mineurs de 12 ans, notamment lorsque le programme "
     "recourt de facon repetee a la violence physique ou psychologique", "FR", "high")
-
-add("FR-CLS-903", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
-    "all_linear_tv", "classification_scheme", "III_-12",
-    "SUPERSEDED (2005-2014 wording). Category III (-12) - programmes liable to disturb "
-    "under-12s, in particular where THEIR SCENARIO resorts in a repeated AND SYSTEMATIC way to "
-    "physical or psychological violence.",
-    "n/a - historical", "see=FR-CLS-003",
-    "Replaced by delib. 2014-17 (JORF 2014-04-09), which removed 'et systematique' and changed "
-    "'leur scenario' to 'le programme'.",
-    "judgment_based", "clear",
-    "Retained to demonstrate the versioning rule: a replaced provision is closed with a "
-    "valid_to and status=superseded, never overwritten, so a past decision can still be "
-    "explained by the rule version in force at the time. Naming convention: 9xx = historical.",
-    "no", "FR-R1", "art. 2 al. 5", U_FR1, "2005-07-08", "2014-04-08", "superseded",
-    "leur scenario recourt de facon repetee et systematique a la violence physique ou "
-    "psychologique", "FR", "high")
-
-add("FR-CLS-004", "FR", "Arcom", "regulator_binding", 2, "definition_only",
-    "all_linear_tv", "classification_scheme", "IV_-16",
-    "Category IV (-16) - cinematographic works banned to under-16s in cinemas, and programmes OF AN EROTIC CHARACTER OR OF GREAT VIOLENCE, liable to harm the physical, mental or moral development of under-16s.",
-    "See FR-SCH-005/006.", "see=FR-SCH-005", "",
-    "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
-    "", "FR", "high")
-
-add("FR-CLS-005", "FR", "Arcom", "regulator_binding", 2, "definition_only",
-    "all_linear_tv", "classification_scheme", "V_-18",
-    "Category V (-18) - cinematographic works banned to under-18s in cinemas, and PORNOGRAPHIC programmes or programmes of VERY GREAT VIOLENCE, reserved for a warned adult audience and liable to harm the physical, mental or moral development of under-18s.",
-    "See FR-CV-001 to FR-CV-003.", "see=FR-CV-002", "",
-    "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
-    "", "FR", "high")
 
 add("FR-FLM-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "film_carryover", "context_dependent",
@@ -619,7 +588,7 @@ add("FR-FLM-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "French practice is explicitly to RAISE the age limit between cinema and television, because a child who could not enter the cinema can easily be in front of a TV set.",
     "judgment_based", "clear",
     "The CNC/cinema rating is an INPUT, never the output. The TV category is a separate determination and may be stricter.",
-    "no", "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
+    "no", "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
@@ -629,7 +598,7 @@ add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "The only route by which the cinema classification commission revisits a rating for television purposes.",
     "bright_line", "out_of_scope_for_asset_decision",
     "Procedural, not a per-asset rating rule. Recorded for completeness.", "no",
-    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
+    "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "medium")
 
 add("FR-SCH-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -639,7 +608,7 @@ add("FR-SCH-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Particular care required for trailers scheduled near children's programmes.",
     "conditional", "clear",
     "Note there is NO time restriction for -10 - only a placement restriction. A model that assumes every age label implies an hour will invent one.",
-    "no", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "no", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-SCH-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -648,7 +617,7 @@ add("FR-SCH-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Not before 22:00.", "not_before=22:00",
     "Subject to the exceptional derogation in FR-SCH-004. Cited against the CURRENT consolidated French text, not the 2005 JORF original: the hours happen to be unchanged since 2005, which is precisely why the amended art. 2 definition slipped past review (C-09).",
     "bright_line", "clear", C02, "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "Pour les autres services de television, ces programmes ne doivent pas etre diffuses "
     "avant 22 heures.", "FR", "high")
 
@@ -658,7 +627,7 @@ add("FR-SCH-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Not Wednesdays before 20:30.", "not_before=20:30;days=Wed",
     "A day-of-week-specific rule. Historically tied to the French school week.",
     "bright_line", "clear", C02, "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "pour les chaines cinema et les services de paiement a la seance, ces programmes ne "
     "doivent pas etre diffuses le mercredi avant 20 h 30.", "FR", "high")
 
@@ -675,7 +644,7 @@ add("FR-SCH-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "16/4 numbers rested only on the English rendering is withdrawn. Note the quotas remain "
     "channel-level facts: a per-asset prompt cannot verify them and must flag this for "
     "channel-level review.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
+    "yes", "FR-R1c", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "Ces diffusions exceptionnelles ne peuvent exceder seize programmes par an, dont au "
     "maximum quatre oeuvres cinematographiques interdites en salles aux mineurs de 12 ans", "FR", "high")
 
@@ -686,8 +655,10 @@ add("FR-SCH-005", "FR", "Arcom", "regulator_binding", 2, "yes",
     "No derogation equivalent to FR-SCH-004 is provided for category IV.",
     "bright_line", "clear",
     "Corroborated by the Arcom public summary ('as of 10:30 pm'), the French government page, and multiple parliamentary answers - so this row is better evidenced than the cat. III rows.",
-    "no", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "apres 22h30 sur les chaines autres que cinema", "FR", "high")
+    "no", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "reserves a un public averti, ces programmes sont diffusables seulement apres 20 h 30 "
+    "sur les chaines cinema et les services de paiement a la seance et apres 22 h 30 sur les "
+    "autres services de television", "FR", "high")
 
 add("FR-SCH-006", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; pay_per_view", "scheduling_general", "IV_-16",
@@ -696,8 +667,9 @@ add("FR-SCH-006", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Two hours earlier than on other services - a pure service-type effect with identical content.",
     "bright_line", "clear",
     "Excellent demonstration that the age label alone does not determine the hour.", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "apres 20h30 sur les chaines cinema", "FR", "high")
+    "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "diffusables seulement apres 20 h 30 sur les chaines cinema et les services de paiement "
+    "a la seance", "FR", "high")
 
 add("FR-SCH-007", "FR", "Arcom", "regulator_binding", 2, "pointer",
     "all_linear_tv", "scheduling_general", "V_-18",
@@ -706,7 +678,7 @@ add("FR-SCH-007", "FR", "Arcom", "regulator_binding", 2, "pointer",
     "art. 3 of FR-R1 delegates completely; the -18 hours are NOT stated in FR-R1.",
     "bright_line", "clear",
     "A model asked for -18 hours must follow this pointer. Answering by analogy with -16 ('later than 22:30') is wrong.",
-    "no", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "no", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-PRO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -715,7 +687,7 @@ add("FR-PRO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "No permitted time.", "prohibited",
     "None. No category, service type, hour or technical measure unlocks this.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-PRO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -723,7 +695,7 @@ add("FR-PRO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "PORNOGRAPHIC programmes DEPICTING UNDER-18s are banned from broadcast.",
     "No permitted time.", "prohibited", "None.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-PRO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -733,7 +705,7 @@ add("FR-PRO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "None. Distinguish from category V 'very great violence', which IS broadcastable within 00:00-05:00 on eligible services.",
     "bright_line", "clear",
     "The boundary between 'very great violence' (cat. V, schedulable) and 'extreme or gratuitous violence' (banned) is a genuine judgment line and a likely source of disagreement. Flag near-threshold cases.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR2, "2014-04-09", "open", "approved",
+    "yes", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-SIG-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -743,7 +715,7 @@ add("FR-SIG-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Under the original 2005 text category II was 5 minutes at the start; 2012-57 and 2014-17 changed this.",
     "bright_line", "clear",
     "Signage is a SEPARATE obligation from scheduling: a programme can be correctly scheduled and still breach by failing to display the pictogram. The C8 enforcement decision was precisely about signage.",
-    "no", "FR-R1 (as amd. FR-A1, FR-A2)", "art. 4", U_FR2, "2014-04-09", "open", "approved",
+    "no", "FR-R1c", "art. 4", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-SIG-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -752,7 +724,7 @@ add("FR-SIG-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "n/a - display obligation", "n/a",
     "Decret n. 90-174 on prior public warnings continues to apply.",
     "bright_line", "clear", "", "no",
-    "FR-R1 (as amd. FR-A1, FR-A2)", "art. 4", U_FR2, "2012-11-20", "open", "approved",
+    "FR-R1c", "art. 4", U_FR2, "2012-11-20", "open", "approved",
     "", "FR", "high")
 
 add("FR-SIG-003", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -760,7 +732,7 @@ add("FR-SIG-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "The classification must be made known to the public AT THE TIME OF BROADCAST, in TRAILERS, and in PROGRAMME SCHEDULES communicated to the press.",
     "n/a - information obligation", "n/a", "",
     "bright_line", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 4", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 4", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-TRL-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -768,7 +740,7 @@ add("FR-TRL-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Trailers must display the PICTOGRAM OF THE PROGRAMME'S CATEGORY THROUGHOUT the trailer, and must NOT contain scenes likely to offend young viewers.",
     "n/a - content and display obligation", "n/a", "",
     "bright_line", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-TRL-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -776,7 +748,7 @@ add("FR-TRL-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Category III (-12) trailers MAY NOT AIR CLOSE TO CHILDREN'S PROGRAMMES. Category II trailers near children's programmes require particular care.",
     "Placement restriction.", "not_near=children_programmes", "",
     "bright_line", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-TRL-003", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -785,7 +757,7 @@ add("FR-TRL-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Not before 20:30.", "not_before=20:30",
     "Note the trailer time (20:30) differs from the programme time on non-cinema channels (22:30).",
     "bright_line", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-MUS-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -795,7 +767,7 @@ add("FR-MUS-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "A deliberate special regime, not an oversight.",
     "bright_line", "clear",
     "Contrast with the UK, which applies the ordinary watershed plus detailed content thresholds to music videos. The SAME music video can yield a hard UK verdict and a soft French one.",
-    "no", "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "no", "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-MUS-002", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -806,7 +778,7 @@ add("FR-MUS-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "The wording is a preference ('de preference'), not a prohibition. Do not output this as a hard limit.",
     "judgment_based", "clear",
     "A key precision test: a model that renders this as 'prohibited before 22:00' is OVER-rating and misstating the legal force of the rule. Worth an explicit test case.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "yes", "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-MUS-003", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -814,7 +786,7 @@ add("FR-MUS-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Programmes containing music videos whose THEMES ARE NOT AIMED AT CHILDREN OR TEENAGERS should nonetheless carry a WARNING.",
     "n/a - information duty", "n/a;requires=warning", "",
     "judgment_based", "clear", "", "no",
-    "FR-R1 (as amd. FR-A2)", "art. 5", U_FR2, "2014-04-09", "open", "approved",
+    "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "", "FR", "high")
 
 add("FR-CV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -1057,7 +1029,7 @@ legend += [
     ["source_url", "Canonical URL (hyperlinked).", "For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."],
     ["valid_from", "Date the provision took effect.", "ISO date, or blank if undated guidance"],
     ["valid_to", "End of validity.", "open / unknown / ISO date"],
-    ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical, retained for versioning. NAMING: a rule_id in the 9xx range is a superseded version of the matching 0xx rule (FR-CLS-903 is the pre-2014 wording of FR-CLS-003)."],
+    ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical. NOTE: the manifest carries only CURRENT materials, so a superseded rule row would have no retrievable source; superseded wordings are recorded in the Open_Questions entry for the conflict that found them. A rule_id in the 9xx range is reserved for a historical version if one is ever carried again."],
     ["verbatim_quote", "Short quoted fragment that survived retrieval.", "INCOMPLETE - see 99_EXTRACTION_NOTES. Cannot yet support an automated quote-integrity check because no local copy of the source exists."],
     ["quote_lang", "Language of the quote.", "EN / FR"],
     ["extraction_confidence", "Confidence in this extraction.", "high / medium / low"],
@@ -1198,7 +1170,7 @@ oq += [
      "closed (quota numbers outstanding)", "no"],
     ["C-09", "Working C-02 exposed a substantive extraction error of our own. Delib. 2014-17 replaced the fifth alinea of art. 2 and BROADENED the category III definition, but the table still carried the 2005 wording: 'leur scenario recourt de facon repetee ET SYSTEMATIQUE' became 'le programme recourt de facon repetee'.",
      "FR-CLS-003 (corrected), FR-CLS-903 (superseded row added)",
-     "CLOSED 2026-11-06. FR-CLS-003 now carries the current wording. The pre-2014 wording is retained as FR-CLS-903, status=superseded, valid_to=2014-04-08.",
+     "CLOSED 2026-11-06. FR-CLS-003 now carries the current wording. Both wordings are recorded verbatim here: pre-2014 'leur scenario recourt de facon repetee ET SYSTEMATIQUE a la violence physique ou psychologique'; current 'notamment lorsque le programme recourt de facon repetee a la violence physique ou psychologique'. The superseded row FR-CLS-903 was later dropped when the manifest was reduced to current materials only - this entry is now the record of the old wording.",
      "None for the rule itself. The lesson matters more: the error survived because the English translation and the pre-2014 French text AGREED with each other, so cross-source corroboration did not catch it - only reading the amending instrument did. Treat any source whose amendment history is not explicit as suspect, and always diff the amending deliberation rather than trusting a page labelled 'consolidated'.",
      "closed", "no"],
     ["C-10", "Arcom's own FRENCH public page (FR-S1c) states the category III (-12) test as 'recourt de facon repetee a la violence physique ou psychologique, OU EVOQUE LA SEXUALITE ADULTE'. That adult-sexuality limb does not appear in the binding art. 2 wording we hold (as replaced by delib. 2014-17).",

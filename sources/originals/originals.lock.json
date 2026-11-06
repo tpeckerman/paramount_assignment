@@ -6,26 +6,12 @@
     "sha256": "1084da064eebf5bedc750caf8d3a6b6e101d8ee86d032cd08ab769ea7a20ebcf",
     "url": "https://www.cnc.fr/cinema/actualites/proteger-sans-censurer--la-classification-des-oeuvres-cinematographiques_1924881"
   },
-  "FR-R1b": {
-    "bytes": 13826,
-    "fetched_at": "2026-11-06T13:04:59+00:00",
-    "filename": "FR-R1b_reco_2005-5_arcom_en.txt",
-    "sha256": "f8e6feb1a6ed41718b043e8de178c445b6b5f06faf2df1b59be9adbc9bdffd4b",
-    "url": "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/notice-june-7-2005-television-service-editors-concerning-youth-signs-and-classification-programmes-younger-viewers"
-  },
   "FR-R1c": {
     "bytes": 15662,
     "fetched_at": "2026-11-06T13:05:00+00:00",
     "filename": "FR-R1c_reco_2005-5_arcom_fr.txt",
     "sha256": "b34c6cb495879b2027c0f6ee2009547cc69f50228cebb2a44657d6f78b82e146",
     "url": "https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes"
-  },
-  "FR-R1d": {
-    "bytes": 15662,
-    "fetched_at": "2026-11-06T13:05:03+00:00",
-    "filename": "FR-R1d_reco_2005-5_csa_fr.txt",
-    "sha256": "b34c6cb495879b2027c0f6ee2009547cc69f50228cebb2a44657d6f78b82e146",
-    "url": "https://csa.fr/Reguler/Espace-juridique/Les-textes-adoptes-par-l-Arcom/Les-deliberations-et-recommandations-de-l-Arcom/Recommandations-et-deliberations-du-CSA-relatives-a-la-protection-des-mineurs/Recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes"
   },
   "FR-R2": {
     "bytes": 12515,

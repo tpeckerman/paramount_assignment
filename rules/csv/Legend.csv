@@ -21,7 +21,7 @@
 "source_url","Canonical URL (hyperlinked).","For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."
 "valid_from","Date the provision took effect.","ISO date, or blank if undated guidance"
 "valid_to","End of validity.","open / unknown / ISO date"
-"status","Fitness as ground truth.","approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical, retained for versioning. NAMING: a rule_id in the 9xx range is a superseded version of the matching 0xx rule (FR-CLS-903 is the pre-2014 wording of FR-CLS-003)."
+"status","Fitness as ground truth.","approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical. NOTE: the manifest carries only CURRENT materials, so a superseded rule row would have no retrievable source; superseded wordings are recorded in the Open_Questions entry for the conflict that found them. A rule_id in the 9xx range is reserved for a historical version if one is ever carried again."
 "verbatim_quote","Short quoted fragment that survived retrieval.","INCOMPLETE - see 99_EXTRACTION_NOTES. Cannot yet support an automated quote-integrity check because no local copy of the source exists."
 "quote_lang","Language of the quote.","EN / FR"
 "extraction_confidence","Confidence in this extraction.","high / medium / low"
