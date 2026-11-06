@@ -21,6 +21,24 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
 
+def load_expect() -> dict:
+    """Per-document phrase that proves a stored file is the real thing.
+
+    Lives in expect.json rather than MANIFEST.csv so the CSV stays readable. It is not
+    optional: this is the check that caught a saved page of 12,493 characters that was
+    entirely site navigation and passed a length test.
+    """
+    import json as _json
+    p = pathlib.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    if not p.exists():
+        return {}
+    return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
+
+
+EXPECT = load_expect()
+
+
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ORIG = ROOT / "sources" / "originals"
 OUT = ROOT / "rules" / "SOURCE_WORKLIST.xlsx"
@@ -68,8 +86,8 @@ def state(r: dict) -> str:
     p = ORIG / r["target_filename"]
     if not p.exists():
         return "absent"
-    if p.suffix == ".txt" and r.get("expect"):
-        if fold(r["expect"]) not in fold(p.read_text(encoding="utf-8", errors="replace")):
+    if p.suffix == ".txt" and EXPECT.get(r["doc_id"], ""):
+        if fold(EXPECT.get(r["doc_id"], "")) not in fold(p.read_text(encoding="utf-8", errors="replace")):
             return "shell"
     return "verified"
 
@@ -154,7 +172,7 @@ for r in outstanding:
         PRIORITY.get(r["doc_id"], f"{TIER_RANK.get(r['tier'], 9) + 2} - {r['tier']}"),
         r["doc_id"], r["title"], r["_host"], r["_reason"], r["url"],
         r.get("landing_page", ""),
-        r["target_filename"], r["expect"], r["format"], r["tier"],
+        r["target_filename"], EXPECT.get(r["doc_id"], ""), r["format"], r["tier"],
         r["_state"], "",
     ])
 style_sheet(ws, [18, 10, 46, 24, 34, 58, 52, 40, 30, 11, 14, 10, 18])

@@ -42,6 +42,24 @@ import pathlib
 import re
 import sys
 
+def load_expect() -> dict:
+    """Per-document phrase that proves a stored file is the real thing.
+
+    Lives in expect.json rather than MANIFEST.csv so the CSV stays readable. It is not
+    optional: this is the check that caught a saved page of 12,493 characters that was
+    entirely site navigation and passed a length test.
+    """
+    import json as _json
+    p = pathlib.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    if not p.exists():
+        return {}
+    return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
+
+
+EXPECT = load_expect()
+
+
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 MANIFEST = ROOT / "sources/originals/MANIFEST.csv"
 OUT = ROOT / "sources/originals/incoming"
@@ -100,7 +118,7 @@ def main() -> int:
         page = ctx.new_page()
 
         for r in rows:
-            doc, url, want = r["doc_id"], r["url"], r["expect"]
+            doc, url, want = r["doc_id"], r["url"], EXPECT.get(r["doc_id"], "")
             dest = OUT / r["target_filename"]
             print(f"\n{doc:<8}{url[:84]}")
 

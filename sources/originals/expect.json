@@ -1,0 +1,25 @@
+{
+  "_comment": "Phrase that must appear in each stored document for it to count as genuinely retrieved. Checked on fetch, on manual import, and on every --check. This is the guard that caught a saved page containing 12,493 characters of pure site navigation, which passed a length check. Each phrase must IDENTIFY its document: several earlier values matched four or five files at once, and one matched only the wrong document because two unrelated guidance notes both said 'Issue Six'. Moved out of MANIFEST.csv so the CSV stays readable; it is not optional data.",
+  "expect": {
+    "UK-S1": "Prizes aimed at children must be appropriate to the age range",
+    "UK-S2": "who may come across it unawares",
+    "UK-S3": "abusive or derogatory treatment of individuals",
+    "UK-S4": "promote religious views or beliefs by stealth",
+    "UK-G1": "Observing the watershed on",
+    "UK-G2": "Issue Six: 30 March 2015",
+    "UK-G3": "Issue Twelve: 18 July 2017",
+    "UK-M1": "extend MDP beyond premium film content",
+    "UK-P1": "Issue 553",
+    "UK-L1": "no undue discrimination between advertisers",
+    "UK-L2": "2020 No. 1062",
+    "FR-R1c": "seize programmes par an",
+    "FR-R2": "can only be shown between midnight and 5am",
+    "FR-S1c": "Between midnight and 5 a.m.",
+    "FR-S2": "ni entre 5h et 24h",
+    "FR-L1": "nuire gravement a l'epanouissement physique",
+    "FR-V1": "touche pas a mon poste",
+    "FR-C1": "visa d'exploitation",
+    "EU-D1": "Member States shall take appropriate measures",
+    "EU-D1b": "changing market realities"
+  }
+}

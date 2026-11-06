@@ -31,6 +31,24 @@ import shutil
 import sys
 import unicodedata
 
+def load_expect() -> dict:
+    """Per-document phrase that proves a stored file is the real thing.
+
+    Lives in expect.json rather than MANIFEST.csv so the CSV stays readable. It is not
+    optional: this is the check that caught a saved page of 12,493 characters that was
+    entirely site navigation and passed a length test.
+    """
+    import json as _json
+    p = pathlib.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    if not p.exists():
+        return {}
+    return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
+
+
+EXPECT = load_expect()
+
+
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ORIGINALS = ROOT / "sources" / "originals"
 INCOMING = ORIGINALS / "incoming"
@@ -38,8 +56,7 @@ MANIFEST = ORIGINALS / "MANIFEST.csv"
 LOCKFILE = ORIGINALS / "originals.lock.json"
 
 FIELDS = ["doc_id", "country", "regulator", "title", "url", "landing_page",
-          "target_filename", "format", "tier", "download_status", "blocked_by",
-          "expect", "notes"]
+          "link_health", "target_filename", "format", "tier", "download_status"]
 
 TAGS = re.compile(rb"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.I | re.S)
 
@@ -123,7 +140,7 @@ def main() -> int:
             cand = [d for d in by_id if d.lower() in p.name.lower()]
             if not cand:
                 cand = [r["doc_id"] for r in rows
-                        if r.get("expect") and fold(r["expect"]) in folded]
+                        if EXPECT.get(r["doc_id"], "") and fold(EXPECT.get(r["doc_id"], "")) in folded]
 
         if not cand:
             unmatched.append((p.name, len(text)))
@@ -149,8 +166,8 @@ def main() -> int:
             cand = [cand[0]]
 
         r = by_id[cand[0]]
-        if r.get("expect") and fold(r["expect"]) not in folded:
-            rejected.append((p.name, f"does not contain {r['expect']!r} - wrong page, an "
+        if EXPECT.get(r["doc_id"], "") and fold(EXPECT.get(r["doc_id"], "")) not in folded:
+            rejected.append((p.name, f"does not contain {EXPECT.get(r["doc_id"], "")!r} - wrong page, an "
                                      f"error page, or a cookie wall ({len(text)} chars)"))
             continue
 
@@ -177,7 +194,6 @@ def main() -> int:
         r["format"] = fmt
         r["target_filename"] = target.name
         r["download_status"] = "verified"
-        r["blocked_by"] = ""
         lock[r["doc_id"]] = {
             "sha256": sha256_bytes(payload), "url": r["url"],
             "filename": target.name, "bytes": len(payload),

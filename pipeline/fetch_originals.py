@@ -41,6 +41,24 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+def load_expect() -> dict:
+    """Per-document phrase that proves a stored file is the real thing.
+
+    Lives in expect.json rather than MANIFEST.csv so the CSV stays readable. It is not
+    optional: this is the check that caught a saved page of 12,493 characters that was
+    entirely site navigation and passed a length test.
+    """
+    import json as _json, pathlib as _pl
+    p = _pl.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    if not p.exists():
+        return {}
+    return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
+
+
+EXPECT = load_expect()
+
+
+
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINALS = ROOT / "sources" / "originals"
 MANIFEST = ORIGINALS / "MANIFEST.csv"
@@ -157,7 +175,7 @@ def fetch(url: str, dest: Path, fmt: str = "pdf", expect: str = "",
 
 
 def _refresh_manifest_status() -> None:
-    """Rewrite download_status / blocked_by in MANIFEST.csv from what is on disk.
+    """Rewrite download_status / link_health in MANIFEST.csv from what is on disk.
 
     A hand-maintained status column goes stale and then lies, so --check always
     refreshes it. A row reads NEEDS_MANUAL_DOWNLOAD when the file is absent OR
@@ -187,16 +205,16 @@ def _refresh_manifest_status() -> None:
         # collected. A missing lock entry means unknown provenance, which is worth recording,
         # not grounds for declaring the file absent.
         if dest.exists():
-            shell = (dest.suffix == ".txt" and r.get("expect")
-                     and _fold(r["expect"]) not in _fold(
+            shell = (dest.suffix == ".txt" and EXPECT.get(r["doc_id"], "")
+                     and _fold(EXPECT.get(r["doc_id"], "")) not in _fold(
                          dest.read_text(encoding="utf-8", errors="replace")))
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD" if shell else "verified"
             if shell:
-                r["blocked_by"] = "stored file does not contain its expect phrase"
+                r["link_health"] = "PROBLEM - stored file lacks its expect phrase"
             elif r["doc_id"] not in lock:
-                r["blocked_by"] = "placed manually; no fetch hash recorded"
+                pass  # provenance noted via link_health below
             else:
-                r["blocked_by"] = ""
+                pass
             # Reconcile link_health. It was authored by hand before the documents arrived and
             # was never refreshed, so a row could read download_status=verified while
             # link_health still asserted "Cloudflare refuses automated clients" for a file
@@ -210,8 +228,8 @@ def _refresh_manifest_status() -> None:
         else:
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
             # Only report a cause we actually observed for this host; otherwise say so.
-            r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc,
-                                          "not downloaded; cause not established")
+            r["link_health"] = reasons.get(urlparse(r["url"]).netloc,
+                                           "not downloaded; cause not established")
     # Preserve every column the file actually has, in its existing order, and only append
     # ones we know about but the file lacks. A hardcoded list here silently DELETED the
     # link_health column when this ran on a GitHub runner: the rewrite dropped a column the
@@ -219,8 +237,7 @@ def _refresh_manifest_status() -> None:
     # to a writer that was told which fields to write. Any column added to the manifest in
     # future survives automatically.
     known = ["doc_id", "country", "regulator", "title", "url", "landing_page",
-             "target_filename", "format", "tier", "download_status", "blocked_by",
-             "expect", "notes"]
+             "link_health", "target_filename", "format", "tier", "download_status"]
     present = list(rows[0].keys()) if rows else known
     fields = present + [k for k in known if k not in present]
     buf = _io.StringIO()
@@ -284,8 +301,8 @@ def main() -> int:
             if not dest.exists():
                 print(f"  ABSENT   {r['doc_id']:8s} {r['target_filename']}")
                 absent += 1
-            elif (r.get("expect") and dest.suffix == ".txt"
-                  and _fold(r["expect"]) not in _fold(
+            elif (EXPECT.get(r["doc_id"], "") and dest.suffix == ".txt"
+                  and _fold(EXPECT.get(r["doc_id"], "")) not in _fold(
                       dest.read_text(encoding="utf-8", errors="replace"))):
                 print(f"  SHELL    {r['doc_id']:8s} {r['target_filename']}"
                       "  <- on disk but expected text absent: navigation, not the document")
@@ -314,7 +331,7 @@ def main() -> int:
 
         print(f"  fetch    {doc_id:8s} {r['url'][:78]}")
         ok, detail = fetch(r["url"], dest, r.get("format", "pdf"),
-                           r.get("expect", ""))
+                           EXPECT.get(r["doc_id"], ""))
         if ok:
             digest = sha256(dest)
             prior = lock.get(doc_id, {}).get("sha256")
