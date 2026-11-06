@@ -1,0 +1,53 @@
+name: verify rule table
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install openpyxl pypdf
+
+      - name: Schema and consistency checks
+        run: python pipeline/verify_rules.py
+
+      - name: Confirm the workbook matches the build script
+        run: |
+          # The workbook is a binary blob, so a stale commit is easy to miss.
+          # Rebuild it and fail if the regenerated CSV mirrors differ from what
+          # is committed - that is what makes a rule change reviewable in a PR.
+          cp rules/csv/Rules.csv /tmp/Rules.committed.csv
+          python pipeline/build_rules_table.py
+          if ! diff -q /tmp/Rules.committed.csv rules/csv/Rules.csv; then
+            echo "::error::rules/csv is out of date - re-run pipeline/build_rules_table.py and commit the result"
+            diff /tmp/Rules.committed.csv rules/csv/Rules.csv | head -40
+            exit 1
+          fi
+          echo "committed CSVs match the build script"
+
+      - name: Report source-document status
+        continue-on-error: true
+        run: |
+          # Informational only. sources/originals/ is intentionally empty in the
+          # repo (conflict C-04) so this is expected to report everything absent
+          # until someone runs fetch_originals.py and commits the lockfile.
+          python pipeline/fetch_originals.py --check || true
+
+      - name: Quote integrity
+        continue-on-error: true
+        run: |
+          # Becomes meaningful once sources/originals/ is populated. This is the
+          # check that catches silent extraction errors, so it is wired up now
+          # rather than later.
+          python pipeline/verify_rules.py --with-quotes || true

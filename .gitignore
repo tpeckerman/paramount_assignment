@@ -1,0 +1,22 @@
+# Fetched source documents are deliberately not committed: each copy should be
+# retrieved from the publisher and hash-recorded, not passed around. See
+# sources/originals/README.md. The MANIFEST and the lockfile ARE committed.
+sources/originals/*
+!sources/originals/README.md
+!sources/originals/MANIFEST.csv
+!sources/originals/originals.lock.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Spreadsheet lock files
+~$*.xlsx
+.~lock.*
+
+# OS
+.DS_Store
+Thumbs.db
