@@ -197,6 +197,16 @@ def _refresh_manifest_status() -> None:
                 r["blocked_by"] = "placed manually; no fetch hash recorded"
             else:
                 r["blocked_by"] = ""
+            # Reconcile link_health. It was authored by hand before the documents arrived and
+            # was never refreshed, so a row could read download_status=verified while
+            # link_health still asserted "Cloudflare refuses automated clients" for a file
+            # already on disk. A stale obstacle is worse than none: the next person reads it
+            # as current and does not try. Retrieval history is kept, the live claim is not.
+            if not r.get("link_health", "").startswith("OK"):
+                prior = r.get("link_health", "")
+                cause = prior.split(" - ")[0] if " - " in prior else prior.split(" ")[0]
+                r["link_health"] = ("OK - on disk and expect-checked"
+                                    + (f"; was {cause} before retrieval" if cause else ""))
         else:
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
             # Only report a cause we actually observed for this host; otherwise say so.
