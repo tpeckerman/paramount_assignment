@@ -1,6 +1,6 @@
 # Documents to download
 
-**15 outstanding, 5 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
+**14 outstanding, 6 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
 
 Network access from the workspace is open, but these publishers gate automated clients
 behind browser challenges or render the document body in JavaScript. Open each in a
@@ -36,11 +36,10 @@ check what landed.
 > only outstanding document that changes the rule table's status today (conflict C-03).
 > The other 23 convert `skipped` quote checks into `verified` ones - worth having, not blocking.
 
-## Required (10)
+## Required (9)
 
 | ✓ | doc | what it is | save as | why blocked | url |
 |---|---|---|---|---|---|
-| [ ] | `FR-R2` **← DO THIS ONE** | Recommandation 2004-7 du 15 decembre 2004 - category V progra... | `FR-R2_reco_2004-7_category_V.txt` | Connection reset on this path | [link](https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france) |
 | [ ] | `FR-S2` | solidarites.gouv.fr - Classification et signaletique de la te... | `FR-S2_solidarites_classification.txt` | Truncated response (IncompleteRead) | [link](https://solidarites.gouv.fr/classification-et-signaletique-de-la-television) |
 | [ ] | `FR-L1` | Loi 86-1067 du 30 septembre 1986 (arts. 1 and 15) | `FR-L1_loi_86-1067.txt` | Cloudflare JS challenge (403) | [link](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205) |
 | [ ] | `EU-D1` | AVMSD Directive 2010/13/EU article 6a (consolidated) | `EU-D1_avmsd_article_6a.txt` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/eudr/2010/13/article/6a) |
@@ -68,5 +67,6 @@ check what landed.
 | `UK-L1` | `UK-L1_communications_act_2003_s319.txt` | 18693 bytes |
 | `UK-L2` | `UK-L2_avms_regulations_2020_note.txt` | 12976 bytes |
 | `FR-R1c` | `FR-R1c_reco_2005-5_arcom_fr.txt` | 15662 bytes |
+| `FR-R2` | `FR-R2_reco_2004-7_category_V.txt` | 12515 bytes |
 | `FR-V1` | `FR-V1_arcom_mise_en_demeure_C8.pdf` | 251754 bytes |
 | `FR-C1` | `FR-C1_cnc_classification.txt` | 23415 bytes |

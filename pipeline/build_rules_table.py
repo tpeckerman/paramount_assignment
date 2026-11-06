@@ -72,7 +72,7 @@ add("UK-DEF-001", "UK", "Ofcom", "regulator_binding", 2, "definition_only",
     "bright_line", "clear",
     "Recorded explicitly because it is a known conflation trap (C-05).", "no",
     "UK-S1", "S1 definitions", U_S1, "2021-03-03", "open", "approved",
-    "Children are people under fifteen.", "EN", "high")
+    "Children are people under the age of fifteen years", "EN", "high")
 
 add("UK-DEF-002", "UK", "Ofcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "definition", "n/a",
@@ -131,7 +131,7 @@ add("UK-SCH-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "bright_line", "clear",
     "The single most important UK bright line. Note it is an OPEN-ENDED period, structurally unlike the French closed windows.",
     "no", "UK-S1", "Rule 1.4", U_S1, "2021-03-03", "open", "approved",
-    "the watershed applies from 21:00 to 05:30", "EN", "high")
+    "should not, in general, be shown before 2100 or after 0530", "EN", "high")
 
 add("UK-SCH-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "premium_subscription_film", "scheduling_general", "watershed_bound",
@@ -314,8 +314,8 @@ add("UK-FLM-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "MDP = a PIN protection system in place pre-2100 and post-0530, non-removable by the user, required on each entry, with accurate metadata. NOT available to free-to-air DTT (e.g. Freeview) or to channels not on a vertically integrated pay-TV platform. Excludes adult sex material. Does not cure R18 or refused-classification films.",
     "conditional", "clear",
     "service_type AND access_control are mandatory inputs. If absent, the correct output is a missing-information flag, NOT an assumption of free-to-air.",
-    "no", "UK-M1", "Rule 1.24", U_M1, "2019-01-01", "open", "approved",
-    "Mandatory daytime protection means there is a PIN protection system in place pre-2100 and post-0530.",
+    "no", "UK-S1", "Rule 1.24", U_M1, "2019-01-01", "open", "approved",
+    "PIN protection system in place pre-2100 and post-0530",
     "EN", "high")
 
 add("UK-FLM-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
@@ -481,6 +481,47 @@ add("UK-SCH-007", "UK", "Ofcom", "regulator_binding", 1, "yes",
     "yes", "UK-S1", "Rule 1.4 (meaning of the watershed)", U_S1, "2020-12-31", "open",
     "approved",
     "does not apply to channels when mandatory daytime protection", "EN", "high")
+
+# --- The six locking criteria in full. The predicted rules captured THAT a decoder lock
+# --- exists; the primary specifies it precisely enough to AUDIT against, which is the
+# --- difference between "a PIN is required" and a testable compliance standard.
+add("FR-CV-008", "FR", "Arcom", "regulator_binding", 2, "yes",
+    "cinema_channels; pay_per_view", "access_control", "V_-18",
+    "LOCKING SPECIFICATION for category V. The personal code must be AT LEAST FOUR DIGITS, "
+    "must NOT be 0000, must NOT be visible on screen, and must be used EXCLUSIVELY for this "
+    "purpose. The subscriber MUST NOT be able to deactivate the lock. It must re-arm on every "
+    "change of broadcast context - channel change, standby, decoder shutdown, decoder or card "
+    "change - activate for each new category V programme, and stay synchronised for its whole "
+    "duration.",
+    "Not a time rule. These are the conditions the 00:00-05:00 permission depends on.",
+    "n/a;requires=decoder_lock;standard=four_digits_not_0000;standard=cannot_be_deactivated",
+    "The French analogue of the UK 'cannot be removed by the user' test, but far more "
+    "prescriptive. A service meeting the UK standard does NOT automatically meet this one: "
+    "the exclusivity requirement - the code may not double as a general parental PIN - and "
+    "the re-arm-on-context-change requirement have no UK equivalent.",
+    "bright_line", "clear",
+    "Engineering compliance, not editorial. Verify with the platform operator rather than the "
+    "scheduling team: a broadcaster may not know whether its distributor's decoder satisfies "
+    "criteria (e) or (f).",
+    "yes", "FR-R2", "notice of 15 Dec 2004, II.B.1(a)-(f)", U_FRV, "2004-12-15", "open",
+    "approved",
+    "must include at least four digits (except 0000)", "EN", "high")
+
+add("FR-CV-009", "FR", "Arcom", "regulator_binding", 2, "yes",
+    "cinema_channels; pay_per_view", "scope", "V_-18",
+    "COMPLIANCE DEADLINES HAVE ALL ELAPSED: criteria (a)-(d) by 1 Jan 2005, (f) by 1 Jan 2006, "
+    "(e) by 1 Jan 2008, and the transitional regime ended 1 Jan 2008. The scheme is fully in "
+    "force with NO transitional relief available. Publishers and distributors must also report "
+    "to the regulator ANNUALLY on implementation.",
+    "Not a time rule.",
+    "n/a;requires=annual_report",
+    "Recorded because those elapsed dates were the specific reason this instrument's currency "
+    "was doubted. Elapsed means FULLY IN FORCE, not expired - the opposite of the worry. An "
+    "old instrument whose deadlines have all passed is the strongest kind of current law.",
+    "bright_line", "clear", "", "no",
+    "FR-R2", "notice of 15 Dec 2004, II.B.2 and III.B", U_FRV, "2004-12-15", "open",
+    "approved",
+    "a report on the implementation of the measures taken", "EN", "high")
 
 add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "religion", "audience_based",
@@ -924,9 +965,9 @@ add("FR-CV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "ELIGIBILITY GATE: only services with special access conditions may broadcast category V - 'cinema' channels, services with a high production-contribution commitment equivalent to cinema channels, or pay-per-view services - and only where access is limited so that under-18s cannot reach the content. Requests are EXAMINED INDIVIDUALLY by the regulator.",
     "Eligibility precondition, not a time rule.", "gate=service_eligibility",
     "On all other channels category V is TOTALLY PROHIBITED (see FR-CV-003).",
-    "conditional", "unverified", C03, "yes",
-    "FR-R2", "2004-7 I.A", U_FRV, "2004-12-23", "unknown", "unverified",
-    "", "FR", "medium")
+    "conditional", "clear", "VERIFIED against the primary text 2026-11-06. Quotes are from Arcom's own ENGLISH translation, which warns that only the original French is authentic - a French-qualified reviewer should re-check them against it.", "yes",
+    "FR-R2", "notice of 15 Dec 2004, I.A", U_FRV, "2004-12-15", "open", "approved",
+    "subject to special access conditions", "EN", "high")
 
 add("FR-CV-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; high_production_commitment_channels; pay_per_view",
@@ -934,18 +975,18 @@ add("FR-CV-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Category V (-18) programmes may be broadcast only BETWEEN 00:00 (MIDNIGHT) AND 05:00.",
     "Closed window 00:00-05:00.", "window=00:00-05:00",
     "Conditional on the FR-CV-001 eligibility gate being satisfied first, plus locking (FR-CV-004) and signage.",
-    "bright_line", "unverified",
+    "bright_line", "clear",
     C03 + " Corroborated by the Arcom public summary page ('between midnight and 5 a.m.'), which raises confidence in the figure even though the source text's currency is unconfirmed.",
-    "yes", "FR-R2", "2004-7", U_FRV, "2004-12-23", "unknown", "unverified",
-    "Between midnight and 5am", "EN", "medium")
+    "yes", "FR-R2", "notice of 15 Dec 2004, I.B", U_FRV, "2004-12-15", "open", "approved",
+    "can only be shown between midnight and 5am", "EN", "high")
 
 add("FR-CV-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "free_to_air; other_than_cinema_channels", "scheduling_general", "V_-18",
     "On services that are NOT eligible under FR-CV-001, category V programmes are subject to a TOTAL PROHIBITION ON BROADCAST.",
     "No permitted time on non-eligible services.", "prohibited",
     "None.",
-    "bright_line", "unverified", C03, "yes",
-    "FR-R2 + FR-S2", "2004-7 I.A", U_FRV, "2004-12-23", "unknown", "unverified",
+    "bright_line", "clear", "SECONDARY-SOURCED INFERENCE. The proof quote comes from a government summary page, not the primary instrument. The primary says only that the regulator 'only authorizes' eligible services; a total ban elsewhere follows reasonably from that but remains an INFERENCE. A French regulatory lawyer should confirm it before this row is used to refuse a broadcast.", "yes",
+    "FR-R2 + FR-S2", "2004-7 I.A", U_FRV, "2004-12-15", "open", "approved",
     "Sauf sur les chaines autorisees, ces programmes font l'objet d'une interdiction totale de diffusion.",
     "FR", "medium")
 
@@ -954,9 +995,9 @@ add("FR-CV-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "DIGITAL LOCKING: category V must be locked at the DECODER level requiring a personal code, with an on-screen lock message. The lock must reactivate when the broadcast context changes and stay synchronised with the programme. The code must be at least FOUR DIGITS, not 0000, hidden when entered, used only for this purpose, and IMPOSSIBLE FOR SUBSCRIBERS TO DISABLE.",
     "n/a - access-control obligation", "requires=decoder_lock",
     "Analogue services: from 1 Jan 2006 received WITHOUT access unless the subscriber opts in in writing.",
-    "bright_line", "unverified", C03, "yes",
-    "FR-R2", "2004-7 I.B", U_FRV, "2004-12-23", "unknown", "unverified",
-    "This program is locked because it is harmful to persons under 18", "EN", "medium")
+    "bright_line", "clear", "VERIFIED against the primary text 2026-11-06. Quotes are from Arcom's own ENGLISH translation, which warns that only the original French is authentic - a French-qualified reviewer should re-check them against it.", "yes",
+    "FR-R2", "notice of 15 Dec 2004, II.B.1", U_FRV, "2004-12-15", "open", "approved",
+    "This program is locked because it is harmful to persons under 18", "EN", "high")
 
 add("FR-CV-005", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "pay_tv_bundles", "commercial_conditions", "V_-18",
@@ -965,8 +1006,8 @@ add("FR-CV-005", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "A channel/distributor-level obligation.",
     "bright_line", "out_of_scope_for_asset_decision",
     "Not answerable from a single asset description. Must not be attempted by a per-asset prompt. " + C03,
-    "yes", "FR-R2", "2004-7 I.C", U_FRV, "2004-12-23", "unknown", "unverified",
-    "", "FR", "medium")
+    "yes", "FR-R2", "notice of 15 Dec 2004, I.D", U_FRV, "2004-12-15", "open", "approved",
+    "more than 208 category V programs per year", "EN", "high")
 
 add("FR-CV-006", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "pay_tv_bundles", "commercial_conditions", "V_-18",
@@ -974,17 +1015,17 @@ add("FR-CV-006", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "n/a - commercial rule", "n/a", "Distributor-level.",
     "bright_line", "out_of_scope_for_asset_decision",
     "Recorded for completeness only. " + C03, "yes",
-    "FR-R2", "2004-7 I.C/D", U_FRV, "2004-12-23", "unknown", "unverified",
-    "", "FR", "medium")
+    "FR-R2", "notice of 15 Dec 2004, I.C and I.D", U_FRV, "2004-12-15", "open", "approved",
+    "may only be sold individually", "EN", "high")
 
 add("FR-CV-007", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; pay_per_view", "signage", "V_-18",
     "Broadcasts of category V must display the -18 rating AND a WARNING about harm to minors and the legal sanctions under ARTICLE 227-22 of the French Penal Code. Distributors/publishers must regularly remind subscribers how the lock works; contracts must include this information; annual implementation reports go to the regulator.",
     "n/a - display and information obligation", "requires=on_screen_warning",
     "The penal-code warning is specific to category V.",
-    "bright_line", "unverified", C03, "yes",
-    "FR-R2", "2004-7", U_FRV, "2004-12-23", "unknown", "unverified",
-    "", "FR", "medium")
+    "bright_line", "clear", "VERIFIED against the primary text 2026-11-06. Quotes are from Arcom's own ENGLISH translation, which warns that only the original French is authentic - a French-qualified reviewer should re-check them against it.", "yes",
+    "FR-R2", "notice of 15 Dec 2004, III.A", U_FRV, "2004-12-15", "open", "approved",
+    "article 227-22 of the French penal code", "EN", "high")
 
 add("FR-CNV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "per_channel", "channel_override", "n/a",
@@ -1308,11 +1349,11 @@ oq += [
      "None yet. Found 2026-11-06 while searching for the Legifrance id of delib. 2014-17.",
      "CLOSED 2026-11-06. The French primary text was downloaded and searched: 'sexualite' does not occur anywhere in the binding recommendation. The limb is a PRACTICE GLOSS on Arcom's public page, not binding text. The binding -12 trigger is repeated violence. Arcom may still apply the gloss when it classifies, so borderline sexual-content cases should be flagged for review rather than cleared - but the rule table should not encode an independent adult-sexuality trigger.",
      "closed", "no"],
-    ["C-03", "Recommandation 2004-7 - the sole source of the French -18 hours - dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed. The CSA->Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it.",
-     "FR-CV-001 to FR-CV-007",
-     "Still open. All category V rows remain unverified. Attempted 2026-11-06: the Arcom page for reco. 2004-7 was fetched but returned 12,493 characters of pure site NAVIGATION and no rule text - it renders its body via JavaScript. The fetcher now detects this (per-document `expect` assertion) instead of storing the shell as a source copy.",
-     "Obtain the real text: use the page's Telecharger/Imprimer PDF, or the JORF of 23 December 2004, and set format=pdf in the manifest. Then confirm (a) that the 00:00-05:00 window is still in force, and (b) whether the 2021 AVMSD transposition decree altered the category V regime. This is now the main blocker on the French side.",
-     "local expert", "YES"],
+    ["C-03", "French category V (-18) window rested on a 2004 instrument that could not be read",
+     "FR-CV-001 to FR-CV-009, all now approved",
+     "CLOSED 2026-11-06. The instrument is the Arcom notice of 15 December 2004. Its page body is drawn by JavaScript, so no fetch could ever retrieve it - every automated attempt returned an empty shell, and one early attempt returned 12,493 characters of pure site navigation that passed a naive length check. The user saved it from a browser, where the text had already rendered. CONFIRMED VERBATIM: 'Category V programs can only be shown between midnight and 5am.' The eligibility gate, the 208-per-year commercial threshold, the on-screen warning with article 227-22, and the six locking criteria are all confirmed against the primary.",
+     "Six of the seven predicted rules verified verbatim; the rows had also carried the WRONG DATE for the instrument (23 rather than 15 December), now corrected. FR-CV-003 is SOUND BUT WEAKLY SOURCED - its proof quote is from a government summary while the primary says only that the regulator 'only authorizes' eligible services, so a total ban elsewhere is an inference, flagged in-row for a French regulatory lawyer. The doubt that created C-03 resolves in the OPPOSITE direction from the one feared: the deadlines have elapsed, meaning fully in force with no transitional relief. FINALLY, the stored text is Arcom's own ENGLISH translation, which warns that only the original French is authentic - every quote here is EN and a French-qualified reviewer must re-check them.",
+     "closed", "no"],
     ["C-14", "UK access-control rows cite guidance that predates the 2018 MDP restructure",
      "UK-ACC-002, UK-ACC-003 (demoted to unverified)",
      "OPEN, and self-inflicted on 2026-11-06. UK-G2 is Guidance Notes Issue Six of 30 March 2015. It describes the PRE-2018 regime: premium subscription film services capped at BBFC 15, pay-per-view at 18, the whole framing being 'mandatory restricted access'. Ofcom's statement of 5 November 2018 (UK-M1) restructured this, extending MANDATORY DAYTIME PROTECTION to scheduled television channels and permitting films up to BBFC 18 at any time of day behind the gate. So these two rows rest on guidance written about a rule structure that no longer stands.",
