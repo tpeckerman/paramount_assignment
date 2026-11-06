@@ -42,6 +42,34 @@ If you are running inside a sandboxed session, the alternative is to add those d
 **claude.ai → Settings → Capabilities → allowed domains**, after which the fetch works from
 there too.
 
+## Everything here is a text or PDF file
+
+No HTML, no JavaScript app pages. `MANIFEST.csv` carries a `format` column:
+
+| format | behaviour |
+|---|---|
+| `pdf` | fetched and stored as-is. Rejected if the bytes are not actually a PDF. |
+| `html2txt` | the page is fetched and **extracted to readable `.txt`** — scripts and styles dropped, tags stripped, entities unescaped. |
+
+The `url` column still holds the canonical page, because that is what a reviewer should
+cite. Only what lands on disk is converted.
+
+Three entries use the publisher's direct PDF endpoint: `UK-L1` and `EU-D1` via
+legislation.gov.uk `/data.pdf`, and `EU-D1b` via EUR-Lex's CELEX PDF URL. Ofcom's
+documents were already PDFs. Current split: **12 PDF, 17 text.**
+
+### The JavaScript-shell trap
+
+Légifrance and Arcom serve their legal texts through a JS front end, so a naive fetch can
+return a 2 KB shell with no rule text in it — and store it as though it were the source.
+That would quietly defeat the whole point of having local copies.
+
+So the fetcher treats an extraction under **2,000 characters** as a *failure*, prints what
+it got, and tells you to use the page's *Télécharger / Imprimer* PDF instead. The entries
+most likely to hit this are flagged in `notes`: `FR-R1`, `FR-L1`, `FR-R1c`, `FR-R1d`,
+`FR-A1`, `FR-A2b`, `FR-S1c`. If one does, save the PDF by hand into this folder under the
+row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
+
 ## What lands here
 
 `MANIFEST.csv` lists 28 documents in three tiers:

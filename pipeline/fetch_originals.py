@@ -11,6 +11,11 @@ rules are decided against. Superseded originals and amending instruments are fet
 only with --include-historical; they exist so you can diff what an amendment changed,
 which is how conflict C-09 was caught.
 
+Every entry resolves to a TEXT or PDF file on disk. Entries with format=pdf are
+stored as fetched; entries with format=html2txt are extracted to readable .txt,
+because a JavaScript shell is useless as a source copy and cannot be searched by
+the quote-integrity check. A short extraction is reported as a failure.
+
 Writes each file to sources/originals/ and records its sha256 in
 sources/originals/originals.lock.json. That lockfile is what makes the
 quote-integrity check in verify_rules.py possible, and what tells you a source
@@ -30,6 +35,7 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -59,7 +65,30 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def fetch(url: str, dest: Path, timeout: int = 60) -> tuple[bool, str]:
+TAG = re.compile(rb"<(script|style|noscript)\b[^>]*>.*?</\1>",
+                 re.IGNORECASE | re.DOTALL)
+
+
+def html_to_text(raw: bytes) -> str:
+    """Crude but dependency-free: drop scripts/styles, strip tags, unescape."""
+    import html as _html
+    body = TAG.sub(b" ", raw)
+    txt = body.decode("utf-8", "replace")
+    txt = re.sub(r"<br\s*/?>|</p>|</div>|</li>|</tr>|</h[1-6]>", "\n", txt,
+                 flags=re.IGNORECASE)
+    txt = re.sub(r"<[^>]+>", " ", txt)
+    txt = _html.unescape(txt)
+    txt = re.sub(r"[ \t\xa0]+", " ", txt)
+    txt = re.sub(r"\n\s*\n\s*\n+", "\n\n", txt)
+    return txt.strip()
+
+
+# Below this many characters of extracted text, the page is almost certainly a
+# JavaScript shell rather than the document. Legifrance and Arcom both do this.
+MIN_TEXT_CHARS = 2000
+
+
+def fetch(url: str, dest: Path, fmt: str = "pdf", timeout: int = 60) -> tuple[bool, str]:
     req = urllib.request.Request(url, headers={
         "User-Agent": UA,
         "Accept": "text/html,application/pdf,application/xhtml+xml,*/*",
@@ -79,12 +108,21 @@ def fetch(url: str, dest: Path, timeout: int = 60) -> tuple[bool, str]:
     if not body:
         return False, "empty response"
 
-    # A Legifrance/Arcom page served as a JS shell is useless as a source copy.
-    if dest.suffix == ".pdf" and not body.startswith(b"%PDF"):
-        return False, f"not a PDF (content-type {ctype!r}, {len(body)} bytes)"
+    if fmt == "pdf":
+        if not body.startswith(b"%PDF"):
+            return False, f"not a PDF (content-type {ctype!r}, {len(body)} bytes)"
+        dest.write_bytes(body)
+        return True, f"PDF, {len(body)} bytes"
 
-    dest.write_bytes(body)
-    return True, f"{len(body)} bytes, {ctype}"
+    # html2txt: store readable TEXT, not markup. Everything in this folder is
+    # text or PDF, so the quote-integrity check can always search it.
+    text = html_to_text(body)
+    dest.write_text(text, encoding="utf-8")
+    if len(text) < MIN_TEXT_CHARS:
+        return False, (f"only {len(text)} chars of text extracted - almost certainly a "
+                       f"JavaScript shell, not the document. Saved anyway for inspection; "
+                       f"use the page's Telecharger/PDF link instead and set format=pdf")
+    return True, f"text, {len(text)} chars (from {len(body)} bytes of HTML)"
 
 
 def main() -> int:
@@ -160,7 +198,7 @@ def main() -> int:
             continue
 
         print(f"  fetch    {doc_id:8s} {r['url'][:78]}")
-        ok, detail = fetch(r["url"], dest)
+        ok, detail = fetch(r["url"], dest, r.get("format", "pdf"))
         if ok:
             digest = sha256(dest)
             prior = lock.get(doc_id, {}).get("sha256")

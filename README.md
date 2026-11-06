@@ -66,6 +66,8 @@ python pipeline/fetch_originals.py --include-historical   # + superseded origina
 `MANIFEST.csv` carries a `version_status` column: `current`, `original_superseded`,
 `amending_instrument`. Only `current` is fetched unless you ask for more.
 
+Every entry resolves to a **text or PDF file** — never an HTML app page. A `format` column selects the behaviour: `pdf` is stored as fetched, `html2txt` is extracted to readable `.txt`. Currently 12 PDF, 17 text. Because Légifrance and Arcom serve their texts through a JavaScript front end, an extraction under 2,000 characters is treated as a **failure** rather than silently stored — see `sources/originals/README.md`.
+
 The historical copies are not decoration — they exist for exactly one job, **diffing what an
 amendment changed**, and that job caught a real error. The French category III *hours* are
 unchanged since 2005, so the 2005 original and the 2014 consolidated text read identically on
