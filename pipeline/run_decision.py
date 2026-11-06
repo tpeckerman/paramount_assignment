@@ -45,6 +45,18 @@ DECISION_COLS = [
 ALWAYS_INCLUDE = {
     "scheduling_general", "definition", "classification_scheme", "legal_basis",
     "scope", "signage", "film_carryover",
+    # Added after test case TC-02 failed. These categories describe HOW a programme may be
+    # delivered, not what is in it, so no content description ever mentions them - which meant
+    # the category filter dropped them every single time. UK-ACC-001, the rule that DEFINES
+    # mandatory restricted access, never reached the decision engine, while the rules granting
+    # an any-hour permission *conditional on that access* did. The engine could therefore read
+    # "any_time; requires=mandatory_daytime_protection" with no row explaining what the
+    # requirement means or how to tell whether it is satisfied.
+    #
+    # The general lesson, which matters more than the fix: filtering rules by the categories
+    # present in the CONTENT silently removes every rule about DELIVERY. Any future country's
+    # access, signage, warning and trailer rules must be force-included for the same reason.
+    "access_control", "audience_information", "trailers",
 }
 
 

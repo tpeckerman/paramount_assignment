@@ -258,6 +258,27 @@ def check_quotes(rows: list[dict]) -> list[str]:
     return bad
 
 
+# Controlled vocabulary for service_type. Added after test TC-02 found that two spellings of
+# the same service ("premium_subscription" vs "premium_subscription_film") caused the rule
+# DEFINING mandatory restricted access to be silently dropped from every decision slice that
+# asked for the other spelling. Nothing failed - the slice was simply missing a rule, which is
+# the worst kind of defect because the output still looks complete.
+SERVICE_VOCAB = {
+    "all_linear_tv", "all_avms", "bbc_odps", "free_to_air", "premium_subscription_film",
+    "pay_per_view", "cinema_channels", "other_than_cinema_channels", "music_channels",
+    "scheduled_channels_with_mdp", "high_production_commitment_channels", "pay_tv_bundles",
+    "per_channel",
+}
+
+
+def check_service_vocab(rows):
+    bad = []
+    for r in rows:
+        for tok in (x.strip() for x in r["service_type"].split(";")):
+            if tok and tok not in SERVICE_VOCAB:
+                bad.append((r["rule_id"], tok))
+    return bad
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -272,6 +293,8 @@ def main() -> int:
     print(f"loaded {len(rows)} rules from {WORKBOOK.relative_to(ROOT)}")
 
     problems = check(rows) + check_manifest_coverage(rows)
+    problems += [f"{rid}: service_type '{tok}' is not in the controlled vocabulary"
+                 for rid, tok in check_service_vocab(rows)]
     if args.with_quotes:
         problems += check_quotes(rows)
 

@@ -124,7 +124,7 @@ add("UK-SCH-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "EN", "high")
 
 add("UK-SCH-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "free_to_air; all_linear_tv_default", "scheduling_general", "watershed_bound",
+    "free_to_air; all_linear_tv", "scheduling_general", "watershed_bound",
     "Television broadcasters must observe the watershed. Material unsuitable for children should not, in general, be shown before 21:00 or after 05:30.",
     "Watershed 21:00-05:30.", "window=21:00-05:30",
     "Does NOT apply to BBC ODPS. Displaced by 20:00 for unprotected premium subscription film services (UK-SCH-003) and disapplied where mandatory daytime protection is in place (UK-FLM-003).",
@@ -245,7 +245,7 @@ add("UK-SEX-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "EN", "high")
 
 add("UK-SEX-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription; pay_per_view", "sexual_content", "restricted_window",
+    "premium_subscription_film; pay_per_view", "sexual_content", "restricted_window",
     "'Adult sex material' (strong sexual images/language broadcast for the primary purpose of sexual arousal) may only be broadcast between 22:00 and 05:30, on premium subscription or pay-per-view/night services operating with MANDATORY RESTRICTED ACCESS.",
     "22:00-05:30 only, and only on eligible services with mandatory restricted access.",
     "window=22:00-05:30;requires=mandatory_restricted_access",
@@ -307,7 +307,7 @@ add("UK-FLM-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "", "EN", "high")
 
 add("UK-FLM-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription_film; pay_per_view; scheduled_channels_on_vertically_integrated_pay_platforms",
+    "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp",
     "film_carryover", "any_time_with_protection",
     "Where MANDATORY DAYTIME PROTECTION is in place, programmes unsuitable for children that would usually be scheduled post-watershed, and films up to BBFC 18 or equivalent, may be broadcast AT ANY TIME OF DAY. Clear information must be provided about the content and about the protection in place.",
     "Any time of day.", "any_time;requires=mandatory_daytime_protection",
@@ -401,7 +401,7 @@ add("UK-HAT-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
 # --- Without UK-ACC-001 the token `requires=mandatory_daytime_protection` is an unexplained
 # --- string and the any-hour permission it gates cannot be audited.
 add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
+    "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
     "DEFINITION. 'Mandatory restricted access' means a PIN-protected system, or other "
     "equivalent protection, which CANNOT BE REMOVED BY THE USER and which restricts access "
     "solely to those authorised to view.",
@@ -416,7 +416,7 @@ add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "which cannot be removed by the user", "EN", "high")
 
 add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
-    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
+    "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
     "IMPLEMENTATION. Restricted access must be provided AS THE DEFAULT. A service may not "
     "satisfy the requirement by offering a PIN the viewer has to set up; the gate must be on "
     "before the viewer arrives.",
@@ -431,7 +431,7 @@ add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
     "as the default, rather than requiring PIN setting by the viewer", "EN", "medium")
 
 add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "audience_information", "n/a",
+    "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp", "audience_information", "n/a",
     "CONDITIONS PRECEDENT to the any-hour film permissions: audience information about "
     "programme content sufficient to help adults assess suitability for children must be "
     "provided, and a detailed billing system must be in place.",

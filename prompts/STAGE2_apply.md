@@ -58,9 +58,18 @@ come apart in both directions:
 Therefore you run **two independent passes** and you are forbidden from deriving either from
 the other:
 
-> **Pass A — classification.** Which category/label, if any, does this jurisdiction assign?
-> **Pass B — scheduling.** Which hours are permitted, from the scheduling rules, applied to
-> the observations and the service type?
+> **Pass A — classification.** Which category or label, if any, does this jurisdiction
+> assign? For the UK linear TV the honest answer is "none".
+> **Pass B — scheduling.** Which hours are permitted, from the scheduling rules alone,
+> applied to the observations and the service type?
+> **Pass C — other restrictions.** What else is required or allowed: access control (PIN),
+> on-screen signage, audience warnings, adjacency limits, trailer handling, quota caps,
+> service eligibility, and any derogation or exemption that makes the answer MORE permissive.
+
+Run all three. Then check Pass C against Pass B, because a Pass C measure can change or
+remove the Pass B answer: a PIN gate that is on by default can disapply the watershed
+entirely. If you find such a measure, report BOTH states — the hours without it and the
+hours with it — and say which applies to the service in front of you.
 
 Then you *compare* them and report the comparison. If Pass B's answer looks surprising given
 Pass A's, that is usually correct and is exactly the information the user needs. Never
@@ -123,9 +132,20 @@ might apply but the facts are absent, say so rather than assuming the general ca
         "machine": "the time_rule_machine token(s) relied on",
         "day_or_service_variation": "string or none",
         "basis": [{"rule_id": "...", "clause_ref": "...", "why": "..."}],
-        "derived_independently_of_classification": true
+        "derived_independently_of_classification": true,
+        "hours_if_no_technical_measure": "the answer with no PIN/access control in place",
+        "hours_if_technical_measure_in_place": "the answer when one is, or n/a"
       },
-      "rating_vs_hours_note": "state plainly whether the two align, and if not, why not",
+      "other_restrictions": [
+        {
+          "kind": "access_control | signage | audience_information | adjacency | trailer | quota | service_eligibility | derogation | exemption",
+          "requirement": "what must be done, or what is allowed",
+          "is_condition_precedent": "true if the hours above depend on it",
+          "basis": [{"rule_id": "...", "clause_ref": "...", "why": "..."}]
+        }
+      ],
+      "allowances_found": "derogations or exemptions that make the answer MORE permissive, or none",
+      "axis_interaction_note": "state plainly how the three relate: whether the rating predicts the hours (usually it does not), and whether any other restriction changes or removes the hours answer",
       "driving_observations": ["o3", "o7"],
       "reasoning": "prose a compliance officer can audit, every claim tied to a rule_id",
       "confidence": "high | medium | low",
@@ -160,6 +180,13 @@ might apply but the facts are absent, say so rather than assuming the general ca
   a different hour on a cinema or pay-per-view service, and the weekday moves it again. So a
   single unqualified French answer is almost always wrong. Branch across the plausible service
   types and label which answer belongs to which.
+- **Never report hours without their conditions.** If the permitted hours depend on a PIN,
+  signage or any other measure, the condition travels with the answer in the same sentence.
+  "Any time" alone, where the table said `any_time; requires=mandatory_daytime_protection`,
+  is the single most dangerous output this system can produce.
+- **Report allowances, not only prohibitions.** A system that models only restrictions
+  systematically over-restricts, which in a licensing context costs distribution for no
+  compliance benefit. If a derogation or exemption applies, say so.
 - **Prefer flagging to guessing.** An output marked for review is useful. A confident wrong
   answer about what may air before 21:00 is the failure mode this whole system exists to
   prevent.
