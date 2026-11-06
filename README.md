@@ -54,6 +54,30 @@ together with the regenerated CSVs so the diff is reviewable.
 
 ---
 
+## Versions: current only, by default
+
+The rules are decided against the **text in force now**, so that is what the pipeline fetches:
+
+```bash
+python pipeline/fetch_originals.py                       # current versions only (default)
+python pipeline/fetch_originals.py --include-historical   # + superseded originals and amending instruments
+```
+
+`MANIFEST.csv` carries a `version_status` column: `current`, `original_superseded`,
+`amending_instrument`. Only `current` is fetched unless you ask for more.
+
+The historical copies are not decoration — they exist for exactly one job, **diffing what an
+amendment changed**, and that job caught a real error. The French category III *hours* are
+unchanged since 2005, so the 2005 original and the 2014 consolidated text read identically on
+scheduling. That agreement is why an amended art. 2 *definition* slipped past review (**C-09**):
+the parts I was checking matched, so nothing looked wrong. Only reading the amending deliberation
+showed that `répétée **et systématique**` had become `répétée`.
+
+Related provenance rule, now enforced in the table: a row stating **current** law cites the
+**current consolidated** text. The JORF/original-publication URL is cited only on superseded
+(`9xx`) rows, where it is the correct source. Citing an original for current law reads as
+authoritative while silently omitting later amendments.
+
 ## Two caveats that change how this may be used
 
 ### 1. The source files are extracts, not official text

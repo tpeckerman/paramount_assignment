@@ -39,7 +39,8 @@ U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcas
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
 U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
-U_FR1 = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000446802"
+U_FR1 = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000446802"  # 2005 ORIGINAL
+U_FR1C = ("https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes")  # CURRENT consolidated French text - cite this for current law
 U_FR2 = "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/deliberation-no-2014-17-march-5-2014-amending-notice-no-2005-5-june-7-2005-television-service-editors-concerning-youth-signage-and-classification-programmes"
 U_FRV = "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france"
 U_FRL = "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205"
@@ -522,7 +523,7 @@ add("FR-CLS-001", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "No restriction.", "none",
     "The editor classifies via an internal commission de visionnage.",
     "bright_line", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "categorie I (aucune signaletique) : les programmes pour tous publics", "FR", "high")
 
 add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -530,7 +531,7 @@ add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "Category II (-10) - programmes CERTAIN SCENES of which are liable to shock minors under 10.",
     "See FR-SCH-001.", "see=FR-SCH-001", "",
     "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -547,8 +548,14 @@ add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "'le programme recourt de facon repetee'. So (a) repetition alone now suffices, systematic "
     "use is no longer required, and (b) the test is the programme as a whole, not just its "
     "scenario. An extraction working from the pre-2014 wording UNDER-RATES. The superseded "
-    "wording is kept as FR-CLS-903.",
-    "no", "FR-R1 (as amd. FR-A2)", "art. 2 al. 5", U_FR1, "2014-04-09", "open", "approved",
+    "wording is kept as FR-CLS-903. Confirmed by three independent French sources (C-09). "
+    "OPEN (C-10): Arcom's own FRENCH public page (FR-S1c) states the -12 test as '...recourt "
+    "de facon repetee a la violence physique ou psychologique, OU EVOQUE LA SEXUALITE ADULTE'. "
+    "That adult-sexuality limb is NOT in the binding wording we hold. It is either a later "
+    "amendment we have not located or a practice gloss. If binding it would pull adult-sexuality "
+    "content into -12 independently of violence, so it must be resolved before this row is "
+    "relied on for sexual-content cases.",
+    "yes", "FR-R1 (as amd. FR-A2)", "art. 2 al. 5", U_FR1C, "2014-04-09", "open", "approved",
     "les programmes pouvant troubler les mineurs de 12 ans, notamment lorsque le programme "
     "recourt de facon repetee a la violence physique ou psychologique", "FR", "high")
 
@@ -573,7 +580,7 @@ add("FR-CLS-004", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "Category IV (-16) - cinematographic works banned to under-16s in cinemas, and programmes OF AN EROTIC CHARACTER OR OF GREAT VIOLENCE, liable to harm the physical, mental or moral development of under-16s.",
     "See FR-SCH-005/006.", "see=FR-SCH-005", "",
     "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-CLS-005", "FR", "Arcom", "regulator_binding", 2, "definition_only",
@@ -581,7 +588,7 @@ add("FR-CLS-005", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "Category V (-18) - cinematographic works banned to under-18s in cinemas, and PORNOGRAPHIC programmes or programmes of VERY GREAT VIOLENCE, reserved for a warned adult audience and liable to harm the physical, mental or moral development of under-18s.",
     "See FR-CV-001 to FR-CV-003.", "see=FR-CV-002", "",
     "judgment_based", "clear", "", "no",
-    "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-FLM-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -591,7 +598,7 @@ add("FR-FLM-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "French practice is explicitly to RAISE the age limit between cinema and television, because a child who could not enter the cinema can easily be in front of a TV set.",
     "judgment_based", "clear",
     "The CNC/cinema rating is an INPUT, never the output. The TV category is a separate determination and may be stricter.",
-    "no", "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "no", "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "high")
 
 add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
@@ -601,7 +608,7 @@ add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "The only route by which the cinema classification commission revisits a rating for television purposes.",
     "bright_line", "out_of_scope_for_asset_decision",
     "Procedural, not a per-asset rating rule. Recorded for completeness.", "no",
-    "FR-R1", "art. 2", U_FR1, "2005-07-08", "open", "approved",
+    "FR-R1", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
     "", "FR", "medium")
 
 add("FR-SCH-001", "FR", "Arcom", "regulator_binding", 2, "yes",
@@ -618,9 +625,9 @@ add("FR-SCH-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "free_to_air; other_than_cinema_channels", "scheduling_general", "III_-12",
     "Category III (-12) on services OTHER THAN cinema channels and pay-per-view: must not be broadcast BEFORE 22:00.",
     "Not before 22:00.", "not_before=22:00",
-    "Subject to the exceptional derogation in FR-SCH-004.",
+    "Subject to the exceptional derogation in FR-SCH-004. Cited against the CURRENT consolidated French text, not the 2005 JORF original: the hours happen to be unchanged since 2005, which is precisely why the amended art. 2 definition slipped past review (C-09).",
     "bright_line", "clear", C02, "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "Pour les autres services de television, ces programmes ne doivent pas etre diffuses "
     "avant 22 heures.", "FR", "high")
 
@@ -630,7 +637,7 @@ add("FR-SCH-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Not Wednesdays before 20:30.", "not_before=20:30;days=Wed",
     "A day-of-week-specific rule. Historically tied to the French school week.",
     "bright_line", "clear", C02, "no",
-    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "pour les chaines cinema et les services de paiement a la seance, ces programmes ne "
     "doivent pas etre diffuses le mercredi avant 20 h 30.", "FR", "high")
 
@@ -646,7 +653,7 @@ add("FR-SCH-004", "FR", "Arcom", "regulator_binding", 2, "yes",
     "4 cinema-banned-to-under-12s' quota, which so far rests only on the Arcom English "
     "rendering - treat the numbers as indicative. Separately, the quotas are channel-level "
     "facts: a per-asset prompt cannot verify them and must flag this for channel-level review.",
-    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1, "2014-04-09", "open", "approved",
+    "yes", "FR-R1 (as amd. FR-A2)", "art. 3", U_FR1C, "2014-04-09", "open", "approved",
     "A titre exceptionnel, il peut etre admis une diffusion, apres 20 h 30, de programmes de "
     "cette categorie, sauf les mardis, vendredis, samedis, veilles de jours feries et pendant "
     "les periodes de vacances scolaires.", "FR", "high")
@@ -1026,7 +1033,7 @@ legend += [
     ["human_review_required", "Escalate before relying on this row.", "yes / no"],
     ["source_doc", "Source ID from the Sources tab.", "e.g. UK-S1, FR-R1, EU-D1"],
     ["clause_ref", "Clause within the source.", "e.g. Rule 1.4, art. 3, AVMSD art. 6a(1)"],
-    ["source_url", "Canonical URL (hyperlinked).", ""],
+    ["source_url", "Canonical URL (hyperlinked).", "For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."],
     ["valid_from", "Date the provision took effect.", "ISO date, or blank if undated guidance"],
     ["valid_to", "End of validity.", "open / unknown / ISO date"],
     ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical, retained for versioning. NAMING: a rule_id in the 9xx range is a superseded version of the matching 0xx rule (FR-CLS-903 is the pre-2014 wording of FR-CLS-003)."],
@@ -1095,7 +1102,7 @@ src += [
      "In scope only as an INPUT: the Ofcom Code refers to BBFC ratings in Rules 1.17, 1.22, 1.23, 1.24, 1.25, 1.26."],
     ["FR-R1", "Recommandation n. 2005-5 du 7 juin 2005 (signaletique jeunesse et classification des programmes), as amended",
      "Arcom (ex-CSA)", "regulator_binding", 2,
-     "Editors of linear TV services in France; all conventionnees et declarees channels.", U_FR1,
+     "Editors of linear TV services in France; all conventionnees et declarees channels.", U_FR1C,
      "JORF n.158, 2005-07-08, text n.92; amended 2012 and 2014",
      "THE CORE FRENCH FRAMEWORK. Art. 2 defines categories I-V; art. 3 sets programming conditions."],
     ["FR-A1", "Deliberation n. 2012-57 du 23 octobre 2012 modifying FR-R1", "Arcom (ex-CSA)", "regulator_binding", 2,
@@ -1165,6 +1172,11 @@ oq += [
      "CLOSED 2026-11-06. FR-CLS-003 now carries the current wording. The pre-2014 wording is retained as FR-CLS-903, status=superseded, valid_to=2014-04-08.",
      "None for the rule itself. The lesson matters more: the error survived because the English translation and the pre-2014 French text AGREED with each other, so cross-source corroboration did not catch it - only reading the amending instrument did. Treat any source whose amendment history is not explicit as suspect, and always diff the amending deliberation rather than trusting a page labelled 'consolidated'.",
      "closed", "no"],
+    ["C-10", "Arcom's own FRENCH public page (FR-S1c) states the category III (-12) test as 'recourt de facon repetee a la violence physique ou psychologique, OU EVOQUE LA SEXUALITE ADULTE'. That adult-sexuality limb does not appear in the binding art. 2 wording we hold (as replaced by delib. 2014-17).",
+     "FR-CLS-003",
+     "None yet. Found 2026-11-06 while searching for the Legifrance id of delib. 2014-17.",
+     "Determine whether this is (a) a later amendment to the recommendation that we have not located, or (b) a practice gloss on Arcom's public page. If binding, it pulls adult-sexuality content into -12 INDEPENDENTLY of violence, which would widen the category materially. Until resolved, do not rely on FR-CLS-003 for sexual-content cases - the violence limb is unaffected.",
+     "French-speaking reviewer", "no - but caps confidence on -12 sexual content"],
     ["C-03", "Recommandation 2004-7 - the sole source of the French -18 hours - dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed. The CSA->Arcom transition (2022) and the 2021 AVMSD transposition decree both postdate it.",
      "FR-CV-001 to FR-CV-007",
      "None. All category V rows flagged unverified.",

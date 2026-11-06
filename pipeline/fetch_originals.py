@@ -6,6 +6,11 @@
     python pipeline/fetch_originals.py --check         # verify what is already on disk
     python pipeline/fetch_originals.py --only FR-R1 FR-A2b
 
+By default only the CURRENT version of each document is fetched - that is what the
+rules are decided against. Superseded originals and amending instruments are fetched
+only with --include-historical; they exist so you can diff what an amendment changed,
+which is how conflict C-09 was caught.
+
 Writes each file to sources/originals/ and records its sha256 in
 sources/originals/originals.lock.json. That lockfile is what makes the
 quote-integrity check in verify_rules.py possible, and what tells you a source
@@ -94,6 +99,12 @@ def main() -> int:
                     help="do not download; report what is present and whether hashes match")
     ap.add_argument("--force", action="store_true",
                     help="re-download even if the file is already present")
+    ap.add_argument("--include-historical", action="store_true",
+                    help="also fetch superseded originals and amending instruments. "
+                         "By default only the CURRENT version of each document is fetched, "
+                         "since that is what the rules are decided against. The historical "
+                         "copies exist only to diff what an amendment changed - which is how "
+                         "C-09 was caught.")
     args = ap.parse_args()
 
     ORIGINALS.mkdir(parents=True, exist_ok=True)
@@ -110,6 +121,15 @@ def main() -> int:
     else:
         cutoff = TIER_ORDER[args.tier]
         rows = [r for r in rows if TIER_ORDER.get(r["tier"], 9) <= cutoff]
+        if not args.include_historical:
+            before = len(rows)
+            rows = [r for r in rows
+                    if r.get("version_status", "current") == "current"]
+            skipped = before - len(rows)
+            if skipped:
+                print(f"  ({skipped} historical doc(s) skipped - "
+                      f"pass --include-historical to fetch superseded originals "
+                      f"and amending instruments)")
 
     if args.check:
         drift = absent = ok = 0
