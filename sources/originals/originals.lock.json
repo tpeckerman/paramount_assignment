@@ -1,46 +1,122 @@
 {
+  "EU-D1": {
+    "file": "EU-D1_avmsd_article_6a.txt",
+    "locked": "2026-11-06",
+    "sha256": "1d4cae66f201d8b63ba91e122730c69d838cae565a78a7d6c3bc88e30fbb26c7",
+    "source": "manual browser save, verified by reading"
+  },
+  "EU-D1b": {
+    "file": "EU-D1b_directive_2018_1808.txt",
+    "locked": "2026-11-06",
+    "sha256": "63f46f3e671066d91306b4428313276c2cb6c0e9beb8a3cf26454f0265c72796",
+    "source": "manual browser save, verified by reading"
+  },
   "FR-C1": {
-    "bytes": 23415,
-    "fetched_at": "2026-11-06T13:05:21+00:00",
-    "filename": "FR-C1_cnc_classification.txt",
+    "file": "FR-C1_cnc_classification.txt",
+    "locked": "2026-11-06",
     "sha256": "1084da064eebf5bedc750caf8d3a6b6e101d8ee86d032cd08ab769ea7a20ebcf",
-    "url": "https://www.cnc.fr/cinema/actualites/proteger-sans-censurer--la-classification-des-oeuvres-cinematographiques_1924881"
+    "source": "manual browser save, verified by reading"
+  },
+  "FR-L1": {
+    "file": "FR-L1_loi_86-1067.txt",
+    "locked": "2026-11-06",
+    "sha256": "4efa300266b8266c0ec4af522bd64e576e58012ce59277cd29e27bfa3de5ece0",
+    "source": "manual browser save, verified by reading"
   },
   "FR-R1c": {
-    "bytes": 15662,
-    "fetched_at": "2026-11-06T13:05:00+00:00",
-    "filename": "FR-R1c_reco_2005-5_arcom_fr.txt",
+    "file": "FR-R1c_reco_2005-5_arcom_fr.txt",
+    "locked": "2026-11-06",
     "sha256": "b34c6cb495879b2027c0f6ee2009547cc69f50228cebb2a44657d6f78b82e146",
-    "url": "https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes"
+    "source": "manual browser save, verified by reading"
   },
   "FR-R2": {
-    "bytes": 12515,
-    "fetched_at": "2026-11-06T13:05:03+00:00",
-    "filename": "FR-R2_reco_2004-7_category_V.txt",
-    "sha256": "46587d5196382c8a15acf35d8fce3900812c1c3d2b5c5973d0163489752425c8",
-    "url": "https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france"
+    "file": "FR-R2_reco_2004-7_category_V.txt",
+    "locked": "2026-11-06",
+    "sha256": "4b4e7aea792a814d2d72c42766956ea2d4bad4e421fd2e768afec4bd97341862",
+    "source": "manual browser save, verified by reading"
+  },
+  "FR-S1c": {
+    "file": "FR-S1c_signaletique_jeunesse_fr.txt",
+    "locked": "2026-11-06",
+    "sha256": "a14d0843d09c5819ccded4f96b6d50a35e92d632af629c5ed675eaf16f5d824e",
+    "source": "manual browser save, verified by reading"
+  },
+  "FR-S2": {
+    "file": "FR-S2_solidarites_classification.txt",
+    "locked": "2026-11-06",
+    "sha256": "4891bd2d3b6da6ecfbeb694434f553b16d4232872f32b9373da5bd40eee4d33f",
+    "source": "manual browser save, verified by reading"
   },
   "FR-V1": {
-    "bytes": 251754,
-    "fetched_at": "2026-11-06T13:05:20+00:00",
-    "filename": "FR-V1_arcom_mise_en_demeure_C8.pdf",
+    "file": "FR-V1_arcom_mise_en_demeure_C8.pdf",
+    "locked": "2026-11-06",
     "sha256": "3e31654f67feecc793e85e24661965e5388ea9a8d0d68b6a0a15c76210ea6142",
-    "url": "https://www.arcom.fr/sites/default/files/2023-05/MeD_C8.pdf"
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-G1": {
+    "file": "UK-G1_ofcom_watershed_music_videos.pdf",
+    "locked": "2026-11-06",
+    "sha256": "fa20b18c044990cd7b04adcd7631ed68605ac9941a76187f6e0adc416c323d1b",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-G2": {
+    "file": "UK-G2_ofcom_guidance_section_1.pdf",
+    "locked": "2026-11-06",
+    "sha256": "ebd44cb7f07ac1f927b7c8b86a68667322c77a139b0a00f485b0e171fcfa87ec",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-G3": {
+    "file": "UK-G3_ofcom_guidance_section_2.pdf",
+    "locked": "2026-11-06",
+    "sha256": "3d31a66925fde099ff554dac0defefdfa5b4bdff81120ac0551454cf874e545a",
+    "source": "manual browser save, verified by reading"
   },
   "UK-L1": {
-    "bytes": 18693,
-    "fetched_at": "2026-11-06T15:04:49+00:00",
-    "filename": "UK-L1_communications_act_2003_s319.txt",
-    "sha256": "5bc3d3d26cc77b3a050c7f480b7889a1535d274189444d65d52946860bd04759",
-    "source": "manual browser save via import_saved.py",
-    "url": "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
+    "file": "UK-L1_communications_act_2003_s319.txt",
+    "locked": "2026-11-06",
+    "sha256": "ce42f5b853b52a9bc02abbc65ca74d4a978722ff7e32a79c1222026f133ed7c4",
+    "source": "manual browser save, verified by reading"
   },
   "UK-L2": {
-    "bytes": 12976,
-    "fetched_at": "2026-11-06T15:04:49+00:00",
-    "filename": "UK-L2_avms_regulations_2020_note.txt",
+    "file": "UK-L2_avms_regulations_2020_note.txt",
+    "locked": "2026-11-06",
     "sha256": "52561e6a2c77fa329660ce6fcdd1e91e85e772ed59f98277305412ae623faa4d",
-    "source": "manual browser save via import_saved.py",
-    "url": "https://www.legislation.gov.uk/uksi/2020/1062/note/made"
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-M1": {
+    "file": "UK-M1_ofcom_mdp_statement.txt",
+    "locked": "2026-11-06",
+    "sha256": "97bb8d6a011a38cb60bc3b98289bcc8329b1558324787cc5af4c4642265acf6f",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-P1": {
+    "file": "UK-P1_ofcom_decision_toofan.pdf",
+    "locked": "2026-11-06",
+    "sha256": "6a652ef48234f8c06a63a06933f94f8049e7e8f5e62fde1243a33d1e6130c1a4",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-S1": {
+    "file": "UK-S1_ofcom_code_section_1.txt",
+    "locked": "2026-11-06",
+    "sha256": "8d6234f4ef89450176a8ea3b4f23d5580ba4e06beda24284b98dbd09fec41278",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-S2": {
+    "file": "UK-S2_ofcom_code_section_2.txt",
+    "locked": "2026-11-06",
+    "sha256": "81fd320b565c5e21340f73f45a82e755e868e2460cef34bc51206f84e0f3c565",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-S3": {
+    "file": "UK-S3_ofcom_code_section_3.txt",
+    "locked": "2026-11-06",
+    "sha256": "a7e6722f86e3f837f5b2efa2ed5b92db64dffc7b1593e5fc5c2c8b3aa2568872",
+    "source": "manual browser save, verified by reading"
+  },
+  "UK-S4": {
+    "file": "UK-S4_ofcom_code_section_4.txt",
+    "locked": "2026-11-06",
+    "sha256": "c1591e701d056dce392d364ba46d04f90f0535a79878b9ae7db29121fc8002be",
+    "source": "manual browser save, verified by reading"
   }
 }

@@ -309,7 +309,7 @@ def main() -> int:
                 drift += 1
             elif r["doc_id"] in lock and lock[r["doc_id"]]["sha256"] != sha256(dest):
                 print(f"  CHANGED  {r['doc_id']:8s} {r['target_filename']}"
-                      "  <- source document changed since it was locked")
+                      "  <- bytes differ from the locked hash")
                 drift += 1
             else:
                 ok += 1
@@ -317,7 +317,11 @@ def main() -> int:
               f"({len(rows)} in scope, tier<={args.tier})")
         _refresh_manifest_status()
         if drift:
-            print("\nA CHANGED file means the regulator has altered the document. "
+            print("\nCHANGED means only that the stored bytes differ from the recorded "
+                  "hash. It does NOT establish that the regulator altered anything - "
+                  "replacing a file with a better copy produces the same signal, and that "
+                  "is the common case here. Diff the file before concluding the law moved. "
+                  "If it genuinely changed at source: "
                   "Re-extract the affected rules and version the old ones "
                   "(see pipeline/COLAB_rule_pipeline_starter.ipynb, cell 4).")
         return 1 if (absent or drift) else 0

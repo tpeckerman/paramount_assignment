@@ -83,3 +83,27 @@ Stable URL for the consolidated article as retained in UK law. Framework baselin
 ## `EU-D1b` — Directive (EU) 2018/1808 (amending directive)
 
 URL WAS REJECTED BY EUR-LEX (Page Not Found). The old value did carry its query string (?uri=CELEX:32018L1808) - an earlier note here claiming it was truncated was wrong, misread from a browser address bar that displays the query trimmed. The likely cause is the unencoded colon; %3A is the safe form. Replaced with the ELI permalink, which takes no query at all and is designed as a permanent identifier. CELEX 32018L1808, OJ L 303, 28.11.2018, pp. 69-92. AMENDING directive: provenance only, not current rule text. MIRROR if EUR-Lex blocks you: legislation.gov.uk/eudr/2018/1808 (UK retained version - read, do not cite).
+
+## `FR-V1` — Arcom mise en demeure, C8
+
+Two things to know before relying on this.
+
+It is a **PDF with no landing page of its own**, which is why `landing_page` now points at
+Arcom's decisions index rather than at the document. A direct PDF path can rot with no
+redirect; the index is how you find it again.
+
+More importantly: **C8 stopped broadcasting on 1 March 2025**, after Arcom declined to renew
+its terrestrial frequency. The decision remains a valid interpretation of article 4 of the
+2005 recommendation — a regulator's reading of a rule does not expire because the channel
+did — but it cannot be checked against that service's current practice, and anyone citing it
+should say the broadcaster no longer exists rather than leaving a reader to assume otherwise.
+
+## A note on blank `landing_page` cells
+
+`landing_page` exists to re-find a document whose own URL can rot: a PDF path, or an asset
+carrying a `?v=` token that changes whenever the publisher revises the file. A stable HTML
+page does not need one, because the URL **is** the landing page.
+
+Those rows now read `n/a - url is itself a stable page` rather than sitting blank. A blank
+cell reads as missing data and invites someone to go looking for something that was never
+required.

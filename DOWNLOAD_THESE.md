@@ -49,14 +49,14 @@ check what landed.
 | `UK-G3` | `UK-G3_ofcom_guidance_section_2.pdf` |  bytes |
 | `UK-M1` | `UK-M1_ofcom_mdp_statement.txt` |  bytes |
 | `UK-P1` | `UK-P1_ofcom_decision_toofan.pdf` |  bytes |
-| `UK-L1` | `UK-L1_communications_act_2003_s319.txt` | 18693 bytes |
-| `UK-L2` | `UK-L2_avms_regulations_2020_note.txt` | 12976 bytes |
-| `FR-R1c` | `FR-R1c_reco_2005-5_arcom_fr.txt` | 15662 bytes |
-| `FR-R2` | `FR-R2_reco_2004-7_category_V.txt` | 12515 bytes |
+| `UK-L1` | `UK-L1_communications_act_2003_s319.txt` |  bytes |
+| `UK-L2` | `UK-L2_avms_regulations_2020_note.txt` |  bytes |
+| `FR-R1c` | `FR-R1c_reco_2005-5_arcom_fr.txt` |  bytes |
+| `FR-R2` | `FR-R2_reco_2004-7_category_V.txt` |  bytes |
 | `FR-S1c` | `FR-S1c_signaletique_jeunesse_fr.txt` |  bytes |
 | `FR-S2` | `FR-S2_solidarites_classification.txt` |  bytes |
 | `FR-L1` | `FR-L1_loi_86-1067.txt` |  bytes |
-| `FR-V1` | `FR-V1_arcom_mise_en_demeure_C8.pdf` | 251754 bytes |
-| `FR-C1` | `FR-C1_cnc_classification.txt` | 23415 bytes |
+| `FR-V1` | `FR-V1_arcom_mise_en_demeure_C8.pdf` |  bytes |
+| `FR-C1` | `FR-C1_cnc_classification.txt` |  bytes |
 | `EU-D1` | `EU-D1_avmsd_article_6a.txt` |  bytes |
 | `EU-D1b` | `EU-D1b_directive_2018_1808.txt` |  bytes |
