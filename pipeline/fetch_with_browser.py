@@ -73,7 +73,7 @@ def fold(s: str) -> str:
     import unicodedata
     s = (s.replace("œ", "oe").replace("Œ", "OE")
           .replace("æ", "ae").replace("Æ", "AE")
-          .replace("–", "-").replace("—", "-")
+          .replace(", ", "-").replace(", ", "-")
           .replace("’", "'").replace("‘", "'")
           .replace("“", '"').replace("”", '"'))
     s = unicodedata.normalize("NFKD", s)

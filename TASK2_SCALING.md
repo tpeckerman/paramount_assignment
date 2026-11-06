@@ -1,4 +1,4 @@
-# Task 2 — Scaling to dozens of countries
+# Task 2, Scaling to dozens of countries
 
 ## The claim this plan rests on
 
@@ -20,7 +20,7 @@ crashed, nothing looked wrong, and not one was found by re-reading the work:
 
 Every one was caught by a mechanical check comparing the work against something external.
 
-So the thing to scale is **not** the rules. Rules are the easy part — they are typing. What
+So the thing to scale is **not** the rules. Rules are the easy part, they are typing. What
 has to scale is the machinery that catches silent error, because at thirty countries nobody
 will read the table, and an error that produces complete-looking output is indistinguishable
 from correctness until a regulator says otherwise.
@@ -34,7 +34,7 @@ that finds it.**
 
 ```mermaid
 flowchart TB
-    subgraph PC ["Per country — runs once, then on amendment"]
+    subgraph PC ["Per country: runs once, then on amendment"]
         A1[Identify instruments<br/>enumerate escape clauses] --> A2[Collect sources<br/>primary first]
         A2 --> A3{Currency gate<br/>amended by?}
         A3 -- superseded --> A2
@@ -46,7 +46,7 @@ flowchart TB
         A6 -- signed --> A7[(Rules table<br/>status=approved)]
     end
 
-    subgraph PD ["Per asset — runs thousands of times"]
+    subgraph PD ["Per asset: runs thousands of times"]
         B1[Content description] --> B2[Stage 1<br/>extract observations<br/>BLIND to rules]
         B2 --> B3[Select rule slice<br/>country + service + category]
         A7 --> B3
@@ -63,7 +63,7 @@ flowchart TB
 ```
 
 Two loops at different speeds. The left runs once per country and again whenever the law
-changes. The right runs per asset. **They must not be merged** — a system that reads
+changes. The right runs per asset. **They must not be merged**, a system that reads
 regulation and applies it in one step has nothing separating "what the rule says" from "what
 I decided", so a misreading is unfalsifiable.
 
@@ -73,7 +73,7 @@ I decided", so a misreading is unfalsifiable.
 
 ### Primary sources only, with everything else labelled
 
-Rank each source 1–7: statute, regulator binding instrument, regulator guidance, enforcement
+Rank each source 1-7: statute, regulator binding instrument, regulator guidance, enforcement
 precedent, regulator summary, classification body, secondary. Conflicts resolve by lowest
 number. **A rule whose only proof quote comes from rank 5 or below is an inference, and the
 row must say so.** One row in the current table is exactly this and is flagged accordingly.
@@ -85,7 +85,7 @@ where the table carried the old wording. The second occurred *hours after* I doc
 first.
 
 It is hard to catch because the old version is **internally coherent and corroborated**. The
-English translation and the pre-amendment French agreed with each other — both were simply
+English translation and the pre-amendment French agreed with each other, both were simply
 out of date. **Cross-checking sources does not catch this.** Only reading the amending
 instrument does.
 
@@ -93,7 +93,7 @@ At thirty countries this is the single highest-volume failure. Requirements:
 
 - every source row carries `amended_by` and `amendments_checked_on`
 - **no rule may be `approved` while citing guidance older than the most recent amendment to
-  the rule it interprets** — enforced in CI, not by discipline
+  the rule it interprets**, enforced in CI, not by discipline
 - subscribe to each regulator's publication feed; an amendment moves every rule citing it to
   `needs_recheck` automatically
 - consolidated text only. Original-publication URLs belong on superseded rows
@@ -102,7 +102,7 @@ At thirty countries this is the single highest-volume failure. Requirements:
 
 Three URLs failed in three different ways and I had labelled all three "bot-blocked". From
 inside an automated environment a dead hostname, a retired path and a rejected query all look
-identical — a failed fetch. Record the **observed** failure, and where no cause was observed
+identical, a failed fetch. Record the **observed** failure, and where no cause was observed
 say "cause not established" rather than guessing the host's usual excuse.
 
 Store a hash and the retrieval date for every document. Re-fetch quarterly; a changed hash
@@ -110,7 +110,7 @@ means the law may have moved.
 
 ### Verify the file is the document
 
-A saved page can be entirely navigation and still look plausible by size — one was 12,493
+A saved page can be entirely navigation and still look plausible by size, one was 12,493
 characters of menus and passed a length check. Every source carries an `expect` phrase that
 only the real document contains, checked on save and on import.
 
@@ -149,7 +149,7 @@ them and you lose the ability to express that.
 **Rating, hours and other restrictions are three axes, and they are substitutes.** One rule
 reads `any_time; requires=mandatory_daytime_protection`; another disapplies the watershed
 entirely while that gate is on. A two-axis model reports "any time" and drops the condition
-that earned it — **wrong, not merely incomplete.** This is not a quirk: the EU framework
+that earned it, **wrong, not merely incomplete.** This is not a quirk: the EU framework
 requires an *outcome* and permits scheduling **or** technical measures as alternatives, so
 every country implementing it will show the same shape.
 
@@ -167,19 +167,19 @@ field before country three, not after country thirty.**
 
 ## 3. Shared versus country-specific
 
-**Shared — build once:**
+**Shared, build once:**
 
 the schema and vocabularies; the extraction prompt; the quote checker; the currency gate; the
 decision engine and its three passes; conflict resolution by authority rank; the
 review-queue; metrics; the rule that service type is never assumed.
 
-**Country-specific — the data only:**
+**Country-specific, the data only:**
 
 the instruments, the categories, the hours, the escape clauses, the vocabulary mappings.
 
 ### A third level the first draft missed: channel
 
-Two levels — shared and country — do not fit the facts. The Toofan decision turned partly on
+Two levels, shared and country, do not fit the facts. The Toofan decision turned partly on
 the broadcast falling during Eid-ul-Adha, because **that channel serves a Muslim audience**.
 The identical date on a different channel in the same country, under identical law, carries
 no such weight.
@@ -195,7 +195,7 @@ for that audience, and missing ones that do.
 | country | instruments, categories, hours, escape clauses | local lawyer | on amendment |
 | **channel** | high-child-audience dates, whether a +1 exists, the service's type under local rules, any channel-specific agreement with the regulator | the channel's own compliance contact | annually |
 
-Channel data is small — perhaps ten to twenty dates and a handful of flags per channel — but it
+Channel data is small, perhaps ten to twenty dates and a handful of flags per channel, but it
 cannot be bought, scraped or inferred. **This changes the staffing model.** "One lawyer per
 country" does not cover it; you also need a named contact per channel, and the thing you need
 from them takes an hour a year, not a retainer.
@@ -212,11 +212,11 @@ be stricter than the general law. The same shape, arrived at from a different di
 - *"Hours depend on the rating."* In France they depend on service type and weekday.
 - *"A decision is about a programme."* It is not. It is about **a transmission**. A +1
   service re-broadcasts the same file an hour later, so content placed while children are at
-  school lands after they are home — identical file, identical channel brand, different
+  school lands after they are home, identical file, identical channel brand, different
   answer. One programme shown four times is four decisions. A data model keyed to the asset
   cannot represent this at all, and the error is invisible because the asset passed.
 - *"Scope is obvious."* I scoped the Code by one phrase and wrongly excluded a whole section
-  that enters through a different door — a context clause that imports time of broadcast.
+  that enters through a different door, a context clause that imports time of broadcast.
   **Scope every country by enumerating its escape clauses, not by searching for a phrase.**
 
 Represent these as data, not code. The engine should never contain the string `2100`.
@@ -227,7 +227,7 @@ Represent these as data, not code. The engine should never contain the string `2
 
 Take the French category III restriction.
 
-**Collect.** Arcom recommendation, consolidated. Rank 2. Check `amended_by` — a 2014
+**Collect.** Arcom recommendation, consolidated. Rank 2. Check `amended_by`, a 2014
 instrument broadened the category definition, so the consolidated text is required and the
 original would under-rate. *This is the exact mistake that reached my table.*
 
@@ -264,9 +264,9 @@ exhausted in week nine is a breach in week ten.
 
 ## 5. Testing for correctness
 
-**Golden set per country.** 30–50 assets with expert-agreed answers. Build them to *break*
+**Golden set per country.** 30-50 assets with expert-agreed answers. Build them to *break*
 the system: in Task 1, five cases found two real bugs, and the productive pair were the same
-film with **identical content** on different services — any system deriving hours from the
+film with **identical content** on different services, any system deriving hours from the
 rating must answer both alike and must therefore be wrong about one.
 
 **Negative-space cases.** The hardest case had no violence, sex, drugs or language and still
@@ -280,7 +280,7 @@ where the extractor and the checker share a misreading and agree with each other
 **Back-testing.** Replay past enforcement decisions. If the system clears something a
 regulator fined, that is the strongest signal available.
 
-**Mutation testing.** Corrupt a rule deliberately — change 22:00 to 20:00 — and confirm the
+**Mutation testing.** Corrupt a rule deliberately, change 22:00 to 20:00, and confirm the
 golden set fails. If it still passes, the test set does not exercise that rule.
 
 **CI, non-negotiable:** quote integrity, vocabulary conformance, currency gate, schema
@@ -298,13 +298,13 @@ Measure in two directions: **is it right**, and **is it useful**.
 | Quote integrity | 100% | nothing drifted |
 | Rules citing stale guidance | 0 | the amendment loop works |
 | Sources past re-check date | 0 | collection is alive |
-| Escalation rate | 15–30% | **both directions are bad** |
+| Escalation rate | 15-30% | **both directions are bad** |
 | Golden-set pass rate | > 95% | regression |
 | Coverage gaps per 100 assets | trending down | rules missing from the table |
 | Time to propagate an amendment | < 5 working days | responsiveness |
 
 **Escalation rate is the honest one.** Too high and nobody is saved work. Too low and it is
-guessing at judgment calls. The number alone means nothing — segment it.
+guessing at judgment calls. The number alone means nothing, segment it.
 
 **Diagnosis has to localise.** Every decision carries `rule_id`s, so an overturn points at a
 rule, not at "the model". Then:
@@ -352,14 +352,14 @@ quote already attached, so the expert starts from evidence instead of a blank pa
 
 ## 8. Rollout
 
-**Countries 3–5: deliberately slow.** The goal is not coverage, it is discovering which
-assumptions were UK/France-specific. Pick maximally different frameworks — one with a real
-per-programme rating, one with no watershed, one non-EU — because similar countries will
+**Countries 3-5: deliberately slow.** The goal is not coverage, it is discovering which
+assumptions were UK/France-specific. Pick maximally different frameworks, one with a real
+per-programme rating, one with no watershed, one non-EU, because similar countries will
 confirm wrong assumptions rather than expose them.
 
-**Countries 6–15:** the schema should be stable. Each new country should cost extraction plus
+**Countries 6-15:** the schema should be stable. Each new country should cost extraction plus
 expert review and nothing else. **If you are still changing the schema at country ten, stop
-and fix it** — every later country inherits the flaw.
+and fix it**, every later country inherits the flaw.
 
 **Countries 16+:** the bottleneck becomes expert availability and amendment monitoring, not
 extraction.

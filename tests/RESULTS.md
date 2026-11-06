@@ -22,7 +22,7 @@ point of the architecture, not a nice extra.
 | Case | Result | What it exposed |
 |---|---|---|
 | TC-01 | Pass | Correct UK "no rating" answer; correctly refused one French answer |
-| TC-02 | **Failed, then fixed** | Two real pipeline bugs. Detail below — this is the valuable one |
+| TC-02 | **Failed, then fixed** | Two real pipeline bugs. Detail below, this is the valuable one |
 | TC-03 | Pass | Caught the rule with no depicted content, escalated rather than banned |
 | TC-04 | Pass | Separated the trailer from its parent asset |
 | TC-05 | Pass | Surfaced the contradiction instead of resolving it |
@@ -32,10 +32,10 @@ defects that produced **complete-looking output with a rule silently missing**.
 
 ---
 
-## TC-01 — Cinema film on free-to-air
+## TC-01, Cinema film on free-to-air
 
 **UK.** Classification: `no_per_programme_rating`. This is the correct and slightly
-counter-intuitive answer — UK linear television has no per-programme age rating. Scheduling:
+counter-intuitive answer, UK linear television has no per-programme age rating. Scheduling:
 not before 21:00 (`UK-SCH-002`). The BBFC 15 certificate is *evidence* feeding the
 film-carryover rules, not an answer; reporting "15" as the UK rating would invent a
 regulatory instrument that does not exist.
@@ -44,14 +44,14 @@ regulatory instrument that does not exist.
 correct. On a general channel the drug and violence content points to category III with its
 own hours; on a cinema or pay-per-view service the hours differ.
 
-**Both.** The heroin scene produced **two** observations — the drug rule and an
+**Both.** The heroin scene produced **two** observations, the drug rule and an
 imitable-behaviour rule, because the technique is shown in close-up. Merging them into one
 "drugs" observation loses a rule hit. The suicide scene was correctly *not* over-read: no
 method is depicted, which matters because the relevant rule turns on method depiction.
 
 ---
 
-## TC-02 — Identical film, premium service with a PIN — **FAILED**
+## TC-02, Identical film, premium service with a PIN, **FAILED**
 
 This case exists because TC-01 and TC-02 have **identical content**. Any system that derives
 hours from the rating must give them the same answer and must therefore be wrong about one.
@@ -60,7 +60,7 @@ The system got the headline right: in the UK the watershed is *disapplied* while
 daytime protection is in place (`UK-SCH-007`), so a 14:30 transmission is permissible. But
 two bugs underneath it:
 
-### Bug 1 — the rule that defines the condition never arrived
+### Bug 1, the rule that defines the condition never arrived
 
 `UK-ACC-001` defines what "mandatory restricted access" actually means: a gate that
 **cannot be removed by the user**. It never reached the decision engine.
@@ -71,14 +71,14 @@ because a PIN is not content.** So it was filtered out every single time.
 
 The engine could therefore read `any_time; requires=mandatory_daytime_protection` with no row
 telling it what that requirement means or how to tell whether it is met. It would have
-accepted *any* claimed PIN — including a parental control the viewer can switch off, which
+accepted *any* claimed PIN, including a parental control the viewer can switch off, which
 does not satisfy the rule and would put the broadcast in breach from the first frame.
 
 **Fix:** `access_control`, `audience_information` and `trailers` are now force-included
 regardless of content. The general lesson is bigger than the fix: **filtering rules by the
 categories present in the content silently removes every rule about delivery.**
 
-### Bug 2 — two spellings of the same service
+### Bug 2, two spellings of the same service
 
 After fixing Bug 1 the rule *still* did not arrive. The rules use `premium_subscription` in
 one place and `premium_subscription_film` in another for the same service. There was no
@@ -99,7 +99,7 @@ from another.
 
 ---
 
-## TC-03 — Comedy sketch mocking a religion
+## TC-03, Comedy sketch mocking a religion
 
 No violence, no sex, no drugs, no strong language. A category-driven pipeline scores this
 clean and returns "no restrictions".
@@ -118,18 +118,18 @@ system returned "no restrictions" for this case.
 
 ---
 
-## TC-04 — Music video and its trailer
+## TC-04, Music video and its trailer
 
 Two decisions, correctly separated. The video at 22:15 is post-watershed. The 30-second
 trailer in a 15:00 break is judged **in its own slot** (`UK-TRL-002`) and does not inherit
-the video's permission — so the same audio that is fine at 22:15 is a breach at 15:00, with
+the video's permission, so the same audio that is fine at 22:15 is a breach at 15:00, with
 no change to the material.
 
 A pipeline that reasons about "the asset" rather than each transmission misses this entirely.
 
 ---
 
-## TC-05 — Contradiction and missing information
+## TC-05, Contradiction and missing information
 
 The distributor's summary says "suitable for all audiences, no content of concern". The event
 list contains real footage of a fatal accident.
@@ -148,7 +148,7 @@ which engage different rules.
 
 ## What the failures have in common
 
-Every real defect found today — in the rules, in the pipeline, and in the sources — was
+Every real defect found today, in the rules, in the pipeline, and in the sources, was
 **silent**. Nothing crashed. Nothing looked wrong:
 
 - four quotes that were paraphrases or had invented punctuation

@@ -1,11 +1,11 @@
-# Age ratings and broadcast restrictions for linear television — UK & France
+# Age ratings and broadcast restrictions for linear television, UK & France
 
 Take-home assignment, prompt engineer. This repo holds the work for **Task 1**:
 the regulatory sources, the rule table that the prompt will read, and the pipeline
 that keeps both honest.
 
 **Scope: linear (broadcast) television only.** On-demand and streaming are a different
-regime in both countries — see `sources/FR_03_legal_basis_and_cnc.md` for why a film on a
+regime in both countries, see `SCOPE_DECISION.md` for why a film on a
 streaming app is governed by a different French text entirely.
 
 ---
@@ -17,7 +17,6 @@ sources/                        the regulatory corpus
   00_SOURCE_INVENTORY.md        START HERE - every body and document, with authority ranks
   UK_01..04_*.md                Ofcom Code s.1, s.2 (context), watershed guidance, MDP regime
   FR_01..03_*.md                Arcom reco. 2005-5, reco. 2004-7 (-18), legal basis + CNC
-  EU_01_avmsd_article_6a.md     the framework both countries implement
   99_EXTRACTION_NOTES_*.md      READ BEFORE USING AS GROUND TRUTH - limits and open conflicts
   originals/
     MANIFEST.csv                28 source documents: URLs, filenames, tier
@@ -38,19 +37,19 @@ pipeline/
 
 ## → Outstanding source documents
 
-**[`DOWNLOAD_THESE.md`](DOWNLOAD_THESE.md)** — 24 documents still to fetch, as a tick-list with
+**[`DOWNLOAD_THESE.md`](DOWNLOAD_THESE.md)**, 24 documents still to fetch, as a tick-list with
 exact filenames. `rules/SOURCE_WORKLIST.xlsx` is the same thing as a spreadsheet.
 
 To add one: open its url, save the page however is easiest (`Cmd/Ctrl+S` for HTML or
-`Cmd/Ctrl+P` → Save as PDF — the filename does not matter), drop it in
+`Cmd/Ctrl+P` → Save as PDF, the filename does not matter), drop it in
 `sources/originals/incoming/`, and run `python pipeline/import_saved.py`. It identifies the
 document from its *content*, converts HTML to text, renames and sets `format` itself, and
-refuses anything that does not contain that document's required string — so a cookie banner
+refuses anything that does not contain that document's required string, so a cookie banner
 cannot land as a source copy.
 
 The same status lives in `sources/originals/MANIFEST.csv` (`download_status`, `blocked_by`),
 which `fetch_originals.py --check` rewrites on every run so it cannot go stale. Both of those
-views are generated — `DOWNLOAD_THESE.md` and the workbook come from
+views are generated, `DOWNLOAD_THESE.md` and the workbook come from
 `pipeline/build_worklist.py`, so don't edit them by hand.
 
 ## Quick start
@@ -83,9 +82,9 @@ python pipeline/fetch_originals.py --include-historical   # + superseded origina
 `MANIFEST.csv` carries a `version_status` column: `current`, `original_superseded`,
 `amending_instrument`. Only `current` is fetched unless you ask for more.
 
-Every entry resolves to a **text or PDF file** — never an HTML app page. A `format` column selects the behaviour: `pdf` is stored as fetched, `html2txt` is extracted to readable `.txt`. Currently 12 PDF, 17 text. Because Légifrance and Arcom serve their texts through a JavaScript front end, an extraction under 2,000 characters is treated as a **failure** rather than silently stored — see `sources/originals/README.md`.
+Every entry resolves to a **text or PDF file**, never an HTML app page. A `format` column selects the behaviour: `pdf` is stored as fetched, `html2txt` is extracted to readable `.txt`. Currently 12 PDF, 17 text. Because Légifrance and Arcom serve their texts through a JavaScript front end, an extraction under 2,000 characters is treated as a **failure** rather than silently stored, see `sources/originals/README.md`.
 
-The historical copies are not decoration — they exist for exactly one job, **diffing what an
+The historical copies are not decoration, they exist for exactly one job, **diffing what an
 amendment changed**, and that job caught a real error. The French category III *hours* are
 unchanged since 2005, so the 2005 original and the 2014 consolidated text read identically on
 scheduling. That agreement is why an amended art. 2 *definition* slipped past review (**C-09**):
@@ -102,8 +101,8 @@ authoritative while silently omitting later amendments.
 ### 1. The source files are extracts, not official text
 
 The environment that produced them had **no outbound network access** to `ofcom.org.uk`,
-`arcom.fr`, `legifrance.gouv.fr`, `bbfc.co.uk`, `legislation.gov.uk` or `eur-lex.europa.eu` —
-all six were refused at the egress proxy — and the available fetch path returns model-written
+`arcom.fr`, `legifrance.gouv.fr`, `bbfc.co.uk`, `legislation.gov.uk` or `eur-lex.europa.eu`,
+all six were refused at the egress proxy, and the available fetch path returns model-written
 summaries rather than source text, explicitly declining full reproduction.
 
 So every file in `sources/` is a **structured extract with a canonical URL**, and is labelled
@@ -115,8 +114,8 @@ Logged as conflict **C-04**.
 
 | Column | Describes | Governs |
 |---|---|---|
-| `determinacy` | **the rule** — `bright_line` / `conditional` / `judgment_based` | how you **score** it |
-| `ambiguity_flag` | **our extraction** — `clear` / `translation_uncertain` / `unverified` / … | whether the row is **usable yet** |
+| `determinacy` | **the rule**, `bright_line` / `conditional` / `judgment_based` | how you **score** it |
+| `ambiguity_flag` | **our extraction**, `clear` / `translation_uncertain` / `unverified` / ... | whether the row is **usable yet** |
 
 They are independent: a bright-line rule can be translation-uncertain, and a judgment-based
 rule can be perfectly clear. Merging them makes the test set unscoreable.
@@ -136,18 +135,18 @@ Current spread: **38** bright-line, **17** conditional, **28** judgment-based.
 
 ## Using the table as ground truth
 
-Filter `status == 'approved'` — **71 of 82**.
+Filter `status == 'approved'`, **71 of 82**.
 
 | status | n | why |
 |---|---|---|
 | `approved` | 74 | usable |
 | `unverified` | 7 | All French category V (-18) rows. Conflict **C-03**: the sole source dates from 2004 with compliance deadlines of 2005/2006/2008, all elapsed, and predates both the CSA→Arcom transition and the 2021 AVMSD transposition. **This is now the main blocker.** |
-| `draft` | 1 | `FR-CNV-001`, French channel conventions — not collected (**C-06**). |
+| `draft` | 1 | `FR-CNV-001`, French channel conventions, not collected (**C-06**). |
 | `superseded` | 1 | `FR-CLS-903`, the pre-2014 category III wording, retained on purpose to demonstrate the versioning rule. |
 
 **C-02 is closed** (2026-11-06). The French category III scheduling rows were confirmed against the
-French text from two independent sources — Légifrance `JORFTEXT000000446802` and the csa.fr consolidated
-page carrying the *"Modifiée par la délibération n° 2014-17"* banner — and promoted to `approved`.
+French text from two independent sources, Légifrance `JORFTEXT000000446802` and the csa.fr consolidated
+page carrying the *"Modifiée par la délibération n° 2014-17"* banner, and promoted to `approved`.
 One residue: the derogation's *"16 programmes per year, max 4 cinema-banned-to-under-12s"* quota is still
 attested only in Arcom's English rendering, so treat those two numbers as indicative.
 
@@ -156,15 +155,15 @@ amended the category III *definition*, broadening
 `leur scénario recourt de façon répétée **et systématique**` to `le programme recourt de façon répétée`.
 Repetition alone now suffices and the test is the programme as a whole, so the old wording **under-rates**.
 It survived initial review because the English translation and the pre-2014 French text agreed with each
-other — cross-source corroboration did not catch it, only reading the amending instrument did. Worth
+other, cross-source corroboration did not catch it, only reading the amending instrument did. Worth
 remembering for Task 2: a page labelled "consolidated" is not evidence of currency.
 
-Open conflicts **C-01 … C-08** are in `rules/csv/Open_Questions.csv` and
+Open conflicts **C-01 ... C-08** are in `rules/csv/Open_Questions.csv` and
 `sources/99_EXTRACTION_NOTES_AND_LIMITS.md`.
 
 ### Correlated error
 
-The extraction and the prompt share an author, so they would share mistakes — the exact failure
+The extraction and the prompt share an author, so they would share mistakes, the exact failure
 Task 2 asks about. The bright-line rows (times, absolute prohibitions) should be
 **independently re-derived from the primary sources by someone who has not seen this table**,
 then compared. The `verbatim_quote` and `source_url` columns exist so a reviewer can check a
@@ -175,24 +174,24 @@ row without reading the prompt at all. Logged as **C-08**.
 ## Findings that shape the prompt design
 
 1. **The UK has no per-programme age rating for linear TV.** The correct UK output is a
-   scheduling verdict, the earliest permissible time, and the Code rules relied on — not an
-   age label. France *does* have a graded rating (I–V), with its own hours. The two countries
+   scheduling verdict, the earliest permissible time, and the Code rules relied on, not an
+   age label. France *does* have a graded rating (I, V), with its own hours. The two countries
    cannot share one decision path.
 
 2. **Hours follow service type, not just the rating.** French **-16** is after 22:30 on
-   ordinary channels but after **20:30** on cinema and pay-per-view channels — identical
+   ordinary channels but after **20:30** on cinema and pay-per-view channels, identical
    content, different hour. A UK **BBFC 18** film is barred before 21:00 on one service and
    permitted **at any hour** on another, purely because of a PIN measure. Any rating→hours
    mapping fails here.
 
-3. **The French -18 window lives in a different document** (reco. 2004-7, 00:00–05:00) from
+3. **The French -18 window lives in a different document** (reco. 2004-7, 00:00-05:00) from
    the rest of the scheduling rules, and **service eligibility gates it**: on an ineligible
    channel it is a total prohibition and the hours are irrelevant. Answering by analogy with
    -16 is wrong.
 
 4. **Some rules ignore the category entirely.** French art. 1 restricts violence, including
    psychological violence, between 06:00 and 22:00 regardless of the category assigned. A
-   solution that reasons only over I–V misses it.
+   solution that reasons only over I, V misses it.
 
 5. **Music videos are treated oppositely.** France exempts them from systematic signage with a
    soft *"preferably after 22:00"*; the UK applies the full watershed with detailed content
@@ -200,8 +199,8 @@ row without reading the prompt at all. Logged as **C-08**.
    video yields a hard UK verdict and a soft French one. Rendering the French preference as a
    prohibition is an over-rating defect.
 
-6. **Three UK access concepts must not be conflated** — *mandatory daytime protection* (films,
-   any hour), *mandatory restricted access* (adult sex material, 22:00–05:30 only), and no
+6. **Three UK access concepts must not be conflated**, *mandatory daytime protection* (films,
+   any hour), *mandatory restricted access* (adult sex material, 22:00-05:30 only), and no
    protection. Treating "PIN protected" as one concept wrongly allows adult sex material in
    daytime.
 
@@ -212,7 +211,7 @@ row without reading the prompt at all. Logged as **C-08**.
    candidate rule depends on it, the correct output is a **missing-information flag**, not an
    assumption. Several of these make good dedicated test cases.
 
-8. **Absolute prohibitions should be enforced in code, not prompt reasoning** —
+8. **Absolute prohibitions should be enforced in code, not prompt reasoning**.
    `UK-GEN-001`, `UK-SEX-001`, `UK-FLM-001`, `UK-FLM-006`, `FR-LAW-001`,
    `FR-PRO-001/002/003`. No contextual argument or access measure should be able to override
    them.
@@ -223,18 +222,18 @@ row without reading the prompt at all. Logged as **C-08**.
 
 Ofcom and Arcom are the regulators, but they are not the only sources.
 
-**UK** — Ofcom Broadcasting Code s.1 and s.2, Ofcom guidance, Ofcom's separate
+**UK**, Ofcom Broadcasting Code s.1 and s.2, Ofcom guidance, Ofcom's separate
 **mandatory daytime protection** statement, Ofcom enforcement bulletins (the only source of
 *applied* thresholds), Communications Act 2003 s.319, SI 2020/1062, and **BBFC** as an input
 for films.
 
-**France** — Arcom recommendation 2005-5 as amended by délibérations 2012-57 and **2014-17**
+**France**, Arcom recommendation 2005-5 as amended by délibérations 2012-57 and **2014-17**
 (the current operative scheduling text), **recommendation 2004-7** for category V,
 Loi 86-1067 art. 15 (the two-tier *nuire gravement* / *nuire* standard), per-channel
-**conventions** (which can be stricter and are not consolidated anywhere — **C-06**), and
+**conventions** (which can be stricter and are not consolidated anywhere, **C-06**), and
 **CNC** as an input for theatrical films only.
 
-**EU** — AVMSD art. 6a, the common ancestor. It mandates an *outcome* and permits broadcast
+**EU**, AVMSD art. 6a, the common ancestor. It mandates an *outcome* and permits broadcast
 time **or** technical measures as alternatives, which is precisely why the two national
 frameworks look so different.
 

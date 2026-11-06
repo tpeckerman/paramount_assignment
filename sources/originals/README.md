@@ -5,7 +5,7 @@ The original regulatory documents, as published. **This folder is empty on purpo
 ## Why it is empty
 
 The environment that produced the extracts in `sources/` had no outbound network access to any
-of the publishing domains. Verified directly — all six refused at the egress proxy:
+of the publishing domains. Verified directly, all six refused at the egress proxy:
 
 | Domain | Result |
 |---|---|
@@ -49,7 +49,7 @@ No HTML, no JavaScript app pages. `MANIFEST.csv` carries a `format` column:
 | format | behaviour |
 |---|---|
 | `pdf` | fetched and stored as-is. Rejected if the bytes are not actually a PDF. |
-| `html2txt` | the page is fetched and **extracted to readable `.txt`** — scripts and styles dropped, tags stripped, entities unescaped. |
+| `html2txt` | the page is fetched and **extracted to readable `.txt`**, scripts and styles dropped, tags stripped, entities unescaped. |
 
 The `url` column still holds the canonical page, because that is what a reviewer should
 cite. Only what lands on disk is converted.
@@ -61,7 +61,7 @@ documents were already PDFs. Current split: **12 PDF, 17 text.**
 ### The JavaScript-shell trap
 
 Légifrance and Arcom serve their legal texts through a JS front end, so a naive fetch can
-return a 2 KB shell with no rule text in it — and store it as though it were the source.
+return a 2 KB shell with no rule text in it, and store it as though it were the source.
 That would quietly defeat the whole point of having local copies.
 
 So the fetcher treats an extraction under **2,000 characters** as a *failure*, prints what
@@ -72,7 +72,7 @@ row's `target_filename` with a `.pdf` extension and change `format` to `pdf`.
 
 ## HTML beats PDF where both exist
 
-An HTML page **keeps its address across revisions**. A PDF does not — Ofcom's `/siteassets/`
+An HTML page **keeps its address across revisions**. A PDF does not, Ofcom's `/siteassets/`
 PDFs carry a `?v=NNNNNN` version parameter, and legislation.gov.uk and EUR-Lex mint a separate
 path per format. Pin a PDF URL and it rots silently at the next revision; pin the HTML page and
 the citation stays good *and* always resolves to the current text.
@@ -90,7 +90,7 @@ Current split: **13 HTML → text, 6 PDF.**
 ### The six that stay PDF, and the landing_page column
 
 Ofcom's guidance notes, its statements, its enforcement decisions and Arcom's mises en demeure
-are published *only* as PDFs — there is no HTML equivalent to prefer. For those, a
+are published *only* as PDFs, there is no HTML equivalent to prefer. For those, a
 `landing_page` column records the **stable HTML page the current PDF is always reachable
 from**, so a rotted PDF link is recoverable rather than a dead end:
 
@@ -99,7 +99,7 @@ from**, so a rotted PDF link is recoverable rather than a dead end:
 | `UK-G1`, `UK-G2`, `UK-G3` | the programme-guidance index |
 | `UK-M1` | the mandatory-daytime-protection statement page |
 | `UK-P1` | the Broadcast and On Demand Bulletin decisions hub |
-| `FR-V1` | **none recorded** — flagged in its notes; Arcom's decisions index was not located |
+| `FR-V1` | **none recorded**, flagged in its notes; Arcom's decisions index was not located |
 
 ## Only current materials are carried
 
@@ -109,7 +109,7 @@ columns are gone: with nothing historical left, they had one value each.
 ### The test is the publisher, not the date
 
 What was removed is not "anything that looks old". Ofcom's live guidance page lists its
-Section One guidance as **Mar 2015** and the watershed/music-video guidance as **Sep 2011** —
+Section One guidance as **Mar 2015** and the watershed/music-video guidance as **Sep 2011**,
 those *are* the current versions, Ofcom simply has not reissued them. Dropping them for looking
 old would have thrown away the only operational detail on music videos in the whole corpus.
 
@@ -120,7 +120,7 @@ So the test applied is whether the publisher still presents the document as curr
 | doc | why |
 |---|---|
 | `UK-S0` | Jan 2019 print edition. Ofcom's 31 Dec 2020 statement: the Code "is now published on the Ofcom website and is no longer available in print". |
-| `FR-R1` | the 2005 JORF original — superseded by the 2012 and 2014 amendments |
+| `FR-R1` | the 2005 JORF original, superseded by the 2012 and 2014 amendments |
 | `FR-A1`, `FR-A2`, `FR-A2b` | amending instruments; their changes are consolidated into `FR-R1c` |
 
 ### Removed as a redundant copy of a current source
@@ -128,8 +128,8 @@ So the test applied is whether the publisher still presents the document as curr
 | doc | why |
 |---|---|
 | `FR-R1d` | csa.fr copy of the same text as `FR-R1c`; arcom.fr is the live domain, csa.fr the legacy one |
-| `FR-R1b` | Arcom **English** machine translation of the same text — and the garbled one that caused **C-02**. The French is authoritative. |
-| `FR-S1` | Arcom **English** public summary — unreliable (**C-01**) and redundant against `FR-S1c` |
+| `FR-R1b` | Arcom **English** machine translation of the same text, and the garbled one that caused **C-02**. The French is authoritative. |
+| `FR-S1` | Arcom **English** public summary, unreliable (**C-01**) and redundant against `FR-S1c` |
 
 `FR-R3` (overseas France) and `FR-X1` (on-demand SMAD) were dropped as out of scope, which is a
 separate judgement from currency.
@@ -138,12 +138,12 @@ separate judgement from currency.
 
 Dropping `FR-R1` left the deliberately-retained superseded rule row `FR-CLS-903` with no
 retrievable source, so it went too. Both wordings are recorded verbatim in the **C-09** entry in
-`Open_Questions`, so nothing is lost informationally — but the table no longer carries a live
+`Open_Questions`, so nothing is lost informationally, but the table no longer carries a live
 example of the versioning mechanism.
 
 Repointing the French rows from "FR-R1 (as amd. FR-A2)" to `FR-R1c` had an unplanned benefit:
 it made 23 rows resolvable against a source actually on disk, so the quote check ran on them for
-the first time — and **immediately failed two**. `FR-SCH-005` and `FR-SCH-006` carried quotes
+the first time, and **immediately failed two**. `FR-SCH-005` and `FR-SCH-006` carried quotes
 paraphrased from a government summary rather than the primary text. Replaced with the real
 wording: *"réservés à un public averti, ces programmes sont diffusables seulement après 20 h 30
 sur les chaînes cinéma et les services de paiement à la séance et après 22 h 30 sur les autres
@@ -152,7 +152,7 @@ services de télévision"*. Verified quotes went 7 → 10, failures 0.
 ### What no Code edition contains, in any form
 
 The Code gives rules but **not thresholds**. What counts as "appropriately limited" violence,
-what "the most offensive language" includes, how fast content may strengthen after 21:00 — all
+what "the most offensive language" includes, how fast content may strengthen after 21:00, all
 of that lives in the **guidance** (`UK-G1`, `UK-G2`, `UK-G3`) and the **enforcement bulletins**
 (`UK-P1`). None of the 26 `judgment_based` rows can be calibrated from the Code alone.
 
@@ -160,22 +160,22 @@ of that lives in the **guidance** (`UK-G1`, `UK-G2`, `UK-G3`) and the **enforcem
 
 `MANIFEST.csv` lists 28 documents in three tiers:
 
-- **required** — needed to verify the rules currently in the table
-- **recommended** — identified but not yet extracted; would sharpen the `judgment_based` rows
+- **required**, needed to verify the rules currently in the table
+- **recommended**, identified but not yet extracted; would sharpen the `judgment_based` rows
   (the Ofcom guidance notes and enforcement bulletins in particular, since precedent is the
   only source of *applied* thresholds)
-- **optional** — out of core scope, kept for contrast (overseas France; the on-demand regime)
+- **optional**, out of core scope, kept for contrast (overseas France; the on-demand regime)
 
 `fetch_originals.py` writes `originals.lock.json` with the sha256 of each file. That lockfile
 does two jobs: it makes the quote-integrity check possible, and
 `fetch_originals.py --check` uses it to tell you when a regulator has **changed a document
-under you** — at which point the affected rules get re-extracted and the old ones versioned
+under you**, at which point the affected rules get re-extracted and the old ones versioned
 rather than overwritten (`COLAB_rule_pipeline_starter.ipynb`, cell 4).
 
 ## Two caveats on the manifest
 
 - **`FR-A2b` was corrected.** The Légifrance JORF id originally guessed for délibération 2014-17
-  (`JORFTEXT000028728754`) returns a **search page** — it was wrong, and no Légifrance id for this
+  (`JORFTEXT000028728754`) returns a **search page**, it was wrong, and no Légifrance id for this
   deliberation was located. `FR-A2b` now points at the **Arcom French** text instead, and `FR-R1c` /
   `FR-R1d` were added as the French consolidated texts on arcom.fr and csa.fr. Those, together with
   Légifrance `JORFTEXT000000446802` (the 2005 original, which *is* valid), are what closed **C-02**.

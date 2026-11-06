@@ -1,7 +1,7 @@
 # Channel-level data
 
 The level the first scaling draft missed. Some facts that change a decision are not shared
-logic and not country law — they belong to a single channel, and two channels in the same
+logic and not country law. They belong to a single channel, and two channels in the same
 country under identical law need different answers.
 
 The Toofan decision turned partly on the broadcast falling during Eid-ul-Adha, because that
@@ -12,14 +12,14 @@ ones that do.
 
 ## What goes in a channel file
 
-- `high_child_audience_dates` — festivals, holidays and local events when families gather
+- `high_child_audience_dates`, festivals, holidays and local events when families gather
   around that channel. Ten to twenty entries is normal.
-- `has_timeshift` — whether a `+1` service carries the same schedule an hour later. This
+- `has_timeshift`, whether a `+1` service carries the same schedule an hour later. This
   changes the answer with no edit to the content: material placed while children are at
   school lands after they are home.
-- `service_type` — how the channel is classified under local rules. In France this decides
+- `service_type`, how the channel is classified under local rules. In France this decides
   the permitted hours outright.
-- `regulator_agreement` — any channel-specific undertaking stricter than the general law. In
+- `regulator_agreement`, any channel-specific undertaking stricter than the general law. In
   France these are formal conventions; elsewhere they may be licence conditions.
 
 ## Who maintains it
@@ -28,7 +28,7 @@ The channel's own compliance contact, not a lawyer and not the platform team. No
 knows it, and no amount of research reproduces it.
 
 **This changes the staffing model.** "One lawyer per country" does not cover this level. You
-also need a named contact per channel — but what you need from them is about an hour a year,
+also need a named contact per channel, but what you need from them is about an hour a year,
 not a retainer.
 
 ## How it is used

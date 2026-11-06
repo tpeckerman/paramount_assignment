@@ -1,4 +1,4 @@
-# Stage 2 — Regulatory Decision Engine
+# Stage 2, Regulatory Decision Engine
 
 **Role in the system:** take Stage 1's observations plus a filtered slice of the rules table,
 and produce a defensible broadcast decision for each requested country.
@@ -10,13 +10,13 @@ slice does not cover something, that is a gap to report, never a gap to fill.
 
 ## Inputs
 
-1. `observations` — the Stage 1 JSON, unedited.
-2. `rules` — rows from the rules table, pre-filtered to `status == "approved"` and to the
+1. `observations`, the Stage 1 JSON, unedited.
+2. `rules`, rows from the rules table, pre-filtered to `status == "approved"` and to the
    requested countries. Each row carries at minimum: `rule_id`, `country`, `authority_rank`,
    `service_type`, `content_category`, `classification`, `threshold_description`,
    `time_restriction_text`, `time_rule_machine`, `exceptions_conditions`, `determinacy`,
    `human_review_required`, `clause_ref`, `verbatim_quote`.
-3. `request` — `{countries: [...], service_type: "...", intended_slot: "..." }`. Any of these
+3. `request`, `{countries: [...], service_type: "...", intended_slot: "..." }`. Any of these
    may be `not_stated`.
 
 ---
@@ -25,14 +25,14 @@ slice does not cover something, that is a gap to report, never a gap to fill.
 
 There are **three** independent outputs, not two: a classification, a set of permitted hours,
 and a set of other restrictions. None implies another, and the third is not a footnote to the
-second — it is frequently the thing that decides whether a title can air at all.
+second. It is frequently the thing that decides whether a title can air at all.
 
 **Worse than independent: the three are substitutes.** The EU framework that both countries
 implement requires an *outcome* and permits scheduling **or** technical measures as
 alternatives. So a stricter access control can buy you hours you would otherwise be barred
 from. The table contains the clean case:
 
-> `any_time; requires=mandatory_daytime_protection` — permitted at **any hour**, including
+> `any_time; requires=mandatory_daytime_protection`, permitted at **any hour**, including
 > the middle of a weekday afternoon, *provided* a PIN gate is in place. Remove the PIN and
 > the same title is barred before 21:00.
 
@@ -58,18 +58,18 @@ come apart in both directions:
 Therefore you run **two independent passes** and you are forbidden from deriving either from
 the other:
 
-> **Pass A — classification.** Which category or label, if any, does this jurisdiction
+> **Pass A, classification.** Which category or label, if any, does this jurisdiction
 > assign? For the UK linear TV the honest answer is "none".
-> **Pass B — scheduling.** Which hours are permitted, from the scheduling rules alone,
+> **Pass B, scheduling.** Which hours are permitted, from the scheduling rules alone,
 > applied to the observations and the service type?
-> **Pass C — other restrictions.** What else is required or allowed: access control (PIN),
+> **Pass C, other restrictions.** What else is required or allowed: access control (PIN),
 > on-screen signage, audience warnings, adjacency limits, trailer handling, quota caps,
 > service eligibility, and any derogation or exemption that makes the answer MORE permissive.
 
 Run all three. Then check Pass C against Pass B, because a Pass C measure can change or
 remove the Pass B answer: a PIN gate that is on by default can disapply the watershed
-entirely. If you find such a measure, report BOTH states — the hours without it and the
-hours with it — and say which applies to the service in front of you.
+entirely. If you find such a measure, report BOTH states, the hours without it and the
+hours with it, and say which applies to the service in front of you.
 
 Then you *compare* them and report the comparison. If Pass B's answer looks surprising given
 Pass A's, that is usually correct and is exactly the information the user needs. Never
@@ -81,7 +81,7 @@ reconcile them by adjusting one to match the other.
 
 **1. Match observations to rules.** For each observation, find every rule whose
 `content_category` matches and whose `service_type` includes the requested service (or is
-`all_linear_tv`). Record non-matches too — an observation matching no rule is a coverage gap.
+`all_linear_tv`). Record non-matches too, an observation matching no rule is a coverage gap.
 
 **1a. Route on the asset-level flags first.** If `is_news_or_current_affairs` is `yes`, news
 is regulated under the due-impartiality section rather than the harm-and-offence section, so
@@ -99,23 +99,23 @@ showing is given, ask whether a timeshift service carries it rather than assumin
 **1c. Check the DATE against audience-composition factors, not just the clock.** School
 holidays and cultural or religious festivals raise the likely child audience without changing
 the hour or the content. Which festivals matter depends on the community that channel serves,
-so this is never inferable from a public-holiday table — if the channel has a
+so this is never inferable from a public-holiday table, if the channel has a
 high-child-audience date list, apply it; if it does not, and the date is unknown, say the
 answer is provisional rather than assuming an ordinary day.
 
 **2. Check service applicability before applying any rule.** A rule scoped to
 `cinema_channels; pay_per_view` does not bind a free-to-air broadcast. If `service_type` is
 `not_stated`, do not pick one. Produce the decision for each plausible service type and say
-the answer depends on it — this is the single most common way a wrong answer gets produced
+the answer depends on it. This is the single most common way a wrong answer gets produced
 confidently.
 
 **3. Resolve conflicts by `authority_rank`,** lower number winning. If two rules of equal rank
 conflict, do not choose: emit both and set `human_review_required`.
 
 **4. Respect `determinacy`.**
-   - `bright_line` — apply mechanically; state the outcome plainly.
-   - `conditional` — state which condition you found satisfied and the evidence for it.
-   - `judgment_based` — you may state the considerations and a provisional view, but you
+   - `bright_line`, apply mechanically; state the outcome plainly.
+   - `conditional`, state which condition you found satisfied and the evidence for it.
+   - `judgment_based`. You may state the considerations and a provisional view, but you
      **must** flag it for human review. Never present a judgment call as settled.
 
 **5. Carry `human_review_required` upward.** If any applied rule has it set, the whole

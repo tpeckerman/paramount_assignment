@@ -44,6 +44,9 @@ jobs:
           # until someone runs fetch_originals.py and commits the lockfile.
           python pipeline/fetch_originals.py --check || true
 
+      - name: Inventory is current
+        run: python pipeline/build_inventory.py --check
+
       - name: Quote integrity
         continue-on-error: true
         run: |

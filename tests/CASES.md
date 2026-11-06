@@ -15,7 +15,7 @@ would look like.
 
 ---
 
-## TC-01 — Cinema film carried over to television
+## TC-01, Cinema film carried over to television
 
 ```
 TITLE: "Harbour Line" (feature film, 104 min)
@@ -32,15 +32,15 @@ EVENTS
 01:31:20  A character is shown contemplating suicide on a bridge. No method is depicted.
 ```
 
-**Right answer.** UK: **no age rating exists** — the correct output is a scheduling answer
+**Right answer.** UK: **no age rating exists**, the correct output is a scheduling answer
 (post-watershed), not a number. France: a category, but the *hours depend on service type*,
-so a single French answer is wrong. The drug-injection scene is two observations, not one —
+so a single French answer is wrong. The drug-injection scene is two observations, not one:
 the technique being shown triggers an imitable-behaviour rule independent of the drug rule.
 The suicide scene must not be over-read: no method is depicted.
 
 ---
 
-## TC-02 — The identical film, different service
+## TC-02, The identical film, different service
 
 ```
 As TC-01, identical content and certificate.
@@ -52,7 +52,7 @@ COUNTRIES: UK, FR
 
 **Right answer.** Same content, same certificate, **completely different answer**. In the UK
 the watershed is *disapplied* while mandatory daytime protection is in place, so a 14:30
-transmission is permissible — but only because of the PIN, and the PIN must be on by default,
+transmission is permissible, but only because of the PIN, and the PIN must be on by default,
 which this one is. Reporting "any time" without the condition is the most dangerous possible
 output. In France, Wednesday is a specifically restricted day for some categories.
 
@@ -62,7 +62,7 @@ about one of them.
 
 ---
 
-## TC-03 — Negative space
+## TC-03, Negative space
 
 ```
 TITLE: "The Sunday Panel" (comedy sketch, 6 min)
@@ -78,7 +78,7 @@ EVENTS
 00:05:40  The host repeats a stereotype about the community's attitude to money.
 ```
 
-**Right answer.** No violence, no sex, no drugs, no strong language — a category-driven
+**Right answer.** No violence, no sex, no drugs, no strong language, a category-driven
 pipeline scores this clean and returns "no restrictions". That is a serious failure. The
 trigger here is **treatment**, not depicted subject matter, and it engages the
 abusive-or-derogatory rule, which is context-justified. This is a human-review case, not an
@@ -87,7 +87,7 @@ automatic refusal: comedy and satire have real protection, and the answer is "es
 
 ---
 
-## TC-04 — Derived asset
+## TC-04, Derived asset
 
 ```
 TITLE: "Night Drive" (music video, 4 min) and its 30-second on-air trailer
@@ -96,24 +96,24 @@ INTENDED SERVICE: music channel
 INTENDED SLOT: video at 22:15; trailer in a 15:00 break
 COUNTRIES: UK, FR
 
-EVENTS — MUSIC VIDEO
+EVENTS: MUSIC VIDEO
 00:00:45  Repeated strong language in the chorus (unedited).
 00:02:10  Dancers in minimal clothing; camera emphasises bodies.
 00:03:30  A performer brandishes a replica handgun toward the camera.
 
-EVENTS — TRAILER (30s)
+EVENTS: TRAILER (30s)
 00:00:05  The chorus plays, strong language audible, unedited.
 00:00:18  The handgun shot is included.
 ```
 
 **Right answer.** Two separate decisions. The video at 22:15 is post-watershed. The trailer
-at 15:00 is **not**, and does not inherit the video's permission — it is judged in its own
+at 15:00 is **not**, and does not inherit the video's permission, it is judged in its own
 slot. A pipeline that reasons about "the asset" produces one answer and misses the breach
 entirely. Also tests adjacency: French rules restrict placement near children's programming.
 
 ---
 
-## TC-05 — Missing information and self-contradiction
+## TC-05, Missing information and self-contradiction
 
 ```
 TITLE: "Coastal Rescue" (documentary, 48 min)
@@ -130,7 +130,7 @@ EVENTS
 
 **Right answer.** The distributor's summary **contradicts** the event list. The correct
 behaviour is to surface the contradiction, not to silently believe either side. Service type
-is absent, and in France that single gap makes the hours unanswerable — the system must
+is absent, and in France that single gap makes the hours unanswerable, the system must
 branch, not assume. Real footage of death engages rules that dramatised violence does not.
 The "easy to copy at home" line is an imitable-behaviour trigger that reads as harmless.
 

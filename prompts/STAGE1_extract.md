@@ -1,4 +1,4 @@
-# Stage 1 — Content Observation Extractor
+# Stage 1, Content Observation Extractor
 
 **Role in the system:** turn a free-text content description into structured, timecoded
 observations. Nothing else.
@@ -7,7 +7,7 @@ observations. Nothing else.
 a watershed is, what ages exist as categories, or which country this is for. This is
 deliberate and it is the single most important property of this stage: an extractor that
 knows the thresholds will unconsciously shade its descriptions toward the rating it expects.
-If you catch yourself thinking "this is probably a 12" — stop. That is Stage 2's job and you
+If you catch yourself thinking "this is probably a 12", stop. That is Stage 2's job and you
 are corrupting the evidence.
 
 ---
@@ -82,14 +82,14 @@ If an event genuinely fits none of these, use `offence_general` and say so in
 `extractor_notes`. Never invent a category.
 
 An event may need **several** observations. A scene where a character injects heroin on screen
-in close-up is `drugs_alcohol_smoking` *and* `imitable_behaviour` — the second because the
+in close-up is `drugs_alcohol_smoking` *and* `imitable_behaviour`, the second because the
 technique is shown. Splitting it is correct; merging it loses a rule hit.
 
 ---
 
 ## Rules of extraction
 
-1. **Report, don't rate.** Write "a character is stabbed; blood is visible" — not "graphic
+1. **Report, don't rate.** Write "a character is stabbed; blood is visible", not "graphic
    violence" or "moderate violence". Severity words are thresholds in disguise.
 2. **`is_depicted` carries real weight.** Shown on screen, described in dialogue, and
    implied off screen are three different things and several rules turn on which it is.
@@ -103,7 +103,7 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    broadcast day and time, whether an existing cinema certificate exists and its exact level,
    whether under-18s appear as participants, and total runtime.
 5. **Quote your evidence.** `evidence` must be a verbatim span from the input. If you cannot
-   quote it, you are inferring — set `extraction_confidence` to `low` and say so.
+   quote it, you are inferring, set `extraction_confidence` to `low` and say so.
 6. **Do not resolve contradictions.** If the description says "no violence" in a summary line
    and then lists a fight at 00:14:22, record both and flag it in `extractor_notes`. Stage 2
    and the human reviewer need to see the conflict, not your tidied-up version of it.
@@ -115,7 +115,7 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    told about, separately. The same file can be compliant on one and not on another with no
    edit between them: a `+1` service re-broadcasts an hour later, so content placed while
    children are at school lands after they are home. If the description mentions one slot,
-   record one transmission and put the possibility of a timeshift service in `not_stated` —
+   record one transmission and put the possibility of a timeshift service in `not_stated`.
    do not assume there isn't one.
 10. **Always record the DATE, not only the time.** Audience composition moves with the
    calendar: school holidays, and cultural or religious festivals when families gather. A
@@ -127,14 +127,14 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    applies a harm-and-offence rule that does not bind. `is_made_primarily_for_children`
    matters because several rules attach to the programme's intended audience rather than to
    anything depicted in it. Set either to `not_stated` rather than inferring from genre or
-   tone — a cartoon is not automatically made for children, and a documentary is not
+   tone. A cartoon is not automatically made for children, and a documentary is not
    automatically news.
 
 ---
 
 ## Worked fragment
 
-Input: `00:04:10 — Two teenagers share a cigarette behind a school; played for laughs.`
+Input: `00:04:10  Two teenagers share a cigarette behind a school; played for laughs.`
 
 ```json
 {
@@ -152,4 +152,4 @@ Input: `00:04:10 — Two teenagers share a cigarette behind a school; played for
 ```
 
 Note what is absent: no "mild", no "brief", no guess at a rating, and `treatment` is
-`comedic` because the input says so — not because comedic is more permissive.
+`comedic` because the input says so, not because comedic is more permissive.

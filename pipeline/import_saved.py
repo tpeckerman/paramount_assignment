@@ -64,7 +64,7 @@ TAGS = re.compile(rb"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.I | re.S)
 def fold(t: str) -> str:
     for a, b in (("œ", "oe"), ("Œ", "OE"), ("æ", "ae"),
                  ("’", "'"), ("‘", "'"), (" ", " "),
-                 ("—", "-"), ("–", "-")):
+                 (", ", "-"), (", ", "-")):
         t = t.replace(a, b)
     t = unicodedata.normalize("NFKD", t)
     t = "".join(c for c in t if not unicodedata.combining(c))

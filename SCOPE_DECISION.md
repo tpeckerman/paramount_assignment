@@ -9,7 +9,7 @@ than left implicit.
 
 | | Scope | Verdict |
 |---|---|---|
-| A | Age rating and clock hours only | **Too narrow.** Produces answers that are wrong, not merely incomplete — see below. |
+| A | Age rating and clock hours only | **Too narrow.** Produces answers that are wrong, not merely incomplete, see below. |
 | B | Everything in the Broadcasting Code | **Too broad.** Ten sections, mostly judgment-based, with one enforcement precedent for calibration. Yields confident mush and a tool that claims authority it cannot support. |
 | C | The age/time decision **and everything that conditions or substitutes for it** | **Chosen.** |
 
@@ -18,7 +18,7 @@ than left implicit.
 > Does this restriction or allowance **change, condition, or substitute for** the age/time
 > answer?
 
-The word doing the work in the requirement is "**relevant**" — relevant to the thing the title
+The word doing the work in the requirement is "**relevant**", relevant to the thing the title
 names. That gives a sharp test rather than a vibe, and it cuts in a non-obvious place: it
 admits several restrictions that are not about time or age on their face.
 
@@ -30,7 +30,7 @@ The table contains this row:
 UK-FLM-003   Rule 1.24   any_time; requires=mandatory_daytime_protection
 ```
 
-Permitted at **any hour**, including a weekday afternoon — *provided* a PIN gate is in place.
+Permitted at **any hour**, including a weekday afternoon, *provided* a PIN gate is in place.
 Remove the PIN and the same film is barred before 21:00.
 
 A scope-A tool reports "any time" and is catastrophically wrong, because it dropped the
@@ -40,7 +40,7 @@ restriction entirely.
 
 This is not an edge case. It is the mechanism the EU framework is built on: Article 6a
 requires an *outcome* and permits scheduling **or** technical measures as alternatives. So the
-axes are not merely independent — **they are substitutes**, and a system that models only two
+axes are not merely independent, **they are substitutes**, and a system that models only two
 of them cannot represent the trade.
 
 ## In scope, with the reason
@@ -60,7 +60,7 @@ of them cannot represent the trade.
 ### On allowances
 
 Modelling only prohibitions systematically over-restricts. In a licensing context that is not
-a safe default — it is lost revenue and lost distribution, with no compliance benefit. The
+a safe default. It is lost revenue and lost distribution, with no compliance benefit. The
 table therefore carries exemptions and derogations as first-class rows, not as notes.
 
 ## Out of scope, with the reason
@@ -71,7 +71,7 @@ different remedy.
 
 Two qualifications, so the exclusions are not silent:
 
-- **The news section binds this broadcaster** — a commercial PSB licence carries news
+- **The news section binds this broadcaster**, a commercial PSB licence carries news
   obligations. It is excluded because it yields no rating and no hour, not because it does not
   apply. It is still retained as a **router**: the note to Rule 2.2 regulates news elsewhere,
   so "is this news?" must be answered or a harm-and-offence rule gets applied where it does
