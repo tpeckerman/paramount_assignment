@@ -2,8 +2,9 @@
 
 - **Regulator:** Ofcom
 - **Source type:** regulator_binding (authority rank 2)
-- **URL:** https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-two-harm-offence
-- **PDF:** https://www.ofcom.org.uk/__data/assets/pdf_file/0020/132077/Broadcast-Code-Section-2.pdf
+- **URL:** https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence
+- **Authoritative form:** the HTML above (last updated 19 Feb 2024). ⚠ The PDF edition is
+  **January 2019** and predates it by five years.
 - **Published:** 3 March 2021 · **Last updated:** 19 February 2024
 - **Legal basis:** Communications Act 2003 ss. 3(4)(g), 319(2)(a), (f) & (l)
 - **Retrieval status:** STRUCTURED EXTRACT, not official full text.

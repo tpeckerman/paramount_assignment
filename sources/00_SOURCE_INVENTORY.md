@@ -27,8 +27,8 @@ Decisions are made against Code rules plus the watershed, judged in context.
 
 | # | Document | Type | Rank | Scope | URL |
 |---|---|---|---|---|---|
-| UK-S1 | Ofcom Broadcasting Code, **Section One: Protecting the Under-Eighteens** | regulator_binding | 2 | All Ofcom-licensed TV & radio. Rules 1.3–1.6 do **not** apply to BBC ODPS. | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-one-protecting-under-eighteens |
-| UK-S2 | Ofcom Broadcasting Code, **Section Two: Harm and Offence** | regulator_binding | 2 | Same. Supplies the binding **definition of "context"**, which Section One depends on. Must be read with S1. | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-two-harm-offence |
+| UK-S1 | Ofcom Broadcasting Code, **Section One: Protecting the Under-Eighteens** | regulator_binding | 2 | All Ofcom-licensed TV & radio. Rules 1.3–1.6 do **not** apply to BBC ODPS. | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens |
+| UK-S2 | Ofcom Broadcasting Code, **Section Two: Harm and Offence** | regulator_binding | 2 | Same. Supplies the binding **definition of "context"**, which Section One depends on. Must be read with S1. | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence |
 | UK-G1 | Ofcom Guidance: *Protecting the Under-Eighteens — Observing the watershed on television and music videos* | regulator_guidance | 3 | TV. Covers pre/post-watershed transition and **music videos** specifically. | https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf |
 | UK-G2 | Ofcom Guidance Notes, Section One | regulator_guidance | 3 | Interpretation aid for S1. | https://www.ofcom.org.uk/__data/assets/pdf_file/0017/24704/section1.pdf |
 | UK-G3 | Ofcom Guidance Notes, Section Two | regulator_guidance | 3 | Interpretation aid for S2. | https://www.ofcom.org.uk/__data/assets/pdf_file/0023/104657/Section-2-Guidance-Notes.pdf |

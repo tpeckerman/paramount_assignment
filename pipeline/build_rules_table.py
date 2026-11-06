@@ -34,8 +34,8 @@ def add(rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm, exc,
 
 
 # ----------------------------------------------------------------- URLs
-U_S1 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-one-protecting-under-eighteens"
-U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-two-harm-offence"
+U_S1 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens"
+U_S2 = "https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence"
 U_G1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf"
 U_M1 = "https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf"
 U_L1 = "https://www.legislation.gov.uk/ukpga/2003/21/section/319"
@@ -1069,9 +1069,9 @@ src = [["source_id", "document", "regulator", "source_type", "authority_rank",
 src += [
     ["UK-S1", "Ofcom Broadcasting Code, Section One: Protecting the Under-Eighteens", "Ofcom", "regulator_binding", 2,
      "All Ofcom-licensed TV and radio. Rules 1.3-1.6 do NOT apply to BBC ODPS.", U_S1,
-     "Published 2021-03-03, last updated 2023-03-16", "The core UK rulebook. Must be read with Section Two."],
+     "HTML, last updated 2023-03-16", "The core UK rulebook. Must be read with Section Two. USE THE HTML: the downloadable PDFs are the January 2019 print edition (every page footer says so) and predate this text by four years."],
     ["UK-S2", "Ofcom Broadcasting Code, Section Two: Harm and Offence", "Ofcom", "regulator_binding", 2,
-     "Same as UK-S1.", U_S2, "Published 2021-03-03, last updated 2024-02-19",
+     "Same as UK-S1.", U_S2, "HTML, last updated 2024-02-19 (the PDF edition is January 2019)",
      "Supplies the BINDING DEFINITION OF 'CONTEXT', on which Section One depends. Time of broadcast is one of its eight factors."],
     ["UK-G1", "Ofcom Guidance: Protecting the Under-Eighteens - Observing the watershed on television and music videos",
      "Ofcom", "regulator_guidance", 3, "Television.", U_G1, "undated issue",

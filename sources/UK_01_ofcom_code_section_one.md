@@ -2,8 +2,10 @@
 
 - **Regulator:** Ofcom
 - **Source type:** regulator_binding (authority rank 2)
-- **URL:** https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-codes/broadcast-code/section-one-protecting-under-eighteens
-- **PDF:** https://www.ofcom.org.uk/__data/assets/pdf_file/0019/132076/Broadcast-code-Section-1.pdf
+- **URL:** https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens
+- **Authoritative form:** the HTML above. ⚠ The downloadable PDF is the **January 2019** print
+  edition (every page footer says so) and predates this text by four years. Historical PDF:
+  https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-codes/code---jan-2019/broadcast-code-full.pdf
 - **Published:** 3 March 2021 · **Last updated:** 16 March 2023
 - **Legal basis:** Communications Act 2003 ss. 3(4)(h), 319(2)(a) & (f)
 - **Must be read with:** Section Two (Harm and Offence) — supplies the definition of "context"
