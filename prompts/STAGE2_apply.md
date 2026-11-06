@@ -155,11 +155,11 @@ might apply but the facts are absent, say so rather than assuming the general ca
   BBFC or CNC certificate is not a broadcast decision and must not be reported as one.
 - **If the rule slice is empty for a country, say so and stop for that country.** Do not fall
   back on general knowledge.
-- **For France, never assume a service type.** As of 2026 Paramount operates no French
-  linear channel, so a French answer is licensing guidance for a third-party broadcaster
-  whose service type is not Paramount's to choose. Since the French hours are service-type
-  and day-of-week dependent, a single French answer is almost always wrong. Branch, and label
-  which answer belongs to which service.
+- **For France, never assume a service type.** The French hours are service-type and
+  day-of-week dependent: the same category is barred before one hour on a general channel and
+  a different hour on a cinema or pay-per-view service, and the weekday moves it again. So a
+  single unqualified French answer is almost always wrong. Branch across the plausible service
+  types and label which answer belongs to which.
 - **Prefer flagging to guessing.** An output marked for review is useful. A confident wrong
   answer about what may air before 21:00 is the failure mode this whole system exists to
   prevent.

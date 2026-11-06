@@ -23,21 +23,14 @@ Two consequences:
 2. **PSB status brings a news obligation.** So the Code sections that govern news genuinely
    bind this broadcaster. "Paramount doesn't do news" is not available as a scoping reason.
 
-**France — no Paramount linear channel as of 2026.**
-Paramount Network France closed on 31 December 2025. Whatever remains of the French
-portfolio, the safe assumption is that Paramount does **not** control the service on which a
-title airs in France.
+**France — service type is the pivot, and it is not a given.**
+The French scheduling rules are *service-type dependent*: the same category III title is
+barred before 22:00 on a general channel and before 20:30 on a cinema or pay-per-view
+service, and the day of the week moves it again.
 
-This is the single most important scoping fact for the French half of the task, because the
-French scheduling rules are *service-type dependent*: the same category III title is barred
-before 22:00 on a general channel and before 20:30 on a cinema or pay-per-view service, and
-the day of the week moves it again.
-
-> **Design consequence.** The French output is not a scheduling decision Paramount makes. It
-> is **licensing guidance for a third-party broadcaster whose service type Paramount does not
-> control.** Stage 2 therefore must never assume a service type for France — it must branch
-> across the plausible ones and say which answer belongs to which. This is a business reason
-> reinforcing a rule-driven one.
+> **Design consequence.** Stage 2 must never assume a French service type. It must branch
+> across the plausible ones and say which answer belongs to which. A single unqualified
+> French answer is almost always wrong.
 
 ---
 

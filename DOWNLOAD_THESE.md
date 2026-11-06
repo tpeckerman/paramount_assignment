@@ -1,6 +1,6 @@
 # Documents to download
 
-**16 outstanding, 3 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
+**17 outstanding, 3 verified** (generated 2026-11-06 by `pipeline/build_worklist.py` - do not edit by hand).
 
 Network access from the workspace is open, but these publishers gate automated clients
 behind browser challenges or render the document body in JavaScript. Open each in a
@@ -36,7 +36,7 @@ check what landed.
 > only outstanding document that changes the rule table's status today (conflict C-03).
 > The other 23 convert `skipped` quote checks into `verified` ones - worth having, not blocking.
 
-## Required (10)
+## Required (11)
 
 | ✓ | doc | what it is | save as | why blocked | url |
 |---|---|---|---|---|---|
@@ -45,10 +45,11 @@ check what landed.
 | [ ] | `FR-L1` | Loi 86-1067 du 30 septembre 1986 (arts. 1 and 15) | `FR-L1_loi_86-1067.txt` | Cloudflare JS challenge (403) | [link](https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205) |
 | [ ] | `EU-D1` | AVMSD Directive 2010/13/EU article 6a (consolidated) | `EU-D1_avmsd_article_6a.txt` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/eudr/2010/13/article/6a) |
 | [ ] | `UK-L1` | Communications Act 2003 section 319 | `UK-L1_communications_act_2003_s319.txt` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/ukpga/2003/21/section/319) |
-| [ ] | `UK-G1` | Guidance - Observing the watershed on television and music vi... | `UK-G1_ofcom_watershed_music_videos.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0030/86781/watershed-on-tv.pdf) |
-| [ ] | `UK-M1` | Statement - Review of the mandatory daytime protection rules | `UK-M1_ofcom_mandatory_daytime_protection.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0025/125359/statement-mandatory-daytime-protection-rules.pdf) |
+| [ ] | `UK-G1` | Guidance - Observing the watershed on television and music vi... | `UK-G1_ofcom_watershed_music_videos.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/watershed-on-tv.pdf?v=335370) |
+| [ ] | `UK-M1` | Statement - Review of the mandatory daytime protection rules | `UK-M1_ofcom_mdp_statement.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/mandatory-daytime-protection) |
 | [ ] | `UK-S1` | Broadcasting Code Section One - Protecting the Under-Eighteens | `UK-S1_ofcom_code_section_1.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens) |
 | [ ] | `UK-S2` | Broadcasting Code Section Two - Harm and Offence | `UK-S2_ofcom_code_section_2.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence) |
+| [ ] | `UK-S3` | Ofcom Broadcasting Code Section Three - Crime, Disorder, Hatr... | `UK-S3_ofcom_code_section_3.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse) |
 | [ ] | `UK-S4` | Ofcom Broadcasting Code, Section Four: Religion | `UK-S4_ofcom_code_section_4.txt` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion) |
 
 ## Recommended (6)
@@ -58,8 +59,8 @@ check what landed.
 | [ ] | `FR-S1c` | La signaletique jeunesse (CSA/Arcom FRENCH public page) | `FR-S1c_signaletique_jeunesse_fr.txt` | Host unreachable (502 via proxy) | [link](https://as-pc-www.csa.fr/Proteger/Protection-de-la-jeunesse-et-des-mineurs/La-signaletique-jeunesse) |
 | [ ] | `EU-D1b` | Directive (EU) 2018/1808 (amending directive) | `EU-D1b_directive_2018_1808.txt` | AWS WAF challenge (202, empty body) | [link](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32018L1808) |
 | [ ] | `UK-L2` | Audiovisual Media Services Regulations 2020 (SI 2020/1062) ex... | `UK-L2_avms_regulations_2020_note.txt` | AWS WAF challenge (x-amzn-waf-action: challenge) | [link](https://www.legislation.gov.uk/uksi/2020/1062/note/made) |
-| [ ] | `UK-G2` | Guidance Notes Section One | `UK-G2_ofcom_guidance_section_1.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0017/24704/section1.pdf) |
-| [ ] | `UK-G3` | Guidance Notes Section Two | `UK-G3_ofcom_guidance_section_2.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/__data/assets/pdf_file/0023/104657/Section-2-Guidance-Notes.pdf) |
+| [ ] | `UK-G2` | Guidance Notes Section One | `UK-G2_ofcom_guidance_section_1.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674) |
+| [ ] | `UK-G3` | Guidance Notes Section Two | `UK-G3_ofcom_guidance_section_2.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622) |
 | [ ] | `UK-P1` | Enforcement decision - Toofan NTV 29 May 2026 (Rule 1.3 breach) | `UK-P1_ofcom_decision_toofan.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf) |
 
 ## Already verified

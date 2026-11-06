@@ -401,7 +401,7 @@ add("UK-HAT-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
 # --- Without UK-ACC-001 the token `requires=mandatory_daytime_protection` is an unexplained
 # --- string and the any-hour permission it gates cannot be audited.
 add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription; pay_per_view", "access_control", "n/a",
+    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
     "DEFINITION. 'Mandatory restricted access' means a PIN-protected system, or other "
     "equivalent protection, which CANNOT BE REMOVED BY THE USER and which restricts access "
     "solely to those authorised to view.",
@@ -416,7 +416,7 @@ add("UK-ACC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "which cannot be removed by the user", "EN", "high")
 
 add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
-    "premium_subscription; pay_per_view", "access_control", "n/a",
+    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "access_control", "n/a",
     "IMPLEMENTATION. Restricted access must be provided AS THE DEFAULT. A service may not "
     "satisfy the requirement by offering a PIN the viewer has to set up; the gate must be on "
     "before the viewer arrives.",
@@ -427,11 +427,11 @@ add("UK-ACC-002", "UK", "Ofcom", "guidance", 3, "yes",
     "states how Ofcom reads a binding rule.",
     "bright_line", "clear", "", "no",
     "UK-G2", "Guidance Notes Section One, Rules 1.24-1.25", U_G2, "2015-03-30", "open",
-    "approved",
+    "unverified",
     "as the default, rather than requiring PIN setting by the viewer", "EN", "medium")
 
 add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
-    "premium_subscription; pay_per_view", "audience_information", "n/a",
+    "premium_subscription; pay_per_view; scheduled_channels_with_mdp", "audience_information", "n/a",
     "CONDITIONS PRECEDENT to the any-hour film permissions: audience information about "
     "programme content sufficient to help adults assess suitability for children must be "
     "provided, and a detailed billing system must be in place.",
@@ -444,7 +444,7 @@ add("UK-ACC-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "The sufficiency of the information is a judgment; its ABSENCE is not. Treat a missing "
     "information commitment as a bright-line fail and the adequacy of wording as a review item.",
-    "yes", "UK-S1", "Rules 1.24, 1.25", U_S1, "2020-12-31", "open", "approved",
+    "yes", "UK-S1", "Rules 1.24, 1.25", U_S1, "2020-12-31", "open", "unverified",
     "information must be provided about programme content that will assist", "EN", "medium")
 
 add("UK-TRL-002", "UK", "Ofcom", "guidance", 3, "yes",
@@ -459,6 +459,28 @@ add("UK-TRL-002", "UK", "Ofcom", "guidance", 3, "yes",
     "bright_line", "clear", "", "no",
     "UK-G2", "Guidance Notes Section One", U_G2, "2015-03-30", "open", "approved",
     "both programmes and trailers are subject to this rule", "EN", "medium")
+
+# --- THE SUBSTITUTION PROOF. The watershed is not relaxed by a technical measure, it is
+# --- DISAPPLIED. Ranked above the general watershed rule so it wins on conflict. Without this
+# --- row a decision engine bars a title pre-21:00 that the Code permits at any hour.
+add("UK-SCH-007", "UK", "Ofcom", "regulator_binding", 1, "yes",
+    "all_linear_tv", "scheduling_general", "exempt",
+    "THE WATERSHED DOES NOT APPLY AT ALL to a channel while mandatory daytime protection is "
+    "in place. This is a disapplication, not a relaxation: the time question is removed "
+    "rather than adjusted.",
+    "No window. The watershed ceases to bind while MDP is in place.",
+    "any_time;override=watershed_disapplied_when_mdp_in_place",
+    "Read with Rules 1.24 and 1.25. This is the concrete mechanism behind AVMSD art. 6a "
+    "offering scheduling OR technical measures as ALTERNATIVES, and the reason this system "
+    "reports three axes rather than two: an access control can remove the hours question "
+    "entirely. Ranked 1 so it defeats the general watershed rule (UK-SCH-002) on conflict.",
+    "bright_line", "clear",
+    "Verify the MDP is genuinely non-removable before applying this. The disapplication is "
+    "only as good as the gate: if the protection fails UK-ACC-001's 'cannot be removed by the "
+    "user' test, the watershed snaps back and the title is in breach from the first frame.",
+    "yes", "UK-S1", "Rule 1.4 (meaning of the watershed)", U_S1, "2020-12-31", "open",
+    "approved",
+    "does not apply to channels when mandatory daytime protection", "EN", "high")
 
 add("UK-REL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "religion", "audience_based",
@@ -1291,6 +1313,11 @@ oq += [
      "Still open. All category V rows remain unverified. Attempted 2026-11-06: the Arcom page for reco. 2004-7 was fetched but returned 12,493 characters of pure site NAVIGATION and no rule text - it renders its body via JavaScript. The fetcher now detects this (per-document `expect` assertion) instead of storing the shell as a source copy.",
      "Obtain the real text: use the page's Telecharger/Imprimer PDF, or the JORF of 23 December 2004, and set format=pdf in the manifest. Then confirm (a) that the 00:00-05:00 window is still in force, and (b) whether the 2021 AVMSD transposition decree altered the category V regime. This is now the main blocker on the French side.",
      "local expert", "YES"],
+    ["C-14", "UK access-control rows cite guidance that predates the 2018 MDP restructure",
+     "UK-ACC-002, UK-ACC-003 (demoted to unverified)",
+     "OPEN, and self-inflicted on 2026-11-06. UK-G2 is Guidance Notes Issue Six of 30 March 2015. It describes the PRE-2018 regime: premium subscription film services capped at BBFC 15, pay-per-view at 18, the whole framing being 'mandatory restricted access'. Ofcom's statement of 5 November 2018 (UK-M1) restructured this, extending MANDATORY DAYTIME PROTECTION to scheduled television channels and permitting films up to BBFC 18 at any time of day behind the gate. So these two rows rest on guidance written about a rule structure that no longer stands.",
+     "EXACTLY the C-09 pattern, committed hours after the C-09 lesson was written down: wording that is internally coherent, corroborated by other sources of the same vintage, and quietly superseded by an amending instrument nobody read. Corroboration cannot catch this - only reading the amending instrument can. Rows demoted to unverified rather than deleted, because the substance (a gate the viewer can switch off is not a gate) is probably still correct. ACTION: re-derive both from the current Section One text plus UK-M1, then restore to approved. UK-G2 should be re-dated or replaced with current guidance. GENERAL LESSON FOR TASK 2: every source needs an 'amended by' field, and no row should reach approved while citing guidance older than the most recent amendment to the rule it interprets.",
+     "open", "yes"],
     ["C-11", "Only Code Sections One and Two had been reviewed. Sections Three to Ten were assumed irrelevant to age ratings and broadcast hours.",
      "UK-REL-001 (added)",
      "CLOSED 2026-11-06, after the first answer was WRONG. I originally scoped the Code with one test - the phrase 'significant numbers of children', which is how Rules 1.27 and 4.7 key their child-audience restrictions - and concluded Sections Three and Five-Ten were out of scope. Section Three does not contain that phrase, so the test cleared it. But Rules 3.2 (hate speech) and 3.3 (abusive or derogatory treatment) are permitted 'except where it is justified by the context', and 'context' is Section Two's DEFINED term whose third factor is the TIME OF BROADCAST. So a Section Three judgment can turn on the hour. The test could not see that, so it was the wrong test, and everything it cleared was unproven rather than cleared. Added UK-HAT-001 and UK-HAT-002.",
