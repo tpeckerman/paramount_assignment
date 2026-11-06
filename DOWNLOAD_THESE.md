@@ -55,7 +55,7 @@ check what landed.
 
 | ✓ | doc | what it is | save as | why blocked | url |
 |---|---|---|---|---|---|
-| [ ] | `EU-D1b` | Directive (EU) 2018/1808 (amending directive) | `EU-D1b_directive_2018_1808.txt` | AWS WAF challenge (202, empty body) | [link](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32018L1808) |
+| [ ] | `EU-D1b` | Directive (EU) 2018/1808 (amending directive) | `EU-D1b_directive_2018_1808.txt` | AWS WAF challenge (202, empty body) | [link](https://eur-lex.europa.eu/eli/dir/2018/1808/oj) |
 | [ ] | `FR-S1c` | La signaletique jeunesse (CSA/Arcom FRENCH public page) | `FR-S1c_signaletique_jeunesse_fr.txt` | Connection reset on this path | [link](https://www.arcom.fr/en/find-out-more/educational-resources/protection-young-people-and-persons-under-18) |
 | [ ] | `UK-G2` | Guidance Notes Section One | `UK-G2_ofcom_guidance_section_1.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674) |
 | [ ] | `UK-G3` | Guidance Notes Section Two | `UK-G3_ofcom_guidance_section_2.pdf` | Cloudflare JS challenge (403) | [link](https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622) |
