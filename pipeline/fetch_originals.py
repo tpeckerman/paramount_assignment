@@ -156,6 +156,52 @@ def fetch(url: str, dest: Path, fmt: str = "pdf", expect: str = "",
     return True, f"text, {len(text)} chars (from {len(body)} bytes of HTML)"
 
 
+def _refresh_manifest_status() -> None:
+    """Rewrite download_status / blocked_by in MANIFEST.csv from what is on disk.
+
+    A hand-maintained status column goes stale and then lies, so --check always
+    refreshes it. A row reads NEEDS_MANUAL_DOWNLOAD when the file is absent OR
+    when it is present but missing its `expect` string, i.e. a navigation page
+    stored as though it were the document.
+    """
+    import io as _io
+    from urllib.parse import urlparse
+    rows = load_manifest()
+    lock = json.loads(LOCKFILE.read_text()) if LOCKFILE.exists() else {}
+    reasons = {
+        "www.ofcom.org.uk": "Cloudflare JS challenge (403)",
+        "www.legifrance.gouv.fr": "Cloudflare JS challenge (403)",
+        "www.legislation.gov.uk": "AWS WAF challenge",
+        "eur-lex.europa.eu": "AWS WAF challenge (202 empty)",
+        "as-pc-www.csa.fr": "host unreachable (502)",
+        "www.arcom.fr": "connection reset on this path",
+        "solidarites.gouv.fr": "truncated response (IncompleteRead)",
+    }
+    for r in rows:
+        dest = ORIGINALS / r["target_filename"]
+        if r["doc_id"] in lock and dest.exists():
+            shell = (dest.suffix == ".txt" and r.get("expect")
+                     and _fold(r["expect"]) not in _fold(
+                         dest.read_text(encoding="utf-8", errors="replace")))
+            r["download_status"] = "NEEDS_MANUAL_DOWNLOAD" if shell else "verified"
+            r["blocked_by"] = ("stored file is site navigation, not the document"
+                               if shell else "")
+        else:
+            r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
+            r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc, "fetch failed")
+    fields = ["doc_id", "country", "regulator", "title", "url", "target_filename",
+              "format", "tier", "version_status", "download_status", "blocked_by",
+              "expect", "notes"]
+    buf = _io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=fields, lineterminator="\n")
+    w.writeheader()
+    for r in rows:
+        w.writerow({k: r.get(k, "") for k in fields})
+    MANIFEST.write_text(buf.getvalue())
+    todo = sum(1 for r in rows if r["download_status"] == "NEEDS_MANUAL_DOWNLOAD")
+    print(f"  MANIFEST.csv refreshed: {todo} row(s) marked NEEDS_MANUAL_DOWNLOAD")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -221,6 +267,7 @@ def main() -> int:
                 ok += 1
         print(f"\n{ok} ok, {absent} absent, {drift} changed  "
               f"({len(rows)} in scope, tier<={args.tier})")
+        _refresh_manifest_status()
         if drift:
             print("\nA CHANGED file means the regulator has altered the document. "
                   "Re-extract the affected rules and version the old ones "
