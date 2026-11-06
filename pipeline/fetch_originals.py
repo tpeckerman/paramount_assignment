@@ -189,9 +189,17 @@ def _refresh_manifest_status() -> None:
         else:
             r["download_status"] = "NEEDS_MANUAL_DOWNLOAD"
             r["blocked_by"] = reasons.get(urlparse(r["url"]).netloc, "fetch failed")
-    fields = ["doc_id", "country", "regulator", "title", "url", "landing_page",
-              "target_filename", "format", "tier", "download_status", "blocked_by",
-              "expect", "notes"]
+    # Preserve every column the file actually has, in its existing order, and only append
+    # ones we know about but the file lacks. A hardcoded list here silently DELETED the
+    # link_health column when this ran on a GitHub runner: the rewrite dropped a column the
+    # function had never heard of, and nothing failed, because dropping data is not an error
+    # to a writer that was told which fields to write. Any column added to the manifest in
+    # future survives automatically.
+    known = ["doc_id", "country", "regulator", "title", "url", "landing_page",
+             "target_filename", "format", "tier", "download_status", "blocked_by",
+             "expect", "notes"]
+    present = list(rows[0].keys()) if rows else known
+    fields = present + [k for k in known if k not in present]
     buf = _io.StringIO()
     w = csv.DictWriter(buf, fieldnames=fields, lineterminator="\n")
     w.writeheader()
