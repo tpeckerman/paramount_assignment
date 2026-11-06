@@ -36,6 +36,16 @@ pipeline/
 
 ---
 
+## → Outstanding source documents
+
+**[`DOWNLOAD_THESE.md`](DOWNLOAD_THESE.md)** — 24 documents still to fetch, as a tick-list with
+exact filenames. `rules/SOURCE_WORKLIST.xlsx` is the same thing as a spreadsheet.
+
+The same status lives in `sources/originals/MANIFEST.csv` (`download_status`, `blocked_by`),
+which `fetch_originals.py --check` rewrites on every run so it cannot go stale. Both of those
+views are generated — `DOWNLOAD_THESE.md` and the workbook come from
+`pipeline/build_worklist.py`, so don't edit them by hand.
+
 ## Quick start
 
 ```bash

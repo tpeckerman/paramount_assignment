@@ -310,6 +310,62 @@ for r in range(2, ws.max_row + 1):
     ws.cell(row=r, column=2).alignment = Alignment(horizontal="center", vertical="top")
     ws.cell(row=r, column=1).font = Font(name=FONT, size=9, bold=True)
 
+
+# ---------------------------------------------------- 7. DOWNLOAD_THESE.md
+# A plain checklist at the repo root. MANIFEST.csv carries the same information in
+# download_status, but it is column 10 of 13 and GitHub's CSV table pushes it
+# off-screen, so the authoritative data gets a readable front door.
+md = [
+    "# Documents to download",
+    "",
+    f"**{len(outstanding)} outstanding, {len(verified)} verified** "
+    f"(generated {TODAY} by `pipeline/build_worklist.py` - do not edit by hand).",
+    "",
+    "Network access from the workspace is open, but these publishers gate automated clients",
+    "behind browser challenges or render the document body in JavaScript. Open each in a",
+    "browser, save it, and put it in `sources/originals/` under **exactly** the *save as* name.",
+    "",
+    "If a page offers only HTML, use its *Telecharger / Imprimer / Print to PDF* option, save",
+    "as `.pdf`, and change that row's `format` to `pdf` in `MANIFEST.csv`.",
+    "",
+    "Then:",
+    "",
+    "```bash",
+    "python pipeline/fetch_originals.py --check      # confirms each file is the document, not a menu page",
+    "python pipeline/verify_rules.py --with-quotes   # the check that actually matters",
+    "```",
+    "",
+    "`--check` rewrites `download_status` in `MANIFEST.csv`, so the status cannot go stale.",
+    "",
+    "> **If you only do one:** `FR-R2`. It is the sole source of the French -18 window and the",
+    "> only outstanding document that changes the rule table's status today (conflict C-03).",
+    "> The other 23 convert `skipped` quote checks into `verified` ones - worth having, not blocking.",
+    "",
+]
+for tier in ("required", "recommended", "optional"):
+    grp = [r for r in outstanding if r["tier"] == tier]
+    if not grp:
+        continue
+    md += [f"## {tier.capitalize()} ({len(grp)})", "",
+           "| ✓ | doc | what it is | save as | why blocked | url |",
+           "|---|---|---|---|---|---|"]
+    for r in grp:
+        star = " **\u2190 DO THIS ONE**" if r["doc_id"] == "FR-R2" else ""
+        title = r["title"] if len(r["title"]) <= 64 else r["title"][:61] + "..."
+        md.append(f"| [ ] | `{r['doc_id']}`{star} | {title} | `{r['target_filename']}` | "
+                  f"{r['_reason']} | [link]({r['url']}) |")
+    md.append("")
+
+md += ["## Already verified", "",
+       "| doc | file | size |", "|---|---|---|"]
+for r in verified:
+    L = lock.get(r["doc_id"], {})
+    md.append(f"| `{r['doc_id']}` | `{r['target_filename']}` | {L.get('bytes','')} bytes |")
+md.append("")
+
+(ROOT / "DOWNLOAD_THESE.md").write_text("\n".join(md))
+print(f"wrote DOWNLOAD_THESE.md ({len(outstanding)} outstanding)")
+
 OUT.parent.mkdir(parents=True, exist_ok=True)
 wb.save(OUT)
 print(f"wrote {OUT.relative_to(ROOT)}")
