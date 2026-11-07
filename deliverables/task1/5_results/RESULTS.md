@@ -1,7 +1,7 @@
 # Results
 
-Every run is saved in `runs/` as raw model output, so any claim here can be checked
-against the file.
+The main runs are saved in `runs/` as raw model output, so the claims here can be checked
+against the files. `FIRST_RUN_ALL_ESCALATED.json` summarizes the first run.
 
 ## Problem: it sent every decision to a person
 
@@ -41,5 +41,5 @@ Three agents with no memory of the project, barred from the expected answers.
 
 ## Limits
 
-The cases touch 7 of 11 content areas, so a pass rate is a pass rate on those seven. I wrote
+The cases touch 8 of 15 content areas, so a pass rate is a pass rate on those eight. I wrote
 the rules the agents applied, so a misreading in my table is one they would repeat.

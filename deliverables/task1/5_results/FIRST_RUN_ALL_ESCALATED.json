@@ -1,0 +1,315 @@
+{
+  "description": "First full run, before the escalation fix: cases TC-01 to TC-08. Every decision was sent to a person. Raw outputs: runs/TC-0N_run2.json. The cookery show (TC-09) first run was not saved.",
+  "decisions_total": 17,
+  "sent_to_a_person": 17,
+  "decisions": [
+    {
+      "case": "TC-01",
+      "country": "UK",
+      "transmission": "NTV (described in the observations as free-to-air satellite), 2026-05-29, 11:30 start, events recorded to at least 13:44. The request gives service_type as not_stated and intended_slot as not_stated, so the hours answer below is branched by service type rather than resolved; the 11:30 start time comes from the observations' transmission record (t1), not from the request.",
+      "hours_permitted": "On the service described in the observations (free-to-air satellite, no mandatory daytime protection asserted anywhere in the record): not before 21:00, and the 11:30 transmission actually recorded is not permitted. Because the request states service_type as not_stated, the branches are: (a) free-to-air / general linear TV - not before 21:00 [UK-SCH-002]; (b) premium subscription film service without protection - not before 20:00 [UK-SCH-003, UK-FLM-004]; (c) premium subscription film, pay-per-view or scheduled channel WITH mandatory daytime protection in place - any time of day, including 11:30, but only while the access-control and audience-information conditions below are satisfied [UK-FLM-003, UK-FLM-005, UK-SCH-007]. Branch (c) is not available on the record as it stands and its service eligibility is an open question (see missing_information).",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The operative unsuitability finding rests on judgment_based rules: UK-SCH-001, UK-VIO-001, UK-DEF-002, UK-DEF-003, UK-FLM-010, UK-PRE-010, UK-SCH-004, UK-SCH-008, UK-SCH-010, UK-SCH-011, UK-IMI-010, UK-IMI-002, UK-VIO-002, UK-CTX-010, UK-WRN-002, UK-WRN-003 and UK-GEN-001. Judgment-based determinacy requires a person by the property of the rule.",
+        "UK-GEN-001 carries an absolute prohibition and is judgment_based. My provisional view is that 'seriously impair' is not met - this is classified fictional feature-film violence, and the offence limb was dropped as sufficiently contextualised in the decided case [UK-CTX-011] - but a provisional view on an absolute prohibition must be confirmed by a person, not relied on.",
+        "service_type is not_stated in the request while the observations describe free-to-air satellite. The branches have been labelled rather than collapsed; a person must fix the service type before a single answer is served.",
+        "MDP service eligibility is an open question recorded in the table itself (C-17, UK-FLM-003). A UK reviewer must settle whether this service may use mandatory daytime protection at all before branch (c) is quoted to anyone.",
+        "Whether 2026-05-29 falls in a UK school holiday is not stated and changes the expected child audience under UK-SCH-010 without changing the clock. Late May commonly carries half-term; this needs checking against the specific UK nation's calendar rather than assumed.",
+        "Whether the date falls in a cultural or religious festival relevant to this channel's community is not stated. UK-SCH-011 makes that a live factor and its own note says it cannot be inferred from a single calendar, so only a person with knowledge of the channel's audience can answer it.",
+        "o7 (imitable choking method) is medium extraction confidence and UK-IMI-010 turns on imitability plus setting, which the record does not describe. Provisional concern only.",
+        "Whether a +1 or timeshift transmission exists is not stated. UK-SCH-009 makes each transmission its own decision and the risk runs in both directions, so an unexamined +1 is an unanswered question, not a clean one.",
+        "o5 (the severed head carried on screen) is recorded under the human_dignity category and the UK slice contains no rule addressed to human dignity or the treatment of human remains as a distinct ground. I have treated it under UK-VIO-001 as an after-effect of violence, which is defensible but is a mapping decision a person should confirm.",
+        "UK-SCH-008 means a 21:00 re-slot is not automatically safe: the strongest material currently sits at the top of the programme. Any remedial scheduling proposal needs editorial sign-off, not just a later clock time."
+      ]
+    },
+    {
+      "case": "TC-02",
+      "country": "UK",
+      "transmission": "Free-to-air general entertainment channel (service_type given as free_to_air in the request, consistent with the observations). Date not_stated, start time not_stated: the request gives intended_slot and intended_date as not_stated and the single recorded transmission t1 carries date not_stated and start_time not_stated, so no actual slot is being ruled on. What follows is the window within which a slot would have to fall, not a clearance of any particular transmission. Any +1 or timeshift showing is a separate decision and none is recorded.",
+      "hours_permitted": "Not before 21:00 (and not after 05:30). No specific slot is cleared, because the request supplies no intended slot or date. A 21:00-or-later start is necessary but not sufficient: see the smooth-transition restriction below, which is cumulative with the window rather than a substitute for it.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The decision rests on judgment_based rules: UK-SCH-001, UK-VIO-001, UK-VIO-002, UK-DEF-002, UK-DEF-003, UK-FLM-010, UK-SCH-004, UK-SCH-006, UK-SCH-008, UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-WRN-002, UK-WRN-003, UK-GEN-001 and UK-GEN-002. Judgment-based determinacy requires a person by the property of the rule, not by how confident the answer sounds.",
+        "UK-GEN-001 is an absolute prohibition and is judgment_based. My provisional view is that 'seriously impair' is not met on this record, but a provisional view on a rule no hour or technical measure can cure must be confirmed by a person.",
+        "No intended slot and no intended date are supplied, so this output is a window and a set of conditions, not a clearance of any transmission. Nobody should treat it as approval of a specific placement.",
+        "The observations contain an internal contradiction the extractor flagged and did not resolve: the THEMES line lists captivity and forced reproduction as themes of the work while stating that no sexual content is depicted, and does not say whether the forced-reproduction material is shown in any form. Whether anything is depicted bears on UK-SEX-004 and UK-SEX-003 and on the degree-of-harm context factor. A person must view the asset or obtain a fuller description.",
+        "UK-SCH-008 means a 21:00 start is necessary but not sufficient. Whether the opening eight minutes are the asset's strongest material is an editorial judgement that must be made against the whole work, not inferred from an indicative event list.",
+        "Whether any warning or on-screen signposting will be given is not stated, and under UK-WRN-002 and UK-WRN-003 an inadequate warning must not be credited with mitigation it has not earned.",
+        "The human_dignity observations o3 and o7 (people restrained and bled; themes of captivity and forced reproduction) map to no UK rule addressed to human dignity in this slice. I have assessed them under UK-VIO-001 as violence and its after-effects, which is defensible for o3 and o4 but does not reach the thematic material in o7 at all.",
+        "The date-dependent factors under UK-SCH-010 and UK-SCH-011 cannot be applied at all without a date, and UK-SCH-011's own note warns that the relevant festivals depend on the channel's community and cannot be inferred from a single calendar.",
+        "Whether a +1 or timeshift transmission will exist is not stated; under UK-SCH-009 each transmission is its own decision and the same file can be compliant on one service and in breach on the other with no editorial change."
+      ]
+    },
+    {
+      "case": "TC-02",
+      "country": "FR",
+      "transmission": "Free-to-air general entertainment channel - i.e. a service 'other than cinema channels and pay-per-view' for the purposes of the French scheduling rules (service_type given as free_to_air in the request). Date not_stated and start time not_stated, which is decisive here rather than incidental: the category III derogation turns on the DAY and on the school-holiday calendar, so no slot can be cleared and the derogation cannot be evaluated at all. One transmission is recorded (t1); no timeshift showing is recorded.",
+      "hours_permitted": "On the provisional category III (-12) classification: not before 22:00. If a reviewer strengthens the classification to category IV (-16), the answer becomes not before 22:30. Both are stated because the classification is not settled, and the difference is thirty minutes of real consequence. The FR-SCH-004 derogation that would otherwise permit an after-20:30 start CANNOT be evaluated: it turns on the day of the week, public-holiday eves and the French school-holiday calendar, and the intended date is not_stated. No French slot is cleared.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The classification is not settled and I decline to pick one. Category III (-12) is the floor on the observations [FR-CLS-003]; category IV (-16) is live because French practice is expressly to strengthen the age limit between cinema and television [FR-FLM-001] and because of the captivity and forced-reproduction themes. The difference is 22:00 versus 22:30, the pictogram wording, and whether the after-20:30 derogation exists at all. Only the editor's commission de visionnage can assign the category.",
+        "FR-PRO-001 (programmes offending human dignity, in particular those depicting sexual violence, perversions or degradation) is an absolute prohibition that no hour, category or technical measure unlocks, it is judgment_based, and the observations touch it: repeated depictions of restrained human beings being bled, themes of captivity and forced reproduction, and references to sexual slavery stated not to be depicted. My provisional view is that it does not bite because the degradation is the subject of the work's criticism rather than its content being gratuitously dignity-offending, but o7 is only medium confidence and the extractor could not tell whether the forced-reproduction material is shown. A person must decide this before transmission.",
+        "FR-PRO-003 (extreme or gratuitous violence) is absolute, judgment_based and carries human_review_required=yes in the table. My provisional view is that it is not met, distinguishing it as the rule's own note requires from category V 'very great violence', but that view must be confirmed.",
+        "FR-LAW-001 (nuire gravement) is absolute and judgment_based. My provisional view places this asset in the tier-2 'harm' framework of FR-LAW-002 rather than tier 1, but a provisional view on a rule with no cure needs confirmation.",
+        "FR-CLS-003 is judgment_based and already flagged human_review_required=yes in the rules table itself.",
+        "FR-VIO-001 is judgment_based and category-independent, so it survives whatever classification is assigned and must be assessed on the work rather than on the event list.",
+        "The intended date is not_stated, so the FR-SCH-004 derogation cannot be evaluated at all: its Tuesday, Friday, Saturday, public-holiday-eve and school-holiday exclusions all require the date. Nobody should read the 22:00 figure as implying that an after-20:30 placement is or is not available.",
+        "The FR-SCH-004 annual quota of 16 exceptional programmes and the sub-quota of 4 cinema-banned-to-under-12s works are channel-level counts that cannot be verified from an asset description. A person with the channel's year-to-date record must check them if the derogation is sought.",
+        "Whether the asset holds a French cinema visa, and what it says, is expressly not stated. Under FR-FLM-001 that would be the normal starting indication for the television classification, and under FR-SCH-004 a cinema interdiction to under-12s would consume one of only four annual sub-quota slots.",
+        "This slice contains no row defining what categories IV and V cover - only the hours they attract - so the upper end of the classification range cannot be reasoned about from the rules given. A reviewer needs the full table.",
+        "If a reviewer were to reach category V, FR-CV-003 imposes a total prohibition on broadcast on a non-eligible service such as this one, and the row carrying the category V hours is absent from this slice so no alternative window could be quoted. The downside of the classification question is a complete bar, not a later hour."
+      ]
+    },
+    {
+      "case": "TC-03",
+      "country": "UK",
+      "transmission": "Premium subscription film service with mandatory PIN access control, enabled by default and not disableable by the subscriber. Transmission t1 starts at 14:30 on a Wednesday; the calendar date is not_stated, and the observations note that a weekday name may indicate a recurring weekly slot. The request gives intended_slot as not_stated, so the only time ruled on is the 14:30 start recorded in the observations. No timeshift or +1 showing is recorded; if one exists it is a separate decision.",
+      "hours_permitted": "Any time of day, INCLUDING the recorded 14:30 Wednesday slot - but only while mandatory daytime protection is in place and its conditions are met. The permission and the condition are one answer and must not be quoted apart. Two of the MDP conditions are evidenced on the record (the PIN is on by default and cannot be disabled by the subscriber) and two are not (whether the PIN is required on each entry at the point of viewing, and whether the required audience information and explanation of the protection will be given). On the record as it stands the any-hour route is available in principle and not yet fully evidenced.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The entire daytime permission rests on the access control, and two of the four MDP conditions are unevidenced: whether the PIN is required on each entry at the point of viewing (as against once per household), and whether the content information and explanation of the protection required by UK-ACC-003 will be given. Until both are confirmed, 'any time' is a permission available in principle and not a clearance. UK-ACC-003 says in terms that the any-hour permission does not exist unless satisfied.",
+        "UK-SCH-007, the rank-1 row that disapplies the watershed, carries human_review_required=yes in the rules table itself. The system's most powerful unlock is deliberately not self-service.",
+        "The observations record as unknown how the PIN is set, what age it is tied to, and whether the subscriber can be an under-18. A gate tied to an under-18 subscriber would not restrict access solely to those authorised to view.",
+        "The decision rests on judgment_based rules: UK-FLM-010, UK-DEF-002, UK-DEF-003, UK-VIO-001, UK-VIO-002, UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-WRN-002, UK-WRN-003, UK-GEN-001 and UK-GEN-002.",
+        "UK-GEN-001 is absolute, judgment_based, and cured by no technical measure. My provisional view is that 'seriously impair' is not met, but on a rule MDP cannot unlock that view must be confirmed by a person.",
+        "The observations contain an unresolved internal contradiction flagged by the extractor: the THEMES line lists captivity and forced reproduction as themes while stating that no sexual content is depicted, and does not say whether the forced-reproduction material is shown in any form. If sexual material were depicted, UK-SEX-002 would become relevant - and it is expressly NOT unlocked by MDP, so that would change the answer from 'any time' to a 22:00-05:30 window with mandatory restricted access.",
+        "The calendar date is not stated, only the weekday. Whether the Wednesday falls in a school holiday is expressly unknown, and the weekday-only slot description may indicate a recurring weekly placement rather than a single showing, which would mean a series of decisions rather than one.",
+        "A 120-minute film from 14:30 finishes around 16:30, as children return from school. That does not defeat a valid MDP permission but it is the most adverse audience the gate has to carry, and a reviewer should satisfy themselves on that basis rather than on the paper permission alone.",
+        "Whether a +1 or timeshift transmission exists is not stated; under UK-SCH-009 each transmission is its own decision.",
+        "The human_dignity observations o3 and o7 map to no UK human-dignity rule in this slice; o3 and o4 have been assessed as violence and its after-effects under UK-VIO-001, and o7's thematic material is not reached by any rule given."
+      ]
+    },
+    {
+      "case": "TC-03",
+      "country": "FR",
+      "transmission": "Premium subscription film service with mandatory default-on, non-disableable PIN, 14:30 on a Wednesday, calendar date not_stated. TWO THINGS CANNOT BE RESOLVED HERE AND BOTH ARE REPORTED RATHER THAN ASSUMED. First, the French scheduling rules turn on whether a service is a cinema channel or a pay-per-view (paiement a la seance) service as against 'other television services', and 'premium_subscription_film' is a UK-shaped label that does not map onto that distinction without a person deciding; the request gives no French service characterisation. Second, and decisively, the rows that carry the category III and category IV broadcast windows are NOT PRESENT IN THIS RULE SLICE for any service type. No French hours answer is given below for that reason.",
+      "hours_permitted": "CANNOT BE DETERMINED FROM THIS RULE SLICE, and I will not supply a figure from memory. What can be said is bounded and is said precisely. (1) No rule in this slice permits 14:30 for this asset: the most permissive timing row present for a category III programme is the exceptional derogation, and its floor is AFTER 20:30 [FR-SCH-004]. (2) Independently of category, the 06:00-22:00 restriction on how violence may be presented covers 14:30 directly [FR-VIO-001]. (3) The baseline window for category III, and the whole of the window for category IV, are carried by rows that are ABSENT from this slice: FR-CLS-003 cross-refers to FR-SCH-002, FR-SCH-003 and FR-SCH-004 and only the derogation is present. So the correct output is: 14:30 is not permitted on anything sourceable here, and the exact permitted window - which differs by service type, and for which the service's French characterisation is also unresolved - must be taken from the missing rows by a reviewer with the full table.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The rows carrying the category III and category IV broadcast windows are absent from this rule slice for every service type. FR-CLS-003 names FR-SCH-002, FR-SCH-003 and FR-SCH-004 as its timing referents and only the derogation was supplied. No French permitted window can be stated, and I have not supplied the familiar figure from memory. A reviewer must run this against the full table.",
+        "The service's French characterisation is unresolved: the category III and IV windows differ between cinema channels and pay-per-view services on one hand and other television services on the other, and 'premium_subscription_film' is a UK label that does not map across without a decision. Even with the missing rows, the answer would depend on this.",
+        "FR-PRO-001 (programmes offending human dignity, in particular those depicting sexual violence, perversions or degradation) is absolute, is unlocked by no category, hour, service type or technical measure, is judgment_based, and the observations touch it: repeated depictions of restrained human beings being bled, themes of captivity and forced reproduction, and references to sexual slavery stated not to be depicted. My provisional view is that it does not bite, but o7 is medium confidence and the extractor could not tell whether the forced-reproduction material is shown. A person must decide this.",
+        "FR-PRO-003 (extreme or gratuitous violence) is absolute, judgment_based and carries human_review_required=yes in the table. My provisional view distinguishes it from category V 'very great violence' as the row requires, but that view needs confirmation.",
+        "FR-LAW-001 (nuire gravement) is absolute and judgment_based; my placement of this asset in the tier-2 harm framework must be confirmed.",
+        "FR-CLS-003 is judgment_based and already flagged human_review_required=yes in the rules table. The classification is unsettled between III and IV, and this slice contains no row defining what category IV covers.",
+        "FR-VIO-001 is judgment_based and category-independent, so it survives any classification and must be assessed against the work rather than an indicative event list. It bears directly on the 14:30 slot.",
+        "The calendar date is not stated, so the FR-SCH-004 exclusions cannot be tested; the observations expressly flag that whether this Wednesday falls in a school holiday is unknown. Wednesday is not one of the excluded weekdays, but that is not sufficient to make the derogation available.",
+        "The FR-SCH-004 annual quota of 16 and sub-quota of 4 are channel-level counts that no asset description can verify.",
+        "Whether the asset holds a French cinema visa, and what it says, is expressly unknown. Under FR-FLM-001 that is the normal starting indication for the television classification, and a cinema interdiction to under-12s would also consume one of only four annual sub-quota slots.",
+        "The UK side of this same file reaches 'any time, including 14:30' on the strength of the access control. Nobody should carry that conclusion across to France: no rule in this slice makes a technical measure a substitute for the category III or IV window, and an unflagged read-across is the most likely way this case produces a wrong answer."
+      ]
+    },
+    {
+      "case": "TC-04",
+      "country": "UK",
+      "transmission": "t1 - full music video 'Thriller' (13 min 42 s), music channel, 22:15, date not_stated; service type not_stated so both branches considered (channel without mandatory daytime protection / channel with mandatory daytime protection)",
+      "hours_permitted": "22:15 is permitted on the hours axis - it falls inside the post-watershed window - subject to the smooth-transition judgment below",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "UK-SCH-008 is engaged on the facts: the strongest material (the werewolf transformation in sustained close-up, o1) occurs at 00:02 of a 13 min 42 s work, so a post-watershed transmission opens close to its strongest content. Judgment_based, and the clock checks all pass, which is exactly the shape of case the rule exists to catch.",
+        "UK-OCC-001's exemption names drama, film and comedy and does not name music video, so whether this work sits in the exempt fiction limb or the 'treated as entertainment' limb cannot be settled from the rule text.",
+        "UK-SCH-010 and UK-SCH-011 both turn on audience composition on a particular date, and the date is not_stated, so the school-holiday and cultural or religious calendar factors cannot be checked.",
+        "UK-CTX-010 requires the channel's audience profile, which is not stated; audience size can raise the required justification but never lower it.",
+        "UK-FLM-010, UK-DEF-002, UK-DEF-003, UK-SCH-001, UK-GEN-001 and UK-GEN-002 are all judgment_based rules relied on in this decision.",
+        "Service type is not_stated and has been branched rather than resolved; UK-FLM-003 records MDP service eligibility as an open question for a UK reviewer."
+      ]
+    },
+    {
+      "case": "TC-04",
+      "country": "UK",
+      "transmission": "t2 - the 30-second trailer cut from 'Thriller', music channel, 15:00 break, date not_stated, surrounding programme not_stated; service type not_stated so both branches considered (no MDP / MDP in place)",
+      "hours_permitted": "Not before 21:00 as currently cut, absent mandatory daytime protection. 15:00 is not permitted for this cut.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The surrounding programme at 15:00 and the age profile of its audience are not_stated, and UK-TRL-003 turns on exactly that; the adjacency question cannot be closed either way.",
+        "The MDP branch cannot be resolved: whether any access control applies is not_stated, and UK-FLM-003 records which services may use MDP as an open question for a UK reviewer. The 'with_technical_measure' line must not be read as a clearance.",
+        "UK-SCH-010 and UK-SCH-011 bear materially on a mid-afternoon slot and both require the date, which is not_stated.",
+        "Whether a +1 service carries the 15:00 break is not_stated; UK-SCH-009 is conditional and the risk runs towards the later slot being worse, not better.",
+        "UK-TRL-001, UK-FLM-010, UK-DEF-002, UK-SCH-001, UK-GEN-001 and UK-GEN-002 are judgment_based; UK-TRL-003 and UK-FLM-003 are conditional and the conditions are unverified.",
+        "Whether the trailer carries the full work's opening disclaimer is not_stated; it is recorded as making no difference, which is itself a judgment a reviewer should confirm."
+      ]
+    },
+    {
+      "case": "TC-04",
+      "country": "FR",
+      "transmission": "t1 - full music video 'Thriller' (13 min 42 s), music channel, 22:15, date not_stated; service type not_stated, so both the 'other television services' branch and the 'cinema channels / pay-per-view' branch are reported",
+      "hours_permitted": "22:15 is permitted on every branch considered, on either candidate category. Branch: if category II, there is no clock restriction at all [FR-SCH-001]; if category III, 22:15 clears the 22:00 bar on services other than cinema channels and pay-per-view [FR-SCH-002] and clears the cinema-channel and pay-per-view rule whatever the weekday [FR-SCH-003].",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "FR-CLS-003 is judgment_based and carries human_review_required = yes in the table. Whether the work is category II or III cannot be settled from this record, and the record expressly lacks the sequence lengths and any statement about violence or injury detail that the III threshold turns on.",
+        "The classification is the editor's to make through an internal commission de visionnage [FR-CLS-001], so this output is a proposal for that commission rather than a classification.",
+        "Service type is not_stated and has been branched, not resolved. It does not change the answer at 22:15, but FR-SCH-002 and FR-SCH-003 diverge by nearly two hours on identical content, so the branch must be carried forward rather than collapsed.",
+        "FR-LAW-001 and FR-PRO-003 are judgment_based absolute prohibitions. Both were considered and found not to bite, but 'nuire gravement' and 'extreme or gratuitous violence' are judgments and the record is expressly silent on whether the sequences contain violence or injury detail.",
+        "The date and weekday are not_stated. They do not affect this transmission, but FR-SCH-003 is day-specific and FR-SCH-004 excludes named days and school holidays, so any move of the slot would need them.",
+        "FR-CLS-002, FR-LAW-002 and FR-FLM-001 are judgment_based rules relied on in this decision."
+      ]
+    },
+    {
+      "case": "TC-04",
+      "country": "FR",
+      "transmission": "t2 - the 30-second trailer cut from 'Thriller', music channel, 15:00 break, date and weekday not_stated, surrounding programme not_stated; service type not_stated, branches as for t1",
+      "hours_permitted": "No French rule in the provided slice bars this trailer from 15:00 on the clock. The bar that does bite is a content bar and a placement bar, not an hour: as currently cut the trailer is, on a provisional view, not compliant with FR-TRL-001 at any hour, and it may not be placed close to children's programmes [FR-TRL-002, FR-SCH-001]. So: no clock restriction, but not clearable as cut.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The decisive question - whether the decayed faces (o9) and the faster-cut pursuit (o10) are 'scenes likely to offend young viewers' under FR-TRL-001 - is an application of a bright-line rule to facts that requires judgment, and it determines whether the trailer may run at all rather than merely when. It must be decided by a person.",
+        "The programme surrounding the 15:00 break is not_stated, and FR-TRL-002 and FR-SCH-001 both turn on proximity to children's programmes. Compliance cannot be established either way.",
+        "The parent work's category is unresolved between II and III [FR-CLS-002, FR-CLS-003, both judgment_based, FR-CLS-003 carrying human_review_required = yes], and the two attract different trailer treatment under FR-TRL-002 - an express bar for III, 'particular care' for II.",
+        "The reading that no French clock rule bars this trailer at 15:00 rests on FR-TRL-003 being category-IV-specific and on FR-SCH-002 being a programme rule rather than a trailer rule. That is what the rows say, but it is a structural reading of the slice and a reviewer should confirm it rather than inherit it.",
+        "FR-LAW-001, FR-PRO-001, FR-PRO-002 and FR-PRO-003 are judgment_based prohibitions; all were considered and none found to bite, but on a record expressly silent about violence and injury detail.",
+        "FR-LAW-002, FR-CLS-002, FR-CLS-003 and FR-SCH-001 are judgment_based or conditional rules relied on in this decision."
+      ]
+    },
+    {
+      "case": "TC-05",
+      "country": "UK",
+      "transmission": "No transmission is described. The observations carry an empty transmissions array and SERVICE, SLOT and DATE are all 'not_stated', so no single transmission decision can be made. Branches considered, each labelled: (A) free-to-air / general linear channel; (B) premium subscription film service without mandatory daytime protection; (C) premium subscription film service, pay-per-view, or a scheduled channel operating mandatory daytime protection; (D) BBC on-demand programme service. No branch is selected, because selecting one would require assuming the service type [UK-SCH-003 is expressly conditional on service type and on the absence of protection].",
+      "hours_permitted": "Cannot be resolved as described. Branch (A) free-to-air / general linear: not before 21:00 [UK-SCH-002], and on the facts recorded the pre-21:00 bar is independently engaged by o6 unless editorial justification is established [UK-IMI-001]. Branch (B) premium subscription film service without protection: not before 20:00 [UK-SCH-003]. Branch (C) with mandatory daytime protection in place and validly engaged: any time of day, including daytime [UK-FLM-003, UK-SCH-007]. Branch (D) BBC ODPS: the scheduling rules in Rules 1.3-1.6 do not apply at all and the question becomes manner of access [UK-SVC-001]. No branch is chosen.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The description contradicts itself and the conflict is unresolved: the distributor summary states 'suitable for all audiences, no content of concern' while the event list records a real fatal death with a body on screen, a visibly distressed bereaved contributor and on-screen text inviting viewers to copy a physical technique. A person has to settle which document governs before any slot is issued.",
+        "service_type is 'not_stated' and the hours differ across branches from 'barred before 21:00' to 'any time of day' [UK-SCH-002, UK-SCH-003, UK-FLM-003, UK-SCH-007]. The prompt forbids resolving not_stated by assumption, so this cannot be closed without input.",
+        "The decision rests on judgment_based rules: UK-GEN-001 (whether the fatal-accident footage merely harms or seriously impairs), UK-SCH-001 and UK-DEF-002 (appropriate scheduling), UK-FLM-010, UK-IMI-002, UK-IMI-010, UK-SCH-004, UK-SCH-008, UK-SCH-010, UK-SCH-011, UK-WEL-001, UK-WRN-002, UK-WRN-003, UK-DEF-003 and UK-CTX-010. Several of these carry human_review_required=yes in the table.",
+        "o6 is the live risk and it is a judgement about treatment, not about depicted subject matter: the technique itself may be innocuous, and the on-screen invitation to copy is what engages UK-IMI-001 and UK-IMI-002. Escalate, do not refuse - and do not clear it on the ground that climbing is ordinary.",
+        "Whether this is news or current affairs is not stated, and the answer changes the Code section that governs.",
+        "UK-FLM-003 records that which services may operate mandatory daytime protection is an open question for a UK reviewer, so branch (C) cannot be confirmed as available even if a PIN exists.",
+        "Observations o2 and o4 match no rule in the UK slice as given; a gap in the table is not permission."
+      ]
+    },
+    {
+      "case": "TC-05",
+      "country": "FR",
+      "transmission": "No transmission is described; transmissions is empty and SERVICE, SLOT and DATE are all 'not_stated'. Branches considered, each labelled: (A) free-to-air or any service other than a cinema channel or pay-per-view; (B) cinema channel or pay-per-view; (C) a service with a high production-contribution commitment equivalent to a cinema channel. No branch is selected. For France the branch choice changes the hours even for an unchanged category, and the weekday changes them again, so neither the hour nor in part the classification can be stated without the service type and the date.",
+      "hours_permitted": "Cannot be resolved as described, and the obstacle is twofold: the category is unresolved and the service type is unknown, and the French hours depend on both plus the weekday. If category I: no clock restriction [FR-CLS-001], subject only to the general duties. If category II: no clock restriction at all, but a placement restriction - it may not be placed within programmes intended for children [FR-SCH-001]. If category III: on branch (A) not before 22:00 [FR-SCH-002]; on branch (B) not on Wednesdays before 20:30, i.e. no clock bar on other days [FR-SCH-003]; and on any service the exceptional derogation permits after 20:30 except on Tuesdays, Fridays, Saturdays, the eve of public holidays and during school holidays, capped at 16 programmes a year [FR-SCH-004]. Nothing in the record supports category IV or V, so FR-SCH-005, FR-SCH-006 and the category V regime are not applied.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "FR-PRO-001 (offence to human dignity) is a live question, not a cleared one. o2 is the body of a real casualty shown on screen with identifiability and family consent unknown, and o4 is a bereaved contributor filmed in visible distress. The rule is judgment_based and admits no hour, category or technical measure, so a person must decide it before anything else is settled.",
+        "FR-PRO-003 (extreme or gratuitous violence) applied to real fatal-accident footage is a judgement about treatment. The row is judgment_based and carries human_review_required=yes. My provisional view is that it is not met, and that view should not be relied on.",
+        "FR-LAW-001 versus FR-LAW-002 - whether this material merely harms or SERIOUSLY harms - is the determination that decides whether any slot exists at all. Both rows are judgment_based, and the fact most likely to move the answer, whether the footage shows injury detail, is missing.",
+        "The classification is unresolved between I, II and III. FR-CLS-002 and FR-CLS-003 are both judgment_based and FR-CLS-003 carries human_review_required=yes. In France the editor must classify through its own commission de visionnage, and no such determination is in evidence.",
+        "service_type is 'not_stated', and in France it changes the hours for an unchanged category: 22:00 on a general service against a Wednesday-only 20:30 bar on a cinema channel or pay-per-view [FR-SCH-002, FR-SCH-003].",
+        "intended_date is 'not_stated', so the FR-SCH-004 derogation cannot be assessed: it turns on the weekday, public-holiday eves and the French school-holiday calendar, and on an annual quota invisible from a single asset description. FR-SCH-004 is conditional and carries human_review_required=yes.",
+        "The description contradicts itself: the distributor summary asserts suitability for all audiences while the event list records a real death on screen, a distressed bereaved contributor and on-screen text inviting imitation. Unresolved by design.",
+        "o6 (imitable behaviour) matches no rule in the French slice. The UK treats it as the central problem; France as given has nothing to say about it, and that asymmetry needs a French reviewer rather than an inference."
+      ]
+    },
+    {
+      "case": "TC-06",
+      "country": "UK",
+      "transmission": "t1: free-to-air service, date 'not_stated', start time 'not_stated'. One transmission is described. The service type is given (free_to_air) so no service branching is needed for the UK, but the slot and the date are not stated, so the decision states the bar that applies and cannot confirm a specific proposed slot. Whether a timeshift or +1 service also carries the asset is not stated; if it does, that showing is a separate decision that has not been made [UK-SCH-009].",
+      "hours_permitted": "Not before 21:00 on this free-to-air transmission.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The extractor states it cannot tell whether the single listed event is the complete event list for the asset or an extract covering only that scene, and the source does not say. The 21:00 floor is secure either way, but whether 21:00 itself is adequate - and whether the film opens with strong material, contains strong language, or holds further sexual or violent content - cannot be answered. A person must obtain the full event list or view the asset.",
+        "UK-SEX-003 is judgment_based and carries human_review_required=yes: whether the comedic framing, the unrealistic staging and the absence of nudity sufficiently justify strong or explicit sexual material in context is a viewing judgement. My provisional view is that they do, and it should not be relied on.",
+        "UK-SCH-004 and UK-SCH-008 (the smooth-transition duty) are judgment_based and marked human_review_required=yes, and cannot be assessed because the opening of the film is not described.",
+        "UK-FLM-010 is judgment_based and marked human_review_required=yes. It is also the rule that keeps the certificate in its place, so a reviewer should confirm that the 21:00 answer has not been reached from the '15' by accident - and should note that the certificate's scope (cinema, video or TV) is not stated, which bears on how much indication it supplies.",
+        "UK-SCH-010, UK-SCH-011, UK-CTX-010 and UK-WRN-002 and UK-WRN-003 are all judgment_based with human_review_required=yes, and all of them need the date, the slot or the channel - none of which is stated.",
+        "intended_slot and intended_date are 'not_stated'. The decision therefore states a floor rather than clearing a proposed transmission, and the proposed transmission must come back for a decision once it exists.",
+        "Whether a timeshift or +1 service carries the asset is not stated; if it does, that showing is its own decision [UK-SCH-009], which is conditional and marked human_review_required=yes.",
+        "The ages of the characters in o1 are recorded as not stated. On the description the scene is not pornographic, so neither UK-SEX-001 nor the French under-18 prohibition is engaged on its own terms; but a reviewer should confirm the point rather than leave it resting on an inference about a comedy."
+      ]
+    },
+    {
+      "case": "TC-06",
+      "country": "FR",
+      "transmission": "t1: free-to-air service, date 'not_stated', start time 'not_stated'. The service type is given, which resolves the French service branch: this is a service 'other than cinema channels and pay-per-view', so the non-cinema-channel limbs of the scheduling rules apply and the cinema-channel and pay-per-view limbs do not. The branch that remains open is the CLASSIFICATION, and in France the hour follows the category, so the hour cannot be fixed. The date is also missing, which independently blocks the FR-SCH-004 derogation.",
+      "hours_permitted": "Cannot be stated as a single time, because the category is unresolved and in France the hour follows the category. On this free-to-air service: if the category is II, there is no clock restriction at all, only a placement restriction - it may not be placed within programmes intended for children [FR-SCH-001]. If III, not before 22:00 [FR-SCH-002], subject to the exceptional 20:30 derogation which cannot be assessed without the date [FR-SCH-004]. If IV, not before 22:30 [FR-SCH-005], with no derogation available. My provisional floor is therefore 22:00, and it may be 22:30. What can be said without qualification is that France is later than the UK on this asset whichever of III or IV applies.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The classification is unresolved between III (-12) and IV (-16), and in France the hour follows the category. FR-CLS-002 and FR-CLS-003 are both judgment_based and FR-CLS-003 carries human_review_required=yes. The determination belongs to the editor's own commission de visionnage [FR-CLS-001] and has not been made.",
+        "The slice supplies the category IV hours [FR-SCH-005] and the category IV trailer rule [FR-TRL-003] but no row stating the category IV threshold. I therefore cannot test for the category whose hour would be 22:30, and I have not invented the test. A French reviewer with the full instrument must settle this.",
+        "No rule in the slice addresses depicted sexual content as a classification input. The French category rules in front of me speak of shocking under-10s, disturbing under-12s and repeated violence; the UK has a rule directly on intercourse [UK-SEX-004] and France, as given, does not. The French category is therefore being inferred from a general 'liable to disturb' test rather than applied.",
+        "intended_date is 'not_stated', so the FR-SCH-004 derogation cannot be assessed: it turns on the weekday, public-holiday eves, the French school-holiday calendar and an annual quota invisible from a single asset description. The row is conditional and marked human_review_required=yes.",
+        "intended_slot is 'not_stated', so there is no proposed time to test against 22:00 or 22:30.",
+        "The extractor cannot tell whether the single listed event is the complete event list or an extract. A French category must be assigned to the whole work, so an incomplete event list is a more serious obstacle here than in the UK, where a floor could still be stated.",
+        "FR-CV-003 is bright_line and marked human_review_required=yes. It is in the decision as the route by which an upward reclassification to V would refuse this free-to-air transmission outright rather than move it later, and a reviewer should see that consequence explicitly.",
+        "Whether a foreign (BBFC) certificate serves as an indication under FR-FLM-001 at all is not addressed by any rule in the slice, and FR-FLM-001 is itself judgment_based. The temptation to carry the UK '15' into the French category must be resisted, and French practice is to raise rather than preserve the age."
+      ]
+    },
+    {
+      "case": "TC-07",
+      "country": "UK",
+      "transmission": "t1: free-to-air service, date 'not_stated', start time 'not_stated'. One transmission is described and the service type is given, so no service branching is required. The slot and date are unknown, so the decision reports what is established and what is not, rather than clearing a specific showing. Whether a timeshift or +1 service also carries the asset is not stated; if it does, that showing is its own decision and has not been made [UK-SCH-009].",
+      "hours_permitted": "Not fully resolved, and the honest shape of the answer is asymmetric. ESTABLISHED: a post-21:00 transmission is permissible on the material recorded, subject to the context duties below [UK-SCH-002, UK-SEX-003, UK-OFF-001]. NOT ESTABLISHED, in either direction: whether a pre-21:00 slot is available. No rule in this slice imposes an outright pre-watershed bar on what is recorded - and that is the finding most at risk of being got wrong in the restrictive direction. But three things stop a pre-watershed slot being cleared: the 'sustained' explicit sexual dialogue at o1 must be editorially justified AND APPROPRIATELY LIMITED to run before the watershed [UK-SEX-004], and 'sustained' sits in tension with 'appropriately limited'; the certificate creates a presumption against DAYTIME placement [UK-FLM-010]; and the event list is not stated to be complete, with the actual words used at o1 expressly unknown. So: no daytime slot on this record; a later pre-watershed evening slot is arguable but unproven; 21:00 and after is clear.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The pre-watershed question is genuinely open and finely balanced, and it is the question the broadcaster will actually want answered. UK-SEX-004's hard bar is not engaged because nothing is shown, so no rule in the slice bars a pre-watershed transmission outright; but its second limb requires the sexual discussion to be 'appropriately limited', and the source calls the dialogue 'sustained' without giving its duration. A person must decide whether sustained explicit sexual dialogue is appropriately limited for a pre-watershed audience.",
+        "The actual words used at 00:09:30 are expressly unknown, and the extractor deliberately did not record a strong_language observation because the source does not quote any word or say expletives are used. Whether o1 is anatomically explicit or profanely explicit is a different compliance question - and the rule slice contains no language rule at all, so the system cannot answer it even if told.",
+        "The event list cannot be relied on as complete: the not_stated list records that whether any sexual activity, nudity or strong language occurs anywhere else in the asset is unknown, and only two source events are listed. A pre-watershed clearance on an incomplete list would be unsafe.",
+        "UK-NUD-001 is judgment_based and carries human_review_required=yes. My provisional view is that a bare male chest in a comedic waxing scene is easily context-justified and does not drive the hour, and a reviewer should confirm that the permissive reading is right - the extractor itself flags that it used 'nudity' as the nearest available category and that a bare chest may fall outside its intended sense.",
+        "UK-SEX-003 is judgment_based with human_review_required=yes: whether explicit sexual language is justified by the context is a viewing judgement that survives the hour.",
+        "o3 fits no content category cleanly. The extractor used 'offence_general' and flagged it; I have routed it to UK-OFF-001, which is judgment_based. A reviewer should confirm both the routing and the conclusion that comic pain is contextually justified.",
+        "UK-FLM-010 is judgment_based with human_review_required=yes, and it is the only authority on this record pointing against a daytime slot. A reviewer should weigh how much a presumption drawn from guidance should carry, especially given that the certificate's scope and date are unstated while the calibration speaks of a RECENT classification.",
+        "UK-SCH-004 and UK-SCH-008 (smooth transition), UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-CTX-011, UK-WRN-002, UK-WRN-003 and UK-TRL-003 are all judgment_based or conditional with human_review_required=yes, and each needs the slot, the date, the channel or the opening of the film - none of which is stated.",
+        "intended_slot and intended_date are 'not_stated', so no specific transmission is being cleared. Whether a +1 service carries the asset is also unknown [UK-SCH-009]."
+      ]
+    },
+    {
+      "case": "TC-07",
+      "country": "FR",
+      "transmission": "t1: free-to-air service, date 'not_stated', start time 'not_stated'. The service type is given, which resolves the French service branch: this is a service other than a cinema channel or pay-per-view, so the non-cinema-channel limbs of the scheduling rules apply. The branch that remains open is the CLASSIFICATION, and in France the hour follows the category.",
+      "hours_permitted": "Depends on the category, and on the provisional category the answer is permissive. If the category is I: NO time restriction at all [FR-CLS-001]. If II, which is my provisional view: NO clock restriction either - timing is left to the editor's discretion - but the programme MAY NOT BE PLACED WITHIN PROGRAMMES INTENDED FOR CHILDREN [FR-SCH-001]. So the French restriction on this asset is a placement rule rather than an hour, and a system that reported only a clock would record 'unrestricted' and miss the only constraint there is. If the category were III, the hour would be 22:00 on this free-to-air service [FR-SCH-002], subject to the FR-SCH-004 derogation; that branch is listed because III cannot be formally excluded, not because the record supports it.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The classification is unresolved between I (tous publics) and II (-10), and that step is the whole decision: category I carries no pictogram and no obligations, category II carries the full signage regime, and neither carries a clock restriction. FR-CLS-001 is bright_line but its application here is not, FR-CLS-002 is judgment_based, and in France the determination belongs to the editor's own commission de visionnage, which has not made it.",
+        "No rule in the French slice addresses sexual dialogue or language. o1 - the observation driving the category - has to be routed through the general 'certain scenes liable to shock minors under 10' test rather than a rule written for it. The UK slice has a rule directly on the discussion of sexual behaviour [UK-SEX-004]; the French slice as given has nothing.",
+        "o2 (a bare male chest) and o3 (pain played for comedy) match no rule in the French slice at all. France as given has no nudity rule and no offence or humiliation rule, so two of the three observations have nowhere to land. That is a gap in the table, not a French permission.",
+        "FR-FLM-001 is judgment_based and pulls in the restrictive direction: French practice is to RAISE the age limit between cinema and television. The certificate on file is a BBFC 15, a foreign certificate whose route into the French decision is undefined by any rule in the slice. A reviewer must decide how much weight it carries, and resist both carrying the UK 15 across unchanged and inflating it.",
+        "FR-CLS-003 is judgment_based and marked human_review_required=yes. I have found category III unsupported, and that finding should be confirmed rather than assumed, particularly as its 'liable to disturb under-12s' limb does not require violence.",
+        "The placement restriction at category II [FR-SCH-001] is the operative French obligation and cannot be verified: the observations say nothing about the programming around the transmission.",
+        "The event list is not stated to be complete, and the not_stated list records that whether any sexual activity, nudity or strong language occurs elsewhere in the asset is unknown. A French category is assigned to the whole work, so an incomplete list is a more fundamental obstacle here than in the UK - a single depicted scene elsewhere could move the category and introduce an hour where there currently is none.",
+        "intended_date is 'not_stated', so the FR-SCH-004 derogation could not be assessed if the category were III. The row is conditional and marked human_review_required=yes.",
+        "FR-CV-003 is bright_line and marked human_review_required=yes. It is in the decision to make visible that an upward reclassification to V would refuse this free-to-air transmission outright, not move it later."
+      ]
+    },
+    {
+      "case": "TC-08",
+      "country": "UK",
+      "transmission": "t1 - 'Friends' sitcom episode (22 min), general entertainment pay TV service, 14:30 on an unspecified weekday, date not_stated; request service_type is not_stated, so branches considered: pay TV general entertainment channel WITHOUT mandatory daytime protection, and the same channel WITH mandatory daytime protection in place",
+      "hours_permitted": "Provisionally permitted at 14:30, on the view that a post-coital scene in which nothing sexual is shown and no nudity is visible is not material unsuitable for children, so the watershed is not engaged. This is a provisional view on a conditional rule and it turns on one fact the record does not supply - the terms of the dialogue.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The decision turns on a fact the record does not contain: whether the dialogue in the 00:11:40 scene refers to sexual acts in explicit terms, and in what words. If it is explicit, UK-SEX-003 treats that as post-watershed material and the 14:30 permission reverses. A person has to read the scene.",
+        "Only one observation is listed for a 22-minute episode and the extractor expressly records that no statement is made that it is the only event; whether strong language occurs anywhere in the episode is also not_stated. Clearing 14:30 on this basis clears the description, not the programme.",
+        "UK-SEX-004 is conditional and its second limb - 'editorially justified and appropriately limited' - has been resolved provisionally in favour of the slot. That is a judgment on the permissive side and is exactly the kind that must not be made confidently by a system.",
+        "The date is not_stated, so UK-SCH-010 (school holidays) and UK-SCH-011 (cultural and religious calendar) cannot be applied. A 14:30 weekday slot depends heavily on children being at school, which the record cannot confirm.",
+        "UK-SEX-003, UK-SEX-001, UK-GEN-001, UK-GEN-002, UK-SCH-001, UK-DEF-002, UK-DEF-003, UK-FLM-010, UK-CTX-010, UK-SCH-006, UK-WRN-002 and UK-WRN-003 are all judgment_based rows; UK-SEX-002, UK-SEX-004 and UK-FLM-003 are conditional with conditions that are unverified or not relied on.",
+        "Service type is not_stated and has been branched rather than resolved. The MDP branch in particular cannot be assessed: UK-FLM-003 records which services may use MDP as an open question for a UK reviewer.",
+        "What is scheduled immediately before and after the episode is not stated, and that is one of the eight binding context factors [UK-DEF-003]."
+      ]
+    },
+    {
+      "case": "TC-08",
+      "country": "UK",
+      "transmission": "t2 - the same 'Friends' episode on the +1 timeshift channel of the same pay TV service, 15:30, date not_stated. NOTE: the 15:30 start time is DERIVED from the '+1' label and is not stated in the source; the extractor records the derivation itself as not_stated. Decided as its own transmission, not inherited from t1. Service type branches as for t1.",
+      "hours_permitted": "Provisionally permitted at 15:30, on the same provisional view of suitability as t1, but with a materially weaker margin: 15:30 to about 15:52 runs into the period when children are returning from school, which the timeshift rule identifies as the specific risk. If the dialogue proves explicit, this is the transmission that fails first.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The 15:30 start time is DERIVED from the '+1' label and is not stated in the source. The whole transmission is being assessed against an inferred time, and the extractor flags the derivation itself as not_stated. A reviewer must confirm the actual +1 schedule before this decision means anything.",
+        "UK-SCH-009 is conditional and carries human_review_required = yes. It identifies this exact scenario - content placed while children are at school landing an hour later, when they are home - as the risk, and 15:30 to 15:52 is within the after-school return period on a term-time weekday.",
+        "The date is not_stated, so UK-SCH-010's school-holiday factor and UK-SCH-011's cultural and religious calendar factor cannot be applied. In a school holiday the favourable distinction between 14:30 and 15:30 largely disappears and both slots carry a higher child audience.",
+        "As for t1, the decision turns on the terms of the dialogue in the 00:11:40 scene, which are not_stated. If the dialogue is explicit, UK-SEX-003 makes it post-watershed material and this is the transmission that fails hardest, because it reaches the larger child audience.",
+        "Only one observation is listed for a 22-minute episode and the extractor records that no statement is made that it is the only event; whether strong language occurs is not_stated. The description may be inadequate to support any pre-watershed clearance.",
+        "What is scheduled before and after on the +1 channel is a binding context factor [UK-DEF-003] and cannot be inferred from the main service's schedule.",
+        "UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-CTX-011, UK-SEX-003, UK-SCH-001, UK-DEF-002, UK-DEF-003, UK-FLM-010, UK-GEN-001, UK-GEN-002, UK-SEX-001, UK-SCH-004, UK-SCH-006, UK-WRN-002 and UK-WRN-003 are judgment_based or carry human_review_required = yes in the table."
+      ]
+    }
+  ]
+}

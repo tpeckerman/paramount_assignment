@@ -5,7 +5,7 @@
 | Sources and a table of rules | `1_sources/` (with links and scope), `2_rules/RULES_TABLE_v1.xlsx` |
 | The full prompt | `3_prompt/`: `RUN_1` describes the content, `RUN_2` decides |
 | The test cases | `4_test_cases/CASES.md`, with each input alone in `inputs/` |
-| The results of the runs | `5_results/RESULTS.md`, with the raw model outputs in `runs/`. `FIRST_RUN_ALL_ESCALATED.md` summarizes the first run, where every decision went to a person |
+| The results of the runs | `5_results/RESULTS.md`, with the raw model outputs in `runs/`. `FIRST_RUN_ALL_ESCALATED.json` summarizes the first run, where every decision went to a person |
 | Design choices, and models and tools used | `6_design_choices/TASK1_WRITEUP.md` |
 
 Extra, not asked for: `2_rules/timeline.html`, a 24-hour view of which rules apply when, built from the table.
