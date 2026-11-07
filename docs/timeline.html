@@ -60,7 +60,7 @@ listed underneath rather than drawn at an invented position.</p>
 <div class="controls">
   <div><label for="c">Country</label><select id="c"></select></div>
   <div><label for="s">Service type</label><select id="s"></select></div>
-  <div><label for="g">Content category</label><select id="g"></select></div>
+  <div><label for="g">Category</label><select id="g"></select></div>
 </div>
 
 <div class="wrap">
@@ -93,13 +93,36 @@ function svcList(){
   D.timed.concat(D.untimed).forEach(r => r.svc.split(';').forEach(t => s.add(t.trim())));
   return [...s].filter(Boolean).sort();
 }
+// Underscored machine values are fine in data and poor in a label. Capitalising the first
+// letter alone turns bbc_odps into "Bbc odps", so known acronyms are restored afterwards.
+const ACRONYM = {bbc:'BBC', odps:'ODPS', tv:'TV', avms:'AVMS', avmsd:'AVMSD',
+                 ppv:'PPV', pin:'PIN', mdp:'MDP', bbfc:'BBFC', uk:'UK', eu:'EU'};
+const pretty = v => String(v).replace(/_/g,' ')
+  .replace(/^./, c => c.toUpperCase())
+  .replace(/\b[a-zA-Z]+\b/g, w => ACRONYM[w.toLowerCase()] || w);
+
 function fill(sel, vals, allLabel){
   sel.innerHTML = '<option value="">' + allLabel + '</option>' +
-    vals.map(v => `<option>${v}</option>`).join('');
+    vals.map(v => `<option value="${esc(v)}">${esc(pretty(v))}</option>`).join('');
+}
+
+// Which categories describe DEPICTED CONTENT. The rest describe the kind of rule, and
+// presenting them in one flat list implies they are alternatives to each other.
+const DEPICTED = new Set(['violence','sexual_content','nudity','strong_language',
+  'drugs_alcohol_smoking','suicide_self_harm','imitable_behaviour','fear_distress',
+  'hatred_discrimination','occult_paranormal','religion','human_dignity','serious_harm',
+  'participant_welfare','offence_general','music_videos']);
+
+function fillGrouped(sel, vals){
+  const a = vals.filter(v => DEPICTED.has(v)), b = vals.filter(v => !DEPICTED.has(v));
+  const opts = g => g.map(v => `<option value="${esc(v)}">${esc(pretty(v))}</option>`).join('');
+  sel.innerHTML = '<option value="">All categories</option>'
+    + (a.length ? `<optgroup label="What is depicted">${opts(a)}</optgroup>` : '')
+    + (b.length ? `<optgroup label="Kind of rule">${opts(b)}</optgroup>` : '');
 }
 fill($('#c'), uniq(D.timed.concat(D.untimed).map(r => r.country)), 'All countries');
-fill($('#s'), svcList(), 'Any service');
-fill($('#g'), uniq(D.timed.concat(D.untimed).map(r => r.cat)), 'All categories');
+fill($('#s'), svcList(), 'Any service type');
+fillGrouped($('#g'), uniq(D.timed.concat(D.untimed).map(r => r.cat)));
 
 function match(r){
   const c = $('#c').value, s = $('#s').value, g = $('#g').value;
@@ -126,7 +149,8 @@ function draw(){
       + ((r.open && b===1440) ? '<span class="cont">&rsaquo;</span>' : '') + `</div>`).join('');
     h += `<tr><td class="lbl"><span class="rid">${r.id}</span>`
       + `${r.hr ? '<span class="hr">R</span>' : ''}`
-      + `<br><span class="meta">${r.cat} &middot; ${r.cls}</span></td>`
+      + `<br><span class="meta">${esc(pretty(r.cat))}`
+      + `${r.cls && r.cls !== 'n/a' ? ' &middot; ' + esc(pretty(r.cls)) : ''}</span></td>`
       + `<td><div class="track" title="${esc(r.clause)}\n${esc(r.tok)}\n\n${esc(r.text)}\n\n&ldquo;${esc(r.quote)}&rdquo;">`
       + `<div class="ws" style="left:64.58%"></div>${bars}</div></td></tr>`;
   }
