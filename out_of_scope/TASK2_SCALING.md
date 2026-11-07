@@ -98,6 +98,18 @@ ways. France, in the EU, goes by where the company is based. The UK, since leavi
 mainly goes by whether the service is available in the UK. So the question was present with
 two countries and I wrote earlier that it only appears with thirty. That was wrong.
 
+**It starts earlier than the rules, in the input itself.** Every test description ends with a
+line like `COUNTRIES: UK, FR`, and nothing anywhere defines what that line means. It could be
+where the programme will be shown, where it was made, or where the rights were sold. The
+system reads it as "apply these countries' rules", which is the country-of-destination answer,
+and that is exactly the answer France does not use.
+
+So the ambiguity is not a labelling nicety. A French-regulated channel showing a program in
+the UK follows French rules, and a system that reads `UK` off that line and reaches for the UK
+rulebook has chosen a jurisdiction rather than been told one. The field needs splitting in
+version 2: **where it is broadcast** is a fact about distribution, **whose rules apply** is a
+conclusion drawn from the two tables below, and the second is not readable off the first.
+
 **No rule in the table is affected.** Every row is about content and timing, not about who
 regulates whom. What is missing is a precondition the table never states, now written down in
 `out_of_scope/SCOPE.md` and tracked as open conflict C-16.

@@ -1,170 +1,159 @@
 # Defects found by running the prompts
 
 These came out of running the prompts against the test cases, by agents that had never seen
-the expected answers. Reading a prompt does not find these. None was visible to the person who
-wrote it.
+the expected answers. Reading a prompt does not find them.
 
-The runs are in `runs/`.
+Only the ones that changed an answer, or would have, are listed. Small schema annoyances were
+cut from this list; they are not what a reviewer needs.
 
-**Five of nine are fixed.** Each entry says what went wrong, and either what the fix was or
-why it has been left alone.
-
-Background, for anyone who has not read the prompts: the work happens in two steps. Step one
-reads the program and writes down what happens in it, as a structured list. Step two takes
-that list, applies the rules, and decides. Step one never sees the rules, so it cannot shade
-its description toward an answer it expects. Most defects below are **container** problems in
-step one: a box that cannot hold what the program actually contains.
+Background: the work happens in two steps. **Step one** reads the programme and writes down
+what happens in it. **Step two** takes that list, applies the rules, and decides. Step one
+never sees the rules, so it cannot shade its description toward an answer it expects.
 
 ---
 
-## 1. Nowhere to record a PIN lock. FIXED.
+# Fixed
 
-**What went wrong.** One test case says the channel has a PIN that is on by default and that
-the viewer cannot switch off. Step one had no box for it, so the fact survived only as a
-sentence in a notes field.
+## 1. A PIN lock had nowhere to go
 
-That is the most dangerous kind of miss. A lock like that is what turns "not before 9pm" into
-"any time of day", so losing it produces an answer *more* permissive than the law allows, with
-nothing flagged.
+One test case says the channel has a PIN that is on by default and that the viewer cannot
+switch off. Step one had no box for it, so the fact survived only as a sentence in a notes
+field.
 
-**The fix.** Step one now has a dedicated section recording whether a lock exists, what kind,
-whether it is on by default, whether the viewer can turn it off, and the exact words used. The
-last two are separate questions on purpose: a lock the viewer can switch off is not the same
-protection as one they cannot, and only the second counts.
+This is the most dangerous kind of miss. A lock like that is what turns "not before 9pm" into
+"any time of day", so losing it produces an answer **more permissive than the law allows**,
+with nothing flagged.
 
-## 2. One box asked two questions at once. FIXED.
+**Fixed.** Step one now records whether a lock exists, what kind, whether it is on by default,
+whether the viewer can turn it off, and the exact words used. The last two are separate
+questions on purpose: a lock the viewer can switch off is not the same protection as one they
+cannot, and only the second counts.
 
-**What went wrong.** A field called `treatment` was used both for *was this shown on screen*
-and for *how was it played*. One test case has characters joking explicitly about sex without
-anything being shown. It is both comic and not shown, and only one value fits. Information had
-to be thrown away and the prompt left the choice to chance.
+## 2. No way to tell a time of day from a running time
 
-The prompt contradicted itself: one instruction said the field marks things only spoken about,
-the next said it records framing.
+`00:11:33` can mean eleven hours into a film or half past eleven in the morning. Nothing said
+which.
 
-**The fix.** There was already a separate yes/no field for whether something was shown, so the
-"not shown" value was duplicated as well as conflicting. Removed it. `treatment` now records
-framing only, and the two instructions each own one question.
+**Which one matters: the time of day.** Every hour rule is written about the clock on the
+wall. The watershed is 9pm, not "ninety minutes in".
 
-## 3. No way to tell a time of day from a running time. FIXED.
+**Why both get recorded anyway.** Step one is handed whichever the source used, and
+descriptions usually count from the start of the programme. You cannot reach a time of day
+without knowing which kind of number you were given, plus when the programme starts.
 
-**What went wrong.** `00:11:33` can mean eleven hours into a film, or half past eleven in the
-morning. Nothing recorded which.
+**Fixed, in two halves.** Step one marks each event as a time of day or a running time, and
+copies the number exactly. It does no arithmetic, deliberately. Step two then converts and
+applies the rules to the time of day.
 
-For the real enforcement case in the test set, that distinction is the entire question. The
-regulator ruled on violence going out at 11:33 on a weekday morning, not eleven hours into a
-movie.
+The first attempt only did the first half: step one recorded it and step two never looked.
+That went unnoticed because the one real enforcement case already had times of day in it. On a
+programme counted from zero it would have applied an hour rule to the wrong number. A scene 90
+minutes into a programme starting at 8pm goes out at 9:30pm, past the watershed. Read as a
+running time it looks like 1:30am.
 
-**Which one actually matters.** The time of day. Every hour rule is written about the clock
-on the wall: the watershed is 9pm, not "ninety minutes in".
+## 3. Two different signals for "a human must check this", and no rule saying which wins
 
-**So why record both.** Because the describing step is given whichever the source used, and
-descriptions usually count from the start of the program. You cannot get to the time of day
-without knowing which kind of number you were handed, plus what time the program starts.
+The rules table has two columns. One says **how** a rule applies: mechanically, or only once
+you confirm a condition, or by weighing a judgement. The other says **whether a person must
+sign it off**. They do not line up, and the prompt only ever mentioned the first.
 
-**The fix, in two halves.** Step one now marks every event as either a time of day or a
-running time, and copies the number exactly as given. It does no arithmetic, deliberately: it
-is the step that must not interpret anything.
+Escalating on the first sends everything to a human, because rules that describe how to weigh
+things are present in every single decision while deciding nothing themselves. That is exactly
+what happened: 17 decisions out of 17 went to a person, including a cookery programme with a
+plaster on a cut finger.
 
-Step two then converts. It adds a running time to the start time to get the time of day, and
-applies the rules to that. A scene 90 minutes into a program starting at 8pm goes out at
-9:30pm, on the far side of the watershed from the program's own start. If the start time is
-unknown the conversion is impossible, and that is reported as missing information rather than
-guessed.
+**Fixed.** The prompt now says the sign-off column governs, and explains why the two differ.
+Found independently by a blind run, which followed the second column and flagged that the
+prompt never said which to use.
 
-**This was caught late.** The first version of the fix only did the first half. Step one
-recorded the distinction carefully and step two never looked at it, so the information was
-collected and then ignored. It happened to work on the one real enforcement case because that
-case's timecodes were already times of day. On a case counted from zero it would have applied
-an hour rule to the wrong number.
+## 4. One box asked two questions at once
 
-The prompt also now forbids padding a timecode, because turning `00:08` into `00:08:00`
-silently converts eight minutes into eight seconds.
+A field called `treatment` was used both for *was this shown on screen* and for *how was it
+played*. One case has characters joking explicitly about sex with nothing shown. It is both
+comic and not shown, and only one value fit, so information was thrown away and the prompt
+left the choice to chance.
 
-## 4. Two lists disagreed about what a documentary is. FIXED.
+**Fixed.** A separate yes/no field for "was it shown" already existed, so the conflicting value
+was removed. `treatment` records framing only.
 
-**What went wrong.** The list of program types had no entry for a documentary, so one became
-"other". The framing list *did* have "documentary". The two disagreed about whether documentary
-is a kind of program or a way of filming.
+## 5. A rule that could never be retrieved
 
-**The fix.** It is a kind of program. Added to the program-type list, removed from the
-framing list.
+Rules are fetched by matching what is in the programme **and** what kind of channel it is. One
+French rule had "per channel" written in the channel column. That is not a kind of channel, it
+is a note meaning "applies to each one individually", so it failed every channel test and
+dropped out of every selection ever made.
 
-## 5. A repeat channel invited arithmetic the prompt elsewhere forbids. FIXED.
+The rule matters: it is the one saying each French channel signs its own contract with the
+regulator, which **can be stricter than the general law**.
 
-**What went wrong.** Some channels rebroadcast everything an hour later. One instruction
-mentioned this, which invited step one to work out that 14:30 becomes 15:30. Another said
-never to adjust a time. Both applied and they pointed opposite ways.
-
-**The fix.** Step one records the broadcast exactly as given and notes that a repeat channel
-may exist. Working out what the later slot means is step two's job, where there is a rule for
-it. Step one no longer does arithmetic.
+**Fixed.** Corrected to all linear television, which is what it binds.
 
 ---
 
-# Left alone, and why
+# Not fixed, and why
 
-## 6. An event cannot say which broadcast it belongs to. NOT FIXED.
+## 6. The category list has no middle ground
 
-One test case is a music video at 22:15 plus a 30-second trailer cut from it going out at
-15:00. Two slots, two different answers. Events carry no marker saying which they came from,
-so the link exists only in prose. Their timecodes collide too, because both start at 00:00.
+Every event must be filed under one of fifteen labels, and the prompt says never to invent a
+new one. Two real events have nowhere sensible to go.
 
-**Why not.** One extra field would do it. But exactly one case out of nine has two broadcasts,
-and reshaping the output to suit a single example is how a system gets tuned to its own test
-set instead of to the job. This wants two or three more multi-broadcast cases first, so the
-field is designed against a pattern rather than one instance.
+A presenter nicking a finger, with a plaster and no blood, is not violence and not serious
+harm. A blind run filed it under **violence**, which is the nearest word and badly wrong: it
+pushes a trivial event into the category most likely to restrict a programme.
 
-## 7. "There is none" and "nobody said" are stored the same way. NOT FIXED.
+Worse in the other direction, real footage of a fatal accident gets filed under **serious
+harm** — which is correct, and which then retrieves only the absolute bans, because those are
+the rules that carry that label. The graduated violence rules, the ones that would actually
+decide the hour, never arrive. Real death footage ends up measured against a ban it cannot
+meet and against nothing in between.
 
-"Certificate: none" is someone answering the question. "Service: not stated" is nobody
-answering it. Both end up recorded as absence, so the system asks a human about a question
-that has already been answered.
+**Why not fixed.** This needs new labels, and labels are how rules are retrieved. Adding one
+changes which rules reach every future decision, so it is a change to the table's retrieval
+design rather than a word added to a list. Doing it properly means working out the missing
+tiers across both countries, not patching the two cases that exposed it.
 
-**Why not.** Low cost and low risk, but it touches several fields at once and every one feeds
-the decision step. Worth doing deliberately rather than squeezing it in beside changes that
-affect whether answers come out right.
+## 7. Nothing defines what "COUNTRIES: UK, FR" means
 
-## 8. Step one is forbidden from using obvious evidence. NOT FIXED, ON PURPOSE.
+Every description ends with a line naming countries, and nothing anywhere says what the line
+refers to. It could be where the programme will be shown, where it was made, or where the
+rights were sold.
 
-Step one must never work out whether a program is news, or made for children, from its
-genre. So a cookery show records "unknown" for both, and step two then has to branch or flag a
+The system reads it as "apply these countries' rules". That is the *country of destination*
+answer, and it is exactly the answer France does not use. France goes by where the **company**
+is based: a French-regulated channel showing a program in the UK follows French rules. So a
+system that reads `UK` off that line and reaches for the UK rulebook has **chosen** a
+jurisdiction rather than been told one, and it will do so confidently and silently.
+
+**Why not fixed, and where it is handled.** Fixing it properly is not a label change. It needs
+two things the system does not have: a record of which regulator covers each channel, and a
+grid of whether each country accepts another country's regulator. Neither can be read off a
+description of a programme, which is the only input this system takes.
+
+This is written up as the jurisdiction section of the Task 2 proposal, including the two
+tables, the free European database that supplies most of the first one, and the warning that
+applying the stricter of two countries' rules is usually the wrong instinct because usually
+only one country's rules were ever going to apply. Tracked as open question C-16.
+
+## 8. Step one is banned from using obvious evidence
+
+Step one must never work out whether a programme is news, or made for children, from its genre.
+So a cookery show records "unknown" for both, and step two then has to branch or flag a
 question nobody would seriously ask.
 
-**Why not.** The ban exists for a good reason and removing it is riskier than it looks. The
-whole value of step one is that it describes without judging. Let it reason from genre and it
-will start shading descriptions toward the answer it expects, which is the failure the two-step
-design exists to prevent, and it would be invisible when it happened.
+**Why not fixed, on purpose.** The whole value of step one is that it describes without
+judging. Let it reason from genre and it will start shading descriptions toward the answer it
+expects, which is the failure the two-step design exists to prevent, and it would be invisible
+when it happened.
 
 The right fix is narrow: allow it only where the answer is genuinely not in doubt. That line
 needs drawing carefully, and drawing it hastily to make one test case pass would trade a
-visible nuisance for an invisible bias. Left as is deliberately.
-
-## 9. Small ones that still cost accuracy. NOT FIXED.
-
-- One certificate covering both cinema and home video has to be entered twice, because the
-  field holds one scope. Anything counting certificates would double-count it.
-- Running time is a whole number of minutes, but one case is 13 minutes 42 seconds. Rounding
-  is forced by the shape and forbidden by the instructions.
-- "Countries: UK, FR" could mean where it is shown, where it was made, or where the rights
-  sit. Nothing says which.
-- "No warning was given" is someone positively answering a question. Not an event, not a gap,
-  so it has nowhere to go and lands in a notes field.
-- The source descriptions use words like "sustained" and "prolonged". Step one is banned from
-  adding its own severity words but required to quote exactly. Stripping them would destroy
-  the only signal about how long something lasts.
-- Two things match no category: a minor injury, and pain played for laughs. Both land in the
-  catch-all. Step two handles them correctly, but only because the catch-all rule happens to
-  cover them.
+visible nuisance for an invisible bias.
 
 ---
 
 ## What this says about the prompts
 
-The prompts are careful about the **reasoning** and were loose about the **containers**.
-Almost every defect here is a box that cannot hold what the program contains, or two facts
-sharing one box. None was visible from reading. All of it surfaced on the first run.
-
-Defect 1 was the one to fix before anything else, because it is the only one that silently
-produces an answer more permissive than the law allows. The four still open cost accuracy, and
-none unlocks a wrongly permissive answer, which is why they rank below the ones that are done.
+The prompts were careful about the **reasoning** and loose about the **containers**. Almost
+every defect here is a box that cannot hold what the programme contains, or two boxes
+disagreeing about which question they answer. None was visible from reading. All of it
+surfaced on the first run.
