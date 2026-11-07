@@ -36,7 +36,7 @@ whether a decision may use it. Only `approved` rules are ever handed to step 12.
 | `draft` | You learn a rule exists from a source that **is not the rule**. You can write down that it binds, but not what it demands. | French channels each sign an individual agreement with the regulator. An enforcement decision cited those agreements, which proved they exist and bind, but the agreements themselves are not published centrally. |
 | `unverified` | Either the source could not be read yet, or it was read and something is off. The quote can be real and the document real while the **vintage** is wrong. | Two rules cited guidance from 2015 that a 2018 statement had restructured. Correct quote, correct document, superseded edition. |
 | `superseded` | The law changed. The old row is not wrong; it was correct until a date. | A 2014 amendment broadened a French category. The old wording stays, end-dated, because explaining a decision made in 2013 needs the rule as it stood in 2013. |
-| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 103 of 103 rules. |
+| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 103 of 105 rules. |
 
 Two things follow from this that are easy to miss.
 
@@ -83,7 +83,7 @@ And every model step is **gated by cheaper checks first**:
 | 6. Valid vocabulary? | A value outside the list, which matches nothing and errors nowhere | Two spellings of one service type, which silently dropped a rule from every decision using the other |
 | 9. Known category? | An observation that would match no rule | Enforced before the decision step rather than discovered after |
 | 13. Claims cite real rules? | A decision citing a rule that does not exist | |
-| 14. Clear-cut? | Automating a judgment call | 43 of 103 rules are judgment calls and route to a person |
+| 14. Clear-cut? | Automating a judgment call | 45 of 105 rules are judgment calls and route to a person |
 
 Every defect in that right-hand column **looked completely fine**. None was found by rereading.
 Each was found by something mechanical comparing the work against a source outside it.
@@ -162,7 +162,7 @@ job is reading law. It runs 20 times, once per source, and again whenever a regu
 something.
 
 Each row carries a `verbatim_quote` that appears character for character in the stored file.
-**All 103 approved rules do**, and a rule without one fails the build.
+**All 105 approved rules do**, and a rule without one fails the build.
 `out_of_scope/pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 

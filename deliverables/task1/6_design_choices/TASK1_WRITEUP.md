@@ -13,7 +13,7 @@ informative part of this.
 | Scope reasoning | the scope note in Task 1's design-choices folder |
 | Design choices and tools | this file |
 
-**Current state:** 103 rules, all 103 approved, 20 of 20 sources collected. All 103 carry a verbatim
+**Current state:** 105 rules, all 105 approved, 20 of 20 sources collected. All 103 carry a verbatim
 quote and all 103 verify, 0 failing. Coverage is enforced: an approved rule with no quote
 fails the build (C-15).
 
@@ -49,7 +49,7 @@ part. It is closer to the reverse.
 | | Deterministic? | Example |
 |---|---|---|
 | Deciding **what is in** the content | **No.** This is where the judgment lives. | Is this violence "presented repeatedly"? Is this treatment "derogatory"? Is the method "easily imitable"? |
-| Applying rules **once that is settled** | **Largely yes.** 33 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
+| Applying rules **once that is settled** | **Largely yes.** 33 of 105 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
 
 The rule-application half is close to a lookup, which is why most of the effort here went into
 making the table correct and checkable rather than into prompt wording.
@@ -252,7 +252,7 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **43 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
+- **45 of 105 rules are judgment-based and uncalibrated.** This is the weakest part of the
   table. Exactly one decided enforcement case has been collected, so the table can say "a
   human must decide" but cannot say where the line sits. The guidance names roughly twelve
   more enforcement bulletins; collecting them is the highest-value work left (C-07).

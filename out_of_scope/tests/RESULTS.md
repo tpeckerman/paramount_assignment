@@ -90,7 +90,7 @@ hands back every single decision.
 `TASK2_SCALING.md` sets a target band of 15 to 30% and says too high means nobody is saved
 work. 100% is not near that band, it is the degenerate case.
 
-**Why.** 43 of 103 rules are `judgment_based`, and `postcheck.py` requires escalation
+**Why.** 45 of 105 rules are `judgment_based`, and `postcheck.py` requires escalation
 whenever a decision rests on one. Almost every real description touches at least one. So the
 escalation is correct rule by rule and worthless in aggregate, and the cause is C-07: nothing
 is calibrated, so everything is a judgment.
@@ -434,7 +434,7 @@ misattribution, which only became visible once the quote existed to be checked.
 
 ## Limits
 
-- **43 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
+- **45 of 105 rules are judgment-based and barely calibrated.** One decided case is an anchor,
   not a scale. The guidance names about a dozen more; collecting them is the highest-value
   work left.
 - **Author equals grader**, except for TC-01, which is itself not a clean hold-out.
@@ -456,7 +456,7 @@ exactly the failure the rest of this file is about.
 these cases produce. That is step 11, rule selection, and it is deterministic, so the result
 is a real result and not a judgment.
 
-It selected 31 of 103 rules, and all three rules these cases turn on were among them:
+It selected 31 of 105 rules, and all three rules these cases turn on were among them:
 
 | rule | clause | determinacy | what it does here |
 |---|---|---|---|

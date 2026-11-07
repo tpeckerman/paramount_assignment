@@ -1255,6 +1255,47 @@ add("FR-MUS-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "selon des thématiques qui ne s'adressent ni aux enfants", "FR", "high")
 
+# --- Categories IV and V had an HOUR but no DEFINITION. FR-SCH-005 said -16 may not air
+# before 22:30 and FR-TRL-003 said -16 trailers may not air before 20:30, while nothing in
+# the table said what makes a program -16 in the first place. Two independent blind runs hit
+# this on different cases and both reported the -16 branch as undecidable, correctly: the
+# deciding prompt forbids citing a rule it was not given, so an hour with no threshold behind
+# it can be named and never reached. Same hole for category V.
+add("FR-CLS-004", "FR", "Arcom", "regulator_binding", 2, "definition_only",
+    "all_linear_tv", "classification_scheme", "IV_-16",
+    "Category IV (-16) - cinematographic works BANNED TO UNDER-16s IN CINEMAS, and programmes "
+    "of an EROTIC character or of GREAT VIOLENCE, liable to harm the physical, mental or moral "
+    "development of under-16s. Pictogram: a white circle carrying -16 in black.",
+    "See FR-SCH-005 (22:30 on general services), FR-SCH-006 (20:30 on cinema channels and "
+    "pay-per-view) and FR-TRL-003 (20:30 for trailers).", "see=FR-SCH-005",
+    "A cinema -16 interdiction pulls a work into at least this category. The erotic limb is "
+    "distinct from the pornographic limb of category V and sits below it.",
+    "judgment_based", "clear",
+    "'Grande violence' and 'tres grande violence' separate this category from V and the line "
+    "between them is nowhere defined in the stored text. Both turn on degree, and the French "
+    "scheme gives no worked examples, so a borderline work can be argued either way with a "
+    "two-hour difference in the permitted slot on a general service.",
+    "yes", "FR-R1c", "art. 2 al. 6", U_FR1C, "2014-04-09", "open", "approved",
+    "programmes \u00e0 caract\u00e8re \u00e9rotique ou de grande violence", "FR", "high")
+
+add("FR-CLS-005", "FR", "Arcom", "regulator_binding", 2, "definition_only",
+    "all_linear_tv", "classification_scheme", "V_-18",
+    "Category V (-18) - cinematographic works BANNED TO UNDER-18s IN CINEMAS, and PORNOGRAPHIC "
+    "programmes or programmes of VERY GREAT VIOLENCE, reserved for a warned adult audience and "
+    "liable to harm the physical, mental or moral development of under-18s. Pictogram: a white "
+    "circle carrying -18 in black.",
+    "Broadcast is governed entirely by recommandation 2004-7; see FR-CV-001 for the service "
+    "eligibility gate and FR-CV-002 for the hours.", "see=FR-CV-002",
+    "Reaching this category does not by itself permit broadcast: FR-CV-001 gates WHICH services "
+    "may carry it at all, and FR-CV-003 imposes a total prohibition on the rest.",
+    "judgment_based", "clear",
+    "The boundary with category IV turns on 'tres grande violence' against 'grande violence', "
+    "and on 'pornographique' against 'erotique'. Neither pair is defined in the stored text. "
+    "This boundary matters more than most: category IV is a late hour, category V is a total "
+    "prohibition on any service not specially authorised.",
+    "yes", "FR-R1c", "art. 2 al. 7", U_FR1C, "2014-04-09", "open", "approved",
+    "programmes pornographiques ou de tr\u00e8s grande violence", "FR", "high")
+
 add("FR-CV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; high_production_commitment_channels; pay_per_view",
     "classification_scheme", "V_-18",
@@ -1710,6 +1751,11 @@ oq += [
      "the applicability of the whole table, though no individual rule's content",
      "OPEN, found 2026-11-07 while writing Task 2. Before you can apply a country's rules you must know whose rules apply to a given channel, and the two countries here answer that OPPOSITELY. France is in the EU and so under the AVMSD country-of-origin rule: a channel follows the rules of the country where the company is established, and receiving countries must accept that. The UK LEFT the EU, is treated as a third country under the AVMSD, and moved to COUNTRY OF DESTINATION: a service available in the UK generally needs an Ofcom licence wherever the company sits. The UK remains party to the Council of Europe ECTT, which restores an origin-style arrangement with its members but does NOT cover video on demand or IP-delivered linear TV, and seven EU states never joined it (Belgium, Denmark, Greece, Ireland, Luxembourg, Netherlands, Sweden). Work to update the ECTT was abandoned, so those gaps are permanent.",
      "THIS DOES NOT INVALIDATE ANY ROW. Every rule in the table is about content and timing, not about who regulates whom, so the rules remain correct for channels that Ofcom and Arcom do in fact regulate. What is missing is the PRECONDITION: nothing records which channels those are, and the system takes `country` as an input as though it were obvious. PARTLY ANSWERABLE OFF THE SHELF, at least in Europe: the AVMSD obliges each member state to keep a list of the services it regulates and to publish those lists in one central public database, which is MAVISE, run by the European Audiovisual Observatory. Free, updated monthly, sourced from the national regulators, covering 42 European countries plus Morocco, about 10,000 TV channels and 4,600 on-demand services, searchable by channel with a country-of-jurisdiction field and downloadable as a spreadsheet. That is close to the lookup this problem needs, though a database entry is a record and not a ruling, so it informs a lawyer rather than replacing one. It also shows how far jurisdiction drifts from where people watch: in one year 70% of Europe's cross-border channels fell under just the Netherlands, Luxembourg and Spain, and most of Luxembourg's share was down to where the satellite uplink sits. NO WORLDWIDE EQUIVALENT EXISTS. Two actions. (1) Scope: state in SCOPE.md that the table assumes the channel is already known to be regulated by Ofcom or by Arcom, and that establishing this is out of scope. (2) Design: `country` is the wrong key for a decision; the key is the RULEBOOK that applies to that channel in that territory, which is a stored fact per channel decided by a lawyer, not something derivable from the content or from where it is watched. A channel can owe duties under more than one rulebook at once, and no recorded rulebook must produce a refusal to decide rather than a guess. Sources for all of this are web research (Ofcom post-Brexit licensing guidance, the ECTT text) and are NOT in sources/originals/, so none of it may become a rule row until collected and quote-checked.",
+     "open", "no"],
+    ["C-19", "The UK answer 'no per-programme rating exists' is true and unquotable",
+     "Every UK decision's classification field",
+     "FOUND BY A BLIND RUN 2026-11-07. The deciding prompt requires the UK classification to be emitted as no_per_programme_rating, and separately requires a rule_id behind every substantive claim. No row supports it, because the fact is an ABSENCE: UK linear television has no per-programme rating scheme, and the Broadcasting Code does not contain a sentence saying so. The stored UK sources were searched and hold no quotable text. A blind run cited UK-SCH-002 as the nearest support and flagged, correctly, that this was an inference rather than a quote.",
+     "NOT fixed by inventing a row. A rule row in this table means a quote from a source, and manufacturing one for a structural fact would put an unquotable claim behind the same seal as 102 quoted ones, which is worse than the gap. Instead the deciding prompt now states that the UK classification value is a property of the scheme rather than a rule finding, and needs no rule_id. To close it properly: find whether Ofcom states the absence anywhere citable, such as in guidance on the relationship between BBFC certificates and scheduling, and add a row if so.",
      "open", "no"],
     ["C-17", "A rule asserted a service-eligibility restriction that no stored source contains",
      "UK-FLM-003, and through it the TC-03 PIN scenario",

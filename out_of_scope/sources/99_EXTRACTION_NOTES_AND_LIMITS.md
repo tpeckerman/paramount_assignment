@@ -10,18 +10,18 @@ conflicts.
 
 ## Where things stand
 
-- 103 rules, all 103 approved. `FR-CNV-001` was the last to be promoted, once the C8 formal
+- 105 rules, all 105 approved. `FR-CNV-001` was the last to be promoted, once the C8 formal
   notice on disk proved that French channel conventions are individual binding agreements.
   What those conventions actually say is still uncollected, which stays open as C-06.
 - 20 of 20 source documents collected and on disk.
-- **All 103 approved rules carry a verbatim quote**, and all 103 verify against their stored
+- **All 105 approved rules carry a verbatim quote**, and all 103 verify against their stored
   source, 0 failing. Coverage is enforced: an approved rule with no quote fails the build.
 - Conflicts: see `rules/csv/Open_Questions.csv`. Four remain open; the substantive one is
   **C-07**, below.
 
 ## The limit that matters most: judgment rules are barely calibrated
 
-**43 of 103 rules are `judgment_based`**, and exactly **one** decided case has been collected.
+**45 of 105 rules are `judgment_based`**, and exactly **one** decided case has been collected.
 
 One case is an anchor, not a scale. It tells you that a BBFC 15 film with sustained graphic
 violence at 11:30 in the morning breached, which is useful, but it does not tell you where the

@@ -617,7 +617,7 @@ exhausted in week nine is a breach in week ten.
 
 ## 2b. Learning from decisions the regulator already made
 
-38 of the 103 rules in this table are judgment calls. The table can say a judgment is
+38 of the 105 rules in this table are judgment calls. The table can say a judgment is
 needed. It cannot say **where the line is**, and that is the single biggest weakness in the
 whole thing.
 
@@ -980,7 +980,7 @@ hour a year per channel, not a retainer.
 
 - **Sign-off before any rule goes live.** Non-negotiable. An unreviewed extraction is a
   hypothesis.
-- **Calibrating judgment rules.** 43 of 103 current rules are judgment-based with one
+- **Calibrating judgment rules.** 45 of 105 current rules are judgment-based with one
   enforcement precedent between them. The table can say a judgment is needed; it cannot say
   where the line sits. Only someone who has argued these cases can.
 - **Unwritten regulator practice.** What a regulator tolerates is not in the text.

@@ -205,6 +205,11 @@ not apply to the content in front of you, not for rules you cannot evaluate.
 ## Hard constraints
 
 - Every substantive claim carries a `rule_id`. One without is treated as a hallucination.
+- **One exception, and only one.** The UK classification value `no_per_programme_rating` needs
+  no `rule_id`. It states that the UK scheme issues no per-programme rating for linear
+  television, which is a property of the scheme and not a finding about this content. No rule
+  says it because it is an absence, and the Code contains no sentence asserting it. Do not
+  attach the nearest-looking rule to it; that reads as support the row does not give.
 - Never cite a rule you were not given. No remembered clause numbers.
 - Never emit a numeric age rating for UK linear television.
 - Never report hours without the conditions they depend on.

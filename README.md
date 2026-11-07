@@ -22,13 +22,13 @@ the six things the brief asked for, in order.
 | Folder | What the brief asked for | What is in it |
 |---|---|---|
 | `1_sources/` | Sources, with links and scope | All 20 official sources, plus the documents themselves so any quote can be checked |
-| `2_rules/` | A table of rules | 103 rules across 6 tabs, with a legend, the open questions, and a 24-hour chart of which rules bite when |
+| `2_rules/` | A table of rules | 105 rules across 6 tabs, with a legend, the open questions, and a 24-hour chart of which rules bite when |
 | `3_prompt/` | The full prompt | Two prompts, one that reads the content and one that decides, plus how to run them |
 | `4_test_cases/` | At least three diverse test cases | Nine cases on real media, with the exact input text for each |
 | `5_results/` | The results of the runs | What each run returned, what failed, and the prompt changes that came out of it |
 | `6_design_choices/` | A short explanation of design choices | Seven choices and why, the limits, and the models and tools I used |
 
-**Where it stands:** 103 rules, all 103 approved, every one carrying a quote from its source
+**Where it stands:** 105 rules, all 105 approved, every one carrying a quote from its source
 that is checked against the stored document automatically. 20 of 20 sources collected. Eight
 of nine cases run, with the saved model output for each.
 
@@ -71,7 +71,7 @@ GitHub stops running it. It is scaffolding like the rest, and it runs the script
 The rules table is the strong part: every rule is traceable to a quote from an official
 document, and the build fails if a quote stops matching its source.
 
-The weak part is judgment. 43 of the 103 rules turn on a threshold a person has to weigh,
+The weak part is judgment. 43 of the 105 rules turn on a threshold a person has to weigh,
 such as whether something is justified by context, and only one decided case has been
 collected to calibrate against. The prompt is built to send those to a human rather than
 guess, which is the right behavior but is not the same as being right.
