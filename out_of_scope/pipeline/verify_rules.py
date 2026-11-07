@@ -432,6 +432,38 @@ def check_sources_tab(rows):
     need = {r["doc_id"] for r in _csv.DictReader(man.open(encoding="utf-8"))}
     return sorted(need - have)
 
+def check_inert_rules_do_not_demand_review(rows):
+    """A rule that cannot change an answer must not demand a person decide it.
+
+    The deciding prompt reserves `basis` for rules that set or move the hours, fix the
+    classification, or impose a condition. A row whose time_rule_machine is "n/a" with no
+    `requires=` clause does none of those: it is a definition or a lens, and it can only
+    ever colour how some OTHER rule is read. That other rule carries its own review flag.
+
+    Marking the lens itself human_review_required=yes double-counts, and when the lens
+    applies to every decision the whole system escalates by construction. UK-CTX-010 (audience
+    size, a definition) was flagged yes and turned up in 9 of 17 escalation reasons while
+    being incapable of changing any of them.
+
+    NARROWED ONCE ALREADY. The first version asked only whether time_rule_machine was "n/a",
+    which conflates "sets no HOUR" with "restricts nothing". It flagged FR-CV-005 and
+    FR-CV-006, a quota cap and a set of marketing conditions: both are real operative
+    restrictions that happen not to be about the clock, and both rightly need a person. What
+    actually distinguishes an inert row is that it is a DEFINITION, which defines a term
+    rather than restricting anything.
+    """
+    bad = []
+    for r in rows:
+        tok = (r["time_rule_machine"] or "").strip()
+        inert = (r["content_category"] == "definition"
+                 and tok.startswith("n/a") and "requires=" not in tok)
+        if inert and r["human_review_required"] == "yes":
+            bad.append(f"{r['rule_id']}: time_rule_machine={tok!r} cannot change an answer, "
+                       f"so it must not carry human_review_required='yes'. The operative rule "
+                       f"it informs is what needs the review.")
+    return bad
+
+
 ABSOLUTE = {"UK-GEN-001", "UK-SEX-001", "UK-FLM-001", "UK-FLM-006",
             "FR-LAW-001", "FR-PRO-001", "FR-PRO-002", "FR-PRO-003", "FR-CV-003"}
 
@@ -450,6 +482,7 @@ def main() -> int:
     print(f"loaded {len(rows)} rules from {WORKBOOK.relative_to(ROOT)}")
 
     problems = check(rows) + check_manifest_coverage(rows)
+    problems += check_inert_rules_do_not_demand_review(rows)
     problems += [f"{d}: collected but missing from the Sources tab"
                  for d in check_sources_tab(rows)]
     problems += [f"{rid}: service_type '{tok}' is not in the controlled vocabulary"

@@ -664,8 +664,22 @@ add("UK-CTX-010", "UK", "Ofcom", "guidance", 3, "yes",
     "Expect the reverse argument from a niche channel; it is not available.",
     "judgment_based", "clear",
     "The channel's typical audience size and profile is required, and is almost never in a "
-    "content description.",
-    "yes", "UK-G3", "Guidance Notes Section 2, meaning of context", U_G3, "2017-07-18",
+    "content description. REVIEW FLAG DELIBERATELY 'no': see below.",
+    # human_review_required = "no", and this is the one row where that needs defending.
+    #
+    # This is a DEFINITION. time_rule_machine is "n/a": it cannot set an hour, fix a
+    # classification or impose a condition. By the deciding prompt's own rule it can
+    # therefore never belong in `basis`, which is reserved for rules that change the answer.
+    # Audience size is real and it does matter, but it matters THROUGH the operative rule it
+    # colours (UK-SCH-001, UK-VIO-001 and the rest), and those rows carry their own review
+    # flags.
+    #
+    # Flagging the lens as well as the rule it focuses double-counts, and because this lens
+    # applies to every UK decision ever made, a "yes" here means every UK decision escalates
+    # by construction. That is not a hypothetical: the first full run escalated 17 of 17,
+    # and this row appeared in 9 of those 17 escalation reasons despite being unable to
+    # change any of them.
+    "no", "UK-G3", "Guidance Notes Section 2, meaning of context", U_G3, "2017-07-18",
     "open", "approved",
     "The timing of a broadcast may affect the composition of its audience", "EN", "high")
 
@@ -754,7 +768,14 @@ add("UK-CTX-011", "UK", "Ofcom", "precedent", 4, "yes",
     "bright_line", "clear",
     "Run the offence and scheduling determinations separately and report both. Never let a "
     "finding of editorial justification discharge the scheduling question.",
-    "yes", "UK-P1", "Bulletin issue 553, footnote 2 and Rule 1.3 decision", U_P1,
+    # human_review_required = "no", for the same reason as UK-CTX-010 above. This row is a
+    # METHOD INSTRUCTION, not a restriction: run the offence and scheduling determinations
+    # separately and never let one discharge the other. A model can follow that mechanically,
+    # which is why the row is bright_line. A bright-line row that also demands a human was a
+    # contradiction on its face, and because the instruction applies to every UK decision it
+    # pushed every UK decision toward escalation. The review belongs to the operative rules
+    # the instruction is about, and those carry their own flags.
+    "no", "UK-P1", "Bulletin issue 553, footnote 2 and Rule 1.3 decision", U_P1,
     "2026-09-07", "open", "approved",
     "sufficiently contextualised within the film", "EN", "high")
 
