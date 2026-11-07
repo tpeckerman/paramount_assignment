@@ -1,0 +1,223 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "NTV (described in the observations as free-to-air satellite), 2026-05-29, 11:30 start, events recorded to at least 13:44. The request gives service_type as not_stated and intended_slot as not_stated, so the hours answer below is branched by service type rather than resolved; the 11:30 start time comes from the observations' transmission record (t1), not from the request.",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "UK linear television issues no per-programme age rating. The BBFC 15 certificate recorded in the observations is a cinema/video certificate of unstated scope, not a broadcast classification.",
+        "basis": [
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "The rule states that a BBFC certificate does not set the slot and that the Ofcom Code has 'dispensed with these rules relating scheduling to ratings'. Films are scheduled like any other content. A recent BBFC classification is an INDICATION of suitability, not a determinant, so the correct value on this axis is that no per-programme rating is issued, and the certificate is evidence feeding the hours decision rather than the classification."
+          },
+          {
+            "rule_id": "UK-DEF-001",
+            "clause_ref": "S1 definitions",
+            "why": "The only age boundary the operative UK rules use is the definition of 'children' as people under fifteen. That is a definition used by the scheduling rules, not a label issued per programme, which is why there is no number to emit here."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "On the service described in the observations (free-to-air satellite, no mandatory daytime protection asserted anywhere in the record): not before 21:00, and the 11:30 transmission actually recorded is not permitted. Because the request states service_type as not_stated, the branches are: (a) free-to-air / general linear TV - not before 21:00 [UK-SCH-002]; (b) premium subscription film service without protection - not before 20:00 [UK-SCH-003, UK-FLM-004]; (c) premium subscription film, pay-per-view or scheduled channel WITH mandatory daytime protection in place - any time of day, including 11:30, but only while the access-control and audience-information conditions below are satisfied [UK-FLM-003, UK-FLM-005, UK-SCH-007]. Branch (c) is not available on the record as it stands and its service eligibility is an open question (see missing_information).",
+        "without_technical_measure": "Barred before 21:00 on the general-linear branch [UK-SCH-002]; barred before 20:00 on the premium-subscription-film branch [UK-SCH-003, UK-FLM-004]. On either branch the recorded 11:30 start is barred.",
+        "with_technical_measure": "Any time of day, including 11:30, IF and only if mandatory daytime protection within the meaning of UK-FLM-003 is in place and the service is one of the types that rule is scoped to [UK-FLM-003]; while it is in place the watershed does not bind at all [UK-SCH-007]. Conditional on UK-ACC-001 (non-removable by the user), UK-ACC-002 (on by default, not viewer-configured) and UK-ACC-003 (content information plus clear explanation of the protection). Nothing in the observations asserts any PIN or access control on NTV, and the record positively asserts that no warning or signposting was given, so this branch is unsupported on the facts given rather than merely unverified.",
+        "basis": [
+          {
+            "rule_id": "UK-SCH-002",
+            "clause_ref": "Rule 1.4",
+            "why": "Material unsuitable for children should not in general be shown before 21:00 or after 05:30. The observations record eight depictions of killing - a mass shooting with a machine gun repeated twice (o1, o2), a stabbing to death (o3), a beheading with a machete (o4), the severed head carried on screen (o5), a man choked to death (o6, o7) and multiple assassinations (o8). That material is unsuitable for people under fifteen [UK-DEF-001]. The decision turns on those observations, not on the certificate."
+          },
+          {
+            "rule_id": "UK-SCH-001",
+            "clause_ref": "Rule 1.3",
+            "why": "Children must be protected by appropriate scheduling from material unsuitable for them. 11:30 on a Friday is daytime; the appropriate-scheduling factors in UK-DEF-002 (nature of content, likely number and age range of child viewers taking into account school time, weekends and holidays, start and finish time, nature of the channel, audience expectation) all point away from this slot for this material."
+          },
+          {
+            "rule_id": "UK-VIO-001",
+            "clause_ref": "Rule 1.11",
+            "why": "Violence, its after-effects and descriptions of violence must be appropriately limited in programmes broadcast before the watershed AND justified by the context - a double test. Repeated depictions of killing with weapons, plus the display of a severed head as an after-effect (o5), are not appropriately limited for a daytime slot, and nothing in the record offers a contextual justification; the extractor notes record that no compliance or editorial justification was documented."
+          },
+          {
+            "rule_id": "UK-PRE-010",
+            "clause_ref": "Bulletin issue 553, Toofan, NTV",
+            "why": "Decided case directly on this combination: a BBFC 15 action film containing frequent graphic violence - mass shootings, a beheading with the severed head then carried on screen, a man choked to death - broadcast at 11:30 breached Rule 1.3. Ofcom weighed the certificate as indicating unsuitability for under-15s, the absence of any warning or signposting, and the repeated depictions of killing as unsuitable for daytime viewing. The rule's own exceptions note says it is an ANCHOR and not a threshold: it establishes that this combination at this hour breached, not where the line sits."
+          },
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "Supplies the calibration rather than the hour: because 'children' means under fifteen and material unsuitable for children should not generally be shown before 21:00, it is UNLIKELY that a recently BBFC 15-rated film could be scheduled during the day. That is a presumption against, not a prohibition, and it is the only weight the certificate carries."
+          },
+          {
+            "rule_id": "UK-SCH-003",
+            "clause_ref": "Rule 1.4",
+            "why": "Cited for the branch only. If the service were a premium subscription film service without protection the watershed would be 20:00 rather than 21:00. This rule expressly requires service_type as an input, which the request does not supply."
+          },
+          {
+            "rule_id": "UK-FLM-004",
+            "clause_ref": "Rule 1.24",
+            "why": "Cited for the same branch: films up to BBFC 15 or equivalent may be broadcast from 20:00 on premium subscription film services without mandatory daytime protection. On no branch does this reach 11:30."
+          },
+          {
+            "rule_id": "UK-FLM-003",
+            "clause_ref": "Rule 1.24",
+            "why": "Cited for the MDP branch: where mandatory daytime protection is in place, programmes unsuitable for children that would usually be post-watershed, and films up to BBFC 18 or equivalent, may be broadcast at any time of day. The rule's own note records that WHICH SERVICES MAY USE MDP IS NOT ESTABLISHED in the table (tracked as C-17) and must be treated as an open question for a UK reviewer, so this branch cannot be resolved here either way."
+          },
+          {
+            "rule_id": "UK-SCH-007",
+            "clause_ref": "Rule 1.4 (meaning of the watershed)",
+            "why": "Explains the shape of the MDP branch: the watershed does not apply at all while mandatory daytime protection is in place - a disapplication, not a relaxation - and at authority_rank 1 it defeats UK-SCH-002 on conflict. It is the reason the 'any time' answer in branch (c) would be a genuine any-hour permission rather than an adjusted window, and the reason that permission cannot be reported without its condition."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "audience_information",
+          "requirement": "No warning or signposting was given before or during the broadcast (positively asserted in the extractor notes, not merely missing). A warning is one of the main ways a broadcaster earns a slot it would not otherwise get, and its adequacy depends on frequency and positioning - for a long programme a single message at the start may not suffice. A warning must also convey SEVERITY, using terms such as 'graphic' or 'explicit', not merely that violence is present. For any future transmission of this asset, an adequate severity-conveying warning is required, and it is a mitigation to be weighed, not a permission that moves the hour.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-WRN-002", "clause_ref": "Guidance Notes Section 2, Rule 2.3"},
+            {"rule_id": "UK-WRN-003", "clause_ref": "Bulletin issue 553, audience research cited in the decision"}
+          ]
+        },
+        {
+          "kind": "access_control",
+          "requirement": "ONLY relevant to the MDP branch (c). If any-hour transmission is to be claimed, the protection must be a PIN or equivalent that CANNOT BE REMOVED BY THE USER, must be in place as the DEFAULT rather than something the viewer sets up, must operate pre-21:00 and post-05:30 with required entry on each occasion and accurate metadata, and the protection in place must be CLEARLY EXPLAINED TO ALL VIEWERS alongside content information. An opt-in or service-level parental control the viewer can switch off is not mandatory restricted access. Nothing in the record asserts any such gate on NTV.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {"rule_id": "UK-ACC-001", "clause_ref": "Rule 1.18 (meaning)"},
+            {"rule_id": "UK-ACC-002", "clause_ref": "Guidance Notes Section One, Rules 1.24-1.25"},
+            {"rule_id": "UK-ACC-003", "clause_ref": "Rules 1.24, 1.25"},
+            {"rule_id": "UK-FLM-003", "clause_ref": "Rule 1.24"}
+          ]
+        },
+        {
+          "kind": "service_eligibility",
+          "requirement": "Whether this service may use mandatory daytime protection at all is an open question. The rules table records that an earlier assertion about MDP being unavailable to free-to-air DTT and to channels off a vertically integrated pay-TV platform appears in no stored source and was removed rather than kept at high confidence (tracked as C-17). A UK reviewer must settle eligibility before branch (c) is used.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {"rule_id": "UK-FLM-003", "clause_ref": "Rule 1.24"}
+          ]
+        },
+        {
+          "kind": "signage",
+          "requirement": "A smooth-transition constraint applies to any post-watershed re-slot and is additional to the hour, not a substitute for it. If this asset is moved to a 21:00 start it must not open with its strongest material; the observations record the mass shooting at 11:33, three minutes into the recorded transmission, i.e. at the very top of the programme. A 21:00 placement would therefore pass the clock check and still breach unless the opening is re-cut or the start moved later.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-SCH-008", "clause_ref": "Rule 1.6 guidance"},
+            {"rule_id": "UK-SCH-004", "clause_ref": "Rule 1.6; UK-G1 s.1"}
+          ]
+        },
+        {
+          "kind": "adjacency",
+          "requirement": "Any trailer for this asset is assessed in its own slot and does not inherit the feature's permission; a pre-watershed trailer may contain only material appropriate for a pre-watershed audience, and must be kept away from children's programming, family entertainment and sport. No trailer is recorded in the observations, so this is a forward-looking constraint rather than a finding.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-TRL-002", "clause_ref": "Guidance Notes Section One"},
+            {"rule_id": "UK-TRL-003", "clause_ref": "Trailers guidance"},
+            {"rule_id": "UK-TRL-001", "clause_ref": "UK-G1 s.1"}
+          ]
+        },
+        {
+          "kind": "derogation",
+          "requirement": "No derogation, quota or exemption in the slice assists this transmission. The two scope-limiting rows were checked and do not apply: the BBC ODPS carve-out from Rules 1.3 to 1.6 is confined to BBC on-demand programme services and NTV is not one, and nothing else in the slice lifts the watershed other than the MDP route already branched above.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-SVC-001", "clause_ref": "S1 note / fn.6"},
+            {"rule_id": "UK-SCH-007", "clause_ref": "Rule 1.4 (meaning of the watershed)"}
+          ]
+        }
+      ],
+      "axis_note": "The rating does NOT predict the hours here, and saying so plainly is the point. The classification axis returns no_per_programme_rating because UK linear television issues no per-programme age rating [UK-FLM-010]; the hours axis returns 'not before 21:00' because the OBSERVATIONS record material unsuitable for people under fifteen [UK-SCH-002, UK-DEF-001, UK-VIO-001], not because the certificate says 15. If the certificate were the only fact available the honest answer would be that there is nothing to apply a scheduling rule to. The third axis runs in both directions: on the MDP branch an access control would SUBSTITUTE for the hour entirely, because UK-SCH-007 disapplies the watershed rather than adjusting it, so reporting 'any time' there without the gate would be wrong; but the smooth-transition requirement under UK-SCH-008 is CUMULATIVE with the 21:00 window rather than an unlock, so a 21:00 clearance that opens on the mass shooting still breaches. Finally, UK-CTX-011 is directly on point and comes from this same decision: editorial context defended the violence as material - the offence limb was dropped because the violence was sufficiently contextualised within the film - while a scheduling breach was still found on the same broadcast. A pipeline that resolves 'justified by the context?' once and reuses the answer on both axes gets this exact shape of case wrong.",
+      "reasoning": "ABSOLUTE PROHIBITIONS FIRST. None bites, and each was read for what it covers rather than its category label. UK-FLM-001 (no film refused BBFC classification may be broadcast) does not apply: the asset holds a BBFC 15 certificate, so it was classified, not refused. UK-FLM-006 (BBFC R18 films must not be broadcast) does not apply: the certificate is 15, not R18. UK-SEX-001 (material equivalent to R18 must not be broadcast at any time) does not apply: the observations record no sexual content whatsoever - the categories present are violence, human_dignity and imitable_behaviour. UK-GEN-001 (material that might SERIOUSLY impair the physical, mental or moral development of under-eighteens) is the one that needs care rather than dismissal, and it does not bite on this record: 'seriously impair' is a deliberately higher bar than ordinary harm, and this is a classified fictional feature film whose violence an Ofcom decision on these same facts found sufficiently contextualised within the film [UK-CTX-011]. The material is unsuitable for children and was wrongly slotted; it is not in the banned-at-all-hours tier. UK-GEN-001 is judgment_based and that provisional view is flagged for human confirmation rather than asserted.\n\nROUTING. is_news_or_current_affairs is 'no' in the observations, so the news carve-out does not arise and the Section One scheduling rules apply normally. Only one transmission is recorded (t1), so one decision is produced; the observations expressly flag that whether a +1 or timeshift version carried or will carry this transmission is not stated, and if one exists it is a SEPARATE decision under UK-SCH-009, which can run either way - an 11:30 placement becomes 12:30 on +1, and content placed while children are at school lands an hour later when they are home.\n\nSERVICE APPLICABILITY. The request gives service_type as not_stated while the observations describe the intended service as 'NTV, free-to-air satellite'. I have not silently promoted the observation to the answer, because the observations are data to be ruled on; instead the hours axis is branched and labelled across the three service families the slice distinguishes, and the free-to-air reading is identified as the one the record supports. UK-SCH-003 and UK-FLM-004 are scoped to premium subscription film services and do not bind a free-to-air channel; UK-FLM-003 and UK-FLM-005 are scoped to MDP-capable services and pay-per-view respectively.\n\nTHE HOURS. On the general linear branch UK-SCH-002 is bright_line: material unsuitable for children should not in general be shown before 21:00 or after 05:30, and 'children' means under fifteen [UK-DEF-001]. The observations supply the unsuitability independently of the certificate: a machine-gun mass killing (o1), repeated in full later in the same transmission (o2), a fatal stabbing (o3), a machete beheading (o4) with the severed head then carried on screen (o5), a man choked to death in a wrestling bout (o6) and multiple assassinations (o8). UK-VIO-001 requires violence and its after-effects to be appropriately limited before the watershed AND justified by the context; on this record neither limb is met, and no editorial justification is recorded. UK-SCH-001 and the appropriate-scheduling factors in UK-DEF-002 confirm the 11:30 slot is wrong on channel nature, likely child audience and audience expectation. UK-PRE-010 is a decided case on materially these facts at precisely this hour and found a Rule 1.3 breach; I use it as an anchor, not as a threshold, and note what did not save the broadcaster there - apology, internal investigation, scheduler error and completed refresher training all post-dated transmission, and mitigation after transmission does not undo a breach.\n\nAGGRAVATING CONTEXT FACTORS, none of which moves the clock. UK-SCH-010: the pre-21:00 band is not uniform, the watershed matters most for children aged 5 to 8, and programmes may hold special appeal for children ESPECIALLY DURING SCHOOL HOLIDAYS; whether 29 May 2026 falls in a UK school holiday is expressly not stated and I decline to assume it, though late May commonly carries a half-term break and a reviewer should check the specific nation's calendar. UK-SCH-011: the cultural and religious calendar raises the expected child audience within existing hours, as Ofcom weighed the Eid-ul-Adha period in the decided case; the rule's own note warns that the relevant festivals depend on the channel's community and CANNOT be inferred from a single calendar, so this is listed as a question for a person and not resolved. UK-CTX-010: audience size can make the decision stricter but never looser, so NTV's reach being smaller than a mainstream channel's is not an argument available to it. UK-SCH-006 adds that frequent repetition has a cumulative effect, which is directly relevant because the mass shooting is shown twice in the same transmission (o1, o2).\n\nIMITABLE BEHAVIOUR. o7 records the choking as a method applied by one person to another in a wrestling setting, at medium extraction confidence. UK-IMI-001 bars easily imitable harmful behaviour before the watershed absent editorial justification, and UK-IMI-010 makes the operative test IMITABILITY plus SETTING rather than the presence of the act - which is why the sporting frame matters and why RUN 1 recorded treatment separately. The observations do not say whether technique detail is visible, so I record a provisional concern and route it to a person rather than finding a breach. UK-IMI-002 (condoning or glamorising, assessed across programmes taken together) and UK-VIO-002 (programmes made primarily for children) both turn on facts the record does not supply: nothing describes the film's stance toward the killing, and is_made_primarily_for_children is not_stated. UK-VIO-002 would turn on programme type rather than clock time if it applied.\n\nWARNINGS. The absence of warning or signposting is positively asserted rather than missing, and it matters twice over: it was one of the three things Ofcom weighed in UK-PRE-010, and under UK-WRN-002 and UK-WRN-003 a warning must be adequate in frequency and positioning and must convey severity, not merely presence, before it earns any mitigation. A boolean 'warning: yes' on a future transmission would not discharge this.\n\nCONFLICTS. No conflict needed resolving on the operative branch. The only rank-1 rules in the slice are UK-LAW-001, which supplies the statutory basis for Section One rather than an operative window, and UK-SCH-007, which would defeat UK-SCH-002 (rank 2) if MDP were in place. It is not asserted to be in place, so UK-SCH-002 governs and the rank ordering never bites.\n\nDETERMINACY AND ESCALATION. The operative window rule UK-SCH-002 is bright_line and applies mechanically to bar 11:30. But the unsuitability finding it depends on runs through judgment_based rules - UK-SCH-001, UK-VIO-001, UK-DEF-002, UK-FLM-010, UK-PRE-010, UK-SCH-010, UK-SCH-011, UK-IMI-010, UK-WRN-002, UK-WRN-003, UK-CTX-010 and UK-GEN-001 - and the conditional branches (UK-SCH-003, UK-FLM-003, UK-FLM-004, UK-SCH-009) each require a condition the record does not establish. Human review is therefore required as a property of the rules relied on, not as a hedge about how confident this answer sounds. Confidence is medium rather than high because service_type and intended_slot are not_stated, the certificate's scope is unknown, and the school-holiday and +1 questions are open.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The operative unsuitability finding rests on judgment_based rules: UK-SCH-001, UK-VIO-001, UK-DEF-002, UK-DEF-003, UK-FLM-010, UK-PRE-010, UK-SCH-004, UK-SCH-008, UK-SCH-010, UK-SCH-011, UK-IMI-010, UK-IMI-002, UK-VIO-002, UK-CTX-010, UK-WRN-002, UK-WRN-003 and UK-GEN-001. Judgment-based determinacy requires a person by the property of the rule.",
+        "UK-GEN-001 carries an absolute prohibition and is judgment_based. My provisional view is that 'seriously impair' is not met - this is classified fictional feature-film violence, and the offence limb was dropped as sufficiently contextualised in the decided case [UK-CTX-011] - but a provisional view on an absolute prohibition must be confirmed by a person, not relied on.",
+        "service_type is not_stated in the request while the observations describe free-to-air satellite. The branches have been labelled rather than collapsed; a person must fix the service type before a single answer is served.",
+        "MDP service eligibility is an open question recorded in the table itself (C-17, UK-FLM-003). A UK reviewer must settle whether this service may use mandatory daytime protection at all before branch (c) is quoted to anyone.",
+        "Whether 2026-05-29 falls in a UK school holiday is not stated and changes the expected child audience under UK-SCH-010 without changing the clock. Late May commonly carries half-term; this needs checking against the specific UK nation's calendar rather than assumed.",
+        "Whether the date falls in a cultural or religious festival relevant to this channel's community is not stated. UK-SCH-011 makes that a live factor and its own note says it cannot be inferred from a single calendar, so only a person with knowledge of the channel's audience can answer it.",
+        "o7 (imitable choking method) is medium extraction confidence and UK-IMI-010 turns on imitability plus setting, which the record does not describe. Provisional concern only.",
+        "Whether a +1 or timeshift transmission exists is not stated. UK-SCH-009 makes each transmission its own decision and the risk runs in both directions, so an unexamined +1 is an unanswered question, not a clean one.",
+        "o5 (the severed head carried on screen) is recorded under the human_dignity category and the UK slice contains no rule addressed to human dignity or the treatment of human remains as a distinct ground. I have treated it under UK-VIO-001 as an after-effect of violence, which is defensible but is a mapping decision a person should confirm.",
+        "UK-SCH-008 means a 21:00 re-slot is not automatically safe: the strongest material currently sits at the top of the programme. Any remedial scheduling proposal needs editorial sign-off, not just a later clock time."
+      ],
+      "missing_information": [
+        {
+          "field": "service_type",
+          "why_it_matters": "Determines which watershed rule applies at all: 21:00 general [UK-SCH-002], 20:00 for unprotected premium subscription film services [UK-SCH-003, UK-FLM-004], or no watershed while MDP is in place [UK-FLM-003, UK-SCH-007].",
+          "what_changes_if_answered": "Collapses three labelled branches into one answer. On the free-to-air reading the record supports, 11:30 is barred; on an MDP-capable service with a compliant gate, 11:30 could be permitted."
+        },
+        {
+          "field": "intended_slot",
+          "why_it_matters": "The request gives no intended slot, so the only time ruled on is the 11:30 transmission recorded in the observations. Any forward-looking clearance needs a proposed slot to assess.",
+          "what_changes_if_answered": "Allows a yes/no on a specific future placement, including whether UK-SCH-008's smooth-transition requirement is satisfied at that start time."
+        },
+        {
+          "field": "mandatory_daytime_protection_in_place",
+          "why_it_matters": "A compliant non-removable, on-by-default PIN with clear audience explanation removes the hours question entirely rather than adjusting it [UK-SCH-007, UK-FLM-003, UK-ACC-001, UK-ACC-002, UK-ACC-003].",
+          "what_changes_if_answered": "If in place and compliant, 'any time' becomes available subject to eligibility; if absent, the 21:00 window is the answer."
+        },
+        {
+          "field": "mdp_service_eligibility",
+          "why_it_matters": "The table expressly records that which services may use MDP is not established in any stored source and is tracked as C-17 [UK-FLM-003].",
+          "what_changes_if_answered": "Either opens or closes the any-hour branch for a free-to-air satellite service."
+        },
+        {
+          "field": "whether_2026-05-29_falls_in_a_UK_school_holiday",
+          "why_it_matters": "School holidays raise the likely child audience without changing the hour [UK-SCH-010, UK-DEF-002].",
+          "what_changes_if_answered": "Does not move the watershed, but materially aggravates an already non-compliant daytime slot and bears on how close to 21:00 a future slot may sit."
+        },
+        {
+          "field": "cultural_or_religious_festival_on_the_transmission_date_for_this_channel's_community",
+          "why_it_matters": "Ofcom has weighed a festival period as increasing the likelihood that children were watching [UK-SCH-011], and the rule's note says the relevant festivals depend on the channel's community and cannot be inferred from a generic calendar.",
+          "what_changes_if_answered": "Aggravates or neutralises one contextual factor; cannot by itself make a barred slot permissible."
+        },
+        {
+          "field": "existence_and_time_of_any_+1_or_timeshift_transmission",
+          "why_it_matters": "Each transmission is its own decision and the effective hour differs by one hour in both directions [UK-SCH-009].",
+          "what_changes_if_answered": "Adds one or more separate decisions; the same file can be compliant on one service and in breach on the other with no editorial change."
+        },
+        {
+          "field": "scope_of_the_BBFC_15_certificate_(cinema,_video_or_TV)_and_whether_the_asset_was_edited_for_broadcast",
+          "why_it_matters": "The certificate is evidence of suitability, not a determinant [UK-FLM-010], and an edited broadcast version may differ from the certificated one. UK-SCH-006 also notes that post-watershed content edited for daytime can remain unsuitable regardless of editing.",
+          "what_changes_if_answered": "Adjusts how much weight the certificate carries as an indication; does not change which rule supplies the hour."
+        },
+        {
+          "field": "runtime_and_end_time_of_the_transmission",
+          "why_it_matters": "Programme start and finish time is an express appropriate-scheduling factor [UK-DEF-002] and the transition rules apply across the 21:00 boundary [UK-SCH-008].",
+          "what_changes_if_answered": "Needed to assess any future placement that would cross the watershed in either direction."
+        },
+        {
+          "field": "whether_blood,_injury_or_wound_detail_is_visible_and_the_duration_of_each_scene",
+          "why_it_matters": "Degree of harm or offence likely is a context factor [UK-DEF-003] and bears on both UK-VIO-001's 'appropriately limited' limb and the UK-GEN-001 'seriously impair' question.",
+          "what_changes_if_answered": "Could move the UK-GEN-001 assessment, which is the only thing in this slice that no hour or access control can cure."
+        },
+        {
+          "field": "whether_the_choking_scene_shows_technique_detail",
+          "why_it_matters": "UK-IMI-010 turns on imitability plus setting, not the presence of the act, and o7 is recorded at medium confidence.",
+          "what_changes_if_answered": "Determines whether the imitable-behaviour concern is a finding or a non-issue."
+        },
+        {
+          "field": "is_made_primarily_for_children",
+          "why_it_matters": "UK-VIO-002 applies at all times to programmes made primarily for children and turns on programme type rather than clock time.",
+          "what_changes_if_answered": "If yes, a further at-all-times restriction applies independently of the watershed. The observations leave this not_stated; the 'feature film / action' descriptor makes 'no' likely but it is not asserted."
+        },
+        {
+          "field": "any_recorded_editorial_justification_for_the_content_in_this_slot",
+          "why_it_matters": "UK-VIO-001 and UK-IMI-001 both admit an editorial-justification route; UK-CTX-011 establishes that such justification can defend the material and still not defend the slot.",
+          "what_changes_if_answered": "Could defend the content on the offence axis without changing the scheduling answer, which is precisely the trap UK-CTX-011 records."
+        }
+      ],
+      "coverage_gaps": [
+        "o5, the shot of the killer carrying the decapitated head, is categorised as human_dignity and the UK slice contains no rule addressed to human dignity or the treatment of human remains as a distinct ground. It has been assessed under UK-VIO-001 as an after-effect of violence, which the rule's wording covers, but the dignity dimension itself maps to nothing in this slice.",
+        "The repetition of the same killing scene twice within one transmission (o1 and o2) has no dedicated rule. UK-SCH-006 mentions cumulative effect only in the narrow context of frequent bleeping, and UK-IMI-002 addresses cumulative assessment only across programmes taken together, so intra-programme repetition is reached by analogy rather than by a rule on point.",
+        "Nothing in the slice sets a rule for an asset whose transmission end time is unknown, so no check could be run on whether the programme crossed any boundary."
+      ]
+    }
+  ],
+  "cross_country_note": "Only the UK was requested, so no cross-country divergence is assessed. No French rule appears in the slice and none is cited. If France were added the answer would not simply port across: the French scheme issues a per-programme category where the UK issues none, one French category yields different hours on different services and the weekday moves it again, so a second decision would have to be run from the rules rather than inferred from this one."
+}

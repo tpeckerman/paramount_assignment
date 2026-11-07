@@ -1,0 +1,58 @@
+{
+  "asset": {
+    "title": "Step Brothers",
+    "runtime_minutes": "not_stated",
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "not_stated"}
+    ],
+    "intended_service": "free-to-air",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "free-to-air",
+      "date": "not_stated",
+      "start_time": "not_stated",
+      "is_timeshift_of": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:48:10",
+      "category": "sexual_content",
+      "what_happens": "A sex scene in which sexual intercourse is clearly depicted. No nudity is shown. The staging is broad and unrealistic, scored for laughs, and intercut with reaction shots.",
+      "descriptors": ["sexual intercourse clearly depicted", "no nudity shown", "broad and unrealistic staging", "scored for laughs", "intercut with reaction shots"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "comedic",
+      "evidence": "A sex scene played for comedy. Sexual intercourse is clearly depicted.\n          No nudity is shown. The staging is broad and unrealistic, scored for laughs,\n          and the scene is intercut with reaction shots.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast day and time (the TRANSMISSION field is given as 'not stated')",
+    "intended broadcast date, so no check against school holidays or cultural or religious festivals is possible",
+    "the name of the service; only 'free-to-air' is given, which is a delivery type and not a channel",
+    "whether the service has a timeshift or +1 channel that would also carry the asset, and at what time",
+    "the scope of the BBFC 15 certificate (cinema, video or TV)",
+    "whether any certificate other than the BBFC 15 exists, including any rating for the FR territory",
+    "whether under-18s appear as participants or performers",
+    "total runtime of the asset",
+    "production origin or country of production",
+    "what the COUNTRIES field 'UK, FR' refers to (territory of transmission, production origin, or both)",
+    "whether the asset was edited for broadcast or is to be shown in its certificated form",
+    "the duration of the 00:48:10 scene",
+    "whether any other events occur in the asset; only one event is listed and no statement is made that it is the only one",
+    "whether strong language occurs anywhere in the asset",
+    "whether any warning, signposting or on-screen age label accompanies the transmission",
+    "whether the asset is made primarily for children",
+    "the ages of the characters involved in the 00:48:10 scene",
+    "whether genitalia, breasts or buttocks are visible at any point; the source states only that no nudity is shown"
+  ],
+  "extractor_notes": "The event list contains a single entry, so I cannot tell whether the description is a complete event list for the asset or an extract covering only the scene in question. The source does not say either way; recorded as given. 'SERVICE: free-to-air' names a delivery type, not a channel, and 'TRANSMISSION: not stated' gives no date or time. Following the instruction that a decision is about a transmission, I have recorded one transmission with the service as given and date and start_time as not_stated, rather than omitting it; the missing date and time, and the possibility of a timeshift service, are both carried in not_stated. treatment is 'comedic': the source says the scene is 'played for comedy', 'scored for laughs' and that the staging is 'broad and unrealistic'. Those are the source's own words and not my characterisation; note that 'broad and unrealistic' could also support 'stylised', and I have chosen 'comedic' because the comedic framing is stated more directly and repeatedly. is_depicted is true because the source says intercourse is 'clearly depicted'; the separate statement that 'No nudity is shown' is preserved in the descriptors and in what_happens, so no nudity observation is recorded. 'CERTIFICATE: BBFC 15' gives no scope, so scope is not_stated. is_news_or_current_affairs is set to 'no' on the basis of the stated descriptor 'comedy feature'. is_made_primarily_for_children is left not_stated because the description says nothing about intended audience."
+}

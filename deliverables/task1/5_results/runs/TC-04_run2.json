@@ -1,0 +1,613 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "t1 - full music video 'Thriller' (13 min 42 s), music channel, 22:15, date not_stated; service type not_stated so both branches considered (channel without mandatory daytime protection / channel with mandatory daytime protection)",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "none - the UK issues no per-programme age rating for linear television; the asset holds no certificate (existing_certificates is empty)",
+        "basis": [
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "The Ofcom Code has in the main dispensed with the legacy link between a classification and the slot; a certificate is an indication of suitability, not a determinant. There is therefore no label for the pipeline to emit, and in any event this asset carries no certificate."
+          },
+          {
+            "rule_id": "UK-DEF-002",
+            "clause_ref": "S1 definitions",
+            "why": "Suitability for the slot is decided on the appropriate-scheduling factors (nature of content, likely number and age range of child viewers, start and finish time, nature of channel, audience expectation), not on an age label."
+          },
+          {
+            "rule_id": "UK-DEF-001",
+            "clause_ref": "S1 definitions",
+            "why": "Where the operative rules speak of 'children' they mean people under fifteen, so the assessment is framed against that group rather than against any numeric certificate band."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "22:15 is permitted on the hours axis - it falls inside the post-watershed window - subject to the smooth-transition judgment below",
+        "without_technical_measure": "Material unsuitable for children should not in general be shown before 21:00 or after 05:30 [UK-SCH-002]. 22:15 with a 13 min 42 s runtime ends about 22:29, wholly inside that window, so no technical measure is needed for this slot.",
+        "with_technical_measure": "n/a for this slot. If mandatory daytime protection were in place on the channel the watershed would not bind at all [UK-SCH-007, UK-FLM-003], but nothing in this transmission needs that, and whether a music channel may use MDP is expressly left open in the rule row.",
+        "basis": [
+          {
+            "rule_id": "UK-SCH-002",
+            "clause_ref": "Rule 1.4",
+            "why": "The watershed runs 21:00-05:30; a 22:15 start on a linear television service is inside it, so the clock bar on material unsuitable for children does not bite."
+          },
+          {
+            "rule_id": "UK-SCH-001",
+            "clause_ref": "Rule 1.3",
+            "why": "The operative duty is appropriate scheduling, not a fixed clock; the werewolf transformation in sustained close-up (o1, o2), the decayed faces shown in detail over an extended sequence (o3, o4) and the pursuit and cornering of a woman (o5) are the fear/distress material that makes the pre-watershed question live and the post-watershed answer straightforward."
+          },
+          {
+            "rule_id": "UK-SCH-008",
+            "clause_ref": "Rule 1.6 guidance",
+            "why": "Content commencing after the watershed must observe a smooth transition and must not open with its strongest material. The werewolf transformation sits at 00:02 of a 13 min 42 s work (o1), i.e. very near the opening, so this rule is engaged on the facts even though every clock check passes. 22:15 is 75 minutes past the watershed, which reduces but does not remove the concern."
+          },
+          {
+            "rule_id": "UK-OCC-001",
+            "clause_ref": "Rule 1.27",
+            "why": "Considered and found not to impose a pre-watershed bar here: the rule bars occult and paranormal material PRESENTED AS REAL before the watershed, and the observations record all of the supernatural events (o1, o3, o6) as 'fictional' in treatment. The rule's three-way split nonetheless leaves a real gap, recorded under review_reasons: its exemption names drama, film and comedy, and a music video is none of those, so whether this work sits in the exempt fiction limb or the 'treated as entertainment' limb (restricted when significant numbers of children may be watching) is not resolvable from the rule text."
+          },
+          {
+            "rule_id": "UK-SCH-009",
+            "clause_ref": "+1 services guidance",
+            "why": "Whether a timeshift or +1 version of the music channel also carries this showing, and at what time, is not_stated. A +1 would place the same file at 23:15, still inside the watershed window, so the +1 branch does not change the hours for this transmission - but it has to be decided per transmission rather than assumed."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "audience_information",
+          "requirement": "If a warning or signposting is relied on as mitigation for the fear/distress material, it must be adequate rather than merely present - frequency and positioning matter, and for a longer work a single message at the start may not suffice. Whether any warning would be given before this showing is not_stated.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-WRN-002", "clause_ref": "Guidance Notes Section 2, Rule 2.3"},
+            {"rule_id": "UK-WRN-003", "clause_ref": "Bulletin issue 553, audience research cited in the decision"}
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "No pre-watershed distress information duty arises for this transmission, because that duty is addressed to programmes broadcast before the watershed and this one is not. Recorded so the absence is a decision rather than an omission.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-SCH-005", "clause_ref": "Rule 1.7"}
+          ]
+        },
+        {
+          "kind": "access_control",
+          "requirement": "No access control is required for this slot. If one were ever relied on to move the slot, it would have to be a PIN or equivalent that cannot be removed by the user, on by default rather than set up by the viewer, and clearly explained to all viewers with content information supplied.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-ACC-001", "clause_ref": "Rule 1.18 (meaning)"},
+            {"rule_id": "UK-ACC-002", "clause_ref": "Guidance Notes Section One, Rules 1.24-1.25"},
+            {"rule_id": "UK-ACC-003", "clause_ref": "Rules 1.24, 1.25"}
+          ]
+        }
+      ],
+      "axis_note": "There is no rating to predict the hours from. The UK issues no per-programme age rating for linear television [UK-FLM-010], so the classification axis returns 'none' while the hours axis returns a positive answer driven entirely by the observations and the appropriate-scheduling factors [UK-SCH-001, UK-SCH-002, UK-DEF-002]. The third axis is not a condition of the hours for this transmission: 22:15 is earned by the clock alone, not by any gate. The one live risk is on the hours axis itself and is not a clock question - the strongest material opens the work [UK-SCH-008].",
+      "reasoning": "Routing first: is_news_or_current_affairs is 'no', so no news-section routing question arises. The absolute prohibitions in the slice were checked before anything else. UK-GEN-001 (material that might SERIOUSLY impair the development of under-eighteens) does not bite: the record is prosthetic horror imagery in an avowedly fictional music video - a werewolf transformation (o1), risen corpses with decayed faces (o3, o4), a pursuit (o5) and a closing shot of non-human eyes (o6) - and 'seriously impair' is a deliberately higher bar than material that is merely unsuitable for children. Nothing recorded approaches it. UK-SEX-001 does not bite: there is no sexual content in the record at all. UK-FLM-001 and UK-FLM-006 do not bite: this is not a film, it holds no BBFC certificate, and an empty existing_certificates array records that none is held, which is not the same as a refusal. No absolute prohibition is engaged, so the decision proceeds. Classification: no_per_programme_rating [UK-FLM-010, UK-DEF-002]. Emitting a number here would be inventing an instrument the UK does not issue for linear television. Hours: the material is capable of being unsuitable for children, meaning people under fifteen [UK-DEF-001], on the strength of the observations rather than any label - sustained close-up prosthetic transformation (o1, o2), decayed faces shown in detail over an extended sequence (o3, o4) and a woman pursued and cornered (o5). At 22:15 that places the transmission inside the 21:00-05:30 watershed window [UK-SCH-002], so the clock bar does not bite, and the appropriate-scheduling factors [UK-SCH-001, UK-DEF-002] and the context factors [UK-DEF-003] point the same way at that hour. Service type is not_stated; the branch does not change this answer, because UK-SCH-002 is scoped to all linear television, the 20:00 premium-subscription-film watershed [UK-SCH-003] and the premium-film carve-out [UK-FLM-004] are scoped to premium subscription film services which a music channel is not, and the BBC ODPS carve-out [UK-SVC-001] does not apply on the record. If mandatory daytime protection happened to be in place the watershed would be disapplied entirely [UK-SCH-007, UK-FLM-003], which would make the slot a non-question rather than change the answer; UK-FLM-003 itself records that which services may use MDP is an open question for a UK reviewer, so that branch is labelled and not resolved. The live point is UK-SCH-008: the strongest material - the transformation in sustained close-up - occurs at 00:02 of the work (o1), so a work commencing after the watershed opens close to its strongest content. That is a judgment, it is the error pattern the rule exists to catch, and it goes to a person. UK-SCH-010 and UK-SCH-011 are recorded as live but unresolvable: both turn on who is actually watching, and the date is not_stated, so neither the school-holiday nor the cultural or religious calendar factor can be checked. UK-CTX-010 cuts the same way - the channel's audience size is unknown, and audience size can only make the decision stricter, never looser. UK-CTX-011 is the reason the axes are kept apart: editorial context can justify the material and still fail to justify the slot, so the two determinations are made separately here. UK-SCH-006 and UK-SCH-009 are flagged because whether a +1 service carries this showing is not_stated; a +1 at 23:15 would still be post-watershed, so the branch is recorded rather than left out. On the occult limb, UK-OCC-001 is engaged but does not produce a pre-watershed bar on this record, because the supernatural events are recorded as fictional in treatment rather than presented as real; the gap is that its exemption lists drama, film and comedy and does not name music video, so the fiction/entertainment line cannot be drawn from the rule text and a reviewer must draw it. The on-screen disclaimer that the work does not endorse belief in the occult (o7) is recorded and deliberately given no weight: no rule in the slice credits a disclaimer of that kind as a mitigation, and the extractor itself notes the disclaimer sits in tension with what the work depicts.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "UK-SCH-008 is engaged on the facts: the strongest material (the werewolf transformation in sustained close-up, o1) occurs at 00:02 of a 13 min 42 s work, so a post-watershed transmission opens close to its strongest content. Judgment_based, and the clock checks all pass, which is exactly the shape of case the rule exists to catch.",
+        "UK-OCC-001's exemption names drama, film and comedy and does not name music video, so whether this work sits in the exempt fiction limb or the 'treated as entertainment' limb cannot be settled from the rule text.",
+        "UK-SCH-010 and UK-SCH-011 both turn on audience composition on a particular date, and the date is not_stated, so the school-holiday and cultural or religious calendar factors cannot be checked.",
+        "UK-CTX-010 requires the channel's audience profile, which is not stated; audience size can raise the required justification but never lower it.",
+        "UK-FLM-010, UK-DEF-002, UK-DEF-003, UK-SCH-001, UK-GEN-001 and UK-GEN-002 are all judgment_based rules relied on in this decision.",
+        "Service type is not_stated and has been branched rather than resolved; UK-FLM-003 records MDP service eligibility as an open question for a UK reviewer."
+      ],
+      "missing_information": [
+        {
+          "field": "intended_date (calendar date of the 22:15 showing)",
+          "why_it_matters": "School holidays and the cultural or religious calendar raise the expected child audience without moving the clock [UK-SCH-010, UK-SCH-011].",
+          "what_changes_if_answered": "A date in a school holiday or a major community festival would raise the contextual justification required at 22:15 and could make the UK-SCH-008 opening-material point decisive rather than arguable."
+        },
+        {
+          "field": "service_type (whether the music channel is free-to-air, subscription or access-controlled, and whether mandatory daytime protection is in place)",
+          "why_it_matters": "The watershed is disapplied entirely while MDP is in place [UK-SCH-007, UK-FLM-003], and MDP eligibility is itself recorded as unresolved in UK-FLM-003.",
+          "what_changes_if_answered": "It would not change the permission at 22:15, but it determines whether the channel has any route to earlier hours at all, which is the question the 15:00 trailer turns on."
+        },
+        {
+          "field": "whether a +1 or timeshift version of the channel carries this showing, and at what time",
+          "why_it_matters": "Each showing is its own decision and the +1 reaches a different audience [UK-SCH-009, UK-SCH-006].",
+          "what_changes_if_answered": "A +1 at 23:15 is still post-watershed, so the hours would not move; a differently configured timeshift could place the file pre-watershed, which would reverse the answer."
+        },
+        {
+          "field": "the length of the sequences described as 'sustained' and 'extended'",
+          "why_it_matters": "Duration bears directly on the degree of harm or offence likely and on the smooth-transition assessment [UK-DEF-003, UK-SCH-008].",
+          "what_changes_if_answered": "A longer sustained transformation strengthens the UK-SCH-008 objection to the opening; a brief one weakens it."
+        },
+        {
+          "field": "whether any warning, signposting or on-screen information would accompany the showing",
+          "why_it_matters": "A warning only earns mitigation if it is adequate in frequency and positioning and conveys severity [UK-WRN-002, UK-WRN-003].",
+          "what_changes_if_answered": "An adequate severity-indicating warning is one of the few things that can strengthen the case for the slot; its absence means no mitigation can be credited."
+        },
+        {
+          "field": "whether the sequences contain violence, injury detail or blood",
+          "why_it_matters": "The record is expressly silent on this, and the degree of harm likely is a context factor [UK-DEF-003].",
+          "what_changes_if_answered": "Injury detail would raise the assessment materially and would bear on whether UK-GEN-001 needs re-examining; the slice supplies no UK violence rule for this decision, so a reviewer would need one."
+        },
+        {
+          "field": "whether under-18s appear as performers or participants in the video",
+          "why_it_matters": "Not addressed by any rule in the provided slice for the UK, and therefore cannot be assessed here.",
+          "what_changes_if_answered": "It would open a question the provided rules cannot answer, which would itself need a reviewer and a wider rule slice."
+        }
+      ],
+      "coverage_gaps": [
+        "o7 - the on-screen disclaimer that the work does not endorse belief in the occult. No rule in the provided slice credits a disclaimer of this kind as mitigation; the warning rules in the slice [UK-WRN-002, UK-WRN-003, UK-SCH-005] are about content information and severity, not about disavowing belief. It is recorded and given no weight.",
+        "The provided slice contains no rule addressed to music videos as a content type, so the work is assessed under the general scheduling and occult rules with the music-video-specific question (does a music video fall inside UK-OCC-001's drama/film/comedy exemption?) left unresolved.",
+        "The provided slice contains no UK violence rule, and the record is expressly silent on whether the sequences contain violence or injury detail, so that axis cannot be assessed at all from these rules."
+      ]
+    },
+    {
+      "country": "UK",
+      "transmission": "t2 - the 30-second trailer cut from 'Thriller', music channel, 15:00 break, date not_stated, surrounding programme not_stated; service type not_stated so both branches considered (no MDP / MDP in place)",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "none - the UK issues no per-programme age rating for linear television, and a trailer carries no rating of its own either",
+        "basis": [
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "The Code has in the main dispensed with the rating-to-slot link, so there is no label to emit; the trailer is scheduled appropriately for its audience like any other content."
+          },
+          {
+            "rule_id": "UK-TRL-002",
+            "clause_ref": "Guidance Notes Section One",
+            "why": "The trailer is caught by the under-eighteens scheduling rules in its own right and does NOT inherit the permission of the programme it advertises, so nothing attaches to it from the 22:15 decision - including anything on the classification axis."
+          },
+          {
+            "rule_id": "UK-DEF-001",
+            "clause_ref": "S1 definitions",
+            "why": "The assessment is framed against 'children' meaning people under fifteen, not against any numeric band."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "Not before 21:00 as currently cut, absent mandatory daytime protection. 15:00 is not permitted for this cut.",
+        "without_technical_measure": "Barred at 15:00. A pre-watershed trailer must contain only material appropriate for a pre-watershed audience [UK-TRL-001, UK-TRL-003], and this cut carries the graveyard sequence with the decayed faces (o8, o9) and the pursuit cut faster than in the full video (o10) - which is the material that makes the full work unsuitable for children. On the current cut the trailer should not run before 21:00 [UK-SCH-002, UK-TRL-001].",
+        "with_technical_measure": "Any time, INCLUDING 15:00, but only if mandatory daytime protection is genuinely in place on the channel [UK-SCH-007, UK-FLM-003], and only while every condition of that permission is satisfied [UK-ACC-001, UK-ACC-002, UK-ACC-003]. This branch is labelled, not adopted: whether a music channel may use MDP is expressly recorded as an open question in UK-FLM-003, and the observations state that whether any access control, PIN or other restriction applies is not_stated. Do not read this line as a clearance for 15:00.",
+        "basis": [
+          {
+            "rule_id": "UK-TRL-002",
+            "clause_ref": "Guidance Notes Section One",
+            "why": "Bright line: the trailer is assessed against the slot it occupies, not the slot of its feature. The 22:15 permission for the full video does nothing for the 15:00 break, so identical material breaches here while being compliant there."
+          },
+          {
+            "rule_id": "UK-TRL-001",
+            "clause_ref": "UK-G1 s.1",
+            "why": "A trailer shown before the watershed for post-watershed content must contain only material appropriate for pre-watershed broadcast, and viewers do not choose to watch trailers. The decayed faces (o9) and the faster-cut pursuit (o10) are the strongest fear/distress material in the work, compressed into 30 seconds."
+          },
+          {
+            "rule_id": "UK-TRL-003",
+            "clause_ref": "Trailers guidance",
+            "why": "Trailers are unannounced, so viewers meet them unawares; and the restriction extends beyond children's programmes to anything drawing a child audience, including family entertainment and sport. The programme the 15:00 break sits inside is not_stated, so the adjacency question cannot be closed."
+          },
+          {
+            "rule_id": "UK-SCH-002",
+            "clause_ref": "Rule 1.4",
+            "why": "15:00 is inside the pre-watershed band, where material unsuitable for children should not in general be shown."
+          },
+          {
+            "rule_id": "UK-SCH-001",
+            "clause_ref": "Rule 1.3",
+            "why": "Appropriate scheduling is the operative duty; a mid-afternoon break is the point at which the child audience is rising, and the trailer concentrates the work's strongest imagery."
+          },
+          {
+            "rule_id": "UK-SCH-007",
+            "clause_ref": "Rule 1.4 (meaning of the watershed)",
+            "why": "The alternative route to 15:00: the watershed does not apply at all to a channel while mandatory daytime protection is in place. Ranked 1, so it would defeat UK-SCH-002 on conflict - but only if the gate actually exists, which is not_stated."
+          },
+          {
+            "rule_id": "UK-FLM-003",
+            "clause_ref": "Rule 1.24",
+            "why": "Supplies the any-time-of-day permission where MDP is in place for programmes unsuitable for children that would usually be post-watershed, and also records that which services may use MDP is unestablished and must be treated as an open question for a UK reviewer."
+          },
+          {
+            "rule_id": "UK-SCH-009",
+            "clause_ref": "+1 services guidance",
+            "why": "Whether a +1 carries the 15:00 break is not_stated. A +1 would place it at 16:00, later into the after-school period, so the +1 transmission would be worse rather than better - the counter-intuitive direction this rule exists to flag."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "adjacency",
+          "requirement": "The trailer must be kept away from children's programmes and, on the extended reading, from family entertainment and sport, which draw significant child audiences. The programme the 15:00 break sits inside is not_stated, so this cannot be cleared.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-TRL-003", "clause_ref": "Trailers guidance"},
+            {"rule_id": "UK-TRL-001", "clause_ref": "UK-G1 s.1"}
+          ]
+        },
+        {
+          "kind": "trailer",
+          "requirement": "On the current cut the trailer must be re-edited to pre-watershed standard if it is to run at 15:00 at all without an access-control route - specifically the decayed faces (o9) and the faster-cut pursuit (o10) are the material in issue. The trailer's own content, not the feature's permission, is what has to satisfy the slot.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {"rule_id": "UK-TRL-001", "clause_ref": "UK-G1 s.1"},
+            {"rule_id": "UK-TRL-002", "clause_ref": "Guidance Notes Section One"}
+          ]
+        },
+        {
+          "kind": "access_control",
+          "requirement": "If the any-hour route is relied on, the protection must be a PIN or equivalent that CANNOT be removed by the user, provided AS THE DEFAULT rather than set up by the viewer, with clear content information supplied and the protection clearly explained to all viewers. A service-level parental control the viewer can switch off does not qualify.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {"rule_id": "UK-ACC-001", "clause_ref": "Rule 1.18 (meaning)"},
+            {"rule_id": "UK-ACC-002", "clause_ref": "Guidance Notes Section One, Rules 1.24-1.25"},
+            {"rule_id": "UK-ACC-003", "clause_ref": "Rules 1.24, 1.25"}
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "Clear information about content that may distress some children should be given where appropriate for a pre-watershed transmission; whether any warning would accompany the 15:00 break is not_stated, and a warning is in any case of limited use for an unannounced 30-second trailer.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "UK-SCH-005", "clause_ref": "Rule 1.7"},
+            {"rule_id": "UK-WRN-002", "clause_ref": "Guidance Notes Section 2, Rule 2.3"}
+          ]
+        }
+      ],
+      "axis_note": "This is the clearest case in the set of the three axes not tracking one another. The classification axis returns 'none' [UK-FLM-010]; the hours axis returns a bar at 15:00 on the current cut [UK-SCH-002, UK-TRL-001, UK-TRL-002]; and the third axis is genuinely a substitute rather than an add-on - mandatory daytime protection would disapply the watershed entirely [UK-SCH-007] and make 15:00 available [UK-FLM-003], but only while the gate and all its conditions hold [UK-ACC-001, UK-ACC-002, UK-ACC-003]. Reporting 'any time' without that condition would be wrong; reporting a flat bar without naming the available measure would be wrong the other way. Note also the direction of inheritance: nothing flows from the 22:15 decision to this one [UK-TRL-002], so the same frames that are compliant at 22:15 breach at 15:00.",
+      "reasoning": "This transmission is decided on its own, as a separate showing of a separate cut: the observations record o8, o9 and o10 as events of the 30-second trailer, and the extractor notes that the trailer timecodes collide numerically with the music video's while referring to different material. UK-TRL-002 is the bright-line rule that makes the separation mandatory - a trailer does not inherit the permission of the programme it advertises - and the practical trap it names is exactly this one: a compliant post-watershed work generating a trailer that runs in a daytime break and breaches with no change to the trailer's content. The absolute prohibitions were checked first and none bites: UK-GEN-001 is not reached by prosthetic horror imagery in a fictional work, 'seriously impair' being the higher of the two tiers; UK-SEX-001 has no application on the record; UK-FLM-001 and UK-FLM-006 concern films and BBFC determinations that do not exist here. Classification is no_per_programme_rating [UK-FLM-010, UK-TRL-002]. On the hours, the material in the 30-second cut is the graveyard sequence including the decayed faces (o8, o9) and the pursuit cut faster than in the full video (o10) - that is the concentrate of the work's strongest fear/distress imagery, delivered to viewers who did not choose to watch it [UK-TRL-001, UK-TRL-003]. 15:00 is pre-watershed [UK-SCH-002] and the appropriate-scheduling factors [UK-SCH-001, UK-DEF-002] point against it, with 'children' meaning under-fifteens [UK-DEF-001]. The conclusion on the current cut is therefore not before 21:00, with two ways out, both of which need information the record does not have. The first is editing: the trailer could be cut to pre-watershed standard, which is a content change rather than a scheduling one [UK-TRL-001]. The second is access control: if mandatory daytime protection is in place the watershed does not apply to the channel at all [UK-SCH-007, rank 1, which defeats UK-SCH-002 on conflict] and content unsuitable for children may run at any time of day [UK-FLM-003] - but only on a non-removable, on-by-default gate that has been clearly explained to viewers [UK-ACC-001, UK-ACC-002, UK-ACC-003], and UK-FLM-003 itself records that which services may use MDP is not established. The observations state that whether any access control, PIN or other restriction applies is not_stated, so this branch is labelled and not resolved. Two further things cannot be closed. The programme the 15:00 break sits inside, and the age profile of its audience, are not_stated, and UK-TRL-003 bars placement near children's programmes and extends that to family entertainment and sport - so even an edited trailer could not be cleared for this break without knowing what surrounds it. And whether a +1 carries the break is not_stated; a +1 would move it to 16:00, further into the after-school period, which is the counter-intuitive direction UK-SCH-009 exists to flag. The date is not_stated, so the school-holiday factor [UK-SCH-010] and the cultural or religious calendar factor [UK-SCH-011] cannot be applied, and both would bear on a mid-afternoon slot more than on a late-evening one. Finally, whether the trailer carries the opening disclaimer that the full video carries (o7) is not_stated, and it would make no difference: no rule in the slice credits such a disclaimer as mitigation.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The surrounding programme at 15:00 and the age profile of its audience are not_stated, and UK-TRL-003 turns on exactly that; the adjacency question cannot be closed either way.",
+        "The MDP branch cannot be resolved: whether any access control applies is not_stated, and UK-FLM-003 records which services may use MDP as an open question for a UK reviewer. The 'with_technical_measure' line must not be read as a clearance.",
+        "UK-SCH-010 and UK-SCH-011 bear materially on a mid-afternoon slot and both require the date, which is not_stated.",
+        "Whether a +1 service carries the 15:00 break is not_stated; UK-SCH-009 is conditional and the risk runs towards the later slot being worse, not better.",
+        "UK-TRL-001, UK-FLM-010, UK-DEF-002, UK-SCH-001, UK-GEN-001 and UK-GEN-002 are judgment_based; UK-TRL-003 and UK-FLM-003 are conditional and the conditions are unverified.",
+        "Whether the trailer carries the full work's opening disclaimer is not_stated; it is recorded as making no difference, which is itself a judgment a reviewer should confirm."
+      ],
+      "missing_information": [
+        {
+          "field": "the programme the 15:00 break sits inside, and the age profile of its audience",
+          "why_it_matters": "UK-TRL-003 restricts trailers away from children's programmes and extends that to family entertainment and sport; UK-TRL-001 says the same in the Code-guidance register.",
+          "what_changes_if_answered": "A children's, family or sport surround makes the break unavailable for this trailer even in an edited form; an adult-skewing surround narrows the objection to the watershed point alone."
+        },
+        {
+          "field": "whether any access control, PIN or mandatory daytime protection applies to the channel",
+          "why_it_matters": "MDP disapplies the watershed entirely [UK-SCH-007] and supplies an any-time-of-day permission [UK-FLM-003], subject to UK-ACC-001, UK-ACC-002 and UK-ACC-003.",
+          "what_changes_if_answered": "A genuine, non-removable, on-by-default, clearly explained gate converts the 15:00 bar into a permission. Anything less - including a parental control the viewer can switch off - leaves the bar standing."
+        },
+        {
+          "field": "intended_date (calendar date of the 15:00 break)",
+          "why_it_matters": "School holidays and the cultural or religious calendar raise the expected child audience in a mid-afternoon slot without moving the clock [UK-SCH-010, UK-SCH-011].",
+          "what_changes_if_answered": "A school-holiday date makes 15:00 materially worse and would weigh against even a re-edited trailer; it cannot make the slot better."
+        },
+        {
+          "field": "whether a +1 or timeshift channel carries the 15:00 break, and at what time",
+          "why_it_matters": "Each showing is its own decision and a +1 lands an hour later, deeper into the after-school period [UK-SCH-009, UK-SCH-006].",
+          "what_changes_if_answered": "A +1 at 16:00 adds a second, worse transmission that would need its own clearance; its absence removes that limb."
+        },
+        {
+          "field": "how often the trailer is run, and whether either showing recurs",
+          "why_it_matters": "Frequency bears on the likelihood of a child encountering the material unawares, which is the rationale UK-TRL-003 supplies, and on audience composition under UK-DEF-003.",
+          "what_changes_if_answered": "High rotation across the daytime schedule multiplies the exposure and would strengthen the objection; a single placement narrows it."
+        },
+        {
+          "field": "whether the trailer carries the opening disclaimer, and whether any warning or on-screen label precedes it",
+          "why_it_matters": "A warning only earns mitigation if adequate in frequency and positioning and if it conveys severity [UK-WRN-002, UK-WRN-003], and trailers are unannounced [UK-TRL-003].",
+          "what_changes_if_answered": "Little: no rule in the slice credits the disclaimer, and a 30-second unannounced trailer leaves almost no room for an effective warning. Recorded so the reviewer can confirm rather than assume."
+        }
+      ],
+      "coverage_gaps": [
+        "o7 - the on-screen occult disclaimer. No rule in the provided slice credits a disclaimer of this kind as mitigation, and whether the trailer carries it at all is not_stated.",
+        "The provided slice contains no rule addressed to music videos or to music-channel scheduling as such, so the trailer is assessed under the general trailer and watershed rules.",
+        "No rule in the provided slice quantifies how short a pre-watershed trailer may be before the concentration of strong material becomes the governing factor; the 30-second compression of the work's strongest imagery (o8, o9, o10) is assessed as a judgment under UK-TRL-001 rather than against a stated threshold."
+      ]
+    },
+    {
+      "country": "FR",
+      "transmission": "t1 - full music video 'Thriller' (13 min 42 s), music channel, 22:15, date not_stated; service type not_stated, so both the 'other television services' branch and the 'cinema channels / pay-per-view' branch are reported",
+      "classification": {
+        "value": "Provisional: category II (-10). Category III (-12) is not excluded and a reviewer may land there. Neither can be fixed from this record, and the classification is in any event the editor's to make, not the regulator's.",
+        "scheme": "Arcom signaletique, categories I to V",
+        "basis": [
+          {
+            "rule_id": "FR-CLS-002",
+            "clause_ref": "art. 2",
+            "why": "Category II (-10) covers programmes CERTAIN SCENES of which are liable to shock minors under 10. The werewolf transformation in sustained close-up with prosthetic effects (o1, o2), the decayed faces shown in detail over an extended sequence (o3, o4) and the pursuit and cornering of a woman (o5) are scene-level material of exactly that kind, which is why this is the provisional landing place."
+          },
+          {
+            "rule_id": "FR-CLS-003",
+            "clause_ref": "art. 2 al. 5",
+            "why": "Category III (-12) covers programmes liable to DISTURB under-12s, in particular where the programme resorts in a REPEATED way to physical or psychological violence. The 'repeated violence' limb is not made out on this record - the observations record no violence, injury detail or blood, and expressly list that as not_stated - but the 'liable to disturb under-12s' limb is open on sustained horror imagery running through a 13-minute work, so III cannot be ruled out. This row is judgment_based and carries human_review_required = yes in the table itself."
+          },
+          {
+            "rule_id": "FR-CLS-001",
+            "clause_ref": "art. 2",
+            "why": "Category I (tous publics, no pictogram) is considered and rejected: the record contains scene-level material liable to shock young children, so the work does not sit in the all-audiences category. This row also records that the editor classifies via an internal commission de visionnage - so this output is a proposal for that commission, not a classification."
+          },
+          {
+            "rule_id": "FR-FLM-001",
+            "clause_ref": "art. 2",
+            "why": "Recorded as unavailable rather than applied: there is no cinema classification to carry over - existing_certificates is empty - so there is no cinema rating to serve as an indication, and the rule's practice of raising the age limit between cinema and television has nothing to operate on."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "22:15 is permitted on every branch considered, on either candidate category. Branch: if category II, there is no clock restriction at all [FR-SCH-001]; if category III, 22:15 clears the 22:00 bar on services other than cinema channels and pay-per-view [FR-SCH-002] and clears the cinema-channel and pay-per-view rule whatever the weekday [FR-SCH-003].",
+        "without_technical_measure": "Permitted at 22:15 on both candidate categories and both service branches. No technical measure is needed. Category II: no clock restriction [FR-SCH-001]. Category III on other services: not before 22:00, and 22:15 is after it [FR-SCH-002]. Category III on cinema channels or pay-per-view: not Wednesdays before 20:30, which 22:15 satisfies on any day [FR-SCH-003].",
+        "with_technical_measure": "n/a. No technical measure is required or relied on for this transmission. The decoder-locking regime in the slice [FR-CV-004, FR-CV-008] attaches to category V (-18), which this work is not, and it would be cumulative with the 00:00-05:00 window [FR-CV-002] rather than a substitute for it if it ever applied.",
+        "basis": [
+          {
+            "rule_id": "FR-SCH-001",
+            "clause_ref": "art. 3",
+            "why": "If the work is category II, broadcast timing is left to the editor's discretion with no clock restriction; the only constraint is placement - such programmes may not be placed within programmes intended for children, which a 22:15 slot does not raise."
+          },
+          {
+            "rule_id": "FR-SCH-002",
+            "clause_ref": "art. 3",
+            "why": "If the work is category III and the music channel is a service other than a cinema channel or pay-per-view, the bar is 'not before 22:00'. A 22:15 start satisfies it; a 13 min 42 s runtime keeps the whole transmission after 22:00."
+          },
+          {
+            "rule_id": "FR-SCH-003",
+            "clause_ref": "art. 3",
+            "why": "If the work is category III and the channel is a cinema channel or a pay-per-view service, the only bar is Wednesdays before 20:30. 22:15 satisfies it on every weekday, so the day-of-week question does not bite for this transmission - though the weekday is not_stated."
+          },
+          {
+            "rule_id": "FR-SCH-004",
+            "clause_ref": "art. 3",
+            "why": "The exceptional derogation is recorded as NOT needed and NOT relied on. It would allow a category III work after 20:30 subject to day and school-holiday exclusions and an annual quota of 16 programmes; 22:15 already clears FR-SCH-002, so no derogation, no quota draw and no holiday-calendar check arises. Recorded because an allowance left unmentioned looks like an over-restriction."
+          },
+          {
+            "rule_id": "FR-LAW-002",
+            "clause_ref": "Loi 86-1067 art. 15",
+            "why": "The statutory hook: programmes liable to HARM (nuire) minors must not be made available unless the choice of broadcast time or an appropriate technical process ensures minors are not normally liable to see them. Here the instrument chosen is the hour, and 22:15 is the instrument doing the work."
+          },
+          {
+            "rule_id": "FR-SCH-007",
+            "clause_ref": "art. 3",
+            "why": "Recorded as not engaged: category V broadcast is governed entirely by the 2004-7 recommendation, and this work is not assessed as category V, so neither the eligibility gate nor the midnight window is in play."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "signage",
+          "requirement": "The pictogram for the assigned category must remain on screen FOR THE WHOLE DURATION of the programme (categories II to V). Whether any on-screen age label would be given is not_stated in the observations.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-SIG-001", "clause_ref": "art. 4"}
+          ]
+        },
+        {
+          "kind": "signage",
+          "requirement": "A written mention must also appear - either at the bottom of the screen in white for at least 1 minute at the start, or full-screen for at least 12 seconds before the programme - using the wording for the assigned category ('deconseille aux moins de dix ans' for II, 'aux moins de douze ans' for III).",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-SIG-002", "clause_ref": "art. 4"}
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "The classification must be made known to the public at the time of broadcast, in trailers, and in programme schedules communicated to the press. This links the two transmissions: the trailer must carry the work's classification.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-SIG-003", "clause_ref": "art. 4"}
+          ]
+        },
+        {
+          "kind": "adjacency",
+          "requirement": "If category II, the programme may not be placed WITHIN programmes intended for children. A 22:15 slot does not raise this, but it is recorded because the same rule governs the 15:00 trailer, where it does.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-SCH-001", "clause_ref": "art. 3"}
+          ]
+        },
+        {
+          "kind": "derogation",
+          "requirement": "No derogation is required or claimed for this transmission. The FR-SCH-004 exceptional-broadcast allowance, its 16-programme annual quota and its 4-work cinema-banned sub-quota are untouched by this showing.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-SCH-004", "clause_ref": "art. 3"}
+          ]
+        }
+      ],
+      "axis_note": "In France, unlike the UK, there IS a classification to emit, and the hours follow from it - but not uniquely, because they also follow from the service type. The same category III work is barred before 22:00 on a general service [FR-SCH-002] and permitted from 20:30 on a cinema channel or pay-per-view service, with only a Wednesday carve-out [FR-SCH-003]: a pure service-type effect on identical content. For this transmission the branches converge, because 22:15 clears every one of them on either candidate category, so the service-type gap does not bite here. The third axis is not a substitute for the hours at all on this record: the French signage obligations [FR-SIG-001, FR-SIG-002, FR-SIG-003] are cumulative with whatever hour applies, and the only genuine substitute mechanism in the French slice - the category V decoder lock - is itself cumulative with a 00:00-05:00 window [FR-CV-002, FR-CV-004] rather than an unlock, and does not apply here.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "FR-CLS-003 is judgment_based and carries human_review_required = yes in the table. Whether the work is category II or III cannot be settled from this record, and the record expressly lacks the sequence lengths and any statement about violence or injury detail that the III threshold turns on.",
+        "The classification is the editor's to make through an internal commission de visionnage [FR-CLS-001], so this output is a proposal for that commission rather than a classification.",
+        "Service type is not_stated and has been branched, not resolved. It does not change the answer at 22:15, but FR-SCH-002 and FR-SCH-003 diverge by nearly two hours on identical content, so the branch must be carried forward rather than collapsed.",
+        "FR-LAW-001 and FR-PRO-003 are judgment_based absolute prohibitions. Both were considered and found not to bite, but 'nuire gravement' and 'extreme or gratuitous violence' are judgments and the record is expressly silent on whether the sequences contain violence or injury detail.",
+        "The date and weekday are not_stated. They do not affect this transmission, but FR-SCH-003 is day-specific and FR-SCH-004 excludes named days and school holidays, so any move of the slot would need them.",
+        "FR-CLS-002, FR-LAW-002 and FR-FLM-001 are judgment_based rules relied on in this decision."
+      ],
+      "missing_information": [
+        {
+          "field": "service_type (whether the music channel is a cinema channel, a pay-per-view service, or another television service)",
+          "why_it_matters": "FR-SCH-002 bars category III before 22:00 on other services; FR-SCH-003 bars it only on Wednesdays before 20:30 on cinema channels and pay-per-view. FR-SCH-005 and FR-SCH-006 show the same two-hour split for category IV.",
+          "what_changes_if_answered": "Nothing at 22:15, where every branch permits. It determines the earliest available slot if the showing moves, and it is the question that decides whether a 20:30 start is available at all."
+        },
+        {
+          "field": "the length of the sequences described as 'sustained' and 'extended'",
+          "why_it_matters": "The II / III line turns on whether certain scenes are liable to shock under-10s or the programme is liable to disturb under-12s [FR-CLS-002, FR-CLS-003].",
+          "what_changes_if_answered": "Longer and more insistent sequences push the work towards III, which brings FR-SCH-002's 22:00 bar into play and would narrow the slot from 'editor's discretion' to a hard clock rule."
+        },
+        {
+          "field": "whether the sequences contain violence, injury detail or blood",
+          "why_it_matters": "FR-CLS-003's named limb is repeated physical or psychological violence; FR-PRO-003 bans extreme or gratuitous violence outright with no permitted time.",
+          "what_changes_if_answered": "Injury detail or sustained violence would move the work to III and would require FR-PRO-003 and FR-LAW-001 to be re-examined on the higher 'nuire gravement' and 'extreme or gratuitous' thresholds."
+        },
+        {
+          "field": "intended_date and weekday",
+          "why_it_matters": "FR-SCH-003 is Wednesday-specific; FR-SCH-004 excludes Tuesdays, Fridays, Saturdays, the eve of public holidays and school holidays.",
+          "what_changes_if_answered": "Nothing at 22:15. It becomes decisive the moment anyone asks for an earlier slot under FR-SCH-003 or FR-SCH-004."
+        },
+        {
+          "field": "whether a pictogram and written mention would be carried, and in what form",
+          "why_it_matters": "FR-SIG-001 requires the pictogram for the whole duration and FR-SIG-002 the written mention; the observations state that whether any on-screen age label would be given is not_stated.",
+          "what_changes_if_answered": "These are independent obligations rather than conditions on the hour, so their absence is a separate breach rather than a reason to move the slot."
+        },
+        {
+          "field": "whether under-18s appear as performers or participants in the video",
+          "why_it_matters": "FR-PRO-002 bans pornographic programmes depicting under-18s; that rule plainly does not bite on this record, but no rule in the provided slice addresses the participation of minors in non-pornographic content.",
+          "what_changes_if_answered": "It would raise a question the provided rules cannot answer and would need a wider slice; it does not change the hours on this record."
+        },
+        {
+          "field": "whether the annual FR-SCH-004 quota has been drawn on this year",
+          "why_it_matters": "FR-SCH-004 caps exceptional category III broadcasts at 16 per year, and the rule itself records that the quota cannot be verified from a single asset description.",
+          "what_changes_if_answered": "Nothing for this transmission, which needs no derogation. It would matter if anyone sought a 20:30 start for a category III work."
+        }
+      ],
+      "coverage_gaps": [
+        "o7 - the on-screen disclaimer that the work does not endorse belief in the occult. No rule in the provided French slice addresses occult or supernatural content at all, let alone credits a disclaimer about it; the French categories turn on shock, disturbance, violence, dignity and sexual content, and this material is being assessed by analogy to shock and disturbance rather than under any occult-specific rule.",
+        "o1, o3 and o6 - the werewolf transformation, the risen corpses and the non-human eyes are recorded as occult_paranormal observations, and the provided French slice has no occult_paranormal rule. They are assessed only through their fear/distress aspect under FR-CLS-002 and FR-CLS-003. This is a genuine gap in the slice, not a finding that the material is unproblematic.",
+        "The provided French slice contains no rule addressed to music videos or music-channel scheduling as a content type.",
+        "FR-VIO-003 (precautions and advance warning for difficult images or testimony concerning particularly dramatic events) was considered and not applied, because it addresses difficult images of dramatic events in news and other programmes rather than fictional horror imagery. If a reviewer reads it more broadly it would add an advance-warning obligation at any hour; the point is flagged rather than decided."
+      ]
+    },
+    {
+      "country": "FR",
+      "transmission": "t2 - the 30-second trailer cut from 'Thriller', music channel, 15:00 break, date and weekday not_stated, surrounding programme not_stated; service type not_stated, branches as for t1",
+      "classification": {
+        "value": "The trailer carries the classification of the programme it advertises - provisionally category II (-10), with category III (-12) not excluded. It is not separately classified, and the pictogram it must display is the programme's.",
+        "scheme": "Arcom signaletique, categories I to V",
+        "basis": [
+          {
+            "rule_id": "FR-TRL-001",
+            "clause_ref": "art. 5",
+            "why": "Trailers must display the PICTOGRAM OF THE PROGRAMME'S CATEGORY throughout the trailer, which is the rule establishing that the trailer takes the parent work's category rather than one of its own."
+          },
+          {
+            "rule_id": "FR-SIG-003",
+            "clause_ref": "art. 4",
+            "why": "The classification must be made known to the public in trailers as well as at the time of broadcast, so the category travels with the trailer as an information obligation."
+          },
+          {
+            "rule_id": "FR-CLS-002",
+            "clause_ref": "art. 2",
+            "why": "The provisional category for the parent work: certain scenes liable to shock minors under 10 (o1 to o5), which is what the trailer then carries."
+          },
+          {
+            "rule_id": "FR-CLS-003",
+            "clause_ref": "art. 2 al. 5",
+            "why": "Category III is not excluded for the parent work, which matters more here than at 22:15: a category III trailer attracts the express placement bar in FR-TRL-002 rather than the 'particular care' standard that applies to category II."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "No French rule in the provided slice bars this trailer from 15:00 on the clock. The bar that does bite is a content bar and a placement bar, not an hour: as currently cut the trailer is, on a provisional view, not compliant with FR-TRL-001 at any hour, and it may not be placed close to children's programmes [FR-TRL-002, FR-SCH-001]. So: no clock restriction, but not clearable as cut.",
+        "without_technical_measure": "15:00 is not barred by the clock. The French trailer clock rule in the slice applies to category IV (-16) trailers, which may not air before 20:30 [FR-TRL-003], and the work is not assessed as category IV. The programme-level hours [FR-SCH-001, FR-SCH-002, FR-SCH-003] govern the programme, not its trailer; FR-SCH-002's 22:00 bar is not written as applying to trailers. The operative constraints are therefore FR-TRL-001 (no scenes likely to offend young viewers, pictogram throughout) and FR-TRL-002 / FR-SCH-001 (placement away from children's programmes).",
+        "with_technical_measure": "n/a. No technical measure in the provided French slice bears on this transmission: the decoder-locking regime [FR-CV-004, FR-CV-008] is category V only and is cumulative with the 00:00-05:00 window [FR-CV-002] rather than an unlock. France offers no PIN-for-hours substitution here of the kind the UK slice offers.",
+        "basis": [
+          {
+            "rule_id": "FR-TRL-001",
+            "clause_ref": "art. 5",
+            "why": "The governing rule, and the one that bites: trailers must display the programme's pictogram throughout AND must NOT contain scenes likely to offend young viewers. The trailer carries the graveyard sequence including the decayed faces (o8, o9) and the pursuit cut faster than in the full video (o10). On a provisional view that is material likely to offend young viewers, so the cut is non-compliant on content - and that is independent of the hour, so re-slotting does not cure it."
+          },
+          {
+            "rule_id": "FR-TRL-002",
+            "clause_ref": "art. 5",
+            "why": "Category III trailers may not air close to children's programmes, and category II trailers near children's programmes require particular care. The programme the 15:00 break sits inside is not_stated, so this cannot be cleared on either candidate category."
+          },
+          {
+            "rule_id": "FR-TRL-003",
+            "clause_ref": "art. 5",
+            "why": "Recorded as NOT applicable and as the reason there is no clock bar here: the 20:30 trailer restriction is written for category IV (-16) trailers, and the work is not assessed as category IV. Its exceptions note also makes the general point that the trailer time and the programme time differ, which is why the programme hours are not read across to the trailer."
+          },
+          {
+            "rule_id": "FR-SCH-001",
+            "clause_ref": "art. 3",
+            "why": "If the work is category II, timing is at the editor's discretion with no clock bar, and the constraint is placement: not within programmes intended for children, with particular care required for trailers scheduled near children's programmes - which the rule's own exceptions note states expressly."
+          },
+          {
+            "rule_id": "FR-LAW-002",
+            "clause_ref": "Loi 86-1067 art. 15",
+            "why": "The statutory backstop: material liable to harm minors must not be made available unless the choice of broadcast time or an appropriate technical process ensures minors are not normally liable to see it. A 15:00 break with no stated protection and an unknown surrounding programme is the case where neither instrument is doing any work, which is the reason this transmission cannot be cleared even though no specific French clock rule names it."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "trailer",
+          "requirement": "The trailer must not contain scenes likely to offend young viewers. On the current cut the decayed faces (o9) and the faster-cut pursuit (o10) are the material in issue, and this is a content requirement that applies at every hour - re-slotting does not satisfy it.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-TRL-001", "clause_ref": "art. 5"}
+          ]
+        },
+        {
+          "kind": "signage",
+          "requirement": "The pictogram of the programme's category must appear FOR THE WHOLE DURATION of the trailer. Whether the trailer would carry any pictogram is not_stated.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-TRL-001", "clause_ref": "art. 5"},
+            {"rule_id": "FR-SIG-003", "clause_ref": "art. 4"}
+          ]
+        },
+        {
+          "kind": "adjacency",
+          "requirement": "Placement bar: a category III trailer may not air close to children's programmes, and a category II trailer near children's programmes requires particular care. The programme surrounding the 15:00 break is not_stated, so compliance cannot be established.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {"rule_id": "FR-TRL-002", "clause_ref": "art. 5"},
+            {"rule_id": "FR-SCH-001", "clause_ref": "art. 3"}
+          ]
+        }
+      ],
+      "axis_note": "France and the UK part company sharply on this transmission, and the reason is which axis carries the restriction. The UK puts it on the hours: the trailer is assessed in its own slot and barred before 21:00 as cut [UK-TRL-002, UK-TRL-001 - cited in the UK decisions, not here]. France puts almost none of it on the hours: the only clock rule for trailers in the French slice is the category IV 20:30 bar [FR-TRL-003], which does not apply, and the programme-level 22:00 bar [FR-SCH-002] is written for the programme, not its trailer. Instead France loads the restriction onto the content axis and the placement axis - a trailer must not contain scenes likely to offend young viewers at all [FR-TRL-001] and must be kept away from children's programmes [FR-TRL-002]. The practical consequence is the opposite of an unlock: the French bar is harder to cure, because an hour can be changed and the cut cannot. A system that read the three axes as interchangeable would mistake the absence of a French clock rule for a French clearance.",
+      "reasoning": "This is a separate transmission of a separate cut and is decided on its own, consistent with the per-transmission requirement; the observations assign o8, o9 and o10 to the trailer. The absolute prohibitions in the French slice were checked first and none bites. FR-LAW-001 ('nuire gravement', with no permitted time and no cure) is not reached: the record is fictional prosthetic horror imagery, and the French standard is deliberately two-tier - material liable to harm minors is schedulable through time or technical means [FR-LAW-002], and only material liable to SERIOUSLY harm them is banned. Treating the tiers as one would ban ordinary genre material. FR-PRO-001 (human dignity, sexual violence, perversions, degradation) has no application on this record. FR-PRO-002 is read for what it covers rather than its label: it bans pornographic programmes DEPICTING UNDER-18s, and there is no pornography and no sexual content in the record at all, so it does not bite. FR-PRO-003 (extreme or gratuitous violence) does not bite on the record, which contains no violence, injury detail or blood - the observations list that as expressly not_stated, so the finding is 'not made out on this record' rather than 'absent'. Classification: the trailer is not separately classified; it carries the parent work's category and must display that pictogram throughout [FR-TRL-001, FR-SIG-003], provisionally II with III not excluded [FR-CLS-002, FR-CLS-003]. On the hours the French answer is structurally different from the UK one and the difference is easy to misread. There is no French clock rule in the slice that bars this trailer at 15:00: FR-TRL-003's 20:30 bar is written for category IV trailers and the work is not category IV, and its own exceptions note observes that the trailer time differs from the programme time, which is why FR-SCH-002's 22:00 programme bar is not read across. What does bite is FR-TRL-001, a bright-line rule with two limbs: the pictogram must run throughout, and the trailer must NOT contain scenes likely to offend young viewers. The trailer carries the graveyard sequence including the decayed faces (o8, o9) and the pursuit cut faster than in the full video (o10) - the concentrate of the work's strongest imagery in 30 seconds. On a provisional view that engages the second limb, which makes the cut non-compliant at any hour rather than barred before one, and the cure is editorial rather than scheduling. Applying the limb to these facts is a judgment, so it goes to a person rather than being asserted. Separately, FR-TRL-002 bars a category III trailer from airing close to children's programmes and requires particular care for a category II trailer near them, and FR-SCH-001 makes the same point for category II placement; the programme the 15:00 break sits inside is not_stated, so neither can be cleared. FR-LAW-002 is the backstop that explains why a 15:00 break cannot simply be waved through in the absence of a specific clock rule: the statute requires that either the choice of broadcast time or an appropriate technical process ensure minors are not normally liable to see harmful material, and at 15:00 with no stated protection and an unknown surround, neither instrument is doing anything. No technical measure is available as a substitute: the only locking regime in the French slice is category V's, it is cumulative with a 00:00-05:00 window rather than an unlock [FR-CV-002, FR-CV-004, FR-CV-008], and it does not apply to this work. Date and weekday are not_stated; they do not change this answer because no day-specific rule is in play for a category II or III trailer, but FR-SCH-004's school-holiday and named-day exclusions would matter if a derogation were ever sought for the parent work, and the observations also record that how often the trailer is run is not_stated, which bears directly on how many young viewers meet it. Whether the trailer carries the parent work's opening disclaimer (o7) is not_stated and is given no weight: no rule in the French slice credits it.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "The decisive question - whether the decayed faces (o9) and the faster-cut pursuit (o10) are 'scenes likely to offend young viewers' under FR-TRL-001 - is an application of a bright-line rule to facts that requires judgment, and it determines whether the trailer may run at all rather than merely when. It must be decided by a person.",
+        "The programme surrounding the 15:00 break is not_stated, and FR-TRL-002 and FR-SCH-001 both turn on proximity to children's programmes. Compliance cannot be established either way.",
+        "The parent work's category is unresolved between II and III [FR-CLS-002, FR-CLS-003, both judgment_based, FR-CLS-003 carrying human_review_required = yes], and the two attract different trailer treatment under FR-TRL-002 - an express bar for III, 'particular care' for II.",
+        "The reading that no French clock rule bars this trailer at 15:00 rests on FR-TRL-003 being category-IV-specific and on FR-SCH-002 being a programme rule rather than a trailer rule. That is what the rows say, but it is a structural reading of the slice and a reviewer should confirm it rather than inherit it.",
+        "FR-LAW-001, FR-PRO-001, FR-PRO-002 and FR-PRO-003 are judgment_based prohibitions; all were considered and none found to bite, but on a record expressly silent about violence and injury detail.",
+        "FR-LAW-002, FR-CLS-002, FR-CLS-003 and FR-SCH-001 are judgment_based or conditional rules relied on in this decision."
+      ],
+      "missing_information": [
+        {
+          "field": "the programme the 15:00 break sits inside, and the age profile of its audience",
+          "why_it_matters": "FR-TRL-002 bars a category III trailer close to children's programmes; FR-SCH-001 bars category II material within programmes intended for children and requires particular care for trailers near them.",
+          "what_changes_if_answered": "A children's-programme surround makes the break unavailable outright. An adult surround removes the placement objection but leaves the FR-TRL-001 content objection standing."
+        },
+        {
+          "field": "whether the trailer would carry the programme's pictogram for its whole duration",
+          "why_it_matters": "FR-TRL-001 requires the pictogram throughout the trailer and FR-SIG-003 requires the classification to be made known in trailers. The observations state that whether any on-screen age label would be given is not_stated.",
+          "what_changes_if_answered": "Its absence is an independent breach; its presence does not cure the content objection, because FR-TRL-001's two limbs are cumulative."
+        },
+        {
+          "field": "service_type (cinema channel, pay-per-view, or other television service)",
+          "why_it_matters": "The French trailer rules in the slice are scoped to all_linear_tv so the branch does not change this answer, but the programme-level hours it feeds [FR-SCH-002, FR-SCH-003] diverge by nearly two hours.",
+          "what_changes_if_answered": "Nothing for the trailer. It is needed to fix the parent work's earliest slot and to carry the branch forward coherently."
+        },
+        {
+          "field": "the parent work's assigned category (II or III), as settled by the editor's commission de visionnage",
+          "why_it_matters": "FR-TRL-002 treats category III trailers with an express placement bar and category II trailers with a 'particular care' standard, and FR-CLS-001 records that classification is the editor's function.",
+          "what_changes_if_answered": "A III classification hardens the placement bar from a care standard into a prohibition near children's programmes; a II classification leaves more room but does not touch the FR-TRL-001 content point."
+        },
+        {
+          "field": "how often the trailer is run, and across what parts of the schedule",
+          "why_it_matters": "Frequency and placement across the day determine how many young viewers encounter it, which is what FR-TRL-001 and FR-TRL-002 are directed at, and bears on the FR-LAW-002 question of whether the choice of broadcast time is doing any protective work.",
+          "what_changes_if_answered": "High daytime rotation makes the FR-LAW-002 position materially worse; a single placement in an adult-skewing break is the best available case."
+        },
+        {
+          "field": "intended_date and weekday",
+          "why_it_matters": "No day-specific French rule applies to a category II or III trailer, but FR-SCH-003 is Wednesday-specific and FR-SCH-004 excludes named days and school holidays for the parent work.",
+          "what_changes_if_answered": "Nothing for this transmission as analysed; it becomes necessary for any derogation or earlier programme slot, and school holidays would raise the daytime child audience the trailer reaches."
+        },
+        {
+          "field": "whether the sequences in the trailer contain violence, injury detail or blood",
+          "why_it_matters": "FR-PRO-003 bans extreme or gratuitous violence at any hour, and FR-CLS-003's named limb is repeated physical or psychological violence. The record is expressly silent.",
+          "what_changes_if_answered": "Injury detail would push the parent work towards III and require FR-PRO-003 and FR-LAW-001 to be re-examined; it would also strengthen the FR-TRL-001 objection."
+        }
+      ],
+      "coverage_gaps": [
+        "o7 - the on-screen occult disclaimer, and whether the trailer carries it at all. No rule in the provided French slice addresses it, and it is given no weight.",
+        "o8 and the occult_paranormal aspect of the trailer's material. The provided French slice contains no occult_paranormal rule, so the supernatural character of the imagery is assessed only through its capacity to shock or offend young viewers under FR-TRL-001, FR-CLS-002 and FR-CLS-003. The gap is in the slice, not in the content.",
+        "No rule in the provided French slice sets a clock restriction for category II or category III trailers. FR-TRL-003 supplies one for category IV only. The conclusion that 15:00 is not clock-barred therefore rests on the absence of a rule rather than on a permission, which is a materially weaker footing and is why this transmission is reported as 'no clock bar but not clearable as cut' rather than as permitted.",
+        "The provided French slice contains no rule addressed to music videos or music-channel scheduling as a content type."
+      ]
+    }
+  ],
+  "cross_country_note": "The two countries diverge on all three axes, and for different reasons on each. CLASSIFICATION: the UK issues no per-programme age rating for linear television, so the UK answer is 'no_per_programme_rating' and any number would be an invented instrument [UK-FLM-010]; France does issue one, through the editor's own commission de visionnage rather than the regulator [FR-CLS-001], and the provisional landing place is category II (-10) with category III (-12) not excluded [FR-CLS-002, FR-CLS-003]. HOURS, THE 22:15 SHOWING: both countries permit it, but by different routes. The UK permits it because 22:15 falls inside the 21:00-05:30 watershed window [UK-SCH-002], with the live residual risk being that the work opens close to its strongest material [UK-SCH-008] - a risk the French rules in this slice do not express at all. France permits it either because category II carries no clock restriction [FR-SCH-001] or because 22:15 clears the category III bar of 22:00 on general services [FR-SCH-002] and clears the cinema-channel and pay-per-view Wednesday rule on any day [FR-SCH-003]. HOURS, THE 15:00 TRAILER: this is the real divergence, and it runs in the direction a naive reading would get backwards. The UK bars the trailer before 21:00 as cut, because a trailer is assessed in its own slot and inherits nothing from the 22:15 permission [UK-TRL-002, UK-TRL-001] - but the UK also offers a genuine substitute: mandatory daytime protection disapplies the watershed entirely [UK-SCH-007] and would make 15:00 available [UK-FLM-003], conditional on a non-removable, on-by-default, clearly explained gate [UK-ACC-001, UK-ACC-002, UK-ACC-003]. France imposes no clock bar on a category II or III trailer at all - the only trailer clock rule in the French slice is the category IV 20:30 bar [FR-TRL-003] - but France instead bars the content outright: a trailer must not contain scenes likely to offend young viewers [FR-TRL-001] and must be kept away from children's programmes [FR-TRL-002, FR-SCH-001]. So the French restriction is the harder of the two to satisfy, because an hour can be moved and a gate can be installed, while a cut has to be re-cut. WHAT DRIVES THE DIVERGENCE: the UK hangs the protection on the hour and lets an access control replace it; France hangs it on the category, the signage and the content of the trailer, and the only access-control regime in its slice (the category V decoder lock) is cumulative with a 00:00-05:00 window rather than a substitute for it [FR-CV-002, FR-CV-004, FR-CV-008]. SERVICE TYPE, not_stated in the request, has been branched in both countries and never resolved: it does not change either 22:15 answer, but it is decisive for the earliest French slot [FR-SCH-002 versus FR-SCH-003] and for whether the UK's any-hour route exists at all [UK-FLM-003, which expressly records MDP service eligibility as unresolved]. COMMON TO BOTH: the date is not_stated, so the school-holiday and calendar factors cannot be applied on either side [UK-SCH-010, UK-SCH-011, FR-SCH-004]; the surrounding programme at 15:00 is not_stated, so the adjacency question is open in both [UK-TRL-003, FR-TRL-002]; the record is expressly silent on violence and injury detail, which both countries' higher thresholds turn on [UK-GEN-001, FR-LAW-001, FR-PRO-003]; and neither slice contains any rule addressed to music videos as a content type or, on the French side, to occult and paranormal content at all - the UK slice has UK-OCC-001 but its exemption names drama, film and comedy and not music video, so the fiction limb cannot be applied mechanically. All four transmissions go to a person."
+}

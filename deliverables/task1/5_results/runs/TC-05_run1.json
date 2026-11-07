@@ -1,0 +1,109 @@
+{
+  "asset": {
+    "title": "Coastal Rescue",
+    "runtime_minutes": 48,
+    "content_type": "other",
+    "existing_certificates": [],
+    "intended_service": "not_stated",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "not_stated",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:14:02",
+      "category": "serious_harm",
+      "what_happens": "Footage of a real fatal accident is shown. A body is visible at a distance.",
+      "descriptors": ["real footage", "fatal accident", "body visible", "shown at a distance"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "documentary",
+      "evidence": "Footage of a real fatal accident. A body is visible at a distance.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:14:02",
+      "category": "human_dignity",
+      "what_happens": "The body of a person who has died in a real accident is shown on screen, at a distance.",
+      "descriptors": ["real death", "body of identified casualty shown", "distance shot"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "documentary",
+      "evidence": "A body is visible at a distance.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:32:18",
+      "category": "fear_distress",
+      "what_happens": "A bereaved relative describes the death in detail and is visibly distressed while doing so.",
+      "descriptors": ["bereaved relative", "detailed account of a death", "visible distress", "interview"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "documentary",
+      "evidence": "A bereaved relative describes the death in detail, visibly distressed.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "00:32:18",
+      "category": "participant_welfare",
+      "what_happens": "A real, named-as-bereaved contributor appears on camera in a visibly distressed state while recounting a death.",
+      "descriptors": ["real contributor", "bereaved", "visible distress on camera"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "documentary",
+      "evidence": "A bereaved relative describes the death in detail, visibly distressed.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o5",
+      "timecode": "00:32:18",
+      "category": "serious_harm",
+      "what_happens": "A death is described in detail in spoken testimony. The death itself is not shown at this point.",
+      "descriptors": ["detailed verbal description of a death", "spoken account"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "reported_not_shown",
+      "evidence": "A bereaved relative describes the death in detail, visibly distressed.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o6",
+      "timecode": "00:41:05",
+      "category": "imitable_behaviour",
+      "what_happens": "A presenter demonstrates a climbing technique. On-screen text describes the technique as \"easy to copy at home\".",
+      "descriptors": ["demonstration of technique", "climbing", "on-screen text invites copying", "presenter-led"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "documentary",
+      "evidence": "A presenter demonstrates a climbing technique, described on screen as\n          \"easy to copy at home\".",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended service type (the SERVICE field is given as 'not stated')",
+    "intended broadcast day and time (the SLOT field is given as 'not stated')",
+    "intended broadcast date, so no check against school holidays or cultural or religious festivals is possible",
+    "whether a timeshift or +1 service would also carry the asset, and at what time",
+    "whether any existing cinema, video or TV certificate exists for this asset, and at what exact level (no CERTIFICATE field is present)",
+    "whether under-18s appear as participants or contributors",
+    "whether the bereaved relative or any other contributor consented, was supported, or is a vulnerable person",
+    "whether the person who died in the accident footage is identifiable, and whether the family consented to its use",
+    "whether the accident footage shows injury detail; the source says only that a body is visible at a distance",
+    "the duration of each individual sequence",
+    "whether the asset is news or current affairs (no genre routing information beyond 'documentary' is given)",
+    "whether the asset is made primarily for children",
+    "production origin or country of production",
+    "what the COUNTRIES field 'UK, FR' refers to (territory of transmission, production origin, or both)",
+    "whether any warning, signposting or advice to viewers accompanied the fatal accident footage or the climbing demonstration",
+    "whether the climbing demonstration was accompanied by any safety caveat beyond the quoted on-screen text",
+    "what level of skill, equipment or height the demonstrated climbing technique involves",
+    "whether the asset was edited for broadcast",
+    "the runtime as transmitted (48 min is given in the title line; whether this includes breaks is not stated)"
+  ],
+  "extractor_notes": "The supplied summary states \"Suitable for all audiences. No content of concern.\" The event list contains footage of a real fatal death with a body visible, a visibly distressed bereaved relative, and a demonstration described on screen as easy to copy at home. The summary and the event list disagree. Both are recorded as given and the conflict is not reconciled; a human reviewer should settle it. CONTENT_TYPE: the source calls the asset a documentary, which is not a value in the controlled vocabulary for content_type (film | series_episode | trailer | music_video | live | other | not_stated). I have used 'other' and recorded the source word here rather than forcing it to 'film'. is_news_or_current_affairs is left not_stated: the source says 'documentary' and the prompt states a documentary is not automatically news. TRANSMISSIONS: no showing of any kind is described (SERVICE and SLOT are both explicitly 'not stated'), so the transmissions array is empty and the absence is carried in not_stated. Note that this means no transmission-level decision can be made on this asset as described. OBSERVATION SPLITS: 00:14:02 is recorded twice (serious_harm for the real fatal accident, human_dignity for the on-screen presence of a dead person's body); 00:32:18 is recorded three times (fear_distress for the distressing account, participant_welfare for the state of a real contributor on camera, serious_harm for the detailed verbal account of a death, which is reported and not shown). The participant_welfare and human_dignity splits are inferences about which category applies rather than about what happened, so their confidence is medium. 00:41:05 is recorded once as imitable_behaviour; the phrase 'easy to copy at home' is quoted by the source as on-screen text and is preserved verbatim. The source does not describe the visual style of any sequence; treatment is recorded as 'documentary' throughout because the asset is identified as a documentary and the 00:14:02 footage is identified as real, except for o5 where the event is only spoken about. runtime_minutes is taken as 48 from the title line '(documentary, 48 min)'."
+}

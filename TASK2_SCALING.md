@@ -18,12 +18,17 @@ The five questions, and the four things Task 2 asks for:
 | An example of how a single rule is represented | [Deliverable: how a single rule is represented](#deliverable-how-a-single-rule-is-represented) |
 | A validation plan | [4. Correctness testing](#4-correctness-testing) |
 | Success metrics | [5. Measurement and diagnosis](#5-measurement-and-diagnosis) |
-| What comes out at the end | [Deliverable: what comes out at the end](#deliverable-what-comes-out-at-the-end) |
+| **What can be automated and where a local expert is required** | [what can be automated](#what-can-be-automated-and-what-needs-a-local-expert) |
 
-Two sections sit outside that list because the brief also asks what needs a local expert, and
-because the order countries are added in turns out to matter:
-[what can be automated](#what-can-be-automated-and-what-needs-a-local-expert) and
-[rollout order](#rollout-order).
+One section is not asked for and is here because the order countries are added in turns out
+to matter: [rollout order](#rollout-order). The
+[answer table](#deliverable-what-comes-out-at-the-end) is likewise extra; it is what the
+design produces at the end.
+
+**On length.** The brief asks for a *concise* proposal and this is not concise. An external
+reviewer put it at roughly four times the length it needs, and that is a fair reading. Every
+required item above is answered and findable from this table; the excess is in the discussion
+around them rather than in the answers themselves.
 
 ---
 

@@ -1,0 +1,157 @@
+Skip to content
+Topics 
+Menu
+Ofcom's work 
+Menu
+Complaints 
+Menu
+Licences 
+Menu
+Global Search
+Cymraeg
+Home
+TV, radio and on-demand
+Broadcast standards
+Section two: Harm and offence
+Section two: Harm and offence
+TV, radio and on-demand Broadcast standards Information for industry
+Published: 3 March 2021
+Last updated: 19 February 2024
+
+This section outlines standards for broadcast content so as to provide adequate protection for members of the public from harmful and/or offensive material.
+
+Guidance notes: Section two – Harm and offence (PDF, 182.1 KB)
+
+(Relevant legislation includes, in particular, sections 3(4)(g) and 319(2)(a),(f) and (I) of the Communications Act 2003, Articles 10 and 14 of the European Convention on Human Rights, and the BBC Charter and Agreement.)
+
+This section must be read in conjunction with Section one: Protecting the under-eighteens. The rules in this section are designed not only to provide adequate protection for adults but also to protect people under eighteen.
+
+Principle
+
+To ensure that generally accepted standards are applied to the content of television and radio services so as to provide adequate protection for members of the public from the inclusion in such services of harmful and/or offensive material.
+
+Rules
+Generally Accepted Standards
+
+2.1: Generally accepted standards must be applied to the contents of television and radio services and BBC ODPS so as to provide adequate protection for members of the public from the inclusion in such services of harmful and/or offensive material.
+
+2.2: Factual programmes or items or portrayals of factual matters must not materially mislead the audience.
+
+(Note to Rule 2.2: News is regulated under Section Five of the Code.)
+
+2.3: In applying generally accepted standards broadcasters must ensure that material which may cause offence is justified by the context (see meaning of “context” below). Such material may include, but is not limited to, offensive language, violence, sex, sexual violence, humiliation, distress, violation of human dignity, discriminatory treatment or language (for example on the grounds of age, disability, gender reassignment, pregnancy and maternity, race, religion or belief, sex and sexual orientation, and marriage and civil partnership), and treatment of people who appear to be put at risk of significant harm as a result of their taking part in a programme. Appropriate information should also be broadcast where it would assist in avoiding or minimising offence.
+
+Meaning of "context"
+
+Context includes (but is not limited to):
+
+the editorial content of the programme, programmes or series;
+the service on which the material is broadcast;
+the time of broadcast
+what other programmes are scheduled before and after the programme or programmes concerned
+the degree of harm or offence likely to be caused by the inclusion of any particular sort of material in programmes generally or programmes of a particular description;
+the likely size and composition of the potential audience and likely expectation of the audience;
+the extent to which the nature of the content can be brought to the attention of the potential audience for example by giving information; and
+the effect of the material on viewers or listeners who may come across it unawares.
+
+Time and scheduling of broadcast are not relevant to the provision of programmes on demand but, for programmes made available on BBC ODPS, context also includes (but is not limited to) the nature of access to the content e.g. whether there are measures in place that are intended to prevent children from viewing and/or listening to the content.
+
+Violence, dangerous behaviour and suicide
+
+2.4: Programmes must not include material (whether in individual programmes or in programmes taken together) which, taking into account the context, condones or glamorises violent, dangerous or seriously antisocial behaviour and is likely to encourage others to copy such behaviour.
+
+(See Rules 1.11 to 1.13 in Section One: Protecting the under-eighteens.)
+
+2.5: Methods of suicide and self-harm must not be included in programmes
+except where they are editorially justified and are also justified by the context.
+
+(See Rule 1.13 in Section One: Protecting the under-eighteens.)
+
+Exorcism, the occult and the paranormal
+
+2.6: Demonstrations of exorcism, the occult, the paranormal, divination, or practices related to any of these that purport to be real (as opposed to entertainment) must be treated with due objectivity.
+
+(See Rule 1.27 in Section One: Protecting the under-eighteens, concerning scheduling restrictions.)
+
+2.7: If a demonstration of exorcism, the occult, the paranormal, divination, or practices related to any of these is for entertainment purposes, this must
+be made clear to viewers and listeners.
+
+2.8: Demonstrations of exorcism, the occult, the paranormal, divination, or practices related to any of these (whether such demonstrations purport to be real or are for entertainment purposes) must not contain life-changing advice directed at individuals.
+
+(Religious programmes are exempt from this rule but must, in any event, comply with the provisions in Section Four: Religion. Films, dramas and fiction generally are not bound by this rule.)
+
+Meaning of "life-changing"
+
+Life-changing advice includes direct advice for individuals upon which they could reasonably act or rely about health, finance, employment or relationships.
+
+Hypnotic and other techniques, simulated news and photosensitive epilepsy
+
+2.9: When broadcasting material featuring demonstrations of hypnotic techniques, broadcasters must exercise a proper degree of responsibility in order to prevent hypnosis and/or adverse reactions in viewers and listeners. The hypnotist must not broadcast his/her full verbal routine or be shown performing straight to camera.
+
+2.10: Simulated news (for example in drama or in documentaries) must be broadcast in such a way that there is no reasonable possibility of the audience being misled into believing that they are listening to, or watching, actual news.
+
+2.11: Broadcasters must not use techniques which exploit the possibility of conveying a message to viewers or listeners, or of otherwise influencing their minds without their being aware, or fully aware, of what has occurred.
+
+2.12: Television broadcasters must take precautions to maintain a low level of risk to viewers who have photosensitive epilepsy. Where it is not reasonably practicable to follow the Ofcom guidance, and where broadcasters can demonstrate that the broadcasting of flashing lights and/or patterns is editorially justified, viewers should be given an adequate verbal and also, if appropriate, text warning at the start of the programme or programme item.
+
+Broadcast competitions and voting
+
+2.13: Broadcast competitions and voting must be conducted fairly.
+
+2.14: Broadcasters must ensure that viewers and listeners are not materially misled about any broadcast competition or voting.
+
+2.15: Broadcasters must draw up rules for a broadcast competition or vote. These rules must be clear and appropriately made known. In particular, significant conditions that may affect a viewer’s or listener’s decision to participate must be stated at the time an invitation to participate is broadcast.
+
+2.16: Broadcast competition prizes must be described accurately.
+
+(See also Rule 1.30 in Section One: Protecting the under-eighteens, which concerns the provision of appropriate prizes for children.)
+
+Note: For circumstances in which audience participation or interaction with programming (including broadcast competitions and voting) may involve a cost to the viewer, television broadcasters should also refer to Rules 9.26 to 9.30. Radio broadcasters should refer to Rules 10.9 and 10.10.
+
+Meaning of “broadcast competition”
+
+A competition or free prize draw featured in a programme in which viewers or listeners are invited to enter by any means for the opportunity to win a prize.
+
+Meaning of “voting”
+
+Features in a programme in which viewers or listeners are invited to register a vote by any means to decide or influence, at any stage, the outcome of a contest.
+
+See also...
+Broadcast and On Demand Bulletin: Notes to broadcasters
+
+Ofcom occasionally publishes notes to alert broadcasters and on demand service providers to key changes or information.
+
+Our approach to spectrum compliance and enforcement
+
+Anyone who uses spectrum must comply with our rules. Find out how we approach non-compliance and the actions we may take.
+
+Online Safety Act compliance guide for providers of online services
+
+Guidance for providers of online services about how to comply with Online Safety Act duties.
+
+Section three: Crime, disorder, hatred and abuse
+
+This section of the Broadcasting Code covers material that is likely to incite crime or disorder, reflecting Ofcom’s duty to prohibit the broadcast of this type of programming.
+
+Subscribe to email updates 
+Follow us
+x-twitter
+facebook
+linkedin
+youtube
+instagram
+tiktok
+About Ofcom
+What is Ofcom?
+Contact us
+Nations and regions
+Jobs
+General Privacy Statement
+Modern slavery statement
+Our work in Welsh
+About this website
+Accessibility
+Cookies policy
+Terms of use
+Copyright and information re-use
+© Ofcom 2026

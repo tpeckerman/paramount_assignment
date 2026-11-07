@@ -1,0 +1,170 @@
+{
+  "asset": {
+    "title": "Thriller",
+    "runtime_minutes": 13,
+    "content_type": "music_video",
+    "existing_certificates": [],
+    "intended_service": "music channel",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "music channel",
+      "date": "not_stated",
+      "start_time": "22:15",
+      "is_timeshift_of": null
+    },
+    {
+      "id": "t2",
+      "service": "music channel",
+      "date": "not_stated",
+      "start_time": "15:00",
+      "is_timeshift_of": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:02",
+      "category": "occult_paranormal",
+      "what_happens": "In the music video, a character transforms into a werewolf.",
+      "descriptors": ["transformation into a werewolf", "prosthetic effects", "sustained close-up"],
+      "duration_or_frequency": "sustained close-up; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A character transforms into a werewolf. Prosthetic effects, sustained close-up.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:02",
+      "category": "fear_distress",
+      "what_happens": "In the music video, the werewolf transformation is shown in a sustained close-up using prosthetic effects.",
+      "descriptors": ["prosthetic effects", "sustained close-up", "bodily transformation"],
+      "duration_or_frequency": "sustained close-up; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A character transforms into a werewolf. Prosthetic effects, sustained close-up.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:05",
+      "category": "occult_paranormal",
+      "what_happens": "In the music video, corpses rise from graves.",
+      "descriptors": ["corpses rise from graves", "graveyard", "risen dead"],
+      "duration_or_frequency": "extended sequence; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Corpses rise from graves. Decayed faces shown in detail over an extended sequence.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "00:05",
+      "category": "fear_distress",
+      "what_happens": "In the music video, decayed faces of the risen corpses are shown in detail over an extended sequence.",
+      "descriptors": ["decayed faces", "shown in detail", "extended sequence"],
+      "duration_or_frequency": "extended sequence; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Corpses rise from graves. Decayed faces shown in detail over an extended sequence.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o5",
+      "timecode": "00:09",
+      "category": "fear_distress",
+      "what_happens": "In the music video, a woman is pursued by the risen figures and is cornered by them inside a derelict house.",
+      "descriptors": ["pursuit", "woman cornered", "derelict house", "risen figures"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A woman is pursued and cornered by the risen figures inside a derelict house.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o6",
+      "timecode": "00:13",
+      "category": "occult_paranormal",
+      "what_happens": "In the music video, the closing shot shows the lead performer's eyes in a non-human form.",
+      "descriptors": ["non-human eyes", "final shot", "lead performer"],
+      "duration_or_frequency": "a single shot",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A final shot of the lead's eyes in a non-human form.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o7",
+      "timecode": "not_stated",
+      "category": "occult_paranormal",
+      "what_happens": "The music video opens with an on-screen disclaimer stating that the work does not endorse belief in the occult.",
+      "descriptors": ["on-screen disclaimer", "opens the work", "states no endorsement of belief in the occult"],
+      "duration_or_frequency": "once, at the start of the work",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "the work opens with an on-screen disclaimer stating it does not endorse belief in\n      the occult.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o8",
+      "timecode": "00:05",
+      "category": "occult_paranormal",
+      "what_happens": "In the 30-second trailer, the graveyard sequence is shown, including the decayed faces.",
+      "descriptors": ["trailer", "graveyard sequence", "decayed faces included"],
+      "duration_or_frequency": "within a 30-second trailer",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "The graveyard sequence, decayed faces included.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o9",
+      "timecode": "00:05",
+      "category": "fear_distress",
+      "what_happens": "In the 30-second trailer, the decayed faces from the graveyard sequence are shown.",
+      "descriptors": ["trailer", "decayed faces", "graveyard sequence"],
+      "duration_or_frequency": "within a 30-second trailer",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "The graveyard sequence, decayed faces included.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o10",
+      "timecode": "00:18",
+      "category": "fear_distress",
+      "what_happens": "In the 30-second trailer, the pursuit sequence is shown, cut faster than it is in the full video.",
+      "descriptors": ["trailer", "pursuit", "cut faster than in the full video"],
+      "duration_or_frequency": "within a 30-second trailer",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "The pursuit, cut faster than in the full video.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "the calendar dates of either the 22:15 music video showing or the 15:00 trailer break",
+    "whether a timeshift or +1 version of the music channel will also carry either showing, and at what time",
+    "whether either showing recurs, and how often the trailer is run",
+    "the name of the music channel and whether it is free-to-air, subscription or access-controlled",
+    "whether any access control, PIN or other restriction applies",
+    "whether any existing certificate or rating is held anywhere (the input says 'CERTIFICATE: none')",
+    "the programme the 15:00 break sits inside, and the age profile of its audience",
+    "whether the trailer carries the opening disclaimer that the full video carries",
+    "whether any warning, signposting or on-screen age label would be given before either showing",
+    "whether under-18s appear as participants or performers in the video",
+    "production origin / country of production",
+    "whether the work is or was intended as made primarily for children",
+    "which of the listed countries (UK, FR) each showing is for",
+    "the length of the individual sequences described as 'sustained' and 'extended'",
+    "whether there is any violence, injury detail or blood in the sequences described",
+    "whether the lyrics or audio contain anything a classifier would need (only visual events are listed)",
+    "the exact timecodes within the 13 min 42 s runtime, as the listed codes are given to the minute only and labelled indicative"
+  ],
+  "extractor_notes": "Runtime is stated as '13 min 42 s'. The schema accepts an integer only, so runtime_minutes is recorded as 13; the precise stated runtime is 13 minutes 42 seconds. The input describes two distinct pieces of material under one title: the full music video (13 min 42 s, slot 22:15) and a 30-second trailer cut from it (shown in a 15:00 break). The schema has one content_type for the asset, so it is set to music_video for the main work; observations o8 to o10 are the trailer's events and are marked as such in what_happens and descriptors, because the schema has no field linking an observation to a particular transmission or to a particular cut. That link is therefore not expressible: o1 to o7 belong to t1 and o8 to o10 to t2. The trailer's timecodes ('00:05', '00:18') are elapsed times within the 30-second trailer and are preserved exactly as given, which means they collide numerically with music-video timecodes while referring to a different piece of material; o3/o4 and o8/o9 both read '00:05' for this reason. Timecodes throughout are given to the minute (HH:MM) rather than HH:MM:SS and the lists are labelled 'indicative'; they are not padded or estimated. 'CERTIFICATE: none' is recorded as an empty existing_certificates array. 'COUNTRIES: UK, FR' is ambiguous: it may mean territories of transmission, countries of production or rights territories; it is not used for production_origin, which is left not_stated. The NOTE about the opening disclaimer is recorded as observation o7 because it is on-screen content; it has no timecode of its own beyond 'opens the work', and I cannot tell from the input whether the disclaimer is included in the trailer. The disclaimer and the content of the work sit in some tension as evidence: the work states it does not endorse belief in the occult while depicting supernatural events; both are recorded without reconciling them. Occult_paranormal is used for the werewolf transformation, the risen corpses, the non-human eyes and the disclaimer because they are supernatural/occult-referring; fear_distress is recorded separately where the input supplies detail about how the material is presented (sustained close-up, decayed faces in detail, pursuit and cornering). o2 is medium confidence because the input states the presentational detail but says nothing about intended or likely effect on a viewer. 'is_news_or_current_affairs' is 'no' on the basis of the stated descriptor 'music video'. 'is_made_primarily_for_children' is not_stated: the input says nothing about intended audience."
+}

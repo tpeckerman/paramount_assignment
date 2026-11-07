@@ -1,0 +1,140 @@
+{
+  "asset": {
+    "title": "Toofan",
+    "runtime_minutes": "not_stated",
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "not_stated"}
+    ],
+    "intended_service": "NTV, free-to-air satellite",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "NTV",
+      "date": "2026-05-29",
+      "start_time": "11:30",
+      "is_timeshift_of": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "11:33",
+      "category": "violence",
+      "what_happens": "A mass shooting in which a character uses a large machine gun to kill multiple people.",
+      "descriptors": ["mass shooting", "machine gun", "multiple deaths"],
+      "duration_or_frequency": "the description states this scene is repeated at 13:41",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A mass shooting. A character uses a large machine gun to kill multiple people.\n       This scene is repeated at 13:41.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "13:41",
+      "category": "violence",
+      "what_happens": "The mass shooting scene from 11:33 is shown again.",
+      "descriptors": ["repeated scene", "mass shooting", "machine gun"],
+      "duration_or_frequency": "second occurrence of the same scene",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "This scene is repeated at 13:41.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o3",
+      "timecode": "12:24",
+      "category": "violence",
+      "what_happens": "A man is stabbed to death.",
+      "descriptors": ["stabbing", "death", "bladed weapon"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is stabbed to death.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "12:24",
+      "category": "violence",
+      "what_happens": "A man is beheaded with a machete.",
+      "descriptors": ["beheading", "machete", "death"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Another is beheaded with a machete, followed by a shot\n       of the decapitated head being carried by the killer.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o5",
+      "timecode": "12:24",
+      "category": "human_dignity",
+      "what_happens": "A shot shows the killer carrying the decapitated head of the man he has beheaded.",
+      "descriptors": ["decapitated head", "body part displayed", "killer carries remains"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "followed by a shot\n       of the decapitated head being carried by the killer.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o6",
+      "timecode": "13:28",
+      "category": "violence",
+      "what_happens": "A man is choked to death during a wrestling match.",
+      "descriptors": ["choking", "death", "wrestling match setting"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is choked to death during a wrestling match.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o7",
+      "timecode": "13:28",
+      "category": "imitable_behaviour",
+      "what_happens": "Death is caused by choking applied in a wrestling match, a hold applied by one person to another.",
+      "descriptors": ["choking hold", "sporting context"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is choked to death during a wrestling match.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o8",
+      "timecode": "13:44",
+      "category": "violence",
+      "what_happens": "Multiple people are assassinated.",
+      "descriptors": ["assassination", "multiple deaths"],
+      "duration_or_frequency": "multiple people",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Multiple people are assassinated.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "total runtime of the asset",
+    "the exact scope of the BBFC 15 certificate (cinema, video or TV)",
+    "whether a timeshift or +1 version of NTV also carried or will carry this transmission, and at what time",
+    "whether any further transmissions of this asset are planned",
+    "the end time of the transmission (events are listed up to 13:44 but no finish is given)",
+    "whether under-18s appear as participants or performers",
+    "production origin / country of production of the film",
+    "the expected or measured size and age composition of the audience in this slot",
+    "whether the 29 May 2026 date falls in a school holiday period in the UK",
+    "whether the asset was edited for broadcast or shown in its certificated form",
+    "whether the depictions include blood, injury detail or close-up wound detail",
+    "the duration of each individual scene listed",
+    "whether the asset is or was intended as made primarily for children",
+    "whether any compliance or editorial justification for the content was recorded",
+    "whether an on-screen age label or icon was displayed",
+    "the language of the broadcast as transmitted and whether subtitles were used"
+  ],
+  "extractor_notes": "The header line 'COUNTRIES: UK' is ambiguous: it may mean the territory of transmission or the country of production. I have not used it for production_origin, which is left not_stated; the only origin-adjacent fact given is that the film is Bengali-language, which is a language and not a production country. 'CERTIFICATE: BBFC 15' gives no scope, so scope is not_stated. The description states 'NO WARNING OR SIGNPOSTING was given before or during the broadcast'; this is an absence of signposting that is positively asserted by the source rather than a missing fact, so it is recorded here rather than in not_stated. The event list is given as clock times during the transmission rather than as elapsed timecodes into the asset ('clock times during transmission, as recorded by the regulator'); they are preserved exactly as given and not converted to elapsed timecodes. The timecodes imply the transmission ran from 11:30 to at least 13:44, but no runtime or end time is stated. The 11:33 entry both describes a scene and states that it recurs at 13:41; I have recorded the recurrence as a separate observation (o2) to preserve the second timecode. o7 (imitable_behaviour for the choking) is a split of the same event as o6 because a method of killing applied by one person to another is shown; the source does not say whether technique detail is visible, so confidence is medium. 'is_news_or_current_affairs' is set to 'no' on the basis of the stated descriptor 'feature film... action'; 'is_made_primarily_for_children' is left not_stated because the description says nothing about intended audience. 'treatment' is recorded as 'fictional' for all observations because the source identifies the asset as a feature film; the source does not describe the visual style of any scene, so no scene is recorded as realistic or stylised."
+}

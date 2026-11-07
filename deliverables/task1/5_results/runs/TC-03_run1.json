@@ -1,0 +1,143 @@
+{
+  "asset": {
+    "title": "Mad Max: Fury Road",
+    "runtime_minutes": 120,
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "cinema"},
+      {"body": "BBFC", "rating": "15", "scope": "video"}
+    ],
+    "intended_service": "premium subscription film service with mandatory PIN access control, enabled by default and not disableable by the subscriber",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "premium subscription film service",
+      "date": "not_stated",
+      "start_time": "14:30",
+      "is_timeshift_of": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:08",
+      "category": "violence",
+      "what_happens": "A vehicle pursuit continues for a sustained period. A character is dragged along behind a moving vehicle.",
+      "descriptors": ["vehicular pursuit", "sustained", "character dragged behind vehicle"],
+      "duration_or_frequency": "described as sustained; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Sustained vehicular pursuit; a character is dragged behind a moving vehicle.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:23",
+      "category": "violence",
+      "what_happens": "A character is branded with a hot iron. The character's pain is shown. No graphic wound detail is shown.",
+      "descriptors": ["branding", "hot iron", "pain shown", "no graphic wound detail"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A character is branded with a hot iron. Pain is shown; no graphic wound detail.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:41",
+      "category": "human_dignity",
+      "what_happens": "Human beings are used as blood donors. They are restrained and bled. The description says this is depicted repeatedly.",
+      "descriptors": ["humans used as blood donors", "restrained", "bled", "repeated depictions"],
+      "duration_or_frequency": "repeated depictions; number and length not stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Repeated depictions of human beings used as blood donors, restrained and bled.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "00:41",
+      "category": "violence",
+      "what_happens": "People are restrained and have blood taken from them.",
+      "descriptors": ["restraint", "blood taken", "repeated depictions"],
+      "duration_or_frequency": "repeated depictions; number and length not stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Repeated depictions of human beings used as blood donors, restrained and bled.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o5",
+      "timecode": "01:06",
+      "category": "violence",
+      "what_happens": "Combat with improvised weapons continues for a prolonged period. Multiple characters die. Blood detail is limited.",
+      "descriptors": ["prolonged combat", "improvised weapons", "multiple deaths", "limited blood detail"],
+      "duration_or_frequency": "described as prolonged; no length given",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Prolonged combat with improvised weapons. Multiple deaths, limited blood detail.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o6",
+      "timecode": "01:34",
+      "category": "violence",
+      "what_happens": "A character falls under the wheels of a moving vehicle. The impact is implied and is not shown on screen.",
+      "descriptors": ["fall under vehicle wheels", "impact implied", "not shown"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "fictional",
+      "evidence": "A character falls under the wheels of a moving vehicle. Impact implied, not shown.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o7",
+      "timecode": "not_stated",
+      "category": "human_dignity",
+      "what_happens": "The work carries themes of captivity and of forced reproduction.",
+      "descriptors": ["captivity", "forced reproduction", "theme"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "not_stated",
+      "evidence": "THEMES: captivity, forced reproduction, references to sexual slavery. No sexual content\n        is depicted.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o8",
+      "timecode": "not_stated",
+      "category": "sexual_content",
+      "what_happens": "The work contains references to sexual slavery. The description states that no sexual content is depicted.",
+      "descriptors": ["references to sexual slavery", "not depicted"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "reported_not_shown",
+      "evidence": "THEMES: captivity, forced reproduction, references to sexual slavery. No sexual content\n        is depicted.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "the calendar date of the transmission (only the weekday, Wednesday, and the time 14:30 are given)",
+    "whether 14:30 is the start time of the film itself or of the slot",
+    "whether a timeshift or +1 version of the service will also carry the transmission, and at what time",
+    "whether there is more than one planned transmission of this asset",
+    "the name of the service (only 'premium subscription film service' is given)",
+    "how the mandatory PIN is set, what age it is tied to, and whether the subscriber can be an under-18",
+    "whether the PIN requirement is verified at the point of viewing for every viewer or once per household",
+    "whether the asset would be transmitted in its certificated form or edited for broadcast",
+    "whether any warning, signposting or on-screen age label would be given",
+    "the exact timecodes of the thematic material (captivity, forced reproduction, references to sexual slavery)",
+    "whether strong language occurs anywhere in the asset",
+    "whether under-18s appear as participants or performers",
+    "production origin / country of production",
+    "whether the asset is or was intended as made primarily for children",
+    "the duration of each individual scene listed",
+    "which of the listed countries (UK, FR) this transmission is for",
+    "whether the asset holds any certificate from a body other than the BBFC, for example a CNC rating for France",
+    "whether the Wednesday in question falls in a school holiday period"
+  ],
+  "extractor_notes": "The slot is given as '14:30, Wednesday': a weekday and a time but no calendar date, so date is not_stated and the recurring-versus-single nature of the slot is unclear (a weekday name may indicate a regular weekly slot). The input states an access control that the output schema has no field for: 'ACCESS CONTROL: mandatory PIN, enabled by default, cannot be disabled by the subscriber'. Because an omitted fact cannot be ruled on, I have recorded it verbatim here and folded it into intended_service; the transmissions entry has no place for it. The timecodes are given in HH:MM form only (for example '00:08'), not HH:MM:SS, and the input labels the event list 'indicative'. They are preserved exactly as given rather than padded to seconds or treated as exact. 'CERTIFICATE: BBFC 15 (cinema and home video)' describes one certificate level with two scopes; the schema allows one scope per entry, so it is recorded as two entries at the same rating. 'COUNTRIES: UK, FR' is ambiguous: it may mean the territories of transmission, the countries of production, or the rights territories. I have not used it for production_origin, which is left not_stated. The THEMES line has no timecode, so o7 and o8 carry timecode not_stated. That line also partly disagrees with itself as evidence about depiction: it lists 'forced reproduction' and 'captivity' as themes of the work while stating 'No sexual content is depicted'. I have recorded the sexual-slavery material as referenced and not depicted (as the line states) and the captivity and forced-reproduction material separately under human_dignity, without resolving whether the forced-reproduction theme is shown in any form; o7 is medium confidence for that reason. 'is_depicted' is false for o6 because the input says the impact is 'not shown', although the fall itself is described as occurring on screen; the input does not separate the two clearly. 'is_news_or_current_affairs' is 'no' on the basis of the stated descriptor 'feature film'. 'is_made_primarily_for_children' is not_stated: the description says nothing about intended audience. 'treatment' is recorded as 'fictional' where the only support is that the asset is a feature film; the input describes no scene's visual style, so none is recorded as realistic or stylised."
+}
