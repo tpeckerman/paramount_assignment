@@ -140,6 +140,16 @@ def main() -> None:
             untimed.append(rec)
 
     data = json.dumps({"timed": timed, "untimed": untimed}, ensure_ascii=False)
+
+    # A malformed colour value does not raise: CSS drops the declaration and the element
+    # renders with no fill, which looks like a layout fault rather than a typo. "#d6ead e"
+    # sat in this file with a space in the hex for its whole life and made every green bar
+    # an empty outline. Fail the build instead of shipping it again.
+    _root = re.search(r":root\{([^}]*)\}", HTML)
+    _bad = [d.strip() for d in _root.group(1).split(";") if d.strip()
+            and not re.fullmatch(r"--[a-z]+:#[0-9a-fA-F]{3,8}", d.strip())]
+    if _bad:
+        raise SystemExit(f"malformed CSS colour value(s): {_bad}")
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(HTML.replace("__DATA__", data), encoding="utf-8")
     never = sum(1 for r in untimed if r["never"])
@@ -154,7 +164,7 @@ HTML = r"""<!DOCTYPE html>
 <title>When each rule bites, over 24 hours</title>
 <style>
 :root{--bg:#fbfaf8;--ink:#1a1a1a;--mut:#6b6b6b;--line:#e2e0db;--card:#fff;
---ok:#2f7d55;--okb:#d6ead e;--no:#9e2b2b;--nob:#f6dada;--soft:#8a6d1f;--softb:#f6eccf;}
+--ok:#2f7d55;--okb:#d6eade;--no:#9e2b2b;--nob:#f6dada;--soft:#8a6d1f;--softb:#f6eccf;}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
 font:15px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;padding:28px}
