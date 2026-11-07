@@ -208,13 +208,14 @@ protection. Clearing it is wrong; banning it is also wrong.
 
 ### 4. The derived asset has its own slot
 
-> Music video at 22:15; its 30-second trailer in a 15:00 break. Same audio.
+> A documentary at 23:00; its 40-second promo in a 16:40 break. Same footage in both.
 
 ```
 Two decisions, not one.
-22:15 video:   post-watershed, permitted.
-15:00 trailer: assessed in ITS OWN slot [UK-TRL-002, UK-TRL-003]. It does not inherit the
-               video's permission, so identical audio breaches here.
+23:00 documentary: assessed in its slot.
+16:40 promo:       assessed in ITS OWN slot [UK-TRL-002, UK-TRL-003]. It does NOT inherit
+                   the parent's permission, so footage that was fine at 23:00 can breach
+                   here, and a viewer meets it without having chosen to.
 ```
 
 ### 5. The description contradicts itself

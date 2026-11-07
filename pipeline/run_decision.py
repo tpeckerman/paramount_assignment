@@ -102,6 +102,28 @@ def service_matches(rule_scope: str, requested: str | None) -> bool:
     return requested in tokens
 
 
+# An asset's FORM is not an observation. A music video is a music video whether or not any
+# observation mentions music, so a filter built from observation categories never asks for
+# the rules that govern music videos. Found by running TC-04, which is a music video on a
+# music channel: the table holds four music_videos rules and not one reached the slice,
+# because RUN 1 had emitted only fear_distress and occult_paranormal.
+#
+# This is the same bug as the access-control one, one layer up. That filter dropped rules
+# about DELIVERY; this one dropped rules about FORM. The lesson both times: a category filter
+# built from what is IN the content cannot retrieve rules about what the content IS.
+CONTENT_TYPE_CATEGORIES = {
+    "music_video": {"music_videos"},
+    "trailer": {"trailers"},
+}
+
+
+def categories_from_asset(stage1: dict | None) -> set[str]:
+    """Categories implied by the asset itself rather than by anything observed in it."""
+    if not stage1:
+        return set()
+    ctype = (stage1.get("asset") or {}).get("content_type")
+    return set(CONTENT_TYPE_CATEGORIES.get(ctype, ()))
+
 def select(rules, countries, service=None, categories=None):
     out, dropped = [], []
     wanted = set(categories or []) | ALWAYS_INCLUDE if categories else None
@@ -170,9 +192,17 @@ def main() -> None:
     obs_block = ""
     if a.stage1:
         s1 = json.loads(a.stage1.read_text(encoding="utf-8"))
-        cats = sorted({o["category"] for o in s1.get("observations", [])})
+        observed = {o["category"] for o in s1.get("observations", [])}
+        from_form = categories_from_asset(s1)
+        cats = sorted(observed | from_form)
         obs_block = json.dumps(s1, ensure_ascii=False, indent=1)
-        print(f"categories from {a.stage1.name}: {cats or '(none)'}", file=sys.stderr)
+        print(f"categories from {a.stage1.name}: {sorted(observed) or '(none)'}",
+              file=sys.stderr)
+        if from_form:
+            print(f"  plus {sorted(from_form)} because the asset's content_type is "
+                  f"{(s1.get('asset') or {}).get('content_type')!r}. Form is not an "
+                  f"observation, so nothing in the description would have asked for these.",
+                  file=sys.stderr)
 
     sel, dropped = select(rules, set(a.countries), a.service, cats)
     slice_json = build(sel)

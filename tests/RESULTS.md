@@ -126,6 +126,22 @@ written up as the demonstrated improvement in `TASK1_WRITEUP.md`. The short vers
 prompts were careful about how to reason and loose about where to put the answer, so facts
 that decide outcomes had nowhere to live and survived as prose.
 
+## One test was weakened by the prompt, and is now repaired
+
+A run flagged that RUN_2's fourth worked example used a music video at 22:15 with a trailer
+at 15:00, which is **TC-04's exact shape**. The prompt was telling the model the answer to
+one of the cases it was being tested on. The agent said it reasoned from the rules rather
+than copying, and I believe it, but a test whose answer is printed in the prompt is not a
+test.
+
+The example now uses a documentary and a promo at different times. TC-04 should be re-run
+against the revised prompt before its result is relied on; the result recorded above was
+produced under the contaminated version.
+
+Worth saying plainly that this is a general hazard of worked examples: they teach by showing
+an answer, and if the answer they show is a test case, the test stops measuring anything.
+Every other example was checked and none matches a case in this set.
+
 ## What is still not tested
 
 - **No independent re-derivation of the rules.** C-08 stands.
