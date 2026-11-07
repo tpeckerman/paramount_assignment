@@ -148,6 +148,15 @@ film, same certificate, nothing re-edited.
 
 Prompt: `prompts/BUILD_rules_from_sources.md`
 
+**None of this is a Task 1 deliverable.** Task 1 asks for the sources, located and presented,
+and for a table of rules. It does not ask how the table was made, and the table could have
+been typed by hand from the documents. Turning law into rows, at scale and repeatably, is
+what Task 2's first two questions are about, so this prompt is part of the design rather than
+part of the submission.
+
+It is described here because it is how this table was actually built, and a reader who wants
+to judge the rules deserves to know what produced them.
+
 This takes **one legal document** and produces **rows**. Its
 job is reading law. It runs 20 times, once per source, and again whenever a regulator amends
 something.

@@ -23,18 +23,25 @@ shown to the check at all.
 | | [`sources/originals/`](sources/originals/) | The documents themselves, so every quote can be checked |
 | | [`rules/RULES_TABLE_v1.xlsx`](rules/RULES_TABLE_v1.xlsx) | 103 rules across 6 tabs, with a readable legend and the open questions |
 | | [`rules/csv/Rules.csv`](rules/csv/Rules.csv) | The same rules as plain text, for diffing and for code |
-| **The full prompt** | [`prompts/BUILD_rules_from_sources.md`](prompts/BUILD_rules_from_sources.md) | Turns a law into rules. Run once per document |
-| | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) | Reads the content. Deliberately does not know the rules |
-| | [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) | Applies the rules and decides. This is the one the brief asks for |
+| **The full prompt** | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) | Reads the content. Deliberately does not know the rules |
+| | [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) | Applies the rules and decides |
 | **The test cases** | [`tests/CASES.md`](tests/CASES.md) | Eight cases on real media. Two have known real-world outcomes |
 | **The results of the runs** | [`tests/RESULTS.md`](tests/RESULTS.md) | What happened, the one failure, and the two bugs it exposed |
 | **Design choices** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Seven choices and why, plus the limits |
 | **Models and tools used** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Last section |
 
-There are three prompts because reading the law and applying the law are kept apart on
-purpose. That separation is what makes the quote check possible and what lets a wrong answer
-be traced to either the content or the rules. [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md) explains
-it with diagrams.
+**The deliverable is two prompts, not three.** The brief asks for a prompt that takes a
+content description and returns a decision, which is RUN 1 and RUN 2. They are split because
+reading the content and applying the rules are kept apart on purpose: that separation is what
+lets a wrong answer be traced to one or the other.
+
+There is a third prompt, [`prompts/BUILD_rules_from_sources.md`](prompts/BUILD_rules_from_sources.md),
+which turns a legal document into rows. **It is not a Task 1 deliverable.** The brief asks
+for a table of rules, not for a method of producing one, and the table could have been
+written by hand. How you turn thirty countries' law into rows at scale is Task 2's first two
+questions, so the prompt belongs there: it is the design, not the submission. It is in the
+repo because it is how this table was actually made, and hiding that would be worse than
+listing it in the wrong place.
 
 ### Task 2
 
