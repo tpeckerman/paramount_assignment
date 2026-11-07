@@ -54,7 +54,44 @@ large and scrollable in [`docs/diagrams.html`](docs/diagrams.html).
 **Supporting:** [`SCOPE.md`](SCOPE.md) why the boundary sits where it does ·
 [`sources/99_EXTRACTION_NOTES_AND_LIMITS.md`](sources/99_EXTRACTION_NOTES_AND_LIMITS.md) the
 limits in plain language · [`docs/timeline.html`](docs/timeline.html) a 24-hour view of which
-rules bite when · `pipeline/` the tooling that produced and checks all of it.
+rules bite when · `pipeline/` the tooling, explained below.
+
+---
+
+## Is the code a deliverable? No
+
+Neither task asks for code. Task 1 asks for sources and rules, a prompt, test cases, results,
+design choices and tools. Task 2 asks for a diagram, a worked rule, a validation plan and
+metrics. There are sixteen Python files here anyway, so this is what each is for and which
+ones are worth your time.
+
+**Two produce a deliverable.** `build_rules_table.py` generates the rules table, and
+`build_diagrams.py` renders the process diagram. The deliverable is the output, not the
+script, but the script is how it exists and how it is regenerated rather than hand-edited.
+
+**One is part of the solution.** `run_decision.py` picks which rules could apply before the
+deciding prompt is asked anything. That selection has to happen somewhere; doing it in the
+prompt would mean handing a model 103 rules and asking it to filter, which is slower, costs
+more, and can be argued with. It is step 11 in the written walkthrough.
+
+**Four are the evidence, and they are the ones to look at.** `verify_rules.py` checks every
+quote character for character against the stored source. `verify_cases.py` does the same for
+the outcomes claimed in the test cases, and fails the build on a count in prose that no longer
+matches the table. `precheck.py` and `postcheck.py` are the gates either side of the decision.
+
+Task 2 asks how you would test for correctness. These are that answer as working code rather
+than a plan, and they are the reason anything in this repo is trustworthy: they caught four
+quotes that were paraphrases or cited the wrong document, two bugs that silently dropped a
+rule from every decision, and three stale numbers sitting in prose.
+
+**The rest is plumbing**: collecting sources, importing what a browser saved, rendering the
+timeline and the answer table, closing out superseded rules, and `constants.py` holding every
+path and vocabulary in one place.
+
+**The honest caveat.** Sixteen files is more code than a prompt-engineering exercise needs.
+The reason it is here is that every check added found something real, and the ones that found
+nothing were deleted. If the checks had all come back clean, this would be scope creep rather
+than evidence.
 
 ---
 

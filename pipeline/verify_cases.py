@@ -83,6 +83,18 @@ def doc_count_claims() -> list[str]:
     }
     total = len(rows)
     wrong = []
+
+    # A file count in prose drifts the first time a script is added or deleted.
+    words = {13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen",
+             17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty"}
+    n_py = len(list((C.ROOT / "pipeline").glob("*.py")))
+    readme = C.ROOT / "README.md"
+    if readme.is_file():
+        text = readme.read_text(encoding="utf-8")
+        for n, word in words.items():
+            if n != n_py and re.search(rf"\b{word} Python files\b", text, re.I):
+                wrong.append(f"README.md: says {word!r} Python files, pipeline/ holds "
+                             f"{n_py}")
     for doc in sorted(C.ROOT.rglob("*.md")):
         if "originals" in str(doc):
             continue
