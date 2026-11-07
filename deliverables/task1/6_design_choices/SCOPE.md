@@ -1,156 +1,126 @@
-# Scope decision: what "other relevant broadcast restrictions" includes
+# What this covers, and what it does not
 
-The task is titled *Determine Age Rating and Broadcast Time Restrictions*, but one requirement
-bullet asks for "other relevant broadcast restrictions". Those two framings admit three
-different scopes, and the choice materially changes the answer, so it is recorded here rather
-than left implicit.
+The brief asks for an age rating and the hours a programme may be shown. One line also asks
+for "other relevant broadcast restrictions", which is vague enough to mean three different
+things. The choice changes the answers, so it is written down here.
 
-## The three candidate scopes
+## The question
 
-| | Scope | Verdict |
-|---|---|---|
-| A | Age rating and clock hours only | **Too narrow.** Produces answers that are wrong, not merely incomplete, see below. |
-| B | Everything in the Broadcasting Code | **Too broad.** Ten sections, mostly judgment-based, with one enforcement precedent for calibration. Yields confident mush and a tool that claims authority it cannot support. |
-| C | The age/time decision **and everything that conditions or substitutes for it** | **Chosen.** |
+Should the system report:
 
-## The inclusion test
+**A.** Only the age rating and the hours?
+**B.** Everything in the whole rulebook?
+**C.** The age and hours, plus anything that changes them?
 
-> Does this restriction or allowance **change, condition, or substitute for** the age/time
-> answer?
+**C was chosen.** The test for including something is: *does this change, condition, or
+replace the answer about age and hours?*
 
-The word doing the work in the requirement is "**relevant**", relevant to the thing the title
-names. That gives a sharp test rather than a vibe, and it cuts in a non-obvious place: it
-admits several restrictions that are not about time or age on their face.
+## Why A is not just incomplete, it is wrong
 
-### Why scope A is wrong rather than just incomplete
+There is a rule that says a film can be shown **at any hour of the day**, including a weekday
+afternoon, **provided** the channel has a PIN lock in place. Take the lock away and the same
+film is barred before 9pm.
 
-The table contains this row:
+A system reporting only age and hours gets this wrong in both directions. It says "any time"
+and drops the condition that earned it, which is a dangerous answer. Or it says "barred before
+9pm" and misses that a lock would lift the restriction entirely, which costs the broadcaster a
+slot it was entitled to use.
 
-```
-UK-FLM-003   Rule 1.24   any_time; requires=mandatory_daytime_protection
-```
+This is not an edge case. European law is built this way on purpose: it requires an outcome
+(children are protected) and lets a broadcaster get there by scheduling **or** by technical
+measures. The two are alternatives. A system that models only the clock cannot represent the
+trade.
 
-Permitted at **any hour**, including a weekday afternoon, *provided* a PIN gate is in place.
-Remove the PIN and the same film is barred before 21:00.
+## What is included, and why
 
-A scope-A tool reports "any time" and is catastrophically wrong, because it dropped the
-condition that earned the hours. The same tool reports "barred before 21:00" in the other
-direction and is wrong again, having missed that an available technical measure lifts the
-restriction entirely.
-
-This is not an edge case. It is the mechanism the EU framework is built on: Article 6a
-requires an *outcome* and permits scheduling **or** technical measures as alternatives. So the
-axes are not merely independent, **they are substitutes**, and a system that models only two
-of them cannot represent the trade.
-
-## In scope, with the reason
-
-| Restriction / allowance | Why it passes |
+| Included | Why |
 |---|---|
-| Mandatory restricted access, mandatory daytime protection (PIN) | Substitutes directly for an hour. |
-| The 20:00 watershed on unprotected premium subscription film services | The watershed is **not a single time**; it moves with service type and protection state. |
-| French *signalétique* (on-screen pictogram) | The pictogram **is** the classification's operative form. A French category reported without it is half an instrument. |
-| Audience information / advance warning | A context factor: bringing content to the audience's attention changes what is permissible in a slot. |
-| Adjacency (`not_near=children_programmes`) | A time restriction expressed against the schedule rather than the clock. |
-| Trailers and promos judged by their own slot | An age/time rule on a derived asset. A trailer does not inherit its film's permission. |
-| Quota caps (16/year, max 4 cinema titles) | A limit on how often a time derogation may be used. |
-| Service eligibility (category V on eligible services only) | Gates whether any answer exists at all. |
-| Derogations, exemptions, the fiction exemption, editorial justification | **Allowances**, which move the answer in the permissive direction. |
+| PIN locks and similar access controls | Directly replaces an hour |
+| The earlier watershed on unprotected premium film channels | The watershed is not one fixed time; it moves with the channel and whether a lock is present |
+| The French on-screen age symbol | In France the symbol *is* the rating in its working form. Reporting the category without it is half an answer |
+| Warnings given to viewers | Telling the audience what is coming changes what may be shown in a slot |
+| Rules about what a programme may sit next to in the schedule | A time restriction written against the schedule instead of the clock |
+| Trailers judged in their own slot | A trailer does not inherit the film's permission, so it is its own age and hours question |
+| Annual caps on how often a late-night exception may be used | A limit on a time allowance |
+| Which channels may show the most restricted category at all | Decides whether any answer exists |
+| Exemptions and justifications | See below |
 
-### On allowances
+**On exemptions.** A system that models only bans systematically over-restricts. For a
+broadcaster that is not a safe default: it is lost airtime and lost revenue for no gain in
+compliance. So permissions and exceptions are stored as proper rules, not as footnotes.
 
-Modelling only prohibitions systematically over-restricts. In a licensing context that is not
-a safe default. It is lost revenue and lost distribution, with no compliance benefit. The
-table therefore carries exemptions and derogations as first-class rows, not as notes.
+## What is excluded, and why
 
-## Out of scope, with the reason
+Rules about impartiality, accuracy, elections, fairness to contributors, privacy, and
+advertising or sponsorship. None of them produces an age rating or an hour. Each is a separate
+job, for a different reviewer, with a different remedy.
 
-Due impartiality and accuracy, elections, fairness, privacy, and commercial references. None
-conditions the age/time answer; each is a separate workflow with a different reviewer and a
-different remedy.
+Two of those exclusions are not as clean as they look, so they are flagged rather than
+silently dropped:
 
-Two qualifications, so the exclusions are not silent:
+- **The news rules do bind this broadcaster.** They are excluded because they yield no rating
+  and no hour, not because they do not apply. One trace of them remains: news is regulated
+  under a different section, so the system must still ask "is this news?" or it will apply a
+  rule that does not bind.
+- **The advertising rules matter for a preschool brand**, which restricts commercial
+  references in children's programmes. Excluded as a different workflow, but real.
 
-- **The news section binds this broadcaster**, a commercial PSB licence carries news
-  obligations. It is excluded because it yields no rating and no hour, not because it does not
-  apply. It is still retained as a **router**: the note to Rule 2.2 regulates news elsewhere,
-  so "is this news?" must be answered or a harm-and-offence rule gets applied where it does
-  not bind.
-- **The commercial-references section is live for a preschool brand**, which restricts
-  commercial references in children's programming. Excluded as a sponsorship and advertising
-  workflow, flagged rather than dropped.
+## The biggest gap: whose rules apply at all
 
-### Which channels these rules apply to at all
+**This is assumed, not established, and it is the most important limitation here.**
 
-**Assumed, not established.** The table answers "what are the rules?" for a channel that
-Ofcom regulates, and for a channel that the French regulator regulates. It does **not**
-establish whether a given channel is one of those, and that is a real question with a
-non-obvious answer.
+The table answers "what are the rules?" for a channel regulated by the UK regulator, and for a
+channel regulated by the French one. It does **not** tell you which of those a given channel
+is, and that is a real question with a surprising answer.
 
-The two countries decide it in opposite ways. France, in the EU, works on country of origin:
-a channel follows the rules of the country where the company is based, and the countries
-receiving it have to accept that. The UK, having left the EU, works mainly on country of
-destination: a service available in the UK generally needs an Ofcom licence wherever the
-company sits. So "where is this being watched" and "whose rules apply" are different
-questions, and in these two countries they come apart in opposite directions.
+The two countries decide it in opposite ways. France, inside the EU, goes by where the
+**company** is based: a channel follows the rules of its home country, and other countries
+receiving it have to accept that. The UK, having left the EU, mostly goes by where the service
+is **watched**: a channel available in the UK generally needs a UK licence wherever the company
+sits.
 
-Working that out needs facts about the company, not about the programme: where it is
-established, who licensed it, which treaties cover the route between the two countries. None
-of that can be read off a content description, which is the only input this system takes.
+So "where is this being watched" and "whose rules apply" are different questions, and in these
+two countries they come apart in opposite directions.
 
-So it is out of scope, and the boundary is: **this table assumes you already know the channel
-is regulated by Ofcom or by Arcom.** Feeding it a country because that is where the audience
-is will produce a confident answer out of the wrong rulebook. Recorded as open conflict C-16.
+Answering it needs facts about the company, not about the programme: where it is based, who
+licensed it, which treaties cover the route between the two countries. None of that can be
+read from a description of a programme, which is the only thing this system is given.
+
+**So the boundary is: this table assumes you already know which regulator covers the channel.**
+Feed it a country because that is where the audience is, and it will give you a confident
+answer out of the wrong rulebook. Recorded as open question C-16.
 
 ## The honest cost
 
-This tool will stay silent on a genuine fairness or privacy problem, and on commercial
-compliance. The write-up must say so plainly rather than implying full-Code coverage. A tool
-whose boundaries are stated is auditable; a tool that implies completeness it lacks is a
-liability.
+This system will stay silent on a real fairness problem, a real privacy problem, or an
+advertising breach. The write-up says so plainly rather than implying it covers the whole
+rulebook. A tool with stated boundaries can be audited. A tool that implies completeness it
+does not have is a liability.
 
----
+## For reference: which parts of the UK rulebook are used
 
-# Which Code sections are in scope
-
-## Section-by-section, with the reason stated
-
-| Section | In scope | Reason |
+| Section | Used | Why |
 |---|---|---|
-| One, Protecting the under-eighteens | **Yes** | The watershed and the child-audience tests. The whole point. |
-| Two, Harm and offence | **Yes** | Supplies the binding definition of "context", whose third factor is the time of broadcast. |
-| Three, Crime, disorder, hatred and abuse | **Yes** | Rules 3.2/3.3 are permitted "except where it is justified by the context", the same context test, so the hour is an input. Wrongly excluded at first; see C-11. |
-| Four, Religion | **Yes** | Rule 4.7 restricts claims of special powers when significant numbers of children may be watching. |
-| Five, Due impartiality and accuracy | **No, but it binds them** | Yields **no age rating and no broadcast hour**. A different compliance decision, not a different company's problem. Verified against the live page: "justified by the context" appears in no rule, "editorially justified" only at Rule 5.3, and no rule mentions children, the watershed or any time of day. |
-| Six, Elections and referendums | No | Cross-refers to Section Five. Same reason. |
-| Seven, Fairness | No | Governs treatment of contributors. No rating, no hour. |
-| Eight, Privacy | No | Same. |
-| Nine, Commercial references in TV | No, **with a caveat** | Restricts commercial references in children's programming, which a preschool brand makes live and real. But it governs *commercial* content, not the content rating or its slot: a separate sponsorship and advertising workflow, the same reason the ASA/BCAP codes are out. Flagged rather than silently dropped **because Milkshake! exists**. |
-| Ten, Commercial references on radio | No | Radio. Out of scope entirely. |
+| Protecting under-eighteens | Yes | The watershed and the child-audience tests. The core of the task |
+| Harm and offence | Yes | Supplies the binding definition of "context", and one of its factors is the time of broadcast |
+| Crime, disorder, hatred and abuse | Yes | Its rules bend to the same context test, so the hour is an input. This was wrongly excluded at first |
+| Religion | Yes | Restricts claims of special powers when many children may be watching |
+| Impartiality and accuracy | No | Produces no rating and no hour. Checked against the live text: no rule mentions children, the watershed, or any time of day |
+| Elections | No | Points back to impartiality |
+| Fairness, Privacy | No | About how contributors are treated. No rating, no hour |
+| Commercial references on TV | No, with the caveat above | Governs adverts and sponsorship, not the programme's rating or slot |
+| Commercial references on radio | No | Radio |
 
----
-
-## The routing flag this analysis produced
-
-Section Five is out of scope as a *source of restrictions* but in scope as a *router*. The
-note to Rule 2.2 states that news is regulated under Section Five, so for news content,
-Rule 2.2 does not apply.
-
-That makes **"is this news or current affairs?"** a question RUN 1 must answer, not because
-news gets different hours, but because answering it wrongly applies a Section Two rule that
-does not bind. Added to RUN 1's asset block as `is_news_or_current_affairs`.
-
-This is the general shape of the lesson: a section can be out of scope for what it *restricts*
-and still in scope for what it *disapplies*. Scoping by "does this section give me an hour?"
-alone would have missed it, the same single-test mistake as C-11, in a new costume.
-
----
+One lesson came out of this that is worth stating: **a section can be out of scope for what it
+restricts and still in scope for what it switches off.** The impartiality section gives no
+hours, but it is the reason the system has to ask whether a programme is news. Scoping only by
+"does this give me an hour?" would have missed that.
 
 ## What a local expert should check
 
-- Whether any Paramount French linear service survived the 2025 closure, and if so its
-  service type under the Arcom classification. This changes which French rules can fire.
-- The licence conditions attaching to `5` as a PSB, which may impose obligations beyond the
-  Code itself and are not in the Code text.
-- Whether `Milkshake!` is a separately licensed service or a block within `5`, which affects
-  how the children's-programming rules attach.
+- Whether any French linear channel in the group still operates after the 2025 closure, and
+  if so what kind of service it counts as. This changes which French rules can apply at all.
+- The licence conditions attached to the UK public-service channel, which may go beyond the
+  rulebook itself.
+- Whether the children's block is a separately licensed channel or a slot within the main one,
+  which changes how the children's rules attach.

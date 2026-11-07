@@ -1,0 +1,92 @@
+{
+  "asset": {
+    "title": "Market Kitchen",
+    "runtime_minutes": 30,
+    "content_type": "series_episode",
+    "existing_certificates": [],
+    "intended_service": "free-to-air general entertainment",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "free-to-air general entertainment",
+      "date": "not_stated",
+      "start_time": "11:00",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:06:20",
+      "timecode_clock": "elapsed",
+      "category": "violence",
+      "what_happens": "A presenter cuts a finger while slicing a vegetable. A plaster is applied. No blood is shown.",
+      "descriptors": ["accidental injury", "knife", "finger cut", "plaster applied", "no blood shown"],
+      "duration_or_frequency": "described as brief",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A presenter slices a vegetable and nicks a finger. A plaster is applied.\n          No blood is shown. The moment is brief and treated lightly.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:18:40",
+      "timecode_clock": "elapsed",
+      "category": "imitable_behaviour",
+      "what_happens": "A knife-skills demonstration is filmed close up in a domestic kitchen, showing knife handling technique.",
+      "descriptors": ["knife-skills demonstration", "filmed close up", "domestic kitchen"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A knife-skills demonstration, filmed close up, in a domestic kitchen.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:24:05",
+      "timecode_clock": "elapsed",
+      "category": "drugs_alcohol_smoking",
+      "what_happens": "A glass of wine is poured alongside the finished dish and tasted.",
+      "descriptors": ["wine", "alcohol poured", "alcohol tasted", "food pairing"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A glass of wine is poured alongside the finished dish and tasted.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast date (only '11:00 weekday' is given, with no date)",
+    "which weekday the 11:00 transmission falls on",
+    "whether the timecodes are elapsed or wall clock (inferred as elapsed from a 30-minute runtime and an 11:00 start; not stated explicitly)",
+    "whether a timeshift (+1) service also carries this transmission",
+    "whether any warning or signposting is given to viewers",
+    "any calendar context such as a school holiday or festival on the transmission date",
+    "whether any access control (PIN, lock, parental gate) applies",
+    "whether an existing cinema or video certificate exists (the description says 'CERTIFICATE: none')",
+    "whether under-18s appear as participants or presenters",
+    "whether the programme is made primarily for children",
+    "country or countries of production origin",
+    "the named channel carrying the transmission (only a service type is given)",
+    "whether the knife-skills demonstration shows any technique capable of imitation outside cooking",
+    "whether the wine is consumed beyond tasting, and by whom",
+    "exact duration of each event"
+  ],
+  "extractor_notes": "Timecodes are given in HH:MM:SS form and run to 00:24:05 within a stated 30-minute episode, so they are recorded as elapsed; the only wall-clock time given is the 11:00 transmission slot. 'The moment is brief and treated lightly' is the description's own characterisation of the finger cut; 'brief' is recorded in duration_or_frequency as the source's word and 'treated lightly' is not mapped to treatment because the source does not say the moment is staged as comedy, stylised or fictional - it says it is handled lightly, which is a framing remark rather than one of the controlled treatment values. The finger-cut event is filed under 'violence' as the nearest controlled category for an on-screen injury; it is an accident, not an assault, and the controlled vocabulary has no 'accident/injury' value. The knife-skills demonstration is filed under 'imitable_behaviour' because a technique is shown close up; it is a cookery technique and the description attaches no risk language to it. 'TRANSMISSION: 11:00 weekday' gives a time of day with no date, so the date cannot be checked against any calendar context. No access control, warning or signposting is mentioned anywhere in the description. 'COUNTRIES: UK, FR' names two territories for the same asset; only one transmission slot is described, and the description does not say whether the 11:00 slot applies in both territories."
+}

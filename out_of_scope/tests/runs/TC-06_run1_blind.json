@@ -1,0 +1,82 @@
+{
+  "asset": {
+    "title": "Step Brothers",
+    "runtime_minutes": "not_stated",
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "not_stated"}
+    ],
+    "intended_service": "free-to-air",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "free-to-air",
+      "date": "not_stated",
+      "start_time": "not_stated",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:48:10",
+      "timecode_clock": "elapsed",
+      "category": "sexual_content",
+      "what_happens": "A sex scene in which sexual intercourse is clearly depicted on screen. No nudity is shown. The staging is broad and unrealistic, scored for laughs, and the scene is intercut with reaction shots.",
+      "descriptors": ["sexual intercourse clearly depicted", "played for comedy", "no nudity", "broad and unrealistic staging", "scored for laughs", "intercut with reaction shots"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "comedic",
+      "evidence": "A sex scene played for comedy. Sexual intercourse is clearly depicted.\n          No nudity is shown. The staging is broad and unrealistic, scored for laughs,\n          and the scene is intercut with reaction shots.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:48:10",
+      "timecode_clock": "elapsed",
+      "category": "nudity",
+      "what_happens": "No nudity is shown during the sex scene.",
+      "descriptors": ["no nudity shown"],
+      "duration_or_frequency": "none",
+      "is_depicted": false,
+      "treatment": "comedic",
+      "evidence": "No nudity is shown.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast date",
+    "intended broadcast start time ('TRANSMISSION: not stated')",
+    "the named channel carrying the transmission (only 'free-to-air' is given)",
+    "whether a timeshift (+1) service also carries this transmission",
+    "whether any warning or signposting is given to viewers",
+    "any calendar context such as a school holiday or festival",
+    "whether any access control (PIN, lock, parental gate) applies",
+    "total runtime of the film",
+    "the scope of the BBFC 15 certificate (cinema, video or tv)",
+    "whether any certificate exists from any body other than the BBFC, for example for France",
+    "whether under-18s appear as participants",
+    "whether the programme is made primarily for children",
+    "country of production origin",
+    "duration of the sex scene",
+    "whether any other content of concern (language, drugs, violence) occurs elsewhere in the film - only one event is listed for a feature-length title",
+    "whether the broadcast version is cut or edited for television"
+  ],
+  "extractor_notes": "Only one event is listed for a feature film, and the description gives no runtime, so there is no way to tell whether the event list is complete or a single excerpt; a feature with a BBFC 15 certificate and one listed event is itself a finding. The single timecode is recorded as elapsed because no transmission time is given and 00:48:10 reads as a position within a feature. The event is split into two observations: the depicted sexual intercourse (sexual_content, is_depicted true) and the explicit absence of nudity (nudity, is_depicted false), because the description makes a positive statement about nudity that a classifier may need and that would be lost if merged. 'Played for comedy', 'broad and unrealistic' and 'scored for laughs' are the source's own framing words, so treatment is recorded as comedic; the source separately states intercourse is 'clearly depicted', so is_depicted is true for the sexual content - the comedic framing does not displace the depiction. 'COUNTRIES: UK, FR' names two territories; only a BBFC (UK) certificate is given and no French certificate is mentioned. No transmission time at all is stated, so nothing in this description can be checked against any time-of-day condition."
+}
