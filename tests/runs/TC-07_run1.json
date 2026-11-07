@@ -1,0 +1,84 @@
+{
+  "asset": {
+    "title": "The 40-Year-Old Virgin",
+    "runtime_minutes": "not_stated",
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "not_stated"}
+    ],
+    "intended_service": "free-to-air",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "free-to-air",
+      "date": "not_stated",
+      "start_time": "not_stated",
+      "is_timeshift_of": null
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:09:30",
+      "category": "sexual_content",
+      "what_happens": "Characters talk to each other about sexual acts, describing them in explicit terms. The dialogue is sustained and comic. No sexual activity is shown.",
+      "descriptors": ["dialogue only", "sexual acts described in explicit terms", "sustained", "comic", "no sexual activity shown"],
+      "duration_or_frequency": "the source describes the dialogue as \"sustained\"",
+      "is_depicted": false,
+      "treatment": "reported_not_shown",
+      "evidence": "Sustained comic dialogue between friends describing sexual acts in explicit\n          terms. No sexual activity is shown.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:21:15",
+      "category": "nudity",
+      "what_happens": "A man's bare chest is shown during a chest-waxing scene.",
+      "descriptors": ["bare male chest", "upper body uncovered"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "comedic",
+      "evidence": "A man's bare chest is shown; he shouts in pain.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:21:15",
+      "category": "offence_general",
+      "what_happens": "A man has his chest waxed and shouts in pain. The scene is played entirely for comedy.",
+      "descriptors": ["chest waxing", "shouts in pain", "pain played for comedy"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "comedic",
+      "evidence": "A chest-waxing scene. A man's bare chest is shown; he shouts in pain.\n          Played entirely for comedy.",
+      "extraction_confidence": "medium"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast day and time (the TRANSMISSION field is given as 'not stated')",
+    "intended broadcast date, so no check against school holidays or cultural or religious festivals is possible",
+    "the name of the service; only 'free-to-air' is given, which is a delivery type and not a channel",
+    "whether the service has a timeshift or +1 channel that would also carry the asset, and at what time",
+    "the scope of the BBFC 15 certificate (cinema, video or TV)",
+    "whether any certificate other than the BBFC 15 exists, including any rating for the FR territory",
+    "whether under-18s appear as participants or performers",
+    "total runtime of the asset",
+    "production origin or country of production",
+    "what the COUNTRIES field 'UK, FR' refers to (territory of transmission, production origin, or both)",
+    "whether the asset was edited for broadcast or is to be shown in its certificated form",
+    "the actual words used in the 00:09:30 dialogue, and whether any of them are expletives or swear words as opposed to explicit anatomical or sexual terms",
+    "the duration in minutes or seconds of the 'sustained' dialogue at 00:09:30",
+    "whether any sexual activity, nudity or strong language occurs anywhere else in the asset; only two events are listed",
+    "whether any part of the body other than the chest is uncovered in the 00:21:15 scene",
+    "whether blood, broken skin or injury is visible in the 00:21:15 scene",
+    "whether the 00:21:15 scene shows the waxing method in a way that could be followed",
+    "whether any warning, signposting or on-screen age label accompanies the transmission",
+    "whether the asset is made primarily for children",
+    "the ages of the characters in either scene"
+  ],
+  "extractor_notes": "'SERVICE: free-to-air' names a delivery type, not a channel, and 'TRANSMISSION: not stated' gives no date or time. Following the instruction that a decision is about a transmission, I have recorded one transmission with the service as given and date and start_time as not_stated; the missing date and time, and the possibility of a timeshift service, are both carried in not_stated. o1: the source says explicitly that no sexual activity is shown, so is_depicted is false and treatment is 'reported_not_shown'. I have not recorded a strong_language observation for this event: the source says the acts are described 'in explicit terms' but does not quote any word or say that expletives are used, so whether this is also a language matter cannot be established from the text; the gap is listed in not_stated. o2: I have categorised a bare male chest as 'nudity' because that is the nearest controlled-vocabulary value for uncovered body, but the source says only that the chest is bare and nothing about any other part of the body, so the confidence is medium and a reviewer may consider a bare chest outside the intended sense of the category. o3: the chest-waxing event, taken as the infliction of pain on a person played for comedy, fits none of the listed categories cleanly. It is not plainly violence (no assault, weapon or attack is described), not fear_distress (the framing is comic), and not imitable_behaviour on the text given (no instruction or technique detail is stated). As instructed, I have used 'offence_general' and flagged it here. o2 and o3 are a deliberate split of the single 00:21:15 entry: the bare chest and the depiction of pain are separate facts that may attract separate rules. treatment is 'comedic' for both, on the source's own words 'Played entirely for comedy'; for o1 the comic framing is stated too ('Sustained comic dialogue') but treatment carries 'reported_not_shown' instead, since the field can hold only one value and whether the event is shown is the more consequential distinction under the extraction rules. That the 00:09:30 event is comic is preserved in what_happens and descriptors. 'CERTIFICATE: BBFC 15' gives no scope, so scope is not_stated. is_news_or_current_affairs is set to 'no' on the basis of the stated descriptor 'comedy feature'. is_made_primarily_for_children is left not_stated because the description says nothing about intended audience."
+}

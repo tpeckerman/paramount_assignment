@@ -1,0 +1,64 @@
+{
+  "asset": {
+    "title": "Friends",
+    "runtime_minutes": 22,
+    "content_type": "series_episode",
+    "existing_certificates": [],
+    "intended_service": "general entertainment, pay TV, with a +1 timeshift channel",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "general entertainment, pay TV",
+      "date": "not_stated",
+      "start_time": "14:30",
+      "is_timeshift_of": null
+    },
+    {
+      "id": "t2",
+      "service": "+1 timeshift channel of the general entertainment pay TV service",
+      "date": "not_stated",
+      "start_time": "15:30",
+      "is_timeshift_of": "t1"
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:11:40",
+      "category": "sexual_content",
+      "what_happens": "Two characters are shown in bed together after sex, covered by a duvet, talking. No sexual activity is shown and no nudity is visible. The dialogue makes clear that they have had sex.",
+      "descriptors": ["post-coital scene", "two characters in bed", "covered by a duvet", "talking", "no sexual activity shown", "no nudity visible", "sex established through dialogue"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "fictional",
+      "evidence": "Two characters are shown in bed together after sex, covered by a duvet,\n          talking. No sexual activity is shown and no nudity is visible.\n          The fact that they have had sex is clear from the dialogue.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "the broadcast date; only '14:30 weekday' is given, so no check against school holidays or cultural or religious festivals is possible",
+    "which weekday the transmission falls on",
+    "the start time of the +1 timeshift transmission as a stated fact; 15:30 is derived from the '+1' label and is not written in the source",
+    "the name of the service and of its +1 channel",
+    "whether any further transmissions or repeats of this episode are planned",
+    "whether a cinema, video or TV certificate exists for this asset; the source says 'CERTIFICATE: none', which asserts the absence rather than leaving it unknown, but no statement is made about any non-BBFC or territory rating",
+    "whether under-18s appear as participants or performers",
+    "the episode's series and episode number or title",
+    "production origin or country of production",
+    "whether the asset was edited for broadcast, and whether any pre-broadcast compliance edit was applied",
+    "whether any other events occur in the episode; only one event is listed and no statement is made that it is the only one",
+    "whether strong language occurs anywhere in the episode",
+    "the duration of the 00:11:40 scene",
+    "whether the dialogue in the 00:11:40 scene refers to sexual acts in explicit terms, and in what words",
+    "the ages of the two characters in the 00:11:40 scene",
+    "whether any warning, signposting or on-screen age label accompanies either transmission",
+    "whether the asset is made primarily for children",
+    "the expected or measured size and age composition of the audience in either slot",
+    "whether the episode is shown with a pre-broadcast audience advisory on the pay TV service"
+  ],
+  "extractor_notes": "TRANSMISSIONS: the source gives one slot ('14:30 weekday') and states that the service has a '+1 timeshift channel'. I have therefore recorded two transmissions. The 15:30 start_time for t2 is derived from the meaning of '+1' and is not stated verbatim in the source; the derivation is also listed in not_stated so a reviewer can confirm it. No date is given for either, only 'weekday', so date is not_stated for both; the prompt treats a time without a date as a finding in itself. runtime_minutes is taken as 22 from the title line '(sitcom, 22 min episode)'. existing_certificates is an empty array because the source says 'CERTIFICATE: none'; note that this is a positive assertion of absence rather than missing information, which is why it is an empty list rather than an unknown. OBSERVATION: the 00:11:40 entry is recorded once, as sexual_content. is_depicted is false: the source states twice that nothing is shown ('No sexual activity is shown and no nudity is visible') and that the sex is established only through dialogue, so what is depicted is the aftermath, not the act. The aftermath itself (two people in bed under a duvet) is shown, so a reviewer may read is_depicted differently; the full text of what is and is not shown is preserved in what_happens, descriptors and evidence so the distinction is not lost. treatment is 'fictional' because the asset is identified as a sitcom; I have not used 'comedic' because the source does not say that this particular scene is played for laughs, only that the programme is a sitcom, and the prompt requires treatment to record what the description supports. No nudity observation is recorded, since the source states no nudity is visible. is_news_or_current_affairs is set to 'no' on the basis of the stated descriptor 'sitcom'. is_made_primarily_for_children is left not_stated: the source says 'general entertainment', which is not a statement about a child audience, and the prompt forbids inferring this flag from genre or tone."
+}
