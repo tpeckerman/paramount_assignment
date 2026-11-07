@@ -62,7 +62,7 @@ and black-bordered boxes are people. There are two flows.
 - **Amendments are the main risk at scale.** A 2014 amendment quietly broadened a French
   category, and a rule built from the original text under-rated content. So: store the current
   consolidated text and note which instrument last amended it. Re-check each source on a
-  schedule. A changed file sends every rule from that document back to unconfirmed. Then
+  schedule. A changed file means every rule from that document is re-checked. Then
   re-decide a sample of past decisions against the new text and see whether answers moved.
 - **Contradictions are stored, not resolved.** Record both sources, rank them by authority,
   and send them to a person.
@@ -74,7 +74,7 @@ and black-bordered boxes are people. There are two flows.
 ## 2. Organizing the rules
 
 One rules table, one row per sentence of law, fixed columns, plus the decisions table above.
-Four choices matter:
+The choices that matter:
 
 - **Rating, hours and conditions are stored separately.** A rule can change the hours without
   changing the rating. Example: a film may air at any time if the channel has a PIN lock, and
@@ -88,11 +88,8 @@ Four choices matter:
   working version for two countries.
 - **Dates on every rule.** Rules are closed with an end date, never deleted, so last year's
   decision can still be explained.
-- **"How the rule applies" and "does a person review decisions that use it" are separate columns.** Merging
-  them was the worst bug in Task 1: the system sent every decision to a human.
-
-Fixed word lists are enforced by the build. In Task 1 a misspelled service type silently
-dropped eight French rules.
+- **"How the rule applies" and "does a person review decisions that use it" are separate
+  columns.** Merging them was the worst bug in Task 1: every decision went to a person.
 
 ## Worked example: one rule
 
@@ -129,60 +126,102 @@ wrong and the rule goes back for re-reading.
 
 ## 3. Solution structure
 
-Three levels: **country** (the rules), **program** (the description, written once and reused
-for every country), and **channel**. The channel level is the one first drafts miss. The same
-program can be legal on one channel and not another, because rules attach to the kind of
-service, and in France each channel also has its own contract with the regulator, which can be
-stricter than the general law. Each country is decided on its own, so one failing does not block the rest.
+**What is shared across all countries, and what is specific to each?**
 
-**Whose rules apply.** The system takes a country and applies that country's rules. That is
-only right if the country is the one whose regulator covers the channel. Inside the EU, the
-rules of the country where the **company** is based apply, and other EU countries accept them.
-The UK mostly goes by whether the service is **available in the UK**. The input line naming
-countries does not say which meaning it has, so the system silently picks one.
+| Shared (built once) | Specific to each country |
+|---|---|
+| The two steps: describe the program, then decide | The rules, in the rules table |
+| The prompts for both steps | The rating scheme (France has five categories, the UK has none per program) |
+| The table's columns and fixed word lists | The channel types the rules attach to |
+| The program description, written once and reused for every country | The regulator, its decisions, and its source documents |
+| The checks, the cache and the review flow | The language of the sources, and the local expert |
 
-The fix is two tables. One lists, per channel, which regulator covers it, on what basis, and
-who confirmed it. The other lists, per pair of countries, whether B accepts A's regulator.
-Then apply exactly **one** country's rules, and refuse to decide if either table has no
-confirmed answer. Do not apply "the stricter of the two" as a shortcut: usually only one
-country's rules apply, and the stricter one pushes content later than the law requires. For Europe, a free public database called
-MAVISE lists which country regulates each channel. There is no worldwide equivalent.
+Channel type belongs in the country column for a reason. The same program can be legal on
+one channel and not another, because rules attach to the kind of service, and in France each
+channel also has its own contract with the regulator, which can be stricter than the general
+law. Each country is decided on its own, so one failing does not block the rest.
 
-## 4. Validation plan
+**Which decisions are made in the prompt, and which in code?**
 
-A test set written by the people who wrote the rules only tests whether the system agrees
-with them. Truth sources, strongest first:
+| In the prompt (needs reading and judgment) | In code (same input, same output) |
+|---|---|
+| Describing what happens in the program | Fetching sources and spotting changes |
+| Applying judgment rules to that description | Checking quotes, word lists and dates |
+| Writing the reasoning and the confidence score | Choosing which rules to hand to the prompt |
+| | Absolute bans, which nothing can override |
+| | Checking every claim cites a real rule |
+| | The cache lookup, and sending low-confidence cases to a person |
+| | Which country's rules apply to a channel |
 
-1. **Decided enforcement cases.** The regulator already ruled. Task 1 has exactly one, its
-   biggest weakness.
-2. **A local lawyer's written answer**, obtained before the system runs on the case.
+The last row matters. The system takes a country and applies that country's rules, which is
+only right if that country's regulator covers the channel. Inside the EU, the rules of the
+country where the **company** is based apply. The UK mostly goes by whether the service is
+**available in the UK**. So code needs two lookups: per channel, which regulator covers it
+and who confirmed it, and per pair of countries, whether B accepts A's regulator. Then apply
+exactly **one** country's rules, and refuse to decide if either lookup has no confirmed
+answer. Do not apply "the stricter of the two" as a shortcut, because usually only one
+country's rules apply. For Europe, a free public database called MAVISE lists which country
+regulates each channel. There is no worldwide equivalent.
+
+## 4. Correctness testing
+
+**How do we build a test set with approved answers?** Per country, cover each content area,
+each channel type, each rule with an exception, and at least **two benign cases that must come
+back clear**. A set of only difficult content cannot notice a system that restricts
+everything. Task 1 ran that way until a cookery program exposed a system that sent every
+case to a person.
+
+**Who approves the answers?** Never the person who wrote the rules. In order of strength:
+1. **A decided enforcement case.** The regulator already ruled, so the answer is on record.
+   Task 1 has exactly one, which is its biggest weakness.
+2. **A local lawyer's written answer**, written before the system runs on the case.
 3. **The broadcaster's own undisputed compliance decisions.**
 
-Per country, cover each content area, each channel type, each rule with an exception, and at
-least **two benign cases that must come back clear**. A test set of only difficult content
-cannot notice a system that restricts everything. Task 1 ran that way until a cookery program
-exposed a system that escalated every case. Run cases blind,
-with people or agents who have not seen the expected answers.
+**How do we stop the same error landing in both the solution and the answer?** Four rules:
+- The lawyer writes the answer from the law itself, without seeing the rules table or the
+  system's output.
+- Run the cases blind: people or agents who have not seen the expected answers.
+- When the system and the answer disagree, check the source law. Do not assume either is right.
+- Have a second person re-derive the fixed rules (times, absolute bans) from the primary
+  source and compare. Any difference is a finding about both.
 
-## 5. Success metrics
+## 5. Measurement and diagnosis
 
-Each metric is a number someone can compute from the test set or the logs. The targets are
-starting points, to be reset after the first month of real use.
+**How do we measure under-rating, over-rating and wrong hours?** Run the test set and count,
+per country:
+
+| Error | Count |
+|---|---|
+| **Under-rating** | Cases where the system gave a lower rating than the right answer. A breach |
+| **Over-rating** | Cases where it gave a higher rating. Lost airtime |
+| **Hours too early** | Cases where the earliest time is before the right time. A breach |
+| **Hours too late** | Cases where the earliest time is after the right time, and by how many minutes. Lost airtime |
+
+The UK has no rating per program, so UK answers are measured on hours and conditions only.
+
+**How do we tell a content error from a rule error?** The two steps are tested separately.
+- *Step two alone:* give it a hand-written correct description. If the answer is still wrong,
+  the fault is in the rules or the prompt.
+- *Step one alone:* give it a program with a known list of events. If events are missed or
+  mislabeled, the fault is in the description.
+
+Log every error as one of the two. A single error rate cannot tell them apart.
+
+### Success metrics
+
+Each is a number someone can compute from the test set or the logs. The targets are starting
+points, to be reset after the first month of real use.
 
 | Metric | How it is measured | Starting target |
 |---|---|---|
-| **Missed restrictions** | Of test cases where the right answer is "restricted," how many the system cleared. This is a regulatory breach. | 0. Any miss blocks release |
-| **Needless restrictions** | Of test cases where the right answer is "clear," how many the system restricted. This is lost airtime. | Under 5% |
-| **Cases sent to a person** | Share of all decisions that go to a reviewer, per country. Task 1's first run sent 100%. | Under 15% |
-| **Reviewer overturn rate** | Of the cases reviewers see, how many they change. Also re-check a random 2% of the cases that skipped review. | Under 5% |
-| **Wrong cache answers** | Re-decide 2% of cache hits from scratch each month and count how many answers differ. | Under 1% |
-| **Rule update time** | Days from a regulator publishing a change to the rules table and cache updating. | Under 1 business day |
-| **Stale sources** | Number of sources not checked in the last 7 days. | 0 |
-| **Test coverage** | Share of content categories with at least 2 test cases. Task 1 covers 7 of 11. | 100% |
-
-When an error shows up, give step two a hand-written correct description. If the answer is
-still wrong, the fault is in the rules or prompt. If it is right, step one described the
-program wrongly.
+| **Missed restrictions** | Of test cases where the right answer is "restricted," how many the system cleared | 0. Any miss blocks release |
+| **Needless restrictions** | Of test cases where the right answer is "clear," how many the system restricted | Under 5% |
+| **Cases sent to a person** | Share of all decisions that go to a reviewer, per country. Task 1's first run sent 100% | Under 15% |
+| **Reviewer overturn rate** | Of the cases reviewers see, how many they change. Also re-check a random 2% of cases that skipped review | Under 5% |
+| **Wrong cache answers** | Re-decide 2% of cache hits from scratch each month and count how many differ | Under 1% |
+| **Rule update time** | Days from a regulator publishing a change to the table and cache updating | Under 1 business day |
+| **Stale sources** | Sources not checked in the last 7 days | 0 |
+| **Test coverage** | Share of content categories with at least 2 test cases. Task 1 covers 7 of 11 | 100% |
 
 ## What can be automated, and what needs a local expert
 
@@ -200,17 +239,6 @@ program wrongly.
 | **Confirming which regulator covers a channel** | **Local expert** |
 | Final call on anything the system escalated | Compliance reviewer |
 
-Everything mechanical can be automated. Every judgment threshold needs a person. Of Task 1's 105 rules,
-45 turn on a judgment, and one decided case exists to calibrate them. Finding qualified
+Everything mechanical can be automated. Every judgment threshold needs a person. Of Task 1's 105
+rules, 45 turn on a judgment, and one decided case exists to calibrate them. Finding qualified
 reviewers in each country is the real constraint, so start hiring before the engineering.
-
-## Rollout
-
-Start with **two countries, deep**, to build the controls (quote checking, amendment
-detection, blind tests, the three error types), which are impossible to retrofit later. Then
-**five countries in one legal family**, to test the rule structure without adding translation
-and a new legal tradition at once. Add the jurisdiction tables before leaving the EU. Then
-widen.
-
-Measure the escalation rate from day one. A system that sends everything to a person is not
-careful, it is not working.
