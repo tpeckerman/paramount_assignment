@@ -125,77 +125,33 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
 ## Rules of extraction
 
 1. **Report, don't rate.** Write "a character is stabbed; blood is visible", not "graphic
-   violence" or "moderate violence". Severity words are thresholds in disguise.
-2. **`is_depicted` answers one question only: was it shown?** Shown on screen, described in
-   dialogue, and implied off screen are three different things and several rules turn on
-   which. Set `is_depicted` false for an event only spoken about.
-3. **`treatment` answers a different question: how was it framed?** Comedic, stylised and
-   fictional framings change outcomes under several rules. Record what the description
-   supports; never upgrade a flat description to "realistic" because realistic feels safer.
-
-   **Keep the two apart.** An event can be comic AND only spoken about: explicit sexual
-   banter between characters is `is_depicted: false` with `treatment: comedic`. Neither
-   value displaces the other, and collapsing them into one field would throw away whichever
-   the extractor judged less important.
-4. **`not_stated` is a deliverable, not an apology.** The most consequential failure in this
-   system is a confident decision made on absent information. Every entry here is a question
-   the pipeline can ask a human. Always consider at minimum: intended service type, intended
-   broadcast day and time, whether an existing cinema certificate exists and its exact level,
-   whether under-18s appear as participants, and total runtime.
+   violence".
+2. **`is_depicted`: was it shown?** Shown on screen is true. Only spoken about, or implied off
+   screen, is false.
+3. **`treatment`: how was it framed?** Record what the description supports. Never upgrade a
+   flat description to "realistic". An event can be comic and not shown: sexual banter is
+   `is_depicted: false`, `treatment: comedic`.
+4. **`not_stated` is an answer.** List every missing fact a person could supply. Always
+   consider: service type, broadcast day and time, existing cinema certificate, whether
+   under-18s take part, runtime.
 5. **Quote your evidence.** `evidence` must be a verbatim span from the input. If you cannot
-   quote it, you are inferring, set `extraction_confidence` to `low` and say so.
-6. **Do not resolve contradictions.** If the description says "no violence" in a summary line
-   and then lists a fight at 00:14:22, record both and flag it in `extractor_notes`. RUN 2
-   and the human reviewer need to see the conflict, not your tidied-up version of it.
-7. **Timecodes matter beyond ordering.** Clustering, total screen time and proximity to the
-   start all feed real rules. Preserve them exactly as given; never normalize or estimate.
-8. **No empty output.** A description with no classifiable events still returns the JSON with
-   an empty `observations` array and a populated `not_stated`.
-9. **Access control is a field, not a remark.** If the description says anything about a
-   PIN, a lock, a parental gate or restricted access, fill `access_control` on the
-   transmission it applies to and quote the words used.
-
-   This is the single most outcome-changing fact a description can carry: a gate of that
-   kind turns a restricted hour into any hour. Written into prose instead of the field, a
-   decision step that reads fields cannot see it, and the answer comes out **more
-   permissive** than the law allows with nothing flagged.
-
-   `on_by_default` and `user_can_disable` are separate questions and both matter: a gate the
-   viewer can switch off is not the same instrument as one they cannot.
-
-10. **Say which clock each timecode uses, on the observation.** `elapsed` counts from the
-   start of the program. `wall_clock` is the time of day it went out. The digits cannot
-   tell them apart, and in a scheduling decision the difference is the whole question: 11:33
-   as a time of day is a weekday morning, and 11:33 elapsed is the middle of a long film.
-
-   `timecode_clock` sits on the **observation**, not the transmission, because the two can
-   differ: a program starting at 14:30 whose events are counted from zero has a wall-clock
-   start time and elapsed event timecodes. `start_time` is always a time of day.
-
-   Copy a timecode exactly as written. `00:08` in a source means what that source means by
-   it, and padding it to `00:08:00` turns eight minutes into eight seconds.
-
-11. **Two more facts that change outcomes and are not events.** Both have fields, for the
-   same reason access control does: prose hides things from anything that reads fields.
-   - `warning_or_signposting`: whether viewers were told what was coming. A regulator has
-     treated its absence as making an otherwise borderline broadcast a breach.
-   - `calendar_context`: a festival, holiday or school break. Audience composition moves
-     with the calendar, and a regulator has treated a festival date as raising the likely
-     child audience. This is why the **date** matters and not only the time: a time with no
-     date cannot be checked against any of it, so `date: not_stated` is itself a finding.
-
-12. **A decision is about a TRANSMISSION, not about the asset.** List every showing you are
-   told about, separately. The same file can be compliant on one and not on another with no
-   edit between them: a `+1` service re-broadcasts an hour later, so content placed while
-   children are at school lands after they are home. If the description mentions one slot,
-   record one transmission and put the possibility of a timeshift service in `not_stated`.
-   Do not assume there is not one.
-13. **The two asset-level flags are routers, not ratings.** News is regulated under a
-   different Code section, so a wrong `is_news_or_current_affairs` applies a harm-and-offense
-   rule that does not bind. Several rules attach to intended audience rather than to anything
-   depicted, which is what `is_made_primarily_for_children` routes. Set either to `not_stated`
-   rather than inferring from genre or tone. A cartoon is not automatically made for children,
-   and a documentary is not automatically news.
+   quote it, set `extraction_confidence` to `low`.
+6. **Do not resolve contradictions.** Record both sides and flag them in `extractor_notes`.
+7. **Copy timecodes exactly.** Never normalize or estimate. `00:08` is not `00:08:00`.
+8. **No empty output.** With no events, return an empty `observations` array and a filled
+   `not_stated`.
+9. **Access control is a field.** If the description mentions a PIN, lock, parental gate or
+   restricted access, fill `access_control` on the transmission it applies to and quote the
+   words. Record `on_by_default` and `user_can_disable` separately.
+10. **Say which clock each timecode uses**, on the observation: `elapsed` (from the start of
+    the program) or `wall_clock` (time of day). `start_time` is always a time of day.
+11. **Two more fields.** `warning_or_signposting`: were viewers told what was coming?
+    `calendar_context`: a festival, holiday or school break. A missing date is
+    `date: not_stated`.
+12. **One entry per transmission, not per asset.** List every showing you are told about. If
+    only one is mentioned, record one and note a possible `+1` timeshift in `not_stated`.
+13. **`is_news_or_current_affairs` and `is_made_primarily_for_children` are not ratings.**
+    Set either to `not_stated` rather than inferring from genre or tone.
 
 ---
 
