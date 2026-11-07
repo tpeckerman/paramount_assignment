@@ -37,21 +37,6 @@ Seven of eleven content categories are exercised. Not tested:
 - `suicide_self_harm` (2 rules)
 - `religion` (1 rule)
 
-A pass rate here is a pass rate on the seven.
-
----|---|---|
-| `strong_language` | 4 | A common real breach type, and the clearest case of something **audible and not visible**, which a picture-only description would miss |
-| `suicide_self_harm` | 2 | Has its own rules on method and imitation |
-| `hatred_discrimination` | 2 | Judged on treatment, not on whether the words were said |
-| `drugs_alcohol_smoking` | 1 | Turns on glamorisation, not depiction |
-| `religion` | 1 | Section Four exists; nothing here goes near it |
-
-Four of the five are judgment calls, so the gap sits on top of the table's known weak spot.
-
-A pass rate over six of eleven categories is a pass rate **on the six**. Same shape as the
-quote-coverage defect in `RESULTS.md`. the test-claim checker (repository only) prints this denominator on
-every run so it cannot go stale.
-
 ---
 
 ## TC-01: Back-test against a real Ofcom decision
