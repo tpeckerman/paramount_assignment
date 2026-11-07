@@ -34,7 +34,7 @@ Three agents with no memory of the project, barred from the expected answers.
 |---|---|
 | Cookery show, plaster on a finger | Clear in both countries, no human needed |
 | Music video at 22:15 | Permitted, no human needed |
-| Its trailer at 15:00 | Barred, escalates |
+| Its trailer at 15:00 | Barred, Escalates for France only |
 | Film, free-to-air | Barred before 9pm; France branched by channel type |
 | Documentary contradicting itself | Escalates, low confidence |
 | Sitcom, after-sex scene at 2:30pm | Fine at 2:30pm, no human needed |
