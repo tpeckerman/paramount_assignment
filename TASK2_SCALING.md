@@ -1,5 +1,31 @@
 # Task 2, Scaling to dozens of countries
 
+## What is answered where
+
+The five questions, and the four things Task 2 asks for:
+
+| Question | Section |
+|---|---|
+| 1. Source collection and validation | [1. Source collection and validation](#1-source-collection-and-validation) |
+| 2. Organizing the rules | [2. Organizing the rules](#2-organizing-the-rules) |
+| 3. Solution structure | [3. Solution structure](#3-solution-structure) |
+| 4. Correctness testing | [4. Correctness testing](#4-correctness-testing) |
+| 5. Measurement and diagnosis | [5. Measurement and diagnosis](#5-measurement-and-diagnosis) |
+
+| Deliverable | Section |
+|---|---|
+| A process diagram | [Process](#process) |
+| An example of how a single rule is represented | [Deliverable: how a single rule is represented](#deliverable-how-a-single-rule-is-represented) |
+| A validation plan | [4. Correctness testing](#4-correctness-testing) |
+| Success metrics | [5. Measurement and diagnosis](#5-measurement-and-diagnosis) |
+
+Two sections sit outside that list because the brief also asks what needs a local expert, and
+because the order countries are added in turns out to matter:
+[what can be automated](#what-can-be-automated-and-what-needs-a-local-expert) and
+[rollout order](#rollout-order).
+
+---
+
 ## The claim this plan rests on
 
 Two countries produced about twenty real defects. **Every single one was silent.** Nothing
@@ -283,6 +309,38 @@ It doubles as a regression test nobody has to write. The comparison is between t
 same system over the same input with only the rules changed, so any difference is attributable
 to the amendment or to non-determinism, and both are things you want to see.
 
+### Contradictions, translation, and gaps
+
+The brief asks about three things that all have the same shape: the source does not give you
+a clean answer. Each needs a different response, and none of them is "pick the likeliest".
+
+**Contradictions between sources.** Two documents say different things. Resolve by rank: the
+lower the number in the list above, the more it counts, so a binding instrument beats a
+guidance note and both beat a summary page. This is not theoretical. The French regulator's
+own public summary page contradicted its binding text about which hours applied, and the
+binding text won. **Record the losing reading too**, in the row's note. If someone later asks
+why the summary page says otherwise, the answer is already written down.
+
+**Translation.** Only the original language is legally authentic. Where we work from a
+translation, the row says so, and a reviewer who reads the original has to re-check it. The
+quote we store is the original-language quote, not the translated one, because that is the
+text the law actually consists of. The translation goes alongside it for readers. This is a
+live weakness here: the French rules are quoted from an official English translation that
+states only the French is authentic.
+
+**Missing information, meaning the source does not settle the question.** This is the one
+people get wrong. There are three different situations and they are not interchangeable:
+
+| situation | what it means | what to do |
+|---|---|---|
+| The document does not mention it | The law is genuinely silent | Do not write a rule. Silence is not permission and it is not prohibition. Log it as a question for the local expert |
+| The document mentions it but is vague | The law leaves it to judgement | Write the rule, mark it as needing judgement, and route it to a person every time |
+| We could not read it properly | Our problem, not the law's | Mark the row unverified and do not let it reach a decision until someone has read it |
+
+Writing a confident rule for any of the three is worse than writing none, because a rule in
+the table gets used. The worst habit to allow is filling a gap with what the neighbouring
+country does.
+
 ### Link health, honestly
 
 Three URLs failed in three different ways and I had labelled all three "bot-blocked". From
@@ -305,7 +363,7 @@ guidance notes both said "Issue Six".
 
 ---
 
-## 2. Rule representation
+## 2. Organizing the rules
 
 One row per operative rule. The schema is the same in every country; only the values differ.
 
@@ -324,6 +382,28 @@ One row per operative rule. The schema is the same in every country; only the va
 | `verbatim_quote` | the proof |
 | `amended_by`, `valid_from` | currency |
 | `examples` | the regulator's own worked examples |
+
+### Validity dates, so an old decision can still be explained
+
+Every row carries the date its wording took effect (`valid_from`) and, once replaced, the date
+it stopped applying (`valid_to`) with its status set to `superseded`.
+
+**Rows are never deleted.** That is the whole point. If a regulator asks in two years why a
+programme was scheduled the way it was, the answer has to be the rule as it stood *on the day
+it was broadcast*, not the rule as it stands now. Delete the old row and that question becomes
+unanswerable. Keep it, and a decision from last year can be replayed exactly.
+
+So a decision stores the rule versions it used, not just the rule IDs. The same ID can mean
+two different things a year apart, and "we applied rule FR-SCH-003" is not an answer unless
+you can say which version of it.
+
+This also makes a legal change measurable rather than just disruptive: with both versions on
+hand you can re-run old decisions under the new wording and see which ones change. That idea
+is described under the amendment problem above.
+
+**Honest caveat:** no rule in the current table has actually been through this. Nothing was
+amended during the project, so every row is a first version and the `superseded` path has
+never carried anything. It is written and untested.
 
 ### Three distinctions that must not collapse
 
@@ -350,7 +430,50 @@ field before country three, not after country thirty.**
 
 ---
 
-## 3. Shared versus country-specific
+## Deliverable: how a single rule is represented
+
+One rule, followed from the law to a decision. This is the worked example Task 2 asks for.
+
+Take the French category III restriction.
+
+**Collect.** Arcom recommendation, consolidated. Rank 2. Check `amended_by`, a 2014
+instrument broadened the category definition, so the consolidated text is required and the
+original would under-rate. *This is the exact mistake that reached my table.*
+
+**Extract.**
+
+```
+rule_id          FR-SCH-003
+authority_rank   2
+service_type     other_than_cinema_channels
+content_category violence
+classification   III_-12
+time_rule_machine not_before=22:00
+exceptions_conditions  derogation after 20:30 except Tue/Fri/Sat/holiday-eve/school
+                       holidays; annual_quota=16; sub_quota=4 cinema-banned-to-under-12s
+determinacy      bright_line
+verbatim_quote   "réservés à un public averti … après 22 h 30 sur les autres services"
+amended_by       délibération 2014-17
+```
+
+**Check.** Quote must appear in the stored file. Two French rows failed this and turned out
+to be paraphrased from a government summary rather than the instrument.
+
+**Sign off.** A French media lawyer confirms the quota interacts with the derogation as
+modelled, and that the 2014 broadening is captured.
+
+**Use.** A title with sustained violence, on a general channel, Wednesday 20:45 → the
+derogation is available, Wednesday is not excluded, but it consumes one of sixteen. The
+decision cites `FR-SCH-003` and reports the quota consumption, because a quota silently
+exhausted in week nine is a breach in week ten.
+
+**Monitor.** If reviewers keep overturning this rule, the threshold is miscalibrated.
+
+---
+
+---
+
+## 3. Solution structure
 
 **Shared, build once:**
 
@@ -408,46 +531,39 @@ Represent these as data, not code. The engine should never contain the string `2
 
 ---
 
-## 4. One rule, end to end
+## 4. Correctness testing
 
-Take the French category III restriction.
+### Who approves the right answers, and why it cannot be us
 
-**Collect.** Arcom recommendation, consolidated. Rank 2. Check `amended_by`, a 2014
-instrument broadened the category definition, so the consolidated text is required and the
-original would under-rate. *This is the exact mistake that reached my table.*
+A test set is only worth as much as the answers in it. If the person who built the system also
+decides what the correct answers are, the tests prove the system agrees with its author. They
+prove nothing about the law.
 
-**Extract.**
+That is not hypothetical, it is the state of Task 1. I wrote the rules, the prompts, the test
+cases and the checker, and I ran them. **Every passing test in Task 1 should be discounted on
+that basis.** The failures are the trustworthy part, because a system rarely fails in a way
+its author expected.
 
-```
-rule_id          FR-SCH-003
-authority_rank   2
-service_type     other_than_cinema_channels
-content_category violence
-classification   III_-12
-time_rule_machine not_before=22:00
-exceptions_conditions  derogation after 20:30 except Tue/Fri/Sat/holiday-eve/school
-                       holidays; annual_quota=16; sub_quota=4 cinema-banned-to-under-12s
-determinacy      bright_line
-verbatim_quote   "réservés à un public averti … après 22 h 30 sur les autres services"
-amended_by       délibération 2014-17
-```
+So, at scale:
 
-**Check.** Quote must appear in the stored file. Two French rows failed this and turned out
-to be paraphrased from a government summary rather than the instrument.
+| who | what they approve | why them |
+|---|---|---|
+| The country's expert | The correct answer for every test case in their country | They are the only person who can say what the regulator would actually do |
+| A second person, who has not seen the rules table | The clear-cut rules, re-derived from the original laws | Catches the case where the table and the tests share one misreading |
+| The channel's compliance contact | Anything resting on facts about that channel | Those facts cannot be researched centrally. See the channel level in section 3 |
 
-**Sign off.** A French media lawyer confirms the quota interacts with the derogation as
-modelled, and that the 2014 broadening is captured.
+The second row is the important one and the easiest to skip. If the same person writes the
+rule and writes the test answer, a misreading appears in both and they agree with each other
+forever. The test passes, and it passes *because* the error is in both places. Nothing inside
+the system can detect this. The only fix is a second person deriving the rules from the
+original laws without seeing what we wrote, and then comparing. Where the two disagree, treat
+it as a finding about **both**, not as the second person being wrong.
 
-**Use.** A title with sustained violence, on a general channel, Wednesday 20:45 → the
-derogation is available, Wednesday is not excluded, but it consumes one of sixteen. The
-decision cites `FR-SCH-003` and reports the quota consumption, because a quota silently
-exhausted in week nine is a breach in week ten.
+This costs real money and it is the first thing that gets cut. Budget it per country from the
+start, because if it is not in the plan at country three it will never be added by country
+thirty.
 
-**Monitor.** If reviewers keep overturning this rule, the threshold is miscalibrated.
-
----
-
-## 5. Testing for correctness
+### Building the set
 
 **Golden set per country.** 30-50 assets with expert-agreed answers. Build them to *break*
 the system: in Task 1, five cases found two real bugs, and the productive pair were the same
@@ -481,13 +597,63 @@ validation, and a regenerate-and-diff of the CSV mirrors so a binary table canno
 
 ---
 
-## 6. Measurement and diagnosis
+## 5. Measurement and diagnosis
 
 Measure in two directions: **is it right**, and **is it useful**.
 
+### The three ways of being wrong are not equally bad
+
+"Wrong" is too coarse to act on. A wrong answer here is wrong in one of three ways, and they
+cost completely different things, so they get separate numbers and separate targets.
+
+| how it is wrong | what it means | what it costs | target |
+|---|---|---|---|
+| **Under-rating** | The system was more permissive than the rule. It cleared something for an earlier slot or a wider audience than it should have | A possible breach. Fines, on-air apologies, licence trouble. This is the one that ends careers | **under 0.5%, and every single one reviewed individually** |
+| **Over-rating** | The system was stricter than the rule. It pushed something later or added a condition that was not required | Lost audience and lost money, quietly. Nobody complains, so nobody finds out | under 5% |
+| **Wrong hours** | The rating was right but the permitted times were not | Either of the above depending on direction, and this is the most common one in practice because hours depend on things the rating does not | under 2%, split by direction |
+
+**Never report these as one number.** They point in opposite directions. A system tuned to
+avoid under-rating will over-rate constantly, and a combined accuracy figure will look stable
+while the business quietly loses slots. Both numbers have to be visible at once, and
+over-rating needs its own owner, because under-rating complains about itself and over-rating
+never does.
+
+Wrong hours gets its own line because of something Task 1 found the hard way: the rating does
+not predict the hours. The same rating gives different times on different service types and
+different weekdays, and one country issues no per-programme rating at all. A system can get
+the rating exactly right and the hours completely wrong, and measuring only "accuracy" hides
+that entirely.
+
+### Telling a content mistake apart from a rules mistake
+
+This is the question that decides who fixes a problem, and the whole two-stage design exists
+to make it answerable.
+
+The system reads the content in one step (RUN 1) and applies the rules in a separate step
+(RUN 2), and RUN 1 does not know the rules exist. So when an answer is wrong, there is a
+clean test:
+
+> Take the corrected description, the one a person fixed by hand, and run **only** the second
+> step again on it.
+>
+> - **The answer comes out right.** The rules were fine. The system misread the content. Fix
+>   belongs in RUN 1 or in the description it was given.
+> - **The answer is still wrong.** The content was read correctly and the rules were applied
+>   wrongly, or the rule itself is wrong. Fix belongs in the table or in RUN 2.
+
+That one re-run splits every failure into two piles, and the piles go to different people. A
+misreading is a prompt problem. A misapplication is a rules problem and usually needs the
+country's expert.
+
+Without the separation you cannot do this. A single step that reads the law and the content
+together gives you one wrong answer and no way to say which half caused it, so every failure
+turns into an argument.
+
+### Everything else
+
 | metric | target | what it tells you |
 |---|---|---|
-| Decisions overturned at review | < 5% | correctness |
+| Decisions overturned at review | < 5% | correctness overall, before splitting as above |
 | Quote integrity | 100% | nothing drifted |
 | Rules citing stale guidance | 0 | the amendment loop works |
 | Sources past re-check date | 0 | collection is alive |
@@ -512,7 +678,7 @@ Track **coverage gaps** explicitly. An observation matching no rule is informati
 
 ---
 
-## 7. Automate versus local expert
+## What can be automated, and what needs a local expert
 
 **Automate:** fetching and hashing; currency and link checks; quote integrity; vocabulary and
 schema conformance; first-pass extraction; rule selection; applying bright-line rules;
@@ -543,7 +709,7 @@ quote already attached, so the expert starts from evidence instead of a blank pa
 
 ---
 
-## 8. Rollout
+## Rollout order
 
 **Countries 3-5: deliberately slow.** The goal is not coverage, it is discovering which
 assumptions were UK/France-specific. Pick maximally different frameworks, one with a real

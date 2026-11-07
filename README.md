@@ -15,15 +15,36 @@ shown to the check at all.
 
 ## The deliverables
 
-| # | Asked for | Where |
+### Task 1
+
+| Asked for | Where | What is in it |
 |---|---|---|
-| 1 | Sources, with links and scope | [`sources/00_SOURCE_INVENTORY.md`](sources/00_SOURCE_INVENTORY.md) and [`sources/originals/`](sources/originals/) |
-| 2 | Table of rules | [`rules/RULES_TABLE_v1.xlsx`](rules/RULES_TABLE_v1.xlsx) (6 tabs) and [`rules/csv/Rules.csv`](rules/csv/Rules.csv) |
-| 3 | The full prompt | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) then [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) |
-| 4 | Test cases | [`tests/CASES.md`](tests/CASES.md) |
-| 5 | Results and failure analysis | [`tests/RESULTS.md`](tests/RESULTS.md) |
-| 6 | Design choices, models and tools | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) |
-| | **Task 2**, scaling to dozens of countries | [`TASK2_SCALING.md`](TASK2_SCALING.md) |
+| **Sources and a table of rules** | [`sources/00_SOURCE_INVENTORY.md`](sources/00_SOURCE_INVENTORY.md) | All 20 sources with links, scope and link health |
+| | [`sources/originals/`](sources/originals/) | The documents themselves, so every quote can be checked |
+| | [`rules/RULES_TABLE_v1.xlsx`](rules/RULES_TABLE_v1.xlsx) | 103 rules across 6 tabs, with a readable legend and the open questions |
+| | [`rules/csv/Rules.csv`](rules/csv/Rules.csv) | The same rules as plain text, for diffing and for code |
+| **The full prompt** | [`prompts/BUILD_rules_from_sources.md`](prompts/BUILD_rules_from_sources.md) | Turns a law into rules. Run once per document |
+| | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) | Reads the content. Deliberately does not know the rules |
+| | [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) | Applies the rules and decides. This is the one the brief asks for |
+| **The test cases** | [`tests/CASES.md`](tests/CASES.md) | Five cases on real media, including a back-test against a decided regulator case |
+| **The results of the runs** | [`tests/RESULTS.md`](tests/RESULTS.md) | What happened, the one failure, and the two bugs it exposed |
+| **Design choices** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Seven choices and why, plus the limits |
+| **Models and tools used** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Last section |
+
+There are three prompts because reading the law and applying the law are kept apart on
+purpose. That separation is what makes the quote check possible and what lets a wrong answer
+be traced to either the content or the rules. [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md) explains
+it with diagrams.
+
+### Task 2
+
+| Asked for | Where |
+|---|---|
+| The five questions, each as a numbered section | [`TASK2_SCALING.md`](TASK2_SCALING.md) |
+| A process diagram | [`TASK2_SCALING.md`](TASK2_SCALING.md), "Process" |
+| An example of how a single rule is represented | [`TASK2_SCALING.md`](TASK2_SCALING.md), "Deliverable: how a single rule is represented" |
+| A validation plan | [`TASK2_SCALING.md`](TASK2_SCALING.md), section 4 |
+| Success metrics | [`TASK2_SCALING.md`](TASK2_SCALING.md), section 5 |
 
 **New to the repo?** [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md) has the diagrams and explains how a
 content description becomes a decision.
