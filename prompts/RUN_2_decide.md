@@ -131,6 +131,7 @@ two as one tier would ban most of what the system exists to schedule.
     "axis_note": "how the three relate; say plainly if the rating does not predict the hours",
     "reasoning": "auditable prose, every claim carrying a rule_id",
     "confidence": "high | medium | low",
+    "rules_checked_not_triggered": [{"rule_id": "", "why_not": "what was absent from the content"}],
     "human_review_required": true,
     "review_reasons": [],
     "missing_information": [{"field": "", "why_it_matters": "", "what_changes_if_answered": ""}],
@@ -139,6 +140,46 @@ two as one tier would ban most of what the system exists to schedule.
   "cross_country_note": "where the two diverge and what drives it"
 }
 ```
+
+## Checked is not the same as relied on
+
+A rule can be in your slice, be read, and not bite. **Say so, in
+`rules_checked_not_triggered`, rather than leaving it out.**
+
+This matters more than it sounds. A judgement rule that you looked at and found inapplicable
+is not a judgement you made about this content. It is a rule you ruled out. If every
+judgement rule in the slice counts as "relied on" merely for being present, then every
+decision involves a judgement, every decision escalates, and the system hands back all of its
+work.
+
+That is not hypothetical. The first full run of these prompts escalated **17 decisions out of
+17**, including a benign control: a cookery programme where someone has a plaster on a cut
+finger. Every answer was individually defensible and the system as a whole was useless,
+because it saved nobody any work.
+
+So:
+
+- `basis` is for a rule that **changes the answer**: it sets or moves the hours, fixes the
+  classification, or imposes a condition.
+- `rules_checked_not_triggered` is for a rule you read and set aside, with one line saying
+  what was missing.
+- **Escalate on what is in `basis`, not on what is in the slice.** If no judgement rule is
+  doing work in your answer, do not route to a person for one that is not.
+
+## When nothing in the content engages a rule
+
+If you work through the observations and **no rule is engaged**, that is a result. Say it:
+hours permitted, `human_review_required: false`, and `rules_checked_not_triggered` listing
+what you checked.
+
+Do not manufacture a restriction because the content exists and the rules are strict. "I
+checked these twelve rules and none of them bite" is a complete, useful, auditable answer,
+and refusing to give it is how a compliance tool becomes something people route around.
+
+**The limit on this.** It does not apply when you were not told something that would change
+the answer. Missing information is still missing, still goes in `missing_information`, and
+still escalates if it bears on the result. The release here is for rules that genuinely do
+not apply to the content in front of you, not for rules you cannot evaluate.
 
 ## Hard constraints
 

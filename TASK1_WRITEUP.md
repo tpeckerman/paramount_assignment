@@ -49,7 +49,7 @@ part. It is closer to the reverse.
 | | Deterministic? | Example |
 |---|---|---|
 | Deciding **what is in** the content | **No.** This is where the judgment lives. | Is this violence "presented repeatedly"? Is this treatment "derogatory"? Is the method "easily imitable"? |
-| Applying rules **once that is settled** | **Largely yes.** 37 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
+| Applying rules **once that is settled** | **Largely yes.** 32 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
 
 The rule-application half is close to a lookup, which is why most of the effort here went into
 making the table correct and checkable rather than into prompt wording.
@@ -252,7 +252,7 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **45 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
+- **47 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
   table. Exactly one decided enforcement case has been collected, so the table can say "a
   human must decide" but cannot say where the line sits. The guidance names roughly twelve
   more enforcement bulletins; collecting them is the highest-value work left (C-07).

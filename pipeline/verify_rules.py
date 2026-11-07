@@ -369,6 +369,34 @@ def check_precheck_agrees(rows: list[dict]) -> list[str]:
     return bad
 
 
+EXCEPTION_WORDS = ("unless", "except", "save ", "other than", "provided", "sauf", "hormis",
+                   "réserve", "justified", "justifié", "derogat", "dérogat", "where ")
+
+
+def check_exception_evidence(rows: list[dict]) -> tuple[list[str], int, int]:
+    """Does a rule's QUOTE support the exception its machine field claims?
+
+    Reported, not failed, and the distinction is deliberate. An exception often lives in a
+    different sentence from the one that states the rule, so a missing exception word in the
+    quote is not proof of error. It is proof that **nothing has checked it**, which is a
+    different and still important thing.
+
+    The hours check closed one half of this hole: a row's times are now compared against its
+    quote. This is the other half, and it is wider. An external reviewer found it by reading
+    the table, which is the only way it could have been found, because no check looked.
+    """
+    flagged, checkable = [], 0
+    for r in rows:
+        machine = (r["time_rule_machine"] or "").lower()
+        if not re.search(r"unless=|requires=|except", machine):
+            continue
+        checkable += 1
+        quote = (r["verbatim_quote"] or "").lower()
+        if not any(w in quote for w in EXCEPTION_WORDS):
+            flagged.append(r["rule_id"])
+    return flagged, checkable, len(rows)
+
+
 def check_service_vocab(rows):
     bad = []
     for r in rows:
@@ -423,6 +451,8 @@ def main() -> int:
     problems += time_bad
     problems += check_precheck_agrees(rows)
 
+    exc_flagged, exc_checkable, _ = check_exception_evidence(rows)
+
     if args.with_quotes:
         problems += check_quotes(rows)
 
@@ -431,6 +461,10 @@ def main() -> int:
     print("  by status    :", dict(Counter(r["status"] for r in rows)))
     print("  by determinacy:", dict(Counter(r["determinacy"] for r in rows)))
     print("  needs review :", sum(1 for r in rows if r["human_review_required"] == "yes"))
+    print(f"  EXCEPTIONS:  {len(exc_flagged)} of {exc_checkable} rules that claim an exception "
+          f"or condition have a quote that does not contain one. NOT a failure, because an "
+          f"exception often sits in a different sentence, but nothing has checked them "
+          f"(C-18).")
     print(f"  HOURS vs QUOTE: {time_checkable} of {time_total} rules have a time in both "
           f"the machine field and the quote, so only those were compared. The other "
           f"{time_total - time_checkable} are NOT verified on this axis, merely unexamined.")

@@ -216,7 +216,7 @@ add("UK-LNG-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Prohibited before 21:00. No contextual justification available pre-watershed.",
     "not_before=21:00",
     "Absolute pre-watershed. Post-watershed use still subject to Rule 2.3 context.",
-    "bright_line", "clear",
+    "judgment_based", "clear",
     "Note: 'the most offensive language' is a defined Ofcom concept informed by its periodic audience-attitudes research; the Code itself does not enumerate the words.",
     "yes", "UK-S1", "Rule 1.14", U_S1, "2021-03-03", "open", "approved",
     "The most offensive language must not be broadcast before the watershed",
@@ -228,7 +228,7 @@ add("UK-LNG-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Applies at all times to programmes for younger children.",
     "prohibited_in=programmes_for_younger_children",
     "Turns on programme type, not clock time.",
-    "bright_line", "clear", "", "no",
+    "conditional", "clear", "", "no",
     "UK-S1", "Rule 1.15", U_S1, "2021-03-03", "open", "approved",
     "Offensive language must not be used in programmes made for younger children", "EN", "high")
 
@@ -301,7 +301,7 @@ add("UK-FLM-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "No film REFUSED classification by the BBFC may be broadcast, unless it has subsequently been classified or the BBFC has confirmed it would not be subject to compulsory cuts under current standards. Restrictions also apply to cut versions.",
     "No permitted time unless subsequently classified/confirmed.", "prohibited;unless=subsequently_classified",
     "Survives MDP - unchanged by the 2018 review.",
-    "bright_line", "clear", "Hard pre-check in code.", "no",
+    "conditional", "clear", "Hard pre-check in code.", "no",
     "UK-S1", "Rule 1.22", U_S1, "2021-03-03", "open", "approved",
     "No film refused classification by the British Board of Film Classification", "EN", "high")
 
@@ -857,7 +857,7 @@ add("UK-SUI-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "imitative harm rather than mere offence. No automated verdict should stand alone on "
     "suicide or self-harm method depiction.", "yes",
     "UK-S2", "Rule 2.5", U_S2, "2021-03-03", "open", "approved",
-    "Methods of suicide and self-harm must not be included in programmes", "EN", "high")
+    "must not be included in programmes except where they are editorially justified", "EN", "high")
 
 add("UK-MUS-001", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv; music_channels", "music_videos", "context_dependent",
@@ -1184,7 +1184,7 @@ add("FR-TRL-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "trailers", "II_to_V",
     "Trailers must display the PICTOGRAM OF THE PROGRAMME'S CATEGORY THROUGHOUT the trailer, and must NOT contain scenes likely to offend young viewers.",
     "n/a - content and display obligation", "n/a", "",
-    "bright_line", "clear", "", "no",
+    "conditional", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "apparaît pendant toute la durée de la bande-annonce", "FR", "high")
 
@@ -1192,7 +1192,7 @@ add("FR-TRL-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "trailers", "III_-12",
     "Category III (-12) trailers MAY NOT AIR CLOSE TO CHILDREN'S PROGRAMMES. Category II trailers near children's programmes require particular care.",
     "Placement restriction.", "not_near=children_programmes", "",
-    "bright_line", "clear", "", "no",
+    "judgment_based", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
     "ne peuvent être diffusées à proximité des émissions pour enfants", "FR", "high")
 

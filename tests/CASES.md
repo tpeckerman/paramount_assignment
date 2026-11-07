@@ -18,6 +18,7 @@ decades.
 | TC-06 | *Step Brothers*, comic sex scene | `sexual_content` | Comedy does not excuse every rule | Clearing it for being funny with no nudity |
 | TC-07 | *The 40-Year-Old Virgin* | `sexual_content`, `nudity` | ...and sometimes it does | Answering it the same way as TC-06 |
 | TC-08 | *Friends*, after-sex scene at 14:30 | `sexual_content` | **Being too strict, which nobody reports** | Pushing it to 21:00 and nobody noticing |
+| TC-09 | Cookery show, plaster on a cut finger | `serious_harm`, `imitable_behaviour`, `drugs_alcohol_smoking` | **A benign control: does anything ever come back clear?** | Escalating it, which the first run did |
 
 The category column uses the rules table's controlled vocabulary, not free text, so it can be
 checked against the rules the engine actually selects.
@@ -316,3 +317,46 @@ Two details kept rather than tidied away:
   so the daytime answer does not depend on which you pick.
 - There is a **+1 channel**, so the same episode airs again at 15:30. That is `UK-SCH-009`,
   and answering for 14:30 alone answers half the question.
+
+---
+
+## TC-09: a benign control, which the set was missing
+
+Every other case here is content with something in it. That is a test set that can only ever
+measure one thing: whether the system restricts enough. It cannot notice a system that
+restricts everything, because nothing in it should come back clear.
+
+An external reviewer ran exactly this gap and found it: a cookery programme with a plaster on
+a cut finger escalated in both countries, alongside four deliberately hostile inputs. Five out
+of five. At that point the escalation rate stops being a number about content and becomes a
+number about the system.
+
+```
+TITLE: Market Kitchen (cookery series, 30 min episode)
+CERTIFICATE: none
+SERVICE: free-to-air general entertainment
+TRANSMISSION: 11:00 weekday
+COUNTRIES: UK, FR
+
+EVENTS
+00:06:20  A presenter slices a vegetable and nicks a finger. A plaster is applied.
+          No blood is shown. The moment is brief and treated lightly.
+00:18:40  A knife-skills demonstration, filmed close up, in a domestic kitchen.
+00:24:05  A glass of wine is poured alongside the finished dish and tasted.
+```
+
+**Right answer.** Permitted at 11:00 in both countries, with no condition and no escalation.
+
+**What it tests, which nothing else here does.** The system has rules about injury, about
+imitable behaviour in a setting a viewer could reproduce, and about alcohol. All three are in
+the slice. **All three should be read and set aside**, and the answer should say so rather
+than escalating because a judgement rule was present.
+
+**Why the first run failed it.** The reviewer found that the description step forced the cut
+finger into `serious_harm`, because the closed category list has no value for a minor injury.
+Then the decision step saw a judgement rule in its slice and escalated, as it was built to do.
+Neither step did anything wrong on its own terms.
+
+**This is the case that would catch the escalation fix going too far.** If a later change
+relaxes escalation until TC-09 passes, TC-01 and the hostile inputs must still escalate. A
+benign control is only useful next to cases that must not come back clear.

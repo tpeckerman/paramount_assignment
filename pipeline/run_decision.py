@@ -86,6 +86,25 @@ def load_rules() -> list[dict]:
         return list(csv.DictReader(fh))
 
 
+# Each country names its service types in its own words, and the names do not line up. The
+# UK has `premium_subscription_film`; France regulates `cinema_channels` and
+# `other_than_cinema_channels`. Asking for the UK token therefore matched NOTHING in the
+# French rows and silently dropped 8 of them, which is why TC-03's French answer came back
+# "unanswerable". That was the filter, not the law.
+#
+# The equivalences below are DELIBERATELY APPROXIMATE and are not legal findings. A UK
+# premium film service and a French chaine cinema are similar commercial animals governed by
+# different instruments, and only a lawyer in each country can say how far the analogy runs.
+# They exist so a rule is SEEN and weighed, not so it is applied silently: everything they
+# pull in still carries its own service_type for the model to read.
+SERVICE_EQUIVALENTS = {
+    "premium_subscription_film": {"cinema_channels", "other_than_cinema_channels"},
+    "pay_per_view": {"pay_per_view"},
+    "music_channels": {"music_channels"},
+    "free_to_air": {"free_to_air", "other_than_cinema_channels"},
+}
+
+
 def service_matches(rule_scope: str, requested: str | None) -> bool:
     """A rule binds if its scope names the requested service, or is service-agnostic.
 
@@ -99,7 +118,11 @@ def service_matches(rule_scope: str, requested: str | None) -> bool:
     tokens = {t.strip() for t in rule_scope.split(";") if t.strip()}
     if {"all_linear_tv", "all_avms", "all_linear_tv_default"} & tokens:
         return True
-    return requested in tokens
+    if requested in tokens:
+        return True
+    # A near-equivalent in the other country's vocabulary still gets shown to the model,
+    # because a dropped rule is invisible and a surplus rule is merely read and set aside.
+    return bool(SERVICE_EQUIVALENTS.get(requested, set()) & tokens)
 
 
 # An asset's FORM is not an observation. A music video is a music video whether or not any
