@@ -67,6 +67,9 @@ def category_coverage() -> tuple[set[str], set[str], dict[str, int]]:
 
 
 def main() -> int:
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print(__doc__)
+        return 0
     failures = []
     checked = 0
     for case, rel, phrases in CLAIMS:

@@ -76,6 +76,7 @@ pip install openpyxl pypdf
 python pipeline/verify_rules.py --with-quotes     # does the table hold up?
 python pipeline/run_decision.py --countries UK FR --service free_to_air --categories violence
 python pipeline/build_timeline.py                 # regenerate the 24-hour view
+python pipeline/build_diagrams.py                 # redraw docs/diagrams.html
 python pipeline/verify_cases.py                   # do the test cases' outcomes hold up?
 python pipeline/render_answer.py decision.json    # the country-by-country answer table
 ```

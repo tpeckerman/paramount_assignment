@@ -240,8 +240,11 @@ check + vocabulary), `fetch_originals.py`, `fetch_with_browser.py` (Playwright),
 **GitHub Actions**, CI runs the verifier, the quote check and a regenerate-and-diff of the
 CSV mirrors so the binary table cannot drift unnoticed. A second workflow fetches sources.
 
-**Google Workspace / Colab**, `pipeline/COLAB_rule_pipeline_starter.ipynb` converts the table
-to a Sheet with change detection and versioning, for the non-engineers who maintain rules.
+**Removed:** a Colab notebook that converted the table to a Google Sheet. Its integrity
+checks had become a weaker, drifting copy of `verify_rules.py`, it still referred to rule
+statuses that no longer occur, nothing ran it so nothing caught the drift, and it carried a
+hardcoded Drive folder id. Its one idea worth keeping, closing out rules from a replaced
+document, is now real code in `pipeline/supersede.py`.
 
 **Not used, deliberately:** no attempt to defeat Cloudflare or AWS WAF challenges. Blocked
 documents were listed for manual retrieval instead, with a console snippet that verifies each

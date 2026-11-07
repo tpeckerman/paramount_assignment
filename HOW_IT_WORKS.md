@@ -533,6 +533,8 @@ python pipeline/postcheck.py run2_output.json        # citation and escalation c
 python pipeline/verify_cases.py                      # do the test cases' claimed outcomes hold up?
 python pipeline/render_answer.py decision.json        # the country-by-country answer table
 python pipeline/build_timeline.py                    # regenerate docs/timeline.html
+python pipeline/build_diagrams.py                    # redraw the diagrams into docs/
+python pipeline/supersede.py <source_doc>            # close out rules from a replaced document
 ```
 
 `docs/timeline.html` shows, for a chosen country and service, which rules bite at which hour

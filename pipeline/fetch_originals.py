@@ -322,8 +322,8 @@ def main() -> int:
                   "replacing a file with a better copy produces the same signal, and that "
                   "is the common case here. Diff the file before concluding the law moved. "
                   "If it genuinely changed at source: "
-                  "Re-extract the affected rules and version the old ones "
-                  "(see pipeline/COLAB_rule_pipeline_starter.ipynb, cell 4).")
+                  "Re-extract the affected rules and close out the old ones with "
+                  "pipeline/supersede.py, which never deletes a row.")
         return 1 if (absent or drift) else 0
 
     failures: list[tuple[str, str, str]] = []

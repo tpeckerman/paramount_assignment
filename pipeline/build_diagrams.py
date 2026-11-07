@@ -62,7 +62,74 @@ def render(body: str, dest: pathlib.Path | None) -> tuple[bool, str]:
         return True, ""
 
 
+VIEWER = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagrams</title>
+<style>
+  body {{ font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         margin: 0; padding: 1.5rem; color: #222; background: #fff; }}
+  h1 {{ font-size: 1.4rem; margin: 0 0 .3rem; }}
+  h2 {{ font-size: 1.1rem; margin: 2rem 0 .5rem; }}
+  .hint {{ color: #666; font-size: 13px; margin-bottom: 1.5rem; }}
+  .controls {{ position: sticky; top: 0; background: #fff; padding: .5rem 0;
+               border-bottom: 1px solid #eee; z-index: 10; }}
+  button {{ font: inherit; font-size: 13px; padding: .3rem .7rem; margin-right: .4rem;
+            border: 1px solid #ccc; background: #f7f7f5; border-radius: 4px;
+            cursor: pointer; }}
+  button:hover {{ background: #efefec; }}
+  .frame {{ overflow: auto; border: 1px solid #e3e3e0; border-radius: 6px;
+            background: #fcfcfb; padding: 1rem; }}
+  .frame svg {{ height: auto !important; max-width: none !important;
+                width: calc(100% * var(--zoom, 1)); display: block; }}
+</style></head><body>
+<h1>How it works, diagrams</h1>
+<p class="hint">Generated from the mermaid blocks in HOW_IT_WORKS.md. Each diagram scrolls
+inside its own frame. Use the buttons to change size, or just scroll.</p>
+<div class="controls">
+  <button onclick="z(0.25)">Bigger</button>
+  <button onclick="z(-0.25)">Smaller</button>
+  <button onclick="reset()">Fit width</button>
+  <span class="hint" id="lvl" style="margin-left:.5rem"></span>
+</div>
+{body}
+<script>
+  let zoom = 1;
+  function apply() {{
+    document.querySelectorAll('.frame').forEach(f => f.style.setProperty('--zoom', zoom));
+    document.getElementById('lvl').textContent = Math.round(zoom * 100) + '%';
+  }}
+  function z(d) {{ zoom = Math.min(6, Math.max(0.5, zoom + d)); apply(); }}
+  function reset() {{ zoom = 1; apply(); }}
+  apply();
+</script>
+</body></html>"""
+
+
+def write_viewer(entries: list[tuple[str, str]]) -> pathlib.Path:
+    """One scrollable page holding every diagram, so they can be read at any size.
+
+    The SVGs are embedded rather than linked, so the page is a single file that works
+    offline and survives being emailed. Mermaid is not loaded at runtime: the diagrams are
+    already rendered, so nothing depends on a CDN being reachable.
+    """
+    blocks = []
+    for title, svg in entries:
+        # Strip the XML prolog; an inline <svg> must not carry one.
+        svg = re.sub(r"^<\?xml[^>]*\?>\s*", "", svg).strip()
+        # Let CSS drive the size instead of the renderer's fixed attributes.
+        svg = re.sub(r'(<svg[^>]*?)\sstyle="[^"]*"', r"\1", svg, count=1)
+        blocks.append(f"<h2>{title}</h2>\n<div class='frame'>{svg}</div>")
+    dest = OUT_DIR / "diagrams.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(VIEWER.format(body="\n".join(blocks)), encoding="utf-8")
+    return dest
+
+
 def main() -> int:
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print(__doc__)
+        return 0
     check_only = "--check" in sys.argv
     found = blocks(SOURCE.read_text(encoding="utf-8"))
     if not found:
@@ -70,15 +137,23 @@ def main() -> int:
         return 1
 
     failures = []
+    rendered: list[tuple[str, str]] = []
     for i, (slug, body) in enumerate(found, 1):
         name = f"diagram_{i}_{slug}.svg"
         dest = None if check_only else OUT_DIR / name
         ok, err = render(body, dest)
         if ok:
             print(f"  {'checked' if check_only else 'wrote  '} {name}")
+            if dest is not None:
+                rendered.append((slug.replace("_", " "),
+                                 dest.read_text(encoding="utf-8")))
         else:
             failures.append((name, err))
             print(f"  BROKEN  {name}")
+
+    if rendered:
+        viewer = write_viewer(rendered)
+        print(f"  wrote   {viewer.name}  (all {len(rendered)} on one scrollable page)")
 
     if failures:
         print(f"\n{len(failures)} diagram(s) do not render. A broken mermaid block shows as "

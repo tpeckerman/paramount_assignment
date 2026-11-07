@@ -39,6 +39,9 @@ RANK = {
 
 
 def main() -> int:
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print(__doc__)
+        return 0
     rows = list(csv.DictReader((ORIG / "MANIFEST.csv").open(newline="", encoding="utf-8")))
     expect = json.loads((ORIG / "expect.json").read_text(encoding="utf-8"))["expect"]
     rules = list(csv.DictReader((ROOT / "rules/csv/Rules.csv").open(

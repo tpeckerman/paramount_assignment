@@ -1795,7 +1795,14 @@ print("by status :", dict(Counter(r[22] for r in R)))
 print("by determinacy:", dict(Counter(r[13] for r in R)))
 print("by ambiguity_flag:", dict(Counter(r[14] for r in R)))
 print("human_review_required=yes:", sum(1 for r in R if r[16] == "yes"))
-assert all(len(r) == len(COLS) for r in R), "column count mismatch"
+_bad = [r[0] for r in R if len(r) != len(COLS)]
+if _bad:
+    raise SystemExit(f"column count mismatch in row(s): {_bad[:5]}. Expected {len(COLS)} "
+                     f"columns; a row with the wrong width silently shifts every value "
+                     f"after the gap into the wrong field.")
 ids = [r[0] for r in R]
-assert len(ids) == len(set(ids)), "duplicate rule_id"
+_dupes = sorted({i for i in ids if ids.count(i) > 1})
+if _dupes:
+    raise SystemExit(f"duplicate rule_id: {_dupes}. Ids are the join key between rules, "
+                     f"decisions and test cases, so a duplicate makes a citation ambiguous.")
 print("tabs:", wb.sheetnames)
