@@ -170,7 +170,7 @@ def dead_links() -> list[str]:
     """Every relative markdown link must point at a file that exists.
 
     This exists because reorganising folders rewrote link LABELS and left the TARGETS
-    behind, so a line read `[out_of_scope/SCOPE.md](SCOPE.md)` and looked correct while
+    behind, so a line read `[out_of_scope/TASK1_WRITEUP.md](TASK1_WRITEUP.md)` and looked correct while
     pointing nowhere. It also guards the harder requirement: a deliverable folder has to
     stand on its own, so a copy that still links back to a file left outside the folder is
     a broken handover even though the link works in the full repo.

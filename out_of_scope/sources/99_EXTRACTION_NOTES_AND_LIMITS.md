@@ -83,7 +83,7 @@ Per-source detail is in `sources/originals/NOTES.md`.
 - **Overseas France.**
 - **Everything outside the age and time decision.** Impartiality, fairness, privacy and
   commercial references are excluded by a deliberate scope choice, set out in
-  `out_of_scope/SCOPE.md`. Note that the news section genuinely **binds** this broadcaster, since
+  `out_of_scope/TASK1_WRITEUP.md`. Note that the news section genuinely **binds** this broadcaster, since
   a commercial PSB license carries news obligations. It is out of scope because it yields no
   rating and no hour, not because it does not apply.
 

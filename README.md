@@ -53,12 +53,11 @@ original copies that `deliverables/` is generated from.
 | Item | What it is |
 |---|---|
 | `prompts/`, `rules/`, `sources/`, `tests/` | The originals the deliverable copies are made from |
-| `TASK1_WRITEUP.md`, `TASK2_SCALING.md` | The originals of the two write-ups |
+| `TASK1_WRITEUP.md`, `TASK2_SCALING.md` | The originals of the two write-ups (Task 1: scope, design choices, tools) |
 | `pipeline/` | 17 scripts that build the rules table, check it, and run a decision end to end |
 | `BUILD_rules_from_sources.md` | The prompt that turned each legal document into draft table rows |
 | `docs/` | Generated pictures, already copied into the deliverables |
 | `HOW_IT_WORKS.md` | A walkthrough of all 14 stages, if you want to see how a decision is actually made |
-| `SCOPE.md` | What I chose to include and leave out, and why |
 
 One thing could not move. `.github/workflows/` has to stay at the top of the repository or
 GitHub stops running it. It is scaffolding like the rest, and it runs the scripts in
@@ -76,5 +75,5 @@ such as whether something is justified by context, and only one decided case has
 collected to calibrate against. The prompt is built to send those to a human rather than
 guess, which is the right behavior but is not the same as being right.
 
-`out_of_scope/SCOPE.md` says where else the boundary sits, including jurisdiction, which is
+`out_of_scope/TASK1_WRITEUP.md` says where else the boundary sits, including jurisdiction, which is
 a real gap and a deliberate one.

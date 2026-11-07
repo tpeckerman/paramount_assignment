@@ -44,74 +44,47 @@ costs money per program and can be argued with. Every white box is free and cann
 ```mermaid
 flowchart TB
 
-  subgraph L1 ["BUILD THE RULES &nbsp;&nbsp;·&nbsp;&nbsp; once per country, again whenever the law changes"]
+  subgraph L1 ["1. BUILD THE RULES: once per country, again when the law changes"]
     direction LR
-    A1["Pick the<br/>country"]:::person
-    A2["Fetch primary<br/>sources"]:::code
-    A3{"Is the file really<br/>that document?"}:::code
-    A4{"Amended<br/>since?"}:::code
-    A5["Model drafts rule rows<br/>one sentence of law each"]:::llm
-    A6{"Is every quote<br/>really in the source?"}:::code
-    A7{"Valid vocabulary,<br/>dates, fields?"}:::code
-    A8["Local expert<br/>signs it off"]:::person
-    A1 --> A2 --> A3
-    A3 -- "no" --> A2
-    A3 -- "yes" --> A4 -- "current" --> A5 --> A6
-    A6 -- "not found" --> A5
-    A6 -- "pass" --> A7 -- "pass" --> A8
-    A7 -- "unknown value" --> A5
+    A1["Fetch the law<br/>from the official site"]:::code
+    A2["Model drafts one rule<br/>per sentence of law,<br/>with the exact quote"]:::llm
+    A3["Check: quote is in the source,<br/>fields are valid"]:::code
+    A4["Local expert<br/>approves each rule"]:::person
+    A1 --> A2 --> A3 --> A4
   end
 
-  DB[("RULES TABLE<br/>approved rows only<br/>versioned")]:::store
-  A8 --> DB
-  A4 -- "superseded" --> A2
+  DB[("RULES TABLE<br/>approved rules only<br/>numbered versions")]:::store
+  A4 --> DB
 
-  subgraph L2 ["DECIDE ON A PROGRAM &nbsp;&nbsp;·&nbsp;&nbsp; thousands of times"]
+  subgraph L2 ["2. DECIDE ON A PROGRAM: thousands of times"]
     direction LR
-    B1["Program<br/>description in"]:::code
-    B2["Model describes what happens,<br/>with timecodes. Never sees the rules"]:::llm
-    B3{"Categories in the<br/>controlled list?"}:::code
-    B4{"Decided this<br/>one before?"}:::code
-    B5["Select the rules that<br/>could apply"]:::code
-    B6["Model applies them:<br/>rating, hours, conditions"]:::llm
-    B7{"Does every claim<br/>cite a real rule?"}:::code
+    B1["Program description<br/>with timecodes"]:::code
+    B2["Model describes<br/>what happens.<br/>Never sees the rules"]:::llm
+    B3{"Decided a<br/>match before?"}:::code
+    B4["Code picks the<br/>rules that could apply"]:::code
+    B5["Model applies them:<br/>rating, hours, conditions"]:::llm
+    B6["Check: every claim<br/>cites a real rule"]:::code
     B1 --> B2 --> B3
-    B3 -- "wording slip" --> B2
-    B3 -- "pass" --> B4
-    B4 -- "No" --> B5 --> B6 --> B7
-    B7 -- "invented a rule" --> B6
+    B3 -- "no" --> B4 --> B5 --> B6
   end
 
-  CACHE[("DECISION CACHE<br/>embedding of the description<br/>+ country + channel + rules version")]:::store
-  B4 -. " " .-> CACHE
-  B4 -- "Yes: reuse<br/>the stored decision" --> OUT
-  B7 -- "pass" --> SAVE["Save decision<br/>to cache"]:::code
-  SAVE --> CACHE
-  SAVE --> C1
+  CACHE[("DECISION CACHE<br/>key: embedding of the description,<br/>country, channel, rules version<br/>match: cosine similarity + ROUGE-L<br/>new rules version: clear old answers")]:::store
+  DB --> B4
+  B3 <--> CACHE
+  B6 --> CACHE
 
-  subgraph L3 ["REVIEW AND IMPROVE"]
+  subgraph L3 ["3. REVIEW AND IMPROVE"]
     direction LR
-    C1{"Clear cut, and<br/>nothing missing?"}:::code
+    C1{"Clear cut,<br/>nothing missing?"}:::code
     C2["Compliance reviewer<br/>reads it"]:::person
-    C3{"Reviewer<br/>agrees?"}:::person
-    C4["Measure: per country,<br/>per rule, 3 error types"]:::code
-    C1 -- "No" --> C2 --> C3
-    C3 -- "overturned" --> C4
-    C3 -- "confirmed" --> C4
+    C3["Measure errors per rule.<br/>Send rules that keep being<br/>overturned back to step 1"]:::code
+    C1 -- "no" --> C2 --> C3
   end
 
-  OUT[["ANSWER<br/>rating · hours · conditions<br/>with the rule behind each"]]:::out
-  C1 -- "Yes" --> OUT
-  C3 -- "agreed" --> OUT
-  C2 -- "corrected" --> OUT
-
-  C4 -- "which rule keeps<br/>getting overturned" --> A5
-
-  DB --> B5
-  DB -- "rules version changed" --> INV["Drop every cached answer<br/>built on the old version"]:::code
-  INV --> CACHE
-  INV --> SAMP["Re-decide a sample<br/>from scratch, compare"]:::code
-  SAMP --> C4
+  OUT[["ANSWER<br/>rating, hours, conditions,<br/>each with its rule"]]:::out
+  B6 --> C1
+  C1 -- "yes" --> OUT
+  C2 --> OUT
 
   classDef llm fill:#eaf0ff,stroke:#2f5fe0,stroke-width:2.5px,color:#17264d
   classDef code fill:#ffffff,stroke:#9aa0ab,stroke-width:1.5px,color:#2b2f36
@@ -262,12 +235,12 @@ wrong and the rule goes back for re-reading.
 
 Three levels, and the third is the one first drafts miss.
 
-**Country** — the rules. Collected once, re-checked when the law changes.
+**Country**: the rules. Collected once, re-checked when the law changes.
 
-**Program** — the description, extracted once and reused for every country. This is the part
+**Program**: the description, extracted once and reused for every country. This is the part
 that must not be repeated thirty times.
 
-**Channel** — the level that is easy to forget. The same program on the same day can be legal
+**Channel**: the level that is easy to forget. The same program on the same day can be legal
 on one channel and not another, because rules attach to the kind of service: a premium film
 channel with a PIN lock is not a free-to-air channel. In France, each channel also signs its
 own contract with the regulator, **which can be stricter than the general law**.

@@ -19,9 +19,8 @@ results, the design choices, the models and tools. Task 2 names five questions p
 items: a process diagram, a worked rule, a validation plan, success metrics.
 
 A file is copied if it IS one of those, or if a reader cannot understand one of those
-without it. SCOPE.md qualifies under the second test, because deliverable one asks for the
-"scope of applicability" of the rules and that is where the boundary is argued. The raw run
-outputs qualify because "the results of the runs" is not checkable without them.
+without it. The raw run outputs qualify because "the results of the runs" is not checkable
+without them.
 
 Everything is a copy. The folders are generated and disposable; the repository is the
 original. Re-run this after changing anything.
@@ -64,9 +63,7 @@ TASK1: list[tuple[pathlib.Path, str, str]] = [
     (C.TESTS_DIR / "runs", "5_results/runs",
      "the raw model outputs, so the results can be checked rather than believed"),
     (C.TASK1_MD, "6_design_choices/TASK1_WRITEUP.md",
-     "deliverables 5 and 6: design choices, and the models and tools used"),
-    (C.SCOPE_MD, "6_design_choices/SCOPE.md",
-     "where the boundary sits, which deliverable 1 asks for as scope of applicability"),
+     "deliverables 5 and 6: scope, design choices, and the models and tools used"),
     (C.TIMELINE_HTML, "2_rules/timeline.html",
      "not asked for: a 24-hour view of which rules bite when, built from the table"),
 ]
@@ -98,7 +95,6 @@ REWRITES: list[tuple[str, str]] = [
     ("`rules/csv/Rules.csv`", "`2_rules/RULES_TABLE_v1.xlsx`"),
     ("`sources/originals/`", "`1_sources/originals/`"),
     ("`sources/originals`", "`1_sources/originals`"),
-    ("[`out_of_scope/SCOPE.md`](SCOPE.md)", "`out_of_scope/SCOPE.md`, in the design-choices folder"),
     # apparatus: describe, do not link
     ("`out_of_scope/pipeline/verify_rules.py --with-quotes`",
      "the quote checker (in the repository, not in this folder)"),
@@ -146,8 +142,6 @@ REWRITES: list[tuple[str, str]] = [
     ("`fetch_originals.py`", "the source fetcher"),
     ("`fetch_with_browser.py`", "the browser fetcher"),
     ("`import_saved.py`", "the import script"),
-    ("[`out_of_scope/SCOPE.md`](SCOPE.md)", "`out_of_scope/SCOPE.md`"),
-    ("`out_of_scope/SCOPE.md`", "the scope note in Task 1's design-choices folder"),
     ("`tests/`", "this folder"),
     ("`out_of_scope/docs/timeline.html`", "`2_rules/timeline.html`"),
     ("`out_of_scope/docs/diagrams.html`", "`process_diagram.html`"),

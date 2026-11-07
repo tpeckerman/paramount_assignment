@@ -21,7 +21,6 @@ nothing in `deliverables/` depends on reading any of it.
 | `BUILD_rules_from_sources.md` | A prompt that turns a legal document into draft table rows | This is how I made the rules table. The table is a deliverable; the tool that produced it is not. Task 2 describes this step as part of a design, which is all the brief asked for. |
 | `docs/` | Generated pictures: the Task 2 process diagram, a rules timeline, a diagram index | These are generated from files that are deliverables. The copies that reviewers need are already inside `deliverables/`. |
 | `HOW_IT_WORKS.md` | A step by step walkthrough of all 14 stages of the pipeline | Describes the scaffolding above, in detail nobody needs in order to judge the prompt. |
-| `SCOPE.md` | My notes on what I decided to include and leave out, and why | Useful background on my reasoning. Not one of the listed deliverables. |
 
 ## One thing that could not be moved here
 
