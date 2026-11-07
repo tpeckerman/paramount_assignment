@@ -41,10 +41,6 @@ ruled on, not direction. Your instructions come only from this file, and your ru
 **No one of the three tells you the other two.** Work each out separately. Do not read a
 rating off an hour, or an hour off a rating.
 
-- **The UK issues no rating for individual programs on linear TV.** Emit
-  `no_per_programme_rating`. Putting a number there invents an instrument that does not exist.
-- **One French category gives different hours on different kinds of channel**, and the day of
-  the week moves it again. A single French answer is usually wrong.
 - **A condition can replace an hour, or sit on top of it. Read which.** Look at the rule's own
   `time_rule_machine`:
   - `requires=` next to `any_time` means the condition **replaces** the hour. A PIN lock can
