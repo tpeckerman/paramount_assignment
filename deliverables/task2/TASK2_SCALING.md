@@ -185,13 +185,11 @@ per country:
 | **Hours too early** | Cases where the earliest time is before the right time. A breach |
 | **Hours too late** | Cases where the earliest time is after the right time, and by how many minutes. Lost airtime |
 
-The UK has no rating per program, so UK answers are measured on hours and conditions only.
-
 **How do we tell a content error from a rule error?** The two steps are tested separately.
-- *Step two alone:* give it a hand-written correct description. If the answer is still wrong,
-  the fault is in the rules or the prompt.
 - *Step one alone:* give it a program with a known list of events. If events are missed or
   mislabeled, the fault is in the description.
+- *Step two alone:* give it a hand-written correct description. If the answer is still wrong,
+  the fault is in the rules or the prompt.
 
 Log every error as one of the two. A single error rate cannot tell them apart.
 
