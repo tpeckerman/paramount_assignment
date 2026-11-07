@@ -129,6 +129,89 @@ back on asking where the signal was sent up from. There is a documented case of 
 banned in the UK setting up a chain of shell companies specifically to make that question
 hard to answer.
 
+#### A worked example, because *country B just accepts it* sounds wrong
+
+Say Country A allows explicit nudity during the day. Country B allows it only at night. The
+channel is based in Country A and people in Country B can watch it. Does Country B really
+have to accept daytime nudity on its own screens?
+
+**Broadly, yes.** The directive says member states must ensure freedom of reception and must
+not restrict retransmission of services from other member states in the areas it covers. That
+is not a side effect of the system, it **is** the system. Country B's stricter rule binds the
+channels Country B regulates. It does not reach a channel that Country A regulates.
+
+That feels wrong the first time you read it, and it is the single most counter-intuitive thing
+about how this works. It is also why companies choose where to base themselves.
+
+**But Country B is not completely powerless.** There are two escape hatches, and the useful
+thing is how narrow they both are.
+
+**Escape hatch 1: ask nicely.** If a channel based in Country A is wholly or mostly aimed at
+Country B's audience, Country B can ask Country A to deal with it, and both countries are
+required to cooperate and look for a solution. That is a request backed by an obligation to
+engage. It is not a power to block.
+
+**Escape hatch 2: the emergency brake, which exists precisely for protecting children.**
+Country B can temporarily suspend a service that "manifestly, seriously and gravely" breaks
+the protection-of-minors rules. Note how high that bar is set, and then look at what Country B
+has to do first:
+
+1. the channel must have done it at least **twice in the previous 12 months**
+2. Country B must have warned the channel, Country A and the European Commission **in
+   writing**, saying what it intends to do if it happens again
+3. the channel must have been given a chance to put its side
+4. talks with Country A must have failed to reach agreement within **one month**
+5. only then can Country B act, and the Commission then has **three months** to decide whether
+   Country B was even allowed to, after asking ERGA
+6. if the Commission says no, Country B has to stop "as a matter of urgency"
+
+So the brake is for a channel that repeatedly and seriously harms children, not for a channel
+whose schedule is more relaxed than yours. **A rule that says night where theirs says day does not come
+close to meeting it.**
+
+All of that is in `EU-D1b`, which is already in `sources/originals/`, and the quoted phrases
+verify against it.
+
+**The practical upshot for the system:** a difference in rules between two countries is not
+something to resolve. Most of the time there is nothing to resolve, because only one country's
+rules were ever going to apply. The system's job is to work out which country that is and then
+apply only that country's rules, not to compare them and pick the stricter one. Picking the
+stricter one would be the obvious defensive instinct and it is wrong: it would push content
+later than the law requires, which is the over-rating failure described in section 5, and
+nobody would ever complain about it.
+
+#### So yes, you need a table. Two tables, in fact
+
+Your instinct is right, with one refinement: the thing that varies is not a single category
+per channel.
+
+**Table 1, per channel: who is its home regulator?** One row per channel, saying which country
+has jurisdiction, on what basis, who confirmed it and when. For Europe this is largely a
+download from MAVISE, described below, plus a lawyer confirming it. Outside Europe it is a
+lawyer from the start.
+
+| channel | home regulator | basis | confirmed by | confirmed on |
+|---|---|---|---|---|
+| (example shape) | Ofcom, UK | Ofcom licence, head office and editorial decisions in UK | named lawyer | date |
+
+**Table 2, per pair of countries: does B accept A's regulator?** This is where origin and
+destination actually live, because it is a property of the **relationship between two
+countries**, not of the channel. Country B might accept Country A's regulator and not Country
+C's, depending on which treaties each pair shares.
+
+| home country | receiving country | B accepts A's regulator? | basis |
+|---|---|---|---|
+| (example shape) | | yes / no / only for some service types | treaty or national law |
+
+Table 2 is much smaller than it looks, because it is shared across every channel. Thirty
+countries means a fixed grid, filled in once per pair and revisited when a treaty changes,
+rather than work that repeats per channel.
+
+Then the lookup is: take the channel, find its home regulator in table 1, check in table 2
+whether the receiving country accepts that regulator, and **apply exactly one country's
+rules**, or flag that a licence is needed locally. If either table has no confirmed answer,
+the system refuses to decide rather than guessing.
+
 #### There is a public database for this, at least in Europe
 
 The question "which country regulates this channel?" is common enough that the European Union
