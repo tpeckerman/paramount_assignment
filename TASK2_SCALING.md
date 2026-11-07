@@ -30,6 +30,24 @@ that finds it.**
 
 ---
 
+## How this maps onto what already exists
+
+Task 2 does not introduce new steps. The seven steps in `HOW_IT_WORKS.md` are all Task 1, and
+each section below is a question about one of them:
+
+| This document asks about | Which step |
+|---|---|
+| Source collection and validation | 1, and the currency gate added to 3 |
+| Rule representation | 2 and 4 |
+| Shared versus country-specific | 4 and 6 |
+| Testing for correctness | 3 |
+| Measurement and diagnosis | 8 |
+| Automate versus local expert | 8 |
+
+So the honest framing is not "here is a bigger system". It is: here are the seven steps run
+thirty times, here is which of them breaks first, and here is what has to be true before the
+third country is added rather than after the thirtieth.
+
 ## Process
 
 ```mermaid

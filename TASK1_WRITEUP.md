@@ -63,6 +63,16 @@ leaves the other half nearly mechanical. It is also what makes the extractor's b
 the rules possible, which matters because an extractor that knows the thresholds decides the
 outcome through word choice before any rule is applied.
 
+## Which steps this task covers
+
+All seven steps in `HOW_IT_WORKS.md` belong to Task 1. Steps 1, 2 and 4 produce the sources
+and the rule table; steps 5 to 8 are the prompt.
+
+Step 3, the quote check, is the exception: nothing in Task 1 asks for it. It exists because
+Task 2 asks how you know the rules are right, and that question needs a mechanical answer
+rather than an assurance. It then paid for itself inside Task 1 by catching four defective
+quotes and a rule citing the wrong document.
+
 ## Design choice 1, Two stages, not one
 
 **Chosen:** RUN 1 turns the description into timecoded observations. RUN 2 applies rules.

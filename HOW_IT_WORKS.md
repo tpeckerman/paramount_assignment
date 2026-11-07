@@ -47,6 +47,34 @@ The point is not to answer everything automatically. It is to answer the clear-c
 and hand a person the hard ones with the rule and its exact wording already attached, so they
 start from the evidence instead of a blank page.
 
+## Which steps belong to which task
+
+All seven steps are **Task 1**. Task 2 does not add steps: it asks what breaks when the same
+seven are run for thirty countries instead of two.
+
+| Step | Task 1 | What Task 2 asks about it |
+|---|---|---|
+| 1. Gather the sources | Deliverable: *sources, with links and scope* | Source collection and validation at scale. Who finds them, how you know a document is current, what happens when a regulator amends one |
+| 2. Write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country, and which differences are data rather than code |
+| 3. Check every quote | Not asked for | **Testing for correctness.** Task 2 asks this directly, and this is the answer built in Task 1 |
+| 4. The rules table | Deliverable: *the table of rules* | Shared versus country-specific. The schema is shared; only the values differ |
+| 5. Read the content | Deliverable: *the prompt* | Shared. The extraction step is the same everywhere |
+| 6. Pick the rules that apply | Deliverable: *the prompt* | Shared logic, country data. This is where "what looks shared and is not" bites |
+| 7. Decide | Deliverable: *the prompt*, plus *reasoning with rule references* | Shared. The three passes do not change per country |
+| 8. Clear-cut, or a person? | Deliverable: *missing information or need for human review* | **Measurement, and automate versus local expert.** The escalation rate is the metric that tells you whether either is working |
+
+Two things worth drawing out.
+
+**Step 3 was not asked for by Task 1.** Nothing in the brief requires the quotes to be
+checked. It exists because Task 2 asks how you know the rules are right, and the honest answer
+has to be something mechanical rather than care. It then earned its place in Task 1 by
+catching four defective quotes and a rule citing the wrong document, none of which was
+findable by rereading.
+
+**Steps 1 to 4 run once per document; steps 5 to 8 run per showing.** That split is the whole
+architecture. Merge them and there is nothing separating "what the rule says" from "what I
+decided", so a misreading cannot be caught, and there is nothing for step 3 to check.
+
 ## One rule, followed all the way through
 
 A real example. The same film, on two different channels.
