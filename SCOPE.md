@@ -80,6 +80,28 @@ Two qualifications, so the exclusions are not silent:
   commercial references in children's programming. Excluded as a sponsorship and advertising
   workflow, flagged rather than dropped.
 
+### Which channels these rules apply to at all
+
+**Assumed, not established.** The table answers "what are the rules?" for a channel that
+Ofcom regulates, and for a channel that the French regulator regulates. It does **not**
+establish whether a given channel is one of those, and that is a real question with a
+non-obvious answer.
+
+The two countries decide it in opposite ways. France, in the EU, works on country of origin:
+a channel follows the rules of the country where the company is based, and the countries
+receiving it have to accept that. The UK, having left the EU, works mainly on country of
+destination: a service available in the UK generally needs an Ofcom licence wherever the
+company sits. So "where is this being watched" and "whose rules apply" are different
+questions, and in these two countries they come apart in opposite directions.
+
+Working that out needs facts about the company, not about the programme: where it is
+established, who licensed it, which treaties cover the route between the two countries. None
+of that can be read off a content description, which is the only input this system takes.
+
+So it is out of scope, and the boundary is: **this table assumes you already know the channel
+is regulated by Ofcom or by Arcom.** Feeding it a country because that is where the audience
+is will produce a confident answer out of the wrong rulebook. Recorded as open conflict C-16.
+
 ## The honest cost
 
 This tool will stay silent on a genuine fairness or privacy problem, and on commercial

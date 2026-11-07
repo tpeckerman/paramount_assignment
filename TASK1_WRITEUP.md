@@ -213,6 +213,12 @@ indistinguishable from correct output until someone is in front of a regulator.
   is authentic. A French-qualified reviewer has to re-check every one.
 - **Channel-level agreements not collected.** In France these can be stricter than the law.
   One rule records that the agreements exist and bind; what they say is still unknown (C-06).
+- **The table never says which channels it applies to.** Before you can use a country's
+  rules you have to know that country's regulator actually covers the channel, and the two
+  countries here decide that in opposite ways: France by where the company is based, the UK
+  mainly by where the service is available. No rule in the table is wrong because of this,
+  but the table assumes a precondition it never states. Recorded as C-16, and the boundary is
+  now written down in `SCOPE.md`.
 - **The `superseded` path is untested.** The versioning mechanism is written and no rule has
   yet travelled through it, because no source has been amended during this project.
 

@@ -70,55 +70,110 @@ means going back and redoing every country already running.
 
 ### 1. Working out whose rules even apply
 
-**The short version:** a TV channel does not have to follow the rules of the country where
-people are watching it. It usually follows the rules of the country where the channel company
-is based. Our system asks "which country?" and that turns out to be the wrong question.
+**The short version:** before you can apply a country's rules, you have to know which
+country's rules apply. That is not always the country where people are watching, there is no
+worldwide answer to it, and **I got this wrong in Task 1.**
 
-**The longer version.** A channel can have its offices and its broadcasting licence in one
-country, and send its programmes out to viewers in many others. Say a channel is run out of
-Country A and people watch it in Countries A, B, C and D.
+#### The two patterns
 
-Whose rules does that channel have to follow?
+Countries answer the question "who regulates this channel?" in one of two ways.
 
-The obvious guess is "all four, one set per country where it is watched". In Europe that guess
-is wrong. The channel follows **one** set of rules: Country A's, where the company is based.
-Not the rules of the countries where it is watched. The country where the company is based is
-usually also the country that gave it its licence.
+**Country of origin.** The channel follows the rules of the country where the company is
+based, and the countries it broadcasts into have to accept that. One channel, one rulebook,
+however many countries receive it.
 
-This matters to us because of how the system is built. It takes a country, looks up that
-country's rules, and applies them. If we feed it the country where people are watching, we
-hand it the wrong rulebook, and everything after that is confidently wrong. The content was
-read correctly, the rules were quoted correctly, and the wrong rules were used.
+**Country of destination.** The channel follows the rules of each country where it can be
+watched, and usually needs a licence from each one. One channel, many rulebooks.
 
-It gets harder, because "which country is this company based in?" is not always obvious. A
-media company can have offices in several countries and it is a real question which one
-counts. The European rules themselves admit this. They say working it out means weighing up
-the facts of each case, and that **"The assessment of such factual situations might lead to
-conflicting results."** In other words, two countries can look at the same channel and each
-conclude it is theirs to regulate.
+These give opposite answers, and which one you are under depends on where the company is and
+which countries it reaches.
 
-Because that happens, there is a body (ERGA) that countries can ask for
-**"non-binding opinions on jurisdiction"** when they disagree, and every country has to keep
-records showing **"information about the criteria on which jurisdiction is based"**, meaning
-the reasons it believes a given channel is its responsibility. There is even a rule aimed at
-companies that deliberately set up in an easygoing country **"in order to circumvent the
-stricter rules"** they would face elsewhere.
+#### What I got wrong
 
-All four quoted phrases come from `EU-D1b`, Directive (EU) 2018/1808, which has been sitting
-in `sources/originals/` since the Task 1 source sweep, and all four verify character for
-character against it. The source was collected and not fully mined.
+I wrote earlier that this problem does not appear with only two countries. That was wrong, and
+it is worth saying plainly because it is the kind of error this whole project is built to
+catch.
 
-**Why this never came up in Task 1.** We looked at UK rules for a UK channel and French rules
-for a French channel. Base country and viewing country were the same, so the difference was
-invisible. The two-country version of this problem does not exist.
+The two countries in Task 1 use **opposite** systems.
 
-**What it means for building.** The question the system needs answered is not "what country is
-this?" but **which rulebook applies to this channel.** Working that out is a step the Task 1
-flow does not have at all, and it cannot be answered by looking at the video. It needs facts
-about the company: where it is based, who licensed it, and whether any country it broadcasts
-into has formally objected to something it carries. That information changes when a company
-reorganises, not when a programme changes, so it belongs with the channel data described
-further down, not with the content.
+- **France** is in the EU, so it is under the Audiovisual Media Services Directive, which
+  works on country of origin.
+- **The UK left the EU** and is now treated as an outside country by that directive. It moved
+  to country of destination: a TV service available in the UK generally needs an Ofcom licence
+  no matter where the company sits.
+
+So the jurisdiction problem was sitting inside Task 1 the whole time and I did not see it. It
+does not change any rule in the table, because every rule in there is a rule about content and
+timing rather than about who regulates whom. It does change what the table is **for**: it is a
+set of rules for channels that Ofcom regulates and channels that the French regulator
+regulates, and deciding whether a given channel is one of those is a separate question nobody
+has answered yet. That is now recorded as an open conflict rather than left in a document
+nobody reads.
+
+#### It is messier than two patterns, even inside Europe
+
+The UK did not switch cleanly. It stayed in an older Council of Europe treaty, the European
+Convention on Transfrontier Television, which works on a country-of-origin basis among its
+members. So a UK channel going into one of those countries is still treated the origin way,
+while the same channel going into an EU country that never joined that treaty needs a local
+licence. Seven EU countries never joined it: Belgium, Denmark, Greece, Ireland, Luxembourg,
+the Netherlands and Sweden.
+
+That treaty also has holes. It covers ordinary broadcast TV but not video on demand and not
+linear channels delivered over the internet, so a company can be under one system for its
+satellite channel and another for the same content streamed. Work to update it was abandoned
+years ago, so the holes are not going to close.
+
+And when a satellite is involved and no European country licensed it, regulators have fallen
+back on asking where the signal was sent up from. There is a documented case of a channel
+banned in the UK setting up a chain of shell companies specifically to make that question
+hard to answer.
+
+#### Why this gets worse worldwide, not better
+
+Everything above is Europe, which is the part of the world with the **most** agreement. Two
+overlapping treaties, a known list of who is in which, and committees to settle disputes.
+
+Outside Europe there is no equivalent. Each country decides for itself whether it regulates by
+where a company is based, by where the signal is received, by who holds the licence, or by
+where a satellite uplink sits. Some have no framework for foreign channels at all. There is no
+list to look this up in, and no body that resolves it when two countries disagree.
+
+So the honest answer to "how do we handle this for thirty countries worldwide" is: **you
+cannot write one rule for it.** Any system that assumes country of origin will be wrong in
+every destination-based country, and the reverse.
+
+#### What this means for the build
+
+The system must not contain a jurisdiction rule at all. Not country of origin, not country of
+destination, not anything in between.
+
+Instead, **which rulebook applies is a stored fact per channel per territory**, decided by a
+lawyer once and written down, exactly like the other channel-level facts described in section
+3. The row records which regulator claims the channel, under what legal basis, and when that
+was last confirmed.
+
+Three consequences:
+
+1. **The decision is keyed to a rulebook, not a country.** "Apply the UK rules" and "this is
+   being watched in the UK" are different statements and the system must not treat them as the
+   same one.
+2. **The answer can be more than one rulebook.** A channel can owe duties in several places at
+   once, and the safe reading is the strictest of them. The system should be able to return
+   several and say so, rather than picking one.
+3. **"We do not know" is a required answer.** If no confirmed rulebook is recorded for a
+   channel in a territory, the system must refuse to decide and say why. Guessing here is
+   worse than guessing a time, because every rule that follows is drawn from the wrong book
+   and the answer still arrives with citations attached.
+
+This also explains why it has to be designed in before country three. A table keyed on
+`country` works fine until the first channel that is regulated somewhere other than where it
+is watched, and then every row and every stored decision has to be revisited.
+
+**On sourcing:** the facts in this section come from web research, including Ofcom's own
+post-Brexit licensing guidance and the text of the Council of Europe treaty. None of those
+documents is in `sources/originals/`, so by this project's own rule nothing here may become a
+rule in the table until they are collected and quote-checked like every other source.
 
 ### 2. Finding enough experts is what actually limits you
 
