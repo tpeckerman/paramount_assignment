@@ -10,7 +10,7 @@ sees the rules, so it cannot shade its description toward the answer it expects.
 version covers two countries and 105 rules.
 
 **The claim this rests on:** most of the work is per country, not per program. Collecting a
-country's rules and having a lawyer confirm them happens once, and again when the law changes.
+country's rules and checking them against the source happens once, and again when the law changes.
 Deciding on a program is cheap after that. Thirty countries means thirty times the setup, not
 thirty times the running cost.
 
@@ -25,7 +25,8 @@ and black-bordered boxes are people. There are two flows.
 2. A small, cheap model answers one question: does this change a rule or add a precedent? If
    not, it ends here.
 3. If so, a model drafts the updated rule, or logs the decision. Code checks that every quote
-   matches the source. A local expert signs off judgment rules and spot-checks the rest.
+   matches the source and every field is valid. No person signs off. The change goes live when
+   the checks pass.
 4. The rules table, the decisions table and the timeline update. Every cache row that used a
    changed rule or decision is deleted. A new country goes through this same flow.
 
@@ -65,8 +66,8 @@ and black-bordered boxes are people. There are two flows.
   re-decide a sample of past decisions against the new text and see whether answers moved.
 - **Contradictions are stored, not resolved.** Record both sources, rank them by authority,
   and send them to a person.
-- **Translation is labeled.** Each rule records its quote's language. A lawyer who reads that
-  language signs off.
+- **Translation is labeled.** Each rule records its quote's language. Reviewers can then see
+  which quotes are translations.
 - **A gap is reported as a gap.** France has no rule about alcohol in programs and the UK
   does. Silence for France must not read as approval.
 
@@ -83,7 +84,7 @@ Four choices matter:
   reads the sentence.
 - **Dates on every rule.** Rules are closed with an end date, never deleted, so last year's
   decision can still be explained.
-- **"How the rule applies" and "does a person sign it off" are separate columns.** Merging
+- **"How the rule applies" and "does a person review decisions that use it" are separate columns.** Merging
   them was the worst bug in Task 1: the system sent every decision to a human.
 
 Fixed word lists are enforced by the build. In Task 1 a misspelled service type silently
@@ -113,8 +114,6 @@ status            approved
 ```
 
 **Check.** The quote must appear character for character in the stored file.
-
-**Sign off.** This is a fixed-hour rule that passed the quote check, so a lawyer spot-checks a sample of such rules instead of reading each one. Rules that turn on judgment are each read in full.
 
 **Use.** A program with sustained violence on a general channel at 20:45 is barred, because
 this rule sets 22:00 and the channel matches. The decision cites the rule id.
@@ -193,7 +192,6 @@ the program wrongly.
 | Describing a program | Model, then a person if borderline |
 | **Deciding what a threshold means** | **Local expert** |
 | **Confirming a translation is faithful** | **Local expert** |
-| **Signing off judgment rules** (spot-checking fixed-hour rules) | **Local expert** |
 | **Resolving two sources that disagree** | **Local expert** |
 | **Confirming which regulator covers a channel** | **Local expert** |
 | Final call on anything the system escalated | Compliance reviewer |

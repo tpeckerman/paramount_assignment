@@ -83,7 +83,7 @@ def build_svg() -> str:
     box(135, 130, 190, 70, ["Signal: a source file", "changed (fingerprint check)"], "code")
     diamond(370, 130, 115, 72, ["Does it change a rule", "or add a precedent?", "(small model)"], "llm")
     box(640, 130, 200, 80, ["Model drafts the rule", "update, or logs", "the decision"], "llm")
-    box(910, 130, 220, 80, ["Check: quote matches source.", "Expert signs off", "judgment rules"], "person")
+    box(910, 130, 220, 80, ["Check: quote matches the", "source and the fields", "are valid"], "code")
     box(370, 228, 70, 28, ["End"], "store", rounded=True)
     line([(230, 130), (255, 130)])
     line([(485, 130), (540, 130)], "yes", 512, 118)
