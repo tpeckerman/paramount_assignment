@@ -1,25 +1,16 @@
 # Task 2 deliverables
 
-Task 2 asks for a **design**, not a system: how sources would be collected and validated, how rules would be organised, what is shared and what is country-specific, how correctness would be tested, and how it would be measured.
+Task 2 asks for a design, not a system. Nothing here collects rules for dozens of countries.
 
-| Asked for | Where |
+| Asked for | Where in `TASK2_SCALING.md` |
 |---|---|
-| 1. Source collection and validation | the Task 2 proposal, in `deliverables/task2/`, section 1 |
+| 1. Source collection and validation | section 1 |
 | 2. Organizing the rules | section 2 |
 | 3. Solution structure | section 3 |
-| 4. Correctness testing | section 4 |
-| 5. Measurement and diagnosis | section 5 |
-| A process diagram | `process_diagram.html` |
-| An example of how a single rule is represented | the Task 2 proposal, in `deliverables/task2/`, "Worked example" |
-| A validation plan | section 4 |
-| Success metrics | section 5 |
-| What can be automated and where a local expert is required | the Task 2 proposal, in `deliverables/task2/`, "What can be automated" |
+| 4. Correctness testing, and the validation plan | section 4 |
+| 5. Measurement and diagnosis, and success metrics | section 5 |
+| An example of how a single rule is represented | "Worked example: one rule" |
+| What can be automated, and where a local expert is required | "What can be automated, and what needs a local expert" |
+| A process diagram | `process_diagram.html` (also described in "How it flows") |
 
-The brief also says: *you are not required to actually collect rules for dozens of countries as part of this task.* Nothing here does.
-
-## What each file is for
-
-| File | Why it is here |
-|---|---|
-| the Task 2 proposal, in `deliverables/task2/` | the five questions, the process diagram, the worked rule, the validation plan, the metrics |
-| `process_diagram.html` | the process diagram, large and scrollable |
+Task 1's `README.md` has a glossary of broadcasting terms.

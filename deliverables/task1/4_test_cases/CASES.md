@@ -4,7 +4,7 @@ The system's input is a **written description with timecodes**, not a video. So 
 a description, and running one needs no media file. These are all built on real, identifiable
 content rather than invented titles.
 
-Eight cases. Two have **known real-world outcomes**, so the right answer is not my opinion:
+Nine cases. Two have **known real-world outcomes**, so the right answer is not my opinion:
 TC-01 is a decided regulator case, and TC-08 is content that has aired in UK daytime for
 decades.
 
@@ -30,27 +30,11 @@ catches it.
 
 ### What these cases do not test
 
-Seven of eleven content categories are exercised. Not tested:
+The rules table has 15 content categories. These cases exercise 8. Not tested:
+`strong_language` (4 rules), `hatred_discrimination` (2), `suicide_self_harm` (2), `religion` (1),
+`human_dignity` (1), `participant_welfare` (1) and `offence_general` (1).
 
-- `strong_language` (4 rules)
-- `hatred_discrimination` (2 rules)
-- `suicide_self_harm` (2 rules)
-- `religion` (1 rule)
-
-A pass rate here is a pass rate on the seven.
-
----|---|---|
-| `strong_language` | 4 | A common real breach type, and the clearest case of something **audible and not visible**, which a picture-only description would miss |
-| `suicide_self_harm` | 2 | Has its own rules on method and imitation |
-| `hatred_discrimination` | 2 | Judged on treatment, not on whether the words were said |
-| `drugs_alcohol_smoking` | 1 | Turns on glamorisation, not depiction |
-| `religion` | 1 | Section Four exists; nothing here goes near it |
-
-Four of the five are judgment calls, so the gap sits on top of the table's known weak spot.
-
-A pass rate over six of eleven categories is a pass rate **on the six**. Same shape as the
-quote-coverage defect in `RESULTS.md`. the test-claim checker (repository only) prints this denominator on
-every run so it cannot go stale.
+A pass rate here is a pass rate on those 8.
 
 ---
 

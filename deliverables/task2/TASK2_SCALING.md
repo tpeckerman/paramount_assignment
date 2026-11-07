@@ -221,7 +221,7 @@ points, to be reset after the first month of real use.
 | **Wrong cache answers** | Re-decide 2% of cache hits from scratch each month and count how many differ | Under 1% |
 | **Rule update time** | Days from a regulator publishing a change to the table and cache updating | Under 1 business day |
 | **Stale sources** | Sources not checked in the last 7 days | 0 |
-| **Test coverage** | Share of content categories with at least 2 test cases. Task 1 covers 7 of 11 | 100% |
+| **Test coverage** | Share of content categories with at least 2 test cases. Task 1 has any case for 8 of 15, and 2 or more for 4 of 15 | 100% |
 
 ## What can be automated, and what needs a local expert
 
