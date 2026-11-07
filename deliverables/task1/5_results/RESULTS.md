@@ -18,9 +18,6 @@ every decision escalated.
 
 Added to the decision prompt (`RUN_2_decide.md`):
 
-> `basis` is for a rule that **changed your answer**. A rule you read and set aside ... does
-> not send the case to a person.
-
 In plain words: the bar for human review went up. Before, any judgment rule in view sent the
 case to a person. Now only a rule that actually changed the answer can. Two definitions in
 the rules table also stopped asking for a person.
