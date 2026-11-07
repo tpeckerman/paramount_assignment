@@ -22,6 +22,14 @@ audit any single claim without trusting me.
 | TC-03 same film, PIN | **Failed, then fixed** | Two real pipeline bugs. The valuable result |
 | TC-04 *Thriller* + trailer | Pass | Separated the trailer from the parent asset |
 | TC-05 contradictory doc | Pass | Surfaced the contradiction instead of resolving it |
+| TC-06 *Step Brothers* | **Not run** | Rule selection verified; the decision has not been made |
+| TC-07 *40-Year-Old Virgin* | **Not run** | As above. The TC-06 and TC-07 pair is the real measurement |
+| TC-08 *Friends* at 14:30 | **Not run** | As above, and predicted to fail. See the end of this file |
+
+The last three were added after the first five, because all five fail in the same direction:
+each catches the system being too permissive. None of them can catch **over-rating**, where
+the system is stricter than the law and nobody complains. TC-08 exists for that, and it is
+the one I expect to fail.
 
 ---
 
@@ -184,3 +192,61 @@ misattribution, which only became visible once the quote existed to be checked.
 - **The French rules are quoted from an official English translation** that states only the
   French is authentic.
 - **Nothing has been run against a real Paramount asset**, only against descriptions I wrote.
+
+---
+
+## TC-06 to TC-08: specified, and only partly run
+
+**Status, stated plainly: these three cases are written but the deciding step has not been
+run on them.** What has been run is the part that is code. Reporting them as passes would be
+exactly the failure the rest of this file is about.
+
+### What was actually run
+
+`pipeline/run_decision.py` was executed for the UK, free-to-air, with the content categories
+these cases produce. That is step 11, rule selection, and it is deterministic, so the result
+is a real result and not a judgement.
+
+It selected 31 of 103 rules, and all three rules these cases turn on were among them:
+
+| rule | clause | determinacy | what it does here |
+|---|---|---|---|
+| `UK-SEX-004` | Rule 1.20 | `conditional` | depicted intercourse, escape is a serious educational purpose only |
+| `UK-SEX-003` | Rule 1.19 | `judgment_based` | strong or explicit sexual images or language, escape is context |
+| `UK-NUD-001` | Rule 1.21 | `judgment_based` | nudity, escape is context |
+
+That matters because the whole point of these cases is the difference between those escape
+clauses, and a rule that never reaches the engine cannot be applied. TC-02 failed in exactly
+that way: the rule was in the table and the selection step dropped it.
+
+`UK-SEX-002` (Rule 1.18) was correctly **not** selected, being restricted to a service type
+these cases do not use.
+
+### What has not been run, and what it would show
+
+The deciding step. Running it is what would answer whether the model treats "comedic" as a
+single modifier it applies to all sexual content, which is the actual hypothesis under test:
+
+- **TC-06 passes** if the answer is 21:00 citing Rule 1.20, with the comedy noted and
+  discarded as irrelevant to that rule.
+- **TC-07 passes** if the answer escalates to a person citing Rule 1.19, with the comedy
+  presented as a live argument rather than settled either way.
+- **TC-08 passes** if the answer is that 14:30 is fine, **and** it notices the +1 service.
+
+The pair TC-06 and TC-07 is the real measurement. Getting either one alone proves nothing,
+because a system that always says 21:00 passes TC-06, and a system that always escalates
+passes TC-07. Only answering them **differently**, for the stated reason, shows the
+distinction was understood.
+
+### One prediction worth recording before the run
+
+I expect **TC-08 to be the one that fails**, and for the system to push it to 21:00.
+
+Every example in the prompts, and four of the first five test cases, are about content being
+less suitable than it looks. Nothing in the material so far rewards clearing something. If
+that prediction is right, the fix is not a prompt tweak but a test-set problem, and it is the
+one described in section 5 of `TASK2_SCALING.md`: over-rating generates no complaints, so
+nothing catches it unless a test is built to.
+
+Recording the prediction first is deliberate. A prediction written after seeing the result is
+worth nothing.

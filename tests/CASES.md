@@ -7,9 +7,9 @@ So a test case is a description, and no media file is needed to run one. What a 
 *can* be is about real, identifiable content rather than invented titles, which is what these
 are.
 
-Five cases. Each attacks a specific way this system fails, and the first is the strongest kind
-of test available: a **real broadcast with a real regulator finding**, so the right answer is
-not my opinion.
+Eight cases. Each attacks a specific way this system fails. Two have **known real-world
+outcomes**, so the right answer is not my opinion: TC-01 is a decided regulator case, and
+TC-08 is content that has demonstrably aired in UK daytime for decades.
 
 | # | Content | Attacks | A naive system fails by |
 |---|---|---|---|
@@ -18,6 +18,14 @@ not my opinion.
 | TC-03 | *The same film*, premium + PIN | the third axis | Saying "any time" and dropping the PIN |
 | TC-04 | *Thriller*, music channel, plus its trailer | derived assets | Judging the trailer by the video's slot |
 | TC-05 | Documentary with contradictory metadata | missing information | Resolving the contradiction silently |
+| TC-06 | *Step Brothers*, comic sex scene, no nudity | comedy is not an escape from every rule | Clearing it because it is funny and has no nudity |
+| TC-07 | *The 40-Year-Old Virgin*, explicit talk | where comedy **is** a live argument | Answering it the same way as TC-06 |
+| TC-08 | *Friends*, an after-sex scene at 14:30 | **over-rating**, the failure nobody reports | Pushing it to 21:00 and nobody noticing |
+
+TC-06 to TC-08 were added because the first five all fail in the same direction. Every one of
+them catches a system being **too permissive**. A test set made only of those trains a system
+to be cautious, and a system that is always cautious scores well on that set and quietly costs
+the business daytime inventory. TC-08 is the only case here that can catch that.
 
 ---
 
@@ -161,3 +169,125 @@ the hours unanswerable. Real footage of death engages rules that dramatised viol
 And "easy to copy at home" is an imitable-behaviour trigger that reads as harmless.
 
 **A confident answer here is a failure, even if the rating happens to be right.**
+
+---
+
+## TC-06, TC-07, TC-08: where comedy saves you, and where it does not
+
+These three exist because of a distinction in the UK Code that is easy to state and easy to
+get wrong, and that no amount of general reasoning about "is this suitable" will find.
+
+Three rules sit next to each other and they do **not** have the same escape clause:
+
+| rule | covers | escape clause |
+|---|---|---|
+| Rule 1.19 | strong or explicit sexual images **or language** | unless **justified by the context** |
+| Rule 1.21 | **nudity** before the watershed | unless **justified by the context** |
+| Rule 1.20 | **representations of sexual intercourse** | only a **serious educational purpose** |
+
+Comedy is part of context. So comedy can rescue content under 1.19 and under 1.21. It cannot
+rescue it under 1.20, because 1.20's only door is a serious educational purpose, and a comedy
+does not have one.
+
+That produces a result most people get backwards: **a sex scene with no nudity at all can be
+more restricted than a nude scene**, because the nudity rule bends to context and the
+intercourse rule does not.
+
+These cases also test something the extraction stage has fields for but that nothing has
+exercised yet: whether an act is **shown**, **implied**, or only **referred to afterwards**.
+
+### TC-06: *Step Brothers* (2008)
+
+```
+TITLE: Step Brothers (comedy feature)
+CERTIFICATE: BBFC 15
+SERVICE: free-to-air
+TRANSMISSION: not stated
+COUNTRIES: UK, FR
+
+EVENTS
+00:48:10  A sex scene played for comedy. Sexual intercourse is clearly depicted.
+          No nudity is shown. The staging is broad and unrealistic, scored for laughs,
+          and the scene is intercut with reaction shots.
+```
+
+**Right answer.** Not before 21:00, on **Rule 1.20**, and the comedy is irrelevant to that
+rule. Rule 1.21 does **not** fire, because there is no nudity to justify.
+
+**How a naive system fails.** It reasons "comedy, unrealistic, no nudity" and concludes the
+scene is mild enough for an afternoon. Every one of those observations is true and none of
+them reaches Rule 1.20. A system that has learned "nudity is the thing that matters" will
+clear this.
+
+### TC-07: *The 40-Year-Old Virgin* (2005)
+
+```
+TITLE: The 40-Year-Old Virgin (comedy feature)
+CERTIFICATE: BBFC 15
+SERVICE: free-to-air
+TRANSMISSION: not stated
+COUNTRIES: UK, FR
+
+EVENTS
+00:09:30  Sustained comic dialogue between friends describing sexual acts in explicit
+          terms. No sexual activity is shown.
+00:21:15  A chest-waxing scene. A man's bare chest is shown; he shouts in pain.
+          Played entirely for comedy.
+```
+
+**Right answer.** This one is **genuinely arguable**, which is the point of including it.
+Rule 1.19 is engaged by the explicit sexual language, and unlike TC-06 the comedy **is** a
+live argument here, because 1.19 bends to context. Rule 1.20 does not fire: nothing is
+depicted. The waxing scene is not sexual nudity.
+
+**What the system must do** is route this to a person, cite Rule 1.19, and set out the
+context argument rather than settling it. `determinacy` for that rule is `judgment_based`,
+and the post-decision check now fails any answer that relies on a judgment rule without
+flagging it.
+
+**The pair TC-06 and TC-07 is the real test.** Two comedies, both BBFC 15, both with explicit
+sexual content and no sexual nudity. One is a hard 21:00 with comedy counting for nothing;
+the other is a judgement call where comedy counts for a lot. A system that treats "comedic
+treatment" as a single modifier applied to all sexual content answers both the same way and
+is therefore wrong about one of them.
+
+### TC-08: *Friends*, an after-sex scene
+
+```
+TITLE: Friends (sitcom, 22 min episode)
+CERTIFICATE: none
+SERVICE: general entertainment, pay TV, with a +1 timeshift channel
+TRANSMISSION: 14:30 weekday
+COUNTRIES: UK
+
+EVENTS
+00:11:40  Two characters are shown in bed together after sex, covered by a duvet,
+          talking. No sexual activity is shown and no nudity is visible.
+          The fact that they have had sex is clear from the dialogue.
+```
+
+**Right answer.** Schedulable at 14:30. Rule 1.20 does **not** fire, because the aftermath of
+sex is not a representation of sexual intercourse. Rule 1.21 does not fire, no nudity. Rule
+1.19 is unlikely to be engaged by implication alone.
+
+**This one has a known real-world outcome, which is why it is here.** *Friends* has run in
+UK daytime for decades. It aired on E4, a free-to-air channel, at around 23 hours a week
+before 2011, and has been a daytime staple of Comedy Central ever since, at times filling
+most of the schedule between late morning and early evening. No Ofcom finding has followed.
+So if the system pushes this episode to 21:00, it is **over-rating**, and we know that
+without needing anyone's opinion.
+
+Two details worth keeping in the case rather than tidying away:
+
+- The channel is **pay TV**, not free-to-air, which is a different `service_type`. The real
+  broadcast history spans both, which is useful: it means the daytime answer does not depend
+  on which of the two you pick.
+- It has a **+1 channel**, so the identical episode goes out again an hour later. That is
+  rule `UK-SCH-009`, and a decision that answers for 14:30 without noticing 15:30 exists has
+  answered half the question.
+
+Over-rating is the failure nobody reports. It costs daytime inventory quietly and generates no
+complaint, which is why section 5 of `TASK2_SCALING.md` gives it its own metric. **TC-08 is
+the only case in this set that can catch it.** Every other case here fails by being too
+permissive. A test set made only of those trains a system to be cautious, and a system that is
+always cautious scores well and is expensive to run.
