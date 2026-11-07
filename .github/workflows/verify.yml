@@ -61,3 +61,9 @@ jobs:
 
       - name: Process diagram renders
         run: python out_of_scope/pipeline/build_diagrams.py --check
+
+      - name: Rules timeline matches the rules table
+        # The chart is generated from the table. It had no check and no CI step, so four
+        # determinacy relabels landed in the table while the committed chart kept the old
+        # values and nothing went red.
+        run: python out_of_scope/pipeline/build_timeline.py --check

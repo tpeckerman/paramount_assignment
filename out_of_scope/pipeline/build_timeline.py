@@ -118,7 +118,7 @@ def intervals(tok: str, country: str = ""):
     return (spans or None), flags
 
 
-def main() -> None:
+def main() -> int:
     rows = [r for r in csv.DictReader(
         C.RULES_CSV.open(newline="", encoding="utf-8"))
         if r["status"] == C.USABLE_STATUS]
@@ -156,11 +156,31 @@ def main() -> None:
     if _bad:
         raise SystemExit(f"malformed CSS colour value(s): {_bad}")
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(HTML.replace("__DATA__", data), encoding="utf-8")
+    rendered = HTML.replace("__DATA__", data)
+
+    # --check exists because this chart is GENERATED FROM THE RULES TABLE and had no
+    # staleness check at all, unlike build_diagrams.py which has one and runs in CI. Four
+    # determinacy relabels went into the table and the committed chart kept showing the
+    # old values, with nothing anywhere going red. A picture of the rules that quietly
+    # disagrees with the rules is worse than no picture.
+    if "--check" in sys.argv:
+        if not OUT.exists():
+            print(f"{OUT.relative_to(ROOT)} has not been generated", file=sys.stderr)
+            return 1
+        if OUT.read_text(encoding="utf-8") != rendered:
+            print(f"{OUT.relative_to(ROOT)} is STALE: the rules table has changed since it "
+                  f"was generated. Re-run build_timeline.py and commit the result.",
+                  file=sys.stderr)
+            return 1
+        print(f"{OUT.relative_to(ROOT)} is current")
+        return 0
+
+    OUT.write_text(rendered, encoding="utf-8")
     never = sum(1 for r in untimed if r["never"])
     print(f"wrote {OUT.relative_to(ROOT)}: {len(timed)} rules with a permitted window, "
           f"{never} never permitted at any hour, {len(untimed) - never} whose restriction "
           f"is not a time at all")
+    return 0
 
 
 HTML = r"""<!DOCTYPE html>
