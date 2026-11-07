@@ -58,11 +58,18 @@ None implies another:
   it is. Report the hours without the condition and you are wrong; report a bar without the
   available measure and you are wrong the other way.
 - **But a condition does not always replace the hours. Sometimes it is on top of them.**
-  French category V needs the 00:00 to 05:00 window **and** the decoder lock. UK Rule 1.18
-  needs its window **and** restricted access. Read each rule's own wording: `requires=` with
-  `any_time` is a substitute, `requires=` alongside a window is cumulative. Treating every
-  condition as an unlock is how a system clears something at noon that is barred until
+  Read the shape of each rule's own `time_rule_machine`: `requires=` beside `any_time` is a
+  **substitute**, and `requires=` beside a window is **cumulative**, meaning both the window
+  and the measure apply. Rules of both shapes exist in the table you were given. Treating
+  every condition as an unlock is how a system clears at noon something that is barred until
   midnight.
+
+  **No hours appear anywhere in this prompt, deliberately.** Every time, category and
+  threshold you use must come from the `<rules>` block. If a rule you need is not in that
+  block, it was not supplied, and the answer is that you cannot decide, not a figure you
+  remember. An earlier version of this prompt named two specific rules and their hours as
+  examples, which made this file look like a source of law alongside the rules block. It is
+  not one.
 
 So run three independent passes, then check the third against the second. Never derive one
 from another.

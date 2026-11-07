@@ -41,6 +41,7 @@ from __future__ import annotations
 import csv
 import json
 import pathlib
+import re
 import sys
 
 import sys
@@ -130,6 +131,34 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
     return defects, escalations
 
 
+def slice_ids(context_path: pathlib.Path) -> set[str] | None:
+    """The rule_ids that were actually handed to the model, read back from its own prompt.
+
+    WHY THIS EXISTS. Checking a citation against the whole table is not enough. The model is
+    given a SLICE, and a rule outside that slice is a rule it never saw, so citing one means
+    it reached for regulation from memory. That passes a whole-table check cleanly, because
+    the rule is perfectly real.
+
+    This is not hypothetical. On TC-04 a run built both French decisions on a rule that is in
+    the table and was not in that case's slice. The run caught it; this checker did not, and
+    would not have. The hole was in the one place claiming to make citations trustworthy.
+    """
+    if not context_path.is_file():
+        return None
+    body = context_path.read_text(encoding="utf-8", errors="replace")
+    # The LAST pair, not the first. The prompt documents its own input format near the top,
+    # so an early <rules> is the schema description rather than the data. Reading that one
+    # yields an empty slice and then flags every citation, which is a checker that fails
+    # loudly instead of silently and is still a broken checker.
+    start = body.rfind("<rules>")
+    end = body.rfind("</rules>")
+    if start < 0 or end < 0 or end < start:
+        return None
+    found = set(re.findall(r"\b(?:UK|FR|EU)-[A-Z]{2,4}-\d{3}\b", body[start:end]))
+    # An empty slice means the parse missed, not that the model was given nothing.
+    return found or None
+
+
 def main() -> int:
     if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
         print(__doc__)
@@ -152,10 +181,23 @@ def main() -> int:
         return 2
 
     rules = load_rules()
+
+    # If the assembled context sits beside the output, check against the slice too.
+    guess = path.with_name(path.name.replace("_run2.json", "_run2_context.txt"))
+    in_slice = slice_ids(pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else guess)
+
     all_defects: list[str] = []
     all_escalations: list[str] = []
     for d in decisions:
         defects, escalations = check_decision(d, rules)
+        if in_slice is not None:
+            where = f"{d.get('country', '?')}/{d.get('transmission', '?')}"
+            for rule_id, axis in cited_ids(d):
+                if rule_id in rules and rule_id not in in_slice:
+                    defects.append(
+                        f"{where}: cites {rule_id} on '{axis}', which is a real rule that "
+                        f"was NOT in this decision's slice. The model was never shown it, so "
+                        f"it came from memory rather than from the rules supplied.")
         all_defects += defects
         all_escalations += escalations
 
