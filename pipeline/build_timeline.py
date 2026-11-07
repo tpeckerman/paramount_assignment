@@ -31,48 +31,87 @@ def to_min(hhmm: str) -> int:
 # drawn open-ended rather than having a 05:30 invented for it.
 UK_WATERSHED_CLOSE = 5 * 60 + 30
 
+# The chart's day starts at 05:30, not midnight. The UK watershed runs 21:00 to 05:30, which
+# across a midnight-based axis appears as two fragments pinned to opposite edges and reads as
+# two separate permissions. Starting the day at 05:30 makes it a single unbroken bar, which is
+# what it actually is.
+DAY_START = 5 * 60 + 30
+
+
+def to_axis(spans):
+    """Rebase spans onto a day starting at DAY_START, splitting any that wrap, then merge."""
+    out = []
+    for a, b in spans:
+        sa, sb = (a - DAY_START) % 1440, (b - DAY_START) % 1440
+        if b - a >= 1440:
+            out.append([0, 1440])
+        elif sb == 0:
+            out.append([sa, 1440])
+        elif sa < sb:
+            out.append([sa, sb])
+        else:
+            out += [[sa, 1440], [0, sb]]
+    out.sort()
+    merged = []
+    for sp in out:
+        if merged and sp[0] <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], sp[1])
+        else:
+            merged.append(list(sp))
+    return merged
+
 
 def intervals(tok: str, country: str = ""):
-    """Return (list of [start,end] minute pairs, kind) or (None, kind) if not a clock rule."""
-    spans, kind = [], None
+    """Return (permitted spans, flags) in ONE polarity: everything drawn is PERMITTED time.
+
+    Mixing polarities made the chart unreadable: a bar at the same position meant "you may
+    transmit" or "you may not" depending on its colour. So a prohibition is now drawn as the
+    COMPLEMENT - the hours that remain - and a rule prohibited at every hour produces no bar
+    at all and is listed separately instead of occupying a row that says nothing.
+
+    flags: {"soft": bool, "open_ended": bool, "never": bool}
+    """
+    spans, flags = [], {"soft": False, "open_ended": False, "never": False}
     for part in [p.strip() for p in tok.split(";") if p.strip()]:
         m = re.match(r"^not_before=(\d{2}:\d{2})$", part)
         if m:
             spans.append([to_min(m.group(1)), 24 * 60])
             if country == "UK":
                 spans.append([0, UK_WATERSHED_CLOSE])
-            kind = "permitted"
-            continue
-        m = re.match(r"^window=(\d{2}:\d{2})-(\d{2}:\d{2})$", part)
-        if m:
-            a, b = to_min(m.group(1)), to_min(m.group(2))
-            spans += ([[a, b]] if a < b else [[a, 24 * 60], [0, b]])
-            kind = "permitted"
-            continue
-        m = re.match(r"^restricted_window=(\d{2}:\d{2})-(\d{2}:\d{2})$", part)
-        if m:
-            a, b = to_min(m.group(1)), to_min(m.group(2))
-            spans += ([[a, b]] if a < b else [[a, 24 * 60], [0, b]])
-            kind = "permitted"
-            continue
-        m = re.match(r"^prohibited_in=(\d{2}:\d{2})-(\d{2}:\d{2})$", part)
-        if m:
-            a, b = to_min(m.group(1)), to_min(m.group(2))
-            spans += ([[a, b]] if a < b else [[a, 24 * 60], [0, b]])
-            kind = "prohibited"
+            else:
+                # No general closing time is stated for France, so the window is drawn to the
+                # edge of the day and marked as continuing rather than given an invented end.
+                flags["open_ended"] = True
             continue
         m = re.match(r"^soft_prefer_not_before=(\d{2}:\d{2})$", part)
         if m:
             spans.append([to_min(m.group(1)), 24 * 60])
-            kind = "preferred"
+            flags["soft"] = True
+            flags["open_ended"] = country != "UK"
+            continue
+        m = re.match(r"^window=(\d{2}:\d{2})-(\d{2}:\d{2})$", part)
+        if m:  # the window IS the permission
+            a, b = to_min(m.group(1)), to_min(m.group(2))
+            spans += ([[a, b]] if a < b else [[a, 24 * 60], [0, b]])
+            continue
+        # restricted_window names when the RESTRICTION applies, so the permitted time is the
+        # complement. Treating it as a permitted window drew the French 06:00-22:00 violence
+        # restriction as though those were the only hours it could run.
+        m = re.match(r"^(?:prohibited_in|restricted_window)=(\d{2}:\d{2})-(\d{2}:\d{2})$", part)
+        if m:  # draw what is LEFT, not what is barred
+            a, b = to_min(m.group(1)), to_min(m.group(2))
+            if a < b:
+                spans += [x for x in ([0, a], [b, 24 * 60]) if x[0] < x[1]]
+            else:
+                spans += [[b, a]]
             continue
         if part == "prohibited":
-            spans.append([0, 24 * 60])
-            kind = "prohibited"
+            flags["never"] = True
         elif part == "any_time":
             spans.append([0, 24 * 60])
-            kind = "permitted"
-    return (spans or None), kind
+    if flags["never"]:
+        return None, flags
+    return (spans or None), flags
 
 
 def main() -> None:
@@ -82,7 +121,7 @@ def main() -> None:
 
     timed, untimed = [], []
     for r in rows:
-        spans, kind = intervals(r["time_rule_machine"], r["country"])
+        spans, flags = intervals(r["time_rule_machine"], r["country"])
         rec = {
             "id": r["rule_id"], "country": r["country"],
             "cat": r["content_category"], "svc": r["service_type"],
@@ -91,9 +130,11 @@ def main() -> None:
             "text": r["threshold_description"][:260],
             "hr": r["human_review_required"] == "yes",
         }
+        rec["never"] = flags["never"]
         if spans:
-            rec["spans"] = spans
-            rec["kind"] = kind
+            rec["spans"] = to_axis(spans)
+            rec["soft"] = flags["soft"]
+            rec["open"] = flags["open_ended"]
             timed.append(rec)
         else:
             untimed.append(rec)
@@ -101,8 +142,10 @@ def main() -> None:
     data = json.dumps({"timed": timed, "untimed": untimed}, ensure_ascii=False)
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(HTML.replace("__DATA__", data), encoding="utf-8")
-    print(f"wrote {OUT.relative_to(ROOT)}: {len(timed)} rules with a clock time, "
-          f"{len(untimed)} whose restriction is not a time")
+    never = sum(1 for r in untimed if r["never"])
+    print(f"wrote {OUT.relative_to(ROOT)}: {len(timed)} rules with a permitted window, "
+          f"{never} never permitted at any hour, {len(untimed) - never} whose restriction "
+          f"is not a time at all")
 
 
 HTML = r"""<!DOCTYPE html>
@@ -132,10 +175,11 @@ td.lbl .meta{color:var(--mut);font-size:11px}
 .track{position:relative;height:22px;background:repeating-linear-gradient(90deg,
 #f4f2ee 0 1px,transparent 1px calc(100%/24));border:1px solid var(--line);border-radius:4px}
 .bar{position:absolute;top:2px;bottom:2px;border-radius:3px}
-.permitted{background:var(--okb);border:1px solid var(--ok)}
-.prohibited{background:var(--nob);border:1px solid var(--no)}
-.preferred{background:var(--softb);border:1px solid var(--soft);
-background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(0,0,0,.05) 4px 8px)}
+.bar{background:var(--okb);border:1px solid var(--ok)}
+.bar.soft{background:var(--softb);border:1px dashed var(--soft);
+background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(0,0,0,.06) 5px 10px)}
+.cont{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--ok);
+font-size:11px;line-height:1}
 .ws{position:absolute;top:-4px;bottom:-4px;width:1px;background:#444;opacity:.45}
 .axis{display:flex;margin:6px 0 0 300px;font-size:10.5px;color:var(--mut)}
 .axis span{flex:1;text-align:left}
@@ -151,9 +195,13 @@ border-radius:10px;font-size:13px;max-width:92ch}
 code{background:#f1efea;padding:1px 4px;border-radius:3px;font-size:12px}
 </style></head><body>
 <h1>When each rule bites, over 24 hours</h1>
-<p class="sub">Built from the rule table, not drawn by hand. A rule appears here only if its
-machine token encodes an actual clock time. Rules whose restriction is not a time are listed
-underneath instead of being placed at an invented hour.</p>
+<p class="sub">Built from the rule table, not drawn by hand. <strong>Every bar means the same
+thing: the content may be transmitted then.</strong> A prohibition is shown as the hours that
+remain, so there is one reading of the chart rather than two. The day runs <strong>05:30 to
+05:30</strong> rather than midnight to midnight, because the UK watershed is 21:00 to 05:30 and
+a midnight axis splits it into two fragments at opposite edges that read as two separate
+permissions. Rules that permit no hour at all, and rules whose restriction is not a time, are
+listed underneath rather than drawn at an invented position.</p>
 
 <div class="controls">
   <div><label for="c">Country</label><select id="c"></select></div>
@@ -165,11 +213,13 @@ underneath instead of being placed at an invented hour.</p>
   <div id="chart"></div>
   <div class="axis" id="axis"></div>
   <div class="legend">
-    <span><i class="k permitted"></i>permitted in this window</span>
-    <span><i class="k prohibited"></i>prohibited in this window</span>
-    <span><i class="k preferred"></i>soft preference, not a prohibition</span>
+    <strong style="color:var(--ink)">A bar means the content MAY be transmitted.</strong>
+    <span><i class="k bar"></i>permitted</span>
+    <span><i class="k bar soft"></i>permitted, but the regulator prefers later</span>
+    <span>no bar = not permitted</span>
+    <span>&rsaquo; continues past midnight; no closing time stated in the source</span>
     <span><i style="display:inline-block;width:1px;height:12px;background:#444;
-      vertical-align:-2px;margin-right:5px"></i>21:00 and 05:30</span>
+      vertical-align:-2px;margin-right:5px"></i>21:00 watershed</span>
     <span class="hr">R = human review required</span>
   </div>
 </div>
@@ -212,38 +262,48 @@ function draw(){
   if (!rows.length){ chart.innerHTML = '<p class="empty">No clock-time rule matches that '
     + 'combination. Check the list below: the restriction may not be a time at all.</p>';
     $('#axis').innerHTML=''; untimed(); return; }
-  let h = '<table><tr><th class="h">rule</th><th class="h">00:00 to 24:00</th></tr>';
+  let h = '<table><tr><th class="h">rule</th><th class="h">05:30 &rarr; 05:30 next day</th></tr>';
   for (const r of rows){
-    const bars = r.spans.map(([a,b]) =>
-      `<div class="bar ${r.kind}" style="left:${a/14.4}%;width:${(b-a)/14.4}%"></div>`).join('');
+    const bars = r.spans.map(([a,b],i) =>
+      `<div class="bar${r.soft?' soft':''}" style="left:${a/14.4}%;width:${(b-a)/14.4}%">`
+      + ((r.open && b===1440) ? '<span class="cont">&rsaquo;</span>' : '') + `</div>`).join('');
     h += `<tr><td class="lbl"><span class="rid">${r.id}</span>`
       + `${r.hr ? '<span class="hr">R</span>' : ''}`
       + `<br><span class="meta">${r.cat} &middot; ${r.cls}</span></td>`
       + `<td><div class="track" title="${r.tok.replace(/"/g,'')}\n${r.clause}">`
-      + `<div class="ws" style="left:87.5%"></div>`
-      + `<div class="ws" style="left:22.9%"></div>${bars}</div></td></tr>`;
+      + `<div class="ws" style="left:64.58%"></div>${bars}</div></td></tr>`;
   }
   chart.innerHTML = h + '</table>';
-  $('#axis').innerHTML = Array.from({length:8}, (_,i) =>
-    `<span>${String(i*3).padStart(2,'0')}:00</span>`).join('');
+  $('#axis').innerHTML = Array.from({length:8}, (_,i) => {
+    const m = (330 + i*180) % 1440;
+    return `<span>${String(Math.floor(m/60)).padStart(2,'0')}:`
+         + `${String(m%60).padStart(2,'0')}</span>`;
+  }).join('');
   untimed();
 }
 
 function untimed(){
   const rows = D.untimed.filter(match);
-  let h = '<h2>Rules that restrict something other than the hour'
-    + ` (${rows.length} shown)</h2>`
-    + '<p>These are not drawn above because they have no clock time to draw. They are not '
-    + 'lesser rules. Several of them <em>change</em> the hours above: an access control can '
-    + 'disapply the watershed entirely, so a bar in this chart can be lifted by a rule in '
-    + 'this list.</p><ul>';
-  for (const r of rows.slice(0, 40)){
-    h += `<li><code>${r.id}</code> ${r.cat}`
-      + (r.tok && r.tok !== 'n/a' ? ` &mdash; <code>${r.tok.slice(0,70)}</code>` : '')
-      + `${r.hr ? '<span class="hr">R</span>' : ''}</li>`;
+  const never = rows.filter(r => r.never);
+  const other = rows.filter(r => !r.never);
+  let h = '';
+  if (never.length){
+    h += `<h2>Never permitted, at any hour (${never.length})</h2>`
+      + '<p>No bar can be drawn for these because no hour is permitted. They are listed '
+      + 'rather than shown as an empty row, since an empty row looks like missing data.</p><ul>'
+      + never.map(r => `<li><code>${r.id}</code> ${r.cat}`
+          + `${r.hr ? '<span class="hr">R</span>' : ''}</li>`).join('')
+      + '</ul>';
   }
-  $('#untimed').innerHTML = h + '</ul>'
-    + (rows.length > 40 ? `<p>and ${rows.length-40} more.</p>` : '');
+  h += `<h2>Rules that restrict something other than the hour (${other.length})</h2>`
+    + '<p>These have no clock time to draw, which does not make them lesser. Several '
+    + '<em>change</em> the bars above: an access control can disapply the watershed '
+    + 'entirely, so a gap in this chart can be filled by a rule in this list.</p><ul>'
+    + other.slice(0,40).map(r => `<li><code>${r.id}</code> ${r.cat}`
+        + (r.tok && r.tok !== 'n/a' ? ` &mdash; <code>${r.tok.slice(0,70)}</code>` : '')
+        + `${r.hr ? '<span class="hr">R</span>' : ''}</li>`).join('')
+    + '</ul>' + (other.length > 40 ? `<p>and ${other.length-40} more.</p>` : '');
+  $('#untimed').innerHTML = h;
 }
 
 ['#c','#s','#g'].forEach(s => $(s).addEventListener('change', draw));
