@@ -355,8 +355,8 @@ EVENTS
 
 **What it tests, which nothing else here does.** The system has rules about injury, about
 imitable behavior in a setting a viewer could reproduce, and about alcohol. All three are in
-the slice. **All three should be read and set aside**, and the answer should say so rather
-than escalating because a judgment rule was present.
+the slice. **None should apply**, and the answer should not escalate just because a
+judgment rule was present.
 
 **Why the first run failed it.** The reviewer found that the description step forced the cut
 finger into `serious_harm`, because the closed category list has no value for a minor injury.

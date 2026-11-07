@@ -155,34 +155,20 @@ a low score in `confidence_reason`. A score below the review line (the person ru
 sets it, and it starts at 0.8) means `human_review_required` is true, with "low confidence" in
 `review_reasons`.
 
-## Checked is not the same as relied on
+## Only rules that changed the answer count
 
-A rule can be in your set, be read, and not apply. **Say so, in
-`rules_checked_not_triggered`.** Do not leave it out.
-
-This matters more than it sounds. A judgment rule you looked at and set aside is not a
-judgment you made. It is a rule you ruled out. If every judgment rule counts as "relied on"
-just for being present, then every decision involves a judgment, every decision goes to a
-person, and the system hands back all of its work. That is not hypothetical: these prompts
-once escalated **17 decisions out of 17**, including a cookery program where someone puts a
-plaster on a cut finger.
-
-So:
-
-- **`basis`** is for a rule that **changed your answer**: it set or moved the hours, fixed the
-  rating, or imposed a condition.
-- **`rules_checked_not_triggered`** is for a rule you read and set aside, with one line saying
-  what was missing.
-- **Escalate on what is in `basis`**, not on what you were handed.
+`basis` is for a rule that **changed your answer**: it set or moved the hours, fixed the
+rating, or imposed a condition. A rule you read and set aside does not go in `basis`, and does
+not send the case to a person.
 
 ## When nothing applies
 
 If you work through the observations and no rule applies, **that is the answer**. Say it:
-hours permitted, `human_review_required: false`, and list what you checked.
+hours permitted, `human_review_required: false`.
 
-Do not invent a restriction because the program exists and the rules look strict. "I checked
-these twelve rules and none of them apply" is a complete, useful, checkable answer. Refusing
-to give it is how a compliance tool becomes something people work around.
+Do not invent a restriction because the program exists and the rules look strict. "None of
+these rules apply" is a complete, useful answer. Refusing to give it is how a compliance tool
+becomes something people work around.
 
 **The limit.** This does not cover facts you were not told. Missing information is still
 missing, still goes in `missing_information`, and still escalates if it would change the
@@ -222,7 +208,6 @@ evaluate.
     "reasoning": "step by step: what the content shows, which rule that triggers, and how that gives the hours. Every claim carries a rule_id",
     "confidence": 0.0,
     "confidence_reason": "one or two sentences: what makes you sure, or what holds the score down",
-    "rules_checked_not_triggered": [{"rule_id": "", "why_not": "what was missing from the content"}],
     "human_review_required": true,
     "review_reasons": [],
     "missing_information": [{"field": "", "why_it_matters": "", "what_changes_if_answered": ""}],

@@ -55,11 +55,11 @@ The two countries decide this in opposite ways. France, inside the EU, goes by w
 
 **The first full run sent 17 of 17 decisions to a human.** That included a cookery program where a presenter nicks a finger and puts on a plaster. No decision said when a program could air. The system saved nobody any work.
 
-**The cause took several runs to find.** The prompt escalated whenever a rule it used was a judgement call. But rules that explain how to weigh things appear in every decision while deciding nothing themselves. Two were plain definitions, and neither can set an hour, a rating, or a condition. One appeared in 9 of the 17 escalations.
+**The cause took several runs to find.** The prompt escalated whenever a rule it used was a judgment call. But rules that explain how to weigh things appear in every decision while deciding nothing themselves. Two were plain definitions, and neither can set an hour, a rating, or a condition. One appeared in 9 of the 17 escalations.
 
-**Three changes followed.** The prompt now separates a rule it relied on from one it read and set aside. Those two definitions no longer demand a person. And the prompt escalates on the dedicated sign-off column.
+**Three changes followed.** The prompt now escalates only on rules that changed the answer. Those two definitions no longer demand a person. And the prompt escalates on the dedicated sign-off column.
 
-**Result.** Six cases re-run blind, by agents with no knowledge of the project and no access to the expected answers. All six correct. The cookery program is clear in both countries with nobody needed, and the real enforcement case is still barred before 9pm. `tests/RESULTS.md` has both rounds.
+**Result.** Six cases re-run blind, by agents with no knowledge of the project and no access to the expected answers. All six correct. The cookery program is clear in both countries with nobody needed, and the real enforcement case is still barred before 9pm. `tests/RESULTS.md` has the detail.
 
 ## Known weaknesses
 

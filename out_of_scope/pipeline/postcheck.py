@@ -96,18 +96,11 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
                            f"for a {d.get('country')} decision.")
 
     # Step 14, the part of "clear-cut?" that is a property of the rules rather than a feeling.
-    # Only rules in `basis` count. A rule the model read and set aside lives in
-    # `rules_checked_not_triggered` and is NOT a judgement it made about this content.
-    #
-    # Before this distinction existed, every judgement rule in the slice counted as relied
-    # on, so every decision escalated: 17 of 17 on the first full run, including a benign
-    # control about a plaster on a cut finger. Each escalation was defensible and the system
-    # was useless. The fix is not to loosen the rule but to stop miscounting what it applies
-    # to.
-    checked_only = {r.get("rule_id") for r in d.get("rules_checked_not_triggered") or []}
+    # Only rules in `basis` count: the ones that changed the answer. A rule the model read and
+    # set aside is not cited, so it never escalates. Counting every rule in the slice
+    # escalated 17 of 17 on the first full run.
     judgment = sorted({rid for rid, _ in cites
-                       if rid not in checked_only
-                       and rules.get(rid, {}).get("determinacy") == C.JUDGMENT_DETERMINACY})
+                       if rules.get(rid, {}).get("determinacy") == C.JUDGMENT_DETERMINACY})
     if judgment and not d.get("human_review_required"):
         escalations.append(
             f"{where}: rests on {', '.join(judgment)}, which {'is' if len(judgment) == 1 else 'are'} "

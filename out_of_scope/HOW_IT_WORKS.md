@@ -359,9 +359,9 @@ judgment, but a large part is not, and the part that is not belongs here:
 
 - if any rule relied on is `judgment_based`, a person has to see it. That is a property of
   the rule recorded in the table, not a matter of how confident the answer sounds
-- if the output claims `confidence: high` while listing missing information, one of the two
+- if the output claims a confidence of 0.9 or more while listing missing information, one of the two
   is wrong. Either the missing field would not change the answer, in which case it does not
-  belong in `missing_information`, or it would, in which case the confidence is not high
+  belong in `missing_information`, or it would, in which case the confidence is not that high
 - if observations matched no rule, that is a gap in the table, and a gap is not permission
 
 Exit `0` passes, `1` means it must go to a person and did not say so, `2` means malformed or
