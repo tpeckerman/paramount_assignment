@@ -33,16 +33,12 @@ This is the most dangerous kind of miss. A lock like that turns "not before 9pm"
 time of day", so losing it produces an answer **more permissive than the law allows**, with
 nothing flagged.
 
-**2. No way to tell a time of day from a running time.** `00:11:33` can mean eleven hours
-into a film or half past eleven in the morning. Nothing said which. For the one real
-enforcement case in the set, that distinction is the entire question.
-
-**3. One box asked two questions.** A field called `treatment` held both *was this shown* and
+**2. One box asked two questions.** A field called `treatment` held both *was this shown* and
 *how was it played*. One case has characters joking explicitly about sex with nothing shown.
 It is both comic and not shown, only one value fit, so information was thrown away and the
 prompt left the choice to chance.
 
-**4. A repeat channel invited arithmetic the prompt elsewhere banned.** One instruction
+**3. A repeat channel invited arithmetic the prompt elsewhere banned.** One instruction
 mentioned that some channels rebroadcast an hour later, inviting step one to turn 14:30 into
 15:30. Another said never to adjust a time.
 
@@ -52,7 +48,6 @@ mentioned that some channels rebroadcast an hour later, inviting step one to tur
   is on by default, whether the viewer can remove it, and the exact words used. The last two
   are separate questions, because a lock the viewer can switch off is not the same protection
   as one they cannot.
-- Every event now records whether its timecode is a time of day or a running time.
 - `treatment` records framing only. A separate yes/no field already answered "was it shown",
   so the conflicting value was removed.
 - Step one records the broadcast as given and notes that a repeat channel may exist. The
