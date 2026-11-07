@@ -18,6 +18,50 @@ against stored sources, 0 failing.
 
 ---
 
+## What the prompt takes in, and why there is no video step
+
+Requirement 2 sets the interface: the prompt "accepts a content description including events
+and timecodes". Requirement 3 asks for test cases built from "short videos, music videos, or
+any content available to you to run with the prompt".
+
+Read together: a video is where a test case **comes from**; the description is what **runs**.
+Writing that description is the tester's job, done once per case, and the test cases here are
+built from real identifiable content rather than invented titles so a reviewer can check the
+descriptions against the works.
+
+Two reasons beyond the requirement for drawing the boundary there.
+
+**Broadcasters already produce this artifact.** Compliance viewing notes and as-run logs are
+standard practice. The description is not a workaround for lacking video understanding; it is
+the document that already exists in the workflow this would slot into.
+
+**It would be the least verifiable link in the chain.** Every other step here can be checked
+against something external: a rule against its source document, a decision against a cited
+rule. A model's reading of a video can only be checked by a human watching it, which is the
+cost the system exists to reduce.
+
+### Where the hard part actually is
+
+The natural assumption is that classification is a judgment call and the rules are the easy
+part. It is closer to the reverse.
+
+| | Deterministic? | Example |
+|---|---|---|
+| Deciding **what is in** the content | **No.** This is where the judgment lives. | Is this violence "presented repeatedly"? Is this treatment "derogatory"? Is the method "easily imitable"? |
+| Applying rules **once that is settled** | **Largely yes.** 44 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
+
+The rule-application half is close to a lookup, which is why most of the effort here went into
+making the table correct and checkable rather than into prompt wording.
+
+The characterisation half is hard in a way that does not look hard. "Two teenagers share a
+cigarette, played for laughs" and "a character smokes" are different inputs to the same rule
+and yield different answers.
+
+Splitting the stages puts the judgment in one place where it can be tested and escalated, and
+leaves the other half nearly mechanical. It is also what makes the extractor's blindness to
+the rules possible, which matters because an extractor that knows the thresholds decides the
+outcome through word choice before any rule is applied.
+
 ## Design choice 1, Two stages, not one
 
 **Chosen:** RUN 1 turns the description into timecoded observations. RUN 2 applies rules.
