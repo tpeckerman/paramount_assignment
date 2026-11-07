@@ -26,28 +26,19 @@ run **once per showing**.
 
 ### What happens when a rule does not pass
 
-Step 7 is not pass-or-bin. A rule that fails a check gets a **status**, and the status decides
-whether a decision may use it. Only `approved` rules are ever handed to step 12.
+Step 7 is not pass-or-bin. A rule that fails a check does not enter the table, so step 12 only
+ever sees rules that passed. Two real cases:
 
-**How a rule actually ends up in each state.** Every one of these has happened here.
+- **A rule learned from a source that is not the rule.** French channels each sign an
+  agreement with the regulator. An enforcement decision proved those agreements exist and bind,
+  but the agreements are not published, so what they demand is recorded as an open question
+  instead of a rule.
+- **A correct quote from the wrong edition.** Two rules cited 2015 guidance that a 2018
+  statement had restructured. They were fixed before entering the table.
 
-| Status | How it happens | The real case |
-|---|---|---|
-| `draft` | You learn a rule exists from a source that **is not the rule**. You can write down that it binds, but not what it demands. | French channels each sign an individual agreement with the regulator. An enforcement decision cited those agreements, which proved they exist and bind, but the agreements themselves are not published centrally. |
-| `unverified` | Either the source could not be read yet, or it was read and something is off. The quote can be real and the document real while the **vintage** is wrong. | Two rules cited guidance from 2015 that a 2018 statement had restructured. Correct quote, correct document, superseded edition. |
-| `superseded` | The law changed. The old row is not wrong; it was correct until a date. | A 2014 amendment broadened a French category. The old wording stays, end-dated, because explaining a decision made in 2013 needs the rule as it stood in 2013. |
-| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 105 of 105 rules. |
-
-Two things follow from this that are easy to miss.
-
-**A rule can be correct and still unusable.** `draft` is not a complaint about quality. It is the
-table being honest that a whole layer of binding obligation exists which it cannot describe,
-so a decision for a French channel should say "check the channel's own agreement" rather than
-implying the general law is the whole answer.
-
-**Deleting a superseded rule breaks the past.** The question a regulator asks is "why did you
-clear that program in 2013?", and answering it needs the rule as it was then, not as it is
-now.
+When the law changes, the old rule is not deleted. It gets an end date (`valid_to`) and stops
+being selected, because a regulator can ask "why did you clear that program in 2013?" and
+answering needs the rule as it stood then.
 
 ### Why only three steps use a model
 
@@ -162,7 +153,7 @@ job is reading law. It runs 20 times, once per source, and again whenever a regu
 something.
 
 Each row carries a `verbatim_quote` that appears character for character in the stored file.
-**All 105 approved rules do**, and a rule without one fails the build.
+**All 105 rules do**, and a rule without one fails the build.
 `out_of_scope/pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
@@ -181,14 +172,9 @@ blank, an `authority_rank` of 11. The other is a value outside the controlled li
 the dangerous one, because nothing errors: the row sits in the table looking fine and matches
 no lookup. Two real bugs in this project were exactly that.
 
-**Step 7 is a gate on being used, not a gate on being stored.** A rule can reach the table
-without anyone signing it off. It arrives as `draft` or `unverified` instead of `approved`,
-and the decision engine only ever reads `approved` rows, which is the `approved rows only`
-arrow in the process diagram. So the honest answer to "can a rule get into the table without an
-expert?" is yes, and it will be ignored until one looks at it. That is deliberate. The
-alternative is that a rule nobody has reviewed yet has nowhere to live, so it gets held
-outside the system in someone's notes, and then it is not quoted, not checked and not
-counted. Better in the table and visibly unusable.
+**Step 7 is a gate on entering the table.** A rule that fails the quote check or the field
+checks does not get in. No expert signs rules off: the checks are the gate, and a rule that
+passes them is live.
 
 ### Step 0: someone watches the content
 
@@ -383,7 +369,7 @@ oversells itself.
 | Automated re-fetching and amendment watching | **Built, but it answers Task 2.** Task 1 asked for the sources to be located and presented, which was done once. A system that keeps re-checking them is Task 2's first question |
 | 0, someone watches the content | The assignment starts from a description, so producing one is outside it. Also the weakest link in the chain |
 | 0b, 0c, 0d, the answer cache | A cost idea for scale, belonging to Task 2. Nothing is built |
-| 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. Every row is `approved` because the author approved it, which is conflict C-08 |
+| 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. The author checked every rule, which is conflict C-08 |
 | 9b, a person adds a new category | There is a branch for it and a message telling you to take it, but no process behind it |
 | A person decides, after escalation | Producing the escalation **is** in scope and is a required deliverable. What the person then does with it is not |
 

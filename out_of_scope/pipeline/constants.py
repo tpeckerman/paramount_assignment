@@ -74,14 +74,11 @@ TASK2_MD = APPARATUS / "TASK2_SCALING.md"
 # --------------------------------------------------------------------------------------
 COUNTRIES = ("UK", "FR", "EU")
 
-STATUSES = ("approved", "draft", "unverified", "superseded")
+def is_live(rule: dict) -> bool:
+    """Every rule in the table is live unless it has been closed with an end date."""
+    vt = (rule.get("valid_to") or "").strip().lower()
+    return vt in ("", "open", "unknown")
 
-#: The only status the decision engine may read. Everything else is in the table on purpose
-#: and must never reach a decision.
-USABLE_STATUS = "approved"
-
-#: A rule that is closed but kept, because a past decision still has to be explainable.
-SUPERSEDED_STATUS = "superseded"
 
 #: Describes THE RULE: is the line bright, or is it a judgement?
 DETERMINACY = ("bright_line", "conditional", "judgment_based")

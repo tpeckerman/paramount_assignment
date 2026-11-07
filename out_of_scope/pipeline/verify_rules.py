@@ -58,7 +58,6 @@ ENUMS = {
     "determinacy": set(C.DETERMINACY),
     "ambiguity_flag": {"clear", "conflicting_sources", "translation_uncertain",
                        "unverified", "out_of_scope_for_asset_decision"},
-    "status": set(C.STATUSES),
     "human_review_required": {"yes", "no"},
     "use_for_decision": {"yes", "definition_only", "framework_only", "pointer",
                          "scope_rule", "no_out_of_scope"},
@@ -69,7 +68,7 @@ ENUMS = {
 REQUIRED_NON_EMPTY = ("rule_id", "country", "regulator", "source_type", "authority_rank",
                       "use_for_decision", "service_type", "content_category",
                       "threshold_description", "determinacy", "ambiguity_flag",
-                      "source_doc", "clause_ref", "source_url", "status")
+                      "source_doc", "clause_ref", "source_url")
 
 
 def load_rules() -> list[dict]:
@@ -112,11 +111,11 @@ def check(rows: list[dict]) -> list[str]:
         if r["authority_rank"] not in {str(n) for n in range(1, 8)}:
             bad.append(f"{rid}: authority_rank={r['authority_rank']!r} not 1-7")
 
-        # a row cannot be approved while its extraction is still in doubt
-        if r["status"] == C.USABLE_STATUS and r["ambiguity_flag"] in {
+        # a live row cannot have an extraction that is still in doubt
+        if C.is_live(r) and r["ambiguity_flag"] in {
                 "translation_uncertain", "unverified", "conflicting_sources"}:
-            bad.append(f"{rid}: status=approved but ambiguity_flag="
-                       f"{r['ambiguity_flag']} - resolve or downgrade")
+            bad.append(f"{rid}: live but ambiguity_flag="
+                       f"{r['ambiguity_flag']} - resolve or close")
 
         # anything needing review must say why
         if r["human_review_required"] == "yes" and not r["ambiguity_note"].strip():
@@ -252,7 +251,7 @@ def check_quotes(rows: list[dict]) -> list[str]:
                                 f"but {missing} not downloaded")
     # Report the DENOMINATOR. This line used to count only the rules that happened to carry
     # a quote, so it read as full coverage while half the table had never been checked.
-    _approved = [r for r in rows if r["status"] == C.USABLE_STATUS]
+    _approved = [r for r in rows if C.is_live(r)]
     _noq = [r["rule_id"] for r in _approved if not r["verbatim_quote"].strip()]
     print(f"  quote check: {checked - len(bad)} VERIFIED against the stored source, "
           f"{len(bad)} FAILED, {len(inconclusive)} inconclusive, "
@@ -501,7 +500,6 @@ def main() -> int:
 
     from collections import Counter
     print("  by country   :", dict(Counter(r["country"] for r in rows)))
-    print("  by status    :", dict(Counter(r["status"] for r in rows)))
     print("  by determinacy:", dict(Counter(r["determinacy"] for r in rows)))
     print("  needs review :", sum(1 for r in rows if r["human_review_required"] == "yes"))
     print(f"  EXCEPTIONS:  {len(exc_flagged)} of {exc_checkable} rules that claim an exception "
@@ -511,8 +509,7 @@ def main() -> int:
     print(f"  HOURS vs QUOTE: {time_checkable} of {time_total} rules have a time in both "
           f"the machine field and the quote, so only those were compared. The other "
           f"{time_total - time_checkable} are NOT verified on this axis, merely unexamined.")
-    print("  GROUND TRUTH USABLE (status=approved):",
-          sum(1 for r in rows if r["status"] == C.USABLE_STATUS))
+    print("  LIVE RULES:", sum(1 for r in rows if C.is_live(r)))
 
     if problems:
         print(f"\n{len(problems)} problem(s):")

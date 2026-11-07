@@ -1,6 +1,6 @@
 # Scope, design choices, and tools
 
-**Current state:** 105 rules, all approved, each with a word-for-word quote from its source. All 105 quotes verify against the stored documents. 20 of 20 sources collected. An approved rule with no quote fails the build.
+**Current state:** 105 rules, each with a word-for-word quote from its source. All 105 quotes verify against the stored documents. 20 of 20 sources collected. A rule with no quote fails the build.
 
 ## What goes in
 

@@ -10,12 +10,12 @@ conflicts.
 
 ## Where things stand
 
-- 105 rules, all 105 approved. `FR-CNV-001` was the last to be promoted, once the C8 formal
+- 105 rules. `FR-CNV-001` was the last to be added, once the C8 formal
   notice on disk proved that French channel conventions are individual binding agreements.
   What those conventions actually say is still uncollected, which stays open as C-06.
 - 20 of 20 source documents collected and on disk.
-- **All 105 approved rules carry a verbatim quote**, and all 105 verify against their stored
-  source, 0 failing. Coverage is enforced: an approved rule with no quote fails the build.
+- **All 105 rules carry a verbatim quote**, and all 105 verify against their stored
+  source, 0 failing. Coverage is enforced: a rule with no quote fails the build.
 - Conflicts: see `rules/csv/Open_Questions.csv`. Four remain open; the substantive one is
   **C-07**, below.
 

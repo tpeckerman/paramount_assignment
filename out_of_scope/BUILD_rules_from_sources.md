@@ -55,7 +55,7 @@ importantly, whether any *amending instrument* exists.
 > this. **Only reading the amending instrument can.** The same error then recurred: guidance
 > from 2015 was cited for a rule restructured by a statement in 2018.
 >
-> So: **no row may be approved while citing guidance older than the most recent amendment to
+> So: **no row may enter the table while citing guidance older than the most recent amendment to
 > the rule it interprets.** Record an `amended_by` note on every source.
 
 **2. Is this the whole document, or site furniture?**
@@ -230,7 +230,7 @@ amendment.
 
 1. Does every `verbatim_quote` appear in the stored source? Run the checker; do not eyeball it.
 2. Does every row's `source_url` point at the **consolidated current** text? Original-publication URLs belong only on superseded rows.
-3. Is any row approved while citing guidance older than the latest amendment to its rule?
+3. Is any row live while citing guidance older than the latest amendment to its rule?
 4. Does any row state a time without its conditions?
 5. Is any `service_type` blank or assumed?
 6. Does the `content_category` come from the controlled list?

@@ -99,7 +99,7 @@ def doc_count_claims() -> list[str]:
                 wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, table holds {total}")
         for m in re.finditer(r"\b(\d{2,4}) approved\b", text):
             n = int(m.group(1))
-            live_approved = sum(1 for r in rows if r["status"] == C.USABLE_STATUS)
+            live_approved = sum(1 for r in rows if C.is_live(r))
             if abs(n - live_approved) <= 10 and n != live_approved:
                 wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, "
                              f"table has {live_approved} approved")
@@ -108,7 +108,7 @@ def doc_count_claims() -> list[str]:
     # forms slipped a blanket renumber and left "105 rules, all 105 approved ... all 103
     # carry a verbatim quote" sitting in a deliverable: one sentence, both numbers, one of
     # them wrong.
-    live_total = len([r for r in rows if r["status"] == C.USABLE_STATUS])
+    live_total = len([r for r in rows if C.is_live(r)])
     for doc in sorted(C.ROOT.rglob("*.md")):
         if "originals" in str(doc):
             continue

@@ -33,7 +33,7 @@ invisibly, by an adjective.
 This is the only step that is not just pasting. Take the rules table and keep a row if **all**
 of these hold:
 
-1. `status` is `approved`. Nothing else may reach a decision.
+1. `valid_to` is `open`. A closed rule may not reach a decision.
 2. `country` matches a country you want an answer for. The table holds UK and French rules
    together. You decide which countries you are asking about and you write them into the
    `<request>` block in step 3. Keep the rows for those countries and drop the rest: if you

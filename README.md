@@ -28,7 +28,7 @@ the six things the brief asked for, in order.
 | `5_results/` | The results of the runs | What each run returned, what failed, and the prompt changes that came out of it |
 | `6_design_choices/` | A short explanation of design choices | Seven choices and why, the limits, and the models and tools I used |
 
-**Where it stands:** 105 rules, all 105 approved, every one carrying a quote from its source
+**Where it stands:** 105 rules, every one carrying a quote from its source
 that is checked against the stored document automatically. 20 of 20 sources collected. Eight
 of nine cases run, with the saved model output for each.
 

@@ -76,10 +76,9 @@ and black-bordered boxes are people. There are two flows.
 One rules table, one row per sentence of law, fixed columns, plus the decisions table above.
 Four choices matter:
 
-- **Three separate answers:** rating, hours, and other conditions (such as a PIN lock). They
-  can replace each other or stack. One rule lets a film air at any hour if a PIN lock is on.
-  Reporting "any time" without the condition is dangerous. Reporting "barred until 9pm" while
-  ignoring the lock costs the broadcaster a slot.
+- **Rating, hours and conditions are stored separately.** A rule can change the hours without
+  changing the rating. Example: a film may air at any time if the channel has a PIN lock, and
+  not before 9pm if it does not. The answer has to carry both.
 - **A machine-readable form beside the quote.** Code acts on `not_before=22:00`. A lawyer
   reads the sentence.
 - **A timeline app for lookup.** A 24-hour chart, built from the table, with a country and
@@ -115,11 +114,10 @@ verbatim_quote    "Pour les autres services de television, ces programmes ne
                    doivent pas etre diffuses avant 22 heures."
 source_doc        FR-R1c, art. 3
 valid_from        2014-04-09
-status            active
 ```
 
-`active` means the rule passed the automatic checks. Nobody signs it off. Old rules are
-closed with an end date, never deleted.
+A rule goes live when it passes the automatic checks. Old rules are closed with an end
+date, never deleted.
 
 **Check.** The quote must appear character for character in the stored file.
 

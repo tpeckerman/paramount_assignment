@@ -13,7 +13,7 @@ def build(path, countries, service_tokens, observed_cats, asset_implied=()):
     rows = list(csv.DictReader(open(path)))
     keep = []
     for x in rows:
-        if x['status'] != 'approved':
+        if (x.get('valid_to') or '').strip().lower() not in ('', 'open', 'unknown'):
             continue
         if x['country'] not in countries:
             continue

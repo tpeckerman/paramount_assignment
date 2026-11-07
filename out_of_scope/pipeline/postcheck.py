@@ -86,10 +86,9 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
             defects.append(f"{where}: cites {rule_id} on '{axis}', which is not in the "
                            f"rules table. The citation is invented.")
             continue
-        if rule["status"] != C.USABLE_STATUS:
-            defects.append(f"{where}: cites {rule_id} on '{axis}', which is in the table "
-                           f"with status '{rule['status']}'. Only '{C.USABLE_STATUS}' rows "
-                           f"may reach a decision.")
+        if not C.is_live(rule):
+            defects.append(f"{where}: cites {rule_id} on '{axis}', which is closed "
+                           f"({rule['valid_to']}). Only live rules may reach a decision.")
             continue
         if rule["country"] != d.get("country"):
             defects.append(f"{where}: cites {rule_id}, which is a {rule['country']} rule, "

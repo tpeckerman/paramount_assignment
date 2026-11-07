@@ -151,8 +151,8 @@ def select(rules, countries, service=None, categories=None):
     out, dropped = [], []
     wanted = set(categories or []) | ALWAYS_INCLUDE if categories else None
     for r in rules:
-        if r["status"] != C.USABLE_STATUS:
-            dropped.append((r["rule_id"], f"status={r['status']}"))
+        if not C.is_live(r):
+            dropped.append((r["rule_id"], f"closed {r['valid_to']}"))
             continue
         if r["country"] not in countries:
             continue

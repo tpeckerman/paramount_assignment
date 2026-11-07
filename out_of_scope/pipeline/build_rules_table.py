@@ -21,7 +21,7 @@ COLS = [
     ("exceptions_conditions", 52), ("determinacy", 16), ("ambiguity_flag", 22),
     ("ambiguity_note", 52), ("human_review_required", 10),
     ("source_doc", 20), ("clause_ref", 16), ("source_url", 42),
-    ("valid_from", 12), ("valid_to", 10), ("status", 12),
+    ("valid_from", 12), ("valid_to", 10),
     ("verbatim_quote", 48), ("quote_lang", 7),
     ("extraction_confidence", 10), ("last_checked", 12),
 ]
@@ -33,8 +33,10 @@ R = []
 def add(rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm, exc,
         det, afl, ano, hrr, doc, clause, url, vfrom, vto, status, quote, qlang,
         conf, checked=TODAY):
+    # `status` is accepted so the rows below keep their shape, and then dropped: every rule
+    # in the table is live. A rule that stops applying gets a valid_to date instead.
     R.append([rid, country, reg, stype, rank, use, svc, cat, cls, thr, trt, trm,
-              exc, det, afl, ano, hrr, doc, clause, url, vfrom, vto, status,
+              exc, det, afl, ano, hrr, doc, clause, url, vfrom, vto,
               quote, qlang, conf, checked])
 
 
@@ -1418,12 +1420,6 @@ HDR_FONT = Font(bold=True, color="FFFFFF", size=10)
 THIN = Side(style="thin", color="BFBFBF")
 BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
-STATUS_FILL = {
-    "approved": PatternFill("solid", fgColor="E2EFDA"),
-    "draft": PatternFill("solid", fgColor="FFF2CC"),
-    "unverified": PatternFill("solid", fgColor="FCE4D6"),
-    "superseded": PatternFill("solid", fgColor="D9D9D9"),
-}
 FLAG_FILL = {
     "clear": PatternFill("solid", fgColor="E2EFDA"),
     "conflicting_sources": PatternFill("solid", fgColor="F8CBAD"),
@@ -1445,7 +1441,6 @@ for i, (n, w) in enumerate(COLS, start=1):
     ws.column_dimensions[get_column_letter(i)].width = w
 ws.row_dimensions[1].height = 30
 
-i_status = names.index("status") + 1
 i_flag = names.index("ambiguity_flag") + 1
 i_det = names.index("determinacy") + 1
 i_hrr = names.index("human_review_required") + 1
@@ -1460,9 +1455,6 @@ for r in range(2, ws.max_row + 1):
         cell.alignment = Alignment(vertical="top", wrap_text=True)
         cell.border = BORDER
         cell.font = Font(size=9)
-    sv = ws.cell(row=r, column=i_status).value
-    if sv in STATUS_FILL:
-        ws.cell(row=r, column=i_status).fill = STATUS_FILL[sv]
     fv = ws.cell(row=r, column=i_flag).value
     if fv in FLAG_FILL:
         ws.cell(row=r, column=i_flag).fill = FLAG_FILL[fv]
@@ -1488,10 +1480,6 @@ dv2 = DataValidation(
 ws.add_data_validation(dv2)
 dv2.add(f"{get_column_letter(i_flag)}2:{get_column_letter(i_flag)}400")
 
-dv3 = DataValidation(type="list",
-                     formula1='"approved,draft,unverified,superseded"', allow_blank=True)
-ws.add_data_validation(dv3)
-dv3.add(f"{get_column_letter(i_status)}2:{get_column_letter(i_status)}400")
 
 
 def sheet(title, rows, widths, head_height=28):
@@ -1540,7 +1528,6 @@ legend += [
     ["source_url", "Canonical URL (hyperlinked).", "PREFER A STABLE HTML PAGE over a PDF where the publisher offers one: an HTML page keeps its address across revisions, whereas PDF URLs are minted per revision (Ofcom /siteassets/ PDFs carry a ?v=NNNNNN parameter), so a pinned PDF link rots silently at the next update. For a row stating CURRENT law this is the CURRENT CONSOLIDATED text. The JORF/original-publication URL is cited only on superseded rows (9xx), where it is the correct source. Citing an original for current law is a provenance bug: it reads as authoritative while silently omitting later amendments."],
     ["valid_from", "Date the provision took effect.", "ISO date, or blank if undated guidance"],
     ["valid_to", "End of validity.", "open / unknown / ISO date"],
-    ["status", "Fitness as ground truth.", "approved = usable. draft = do not use until the conflict is resolved. unverified = currency unconfirmed. superseded = historical. NOTE: the manifest carries only CURRENT materials, so a superseded rule row would have no retrievable source; superseded wordings are recorded in the Open_Questions entry for the conflict that found them. A rule_id in the 9xx range is reserved for a historical version if one is ever carried again."],
     ["verbatim_quote", "Short quoted fragment that survived retrieval.", "INCOMPLETE - see 99_EXTRACTION_NOTES. Cannot yet support an automated quote-integrity check because no local copy of the source exists."],
     ["quote_lang", "Language of the quote.", "EN / FR"],
     ["extraction_confidence", "Confidence in this extraction.", "high / medium / low"],
@@ -1557,10 +1544,10 @@ howto += [
     ["Resolving conflicts", "Sort by authority_rank ascending; the lowest rank wins. Record the resolution in ambiguity_note. Worked example: C-01, where Arcom's own public summary page contradicted its binding text on the -12 hours and the binding text won."],
     ["Two kinds of ambiguity", "determinacy describes THE RULE (is it a bright line or a judgment call?). ambiguity_flag describes OUR EXTRACTION (are we sure we read it right?). They are independent: a bright_line rule can be translation_uncertain, and a judgment_based rule can be perfectly clear. Merging them makes the test set unscoreable."],
     ["Scoring by determinacy", "bright_line: exact match; any deviation is a defect. conditional: the correct answer, OR a correct missing-information request when the gating input was absent - both pass. judgment_based: score the cited rule and the reasoning, accept a band of outcomes, and require escalation near a threshold. Scoring a judgment_based row by exact match measures the test set, not the model."],
-    ["Before using as ground truth", "Filter status = approved. All 103 rows are approved, and all 103 carry a verbatim quote that verifies character-for-character against the stored source, 0 failing. Coverage is a ratchet: an approved row with no quote fails the build (C-15). APPROVED STILL DOES NOT MEAN SAFE TO AUTOMATE - 38 rows are judgment_based and must route to a human (see Scoring by determinacy), and 42 rows are flagged needs_review for other reasons. Separately, C-08 remains open: this table and the prompt share an author, so the bright-line rows want independent re-derivation before anyone treats them as ground truth."],
+    ["Before using as ground truth", "All 105 rows are live, and all 105 carry a verbatim quote that verifies character-for-character against the stored source, 0 failing. Coverage is a ratchet: a row with no quote fails the build (C-15). A QUOTE THAT VERIFIES STILL DOES NOT MEAN SAFE TO AUTOMATE - 38 rows are judgment_based and must route to a human (see Scoring by determinacy), and 42 rows are flagged needs_review for other reasons. Separately, C-08 remains open: this table and the prompt share an author, so the bright-line rows want independent re-derivation before anyone treats them as ground truth."],
     ["Avoiding correlated error", "The biggest risk is that this table and the prompt share an author and therefore share mistakes - the exact failure Task 2 asks about. Mitigation: the bright-line rows (times, absolute prohibitions) should be INDEPENDENTLY RE-DERIVED from primary sources by a second pass that has not seen this table, then compared. verbatim_quote and source_url let a reviewer check a row without reading the prompt at all."],
     ["Source form", "Prefer the publisher's stable HTML page to a PDF wherever one exists. An HTML page keeps its URL across revisions and shows the current text, so the citation stays good; a PDF URL is minted per revision and rots silently. Where a document is genuinely PDF-only - Ofcom guidance notes, statements, enforcement decisions - the manifest records a landing_page: the stable HTML page the current PDF is always reachable from, so a dead PDF link is recoverable rather than a dead end."],
-    ["Versioning", "Never delete a row. When a source is replaced, set valid_to and status = superseded on the old row and add a new row. That preserves the ability to say which rule version produced a past decision."],
+    ["Versioning", "Never delete a row. When a source is replaced, set valid_to on the old row and add a new row. That preserves the ability to say which rule version produced a past decision."],
     ["Required inputs the rules imply", "country; service_type (free-to-air vs cinema channel vs pay-per-view vs premium subscription film); access measures in place (none / mandatory_daytime_protection / mandatory_restricted_access / decoder_lock); intended broadcast DATE and time (France has day-of-week and school-holiday rules); whether the asset is a theatrical film and its existing BBFC/CNC classification; whether it is a trailer or a music video. If any of these is missing and a candidate rule depends on it, the correct output is a missing-information flag, NOT an assumption."],
     ["Known hard pre-checks", "Absolute prohibitions should be enforced in CODE, not left to prompt reasoning: UK-GEN-001 (seriously impair), UK-SEX-001 (R18-equivalent), UK-FLM-001 (refused classification), UK-FLM-006 (R18 films), FR-LAW-001 (nuire gravement), FR-PRO-001/002/003 (human dignity, child pornography, extreme violence). No contextual argument or access measure should be able to override these."],
     ["What is NOT in v1", "French channel conventions, which can be stricter than the general law (C-06). Systematic enforcement precedent: ONE decided case is collected against 38 judgment_based rules, so thresholds are largely uncalibrated (C-07). The eleven decisions the guidance names are now resolved to live URLs in out_of_scope/pipeline/fetch_precedents.py, but the files are not on disk and no rule has been written from them. BBFC classification guidelines. Overseas France. Also deliberately absent: everything outside the age/time decision - impartiality, fairness, privacy, commercial references - a scope choice recorded in TASK1_WRITEUP.md. The Ofcom Guidance Notes for Sections One and Two ARE now collected and mined; they supplied 9 rules the Code text alone does not yield. See 99_EXTRACTION_NOTES_AND_LIMITS."],
@@ -1703,17 +1690,17 @@ oq += [
      "CLOSED 2026-11-06. The French primary text was downloaded and searched: 'sexualite' does not occur anywhere in the binding recommendation. The limb is a PRACTICE GLOSS on Arcom's public page, not binding text. The binding -12 trigger is repeated violence. Arcom may still apply the gloss when it classifies, so borderline sexual-content cases should be flagged for review rather than cleared - but the rule table should not encode an independent adult-sexuality trigger.",
      "closed", "no"],
     ["C-03", "French category V (-18) window rested on a 2004 instrument that could not be read",
-     "FR-CV-001 to FR-CV-009, all now approved",
+     "FR-CV-001 to FR-CV-009, all now verified",
      "CLOSED 2026-11-06. The instrument is the Arcom notice of 15 December 2004. Its page body is drawn by JavaScript, so no fetch could ever retrieve it - every automated attempt returned an empty shell, and one early attempt returned 12,493 characters of pure site navigation that passed a naive length check. The user saved it from a browser, where the text had already rendered. CONFIRMED VERBATIM: 'Category V programs can only be shown between midnight and 5am.' The eligibility gate, the 208-per-year commercial threshold, the on-screen warning with article 227-22, and the six locking criteria are all confirmed against the primary.",
      "Six of the seven predicted rules verified verbatim; the rows had also carried the WRONG DATE for the instrument (23 rather than 15 December), now corrected. FR-CV-003 is SOUND BUT WEAKLY SOURCED - its proof quote is from a government summary while the primary says only that the regulator 'only authorizes' eligible services, so a total ban elsewhere is an inference, flagged in-row for a French regulatory lawyer. The doubt that created C-03 resolves in the OPPOSITE direction from the one feared: the deadlines have elapsed, meaning fully in force with no transitional relief. FINALLY, the stored text is Arcom's own ENGLISH translation, which warns that only the original French is authentic - every quote here is EN and a French-qualified reviewer must re-check them.",
      "closed", "no"],
     ["C-15", "Half the table carried no quote, so the quote check never looked at it",
-     "all 103 approved rules",
+     "all 103 rules",
      "CLOSED 2026-11-07. COVERAGE IS NOW 103 OF 103, all verifying against their stored source, 0 failing. The gap was an artifact of build order, not of the rules being unquotable: all 46 unquoted rows came from the FIRST commit, written when every fetch was being refused and there was no stored text to quote from. Leaving the field empty rather than paraphrasing was right at the time; not returning to it once the sources arrived was not. Not one rule written after the sources landed was missing a quote.",
      "THE METRIC WAS THE REAL DEFECT, and the lesson outlives the fix. 'VERIFIED 50, FAILED 0' counted only the rules that carried a quote, so the 52 without one were not failing - they were never shown to the check at all. A coverage number that counts only the rows which opted in will always report success. The verifier now prints the DENOMINATOR, and coverage is a RATCHET: an approved rule with no verbatim_quote FAILS the build, verified by removing one. Backfilling also exposed a second UK-FLM source misattribution (UK-FLM-004 cited the MDP statement for text that lives in Section One), which only became visible once the quote existed to be checked.",
      "closed", "no"],
     ["C-14", "UK access-control rows cited guidance predating the 2018 MDP restructure",
-     "UK-ACC-002, UK-ACC-003 (both now approved)",
+     "UK-ACC-002, UK-ACC-003 (both now verified)",
      "CLOSED 2026-11-06, and it resolved better than expected. With the current Section One text in hand, the substance of UK-ACC-003 turns out to be in the CURRENT CODE rather than only in the 2015 guidance: Rule 1.24 requires both that clear information be provided to help adults assess suitability AND - a condition the table did not have at all - that the mandatory daytime protection in place be CLEARLY EXPLAINED TO ALL VIEWERS. A gate nobody has been told about does not satisfy the rule. The row is re-sourced from guidance to binding text, raising its authority rank from 3 to 2. UK-ACC-002 stays on guidance, because the default-PIN point is an elaboration rather than Code text, but the requirement it elaborates - that the protection cannot be removed by the user - is in the current Code, so it explains a rule that still stands.",
      "The lesson survives the closure and should carry into Task 2: this was found only by reading the amending instrument's effect on the current consolidated text, exactly as C-09 was. Corroboration between same-vintage sources could never have surfaced it. The CI rule stands - no row may be approved while citing guidance older than the most recent amendment to the rule it interprets, unless the current binding text has been checked and the guidance confirmed still applicable, which is what happened here.",
      "closed", "no"],
@@ -1772,7 +1759,7 @@ sheet("Open_Questions", oq, [8, 76, 30, 60, 76, 24, 20])
 
 # ---- Pivot readable tab
 piv = [["country", "classification / level", "service type", "earliest permitted broadcast time",
-        "key content threshold", "determinacy", "status", "source rows"]]
+        "key content threshold", "determinacy", "source rows"]]
 piv += [
     ["FR", "I - tous publics", "all", "no restriction", "all audiences", "bright_line", "approved", "FR-CLS-001"],
     ["FR", "II - -10", "all", "no clock restriction; NOT within children's programmes",
@@ -1827,7 +1814,8 @@ piv += [
      "minors 'will not normally hear or see' content that may impair their development; measures proportionate; most harmful content strictest",
      "bright_line", "approved", "EU-FRM-001, EU-FRM-002"],
 ]
-s = sheet("Pivot_Readable", piv, [8, 26, 40, 44, 54, 18, 18, 42])
+piv = [row[:6] + row[7:] for row in piv]
+s = sheet("Pivot_Readable", piv, [8, 26, 40, 44, 54, 18, 42])
 s.insert_rows(1)
 s["A1"] = ("DERIVED VIEW - do not edit. Generated from the Rules tab. "
            "Edit rules in the Rules tab, then regenerate. "
@@ -1835,7 +1823,7 @@ s["A1"] = ("DERIVED VIEW - do not edit. Generated from the Rules tab. "
            "scheduling verdict plus the earliest permissible time, not an age label.")
 s["A1"].font = Font(bold=True, size=10, color="C00000")
 s["A1"].alignment = Alignment(wrap_text=True, vertical="center")
-s.merge_cells("A1:H1")
+s.merge_cells("A1:G1")
 s.row_dimensions[1].height = 42
 s.freeze_panes = "A3"
 
@@ -1873,7 +1861,6 @@ print(f"rules rows: {len(R)}")
 from collections import Counter
 
 print("by country:", dict(Counter(r[1] for r in R)))
-print("by status :", dict(Counter(r[22] for r in R)))
 print("by determinacy:", dict(Counter(r[13] for r in R)))
 print("by ambiguity_flag:", dict(Counter(r[14] for r in R)))
 print("human_review_required=yes:", sum(1 for r in R if r[16] == "yes"))

@@ -121,7 +121,7 @@ def intervals(tok: str, country: str = ""):
 def main() -> int:
     rows = [r for r in csv.DictReader(
         C.RULES_CSV.open(newline="", encoding="utf-8"))
-        if r["status"] == C.USABLE_STATUS]
+        if C.is_live(r)]
 
     timed, untimed = [], []
     for r in rows:
