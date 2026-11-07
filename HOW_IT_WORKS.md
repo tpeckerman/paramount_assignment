@@ -11,6 +11,7 @@ Three kinds of step, and the distinction matters more than it looks:
 | 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
 | 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
 | 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
+| ⬜ **Dotted** | Outside the scope of this project. Shown because the flow does not make sense without it, not because it is built. |
 
 ```mermaid
 flowchart TB
@@ -20,7 +21,7 @@ flowchart TB
     A4["4. Read it and write down its rules"]:::ai
     A5{"5. Is every quote really in the document?"}:::det
     A6{"6. Valid fields and vocabulary?"}:::det
-    A7["7. Expert signs the rules off"]:::human
+    A7{"7. Expert signs the rule off"}:::human
     A8[("The rules table")]:::store
 
     A1 --> A2
@@ -29,11 +30,17 @@ flowchart TB
     A3 -- "superseded" --> A1
     A3 -- current --> A4 --> A5
     A5 -- "quote not found" --> A4
-    A5 -- yes --> A6 --> A7 --> A8
+    A5 -- yes --> A6
+    A6 -- "no: bad field or<br/>unknown vocabulary" --> A4
+    A6 -- yes --> A7
+    A7 -- "yes" --> A8
+    A7 -- "not yet looked at" --> A8
 
+    B0["0. Someone watches the content<br/>and writes down what happens,<br/>with timecodes"]:::scope
     B1["8. Read the content description"]:::ai
     B2{"9. Categories in the controlled list?"}:::det
-    B3{"10. Certificate triggers an<br/>outright ban?"}:::det
+    B2a["9b. A person adds the new<br/>category, or rejects it"]:::human
+    B3{"10. Does an existing age rating<br/>ban this outright?<br/>(BBFC R18, or refused a rating)"}:::det
     B4["11. Pick the rules that could apply"]:::det
     B5["12. Decide: rating, hours, conditions"]:::ai
     B6{"13. Does every claim cite a real rule?"}:::det
@@ -41,12 +48,15 @@ flowchart TB
     B8[["Answer, with its rules"]]:::out
     B9[["A person decides,<br/>rule and quote attached"]]:::human
 
+    B0 -.-> B1
     B1 --> B2
-    B2 -- "unknown category" --> B1
+    B2 -- "a word for a<br/>category we have" --> B1
+    B2 -- "a kind of content<br/>the list lacks" --> B2a
+    B2a -- "added" --> A4
     B2 -- yes --> B3
-    B3 -- "yes: R18 or refused" --> B8
+    B3 -- "yes" --> B8
     B3 -- no --> B4 --> B5 --> B6
-    A8 --> B4
+    A8 -- "approved rows only" --> B4
     B6 -- "invented a rule" --> B5
     B6 -- yes --> B7
     B7 -- yes --> B8
@@ -57,6 +67,7 @@ flowchart TB
     classDef human fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
     classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
     classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
 ```
 
 Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
@@ -228,6 +239,34 @@ Each row carries a `verbatim_quote` that appears character for character in the 
 `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
+**If step 6 says no**, the row goes back to step 4 to be written again. Step 6 is checking
+two different things. One is a field that is empty or impossible, a `service_type` left
+blank, an `authority_rank` of 11. The other is a value outside the controlled list, which is
+the dangerous one, because nothing errors: the row sits in the table looking fine and matches
+no lookup. Two real bugs in this project were exactly that.
+
+**Step 7 is a gate on being used, not a gate on being stored.** A rule can reach the table
+without anyone signing it off. It arrives as `draft` or `unverified` instead of `approved`,
+and the decision engine only ever reads `approved` rows, which is the `approved rows only`
+arrow on the diagram. So the honest answer to "can a rule get into the table without an
+expert?" is yes, and it will be ignored until one looks at it. That is deliberate. The
+alternative is that a rule nobody has reviewed yet has nowhere to live, so it gets held
+outside the system in someone's notes, and then it is not quoted, not checked and not
+counted. Better in the table and visibly unusable.
+
+### Step 0: someone watches the content
+
+**This is outside the project and is drawn with a dotted border for that reason.** The
+assignment starts from a content description that includes events and timecodes. Something
+has to produce that description, and in a real system it is either a person watching the
+programme or a vision model doing it, but neither is built here and neither is specified.
+
+It is worth being blunt about this, because it is the weakest link in the whole chain. Every
+careful thing downstream rests on the description being accurate and complete. If the
+description misses a stabbing, no rule fires on a stabbing, and the system will answer
+confidently and be wrong, with a full citation trail behind the wrong answer. Nothing in the
+pipeline can detect that, because the pipeline never sees the video.
+
 ### Step 8: describing the content
 
 Prompt: `prompts/RUN_1_describe_content.md`
@@ -258,6 +297,40 @@ stopped it:
 Exit `2` matters more than it looks. An out-of-vocabulary category does not cause an error. It
 causes the observation to match no rule, so the answer comes back looking complete with that
 observation silently absent, which is the failure mode this whole pipeline is built against.
+
+**Why would an unknown category come out at all?** Step 8 is a model writing words. The list
+of categories is closed, but nothing physically stops the model from writing a word that is
+not on it. Almost always this is a wording problem rather than a real one: `self-harm` for
+`self_harm`, `drugs` for `drug_use`, a plural, a synonym. The fix is to run step 8 again, and
+that is the loop on the diagram.
+
+**But sometimes the list really is missing something**, and that is the case the old diagram
+got wrong. If a description contains a kind of content the vocabulary has no slot for, running
+step 8 again cannot help. The model would be asked to describe the same thing with the same
+closed list and would fail the same way forever. So there is a second branch now: a person
+decides whether this is genuinely new, and if it is, they add it to the vocabulary and the
+affected rules are rewritten at step 4. That is not a loop, it is an exit.
+
+This is rarer than the wording case, but it is not hypothetical. The categories were derived
+from the content two regulators thought worth writing rules about by a particular date.
+Deepfakes, AI-generated likenesses and self-harm challenge content all arrived after rules
+elsewhere already existed for them. A closed list has to be able to grow, and the decision to
+grow it is a judgement about what the regulator would consider a distinct kind of harm, which
+is exactly the sort of judgement that should not be automated.
+
+**Step 10, "does an existing age rating ban this outright?"** This means a rating the content
+already carries from somewhere else, before any broadcast question is asked. A film released
+in UK cinemas or on DVD has been rated by the BBFC, and that rating travels with it. Two of
+those ratings end the question immediately: **R18**, which is the category for material sold
+only in licensed sex shops, and **refused classification**, meaning the BBFC would not give
+it a rating at all. Neither may be broadcast, at any hour, on any service, under any
+condition. So if the description says the film carries one of those, the answer is known
+before any rule is weighed and no model is asked. That is why it is a green code box and not
+a purple one, and it is a string comparison, nothing more.
+
+Note what it is **not**. It is not the broadcast decision, and a cinema rating of 18 does not
+by itself prohibit anything on television, it just makes the scheduling question harder. Only
+those two specific outcomes are absolute.
 
 Then `run_decision.py` picks the rules that could apply: matching country, matching service
 type, matching content category, plus a set that is **always** included.

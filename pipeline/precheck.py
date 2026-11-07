@@ -24,6 +24,7 @@ Two gates:
 from __future__ import annotations
 
 import csv
+import difflib
 import json
 import pathlib
 import sys
@@ -76,8 +77,11 @@ def check_categories(observations: dict) -> list[str]:
     for o in observations.get("observations", []) or []:
         c = o.get("category", "")
         if c and c not in allowed:
+            near = difflib.get_close_matches(c, sorted(allowed), n=3, cutoff=0.6)
+            hint = f"; nearest existing: {', '.join(near)}" if near else \
+                   "; nothing in the list is close, which points at case 2 below"
             bad.append(f"{o.get('id', '?')}: category {c!r} is not in the controlled "
-                       f"vocabulary, so this observation would match no rule")
+                       f"vocabulary, so this observation would match no rule{hint}")
     return bad
 
 
@@ -103,10 +107,20 @@ def main() -> int:
         print("CONTROLLED VOCABULARY, this output cannot be decided on:")
         for b in bad:
             print(f"  - {b}")
-        print("\nFix the extraction and re-run. An out-of-vocabulary category does not "
-              "produce a wrong answer, it produces a complete-looking answer with the "
-              "observation missing, which is the failure mode this whole pipeline is "
-              "built against.")
+        print("\nAn out-of-vocabulary category does not produce a wrong answer. It produces "
+              "a complete-looking answer with the observation missing, which is the failure "
+              "mode this whole pipeline is built against. So this stops the run.")
+        print("\nTwo different things cause it, and they need different fixes:")
+        print("  1. A WORDING MISMATCH for a category that already exists ('self-harm' for")
+        print("     'self_harm', a plural, a synonym). Re-run the extraction. This is the")
+        print("     usual case.")
+        print("  2. A KIND OF CONTENT THE LIST DOES NOT COVER. Re-running cannot fix this:")
+        print("     the model would be asked to describe the same thing with the same closed")
+        print("     list. A person has to decide whether this is genuinely a new kind of")
+        print("     harm, add it to the vocabulary, and have the affected rules rewritten.")
+        print("     Do not map it onto a near-neighbour to make this message go away.")
+        print("\nThe closest existing categories are listed above for comparison, not as")
+        print("suggestions to pick from.")
         return 2
 
     hits = check_certificate(obs)
