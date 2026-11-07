@@ -158,6 +158,20 @@ Every real defect in this project, in the rules, the pipeline and the sources, w
 None was found by reading the work. All were found by a check comparing the work against
 something external. **The checks are as much the deliverable as the table is.**
 
+## A check that was measuring its own appetite
+
+Worth separating from the list above, because it is not a defect in a rule but in a
+**measurement**.
+
+The quote check reported "50 verified, 0 failed, 0 skipped" throughout. That reads as full
+coverage. It was not: "0 skipped" only ever meant no source document was missing from disk,
+and rules carrying no quote were never looked at, because the check iterated the rules that
+had one. 50 of 102. Six of the unchecked were the absolute prohibitions.
+
+Found by a question about how an adult drama can air in the UK, not by any check. The six are
+now quoted and verified, the verifier prints the denominator, and the remaining 46 are
+tracked as C-15.
+
 ## Limits
 
 - **35 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,

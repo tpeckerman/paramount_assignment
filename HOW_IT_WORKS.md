@@ -66,8 +66,9 @@ bar before 21:00 without noticing the measure is available and it is wrong the o
 job is reading law. It runs 20 times, once per source, and again whenever a regulator amends
 something.
 
-Each row carries a `verbatim_quote` that must appear character for character in the stored
-file. `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
+Each row should carry a `verbatim_quote` that appears character for character in the stored
+file. **56 of the 102 approved rules do; 46 do not and are therefore never checked** (C-15).
+Treat an unquoted row as unverified whatever its status says. `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
 ### RUN 1, run once per asset
@@ -107,8 +108,10 @@ directions.
 Three reasons, all learned the hard way.
 
 **Auditability.** Every decision cites a `rule_id` resolving to a row with a clause reference
-and a quote checked against the source. A reviewer can verify one claim without reading the
-prompt or trusting its author.
+and, where one is present, a quote checked against the source. A reviewer can verify such a
+claim without reading the prompt or trusting its author. Where no quote is present that
+guarantee does not hold, which is why the verifier now reports how many rows have one rather
+than only how many passed.
 
 **Reliability.** Feeding whole legal codes into a decision means re-deriving the law on every
 request, slightly differently each time. Here a rule is read once, checked once, signed off

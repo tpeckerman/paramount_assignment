@@ -2,8 +2,12 @@
 
 Take-home assignment, prompt engineer.
 
-**103 rules, 102 approved. 20 of 20 official sources collected. 50 quotes verified against
-those sources, 0 failing.**
+**103 rules, 102 approved. 20 of 20 official sources collected.**
+
+**56 of the 102 approved rules carry a verbatim quote, and all 56 verify against their stored
+source with 0 failing. The other 46 carry no quote and are not checked at all** (C-15). That
+denominator matters: for most of this project the check reported "50 verified, 0 failed, 0
+skipped", which read as full coverage and was not.
 
 ---
 

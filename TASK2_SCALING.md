@@ -283,6 +283,14 @@ regulator fined, that is the strongest signal available.
 **Mutation testing.** Corrupt a rule deliberately, change 22:00 to 20:00, and confirm the
 golden set fails. If it still passes, the test set does not exercise that rule.
 
+**Report every check's denominator beside its result.** This one cost weeks here. The quote
+check reported "50 verified, 0 failed, 0 skipped" and that read as full coverage; in fact only
+50 of 102 rules carried a quote and the rest were passed over in silence, because the check
+iterated the rules that had one. Six of the unchecked were absolute prohibitions. **A coverage
+number that counts only the rows which opted in will always report success.** At thirty
+countries nobody will notice. Print the denominator, and fail the build when a rule class that
+must be checked is not.
+
 **CI, non-negotiable:** quote integrity, vocabulary conformance, currency gate, schema
 validation, and a regenerate-and-diff of the CSV mirrors so a binary table cannot drift.
 

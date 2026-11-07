@@ -13,8 +13,9 @@ informative part of this.
 | Scope reasoning | `SCOPE.md` |
 | Design choices and tools | this file |
 
-**Current state:** 103 rules, 87 approved, 12 of 20 sources collected, 32 quotes verified
-against stored sources, 0 failing.
+**Current state:** 103 rules, 102 approved, 20 of 20 sources collected. 56 of the 102 approved
+rules carry a verbatim quote and all 56 verify, 0 failing; the other 46 carry none and are
+not checked (C-15).
 
 ---
 

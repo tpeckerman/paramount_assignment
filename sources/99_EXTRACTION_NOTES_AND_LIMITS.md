@@ -13,7 +13,9 @@ conflicts.
 - 103 rules, 102 approved. The one exception is `FR-CNV-001`, draft because French channel
   conventions have not been collected.
 - 20 of 20 source documents collected and on disk.
-- 50 quotes verified against their stored source, 0 failing, 0 skipped.
+- **56 of the 102 approved rules carry a verbatim quote.** All 56 verify against their
+  stored source, 0 failing. **The other 46 carry none and are never checked** (C-15).
+  Treat an unquoted row as unverified whatever its status field says.
 - Conflicts: see `rules/csv/Open_Questions.csv`. Four remain open; the substantive one is
   **C-07**, below.
 
@@ -96,6 +98,21 @@ derive the bright-line rows from primary sources and diff. `verbatim_quote` and 
 exist so a reviewer can check any single row without reading the prompt at all.
 
 Tracked as **C-08**.
+
+## A check that was measuring itself
+
+For most of this project the quote check reported "50 verified, 0 failed, **0 skipped**",
+and that read as complete coverage. It was not. "0 skipped" only ever meant no *source
+document* was missing from disk. Rules carrying no quote were passed over in silence, because
+the check iterated the rules that had one.
+
+Six of the unchecked rules were the **absolute prohibitions**, the rules the design says
+belong in code because no contextual argument may override them. Those six are now quoted and
+verified.
+
+The verifier now prints the denominator beside the count and names any unquoted absolute
+prohibition. **A coverage number that counts only the rows which opted in will always report
+success.**
 
 ## What the checks already caught
 
