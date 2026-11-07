@@ -168,9 +168,12 @@ coverage. It was not: "0 skipped" only ever meant no source document was missing
 and rules carrying no quote were never looked at, because the check iterated the rules that
 had one. 50 of 102. Six of the unchecked were the absolute prohibitions.
 
-Found by a question about how an adult drama can air in the UK, not by any check. The six are
-now quoted and verified, the verifier prints the denominator, and the remaining 46 are
-tracked as C-15.
+Found by a question about how an adult drama can air in the UK, not by any check.
+
+All 46 have since been quoted from the stored sources: **coverage is 102 of 102, all
+verifying**. The verifier now prints the denominator and treats coverage as a ratchet, so an
+approved rule with no quote fails the build. Backfilling also surfaced a second source
+misattribution, which only became visible once the quote existed to be checked.
 
 ## Limits
 

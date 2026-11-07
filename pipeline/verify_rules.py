@@ -259,6 +259,12 @@ def check_quotes(rows: list[dict]) -> list[str]:
     if _abs:
         print(f"  WARNING:     {len(_abs)} unquoted rules are ABSOLUTE PROHIBITIONS, the "
               f"rules no argument may override: {' '.join(_abs)}")
+    # Coverage reached 102/102 on 2026-11-07. It is now a RATCHET: an approved rule with no
+    # quote fails the build. The gap existed for weeks precisely because nothing failed - the
+    # unquoted rules were not passing the check, they were never being shown to it.
+    if _noq:
+        bad.extend(f"{rid}: approved with NO verbatim_quote, so it is never checked"
+                   for rid in _noq)
     for line in inconclusive:
         print(f"    inconclusive: {line}")
     if skipped and not checked:

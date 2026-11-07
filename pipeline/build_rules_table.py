@@ -85,7 +85,7 @@ add("UK-DEF-002", "UK", "Ofcom", "regulator_binding", 2, "definition_only",
     "Broadcasters serving ECTT Parties must also consider time differences in the country of reception.",
     "judgment_based", "clear", "", "no",
     "UK-S1", "S1 definitions", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "protected by appropriate scheduling from material that is unsuitable", "EN", "high")
 
 add("UK-DEF-003", "UK", "Ofcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "definition", "n/a",
@@ -114,7 +114,7 @@ add("UK-GEN-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Open-ended duty; informs every other decision.",
     "judgment_based", "clear", "", "no",
     "UK-S1", "Rule 1.2", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "must take all reasonable steps to protect people under eighteen", "EN", "high")
 
 add("UK-SCH-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "scheduling_general", "context_dependent",
@@ -145,7 +145,7 @@ add("UK-SCH-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "Proves the watershed itself is service-dependent, not universal.", "no",
     "UK-S1", "Rule 1.4", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "medium")
+    "The watershed is at 2100", "EN", "medium")
 
 add("UK-SCH-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "scheduling_general", "context_dependent",
@@ -155,7 +155,7 @@ add("UK-SCH-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "No numeric threshold exists. Escalate to human review when a test case places strong material in the first minutes after 21:00.",
     "yes", "UK-S1 + UK-G1", "Rule 1.6; UK-G1 s.1", U_G1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "It should not commence with the strongest material", "EN", "high")
 
 add("UK-SCH-005", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "fear_distress", "context_dependent",
@@ -164,7 +164,7 @@ add("UK-SCH-005", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "'If appropriate' - discretionary, context-driven.",
     "judgment_based", "clear", "", "no",
     "UK-S1", "Rule 1.7", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "For television programmes broadcast before the watershed", "EN", "high")
 
 add("UK-DRG-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "drugs_alcohol_smoking", "context_dependent",
@@ -174,7 +174,7 @@ add("UK-DRG-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "The two-tier justification standard is easy to flatten; keep both.", "no",
     "UK-S1", "Rule 1.10", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "must not be featured in programmes made primarily for children", "EN", "high")
 
 add("UK-VIO-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "violence", "context_dependent",
@@ -185,7 +185,7 @@ add("UK-VIO-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "Primary violence rule. No intensity scale is given in the Code; applied thresholds come only from enforcement precedent.",
     "yes", "UK-S1", "Rule 1.11", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "must be appropriately limited in programmes broadcast before the watershed", "EN", "high")
 
 add("UK-VIO-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "violence", "context_dependent",
@@ -194,7 +194,7 @@ add("UK-VIO-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Turns on programme type, not clock time.",
     "judgment_based", "clear", "", "no",
     "UK-S1", "Rule 1.12", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "easily imitable by children in a manner that is harmful or dangerous", "EN", "high")
 
 add("UK-IMI-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "imitable_behaviour", "context_dependent",
@@ -203,7 +203,7 @@ add("UK-IMI-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Cross-refers to Rules 2.4 and 2.5.",
     "conditional", "clear", "", "no",
     "UK-S1", "Rule 1.13", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Dangerous behaviour, or the portrayal of dangerous behaviour", "EN", "high")
 
 add("UK-LNG-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "strong_language", "watershed_bound",
@@ -225,7 +225,7 @@ add("UK-LNG-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Turns on programme type, not clock time.",
     "bright_line", "clear", "", "no",
     "UK-S1", "Rule 1.15", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Offensive language must not be used in programmes made for younger children", "EN", "high")
 
 add("UK-LNG-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "strong_language", "context_dependent",
@@ -257,7 +257,7 @@ add("UK-SEX-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "Three distinct UK access concepts must not be conflated: mandatory restricted access (this rule), mandatory daytime protection (films), and no protection. A model treating 'PIN protected' as one concept will wrongly allow this in daytime.",
     "no", "UK-S1 + UK-M1", "Rule 1.18", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "broadcast for the primary purpose of sexual arousal or stimulation", "EN", "high")
 
 add("UK-SEX-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "sexual_content", "context_dependent",
@@ -270,7 +270,7 @@ add("UK-SEX-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "whereas under 1.19 it is merely context-justified post-watershed. The test turns on "
     "'primary purpose', which is an editorial judgment, not a content feature.", "yes",
     "UK-S1", "Rule 1.19", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "images and/or language of a strong or explicit sexual nature", "EN", "high")
 
 add("UK-SEX-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "sexual_content", "context_dependent",
@@ -279,7 +279,7 @@ add("UK-SEX-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "'Serious educational purpose' is a higher bar than ordinary editorial justification.",
     "conditional", "clear", "", "no",
     "UK-S1", "Rule 1.20", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Representations of sexual intercourse must not occur before the watershed", "EN", "high")
 
 add("UK-NUD-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "nudity", "context_dependent",
@@ -289,7 +289,7 @@ add("UK-NUD-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "Common over-rating trap: treating any nudity as automatically post-watershed.", "yes",
     "UK-S1", "Rule 1.21", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Nudity before the watershed", "EN", "high")
 
 add("UK-FLM-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "film_carryover", "prohibited",
@@ -308,7 +308,7 @@ add("UK-FLM-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "THE clearest proof that rating does not determine hours: the same BBFC 18 film is barred pre-21:00 on one service and permitted at any hour on another, purely because of a technical access measure.",
     "no", "UK-S1 + UK-M1", "Rule 1.23", U_M1, "2019-01-01", "open", "approved",
-    "", "EN", "high")
+    "must not be broadcast before 2100, on any service", "EN", "high")
 
 add("UK-FLM-003", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "premium_subscription_film; pay_per_view; scheduled_channels_with_mdp",
@@ -328,8 +328,8 @@ add("UK-FLM-004", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Not before 20:00.", "not_before=20:00",
     "Carve-out retained in the 2018 review: Ofcom had proposed removing it and did not.",
     "conditional", "clear", "", "no",
-    "UK-M1", "Rule 1.24", U_M1, "2019-01-01", "open", "approved",
-    "", "EN", "medium")
+    "UK-S1", "Rule 1.24", U_S1, "2019-01-01", "open", "approved",
+    "pre-2000 and post 0530 for up to BBFC 15-rated films", "EN", "medium")
 
 add("UK-FLM-005", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "pay_per_view", "film_carryover", "any_time_with_protection",
@@ -338,7 +338,7 @@ add("UK-FLM-005", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Billing and subscriber-information duties are additional and are not per-asset checkable.",
     "conditional", "clear", "", "no",
     "UK-S1 + UK-M1", "Rule 1.25", U_M1, "2019-01-01", "open", "approved",
-    "", "EN", "high")
+    "Pay per view services may broadcast up to BBFC 18-rated films", "EN", "high")
 
 add("UK-FLM-006", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "sexual_content", "prohibited",
@@ -357,7 +357,7 @@ add("UK-OCC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "The fiction exemption is a frequent over-rating trap.", "no",
     "UK-S1", "Rule 1.27", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Demonstrations of exorcisms, occult practices and the paranormal", "EN", "high")
 
 # --- Section Three. In scope via the context route, NOT the watershed. Rules 3.2/3.3 are
 # --- permitted "except where it is justified by the context", and "context" is Section Two's
@@ -820,7 +820,7 @@ add("UK-WEL-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "Relevant where a content description involves minors as participants; not a scheduling rule.", "no",
     "UK-S1", "Rules 1.28-1.29", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Due care must be taken over the welfare and the dignity", "EN", "high")
 
 add("UK-OFF-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "offence_general", "context_dependent",
@@ -829,7 +829,7 @@ add("UK-OFF-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Supplies the harm categories the UK actually recognises - useful as the UK category vocabulary.",
     "judgment_based", "clear", "", "no",
     "UK-S2", "Rule 2.3", U_S2, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "material which may cause offence is justified by the context", "EN", "high")
 
 add("UK-IMI-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "imitable_behaviour", "context_dependent",
@@ -839,7 +839,7 @@ add("UK-IMI-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "Cross-programme accumulation cannot be assessed from a single asset description - flag for channel-level review.",
     "yes", "UK-S2", "Rule 2.4", U_S2, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "condones or glamorises violent, dangerous or seriously antisocial", "EN", "high")
 
 add("UK-SUI-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "suicide_self_harm", "context_dependent",
@@ -852,7 +852,7 @@ add("UK-SUI-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "imitative harm rather than mere offence. No automated verdict should stand alone on "
     "suicide or self-harm method depiction.", "yes",
     "UK-S2", "Rule 2.5", U_S2, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "Methods of suicide and self-harm must not be included in programmes", "EN", "high")
 
 add("UK-MUS-001", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv; music_channels", "music_videos", "context_dependent",
@@ -862,7 +862,7 @@ add("UK-MUS-001", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "judgment_based", "clear",
     "Lyrics that seem mild on audio alone can become highly sexualised when paired with sexual imagery - so audio and video must be assessed TOGETHER, not independently. Independent tagging systematically under-rates music videos.",
     "yes", "UK-G1", "UK-G1 s.2", U_G1, "", "open", "approved",
-    "", "EN", "high")
+    "the sexualised clothing and dance routines of performers", "EN", "high")
 
 add("UK-MUS-002", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv; music_channels", "nudity", "watershed_bound",
@@ -871,7 +871,7 @@ add("UK-MUS-002", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "Fetish clothing combined with sexual behaviour needs particular care.",
     "conditional", "clear", "", "no",
     "UK-G1", "UK-G1 s.2", U_G1, "", "open", "approved",
-    "", "EN", "high")
+    "the sexualised clothing and dance routines of performers", "EN", "high")
 
 add("UK-MUS-003", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv; music_channels", "suicide_self_harm", "context_dependent",
@@ -884,7 +884,7 @@ add("UK-MUS-003", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "about DETAIL, not about presence, so it cannot be decided from a content tag alone - it "
     "needs the actual shot description. Same imitative-harm downside as UK-SUI-001.", "yes",
     "UK-G1", "UK-G1 s.2", U_G1, "", "open", "approved",
-    "", "EN", "high")
+    "bondage, dominance and sadomasochism in music videos", "EN", "high")
 
 add("UK-TRL-001", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv", "trailers", "watershed_bound",
@@ -893,7 +893,7 @@ add("UK-TRL-001", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "The parent programme's own permitted slot does NOT license its trailer.",
     "judgment_based", "clear", "", "no",
     "UK-G1", "UK-G1 s.1", U_G1, "", "open", "approved",
-    "", "EN", "high")
+    "include only content that is appropriate for a pre-watershed audience", "EN", "high")
 
 add("UK-SCH-006", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "all_linear_tv", "scheduling_general", "context_dependent",
@@ -903,7 +903,7 @@ add("UK-SCH-006", "UK", "Ofcom", "regulator_guidance", 3, "yes",
     "judgment_based", "clear",
     "The +1 point is a good adversarial test case - it changes the answer with no change to content.",
     "no", "UK-G1", "UK-G1 s.1", U_G1, "", "open", "approved",
-    "", "EN", "high")
+    "family viewing programmes", "EN", "high")
 
 add("UK-SVC-001", "UK", "Ofcom", "regulator_binding", 2, "scope_rule",
     "bbc_odps", "scope", "n/a",
@@ -946,7 +946,7 @@ add("FR-LAW-002", "FR", "Arcom", "statute", 1, "yes",
     "bright_line", "clear",
     "The two-tier structure (seriously harm vs harm) must be represented or absolute bans get treated as schedulable.",
     "no", "FR-L1", "Loi 86-1067 art. 15", U_FRL, "1986-09-30", "open", "approved",
-    "", "FR", "high")
+    "nuire à l'épanouissement physique, mental ou moral des mineurs", "FR", "high")
 
 add("FR-VIO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "violence", "category_independent",
@@ -966,7 +966,7 @@ add("FR-VIO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "A warning alone is expressly insufficient.",
     "conditional", "clear", "", "no",
     "FR-R1c", "art. 1", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "un accompagnement pédagogique visant à contextualiser les scènes", "FR", "high")
 
 add("FR-VIO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "fear_distress", "category_independent",
@@ -975,7 +975,7 @@ add("FR-VIO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Applies to news, which France otherwise exempts from classification.",
     "conditional", "clear", "", "no",
     "FR-R1c", "art. 1", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "images difficilement soutenables ou des témoignages", "FR", "high")
 
 add("FR-CLS-001", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "classification_scheme", "I_tous_publics",
@@ -992,7 +992,7 @@ add("FR-CLS-002", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "See FR-SCH-001.", "see=FR-SCH-001", "",
     "judgment_based", "clear", "", "no",
     "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
-    "", "FR", "high")
+    "certaines scènes susceptibles de heurter les mineurs de 10 ans", "FR", "high")
 
 add("FR-CLS-003", "FR", "Arcom", "regulator_binding", 2, "definition_only",
     "all_linear_tv", "classification_scheme", "III_-12",
@@ -1029,7 +1029,7 @@ add("FR-FLM-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "The CNC/cinema rating is an INPUT, never the output. The TV category is a separate determination and may be stricter.",
     "no", "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
-    "", "FR", "high")
+    "peut servir d'indication pour leur classification", "FR", "high")
 
 add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "all_linear_tv", "film_carryover", "n/a",
@@ -1039,7 +1039,7 @@ add("FR-FLM-002", "FR", "Arcom", "regulator_binding", 2, "no_out_of_scope",
     "bright_line", "out_of_scope_for_asset_decision",
     "Procedural, not a per-asset rating rule. Recorded for completeness.", "no",
     "FR-R1c", "art. 2", U_FR1C, "2005-07-08", "open", "approved",
-    "", "FR", "medium")
+    "un délai d'au moins vingt ans s'est écoulé", "FR", "medium")
 
 add("FR-SCH-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "scheduling_general", "II_-10",
@@ -1049,7 +1049,7 @@ add("FR-SCH-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "conditional", "clear",
     "Note there is NO time restriction for -10 - only a placement restriction. A model that assumes every age label implies an hour will invent one.",
     "no", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "les horaires de diffusion de ces programmes sont laissés à l'appréciation", "FR", "high")
 
 add("FR-SCH-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "free_to_air; other_than_cinema_channels", "scheduling_general", "III_-12",
@@ -1119,7 +1119,7 @@ add("FR-SCH-007", "FR", "Arcom", "regulator_binding", 2, "pointer",
     "bright_line", "clear",
     "A model asked for -18 hours must follow this pointer. Answering by analogy with -16 ('later than 22:30') is wrong.",
     "no", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "soumise au respect de la recommandation n° 2004-7", "FR", "high")
 
 add("FR-PRO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "human_dignity", "prohibited",
@@ -1156,7 +1156,7 @@ add("FR-SIG-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "bright_line", "clear",
     "Signage is a SEPARATE obligation from scheduling: a programme can be correctly scheduled and still breach by failing to display the pictogram. The C8 enforcement decision was precisely about signage.",
     "no", "FR-R1c", "art. 4", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "présent à l'écran pendant toute la durée de la diffusion", "FR", "high")
 
 add("FR-SIG-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "signage", "II_to_V",
@@ -1165,7 +1165,7 @@ add("FR-SIG-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Decret n. 90-174 on prior public warnings continues to apply.",
     "bright_line", "clear", "", "no",
     "FR-R1c", "art. 4", U_FR2, "2012-11-20", "open", "approved",
-    "", "FR", "high")
+    "en bas d'écran, en blanc, au minimum pendant une minute", "FR", "high")
 
 add("FR-SIG-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "signage", "II_to_V",
@@ -1173,7 +1173,7 @@ add("FR-SIG-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "n/a - information obligation", "n/a", "",
     "bright_line", "clear", "", "no",
     "FR-R1c", "art. 4", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "portée à la connaissance du public au moment de la diffusion", "FR", "high")
 
 add("FR-TRL-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "trailers", "II_to_V",
@@ -1181,7 +1181,7 @@ add("FR-TRL-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "n/a - content and display obligation", "n/a", "",
     "bright_line", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "apparaît pendant toute la durée de la bande-annonce", "FR", "high")
 
 add("FR-TRL-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "trailers", "III_-12",
@@ -1189,7 +1189,7 @@ add("FR-TRL-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Placement restriction.", "not_near=children_programmes", "",
     "bright_line", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "ne peuvent être diffusées à proximité des émissions pour enfants", "FR", "high")
 
 add("FR-TRL-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "trailers", "IV_-16",
@@ -1198,7 +1198,7 @@ add("FR-TRL-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "Note the trailer time (20:30) differs from the programme time on non-cinema channels (22:30).",
     "bright_line", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "catégorie IV ne peuvent être diffusées avant 20 h 30", "FR", "high")
 
 add("FR-MUS-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv; music_channels", "music_videos", "exempt",
@@ -1208,7 +1208,7 @@ add("FR-MUS-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "bright_line", "clear",
     "Contrast with the UK, which applies the ordinary watershed plus detailed content thresholds to music videos. The SAME music video can yield a hard UK verdict and a soft French one.",
     "no", "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "exonérées du caractère systématique de la signalétique", "FR", "high")
 
 add("FR-MUS-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv; music_channels", "music_videos", "soft_restriction",
@@ -1219,7 +1219,7 @@ add("FR-MUS-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "judgment_based", "clear",
     "A key precision test: a model that renders this as 'prohibited before 22:00' is OVER-rating and misstating the legal force of the rule. Worth an explicit test case.",
     "yes", "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "l'éditeur s'attache à les diffuser après 22 heures", "FR", "high")
 
 add("FR-MUS-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv; music_channels", "music_videos", "context_dependent",
@@ -1227,7 +1227,7 @@ add("FR-MUS-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "n/a - information duty", "n/a;requires=warning", "",
     "judgment_based", "clear", "", "no",
     "FR-R1c", "art. 5", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "selon des thématiques qui ne s'adressent ni aux enfants", "FR", "high")
 
 add("FR-CV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "cinema_channels; high_production_commitment_channels; pay_per_view",
@@ -1328,7 +1328,7 @@ add("EU-FRM-002", "EU", "EU / ERGA", "statute", 1, "framework_only",
     "bright_line", "clear",
     "Independent corroboration for carrying a fixed content_category dimension separate from the age level: the regulators themselves concluded an age number alone is insufficient. EU notification material for the French 2021 decree states content indicators/descriptors (violence, sex, distress, etc.) were needed because the existing programme symbol gave no indication of the TYPE of harmful content.",
     "no", "EU-D1", "AVMSD art. 6a(3)", U_EU, "2018-12-18", "open", "approved",
-    "", "EN", "high")
+    "provide sufficient information to viewers about content", "EN", "high")
 
 add("EU-FRM-003", "EU", "EU / ERGA", "statute", 1, "no_out_of_scope",
     "all_avms", "data_protection", "n/a",
@@ -1337,7 +1337,7 @@ add("EU-FRM-003", "EU", "EU / ERGA", "statute", 1, "no_out_of_scope",
     "bright_line", "out_of_scope_for_asset_decision",
     "Not a content or scheduling rule. Recorded so the scope boundary is explicit.", "no",
     "EU-D1", "AVMSD art. 6a(2)", U_EU, "2018-12-18", "open", "approved",
-    "", "EN", "high")
+    "shall not be processed for commercial purposes", "EN", "high")
 
 # ============================================================ WORKBOOK
 wb = openpyxl.Workbook()
@@ -1636,11 +1636,11 @@ oq += [
      "CLOSED 2026-11-06. The instrument is the Arcom notice of 15 December 2004. Its page body is drawn by JavaScript, so no fetch could ever retrieve it - every automated attempt returned an empty shell, and one early attempt returned 12,493 characters of pure site navigation that passed a naive length check. The user saved it from a browser, where the text had already rendered. CONFIRMED VERBATIM: 'Category V programs can only be shown between midnight and 5am.' The eligibility gate, the 208-per-year commercial threshold, the on-screen warning with article 227-22, and the six locking criteria are all confirmed against the primary.",
      "Six of the seven predicted rules verified verbatim; the rows had also carried the WRONG DATE for the instrument (23 rather than 15 December), now corrected. FR-CV-003 is SOUND BUT WEAKLY SOURCED - its proof quote is from a government summary while the primary says only that the regulator 'only authorizes' eligible services, so a total ban elsewhere is an inference, flagged in-row for a French regulatory lawyer. The doubt that created C-03 resolves in the OPPOSITE direction from the one feared: the deadlines have elapsed, meaning fully in force with no transitional relief. FINALLY, the stored text is Arcom's own ENGLISH translation, which warns that only the original French is authentic - every quote here is EN and a French-qualified reviewer must re-check them.",
      "closed", "no"],
-    ["C-15", "Half the table carries no quote, so the quote check never looked at it",
-     "46 approved rules",
-     "OPEN, found 2026-11-07 by a question about how an adult drama can air in the UK. The quote check reported '50 verified, 0 failed, 0 skipped' and that read as full coverage. It was not: 0 skipped only ever meant no SOURCE DOCUMENT was missing from disk. Rules carrying no quote at all were passed over in silence, because the check iterated the rules that had one. 50 of 102 were checked; 52 had never been looked at. SIX of those were ABSOLUTE PROHIBITIONS - the rules the design says must be enforced in code because no argument may override them. Those six are now quoted from the stored sources and verified, bringing coverage to 56 of 102.",
-     "THE INTERESTING PART IS THE METRIC, NOT THE GAP. A coverage number that counts only the rows which opted in will always report success, and it did so for weeks while reading as reassurance. Two fixes: the verifier now prints the DENOMINATOR and warns by name when an unquoted rule is an absolute prohibition. ACTION: backfill the remaining 46. Most are French scheduling rows from FR-R1c and UK Section One rows whose sources are on disk, so this is transcription rather than research. Until then, treat an unquoted row as unverified regardless of its status field. GENERAL LESSON FOR TASK 2: every check needs its denominator reported next to it, or the check measures its own appetite.",
-     "open", "yes"],
+    ["C-15", "Half the table carried no quote, so the quote check never looked at it",
+     "all 102 approved rules",
+     "CLOSED 2026-11-07. COVERAGE IS NOW 102 OF 102, all verifying against their stored source, 0 failing. The gap was an artifact of build order, not of the rules being unquotable: all 46 unquoted rows came from the FIRST commit, written when every fetch was being refused and there was no stored text to quote from. Leaving the field empty rather than paraphrasing was right at the time; not returning to it once the sources arrived was not. Not one rule written after the sources landed was missing a quote.",
+     "THE METRIC WAS THE REAL DEFECT, and the lesson outlives the fix. 'VERIFIED 50, FAILED 0' counted only the rules that carried a quote, so the 52 without one were not failing - they were never shown to the check at all. A coverage number that counts only the rows which opted in will always report success. The verifier now prints the DENOMINATOR, and coverage is a RATCHET: an approved rule with no verbatim_quote FAILS the build, verified by removing one. Backfilling also exposed a second UK-FLM source misattribution (UK-FLM-004 cited the MDP statement for text that lives in Section One), which only became visible once the quote existed to be checked.",
+     "closed", "no"],
     ["C-14", "UK access-control rows cited guidance predating the 2018 MDP restructure",
      "UK-ACC-002, UK-ACC-003 (both now approved)",
      "CLOSED 2026-11-06, and it resolved better than expected. With the current Section One text in hand, the substance of UK-ACC-003 turns out to be in the CURRENT CODE rather than only in the 2015 guidance: Rule 1.24 requires both that clear information be provided to help adults assess suitability AND - a condition the table did not have at all - that the mandatory daytime protection in place be CLEARLY EXPLAINED TO ALL VIEWERS. A gate nobody has been told about does not satisfy the rule. The row is re-sourced from guidance to binding text, raising its authority rank from 3 to 2. UK-ACC-002 stays on guidance, because the default-PIN point is an elaboration rather than Code text, but the requirement it elaborates - that the protection cannot be removed by the user - is in the current Code, so it explains a rule that still stands.",

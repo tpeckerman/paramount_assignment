@@ -13,9 +13,8 @@ conflicts.
 - 103 rules, 102 approved. The one exception is `FR-CNV-001`, draft because French channel
   conventions have not been collected.
 - 20 of 20 source documents collected and on disk.
-- **56 of the 102 approved rules carry a verbatim quote.** All 56 verify against their
-  stored source, 0 failing. **The other 46 carry none and are never checked** (C-15).
-  Treat an unquoted row as unverified whatever its status field says.
+- **All 102 approved rules carry a verbatim quote**, and all 102 verify against their stored
+  source, 0 failing. Coverage is enforced: an approved rule with no quote fails the build.
 - Conflicts: see `rules/csv/Open_Questions.csv`. Four remain open; the substantive one is
   **C-07**, below.
 
@@ -107,8 +106,12 @@ document* was missing from disk. Rules carrying no quote were passed over in sil
 the check iterated the rules that had one.
 
 Six of the unchecked rules were the **absolute prohibitions**, the rules the design says
-belong in code because no contextual argument may override them. Those six are now quoted and
-verified.
+belong in code because no contextual argument may override them.
+
+All 46 have since been quoted from the stored sources and coverage is 102 of 102. The gap was
+an artifact of build order: every unquoted row came from the first commit, written when no
+source was on disk and there was nothing to quote from. Not one rule written afterwards was
+missing a quote.
 
 The verifier now prints the denominator beside the count and names any unquoted absolute
 prohibition. **A coverage number that counts only the rows which opted in will always report

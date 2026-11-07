@@ -29,14 +29,14 @@ Used to resolve contradictions between sources. Lower number wins.
 
 | id | Document | Rank | Rules | Status | URL |
 |---|---|---|---|---|---|
-| `UK-S1` | Broadcasting Code Section One - Protecting the Under-Eighteens | req | 32 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens |
+| `UK-S1` | Broadcasting Code Section One - Protecting the Under-Eighteens | req | 33 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens |
 | `UK-S2` | Broadcasting Code Section Two - Harm and Offence | req | 4 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence |
 | `UK-S3` | Ofcom Broadcasting Code Section Three - Crime, Disorder, Hatred and Abuse | req | 2 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse |
 | `UK-S4` | Ofcom Broadcasting Code, Section Four: Religion | req | 1 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion |
 | `UK-G1` | Guidance - Observing the watershed on television and music videos | req | 10 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/watershed-on-tv.pdf?v=335370 |
 | `UK-G2` | Guidance Notes Section One | rec | 5 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674 |
 | `UK-G3` | Guidance Notes Section Two | rec | 2 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622 |
-| `UK-M1` | Statement - Review of the mandatory daytime protection rules | req | 4 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/mandatory-daytime-protection |
+| `UK-M1` | Statement - Review of the mandatory daytime protection rules | req | 3 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/mandatory-daytime-protection |
 | `UK-P1` | Enforcement decision - Toofan NTV 29 May 2026 (Rule 1.3 breach) | rec | 4 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf |
 | `UK-L1` | Communications Act 2003 section 319 | req | 1 | verified | https://www.legislation.gov.uk/ukpga/2003/21/section/319 |
 | `UK-L2` | Audiovisual Media Services Regulations 2020 (SI 2020/1062) explanatory note | rec | _none_ | verified | https://www.legislation.gov.uk/uksi/2020/1062/note/made |
