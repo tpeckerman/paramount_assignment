@@ -25,17 +25,18 @@ td.lbl .meta{color:var(--mut);font-size:11px}
 .track{position:relative;height:22px;background:repeating-linear-gradient(90deg,
 #f4f2ee 0 1px,transparent 1px calc(100%/24));border:1px solid var(--line);border-radius:4px}
 .bar{position:absolute;top:2px;bottom:2px;border-radius:3px}
-.bar{background:var(--okb);border:1px solid var(--ok)}
-.bar.soft{background:var(--softb);border:1px dashed var(--soft);
+.fill-ok,.bar{background:var(--okb);border:1px solid var(--ok)}
+.fill-soft,.bar.soft{background:var(--softb);border:1px dashed var(--soft);
 background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(0,0,0,.06) 5px 10px)}
+.fill-none{background:transparent;border:1px solid var(--line)}
 .cont{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--ok);
 font-size:11px;line-height:1}
 .ws{position:absolute;top:-4px;bottom:-4px;width:1px;background:#444;opacity:.45}
 .axis{display:flex;margin:6px 0 0 300px;font-size:10.5px;color:var(--mut)}
 .axis span{flex:1;text-align:left}
 .legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 0 0;font-size:12px;color:var(--mut)}
-.k{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;
-margin-right:5px}
+.k{display:inline-block;width:22px;height:12px;border-radius:3px;vertical-align:-2px;
+margin-right:6px}
 .note{margin-top:22px;padding:14px 16px;background:#fff;border:1px solid var(--line);
 border-radius:10px;font-size:13px;max-width:92ch}
 .note h2{font-size:14px;margin:0 0 8px}
@@ -63,10 +64,11 @@ listed underneath rather than drawn at an invented position.</p>
   <div id="chart"></div>
   <div class="axis" id="axis"></div>
   <div class="legend">
-    <strong style="color:var(--ink)">A bar means the content MAY be transmitted.</strong>
-    <span><i class="k bar"></i>permitted</span>
-    <span><i class="k bar soft"></i>permitted, but the regulator prefers later</span>
-    <span>no bar = not permitted</span>
+    <strong style="color:var(--ink)">A bar means the content MAY be transmitted then.</strong>
+    <span><i class="k fill-ok"></i><strong>solid green</strong> &ndash; permitted</span>
+    <span><i class="k fill-soft"></i><strong>yellow, dashed</strong> &ndash; permitted, but the
+      regulator states a preference for later. Not a prohibition</span>
+    <span><i class="k fill-none"></i><strong>empty track</strong> &ndash; not permitted</span>
     <span>&rsaquo; continues past midnight; no closing time stated in the source</span>
     <span><i style="display:inline-block;width:1px;height:12px;background:#444;
       vertical-align:-2px;margin-right:5px"></i>21:00 watershed</span>
