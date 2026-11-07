@@ -2,67 +2,86 @@
 
 How a content description becomes a decision, and where the rules come in.
 
-## The shape of it
+## The seven steps
+
+Steps 1 to 4 happen **once per legal document**, and again whenever a regulator changes the
+law. Steps 5 to 7 happen **once per showing**.
 
 ```mermaid
 flowchart TB
-    subgraph BUILD ["BUILD: once per source document, re-run when the law changes"]
-        direction TB
-        S1[/"Official sources<br/>20 documents"/] --> S2["BUILD_rules_from_sources.md<br/>extract one row per operative rule"]
-        S2 --> S3{"Quote check:<br/>does the quote appear<br/>verbatim in the file?"}
-        S3 -- no --> S2
-        S3 -- yes --> S4[("Rules table<br/>103 rows")]
-    end
+    S1["1. Gather the official sources<br/>20 documents from Ofcom, Arcom and EU law"]
+    S2["2. Read each one and write down its rules<br/>one row per rule, with the exact words quoted"]
+    S3{"3. Check every quote<br/>is it really in the document?"}
+    S4[("4. The rules table<br/>103 rules")]
+    S1 --> S2 --> S3
+    S3 -- "no, fix it" --> S2
+    S3 -- yes --> S4
 
-    subgraph RUN ["RUN: once per transmission"]
-        direction TB
-        R1[/"Content description<br/>events + timecodes"/] --> R2["RUN_1_describe_content.md<br/>BLIND to the rules"]
-        R2 --> R3[/"Observations<br/>timecoded, categorised"/]
-        R3 --> R4["run_decision.py<br/>select the rules that apply"]
-        S4 --> R4
-        R4 --> R5["RUN_2_decide.md<br/>3 independent passes"]
-        R5 --> R6[/"Decision<br/>every claim cites a rule_id"/]
-        R6 --> R7{"bright-line<br/>and confident?"}
-        R7 -- yes --> R8[["Automated answer"]]
-        R7 -- no --> R9[["Human review,<br/>rule and quote attached"]]
-    end
+    S5["5. Read the content description<br/>what happens, and at what timecode"]
+    S6["6. Pick out the rules that could apply<br/>by country, channel type and what is shown"]
+    S7["7. Decide<br/>rating, hours, and any other conditions"]
+    S8{"Is the answer clear-cut?"}
+    S9[["Answer, with the rules it used"]]
+    S10[["Send to a person,<br/>with the rules and quotes attached"]]
+    S5 --> S6 --> S7 --> S8
+    S4 --> S6
+    S8 -- yes --> S9
+    S8 -- "no, or something was missing" --> S10
 ```
 
-Two loops at different speeds. The top runs once per document and again when the law changes.
-The bottom runs per transmission.
+### What "clear-cut" means in step 8
 
-**They must stay separate.** A system that reads regulation and applies it in one step has
-nothing dividing "what the rule says" from "what I decided", so a misreading cannot be caught.
-Splitting them is what makes the quote check possible, and that check found four defective
-quotes the moment real sources arrived.
+Some rules are a fixed line. *Category V may only air between midnight and 5am.* There is
+nothing to weigh: you either know the category or you do not, and the answer follows.
 
-## How a rule reaches a decision
+Other rules ask for a judgement. *Is this violence "presented repeatedly"?* *Is this treatment
+"derogatory"?* Two experienced people can read the same scene and disagree, and the regulator
+expects a human to weigh it.
 
-A worked trace, following one real rule from the statute to the answer.
+The table records which kind each rule is, so step 8 is a lookup rather than a guess. **45 of
+the 103 rules are fixed lines. 38 are judgement calls.** A decision goes to a person when it
+rests on a judgement rule, or when the description left out something the rule needed, such as
+which channel it is going out on.
+
+The point is not to answer everything automatically. It is to answer the clear-cut majority
+and hand a person the hard ones with the rule and its exact wording already attached, so they
+start from the evidence instead of a blank page.
+
+## One rule, followed all the way through
+
+A real example. The same film, on two different channels.
 
 ```mermaid
 flowchart LR
-    A["Ofcom Code<br/>Section One, Rule 1.24"] --> B["Row UK-FLM-003<br/>any_time;<br/>requires=mandatory_<br/>daytime_protection"]
-    B --> C["Filter:<br/>country = UK<br/>service = premium film<br/>category = violence"]
-    C --> D["Pass A classification<br/>no_per_programme_rating"]
-    C --> E["Pass B hours<br/>any time"]
-    C --> F["Pass C other<br/>PIN, on by default"]
-    E --> G{"Does C change B?"}
+    A["Ofcom rulebook<br/>Section One, rule 1.24"] --> B["Stored as one row<br/>'any time, IF a PIN<br/>gate is in place'"]
+    B --> C["A film is checked<br/>for a paid film channel"]
+    C --> D["Rating<br/>the UK gives none"]
+    C --> E["Hours<br/>any time"]
+    C --> F["Other conditions<br/>PIN, on by default"]
+    E --> G{"Do the conditions<br/>change the hours?"}
     F --> G
-    G --> H["Yes: UK-SCH-007<br/>disapplies the watershed<br/>while the gate is in place"]
-    H --> I["Answer: permitted at 14:30<br/>BECAUSE of the PIN<br/>cites UK-FLM-003,<br/>UK-ACC-001, UK-SCH-007"]
+    G --> H["Yes. With the PIN in place<br/>the 9pm watershed<br/>does not apply at all"]
+    H --> I["Answer: it may run at 2:30pm,<br/>but ONLY because of the PIN"]
 ```
 
-The thing to notice is step G. The hours and the access control are computed **separately**
-and then checked against each other, because the access control can change or remove the
-hours answer. Report "any time" without the PIN condition and the answer is wrong; report a
-bar before 21:00 without noticing the measure is available and it is wrong the other way.
+The thing to notice is the question in the middle. The hours and the PIN are worked out
+**separately** and then checked against each other, because the PIN changes the hours.
 
-## What each stage actually does
+Say only "any time" and you have dropped the condition that earned it, and a channel without
+a PIN would act on it. Say only "not before 9pm" and you have missed that a PIN would lift
+that, which costs the channel a slot it was entitled to. Both are wrong, in opposite
+directions.
 
-### BUILD, run once per source document
+Put the same film on an ordinary free-to-air channel with no PIN and the answer is 9pm. Same
+film, same certificate, nothing re-edited.
 
-`prompts/BUILD_rules_from_sources.md` takes **one legal document** and produces **rows**. Its
+## The steps in more detail
+
+### Steps 1 to 4: turning documents into a table
+
+Prompt: `prompts/BUILD_rules_from_sources.md`
+
+This takes **one legal document** and produces **rows**. Its
 job is reading law. It runs 20 times, once per source, and again whenever a regulator amends
 something.
 
@@ -71,9 +90,11 @@ Each row carries a `verbatim_quote` that appears character for character in the 
 `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
-### RUN 1, run once per asset
+### Step 5: describing the content
 
-`prompts/RUN_1_describe_content.md` takes a **content description** and produces **timecoded
+Prompt: `prompts/RUN_1_describe_content.md`
+
+This takes a **content description** and produces **timecoded
 observations**. Its job is reading content.
 
 It **does not know the rules exist**, and that is the point. An extractor that knows the
@@ -83,9 +104,11 @@ made, invisibly, by an adjective.
 
 It also records what it was **not** told. `not_stated` is a deliverable, not an apology.
 
-### Selection, in code not in the prompt
+### Step 6: picking the rules that could apply
 
-`pipeline/run_decision.py` picks the rules that could apply: matching country, matching service
+Code, not a prompt: `pipeline/run_decision.py`
+
+It picks the rules that could apply: matching country, matching service
 type, matching content category, plus a set that is **always** included.
 
 That last part exists because of a real bug. Access-control rules describe how a programme is
@@ -94,9 +117,11 @@ category-based filter dropped them every single time. The rule defining what a P
 be never reached the decision engine, while the rule granting an any-hour permission
 *conditional on that gate* did.
 
-### RUN 2, the decision
+### Steps 7 and 8: deciding
 
-`prompts/RUN_2_decide.md` applies only the rules it was handed. It never recalls regulation,
+Prompt: `prompts/RUN_2_decide.md`
+
+This applies only the rules it was handed. It never recalls regulation,
 and it cites a `rule_id` for every claim.
 
 It runs three passes that are deliberately independent: classification, hours, other
