@@ -42,12 +42,14 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-RULES_CSV = ROOT / "rules/csv/Rules.csv"
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 
 
 def load_rules() -> dict[str, dict]:
-    with RULES_CSV.open(newline="", encoding="utf-8") as fh:
+    with C.RULES_CSV.open(newline="", encoding="utf-8") as fh:
         return {r["rule_id"]: r for r in csv.DictReader(fh)}
 
 
@@ -74,7 +76,7 @@ def row_for(d: dict, rules: dict) -> dict:
     cited = sorted(set(basis_ids(cls) + basis_ids(hrs)
                        + [i for o in others for i in basis_ids(o)]))
     judgment = [r for r in cited
-                if rules.get(r, {}).get("determinacy") == "judgment_based"]
+                if rules.get(r, {}).get("determinacy") == C.JUDGMENT_DETERMINACY]
 
     # The verdict is about whether the RULES gave a determinate answer, not about whether
     # the slot someone asked for is approved. "CLEARED" next to "not before 21:00" on a 14:30

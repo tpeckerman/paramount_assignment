@@ -18,7 +18,10 @@ import pathlib
 import re
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 
 # (case, source file on disk, phrases that must appear in it verbatim)
 CLAIMS = [
@@ -52,13 +55,13 @@ CONTENT_CATEGORIES = {
 
 def category_coverage() -> tuple[set[str], set[str], dict[str, int]]:
     """Which content categories the case list exercises, and which have rules and no test."""
-    with (ROOT / "rules/csv/Rules.csv").open(newline="", encoding="utf-8") as fh:
+    with C.RULES_CSV.open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
     counts: dict[str, int] = {}
     for r in rows:
         counts[r["content_category"]] = counts.get(r["content_category"], 0) + 1
 
-    cases = (ROOT / "tests/CASES.md").read_text(encoding="utf-8")
+    cases = C.CASES_MD.read_text(encoding="utf-8")
     summary = cases.split("| # | Content")[1].split("The category column")[0]
     used = set(re.findall(r"`([a-z_]+)`", summary))
 
@@ -73,7 +76,7 @@ def main() -> int:
     failures = []
     checked = 0
     for case, rel, phrases in CLAIMS:
-        path = ROOT / rel
+        path = C.ROOT / rel
         if not path.is_file():
             failures.append(f"{case}: source not on disk: {rel}")
             continue

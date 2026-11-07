@@ -25,9 +25,13 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-RULES = ROOT / "rules/csv/Rules.csv"
-DECIDE_PROMPT = ROOT / "prompts/RUN_2_decide.md"
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
+ROOT = C.ROOT
+RULES = C.RULES_CSV
+DECIDE_PROMPT = C.DECISION_PROMPT
 
 # Columns RUN 2 is given. Deliberately not every column: last_checked, extraction_confidence
 # and quote_lang are provenance for humans and auditors, not inputs to a decision. Sending
@@ -102,7 +106,7 @@ def select(rules, countries, service=None, categories=None):
     out, dropped = [], []
     wanted = set(categories or []) | ALWAYS_INCLUDE if categories else None
     for r in rules:
-        if r["status"] != "approved":
+        if r["status"] != C.USABLE_STATUS:
             dropped.append((r["rule_id"], f"status={r['status']}"))
             continue
         if r["country"] not in countries:
@@ -155,7 +159,7 @@ def main() -> None:
     for c in a.countries:
         n = sum(1 for r in sel if r["country"] == c)
         hr = sum(1 for r in sel if r["country"] == c and r["human_review_required"] == "yes")
-        jb = sum(1 for r in sel if r["country"] == c and r["determinacy"] == "judgment_based")
+        jb = sum(1 for r in sel if r["country"] == c and r["determinacy"] == C.JUDGMENT_DETERMINACY)
         print(f"  {c}: {n} rules, {jb} judgment_based, {hr} needing human review",
               file=sys.stderr)
     if not sel:

@@ -17,9 +17,13 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-ORIG = ROOT / "sources/originals"
-OUT = ROOT / "sources/00_SOURCE_INVENTORY.md"
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
+ROOT = C.ROOT
+ORIG = C.ORIGINALS_DIR
+OUT = C.SOURCE_INVENTORY_MD
 
 RANK = {
     "1": ("statute", "Primary legislation or directive. Sets the duty, rarely the detail."),
@@ -44,7 +48,7 @@ def main() -> int:
         return 0
     rows = list(csv.DictReader((ORIG / "MANIFEST.csv").open(newline="", encoding="utf-8")))
     expect = json.loads((ORIG / "expect.json").read_text(encoding="utf-8"))["expect"]
-    rules = list(csv.DictReader((ROOT / "rules/csv/Rules.csv").open(
+    rules = list(csv.DictReader(C.RULES_CSV.open(
         newline="", encoding="utf-8")))
 
     used: dict[str, int] = {}

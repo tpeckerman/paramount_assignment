@@ -41,6 +41,10 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
 def load_expect() -> dict:
     """Per-document phrase that proves a stored file is the real thing.
 
@@ -49,7 +53,7 @@ def load_expect() -> dict:
     entirely site navigation and passed a length test.
     """
     import json as _json, pathlib as _pl
-    p = _pl.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    p = C.EXPECT_JSON
     if not p.exists():
         return {}
     return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
@@ -59,9 +63,9 @@ EXPECT = load_expect()
 
 
 
-ROOT = Path(__file__).resolve().parents[1]
-ORIGINALS = ROOT / "sources" / "originals"
-MANIFEST = ORIGINALS / "MANIFEST.csv"
+ROOT = C.ROOT
+ORIGINALS = C.ORIGINALS_DIR
+MANIFEST = C.MANIFEST_CSV
 LOCKFILE = ORIGINALS / "originals.lock.json"
 
 # A plain, honest client string. Do not put a personal email address here.

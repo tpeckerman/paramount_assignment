@@ -29,9 +29,12 @@ import subprocess
 import sys
 import tempfile
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "HOW_IT_WORKS.md"
-OUT_DIR = ROOT / "docs"
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
+SOURCE = C.HOW_IT_WORKS_MD
+OUT_DIR = C.DOCS_DIR
 
 
 def blocks(text: str) -> list[tuple[str, str]]:
@@ -53,7 +56,7 @@ def render(body: str, dest: pathlib.Path | None) -> tuple[bool, str]:
         out = pathlib.Path(td) / "d.svg"
         proc = subprocess.run(
             ["npx", "--yes", "@mermaid-js/mermaid-cli", "-i", str(src), "-o", str(out)],
-            capture_output=True, text=True, timeout=300)
+            capture_output=True, text=True, timeout=C.RENDER_TIMEOUT_SECONDS)
         if proc.returncode != 0 or not out.exists():
             return False, (proc.stderr or proc.stdout or "no output").strip()[-400:]
         if dest is not None:

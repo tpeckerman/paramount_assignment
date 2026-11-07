@@ -32,12 +32,14 @@ import datetime
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-RULES_CSV = ROOT / "rules/csv/Rules.csv"
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 
 
 def load() -> tuple[list[dict], list[str]]:
-    with RULES_CSV.open(newline="", encoding="utf-8") as fh:
+    with C.RULES_CSV.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
         return list(reader), list(reader.fieldnames or [])
 
@@ -72,8 +74,8 @@ def main() -> int:
     # "Live" means still in force: not already closed and not already superseded.
     hits = [r for r in rows
             if r["source_doc"] == args.source_doc
-            and r["status"] != "superseded"
-            and (r["valid_to"] or "open") == "open"]
+            and r["status"] != C.SUPERSEDED_STATUS
+            and (r["valid_to"] or C.OPEN_VALID_TO) == C.OPEN_VALID_TO]
 
     if not hits:
         print(f"{args.source_doc}: nothing live to close. Already superseded, or the rows "
@@ -96,14 +98,14 @@ def main() -> int:
     for r in rows:
         if r["rule_id"] in closed:
             r["valid_to"] = args.as_of
-            r["status"] = "superseded"
+            r["status"] = C.SUPERSEDED_STATUS
 
-    with RULES_CSV.open("w", newline="", encoding="utf-8") as fh:
+    with C.RULES_CSV.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"\nwrote {RULES_CSV.relative_to(ROOT)}: {len(closed)} row(s) superseded.")
+    print(f"\nwrote {C.relative(C.RULES_CSV)}: {len(closed)} row(s) superseded.")
     print("The spreadsheet is generated from build_rules_table.py, so update its source "
           "rows there too, or the next build will undo this.")
     print("Then run: python pipeline/verify_rules.py --with-quotes")

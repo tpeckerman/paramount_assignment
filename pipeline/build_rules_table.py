@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Build the long-format regulatory rule table as a multi-tab workbook."""
 
+import pathlib as _pathlib
+import sys as _sys
+_sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 import openpyxl
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from openpyxl.utils import get_column_letter
@@ -1762,9 +1767,9 @@ import os as _os
 import csv as _csv
 from pathlib import Path as _Path
 
-_RULES_DIR = _Path(__file__).resolve().parents[1] / "rules"
+_RULES_DIR = C.RULES_DIR
 _RULES_DIR.mkdir(parents=True, exist_ok=True)
-_XLSX = _RULES_DIR / "RULES_TABLE_v1.xlsx"
+_XLSX = C.RULES_XLSX
 wb.save(_XLSX)
 
 # Diffable CSV mirrors. The workbook is a binary blob git cannot diff, so a rule change
@@ -1775,7 +1780,7 @@ wb.save(_XLSX)
 # tabs (Legend, How_to_use, Sources, Pivot_Readable) are reference material that already
 # exists inside the workbook; mirroring them doubled the file count for no reader.
 _MIRROR = {"Rules", "Open_Questions"}
-_CSV_DIR = _RULES_DIR / "csv"
+_CSV_DIR = C.RULES_CSV.parent
 _CSV_DIR.mkdir(exist_ok=True)
 for _name in [n for n in wb.sheetnames if n in _MIRROR]:
     _ws = wb[_name]
@@ -1790,6 +1795,7 @@ print(f"wrote {_XLSX.relative_to(_RULES_DIR.parent)} "
       f"({round(_os.path.getsize(_XLSX)/1024, 1)} KB) + {len(wb.sheetnames)} CSV mirrors")
 print(f"rules rows: {len(R)}")
 from collections import Counter
+
 print("by country:", dict(Counter(r[1] for r in R)))
 print("by status :", dict(Counter(r[22] for r in R)))
 print("by determinacy:", dict(Counter(r[13] for r in R)))

@@ -24,17 +24,21 @@ import sys
 import unicodedata
 from pathlib import Path
 
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
 try:
     import openpyxl
 except ImportError:
     sys.exit("needs openpyxl:  pip install openpyxl")
 
-ROOT = Path(__file__).resolve().parents[1]
-WORKBOOK = ROOT / "rules" / "RULES_TABLE_v1.xlsx"
-ORIGINALS = ROOT / "sources" / "originals"
-MANIFEST = ORIGINALS / "MANIFEST.csv"
+ROOT = C.ROOT
+WORKBOOK = C.RULES_XLSX
+ORIGINALS = C.ORIGINALS_DIR
+MANIFEST = C.MANIFEST_CSV
 
-RULE_ID = re.compile(r"^(UK|FR|EU)-[A-Z]{2,4}-\d{3}$")
+RULE_ID = C.RULE_ID_PATTERN
 
 TIME_TOKEN = re.compile(
     r"^("
@@ -51,10 +55,10 @@ TIME_TOKEN = re.compile(
 
 ENUMS = {
     "country": {"UK", "FR", "EU"},
-    "determinacy": {"bright_line", "conditional", "judgment_based"},
+    "determinacy": set(C.DETERMINACY),
     "ambiguity_flag": {"clear", "conflicting_sources", "translation_uncertain",
                        "unverified", "out_of_scope_for_asset_decision"},
-    "status": {"approved", "draft", "unverified", "superseded"},
+    "status": set(C.STATUSES),
     "human_review_required": {"yes", "no"},
     "use_for_decision": {"yes", "definition_only", "framework_only", "pointer",
                          "scope_rule", "no_out_of_scope"},
@@ -109,7 +113,7 @@ def check(rows: list[dict]) -> list[str]:
             bad.append(f"{rid}: authority_rank={r['authority_rank']!r} not 1-7")
 
         # a row cannot be approved while its extraction is still in doubt
-        if r["status"] == "approved" and r["ambiguity_flag"] in {
+        if r["status"] == C.USABLE_STATUS and r["ambiguity_flag"] in {
                 "translation_uncertain", "unverified", "conflicting_sources"}:
             bad.append(f"{rid}: status=approved but ambiguity_flag="
                        f"{r['ambiguity_flag']} - resolve or downgrade")
@@ -146,7 +150,7 @@ def check_manifest_coverage(rows: list[dict]) -> list[str]:
     bad = []
     for r in rows:
         # source_doc may be compound, e.g. "FR-R1 (as amd. FR-A2)" or "UK-S1 + UK-M1"
-        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Za-z0-9]{1,4}\b", r["source_doc"])
+        refs = C.RULE_ID_IN_TEXT.findall(r["source_doc"])
         if not refs:
             bad.append(f"{r['rule_id']}: source_doc {r['source_doc']!r} names no doc_id")
         for ref in refs:
@@ -218,7 +222,7 @@ def check_quotes(rows: list[dict]) -> list[str]:
         q = r["verbatim_quote"].strip()
         if not q:
             continue
-        refs = re.findall(r"\b(?:UK|FR|EU)-[A-Za-z0-9]{1,4}\b", r["source_doc"])
+        refs = C.RULE_ID_IN_TEXT.findall(r["source_doc"])
         if r["source_url"] in by_url:
             refs.append(by_url[r["source_url"]])
         refs = [d for i, d in enumerate(refs) if d in files and d not in refs[:i]]
@@ -248,7 +252,7 @@ def check_quotes(rows: list[dict]) -> list[str]:
                                 f"but {missing} not downloaded")
     # Report the DENOMINATOR. This line used to count only the rules that happened to carry
     # a quote, so it read as full coverage while half the table had never been checked.
-    _approved = [r for r in rows if r["status"] == "approved"]
+    _approved = [r for r in rows if r["status"] == C.USABLE_STATUS]
     _noq = [r["rule_id"] for r in _approved if not r["verbatim_quote"].strip()]
     print(f"  quote check: {checked - len(bad)} VERIFIED against the stored source, "
           f"{len(bad)} FAILED, {len(inconclusive)} inconclusive, "
@@ -303,8 +307,8 @@ def check_sources_tab(rows):
     """
     import csv as _csv, pathlib as _pl
     base = _pl.Path(__file__).resolve().parent.parent
-    src = base / "rules/csv/Sources.csv"
-    man = base / "sources/originals/MANIFEST.csv"
+    src = C.SOURCES_CSV
+    man = C.MANIFEST_CSV
     if not (src.exists() and man.exists()):
         return []
     have = {r["source_id"] for r in _csv.DictReader(src.open(encoding="utf-8"))}
@@ -342,7 +346,7 @@ def main() -> int:
     print("  by determinacy:", dict(Counter(r["determinacy"] for r in rows)))
     print("  needs review :", sum(1 for r in rows if r["human_review_required"] == "yes"))
     print("  GROUND TRUTH USABLE (status=approved):",
-          sum(1 for r in rows if r["status"] == "approved"))
+          sum(1 for r in rows if r["status"] == C.USABLE_STATUS))
 
     if problems:
         print(f"\n{len(problems)} problem(s):")

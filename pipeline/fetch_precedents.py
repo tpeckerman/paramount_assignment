@@ -46,6 +46,10 @@ import sys
 import urllib.error
 import urllib.request
 
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 ARCHIVE = ("https://www.ofcom.org.uk/siteassets/resources/documents"
            "/about-ofcom/bulletins/broadcast-bulletins/archive")
 
@@ -125,13 +129,13 @@ def main() -> int:
     got, failed = [], []
     for doc_id, url, filename, why, confidence in PRECEDENTS:
         dest = out / filename
-        if dest.exists() and dest.stat().st_size > 20_000:
+        if dest.exists() and dest.stat().st_size > C.MIN_PLAUSIBLE_DOCUMENT_BYTES:
             print(f"  have  {doc_id}  {filename}")
             got.append(doc_id)
             continue
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "research-script"})
-            with urllib.request.urlopen(req, timeout=120) as r:
+            with urllib.request.urlopen(req, timeout=C.HTTP_TIMEOUT_SECONDS) as r:
                 body = r.read()
             # A site that answers an unknown path with a styled 404 returns HTML, and an
             # HTML body written to a .pdf is the failure this project has already been

@@ -31,6 +31,10 @@ import shutil
 import sys
 import unicodedata
 
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
 def load_expect() -> dict:
     """Per-document phrase that proves a stored file is the real thing.
 
@@ -39,7 +43,7 @@ def load_expect() -> dict:
     entirely site navigation and passed a length test.
     """
     import json as _json
-    p = pathlib.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    p = C.EXPECT_JSON
     if not p.exists():
         return {}
     return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
@@ -49,10 +53,10 @@ EXPECT = load_expect()
 
 
 
-ROOT = pathlib.Path(__file__).resolve().parents[1]
-ORIGINALS = ROOT / "sources" / "originals"
+ROOT = C.ROOT
+ORIGINALS = C.ORIGINALS_DIR
 INCOMING = ORIGINALS / "incoming"
-MANIFEST = ORIGINALS / "MANIFEST.csv"
+MANIFEST = C.MANIFEST_CSV
 LOCKFILE = ORIGINALS / "originals.lock.json"
 
 FIELDS = ["doc_id", "country", "regulator", "title", "url", "landing_page",

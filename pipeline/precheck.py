@@ -29,7 +29,10 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
+
 
 # Prohibitions whose trigger is a STATED FACT rather than a reading of the content.
 CERT_PROHIBITIONS = {
@@ -52,7 +55,7 @@ JUDGEMENT_PROHIBITIONS = {
 
 
 def controlled_categories() -> set[str]:
-    rows = csv.DictReader((ROOT / "rules/csv/Rules.csv").open(newline="", encoding="utf-8"))
+    rows = csv.DictReader(C.RULES_CSV.open(newline="", encoding="utf-8"))
     return {r["content_category"] for r in rows}
 
 

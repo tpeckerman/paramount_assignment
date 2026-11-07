@@ -43,14 +43,14 @@ import json
 import pathlib
 import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-RULES_CSV = ROOT / "rules/csv/Rules.csv"
+import sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import constants as C
 
-USABLE_STATUS = "approved"
 
 
 def load_rules() -> dict[str, dict]:
-    with RULES_CSV.open(newline="", encoding="utf-8") as fh:
+    with C.RULES_CSV.open(newline="", encoding="utf-8") as fh:
         return {r["rule_id"]: r for r in csv.DictReader(fh)}
 
 
@@ -85,9 +85,9 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
             defects.append(f"{where}: cites {rule_id} on '{axis}', which is not in the "
                            f"rules table. The citation is invented.")
             continue
-        if rule["status"] != USABLE_STATUS:
+        if rule["status"] != C.USABLE_STATUS:
             defects.append(f"{where}: cites {rule_id} on '{axis}', which is in the table "
-                           f"with status '{rule['status']}'. Only '{USABLE_STATUS}' rows "
+                           f"with status '{rule['status']}'. Only '{C.USABLE_STATUS}' rows "
                            f"may reach a decision.")
             continue
         if rule["country"] != d.get("country"):
@@ -96,7 +96,7 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
 
     # Step 14, the part of "clear-cut?" that is a property of the rules rather than a feeling.
     judgment = sorted({rid for rid, _ in cites
-                       if rules.get(rid, {}).get("determinacy") == "judgment_based"})
+                       if rules.get(rid, {}).get("determinacy") == C.JUDGMENT_DETERMINACY})
     if judgment and not d.get("human_review_required"):
         escalations.append(
             f"{where}: rests on {', '.join(judgment)}, which {'is' if len(judgment) == 1 else 'are'} "

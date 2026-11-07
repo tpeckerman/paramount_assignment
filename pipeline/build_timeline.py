@@ -15,8 +15,12 @@ import json
 import pathlib
 import re
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "docs/timeline.html"
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
+ROOT = C.ROOT
+OUT = C.TIMELINE_HTML
 
 
 def to_min(hhmm: str) -> int:
@@ -116,8 +120,8 @@ def intervals(tok: str, country: str = ""):
 
 def main() -> None:
     rows = [r for r in csv.DictReader(
-        (ROOT / "rules/csv/Rules.csv").open(newline="", encoding="utf-8"))
-        if r["status"] == "approved"]
+        C.RULES_CSV.open(newline="", encoding="utf-8"))
+        if r["status"] == C.USABLE_STATUS]
 
     timed, untimed = [], []
     for r in rows:

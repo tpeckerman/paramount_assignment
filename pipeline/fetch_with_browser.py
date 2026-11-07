@@ -42,6 +42,10 @@ import pathlib
 import re
 import sys
 
+import sys
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parent))
+import constants as C
+
 def load_expect() -> dict:
     """Per-document phrase that proves a stored file is the real thing.
 
@@ -50,7 +54,7 @@ def load_expect() -> dict:
     entirely site navigation and passed a length test.
     """
     import json as _json
-    p = pathlib.Path(__file__).resolve().parent.parent / "sources/originals/expect.json"
+    p = C.EXPECT_JSON
     if not p.exists():
         return {}
     return _json.loads(p.read_text(encoding="utf-8")).get("expect", {})
@@ -60,9 +64,9 @@ EXPECT = load_expect()
 
 
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "sources/originals/MANIFEST.csv"
-OUT = ROOT / "sources/originals/incoming"
+ROOT = C.ROOT
+MANIFEST = C.MANIFEST_CSV
+OUT = C.INCOMING_DIR
 
 STRIP = ("nav, aside, footer, header, script, style, noscript, svg, form, "
          "[class*=cookie], [class*=banner], [class*=breadcrumb], [aria-hidden=true]")

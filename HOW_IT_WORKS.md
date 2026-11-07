@@ -537,6 +537,14 @@ python pipeline/build_diagrams.py                    # redraw the diagrams into 
 python pipeline/supersede.py <source_doc>            # close out rules from a replaced document
 ```
 
+Every path, vocabulary and limit the scripts use lives in `pipeline/constants.py`, so moving
+a file or adding a status is a one-line change in one place. Legal thresholds deliberately
+do **not** live there: a constant holding `21:00` would be a rule hiding in a config file,
+and rules belong in the table with a quote from the law behind them.
+
+```bash
+```
+
 `docs/timeline.html` shows, for a chosen country and service, which rules bite at which hour
 across a 24-hour day. It is built from the table, so a rule appears only if its token encodes
 a real clock time. Rules whose restriction is not a time are listed separately rather than
