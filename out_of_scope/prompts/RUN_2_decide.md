@@ -135,6 +135,26 @@ late. Content that **may seriously impair** them is banned outright. Most adult 
 first kind. Treating the two as one tier would ban most of what this system exists to
 schedule.
 
+## Reasoning and confidence
+
+**`reasoning`** is a justification a reviewer can follow without reopening the rules. Write it
+in order: what the content shows (cite the observation id), which rule that triggers, and how
+the rule gives the hours or the condition. If you set a rule aside, say why in one line.
+
+**`confidence`** is a number from 0.0 to 1.0: how likely a compliance reviewer is to agree
+with your answer. Do not use it to describe the program. Set it like this:
+
+- **0.9 or more:** every rule you relied on is a fixed rule, every fact it needs was
+  stated, and nothing is missing.
+- **0.7 to 0.9:** one judgment rule decided the answer, or a fact was stated but vaguely.
+- **Below 0.7:** a fact that would change the answer is missing, two rules point different
+  ways, or the content matches no rule well.
+
+A score above 0.9 with anything in `missing_information` is a contradiction. Put the cause of
+a low score in `confidence_reason`. A score below the review line (the person running this
+sets it, and it starts at 0.8) means `human_review_required` is true, with "low confidence" in
+`review_reasons`.
+
 ## Checked is not the same as relied on
 
 A rule can be in your set, be read, and not apply. **Say so, in
@@ -199,8 +219,9 @@ evaluate.
     },
     "other_restrictions": [{"kind": "access_control|signage|audience_information|adjacency|trailer|quota|service_eligibility|derogation", "requirement": "", "is_condition_of_the_hours": true, "basis": [{"rule_id": "", "clause_ref": ""}]}],
     "axis_note": "how the three relate; say plainly if the rating does not predict the hours",
-    "reasoning": "prose anyone can audit, every claim carrying a rule_id",
-    "confidence": "high | medium | low",
+    "reasoning": "step by step: what the content shows, which rule that triggers, and how that gives the hours. Every claim carries a rule_id",
+    "confidence": 0.0,
+    "confidence_reason": "one or two sentences: what makes you sure, or what holds the score down",
     "rules_checked_not_triggered": [{"rule_id": "", "why_not": "what was missing from the content"}],
     "human_review_required": true,
     "review_reasons": [],

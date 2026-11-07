@@ -115,9 +115,11 @@ def check_decision(d: dict, rules: dict[str, dict]) -> tuple[list[str], list[str
             f"involved is a property of the rule, not a matter of how confident the answer "
             f"sounds.")
 
-    if d.get("missing_information") and d.get("confidence") == "high":
+    conf = d.get("confidence")
+    high = conf == "high" or (isinstance(conf, (int, float)) and conf >= 0.9)
+    if d.get("missing_information") and high:
         fields = ", ".join(m.get("field", "?") for m in d["missing_information"])
-        escalations.append(f"{where}: confidence is 'high' while {fields} "
+        escalations.append(f"{where}: confidence is high ({conf}) while {fields} "
                            f"{'is' if len(d['missing_information']) == 1 else 'are'} listed as "
                            f"missing. If the missing field would not change the answer it "
                            f"does not belong in missing_information; if it would, the "

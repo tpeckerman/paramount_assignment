@@ -1,76 +1,157 @@
 #!/usr/bin/env python3
-"""Render the process diagram in docs/process_diagram.md to docs/ as a picture.
+"""Draw the Task 2 process diagram as an SVG and a one-page viewer.
 
-WHY THIS EXISTS
+The diagram is drawn by hand-placed coordinates, not by a layout tool. An automatic layout
+(mermaid) kept routing arrows around the outside of the lanes and crossing them, which made
+the flow unreadable. Placing the boxes ourselves keeps each lane in one row.
 
-GitHub draws mermaid diagrams itself when it displays a markdown file, so the diagram is
-already visible in docs/process_diagram.md without this script. What GitHub does not give you is a
-picture you can open on its own, drop in a slide, or send to someone who is not going to
-browse the repo.
-
-More importantly, it gives no warning when a diagram is broken. A mermaid block with a typo
-renders as an error box or as nothing at all, and the markdown around it still looks fine.
-Running the real renderer is the only way to find that out, so `--check` does exactly that and
-fails the build. It is the same idea as the quote checker: the thing that silently looks fine
-is the thing worth testing.
-
-usage:
-  python out_of_scope/pipeline/build_diagrams.py            write out_of_scope/docs/diagram_<n>_<slug>.svg
-  python out_of_scope/pipeline/build_diagrams.py --check    render only, write nothing, fail on a broken one
-
-Needs mermaid-cli, which comes from npm:  npx @mermaid-js/mermaid-cli
+  python out_of_scope/pipeline/build_diagrams.py            write docs/process_diagram.svg and docs/diagrams.html
+  python out_of_scope/pipeline/build_diagrams.py --check    build in memory, fail if the SVG is not valid XML
 """
 from __future__ import annotations
 
 import pathlib
 import re
-import shutil
-import subprocess
 import sys
-import tempfile
+import xml.dom.minidom as minidom
+from xml.sax.saxutils import escape
 
-import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-import constants as C
+import constants as C  # noqa: E402
 
-CONFIG = pathlib.Path(__file__).resolve().parent / "mermaid.config.json"
-SOURCE = C.DOCS_DIR / "process_diagram.md"
 OUT_DIR = C.DOCS_DIR
+W, H = 1400, 1010
+
+STYLE = {
+    "llm": ("#eaf0ff", "#2f5fe0", 2.5),
+    "code": ("#ffffff", "#9aa0ab", 1.5),
+    "person": ("#ffffff", "#111318", 2.5),
+    "store": ("#f4f5f7", "#6b7280", 1.5),
+    "out": ("#ffffff", "#2f5fe0", 2.5),
+}
 
 
-def blocks(text: str) -> list[tuple[str, str]]:
-    """Each mermaid block, paired with the nearest heading above it for naming."""
-    found = []
-    for m in re.finditer(r"```mermaid\n(.*?)```", text, re.S):
-        before = text[:m.start()]
-        headings = re.findall(r"^#+ (.+)$", before, re.M)
-        title = headings[-1] if headings else "diagram"
-        slug = re.sub(r"[^a-z0-9]+", "_", title.lower()).strip("_")[:40]
-        found.append((slug, m.group(1)))
-    return found
+def build_svg() -> str:
+    o: list[str] = []
 
+    def text(x, y, lines, size=13, anchor="middle", weight="normal", fill="#1f2328"):
+        lines = lines if isinstance(lines, list) else [lines]
+        y0 = y - (len(lines) - 1) * (size + 3) / 2
+        for i, ln in enumerate(lines):
+            o.append(f'<text x="{x}" y="{y0 + i * (size + 3) + size * 0.35:.1f}" '
+                     f'text-anchor="{anchor}" font-size="{size}" font-weight="{weight}" '
+                     f'fill="{fill}">{escape(ln)}</text>')
 
-def render(body: str, dest: pathlib.Path | None) -> tuple[bool, str]:
-    with tempfile.TemporaryDirectory() as td:
-        src = pathlib.Path(td) / "d.mmd"
-        src.write_text(body, encoding="utf-8")
-        out = pathlib.Path(td) / "d.svg"
-        # htmlLabels:false is the important one. With HTML labels mermaid puts the text in
-        # a <foreignObject>, so the browser re-lays it out at display time using whatever
-        # font it has. If that differs at all from the font used when the box was measured,
-        # the text overflows a box sized for different metrics and gets clipped, usually by
-        # a character or two at the end of a line. Real SVG <text> is measured and
-        # positioned once, at render time, and cannot drift afterwards.
-        proc = subprocess.run(
-            ["npx", "--yes", "@mermaid-js/mermaid-cli",
-             "-i", str(src), "-o", str(out), "-c", str(CONFIG)],
-            capture_output=True, text=True, timeout=C.RENDER_TIMEOUT_SECONDS)
-        if proc.returncode != 0 or not out.exists():
-            return False, (proc.stderr or proc.stdout or "no output").strip()[-400:]
-        if dest is not None:
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy(out, dest)
-        return True, ""
+    def box(cx, cy, w, h, lines, kind, rounded=False):
+        f, s, sw = STYLE[kind]
+        r = 18 if rounded else 2
+        o.append(f'<rect x="{cx - w/2}" y="{cy - h/2}" width="{w}" height="{h}" rx="{r}" '
+                 f'fill="{f}" stroke="{s}" stroke-width="{sw}"/>')
+        text(cx, cy, lines)
+
+    def diamond(cx, cy, hw, hh, lines, kind):
+        f, s, sw = STYLE[kind]
+        o.append(f'<polygon points="{cx},{cy-hh} {cx+hw},{cy} {cx},{cy+hh} {cx-hw},{cy}" '
+                 f'fill="{f}" stroke="{s}" stroke-width="{sw}"/>')
+        text(cx, cy, lines)
+
+    def lane(x, y, w, h, title):
+        o.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="#fcfcfb" '
+                 f'stroke="#c4c7cc" stroke-width="1.2"/>')
+        text(x + 14, y + 20, title, size=13, anchor="start", weight="bold", fill="#444")
+
+    def line(points, label=None, lx=None, ly=None, arrow=True, anchor="middle"):
+        d = "M " + " L ".join(f"{px},{py}" for px, py in points)
+        mk = ' marker-end="url(#a)"' if arrow else ""
+        o.append(f'<path d="{d}" fill="none" stroke="#5b6068" stroke-width="1.6"{mk}/>')
+        if label:
+            text(lx, ly, label, size=12, anchor=anchor, fill="#333")
+
+    o.append(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
+             f'font-family="Helvetica, Arial, sans-serif">')
+    o.append('<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" '
+             'markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" '
+             'fill="#5b6068"/></marker></defs>')
+    o.append(f'<rect width="{W}" height="{H}" fill="#ffffff"/>')
+
+    # lanes
+    lane(20, 20, 1360, 230, "1. KEEP THE RULES CURRENT: a law changes or a regulator publishes a decision")
+    lane(20, 270, 1040, 210, "2. DESCRIBE A NEW PROGRAM")
+    lane(20, 510, 1040, 300, "3. DECIDE")
+
+    # lane 1
+    box(135, 130, 190, 70, ["Signal: a source file", "changed (fingerprint check)"], "code")
+    diamond(370, 130, 115, 72, ["Does it change a rule", "or add a precedent?", "(small model)"], "llm")
+    box(640, 130, 200, 80, ["Model drafts the rule", "update, or logs", "the decision"], "llm")
+    box(910, 130, 220, 80, ["Check: quote matches source.", "Expert signs off", "judgment rules"], "person")
+    box(370, 228, 70, 28, ["End"], "store", rounded=True)
+    line([(230, 130), (255, 130)])
+    line([(485, 130), (540, 130)], "yes", 512, 118)
+    line([(740, 130), (800, 130)])
+    line([(1020, 130), (1090, 130)])
+    line([(370, 202), (370, 214)], "no", 384, 208, anchor="start")
+
+    # rules store
+    o.append('<path d="M1090,85 L1090,175 A140,16 0 0 0 1370,175 L1370,85 A140,16 0 0 0 1090,85 '
+             'A140,16 0 0 0 1370,85" fill="#f4f5f7" stroke="#6b7280" stroke-width="1.5"/>')
+    text(1230, 128, ["RULES TABLE, DECISIONS TABLE,", "TIMELINE", "approved entries only, numbered versions"])
+
+    # lane 2
+    box(105, 375, 130, 70, ["Program", "comes in"], "code")
+    box(315, 375, 190, 80, ["Split into segments", "at scene changes,", "about 10 minutes at most"], "code")
+    box(565, 375, 210, 90, ["Model watches each segment", "and writes a description", "with timecodes"], "llm")
+    diamond(860, 375, 130, 82, ["Embed it. Close match", "in the cache?", "(cosine + ROUGE-L,", "high bar)"], "code")
+    line([(170, 375), (220, 375)])
+    line([(410, 375), (460, 375)])
+    line([(670, 375), (730, 375)])
+
+    # cache column
+    o.append('<rect x="1090" y="270" width="280" height="520" rx="10" fill="#f4f5f7" '
+             'stroke="#6b7280" stroke-width="1.5"/>')
+    text(1230, 296, "DECISION CACHE", size=14, weight="bold")
+    text(1108, 410, ["Key: embedding of the description,", "plus country and channel",
+                     "", "Match: cosine similarity and", "ROUGE-L, both above a high bar",
+                     "", "Each row stores the answer and the", "rules and past decisions it used",
+                     "", "A row is removed when any of those", "changes or is replaced"],
+         size=12.5, anchor="start")
+    line([(990, 375), (1090, 375)], "look up", 1040, 362)
+    line([(1330, 190), (1330, 270)], "removes cache rows that", 1318, 222, anchor="end")
+    text(1318, 238, "used a changed rule or decision", size=12, anchor="end", fill="#333")
+
+    # lane 3
+    diamond(150, 620, 120, 76, ["Contains sex, violence or", "another category that", "needs checking?"], "code")
+    box(425, 620, 210, 90, ["Code gathers the relevant", "rules and similar past", "regulator decisions"], "code")
+    box(695, 620, 230, 90, ["Model answers: when it can", "be shown, with reasoning", "and a confidence score"], "llm")
+    diamond(930, 620, 90, 66, ["Confidence", "below X?"], "code")
+    box(930, 740, 180, 70, ["Compliance reviewer", "decides"], "person")
+    line([(270, 620), (320, 620)], "yes", 295, 608)
+    line([(530, 620), (580, 620)])
+    line([(810, 620), (840, 620)])
+    line([(930, 686), (930, 705)], "yes", 944, 696, anchor="start")
+
+    # flows between lanes
+    line([(860, 457), (860, 492), (150, 492), (150, 544)], "no match", 500, 484)
+    line([(1090, 165), (1040, 165), (1040, 535), (425, 535), (425, 575)],
+         "rules and past decisions", 760, 528)
+
+    # answer
+    box(1230, 900, 280, 80, ["ANSWER", "rating, hours, conditions,", "each with its rule"], "out")
+    line([(150, 696), (150, 905), (1090, 905)], "no", 164, 760, anchor="start")
+    line([(1020, 620), (1050, 620), (1050, 905)], "no", 1062, 640, anchor="start")
+    line([(1020, 740), (1050, 740)], arrow=False)
+    line([(1150, 860), (1150, 790)], "store answer", 1138, 828, anchor="end")
+    line([(1310, 790), (1310, 860)], ["match:", "reuse answer"], 1322, 828, anchor="start")
+    o.append('<circle cx="1050" cy="740" r="3.5" fill="#5b6068"/>')
+
+    # legend
+    lx, ly = 40, 975
+    for i, (kind, label) in enumerate([("llm", "Model"), ("code", "Code"), ("person", "Person")]):
+        f, s, sw = STYLE[kind]
+        o.append(f'<rect x="{lx + i*110}" y="{ly-10}" width="22" height="16" fill="{f}" '
+                 f'stroke="{s}" stroke-width="{sw}"/>')
+        text(lx + i*110 + 30, ly - 2, label, size=13, anchor="start")
+    o.append("</svg>")
+    return "\n".join(o)
 
 
 VIEWER = """<!DOCTYPE html>
@@ -106,7 +187,7 @@ VIEWER = """<!DOCTYPE html>
       font-family: Helvetica, Arial, sans-serif !important; }}
 </style></head><body>
 <h1>How it works, diagrams</h1>
-<p class="hint">Generated from out_of_scope/docs/process_diagram.md. Each diagram scrolls
+<p class="hint">Drawn by out_of_scope/pipeline/build_diagrams.py. Each diagram scrolls
 inside its own frame. Use the buttons to change size, or just scroll.</p>
 <div class="controls">
   <button onclick="z(0.25)">Bigger</button>
@@ -152,47 +233,22 @@ def main() -> int:
     if "--help" in sys.argv or "-h" in sys.argv:
         print(__doc__)
         return 0
-    check_only = "--check" in sys.argv
-    found = blocks(SOURCE.read_text(encoding="utf-8"))
-    if not found:
-        print(f"no mermaid blocks in {SOURCE.name}. Task 2 asks for a process diagram, so "
-              f"its absence is a missing deliverable, not a style choice.")
+    svg = build_svg()
+    try:
+        minidom.parseString(svg)
+    except Exception as e:  # noqa: BLE001
+        print(f"process diagram is not valid SVG: {e}")
         return 1
-
-    if not check_only:
-        # Diagram files are named after their heading, so renaming a heading would
-        # otherwise leave the old file sitting in docs/ looking current.
-        for stale in OUT_DIR.glob("diagram_*.svg"):
-            stale.unlink()
-
-    failures = []
-    rendered: list[tuple[str, str]] = []
-    for i, (slug, body) in enumerate(found, 1):
-        name = f"diagram_{i}_{slug}.svg"
-        dest = None if check_only else OUT_DIR / name
-        ok, err = render(body, dest)
-        if ok:
-            print(f"  {'checked' if check_only else 'wrote  '} {name}")
-            if dest is not None:
-                rendered.append((slug.replace("_", " "),
-                                 dest.read_text(encoding="utf-8")))
-        else:
-            failures.append((name, err))
-            print(f"  BROKEN  {name}")
-
-    if rendered:
-        viewer = write_viewer(rendered)
-        print(f"  wrote   {viewer.name}  (all {len(rendered)} on one scrollable page)")
-
-    if failures:
-        print(f"\n{len(failures)} diagram(s) do not render. A broken mermaid block shows as "
-              f"an error box on GitHub and the markdown around it still looks fine, which is "
-              f"why this is a build failure and not a warning.")
-        for name, err in failures:
-            print(f"\n  {name}:\n    {err}")
-        return 1
-
-    print(f"\n{len(found)} diagram(s) render.")
+    if "--check" in sys.argv:
+        print("1 diagram(s) build.")
+        return 0
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for stale in OUT_DIR.glob("diagram_*.svg"):
+        stale.unlink()
+    dest = OUT_DIR / "diagram_1_process.svg"
+    dest.write_text(svg, encoding="utf-8")
+    viewer = write_viewer([("process diagram", svg)])
+    print(f"  wrote   {dest.name}\n  wrote   {viewer.name}")
     return 0
 
 

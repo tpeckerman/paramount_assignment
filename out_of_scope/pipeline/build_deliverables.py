@@ -50,8 +50,6 @@ TASK1: list[tuple[pathlib.Path, str, str]] = [
     # GitHub cannot diff, so a rule change would be unreviewable without it. Neither reason
     # applies to a folder someone opens to read the rules, where it is just one of the six
     # tabs again under a second filename.
-    (C.PROMPTS_DIR / "HOW_TO_RUN.md", "3_prompt/HOW_TO_RUN.md",
-     "how to run the two prompts, including the rule-selection step between them"),
     (C.PROMPTS_DIR / "RUN_1_describe_content.md", "3_prompt/RUN_1_describe_content.md",
      "deliverable 2: reads the content"),
     (C.DECISION_PROMPT, "3_prompt/RUN_2_decide.md",
@@ -213,7 +211,7 @@ def main() -> int:
         "alongside the apparatus that produced them.\n\n"
         "| Asked for | Where |\n|---|---|\n"
         "| Sources and a table of rules | `1_sources/`, `2_rules/` |\n"
-        "| The full prompt | `3_prompt/`. Start with `HOW_TO_RUN.md` |\n"
+        "| The full prompt | `3_prompt/`: `RUN_1` describes the content, `RUN_2` decides |\n"
         "| The test cases | `4_test_cases/` |\n"
         "| The results of the runs | `5_results/` |\n"
         "| A short explanation of design choices | `6_design_choices/TASK1_WRITEUP.md` |\n"
@@ -243,7 +241,7 @@ def main() -> int:
         "| 4. Correctness testing | section 4 |\n"
         "| 5. Measurement and diagnosis | section 5 |\n"
         "| A process diagram | `process_diagram.html` |\n"
-        "| An example of how a single rule is represented | "Worked example: one rule" |\n"
+        "| An example of how a single rule is represented | `TASK2_SCALING.md`, \"Worked example\" |\n"
         "| A validation plan | section 4 |\n"
         "| Success metrics | section 5 |\n"
         "| What can be automated and where a local expert is required | "
@@ -252,11 +250,7 @@ def main() -> int:
         "countries as part of this task.* Nothing here does.\n\n"
         "## What each file is for\n\n| File | Why it is here |\n|---|---|\n"
         + "\n".join(t2) +
-        "\n\n## Note on length\n\n"
-        "This is longer than a concise proposal should be. An external reviewer put it at "
-        "around four times the length it needs, and was right. The five questions and the "
-        "four required items are all answered; the excess is in the discussion around "
-        "them.\n",
+        "\n",
         encoding="utf-8")
 
     for name in ("task1", "task2"):

@@ -30,10 +30,16 @@ catches it.
 
 ### What these cases do not test
 
-Eleven categories describe things that appear in content. These cases exercise six.
+Seven of eleven content categories are exercised. Not tested:
 
-| untested | rules | why it matters |
-|---|---|---|
+- `strong_language` (4 rules)
+- `hatred_discrimination` (2 rules)
+- `suicide_self_harm` (2 rules)
+- `religion` (1 rule)
+
+A pass rate here is a pass rate on the seven.
+
+---|---|---|
 | `strong_language` | 4 | A common real breach type, and the clearest case of something **audible and not visible**, which a picture-only description would miss |
 | `suicide_self_harm` | 2 | Has its own rules on method and imitation |
 | `hatred_discrimination` | 2 | Judged on treatment, not on whether the words were said |

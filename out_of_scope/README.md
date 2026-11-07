@@ -39,4 +39,4 @@ python3 out_of_scope/pipeline/verify_rules.py --with-quotes
 
 They need Python 3.12 with `openpyxl` and `pypdf` installed. They do not need an API key,
 because none of them call a model. Sending the prompt to a model is a manual step, and
-`prompts/HOW_TO_RUN.md` explains it.
+`prompts/HOW_TO_RUN.md` explains it (kept here, not in the deliverables).

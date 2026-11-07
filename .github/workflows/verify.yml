@@ -59,7 +59,7 @@ jobs:
       - name: Test-case claims and stale numbers in prose
         run: python out_of_scope/pipeline/verify_cases.py
 
-      - name: Process diagram renders
+      - name: Process diagram builds
         run: python out_of_scope/pipeline/build_diagrams.py --check
 
       - name: Rules timeline matches the rules table

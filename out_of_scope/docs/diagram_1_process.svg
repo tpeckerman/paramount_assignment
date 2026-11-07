@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1010" font-family="Helvetica, Arial, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5b6068"/></marker></defs>
+<rect width="1400" height="1010" fill="#ffffff"/>
+<rect x="20" y="20" width="1360" height="230" fill="#fcfcfb" stroke="#c4c7cc" stroke-width="1.2"/>
+<text x="34" y="44.5" text-anchor="start" font-size="13" font-weight="bold" fill="#444">1. KEEP THE RULES CURRENT: a law changes or a regulator publishes a decision</text>
+<rect x="20" y="270" width="1040" height="210" fill="#fcfcfb" stroke="#c4c7cc" stroke-width="1.2"/>
+<text x="34" y="294.6" text-anchor="start" font-size="13" font-weight="bold" fill="#444">2. DESCRIBE A NEW PROGRAM</text>
+<rect x="20" y="510" width="1040" height="300" fill="#fcfcfb" stroke="#c4c7cc" stroke-width="1.2"/>
+<text x="34" y="534.5" text-anchor="start" font-size="13" font-weight="bold" fill="#444">3. DECIDE</text>
+<rect x="40.0" y="95.0" width="190" height="70" rx="2" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="135" y="126.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Signal: a source file</text>
+<text x="135" y="142.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">changed (fingerprint check)</text>
+<polygon points="370,58 485,130 370,202 255,130" fill="#eaf0ff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="370" y="118.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Does it change a rule</text>
+<text x="370" y="134.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">or add a precedent?</text>
+<text x="370" y="150.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">(small model)</text>
+<rect x="540.0" y="90.0" width="200" height="80" rx="2" fill="#eaf0ff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="640" y="118.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Model drafts the rule</text>
+<text x="640" y="134.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">update, or logs</text>
+<text x="640" y="150.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">the decision</text>
+<rect x="800.0" y="90.0" width="220" height="80" rx="2" fill="#ffffff" stroke="#111318" stroke-width="2.5"/>
+<text x="910" y="118.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Check: quote matches source.</text>
+<text x="910" y="134.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Expert signs off</text>
+<text x="910" y="150.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">judgment rules</text>
+<rect x="335.0" y="214.0" width="70" height="28" rx="18" fill="#f4f5f7" stroke="#6b7280" stroke-width="1.5"/>
+<text x="370" y="232.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">End</text>
+<path d="M 230,130 L 255,130" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 485,130 L 540,130" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="512" y="122.2" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">yes</text>
+<path d="M 740,130 L 800,130" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 1020,130 L 1090,130" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 370,202 L 370,214" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="384" y="212.2" text-anchor="start" font-size="12" font-weight="normal" fill="#333">no</text>
+<path d="M1090,85 L1090,175 A140,16 0 0 0 1370,175 L1370,85 A140,16 0 0 0 1090,85 A140,16 0 0 0 1370,85" fill="#f4f5f7" stroke="#6b7280" stroke-width="1.5"/>
+<text x="1230" y="116.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">RULES TABLE, DECISIONS TABLE,</text>
+<text x="1230" y="132.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">TIMELINE</text>
+<text x="1230" y="148.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">approved entries only, numbered versions</text>
+<rect x="40.0" y="340.0" width="130" height="70" rx="2" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="105" y="371.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Program</text>
+<text x="105" y="387.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">comes in</text>
+<rect x="220.0" y="335.0" width="190" height="80" rx="2" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="315" y="363.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Split into segments</text>
+<text x="315" y="379.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">at scene changes,</text>
+<text x="315" y="395.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">about 10 minutes at most</text>
+<rect x="460.0" y="330.0" width="210" height="90" rx="2" fill="#eaf0ff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="565" y="363.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Model watches each segment</text>
+<text x="565" y="379.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">and writes a description</text>
+<text x="565" y="395.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">with timecodes</text>
+<polygon points="860,293 990,375 860,457 730,375" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="860" y="355.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Embed it. Close match</text>
+<text x="860" y="371.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">in the cache?</text>
+<text x="860" y="387.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">(cosine + ROUGE-L,</text>
+<text x="860" y="403.6" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">high bar)</text>
+<path d="M 170,375 L 220,375" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 410,375 L 460,375" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 670,375 L 730,375" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<rect x="1090" y="270" width="280" height="520" rx="10" fill="#f4f5f7" stroke="#6b7280" stroke-width="1.5"/>
+<text x="1230" y="300.9" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f2328">DECISION CACHE</text>
+<text x="1108" y="336.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">Key: embedding of the description,</text>
+<text x="1108" y="352.4" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">plus country and channel</text>
+<text x="1108" y="367.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328"></text>
+<text x="1108" y="383.4" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">Match: cosine similarity and</text>
+<text x="1108" y="398.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">ROUGE-L, both above a high bar</text>
+<text x="1108" y="414.4" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328"></text>
+<text x="1108" y="429.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">Each row stores the answer and the</text>
+<text x="1108" y="445.4" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">rules and past decisions it used</text>
+<text x="1108" y="460.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328"></text>
+<text x="1108" y="476.4" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">A row is removed when any of those</text>
+<text x="1108" y="491.9" text-anchor="start" font-size="12.5" font-weight="normal" fill="#1f2328">changes or is replaced</text>
+<path d="M 990,375 L 1090,375" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="1040" y="366.2" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">look up</text>
+<path d="M 1330,190 L 1330,270" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="1318" y="226.2" text-anchor="end" font-size="12" font-weight="normal" fill="#333">removes cache rows that</text>
+<text x="1318" y="242.2" text-anchor="end" font-size="12" font-weight="normal" fill="#333">used a changed rule or decision</text>
+<polygon points="150,544 270,620 150,696 30,620" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="150" y="608.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Contains sex, violence or</text>
+<text x="150" y="624.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">another category that</text>
+<text x="150" y="640.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">needs checking?</text>
+<rect x="320.0" y="575.0" width="210" height="90" rx="2" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="425" y="608.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Code gathers the relevant</text>
+<text x="425" y="624.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">rules and similar past</text>
+<text x="425" y="640.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">regulator decisions</text>
+<rect x="580.0" y="575.0" width="230" height="90" rx="2" fill="#eaf0ff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="695" y="608.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Model answers: when it can</text>
+<text x="695" y="624.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">be shown, with reasoning</text>
+<text x="695" y="640.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">and a confidence score</text>
+<polygon points="930,554 1020,620 930,686 840,620" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="930" y="616.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Confidence</text>
+<text x="930" y="632.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">below X?</text>
+<rect x="840.0" y="705.0" width="180" height="70" rx="2" fill="#ffffff" stroke="#111318" stroke-width="2.5"/>
+<text x="930" y="736.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">Compliance reviewer</text>
+<text x="930" y="752.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">decides</text>
+<path d="M 270,620 L 320,620" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="295" y="612.2" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">yes</text>
+<path d="M 530,620 L 580,620" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 810,620 L 840,620" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<path d="M 930,686 L 930,705" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="944" y="700.2" text-anchor="start" font-size="12" font-weight="normal" fill="#333">yes</text>
+<path d="M 860,457 L 860,492 L 150,492 L 150,544" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="500" y="488.2" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">no match</text>
+<path d="M 1090,165 L 1040,165 L 1040,535 L 425,535 L 425,575" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="760" y="532.2" text-anchor="middle" font-size="12" font-weight="normal" fill="#333">rules and past decisions</text>
+<rect x="1090.0" y="860.0" width="280" height="80" rx="2" fill="#ffffff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="1230" y="888.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">ANSWER</text>
+<text x="1230" y="904.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">rating, hours, conditions,</text>
+<text x="1230" y="920.5" text-anchor="middle" font-size="13" font-weight="normal" fill="#1f2328">each with its rule</text>
+<path d="M 150,696 L 150,905 L 1090,905" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="164" y="764.2" text-anchor="start" font-size="12" font-weight="normal" fill="#333">no</text>
+<path d="M 1020,620 L 1050,620 L 1050,905" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="1062" y="644.2" text-anchor="start" font-size="12" font-weight="normal" fill="#333">no</text>
+<path d="M 1020,740 L 1050,740" fill="none" stroke="#5b6068" stroke-width="1.6"/>
+<path d="M 1150,860 L 1150,790" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="1138" y="832.2" text-anchor="end" font-size="12" font-weight="normal" fill="#333">store answer</text>
+<path d="M 1310,790 L 1310,860" fill="none" stroke="#5b6068" stroke-width="1.6" marker-end="url(#a)"/>
+<text x="1322" y="824.7" text-anchor="start" font-size="12" font-weight="normal" fill="#333">match:</text>
+<text x="1322" y="839.7" text-anchor="start" font-size="12" font-weight="normal" fill="#333">reuse answer</text>
+<circle cx="1050" cy="740" r="3.5" fill="#5b6068"/>
+<rect x="40" y="965" width="22" height="16" fill="#eaf0ff" stroke="#2f5fe0" stroke-width="2.5"/>
+<text x="70" y="977.5" text-anchor="start" font-size="13" font-weight="normal" fill="#1f2328">Model</text>
+<rect x="150" y="965" width="22" height="16" fill="#ffffff" stroke="#9aa0ab" stroke-width="1.5"/>
+<text x="180" y="977.5" text-anchor="start" font-size="13" font-weight="normal" fill="#1f2328">Code</text>
+<rect x="260" y="965" width="22" height="16" fill="#ffffff" stroke="#111318" stroke-width="2.5"/>
+<text x="290" y="977.5" text-anchor="start" font-size="13" font-weight="normal" fill="#1f2328">Person</text>
+</svg>
