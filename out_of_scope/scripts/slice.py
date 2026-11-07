@@ -27,7 +27,9 @@ def build(path, countries, service_tokens, observed_cats, asset_implied=()):
     return keep
 
 if __name__ == '__main__':
-    path = '/home/claude/paramount_assignment/out_of_scope/rules/csv/Rules.csv'
+    import pathlib
+    HERE = pathlib.Path(__file__).resolve().parent
+    path = str(HERE.parent / 'rules' / 'csv' / 'Rules.csv')
     case = sys.argv[1]
     if case == 'TC-09':
         cats = {"violence","imitable_behaviour","drugs_alcohol_smoking"}
@@ -36,7 +38,7 @@ if __name__ == '__main__':
     countries = {"UK","FR","EU"}
     svc = {"free_to_air"}
     keep = build(path, countries, svc, cats)
-    out = f'/home/claude/paramount_assignment/scripts/{case}_slice.json'
+    out = str(HERE / f'{case}_slice.json')
     json.dump(keep, open(out,'w'), indent=1, ensure_ascii=False)
     import collections
     print(case, 'kept', len(keep), collections.Counter(k['country'] for k in keep))

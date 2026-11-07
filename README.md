@@ -55,6 +55,7 @@ original copies that `deliverables/` is generated from.
 | `prompts/`, `rules/`, `sources/`, `tests/` | The originals the deliverable copies are made from |
 | `TASK1_WRITEUP.md`, `TASK2_SCALING.md` | The originals of the two write-ups (Task 1: scope, design choices, tools) |
 | `pipeline/` | 17 scripts that build the rules table, check it, and run a decision end to end |
+| `scripts/` | A helper used to pick rules when running a test case by hand |
 | `BUILD_rules_from_sources.md` | The prompt that turned each legal document into draft table rows |
 | `docs/` | Generated pictures, already copied into the deliverables |
 | `HOW_IT_WORKS.md` | A walkthrough of all 14 stages, if you want to see how a decision is actually made |
