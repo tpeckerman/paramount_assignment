@@ -22,6 +22,12 @@ field that unlocks the most permissive answer in the system.
 
 ## 2. `treatment` carries two different questions at once
 
+> **FIXED 7 Nov 2026.** `reported_not_shown` is removed from the `treatment` vocabulary.
+> `is_depicted` already answers "was it shown", so the value was both redundant and in
+> conflict with it. `treatment` is now framing only, and rules 2 and 3 were rewritten to
+> state one question each. TC-07's banter is now `is_depicted: false` with
+> `treatment: comedic`, which was the combination the old vocabulary could not express.
+
 The field holds both *whether something was shown* (`reported_not_shown`) and *how it was
 framed* (`comedic`, `stylised`, `realistic`, `documentary`). TC-07's dialogue is both comic
 **and** only spoken about, and only one value fits. Information has to be dropped, and which
@@ -40,6 +46,9 @@ In TC-01 that distinction is the entire case. The decision turns on material air
 and 13:41 on a particular morning, not 11 and 13 hours into a film.
 
 ## 4. `content_type` has no value for a documentary, but `treatment` does
+
+> **FIXED 7 Nov 2026.** `documentary` added to `content_type`, and removed from `treatment`
+> where it had been a framing value. One vocabulary now owns the question.
 
 `content_type` offers `film | series_episode | trailer | music_video | live | other |
 not_stated`. TC-05 is a documentary, so it became `other`. Meanwhile `treatment` *does* have

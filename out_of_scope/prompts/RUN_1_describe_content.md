@@ -48,7 +48,7 @@ A single JSON object. No prose before or after it.
   "asset": {
     "title": "string or not_stated",
     "runtime_minutes": "integer or not_stated",
-    "content_type": "film | series_episode | trailer | music_video | live | other | not_stated",
+    "content_type": "film | series_episode | documentary | trailer | music_video | live | other | not_stated",
     "existing_certificates": [
       {"body": "BBFC | CNC | other", "rating": "string", "scope": "cinema | video | tv | not_stated"}
     ],
@@ -88,7 +88,7 @@ A single JSON object. No prose before or after it.
       "descriptors": ["short neutral tags lifted from or directly supported by the source"],
       "duration_or_frequency": "string or not_stated",
       "is_depicted": true,
-      "treatment": "realistic | stylised | comedic | documentary | reported_not_shown | fictional | not_stated",
+      "treatment": "realistic | stylised | comedic | fictional | not_stated",
       "evidence": "verbatim span from the input that supports this observation",
       "extraction_confidence": "high | medium | low"
     }
@@ -126,12 +126,17 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
 
 1. **Report, don't rate.** Write "a character is stabbed; blood is visible", not "graphic
    violence" or "moderate violence". Severity words are thresholds in disguise.
-2. **`is_depicted` carries real weight.** Shown on screen, described in dialogue, and
-   implied off screen are three different things and several rules turn on which it is.
-   `reported_not_shown` in `treatment` is for events only spoken about.
-3. **`treatment` likewise.** Comedic, stylised and fictional framings change outcomes under
-   several rules. Record what the description supports; never upgrade a flat description to
-   "realistic" because realistic feels safer.
+2. **`is_depicted` answers one question only: was it shown?** Shown on screen, described in
+   dialogue, and implied off screen are three different things and several rules turn on
+   which. Set `is_depicted` false for an event only spoken about.
+3. **`treatment` answers a different question: how was it framed?** Comedic, stylised and
+   fictional framings change outcomes under several rules. Record what the description
+   supports; never upgrade a flat description to "realistic" because realistic feels safer.
+
+   **Keep the two apart.** An event can be comic AND only spoken about: explicit sexual
+   banter between characters is `is_depicted: false` with `treatment: comedic`. Neither
+   value displaces the other, and collapsing them into one field would throw away whichever
+   the extractor judged less important.
 4. **`not_stated` is a deliverable, not an apology.** The most consequential failure in this
    system is a confident decision made on absent information. Every entry here is a question
    the pipeline can ask a human. Always consider at minimum: intended service type, intended
@@ -268,7 +273,7 @@ Record **both**, and flag the conflict. Do not resolve it.
   "observations": [{
     "id": "o1", "timecode": "00:14:02", "category": "serious_harm",
     "what_happens": "Real footage of a fatal accident. A body is visible at a distance.",
-    "is_depicted": true, "treatment": "documentary",
+    "is_depicted": true, "treatment": "realistic",
     "evidence": "Footage of a real fatal accident; a body is visible at a distance.",
     "extraction_confidence": "high"
   }],
