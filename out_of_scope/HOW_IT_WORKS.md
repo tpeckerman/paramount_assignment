@@ -36,7 +36,7 @@ whether a decision may use it. Only `approved` rules are ever handed to step 12.
 | `draft` | You learn a rule exists from a source that **is not the rule**. You can write down that it binds, but not what it demands. | French channels each sign an individual agreement with the regulator. An enforcement decision cited those agreements, which proved they exist and bind, but the agreements themselves are not published centrally. |
 | `unverified` | Either the source could not be read yet, or it was read and something is off. The quote can be real and the document real while the **vintage** is wrong. | Two rules cited guidance from 2015 that a 2018 statement had restructured. Correct quote, correct document, superseded edition. |
 | `superseded` | The law changed. The old row is not wrong; it was correct until a date. | A 2014 amendment broadened a French category. The old wording stays, end-dated, because explaining a decision made in 2013 needs the rule as it stood in 2013. |
-| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 103 of 105 rules. |
+| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 105 of 105 rules. |
 
 Two things follow from this that are easy to miss.
 

@@ -32,82 +32,92 @@ have thirty of them, and you cannot read most of the sources yourself.
 
 ## Process
 
-Colors say **who or what does each step**, which matters more than the order. Every purple
-box costs money per program and can be argued with. Every green box is free and cannot.
+Colors say **who or what does each step**, which matters more than the order. Every blue box
+costs money per program and can be argued with. Every white box is free and cannot.
 
 | | |
 |---|---|
-| 🟩 Code | Same input, same output. Costs nothing |
-| 🟪 Model | Needs reading or weighing |
-| 🟧 Person | A judgment with consequences |
-| ⬜ Dashed | Not built in this project |
+| 🟦 Model | Needs reading or weighing |
+| ⬜ Code | Same input, same output. Costs nothing, cannot be argued with |
+| ⬛ Person | A judgment with consequences |
 
 ```mermaid
 flowchart TB
-    subgraph PC ["ONCE PER COUNTRY, and again whenever the law changes"]
-        direction LR
-        A1["Identify the instruments<br/>and their escape clauses"]:::person
-        A2["Collect the sources,<br/>primary first"]:::det
-        A3{"Is this really<br/>the document?"}:::det
-        A4{"Amended<br/>since?"}:::det
-        A5["Extract the rules<br/>BUILD prompt"]:::ai
-        A6{"Is every quote<br/>really in the source?"}:::det
-        A7{"Valid fields and<br/>vocabulary?"}:::det
-        A8["Local expert<br/>signs it off"]:::person
-        A1 --> A2 --> A3
-        A3 -- "no: we saved<br/>the menus" --> A2
-        A3 -- yes --> A4
-        A4 -- superseded --> A2
-        A4 -- current --> A5 --> A6
-        A6 -- "not found" --> A5
-        A6 -- pass --> A7
-        A7 -- "unknown value" --> A5
-        A7 -- pass --> A8
-    end
 
-    DB[("Rules table<br/>approved rows only")]:::store
-    A8 --> DB
+  subgraph L1 ["BUILD THE RULES &nbsp;&nbsp;·&nbsp;&nbsp; once per country, again whenever the law changes"]
+    direction LR
+    A1["Pick the<br/>country"]:::person
+    A2["Fetch primary<br/>sources"]:::code
+    A3{"Is the file really<br/>that document?"}:::code
+    A4{"Amended<br/>since?"}:::code
+    A5["Model drafts rule rows<br/>one sentence of law each"]:::llm
+    A6{"Is every quote<br/>really in the source?"}:::code
+    A7{"Valid vocabulary,<br/>dates, fields?"}:::code
+    A8["Local expert<br/>signs it off"]:::person
+    A1 --> A2 --> A3
+    A3 -- "no" --> A2
+    A3 -- "yes" --> A4 -- "current" --> A5 --> A6
+    A6 -- "not found" --> A5
+    A6 -- "pass" --> A7 -- "pass" --> A8
+    A7 -- "unknown value" --> A5
+  end
 
-    subgraph PD ["PER ASSET, thousands of times"]
-        direction LR
-        B0["Someone describes<br/>the content"]:::scope
-        B1{"Answered this<br/>one before?"}:::scope
-        B2["Describe the content<br/>RUN 1, blind to the rules"]:::ai
-        B3{"Categories in the<br/>controlled list?"}:::det
-        B4{"Does a rating ban<br/>it outright?"}:::det
-        B5["Pick the rules<br/>that could apply"]:::det
-        B6["Decide<br/>RUN 2, three passes"]:::ai
-        B7{"Does every claim<br/>cite a real rule?"}:::det
-        B8{"Clear-cut, and<br/>nothing missing?"}:::det
-        B0 -.-> B1
-        B1 -. miss .-> B2
-        B2 --> B3
-        B3 -- "wording slip" --> B2
-        B3 -- pass --> B4
-        B4 -- no --> B5 --> B6 --> B7
-        B7 -- "invented a rule" --> B6
-        B7 -- pass --> B8
-    end
+  DB[("RULES TABLE<br/>approved rows only<br/>versioned")]:::store
+  A8 --> DB
+  A4 -- "superseded" --> A2
 
-    DB --> B5
-    OUT[["Answer, with<br/>its rules"]]:::out
-    HUM["Human review<br/>queue"]:::person
-    B4 -- "yes: R18<br/>or refused" --> OUT
-    B8 -- yes --> OUT
-    B8 -- no --> HUM
-    B1 -. hit .-> OUT
+  subgraph L2 ["DECIDE ON A PROGRAM &nbsp;&nbsp;·&nbsp;&nbsp; thousands of times"]
+    direction LR
+    B1["Program<br/>description in"]:::code
+    B2["Model describes what happens,<br/>with timecodes. Never sees the rules"]:::llm
+    B3{"Categories in the<br/>controlled list?"}:::code
+    B4{"Decided this<br/>one before?"}:::code
+    B5["Select the rules that<br/>could apply"]:::code
+    B6["Model applies them:<br/>rating, hours, conditions"]:::llm
+    B7{"Does every claim<br/>cite a real rule?"}:::code
+    B1 --> B2 --> B3
+    B3 -- "wording slip" --> B2
+    B3 -- "pass" --> B4
+    B4 -- "No" --> B5 --> B6 --> B7
+    B7 -- "invented a rule" --> B6
+  end
 
-    M["Measurement<br/>per country, per rule"]:::det
-    OUT -. "sampled audit" .-> M
-    HUM -. "what reviewers<br/>overturned" .-> M
-    M -. "which country,<br/>which rule" .-> A5
+  CACHE[("DECISION CACHE<br/>embedding of the description<br/>+ country + channel + rules version")]:::store
+  B4 -. " " .-> CACHE
+  B4 -- "Yes: reuse<br/>the stored decision" --> OUT
+  B7 -- "pass" --> SAVE["Save decision<br/>to cache"]:::code
+  SAVE --> CACHE
+  SAVE --> C1
 
-    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef person fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
-    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
-    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
+  subgraph L3 ["REVIEW AND IMPROVE"]
+    direction LR
+    C1{"Clear cut, and<br/>nothing missing?"}:::code
+    C2["Compliance reviewer<br/>reads it"]:::person
+    C3{"Reviewer<br/>agrees?"}:::person
+    C4["Measure: per country,<br/>per rule, 3 error types"]:::code
+    C1 -- "No" --> C2 --> C3
+    C3 -- "overturned" --> C4
+    C3 -- "confirmed" --> C4
+  end
+
+  OUT[["ANSWER<br/>rating · hours · conditions<br/>with the rule behind each"]]:::out
+  C1 -- "Yes" --> OUT
+  C3 -- "agreed" --> OUT
+  C2 -- "corrected" --> OUT
+
+  C4 -- "which rule keeps<br/>getting overturned" --> A5
+
+  DB --> B5
+  DB -- "rules version changed" --> INV["Drop every cached answer<br/>built on the old version"]:::code
+  INV --> CACHE
+  INV --> SAMP["Re-decide a sample<br/>from scratch, compare"]:::code
+  SAMP --> C4
+
+  classDef llm fill:#eaf0ff,stroke:#2f5fe0,stroke-width:2.5px,color:#17264d
+  classDef code fill:#ffffff,stroke:#9aa0ab,stroke-width:1.5px,color:#2b2f36
+  classDef person fill:#ffffff,stroke:#111318,stroke-width:2.5px,color:#111318
+  classDef store fill:#f4f5f7,stroke:#6b7280,stroke-width:1.5px,color:#2b2f36
+  classDef out fill:#ffffff,stroke:#2f5fe0,stroke-width:2.5px,color:#17264d
 ```
 
 

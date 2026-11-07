@@ -104,6 +104,27 @@ def doc_count_claims() -> list[str]:
                 wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, "
                              f"table has {live_approved} approved")
 
+    # Any bare "N of <total>" or "all N <verb>" where N is close to the live total. These
+    # forms slipped a blanket renumber and left "105 rules, all 105 approved ... all 103
+    # carry a verbatim quote" sitting in a deliverable: one sentence, both numbers, one of
+    # them wrong.
+    live_total = len([r for r in rows if r["status"] == C.USABLE_STATUS])
+    for doc in sorted(C.ROOT.rglob("*.md")):
+        if "originals" in str(doc):
+            continue
+        text = doc.read_text(encoding="utf-8")
+        for m in re.finditer(rf"\b(\d{{2,4}}) of {live_total}\b", text):
+            if int(m.group(1)) > live_total:
+                wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, which is more than "
+                             f"the {live_total} rules that exist")
+        # IGNORECASE matters: the sentence this was written for begins "All 105 carry",
+        # and a lowercase-only pattern silently matched nothing.
+        for m in re.finditer(r"\ball (\d{2,4}) (?:approved )?(?:rules? )?"
+                             r"(carry|verify|are approved)\b", text, re.I):
+            n = int(m.group(1))
+            if abs(n - live_total) <= 10 and n != live_total:
+                wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, table has {live_total}")
+
     # A file count in prose drifts the first time a script is added or deleted.
     words = {13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen",
              17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty"}

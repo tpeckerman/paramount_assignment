@@ -13,8 +13,8 @@ informative part of this.
 | Scope reasoning | the scope note in Task 1's design-choices folder |
 | Design choices and tools | this file |
 
-**Current state:** 105 rules, all 105 approved, 20 of 20 sources collected. All 103 carry a verbatim
-quote and all 103 verify, 0 failing. Coverage is enforced: an approved rule with no quote
+**Current state:** 105 rules, all 105 approved, 20 of 20 sources collected. All 105 carry a verbatim
+quote and all 105 verify, 0 failing. Coverage is enforced: an approved rule with no quote
 fails the build (C-15).
 
 ---
