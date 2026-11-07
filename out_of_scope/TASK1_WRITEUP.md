@@ -218,7 +218,7 @@ agent's words were that the schema expressed both cases "correctly and without s
 reasoning problem: a field that could not hold what the content said, or two facts sharing
 one slot. The prompts were careful about *how to think* and loose about *where to put the
 answer*. Reading them again would never have found it. Running them found it immediately,
-and the full list is in `tests/PROMPT_DEFECTS.md`.
+and the full list is in `tests/RESULTS.md`, round by round.
 
 ### Improvement 1, from rule selection: two bugs from one case
 
