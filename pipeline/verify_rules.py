@@ -246,10 +246,19 @@ def check_quotes(rows: list[dict]) -> list[str]:
             missing = [d for d in refs if d not in {x for x, _ in hays}]
             inconclusive.append(f"{r['rule_id']}: not in {[d for d, _ in hays]}, "
                                 f"but {missing} not downloaded")
-
+    # Report the DENOMINATOR. This line used to count only the rules that happened to carry
+    # a quote, so it read as full coverage while half the table had never been checked.
+    _approved = [r for r in rows if r["status"] == "approved"]
+    _noq = [r["rule_id"] for r in _approved if not r["verbatim_quote"].strip()]
     print(f"  quote check: {checked - len(bad)} VERIFIED against the stored source, "
           f"{len(bad)} FAILED, {len(inconclusive)} inconclusive, "
           f"{skipped} skipped (no source on disk)")
+    print(f"  COVERAGE:    {len(_approved) - len(_noq)} of {len(_approved)} approved rules "
+          f"carry a quote; {len(_noq)} carry NONE and are never checked.")
+    _abs = [r for r in _noq if r in ABSOLUTE]
+    if _abs:
+        print(f"  WARNING:     {len(_abs)} unquoted rules are ABSOLUTE PROHIBITIONS, the "
+              f"rules no argument may override: {' '.join(_abs)}")
     for line in inconclusive:
         print(f"    inconclusive: {line}")
     if skipped and not checked:
@@ -295,6 +304,10 @@ def check_sources_tab(rows):
     have = {r["source_id"] for r in _csv.DictReader(src.open(encoding="utf-8"))}
     need = {r["doc_id"] for r in _csv.DictReader(man.open(encoding="utf-8"))}
     return sorted(need - have)
+
+ABSOLUTE = {"UK-GEN-001", "UK-SEX-001", "UK-FLM-001", "UK-FLM-006",
+            "FR-LAW-001", "FR-PRO-001", "FR-PRO-002", "FR-PRO-003", "FR-CV-003"}
+
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,

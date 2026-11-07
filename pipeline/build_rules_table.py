@@ -105,7 +105,7 @@ add("UK-GEN-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "bright_line", "clear",
     "Hard pre-check: should be enforced in code, not left to prompt reasoning.", "no",
     "UK-S1", "Rule 1.1", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "might seriously impair the physical, mental or moral development", "EN", "high")
 
 add("UK-GEN-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "scheduling_general", "context_dependent",
@@ -298,7 +298,7 @@ add("UK-FLM-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "Survives MDP - unchanged by the 2018 review.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
     "UK-S1", "Rule 1.22", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "No film refused classification by the British Board of Film Classification", "EN", "high")
 
 add("UK-FLM-002", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "film_carryover", "watershed_bound",
@@ -347,7 +347,7 @@ add("UK-FLM-006", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "None. Unchanged by the 2018 MDP review.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
     "UK-S1", "Rule 1.26", U_S1, "2021-03-03", "open", "approved",
-    "", "EN", "high")
+    "BBFC R18-rated films must not be broadcast", "EN", "high")
 
 add("UK-OCC-001", "UK", "Ofcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "occult_paranormal", "watershed_bound",
@@ -1128,7 +1128,7 @@ add("FR-PRO-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "None. No category, service type, hour or technical measure unlocks this.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
     "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "attentatoires à la dignité de la personne humaine", "FR", "high")
 
 add("FR-PRO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "sexual_content", "prohibited",
@@ -1136,7 +1136,7 @@ add("FR-PRO-002", "FR", "Arcom", "regulator_binding", 2, "yes",
     "No permitted time.", "prohibited", "None.",
     "bright_line", "clear", "Hard pre-check in code.", "no",
     "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "pornographique mettant en scène des personnes mineures", "FR", "high")
 
 add("FR-PRO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "violence", "prohibited",
@@ -1146,7 +1146,7 @@ add("FR-PRO-003", "FR", "Arcom", "regulator_binding", 2, "yes",
     "bright_line", "clear",
     "The boundary between 'very great violence' (cat. V, schedulable) and 'extreme or gratuitous violence' (banned) is a genuine judgment line and a likely source of disagreement. Flag near-threshold cases.",
     "yes", "FR-R1c", "art. 3", U_FR2, "2014-04-09", "open", "approved",
-    "", "FR", "high")
+    "violence ou de violence gratuite", "FR", "high")
 
 add("FR-SIG-001", "FR", "Arcom", "regulator_binding", 2, "yes",
     "all_linear_tv", "signage", "II_to_V",
@@ -1636,6 +1636,11 @@ oq += [
      "CLOSED 2026-11-06. The instrument is the Arcom notice of 15 December 2004. Its page body is drawn by JavaScript, so no fetch could ever retrieve it - every automated attempt returned an empty shell, and one early attempt returned 12,493 characters of pure site navigation that passed a naive length check. The user saved it from a browser, where the text had already rendered. CONFIRMED VERBATIM: 'Category V programs can only be shown between midnight and 5am.' The eligibility gate, the 208-per-year commercial threshold, the on-screen warning with article 227-22, and the six locking criteria are all confirmed against the primary.",
      "Six of the seven predicted rules verified verbatim; the rows had also carried the WRONG DATE for the instrument (23 rather than 15 December), now corrected. FR-CV-003 is SOUND BUT WEAKLY SOURCED - its proof quote is from a government summary while the primary says only that the regulator 'only authorizes' eligible services, so a total ban elsewhere is an inference, flagged in-row for a French regulatory lawyer. The doubt that created C-03 resolves in the OPPOSITE direction from the one feared: the deadlines have elapsed, meaning fully in force with no transitional relief. FINALLY, the stored text is Arcom's own ENGLISH translation, which warns that only the original French is authentic - every quote here is EN and a French-qualified reviewer must re-check them.",
      "closed", "no"],
+    ["C-15", "Half the table carries no quote, so the quote check never looked at it",
+     "46 approved rules",
+     "OPEN, found 2026-11-07 by a question about how an adult drama can air in the UK. The quote check reported '50 verified, 0 failed, 0 skipped' and that read as full coverage. It was not: 0 skipped only ever meant no SOURCE DOCUMENT was missing from disk. Rules carrying no quote at all were passed over in silence, because the check iterated the rules that had one. 50 of 102 were checked; 52 had never been looked at. SIX of those were ABSOLUTE PROHIBITIONS - the rules the design says must be enforced in code because no argument may override them. Those six are now quoted from the stored sources and verified, bringing coverage to 56 of 102.",
+     "THE INTERESTING PART IS THE METRIC, NOT THE GAP. A coverage number that counts only the rows which opted in will always report success, and it did so for weeks while reading as reassurance. Two fixes: the verifier now prints the DENOMINATOR and warns by name when an unquoted rule is an absolute prohibition. ACTION: backfill the remaining 46. Most are French scheduling rows from FR-R1c and UK Section One rows whose sources are on disk, so this is transcription rather than research. Until then, treat an unquoted row as unverified regardless of its status field. GENERAL LESSON FOR TASK 2: every check needs its denominator reported next to it, or the check measures its own appetite.",
+     "open", "yes"],
     ["C-14", "UK access-control rows cited guidance predating the 2018 MDP restructure",
      "UK-ACC-002, UK-ACC-003 (both now approved)",
      "CLOSED 2026-11-06, and it resolved better than expected. With the current Section One text in hand, the substance of UK-ACC-003 turns out to be in the CURRENT CODE rather than only in the 2015 guidance: Rule 1.24 requires both that clear information be provided to help adults assess suitability AND - a condition the table did not have at all - that the mandatory daytime protection in place be CLEARLY EXPLAINED TO ALL VIEWERS. A gate nobody has been told about does not satisfy the rule. The row is re-sourced from guidance to binding text, raising its authority rank from 3 to 2. UK-ACC-002 stays on guidance, because the default-PIN point is an elaboration rather than Code text, but the requirement it elaborates - that the protection cannot be removed by the user - is in the current Code, so it explains a rule that still stands.",
