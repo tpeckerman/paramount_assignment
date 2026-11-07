@@ -10,7 +10,7 @@ flowchart TB
     A1["Fetch the law<br/>from the official site"]:::code
     A2["Model drafts one rule<br/>per sentence of law,<br/>with the exact quote"]:::llm
     A3["Check: quote is in the source,<br/>fields are valid"]:::code
-    A4["Local expert<br/>approves each rule"]:::person
+    A4["Local expert signs off<br/>judgment rules, spot-checks<br/>the rest"]:::person
     A1 --> A2 --> A3 --> A4
   end
 
@@ -21,7 +21,7 @@ flowchart TB
     direction LR
     B1["Program description<br/>with timecodes"]:::code
     B2["Model describes<br/>what happens.<br/>Never sees the rules"]:::llm
-    B3{"Decided a<br/>match before?"}:::code
+    B3{"Near-identical program<br/>already in the cache?"}:::code
     B4["Code picks the<br/>rules that could apply"]:::code
     B5["Model applies them:<br/>rating, hours, conditions"]:::llm
     B6["Check: every claim<br/>cites a real rule"]:::code
@@ -31,8 +31,8 @@ flowchart TB
 
   CACHE[("DECISION CACHE<br/>key: embedding of the description,<br/>country, channel, rules version<br/>match: cosine similarity + ROUGE-L<br/>new rules version: clear old answers")]:::store
   DB --> B4
-  B3 <--> CACHE
-  B6 --> CACHE
+  B3 <-- "look up, reuse<br/>if found" --> CACHE
+  B6 -- "store the<br/>new answer" --> CACHE
 
   subgraph L3 ["3. REVIEW AND IMPROVE"]
     direction LR
@@ -43,7 +43,7 @@ flowchart TB
   end
 
   OUT[["ANSWER<br/>rating, hours, conditions,<br/>each with its rule"]]:::out
-  B6 --> C1
+  B6 -- "every answer<br/>goes to review" --> C1
   C1 -- "yes" --> OUT
   C2 --> OUT
 

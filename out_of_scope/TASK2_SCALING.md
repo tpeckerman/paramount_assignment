@@ -81,7 +81,7 @@ status            approved
 
 **Check.** The quote must appear character for character in the stored file.
 
-**Sign off.** A French media lawyer confirms the reading and the 2014 change.
+**Sign off.** This is a fixed-hour rule that passed the quote check, so a lawyer spot-checks a sample of such rules instead of reading each one. Rules that turn on judgment are each read in full.
 
 **Use.** A program with sustained violence on a general channel at 20:45 is barred, because
 this rule sets 22:00 and the channel matches. The decision cites the rule id.
@@ -162,12 +162,12 @@ the program wrongly.
 | Describing a program | Model, then a person if borderline |
 | **Deciding what a threshold means** | **Local expert** |
 | **Confirming a translation is faithful** | **Local expert** |
-| **Signing off a rule before it can decide anything** | **Local expert** |
+| **Signing off judgment rules** (spot-checking fixed-hour rules) | **Local expert** |
 | **Resolving two sources that disagree** | **Local expert** |
 | **Confirming which regulator covers a channel** | **Local expert** |
 | Final call on anything the system escalated | Compliance reviewer |
 
-Everything mechanical can be automated. Every threshold needs a person. Of Task 1's 105 rules,
+Everything mechanical can be automated. Every judgment threshold needs a person. Of Task 1's 105 rules,
 45 turn on a judgment, and one decided case exists to calibrate them. Finding qualified
 reviewers in each country is the real constraint, so start hiring before the engineering.
 
