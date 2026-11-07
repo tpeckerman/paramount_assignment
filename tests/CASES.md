@@ -11,16 +11,42 @@ Eight cases. Each attacks a specific way this system fails. Two have **known rea
 outcomes**, so the right answer is not my opinion: TC-01 is a decided regulator case, and
 TC-08 is content that has demonstrably aired in UK daytime for decades.
 
-| # | Content | Attacks | A naive system fails by |
-|---|---|---|---|
-| TC-01 | *Toofan*, NTV, 29 May 2026, 11:30 | **back-test against a decided case** | Clearing it, or citing the wrong rule |
-| TC-02 | *Mad Max: Fury Road*, free-to-air | rating does not give hours | Emitting "15" as the UK answer |
-| TC-03 | *The same film*, premium + PIN | the third axis | Saying "any time" and dropping the PIN |
-| TC-04 | *Thriller*, music channel, plus its trailer | derived assets | Judging the trailer by the video's slot |
-| TC-05 | Documentary with contradictory metadata | missing information | Resolving the contradiction silently |
-| TC-06 | *Step Brothers*, comic sex scene, no nudity | comedy is not an escape from every rule | Clearing it because it is funny and has no nudity |
-| TC-07 | *The 40-Year-Old Virgin*, explicit talk | where comedy **is** a live argument | Answering it the same way as TC-06 |
-| TC-08 | *Friends*, an after-sex scene at 14:30 | **over-rating**, the failure nobody reports | Pushing it to 21:00 and nobody noticing |
+| # | Content | Category at issue | Attacks | A naive system fails by |
+|---|---|---|---|---|
+| TC-01 | *Toofan*, NTV, 29 May 2026, 11:30 | `violence`, `audience_information` | **back-test against a decided case** | Clearing it, or citing the wrong rule |
+| TC-02 | *Mad Max: Fury Road*, free-to-air | `violence`, `film_carryover` | rating does not give hours | Emitting "15" as the UK answer |
+| TC-03 | *The same film*, premium + PIN | `violence`, `access_control` | the third axis | Saying "any time" and dropping the PIN |
+| TC-04 | *Thriller*, music channel, plus its trailer | `fear_distress`, `occult_paranormal`, `trailers`, `music_videos` | derived assets | Judging the trailer by the video's slot |
+| TC-05 | Documentary with contradictory metadata | `fear_distress`, `imitable_behaviour` | missing information | Resolving the contradiction silently |
+| TC-06 | *Step Brothers*, comic sex scene, no nudity | `sexual_content` | comedy is not an escape from every rule | Clearing it because it is funny and has no nudity |
+| TC-07 | *The 40-Year-Old Virgin*, explicit talk | `sexual_content`, `nudity` | where comedy **is** a live argument | Answering it the same way as TC-06 |
+| TC-08 | *Friends*, an after-sex scene at 14:30 | `sexual_content` | **over-rating**, the failure nobody reports | Pushing it to 21:00 and nobody noticing |
+
+The category column uses the controlled vocabulary from the rules table, not free text. That
+is deliberate: it is the same key the engine selects rules by, so the column can be checked
+against what the pipeline actually does rather than describing the content in my own words.
+
+### What these eight cases do not test
+
+Writing that column out made a gap obvious. Eleven categories in the table describe things
+that can appear **in content**. These eight cases exercise six of them. **Five have rules and
+no test at all:**
+
+| untested category | rules | why it matters |
+|---|---|---|
+| `strong_language` | 4 | Offensive language is one of the most common real breach types, and it is the clearest case of something that is **audible and not visible**, so a picture-only description would miss it entirely |
+| `suicide_self_harm` | 2 | Carries its own rules on method and imitation, separate from violence |
+| `drugs_alcohol_smoking` | 1 | Turns on glamorisation rather than depiction |
+| `hatred_discrimination` | 2 | Judged on treatment, not on whether the words were said |
+| `religion` | 1 | Section Four exists and nothing here goes near it |
+
+Four of those five are **judgement calls**, which is the part of the table already known to be
+weakest, so the gap and the known weakness sit on top of each other.
+
+Worth saying plainly: a test set that covers six of eleven categories and reports a pass rate
+is reporting a pass rate **on the six**. That is the same shape as the quote-coverage defect
+described in `RESULTS.md`, where a check that only looked at rows carrying a quote reported
+full coverage. The denominator is the thing to watch.
 
 TC-06 to TC-08 were added because the first five all fail in the same direction. Every one of
 them catches a system being **too permissive**. A test set made only of those trains a system
@@ -53,8 +79,22 @@ EVENTS (clock times during transmission, as recorded by the regulator)
 NO WARNING OR SIGNPOSTING was given before or during the broadcast.
 ```
 
-**Known outcome:** breach of Rule 1.3. Ofcom also considered Rule 2.3 (offence) and
-**dropped it**, finding the violence sufficiently contextualised within the film.
+**Known outcome:** breach of Rule 1.3. Ofcom also opened the case under Rule 2.3 (offence)
+and **dropped that limb**, finding the violence contextually justified within the film.
+
+> **Source.** `UK-P1` in `sources/originals/`, Ofcom's published decision on *Toofan*, NTV,
+> 29 May 2026, 11:30, in issue 553 of the Broadcast and On Demand Bulletin, 7 September 2026.
+> On disk as `UK-P1_ofcom_decision_toofan.pdf`;
+> [original](https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf).
+>
+> The outcome, verbatim: `"Breach of Rule 1.3 of the Code."`
+>
+> The Rule 2.3 limb, verbatim: Ofcom `"did not pursue the investigation further under Rule
+> 2.3"` after considering the editorial context, having decided the material was
+> `"sufficiently contextualised within the film"`.
+>
+> `python pipeline/verify_cases.py` checks those three strings against the stored PDF, so the
+> claim fails the build if it drifts.
 
 **What the system must get right.** The breach, on Rule 1.3. The absence of a warning as an
 aggravating factor. The festival date as raising the likely child audience. And critically,

@@ -530,6 +530,8 @@ python pipeline/run_decision.py --countries UK FR \
     --service free_to_air --categories violence      # assemble a decision context
 python pipeline/precheck.py run1_output.json         # gates BEFORE the deciding model runs
 python pipeline/postcheck.py run2_output.json        # citation and escalation checks AFTER
+python pipeline/verify_cases.py                      # do the test cases' claimed outcomes hold up?
+python pipeline/render_answer.py decision.json        # the country-by-country answer table
 python pipeline/build_timeline.py                    # regenerate docs/timeline.html
 ```
 
