@@ -6,7 +6,7 @@ informative part of this.
 
 | Deliverable | Where |
 |---|---|
-| Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `2_rules/RULES_TABLE_v1.xlsx`, `2_rules/Rules.csv` |
+| Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `2_rules/RULES_TABLE_v1.xlsx`, `2_rules/RULES_TABLE_v1.xlsx` |
 | The prompt | `prompts/RUN_1_describe_content.md`, `prompts/RUN_2_decide.md` |
 | *Not a deliverable for either task:* the prompt that builds the table | the rule-building prompt (repository only; not a deliverable). Task 1 asks for a table, not a method of making one; Task 2 asks for a design, not a working prompt. This is apparatus |
 | Test cases and results | `CASES.md`, `RESULTS.md` |

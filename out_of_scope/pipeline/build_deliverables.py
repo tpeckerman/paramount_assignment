@@ -47,8 +47,10 @@ TASK1: list[tuple[pathlib.Path, str, str]] = [
      "the documents themselves, so every quote can be checked"),
     (C.RULES_XLSX, "2_rules/RULES_TABLE_v1.xlsx",
      "deliverable 1: the table of rules"),
-    (C.RULES_CSV, "2_rules/Rules.csv",
-     "the same rules as plain text"),
+    # NOT the CSV mirror. It is in the repository because an .xlsx is a binary blob that
+    # GitHub cannot diff, so a rule change would be unreviewable without it. Neither reason
+    # applies to a folder someone opens to read the rules, where it is just one of the six
+    # tabs again under a second filename.
     (C.PROMPTS_DIR / "HOW_TO_RUN.md", "3_prompt/HOW_TO_RUN.md",
      "how to run the two prompts, including the rule-selection step between them"),
     (C.PROMPTS_DIR / "RUN_1_describe_content.md", "3_prompt/RUN_1_describe_content.md",
@@ -95,7 +97,7 @@ REWRITES: list[tuple[str, str]] = [
     ("tests/RESULTS.md", "RESULTS.md"),
     ("tests/PROMPT_DEFECTS.md", "PROMPT_DEFECTS.md"),
     ("`rules/RULES_TABLE_v1.xlsx`", "`2_rules/RULES_TABLE_v1.xlsx`"),
-    ("`rules/csv/Rules.csv`", "`2_rules/Rules.csv`"),
+    ("`rules/csv/Rules.csv`", "`2_rules/RULES_TABLE_v1.xlsx`"),
     ("`sources/originals/`", "`1_sources/originals/`"),
     ("`sources/originals`", "`1_sources/originals`"),
     ("[`out_of_scope/SCOPE.md`](SCOPE.md)", "`out_of_scope/SCOPE.md`, in the design-choices folder"),

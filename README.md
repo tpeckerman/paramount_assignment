@@ -37,7 +37,7 @@ repository is the original. The tables below say where everything lives here.
 | **Sources and a table of rules** | [`sources/00_SOURCE_INVENTORY.md`](sources/00_SOURCE_INVENTORY.md) | All 20 sources with links, scope and link health |
 | | [`sources/originals/`](sources/originals/) | The documents themselves, so every quote can be checked |
 | | [`rules/RULES_TABLE_v1.xlsx`](rules/RULES_TABLE_v1.xlsx) | 103 rules across 6 tabs, with a readable legend and the open questions |
-| | [`rules/csv/Rules.csv`](rules/csv/Rules.csv) | The same rules as plain text, for diffing and for code |
+| | [`rules/csv/Rules.csv`](rules/csv/Rules.csv) | Repository only, not in the deliverable. An `.xlsx` is a binary blob GitHub cannot diff, so without this a rule change would be unreviewable. It mirrors one of the workbook's six tabs |
 | **The full prompt** | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) | Reads the content. Deliberately does not know the rules |
 | | [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) | Applies the rules and decides |
 | **The test cases** | [`tests/CASES.md`](tests/CASES.md) | Eight cases on real media. Two have known real-world outcomes |
