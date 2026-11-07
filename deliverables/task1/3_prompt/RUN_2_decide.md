@@ -48,13 +48,8 @@ rating off an hour, or an hour off a rating.
   - `requires=` next to a time window means the condition is **on top of** the hour. Both
     apply.
 
-  Both shapes exist in the rules you were given. Treating every condition as an unlock is how
-  a system clears at noon something barred until midnight. Reporting an hour without the
-  condition that earned it is the other half of the same mistake.
-
-**No hours appear anywhere in this file, on purpose.** Every time, category and threshold must
-come from `<rules>`. If a rule you need is not there, it was not supplied, and the answer is
-that you cannot decide. It is not a figure you remember. This file is not a source of law.
+ Every time, category and threshold must come from `<rules>`. If a rule you need is not there, it was not supplied, and the answer is
+ that you cannot decide. 
 
 ## Procedure
 
