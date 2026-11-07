@@ -124,6 +124,21 @@ cache is cold almost all the time and was never worth building. The cache design
 why the key cannot be the content alone and why a similarity threshold has to be validated on
 adversarial pairs rather than random ones, is in `HOW_IT_WORKS.md` under steps 0b to 0d.
 
+**And an amendment is free information about itself.** When an amendment drops a set of stored
+answers, keep a sample and re-decide those from scratch under the new rules, then compare them
+with what was being served.
+
+Identical means the amendment did not touch anything that mattered in practice, which is worth
+knowing and is otherwise very hard to find out. Different means the cache was serving stale
+law, and the comparison tells you **exactly which answers were wrong, in which direction, and
+since when**, which is the first thing anyone will ask and normally the thing nobody can
+answer. The sample costs a handful of decisions per amendment, and it is the only mechanism
+here that measures the real-world impact of a legal change rather than just reacting to it.
+
+It doubles as a regression test nobody has to write. The comparison is between two runs of the
+same system over the same input with only the rules changed, so any difference is attributable
+to the amendment or to non-determinism, and both are things you want to see.
+
 ### Link health, honestly
 
 Three URLs failed in three different ways and I had labelled all three "bot-blocked". From

@@ -11,7 +11,7 @@ Three kinds of step, and the distinction matters more than it looks:
 | 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
 | 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
 | 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
-| ⬜ **Dotted** | Outside the scope of this project. Shown because the flow does not make sense without it, not because it is built. |
+| ⬜ **Dotted** | Not built and not done here. Drawn because the flow does not make sense without it. Every solid box corresponds to a prompt or a script in this repo that you can run. |
 
 ```mermaid
 flowchart TB
@@ -21,7 +21,7 @@ flowchart TB
     A4["4. Read it and write down its rules"]:::ai
     A5{"5. Is every quote really in the document?"}:::det
     A6{"6. Valid fields and vocabulary?"}:::det
-    A7{"7. Expert signs the rule off"}:::human
+    A7["7. A country expert signs<br/>the rule off"]:::scope
     A8[("The rules table")]:::store
 
     A1 --> A2
@@ -32,9 +32,10 @@ flowchart TB
     A5 -- "quote not found" --> A4
     A5 -- yes --> A6
     A6 -- "no: bad field or<br/>unknown vocabulary" --> A4
-    A6 -- yes --> A7
-    A7 -- "yes" --> A8
-    A7 -- "not yet looked at" --> A8
+    A6 -- "yes: the row enters<br/>the table" --> A8
+    A8 -. "should go to an expert" .-> A7
+    A7 -. "marks it approved" .-> A8
+    A6 -. "here, the author set the<br/>status with no expert.<br/>That is conflict C-08" .-> A8
 
     B0["0. Someone watches the content<br/>and writes down what happens,<br/>with timecodes"]:::scope
     C1["0b. Turn the description<br/>into an embedding"]:::scope
@@ -45,14 +46,15 @@ flowchart TB
 
     B1["8. Read the content description"]:::ai
     B2{"9. Categories in the controlled list?"}:::det
-    B2a["9b. A person adds the new<br/>category, or rejects it"]:::human
+    B2a["9b. A person adds the new<br/>category, or rejects it"]:::scope
     B3{"10. Does an existing age rating<br/>ban this outright?<br/>(BBFC R18, or refused a rating)"}:::det
     B4["11. Pick the rules that could apply"]:::det
     B5["12. Decide: rating, hours, conditions"]:::ai
     B6{"13. Does every claim cite a real rule?"}:::det
     B7{"14. Clear-cut, and nothing missing?"}:::det
     B8[["Answer, with its rules"]]:::out
-    B9[["A person decides,<br/>rule and quote attached"]]:::human
+    B9[["Escalation: handed to a person<br/>with the rule and quote attached"]]:::out
+    B10[["A person decides"]]:::scope
 
     B0 -.-> C1
     C1 -.-> C2
@@ -65,8 +67,8 @@ flowchart TB
 
     B1 --> B2
     B2 -- "a word for a<br/>category we have" --> B1
-    B2 -- "a kind of content<br/>the list lacks" --> B2a
-    B2a -- "added" --> A4
+    B2 -. "a kind of content<br/>the list lacks" .-> B2a
+    B2a -. "added" .-> A4
     B2 -- yes --> B3
     B3 -- "yes" --> B8
     B3 -- no --> B4 --> B5 --> B6
@@ -75,6 +77,7 @@ flowchart TB
     B6 -- yes --> B7
     B7 -- yes --> B8
     B7 -- no --> B9
+    B9 -.-> B10
 
     classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
     classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
@@ -435,6 +438,48 @@ It runs three passes that are deliberately independent: classification, hours, o
 restrictions. Then it compares them, because in these two countries they come apart in both
 directions.
 
+**Steps 13 and 14 are code, not the model grading itself:** `pipeline/postcheck.py`.
+
+Step 13 asks whether every cited `rule_id` actually resolves. The worst failure a tool like
+this can have is not a wrong answer, it is **a wrong answer wearing a citation**. "Prohibited
+before 22:30 (UK-SCH-012)" reads exactly like a correct answer unless somebody looks
+UK-SCH-012 up, and looking it up is a dictionary lookup. It also rejects a citation to a row
+that exists but is `draft`, `unverified` or `superseded`, which is worse than citing nothing
+because the id resolves and the citation looks sound, and a citation to a rule belonging to
+the other country.
+
+Step 14 asks whether the decision routed itself to a person when it had to. Part of that is a
+judgement, but a large part is not, and the part that is not belongs here:
+
+- if any rule relied on is `judgment_based`, a person has to see it. That is a property of
+  the rule recorded in the table, not a matter of how confident the answer sounds
+- if the output claims `confidence: high` while listing missing information, one of the two
+  is wrong. Either the missing field would not change the answer, in which case it does not
+  belong in `missing_information`, or it would, in which case the confidence is not high
+- if observations matched no rule, that is a gap in the table, and a gap is not permission
+
+Exit `0` passes, `1` means it must go to a person and did not say so, `2` means malformed or
+badly cited.
+
+What `postcheck.py` deliberately does not check is **whether the answer is right**. Nothing in
+it reads the content or weighs a threshold. A decision can pass every check in the file and
+still be wrong. These checks establish that it is well-formed, honestly sourced and correctly
+routed, which is a floor and not a verdict.
+
+### What is drawn but not built
+
+Everything solid on the diagram is a prompt or a script in this repo. Five things are dotted,
+and it is worth being explicit about why, because the difference between "designed" and "done"
+is where this sort of project usually oversells itself.
+
+| Dotted | Why |
+|---|---|
+| 0, someone watches the content | The assignment starts from a description, so producing one is outside it. Also the weakest link in the chain |
+| 0b, 0c, 0d, the answer cache | A cost idea for scale, belonging to Task 2. Nothing is built |
+| 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. Every row is `approved` because the author approved it, which is conflict C-08 and the reason the diagram shows a dotted line going round step 7 |
+| 9b, a person adds a new category | There is a branch for it and a message telling you to take it, but no process behind it |
+| A person decides, after escalation | Producing the escalation **is** in scope and is a required deliverable. What the person then does with it is not |
+
 ## Why the rules live in a table rather than in the prompt
 
 Three reasons, all learned the hard way.
@@ -445,8 +490,8 @@ prompt or trusting its author. The verifier reports how many rows carry a quote,
 many passed, because a count of the rows that opted in will always report success.
 
 **Reliability.** Feeding whole legal codes into a decision means re-deriving the law on every
-request, slightly differently each time. Here a rule is read once, checked once, signed off
-once.
+request, slightly differently each time. Here a rule is read once and checked once, and is
+meant to be signed off once, though see step 7 above for what actually happened.
 
 **Maintainability.** When a regulator amends something, you edit a row and version the old
 one. You do not re-read everything. This matters more than it sounds: two of the worst errors
@@ -483,7 +528,8 @@ pip install openpyxl pypdf
 python pipeline/verify_rules.py --with-quotes        # does the table hold up?
 python pipeline/run_decision.py --countries UK FR \
     --service free_to_air --categories violence      # assemble a decision context
-python pipeline/precheck.py run1_output.json          # deterministic gates, before any model
+python pipeline/precheck.py run1_output.json         # gates BEFORE the deciding model runs
+python pipeline/postcheck.py run2_output.json        # citation and escalation checks AFTER
 python pipeline/build_timeline.py                    # regenerate docs/timeline.html
 ```
 
