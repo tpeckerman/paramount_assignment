@@ -56,6 +56,7 @@ and black-bordered boxes are people. There are two flows.
   was, what the regulator ruled, and which rule it applied. A decision does not override a
   rule. It shows where the regulator draws the line on a judgment rule. It is used twice: the
   model sees similar past decisions when it decides, and the decision becomes a test case.
+  See sample: https://github.com/tpeckerman/paramount_assignment/blob/main/deliverables/task1/2_rules/timeline.html
 - **Every rule carries a word-for-word quote, and a check compares it to the stored source.**
   If a quote stops matching, the build fails. This caught four bad rules the day real sources
   arrived.
