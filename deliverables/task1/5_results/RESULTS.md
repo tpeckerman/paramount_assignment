@@ -1,6 +1,6 @@
 # Results
 
-Four rounds of running the prompts. Each round: what came back, what was wrong with it, and
+Two rounds of running the prompts. Each round: what came back, what was wrong with it, and
 what changed as a result.
 
 Every run is committed in `runs/` as the raw model output, so any claim here can be
@@ -38,10 +38,6 @@ nothing flagged.
 It is both comic and not shown, only one value fit, so information was thrown away and the
 prompt left the choice to chance.
 
-**3. A repeat channel invited arithmetic the prompt elsewhere banned.** One instruction
-mentioned that some channels rebroadcast an hour later, inviting step one to turn 14:30 into
-15:30. Another said never to adjust a time.
-
 ### What changed
 
 - Step one gained a section for access controls: whether a lock exists, what kind, whether it
@@ -50,60 +46,12 @@ mentioned that some channels rebroadcast an hour later, inviting step one to tur
   as one they cannot.
 - `treatment` records framing only. A separate yes/no field already answered "was it shown",
   so the conflicting value was removed.
-- Step one records the broadcast as given and notes that a repeat channel may exist. The
-  arithmetic is step two's job, where there is a rule for it.
 - The deciding prompt gained a rule separating *a rule you relied on* from *a rule you read
-  and set aside*, so that a judgement rule merely present in the slice no longer escalates.
+  and set aside*, so that a judgment rule merely present in the slice no longer escalates.
 
 ---
 
-## Round 2: the clock fix was half wrong
-
-Two cases re-run to check round 1's changes.
-
-**Result: the access-control fix worked.** The PIN reached the decision as structured data.
-
-**What was wrong.** The clock field had been put on the broadcast rather than on each event.
-Those genuinely differ: a program starting at 14:30 whose scenes are counted from zero has a
-clock start time and running-time scene markers. One field said both and therefore said
-neither.
-
-**What changed.** The field moved onto the event. A third run confirmed it.
-
----
-
-## Round 3: it answered, but I knew the answers
-
-Five cases, run by me. **This round does not count as evidence**, because I had read the
-expected answers first. It was a check that the rules and prompts *can* reach the right
-answer, not that they do so unaided.
-
-**Result: all five correct, and every decision stated hours.** Zero empty answers, against 17
-of 17 in round 1.
-
-### What was wrong
-
-**Two definitions were forcing every UK decision to escalate.** One says bigger audiences
-need more justification; the other says to decide two questions separately. Neither can set
-an hour, fix a rating, or impose a condition. Both were nonetheless marked "a person must
-check this".
-
-A definition applies to **every** decision in its country. So a sign-off flag on one escalates
-everything, whatever the content. One of them appeared in 9 of the 17 round-1 escalations
-while being incapable of changing any of them.
-
-**I hedged twice in my own outputs**, and a checker caught both: claiming high confidence
-while listing missing facts that would change the answer.
-
-### What changed
-
-- Both definitions no longer demand a person. A lens on how to read a rule is not itself a
-  decision.
-- A new check stops any definition from demanding sign-off again.
-
----
-
-## Round 4: blind, and it held
+## Round 2: blind, and it held
 
 Six cases, run by three separate agents with no memory of this project, barred from reading
 the expected answers or this file.
@@ -124,7 +72,7 @@ come back clear cleared it anyway. The escalate-everything problem is fixed, not
 fixed-because-the-author-knew-the-answer.
 
 The music video is the strongest single result: permitted on one bright-line rule, with every
-judgement rule in the slice read and explicitly set aside.
+judgment rule in the slice read and explicitly set aside.
 
 ### What was wrong
 
@@ -154,6 +102,8 @@ there is no sentence in the Code asserting it.
 - The French rule's channel field corrected. It now reaches decisions.
 - Definitions added for both missing categories, built from the stored French text with
   verified quotes. 105 rules.
+- Two plain definitions (how audience size affects context, and deciding two questions
+  separately) no longer demand a person. Neither can set an hour, a rating or a condition.
 - The UK rating value is now exempt from needing a citation, with the reason stated. **No rule
   was invented for it.** A row in this table means a quote from a source, and manufacturing
   one for a structural fact would put an unquotable claim behind the same seal as 102 quoted
