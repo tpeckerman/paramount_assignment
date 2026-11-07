@@ -168,20 +168,11 @@ each channel type, each rule with an exception, and at least **two benign cases 
 back clear**. A set of only difficult content cannot notice a system that restricts
 everything. 
 
-**Who approves the answers?** Never the person who wrote the rules. In order of strength:
-1. **A decided enforcement case.** The regulator already ruled, so the answer is on record.
-   Task 1 has exactly one, which is its biggest weakness.
-2. **A local lawyer's written answer**, written before the system runs on the case.
-3. **The broadcaster's own undisputed compliance decisions.**
-
 **How do we stop the same error landing in both the solution and the answer?** Four rules:
-- The lawyer writes the answer from the law itself, without seeing the rules table or the
-  system's output.
 - Run the cases blind: people or agents who have not seen the expected answers.
 - When the system and the answer disagree, check the source law. Do not assume either is right.
-- Have a second person re-derive the fixed rules (times, absolute bans) from the primary
-  source and compare. Any difference is a finding about both.
-
+- Use metrics like accuracy, precision, and recall.
+  
 ## 5. Measurement and diagnosis
 
 **How do we measure under-rating, over-rating and wrong hours?** Run the test set and count,
