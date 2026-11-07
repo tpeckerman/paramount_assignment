@@ -30,106 +30,150 @@ that finds it.**
 
 ---
 
-## What is different in kind, not just in volume
+## Six problems that are new, not just bigger
 
-Most of this document is about running the Task 1 flow more times and catching what breaks.
-That part is necessary and it is not the interesting part. Six things at thirty countries are
-**not** bigger versions of a two-country problem. They do not exist at two countries at all,
-and four of the six have to be designed in before country three, because retrofitting them
-means re-touching every country already live.
+A lot of scaling up is simply doing the same thing more times and watching for what breaks.
+That part matters, and it is the rest of this document.
 
-### 1. Which rules apply stops being a lookup and becomes a determination
+But six problems below are genuinely different. They are not bigger versions of something we
+faced with two countries. With two countries they do not exist at all, which means no amount
+of care in Task 1 would have found them.
 
-At two countries you are told the country. At thirty you have to work it out, and it is not
-the country the signal lands in.
+Four of the six have to be built in before the third country is added. Adding them later
+means going back and redoing every country already running.
 
-Under the EU framework a service is regulated by the member state that has **jurisdiction**
-over the provider, which is broadly where it is established, not where it is watched. So a
-channel established in one member state and broadcast into eight others answers to one
-regulator for most purposes, not eight. Get that backwards and you apply eight sets of rules
-where one applies, or one where the destination state has invoked a derogation.
+### 1. Working out whose rules even apply
 
-This is not a tidy lookup even for the regulators. The directive's own recitals say that
-establishing jurisdiction means assessing factual situations against the
-directive's criteria, and that "The assessment of such factual situations might lead to
-conflicting results." There is machinery for exactly this: ERGA can be asked for
-"non-binding opinions on jurisdiction", on derogations from freedom of
-reception, and on measures addressing circumvention of jurisdiction, and member states
-must keep records carrying "information about the criteria on which
-jurisdiction is based". There is even a named failure mode where a provider establishes
-itself somewhere "in order to circumvent the stricter rules" that
-would otherwise apply.
+**The short version:** a TV channel does not have to follow the rules of the country where
+people are watching it. It usually follows the rules of the country where the channel company
+is based. Our system asks "which country?" and that turns out to be the wrong question.
 
-All four quoted phrases come from `EU-D1b`, Directive (EU) 2018/1808, already on disk in
-`sources/originals/`, and all four verify character for character against it. They were
-sitting in a source this project had collected and had not fully mined.
+**The longer version.** A channel can have its offices and its broadcasting licence in one
+country, and send its programmes out to viewers in many others. Say a channel is run out of
+Country A and people watch it in Countries A, B, C and D.
 
-**What this means for the build:** `country` is the wrong key on a decision. The key is the
-*regime* that applies to that transmission, and resolving it is a step the Task 1 flow does
-not contain. It needs the provider's place of establishment, the service's licence, and any
-destination-state derogation in force. That is per-service data, it changes when corporate
-structure changes, and no amount of reading the content will produce it.
+Whose rules does that channel have to follow?
 
-At two countries, both of which happened to be the country of establishment for the services
-in question, this was invisible. It is the single largest thing Task 1's design does not
-account for.
+The obvious guess is "all four, one set per country where it is watched". In Europe that guess
+is wrong. The channel follows **one** set of rules: Country A's, where the company is based.
+Not the rules of the countries where it is watched. The country where the company is based is
+usually also the country that gave it its licence.
 
-### 2. Experts become the binding constraint, not extraction
+This matters to us because of how the system is built. It takes a country, looks up that
+country's rules, and applies them. If we feed it the country where people are watching, we
+hand it the wrong rulebook, and everything after that is confidently wrong. The content was
+read correctly, the rules were quoted correctly, and the wrong rules were used.
 
-Extraction is cheap and gets cheaper. Sign-off does not. Thirty countries means thirty people
-with the standing to say "this is what the rule means here", each needing an agreed turnaround
-on amendments. That is a recruiting and retention problem, not an engineering one, and it is
-what actually caps the country count.
+It gets harder, because "which country is this company based in?" is not always obvious. A
+media company can have offices in several countries and it is a real question which one
+counts. The European rules themselves admit this. They say working it out means weighing up
+the facts of each case, and that **"The assessment of such factual situations might lead to
+conflicting results."** In other words, two countries can look at the same channel and each
+conclude it is theirs to regulate.
 
-The schedule follows from the slowest expert, not the slowest pipeline. Plan it as a staffing
-model with named people and an amendment SLA per country, and treat an unfilled country seat
-as a blocker on going live there, not as a backlog item.
+Because that happens, there is a body (ERGA) that countries can ask for
+**"non-binding opinions on jurisdiction"** when they disagree, and every country has to keep
+records showing **"information about the criteria on which jurisdiction is based"**, meaning
+the reasons it believes a given channel is its responsibility. There is even a rule aimed at
+companies that deliberately set up in an easygoing country **"in order to circumvent the
+stricter rules"** they would face elsewhere.
 
-### 3. Amendments stop being events and become a queue
+All four quoted phrases come from `EU-D1b`, Directive (EU) 2018/1808, which has been sitting
+in `sources/originals/` since the Task 1 source sweep, and all four verify character for
+character against it. The source was collected and not fully mined.
 
-At two countries an amendment is a thing that happens and you deal with it. At thirty, with
-several instruments each, something is always being amended. That is a queue with a backlog,
-and a queue needs triage, because not every amendment blocks decisions.
+**Why this never came up in Task 1.** We looked at UK rules for a UK channel and French rules
+for a French channel. Base country and viewing country were the same, so the difference was
+invisible. The two-country version of this problem does not exist.
 
-Triage by what the amendment touches: a change to a `bright_line` rule that decisions actually
-cite is urgent and should stop automated answers that depend on it; a change to a rule nothing
-has cited in six months can wait for the next scheduled pass. The table already records which
-rules decisions cite, so this is computable rather than a judgement call.
+**What it means for building.** The question the system needs answered is not "what country is
+this?" but **which rulebook applies to this channel.** Working that out is a step the Task 1
+flow does not have at all, and it cannot be answered by looking at the video. It needs facts
+about the company: where it is based, who licensed it, and whether any country it broadcasts
+into has formally objected to something it carries. That information changes when a company
+reorganises, not when a programme changes, so it belongs with the channel data described
+further down, not with the content.
 
-### 4. You cannot read your own sources any more
+### 2. Finding enough experts is what actually limits you
 
-At two countries I could read both, and the one translation problem is flagged in the table.
-At thirty, most sources are in languages nobody on the team reads, in scripts that are not
-Latin, sometimes in PDFs whose text layer is wrong.
+Reading a law and writing down its rules is the cheap part, and it keeps getting cheaper.
+Having someone qualified confirm that you read it correctly does not get cheaper.
 
-The quote checker keeps working, because byte comparison does not care what language it is in.
-But that is a smaller guarantee than it looks. It proves the quote was copied correctly. It
-cannot prove the right sentence was chosen, that the clause was not negated two lines later,
-or that a term of art means what a dictionary says. **Mechanical checks survive the language
-barrier and judgement does not**, which is precisely why point 2 above is the constraint.
+Every country needs a person who knows that country's broadcasting rules well enough to say
+"yes, that is what this means here". Thirty countries means thirty such people, each of whom
+also has to agree to a turnaround time when a law changes, because a law can change at any
+time and a rule nobody has re-checked is a guess.
 
-### 5. Failure has to be containable to one country
+Finding and keeping those thirty people is a hiring problem, not a software problem, and it is
+the thing that really caps how many countries you can cover. However fast the software gets,
+a country cannot go live until someone has signed off its rules. So plan it as a staffing
+list with real names against each country, and treat an empty seat as a reason not to launch
+there rather than as a task for later.
 
-At two countries, if the table is wrong you stop. At thirty, one country's bad extraction must
-not take down the other twenty-nine, and equally must not be hidden by them. A global pass
-rate of 96% can be twenty-nine countries at 99% and one at 20%, and the aggregate will look
-healthy while one market is being answered at random.
+### 3. Legal changes go from being events to being a constant stream
 
-So: every metric segmented by country, never reported only in aggregate, and a per-country
-circuit breaker. If a country's golden set drops below its threshold, that country stops
-serving automated decisions and escalates everything, while the rest keep running. This has to
-be built early because it changes how results are stored.
+With two countries, a law changing is an event. It happens, you notice, you deal with it.
 
-### 6. Schema changes become migrations
+With thirty countries, each relying on several documents, something somewhere is always
+changing. It stops being an event and becomes a steady stream of work, and a steady stream
+needs sorting, because some changes matter immediately and some can wait.
 
-Adding a field at two countries is an afternoon. At thirty it is a migration across thirty
-sets of rows, each of which may need its expert to re-confirm the rows that changed. The
-schema therefore has to be versioned, and rows have to record which version they were written
-against, so a change can be rolled out country by country instead of all at once.
+The useful way to sort them is by what the change touches. If it changes a clear-cut rule that
+decisions are actually using, it is urgent, and the system should stop giving automatic
+answers that depend on that rule until it is updated. If it changes a rule that no decision
+has used in six months, it can wait for the next scheduled review. The system already records
+which rules each decision used, so a computer can do this sorting. Nobody has to judge it.
 
-This is the real reason for the rollout advice further down: if the schema is still moving at
-country ten, every country after it inherits the flaw and every country before it needs
-revisiting.
+### 4. You stop being able to read your own sources
+
+With two countries I could read both. The one place where I had to rely on a translation is
+flagged in the table as a known weakness.
+
+With thirty, most of the laws will be in languages nobody on the team reads. Some will be in
+alphabets that are not the Latin one, some will read right to left, and some will be scanned
+documents where the computer's copy of the text is wrong even though the page looks fine.
+
+The good news is that the quote checker still works. It compares the quote we wrote down
+against the stored document letter by letter, and that comparison does not care what language
+either is in.
+
+The bad news is that this guarantee is smaller than it sounds. It proves the quote was copied
+correctly. It cannot prove we picked the right sentence, or that two lines later the law says
+"except when...", or that a word with a special legal meaning means what a dictionary says it
+means. **The automatic checks survive the language barrier. Human judgement does not.** That
+is exactly why point 2 above, finding experts, is the real limit.
+
+### 5. One country going wrong must not take down the rest
+
+With two countries, if the table is wrong you stop and fix it.
+
+With thirty, a problem in one country must not break the other twenty-nine. Just as important,
+it must not be *hidden* by the other twenty-nine. If you only look at the overall score, 96%
+correct could be twenty-nine countries at 99% and one country at 20%. The overall number looks
+healthy while one market is being answered close to randomly.
+
+Two things follow. First, every measurement is reported per country and never only as a
+combined figure. Second, each country needs its own automatic stop: if its test results drop
+below an agreed level, that country stops giving automatic answers and sends everything to a
+person, while the other countries carry on as normal. This has to be designed in early,
+because it changes how results are stored.
+
+### 6. Changing the shape of the table stops being easy
+
+The rules table has a fixed set of columns. Adding a new column, or changing what one means,
+is an afternoon's work when there are two countries in it.
+
+With thirty countries it is a much bigger job. Every country's rows have to be updated, and
+for each country the expert may need to look again at the rows that changed, because a column
+that means something slightly different is a row that has not really been checked.
+
+So the table's shape needs a version number, and every row needs to record which version it
+was written under. That way a change can be rolled out one country at a time instead of
+having to happen everywhere at once.
+
+This is the real reason for the rollout advice further down. If the shape of the table is
+still changing by the tenth country, every country added after that inherits the problem and
+every country added before it has to be revisited.
 
 ---
 
