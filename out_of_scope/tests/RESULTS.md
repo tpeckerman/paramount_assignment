@@ -14,18 +14,15 @@ The cause: the prompt escalated whenever a rule it used was a judgment call. But
 explain how to weigh things appear in every decision while deciding nothing themselves, so
 every decision escalated.
 
-## Fix: escalate on what changed the answer, and on the sign-off column
+## Fix: only send a case to a person when it matters
 
-Added to the decision prompt (`RUN_2_decide.md`):
+One line added to the decision prompt (`RUN_2_decide.md`):
 
-> **Decide who signs off, using `human_review_required`, not `determinacy`.**
-
-> **`rules_checked_not_triggered`** is for a rule you read and set aside, with one line
-> saying what was missing.
 > **Escalate on what is in `basis`**, not on what you were handed.
 
-Two plain definitions in the rules table also stopped demanding a person, since neither can
-set an hour, a rating or a condition.
+In plain words: the bar for human review went up. Before, any judgment rule in view sent the
+case to a person. Now only a rule that actually changed the answer can. Two definitions in
+the rules table also stopped asking for a person.
 
 ## Result: six cases re-run blind, all correct
 
