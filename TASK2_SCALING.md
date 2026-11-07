@@ -129,6 +129,39 @@ back on asking where the signal was sent up from. There is a documented case of 
 banned in the UK setting up a chain of shell companies specifically to make that question
 hard to answer.
 
+#### There is a public database for this, at least in Europe
+
+The question "which country regulates this channel?" is common enough that the European Union
+made answering it a legal requirement. Each country has to keep a list of the services it
+regulates, and those lists have to be published together in one public place.
+
+That place is **MAVISE**, run by the European Audiovisual Observatory. It is free, it is
+updated monthly, and the data comes from the national regulators themselves rather than from
+anyone's guesswork. It covers 42 European countries plus Morocco, and holds around 10,000 TV
+channels and 4,600 on-demand services. You can search by channel name and read off which
+country claims jurisdiction, and results download as a spreadsheet.
+
+For our purposes that is close to the lookup table this problem needs. It does not remove the
+need for a lawyer, because a database entry is a record rather than a ruling, but it turns
+"nobody knows" into "here is what the regulators themselves have registered, and here is the
+date it was last updated".
+
+It also shows how far jurisdiction drifts from where people watch. In one year's figures,
+**70% of cross-border TV channels in Europe fell under just three countries**: the
+Netherlands, Luxembourg and Spain. More than three quarters of Luxembourg's share was there
+because of where the satellite uplink sits, not because anyone in Luxembourg is watching.
+
+**The body that handles disputes publishes too.** ERGA, the group of European regulators,
+puts its documents online for free, including reports specifically on how jurisdiction is
+decided. Those are general guidance rather than rulings on individual channels, so they help
+you understand the test rather than telling you the answer for one channel.
+
+**What this does not cover: everywhere else.** MAVISE is Europe. There is no worldwide
+equivalent, no global registry, and no international body that settles it when two countries
+disagree. So for a European country the honest plan is "look it up and have it confirmed",
+and outside Europe it is "ask a local lawyer and write the answer down", which is slower and
+is the real cost of going worldwide.
+
 #### Why this gets worse worldwide, not better
 
 Everything above is Europe, which is the part of the world with the **most** agreement. Two
