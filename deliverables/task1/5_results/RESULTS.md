@@ -1,7 +1,7 @@
 # Results
 
 The main runs are saved in `runs/` as raw model output, so the claims here can be checked
-against the files. `FIRST_RUN_ALL_ESCALATED.json` summarizes the first run.
+against the files. `runs/TC-01-08_run2_all_escalated.json` summarizes the first run.
 
 ## Problem: it sent every decision to a person
 
