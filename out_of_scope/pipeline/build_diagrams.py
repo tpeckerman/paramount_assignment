@@ -94,7 +94,7 @@ def build_svg() -> str:
     # rules store
     o.append('<path d="M1090,85 L1090,175 A140,16 0 0 0 1370,175 L1370,85 A140,16 0 0 0 1090,85 '
              'A140,16 0 0 0 1370,85" fill="#f4f5f7" stroke="#6b7280" stroke-width="1.5"/>')
-    text(1230, 128, ["RULES TABLE, DECISIONS TABLE,", "TIMELINE", "approved entries only, numbered versions"])
+    text(1230, 128, ["RULES TABLE, DECISIONS TABLE,", "TIMELINE", "entries that passed the checks, numbered versions"])
 
     # lane 2
     box(105, 375, 130, 70, ["Program", "comes in"], "code")

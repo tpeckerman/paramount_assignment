@@ -115,8 +115,11 @@ verbatim_quote    "Pour les autres services de television, ces programmes ne
                    doivent pas etre diffuses avant 22 heures."
 source_doc        FR-R1c, art. 3
 valid_from        2014-04-09
-status            approved
+status            active
 ```
+
+`active` means the rule passed the automatic checks. Nobody signs it off. Old rules are
+closed with an end date, never deleted.
 
 **Check.** The quote must appear character for character in the stored file.
 
