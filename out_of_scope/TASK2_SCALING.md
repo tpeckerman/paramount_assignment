@@ -233,7 +233,6 @@ points, to be reset after the first month of real use.
 | Applying mechanical rules | Automated |
 | Drafting rule rows from a legal document | Model, then code checks |
 | Describing a program | Model |
-| Deciding what a threshold means | Score the case against past regulator decisions for similarity (cosine and ROUGE-L). A close match gets that decision's outcome. Expert only when no decision is close |
 | Confirming a translation is faithful | Machine-translate the original-language text and score it against the English quote (BLEU and ROUGE). Expert only when the score is low |
 | Resolving two sources that disagree | Code ranks them by authority (law, then regulator rules, then guidance). Expert only when they rank equally |
 | Confirming which regulator covers a channel | Code looks it up in the MAVISE database. Expert only when it has no record or the records disagree |
