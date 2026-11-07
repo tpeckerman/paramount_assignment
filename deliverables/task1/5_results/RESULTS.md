@@ -9,14 +9,20 @@ The first run covered eight cases, run by agents that had never seen the project
 expected answers. **17 of 17 decisions said "a person must check this."** That included a
 cookery show where someone puts a plaster on a cut finger.
 
-The cause: every rule in the table has a flag saying whether a person must sign off on it.
-Two rules, plain definitions that apply to every program, had that flag set. So every program
-ran into them and went to a person.
+Two causes:
 
-## Fix: unflag the two definitions, and tell the prompt which flag to read
+1. **Two UK rules were marked "a person must check this" although they restrict nothing.**
+   UK-CTX-010 says a bigger audience needs more justification. UK-CTX-011 says content can be
+   justified and the time slot still be wrong. They are guidance for reading other rules, and
+   they apply to every UK program, so every UK decision hit them.
+2. **The prompt read the wrong column.** Each rule has one column for how it applies (fixed,
+   conditional, or judgment) and another for whether a person must check it. The prompt
+   escalated on the first, which sent almost everything to a person.
 
-The flag was cleared on the two definitions, since a definition cannot set an hour or a
-rating. The decision prompt (`RUN_2_decide.md`) now says which flag decides:
+## Fix
+
+The person-must-check mark was removed from UK-CTX-010 and UK-CTX-011. The decision prompt
+(`RUN_2_decide.md`) now names the right column:
 
 > `human_review_required` says **whether a person must sign it off**. Escalate on this one.
 
