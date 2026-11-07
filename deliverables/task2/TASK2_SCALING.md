@@ -219,12 +219,14 @@ points, to be reset after the first month of real use.
 | Applying mechanical rules | Automated |
 | Drafting rule rows from a legal document | Model, then a person |
 | Describing a program | Model, then a person if borderline |
-| **Deciding what a threshold means** | **Local expert** |
-| **Confirming a translation is faithful** | **Local expert** |
-| **Resolving two sources that disagree** | **Local expert** |
-| **Confirming which regulator covers a channel** | **Local expert** |
+| Deciding what a threshold means | Model proposes from similar past regulator decisions. Expert only when no decided case exists or confidence is low |
+| Confirming a translation is faithful | A second, different model translates the quote back and compares. Expert only when the two differ |
+| Resolving two sources that disagree | Code ranks them by authority (law, then regulator rules, then guidance). Expert only when they rank equally |
+| Confirming which regulator covers a channel | Code looks it up in the MAVISE database. A model reads regulator registers elsewhere. Expert only when sources disagree or none is found |
 | Final call on anything the system escalated | Compliance reviewer |
 
-Everything mechanical can be automated. Every judgment threshold needs a person. Of Task 1's 105
-rules, 45 turn on a judgment, and one decided case exists to calibrate them. Finding qualified
-reviewers in each country is the real constraint, so start hiring before the engineering.
+A person is needed where there is nothing to check a model against: a judgment rule with no
+decided cases (Task 1 has 45 judgment rules and one decided case), or two sources of equal
+rank that disagree. Models checking models share blind spots, so the checking model should be
+a different one from the model that did the first pass. Finding qualified reviewers in each
+country is still the real constraint, so start hiring before the engineering.
