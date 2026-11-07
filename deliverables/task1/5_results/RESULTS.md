@@ -57,10 +57,14 @@ rate below, 17 of 17, is the old number and should not be quoted as current.
 every assembled decision context, and every RUN 2 decision is committed, so any claim below
 can be checked against the actual output rather than taken on my word.
 
-They were run **blind**. Agents that had never seen this project were given the
-prompt and the input and nothing else, and were explicitly barred from reading the expected
-answers or, during RUN 1, the rules. An author running their own tests cannot find certain
-defects, because they already know what the output should say. Also, a different model was used.
+They were run **blind**. Agents that had never seen this project were given the prompt and the
+input and nothing else, and were explicitly barred from reading the expected answers or,
+during RUN 1, the rules. An author running their own tests cannot find certain defects,
+because they already know what the output should say.
+
+They were separate agents with no memory of the work, not a separate model. I wrote the rules
+they applied, so a misreading in the table is still one they would faithfully reproduce. That
+is C-08 and only an independent re-derivation closes it.
 
 ## The headline result: it escalates everything
 
