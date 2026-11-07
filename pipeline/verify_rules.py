@@ -290,6 +290,85 @@ SERVICE_VOCAB = {
 }
 
 
+def clock_times(s: str) -> set[str]:
+    """Every clock time in a string, in any spelling the sources use."""
+    out: set[str] = set()
+    s = s or ""
+    for m in re.finditer(r"(\d{1,2})\s*h\s*(\d{2})?", s):          # 22 h 30, 22h
+        out.add(f"{int(m.group(1)):02d}:{m.group(2) or '00'}")
+    for m in re.finditer(r"\b(\d{1,2}):(\d{2})\b", s):             # 21:00
+        out.add(f"{int(m.group(1)):02d}:{m.group(2)}")
+    for m in re.finditer(r"\b([01]\d|2[0-3])([0-5]\d)\b", s):      # 2100, 0530
+        out.add(f"{m.group(1)}:{m.group(2)}")
+    return out
+
+
+def check_times_against_quotes(rows: list[dict]) -> tuple[list[str], int, int]:
+    """Do the HOURS in a row actually appear in the quote that is meant to prove them?
+
+    This closes the hole that made the quote check weaker than it read. Verifying that a
+    quote exists in the source proves the quote is real. It proves nothing about the row
+    around it, and the row is what the decision engine uses. A reviewer demonstrated this by
+    changing a watershed from 21:00 to 19:00, leaving the quote untouched, and watching
+    `--with-quotes` pass. It did, because nothing compared the two.
+
+    Running it for the first time found a real defect: UK-SCH-003 sets a 20:00 watershed for
+    unprotected premium film services and quoted the sentence saying 2100. The rule was
+    right and its evidence was the wrong sentence.
+
+    Scope, stated because the denominator is the point: this can only check rows where BOTH
+    the quote and the machine field contain a time. That is a minority of the table, and a
+    row whose quote carries no time is not verified by this, merely unexamined.
+    """
+    bad, checkable = [], 0
+    for r in rows:
+        want = clock_times(r["time_rule_machine"])
+        have = clock_times(r["verbatim_quote"])
+        if not want or not have:
+            continue
+        checkable += 1
+        # A row may legitimately carry a bound that its own sentence does not state, where
+        # the bound comes from a general rule in the same instrument. UK-SCH-003 is the
+        # case: the source gives premium film services a 2000 watershed and says nothing
+        # about when it ends, because the end is the general 0530. That is allowed, but it
+        # has to be DECLARED in the row rather than assumed by the checker, so the exemption
+        # is visible to a reader of the table and not buried in this file.
+        have |= clock_times(
+            " ".join(re.findall(r"inherits_time=(\S+)", r["exceptions_conditions"] or "")))
+        missing = sorted(want - have)
+        if missing:
+            bad.append(f"{r['rule_id']}: time_rule_machine claims {sorted(want)} but its "
+                       f"quote only supports {sorted(have)}. Unsupported: {missing}. "
+                       f"Either the hours are wrong or the quote is the wrong sentence.")
+    return bad, checkable, len(rows)
+
+
+def check_precheck_agrees(rows: list[dict]) -> list[str]:
+    """precheck.py names prohibitions that need a judgement. The table must agree.
+
+    These two files encoded the same fact independently and drifted: precheck listed
+    FR-PRO-001 and FR-PRO-003 as judgements, and the table called them bright lines. Neither
+    was wrong on its own terms, which is why nothing caught it, and the table's version
+    inflated the count of rules that can be applied mechanically.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "_precheck", Path(__file__).resolve().parent / "precheck.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    by_id = {r["rule_id"]: r for r in rows}
+    bad = []
+    for rid in getattr(mod, "JUDGEMENT_PROHIBITIONS", {}):
+        row = by_id.get(rid)
+        if row is None:
+            bad.append(f"{rid}: precheck.py names it, the table does not have it")
+        elif row["determinacy"] != C.JUDGMENT_DETERMINACY:
+            bad.append(f"{rid}: precheck.py treats it as needing judgement, the table "
+                       f"says determinacy={row['determinacy']!r}. One of them is wrong.")
+    return bad
+
+
 def check_service_vocab(rows):
     bad = []
     for r in rows:
@@ -337,6 +416,13 @@ def main() -> int:
                  for d in check_sources_tab(rows)]
     problems += [f"{rid}: service_type '{tok}' is not in the controlled vocabulary"
                  for rid, tok in check_service_vocab(rows)]
+
+    # Always on, not gated behind --with-quotes: this compares two fields of the same row
+    # and needs no source document, so there is no reason for it ever to be skipped.
+    time_bad, time_checkable, time_total = check_times_against_quotes(rows)
+    problems += time_bad
+    problems += check_precheck_agrees(rows)
+
     if args.with_quotes:
         problems += check_quotes(rows)
 
@@ -345,6 +431,9 @@ def main() -> int:
     print("  by status    :", dict(Counter(r["status"] for r in rows)))
     print("  by determinacy:", dict(Counter(r["determinacy"] for r in rows)))
     print("  needs review :", sum(1 for r in rows if r["human_review_required"] == "yes"))
+    print(f"  HOURS vs QUOTE: {time_checkable} of {time_total} rules have a time in both "
+          f"the machine field and the quote, so only those were compared. The other "
+          f"{time_total - time_checkable} are NOT verified on this axis, merely unexamined.")
     print("  GROUND TRUTH USABLE (status=approved):",
           sum(1 for r in rows if r["status"] == C.USABLE_STATUS))
 

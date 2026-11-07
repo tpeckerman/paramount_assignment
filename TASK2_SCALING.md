@@ -536,7 +536,7 @@ never carried anything. It is written and untested.
 in reading it. A crisp rule I am unsure I transcribed is `bright_line` + `unverified`. Merge
 them and you lose the ability to express that.
 
-**Rating, hours and other restrictions are three axes, and they are substitutes.** One rule
+**Rating, hours and other restrictions are three axes. They can substitute for each other and they can also stack, and a model that assumes only one direction gets the other wrong.** One rule
 reads `any_time; requires=mandatory_daytime_protection`; another disapplies the watershed
 entirely while that gate is on. A two-axis model reports "any time" and drops the condition
 that earned it, **wrong, not merely incomplete.** This is not a quirk: the EU framework
@@ -855,7 +855,8 @@ golden set fails. If it still passes, the test set does not exercise that rule.
 
 **Report every check's denominator beside its result.** This one cost weeks here. The quote
 check reported "50 verified, 0 failed, 0 skipped" and that read as full coverage; in fact only
-50 of 102 rules carried a quote and the rest were passed over in silence, because the check
+only half the rules then in the table carried a quote and the rest were passed over in
+silence, because the check
 iterated the rules that had one. Six of the unchecked were absolute prohibitions. **A coverage
 number that counts only the rows which opted in will always report success.** At thirty
 countries nobody will notice. Print the denominator, and fail the build when a rule class that

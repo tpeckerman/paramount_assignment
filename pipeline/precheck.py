@@ -27,6 +27,7 @@ import csv
 import difflib
 import json
 import pathlib
+import re
 import sys
 
 import sys
@@ -35,12 +36,17 @@ import constants as C
 
 
 # Prohibitions whose trigger is a STATED FACT rather than a reading of the content.
-CERT_PROHIBITIONS = {
-    "r18": ("UK-FLM-006", "BBFC R18-rated films must not be broadcast."),
-    "refused": ("UK-FLM-001", "No film refused classification by the BBFC may be broadcast."),
-    "refused classification": ("UK-FLM-001",
-                              "No film refused classification by the BBFC may be broadcast."),
-}
+# Matched as PATTERNS, not as exact strings. The first version compared the rating against
+# three literals and a reviewer walked straight through it: "BBFC R18", "R-18", "R18+" and
+# "refused classification (RC)" all returned "no prohibition" and went on to the model.
+# A gate that only stops the spelling you thought of is not a gate, and this one guards the
+# two prohibitions that nothing can lift.
+CERT_PROHIBITIONS = (
+    (re.compile(r"(?:^|[^a-z0-9])r[\s._-]*18(?:[^a-z0-9]|$)", re.I),
+     "UK-FLM-006", "BBFC R18-rated films must not be broadcast."),
+    (re.compile(r"refus|reject|\brc\b|not[\s_-]*class", re.I),
+     "UK-FLM-001", "No film refused classification by the BBFC may be broadcast."),
+)
 
 # The six that genuinely need the content read, kept here so the split is visible rather than
 # implied. Every one turns on a threshold a person or a model has to weigh.
@@ -63,9 +69,9 @@ def check_certificate(observations: dict) -> list[dict]:
     """Fire any prohibition whose trigger is a stated certificate. No model involved."""
     hits = []
     for cert in observations.get("asset", {}).get("existing_certificates", []) or []:
-        rating = str(cert.get("rating", "")).strip().lower()
-        for key, (rule_id, text) in CERT_PROHIBITIONS.items():
-            if rating == key:
+        rating = str(cert.get("rating", "")).strip()
+        for pattern, rule_id, text in CERT_PROHIBITIONS:
+            if pattern.search(rating):
                 hits.append({"rule_id": rule_id, "trigger": f"certificate = {cert.get('rating')}",
                              "decision": "PROHIBITED", "rule": text,
                              "note": "Decided in code. No context, hour or access control "

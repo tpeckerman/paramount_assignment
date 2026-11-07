@@ -38,7 +38,8 @@ this prompt, and your rules only from `<rules>`.
 
 ## The trap this prompt exists to avoid
 
-**Three outputs, not two, and they are substitutes for each other.**
+**Three outputs, not two. They can substitute for each other, and they can also stack.**
+Both directions matter, and assuming only one is how answers go wrong.
 
 | | |
 |---|---|
@@ -56,6 +57,12 @@ None implies another:
   hour *provided the gate is in place*, and one rule disapplies the watershed entirely while
   it is. Report the hours without the condition and you are wrong; report a bar without the
   available measure and you are wrong the other way.
+- **But a condition does not always replace the hours. Sometimes it is on top of them.**
+  French category V needs the 00:00 to 05:00 window **and** the decoder lock. UK Rule 1.18
+  needs its window **and** restricted access. Read each rule's own wording: `requires=` with
+  `any_time` is a substitute, `requires=` alongside a window is cumulative. Treating every
+  condition as an unlock is how a system clears something at noon that is barred until
+  midnight.
 
 So run three independent passes, then check the third against the second. Never derive one
 from another.
@@ -144,16 +151,25 @@ These are the cases that go wrong. Each shows the trap and the correct shape.
 
 ### 1. The rating does not give the hours
 
-> BBFC 15 film, free-to-air, UK and France.
+> BBFC 15 film, free-to-air, UK and France. The observations record sustained violence
+> with injury detail.
 
 ```
 UK  classification: no_per_programme_rating   <- not "15"
     hours: not before 21:00  [UK-SCH-002]
-    note: the UK issues no rating for linear TV; the certificate is evidence feeding
-          UK-FLM-010, not the answer.
+    why:  NOT because the certificate is 15. Because the OBSERVATIONS record material
+          unsuitable for children, which is what UK-SCH-002 turns on. The certificate is
+          evidence feeding UK-FLM-010, not the hours.
 FR  classification: depends on service type   <- do not pick one
     hours: branch. General channel vs cinema/PPV differ, and the weekday moves it.
 ```
+
+**Read the `why` line carefully, because the trap is subtle.** A certificate and a time can
+appear together in a correct answer without one causing the other. If the only thing you are
+told is "BBFC 15" and the observations are empty, the honest UK answer is **not** 21:00, it
+is that there is nothing to apply a scheduling rule to and the description is inadequate.
+Deriving an hour from a certificate is the error this whole example exists to show, so do not
+reproduce it while quoting the example.
 
 ### 2. Identical content, different answer
 

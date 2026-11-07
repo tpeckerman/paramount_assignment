@@ -26,7 +26,7 @@ shown to the check at all.
 | **The full prompt** | [`prompts/BUILD_rules_from_sources.md`](prompts/BUILD_rules_from_sources.md) | Turns a law into rules. Run once per document |
 | | [`prompts/RUN_1_describe_content.md`](prompts/RUN_1_describe_content.md) | Reads the content. Deliberately does not know the rules |
 | | [`prompts/RUN_2_decide.md`](prompts/RUN_2_decide.md) | Applies the rules and decides. This is the one the brief asks for |
-| **The test cases** | [`tests/CASES.md`](tests/CASES.md) | Five cases on real media, including a back-test against a decided regulator case |
+| **The test cases** | [`tests/CASES.md`](tests/CASES.md) | Eight cases on real media. Two have known real-world outcomes |
 | **The results of the runs** | [`tests/RESULTS.md`](tests/RESULTS.md) | What happened, the one failure, and the two bugs it exposed |
 | **Design choices** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Seven choices and why, plus the limits |
 | **Models and tools used** | [`TASK1_WRITEUP.md`](TASK1_WRITEUP.md) | Last section |
@@ -194,7 +194,7 @@ should belong to at least two parties. The trustworthy results are the **failure
 those survived the bias rather than being produced by it. Bright-line rules need independent
 re-derivation by someone who has not seen this table, which is conflict C-08.
 
-The weakest part of the table is calibration: 38 of 103 rules are judgment-based and exactly
+The weakest part of the table is calibration: 45 of 103 rules are judgment-based and exactly
 one decided case has been collected. That is an anchor, not a scale.
 
 ## Sources in scope

@@ -49,7 +49,7 @@ part. It is closer to the reverse.
 | | Deterministic? | Example |
 |---|---|---|
 | Deciding **what is in** the content | **No.** This is where the judgment lives. | Is this violence "presented repeatedly"? Is this treatment "derogatory"? Is the method "easily imitable"? |
-| Applying rules **once that is settled** | **Largely yes.** 45 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
+| Applying rules **once that is settled** | **Largely yes.** 37 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
 
 The rule-application half is close to a lookup, which is why most of the effort here went into
 making the table correct and checkable rather than into prompt wording.
@@ -202,7 +202,7 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **38 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
+- **45 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
   table. Exactly one decided enforcement case has been collected, so the table can say "a
   human must decide" but cannot say where the line sits. The guidance names roughly twelve
   more enforcement bulletins; collecting them is the highest-value work left (C-07).
@@ -238,7 +238,7 @@ check + vocabulary), `fetch_originals.py`, `fetch_with_browser.py` (Playwright),
 `import_saved.py`, `run_decision.py`, `build_inventory.py`, `build_timeline.py`.
 
 **GitHub Actions**, CI runs the verifier, the quote check and a regenerate-and-diff of the
-CSV mirrors so the binary table cannot drift unnoticed. A second workflow fetches sources.
+CSV mirrors so the binary table cannot drift unnoticed. One workflow, `verify.yml`; an earlier claim here that a second workflow fetches sources was wrong, there is no such workflow.
 
 **Removed:** a Colab notebook that converted the table to a Google Sheet. Its integrity
 checks had become a weaker, drifting copy of `verify_rules.py`, it still referred to rule

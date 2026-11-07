@@ -39,18 +39,25 @@ jobs:
       - name: Report source-document status
         continue-on-error: true
         run: |
-          # Informational only. sources/originals/ is intentionally empty in the
-          # repo (conflict C-04) so this is expected to report everything absent
-          # until someone runs fetch_originals.py and commits the lockfile.
+          # Genuinely informational: reports link health and drift, which depend on
+          # the network and on publishers, so a red build here would mean someone
+          # else's website changed rather than this repo being wrong.
           python pipeline/fetch_originals.py --check || true
 
       - name: Inventory is current
         run: python pipeline/build_inventory.py --check
 
       - name: Quote integrity
-        continue-on-error: true
-        run: |
-          # Becomes meaningful once sources/originals/ is populated. This is the
-          # check that catches silent extraction errors, so it is wired up now
-          # rather than later.
-          python pipeline/verify_rules.py --with-quotes || true
+        # BLOCKING. This used to carry continue-on-error AND `|| true`, dating from
+        # when sources/originals/ was empty and every quote was unverifiable. All 20
+        # sources have been collected since, so the check works, and leaving it
+        # non-blocking meant three documents claimed a rule without a quote "fails
+        # the build" while nothing of the sort happened. A reviewer blanked a quote
+        # and CI stayed green.
+        run: python pipeline/verify_rules.py --with-quotes
+
+      - name: Test-case claims and stale numbers in prose
+        run: python pipeline/verify_cases.py
+
+      - name: Process diagram renders
+        run: python pipeline/build_diagrams.py --check

@@ -84,6 +84,26 @@ def doc_count_claims() -> list[str]:
     total = len(rows)
     wrong = []
 
+    # Bare totals: "103 rules", "103 approved". A reviewer changed the README to say
+    # "104 rules" and this check passed, because it only matched the "N of M rules are X"
+    # shape. A narrow check that reports success is the defect this repo keeps finding.
+    for doc in sorted(C.ROOT.rglob("*.md")):
+        if "originals" in str(doc):
+            continue
+        text = doc.read_text(encoding="utf-8")
+        for m in re.finditer(r"\b(\d{2,4}) rules\b", text):
+            n = int(m.group(1))
+            # Only flag numbers close enough to be a claim about the table's size; a
+            # sentence like "35 rules carried no quote" is a real subset, not a total.
+            if abs(n - total) <= 10 and n != total:
+                wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, table holds {total}")
+        for m in re.finditer(r"\b(\d{2,4}) approved\b", text):
+            n = int(m.group(1))
+            live_approved = sum(1 for r in rows if r["status"] == C.USABLE_STATUS)
+            if abs(n - live_approved) <= 10 and n != live_approved:
+                wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, "
+                             f"table has {live_approved} approved")
+
     # A file count in prose drifts the first time a script is added or deleted.
     words = {13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen",
              17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty"}

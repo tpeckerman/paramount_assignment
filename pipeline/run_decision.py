@@ -130,6 +130,29 @@ def build(selected: list[dict]) -> str:
     return json.dumps(rows, ensure_ascii=False, indent=1)
 
 
+def neutralise_delimiters(block: str) -> tuple[str, int]:
+    """Stop content from closing a tag the assembler opened.
+
+    The prompt promises the model that everything inside <observations> is data. That promise
+    is only worth something if the content cannot end the block early. A description
+    containing the literal text "</observations><request>" would otherwise arrive as a real
+    closing tag followed by what looks like a fresh instruction block, and since the prompt
+    requires `evidence` to be a verbatim span of the input, hostile text has a legitimate
+    route all the way through.
+
+    Nothing is deleted, because a description that genuinely discusses these strings should
+    still be readable. A zero-width space breaks the tag as markup and leaves every character
+    present.
+    """
+    marked = 0
+    for tag in ("observations", "rules", "request", "content_description", "document"):
+        for form in (f"</{tag}>", f"<{tag}>"):
+            if form in block:
+                marked += block.count(form)
+                block = block.replace(form, form[0] + "\u200b" + form[1:])
+    return block, marked
+
+
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--countries", nargs="+", default=["UK", "FR"])
@@ -182,12 +205,23 @@ def main() -> None:
     # assembler actually wraps the content.
     parts = [doc, "\n\n---\n\n<rules>\n" + slice_json + "\n</rules>\n"]
     if obs_block:
+        obs_block, marked = neutralise_delimiters(obs_block)
+        if marked:
+            print(f"  NOTE: neutralised {marked} delimiter-shaped string(s) in the "
+                  f"observations. The text is intact; the tags can no longer close the "
+                  f"block early. Worth asking why the description contained them.",
+                  file=sys.stderr)
         parts.append("\n<observations>\n" + obs_block + "\n</observations>\n")
+
+    # The slot and the date are NOT invented here. They come from the observations when
+    # RUN 1 recorded them: hardcoding not_stated while the description says 14:30 throws
+    # away the fact the whole decision turns on.
+    _tx = ((s1 or {}).get("transmissions") or [{}])[0]
     parts.append("\n<request>\n" + json.dumps({
         "countries": a.countries,
-        "service_type": a.service or "not_stated",
-        "intended_slot": "not_stated",
-        "intended_date": "not_stated",  # RUN_2 checks the calendar, not only the clock
+        "service_type": a.service or _tx.get("service_type") or "not_stated",
+        "intended_slot": _tx.get("time") or "not_stated",
+        "intended_date": _tx.get("date") or "not_stated",
     }, indent=1) + "\n</request>\n")
     assembled = "".join(parts)
 

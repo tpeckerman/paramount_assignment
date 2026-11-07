@@ -195,7 +195,7 @@ misattribution, which only became visible once the quote existed to be checked.
 
 ## Limits
 
-- **38 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
+- **45 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
   not a scale. The guidance names about a dozen more; collecting them is the highest-value
   work left.
 - **Author equals grader**, except for TC-01, which is itself not a clean hold-out.
@@ -226,7 +226,7 @@ It selected 31 of 103 rules, and all three rules these cases turn on were among 
 | `UK-NUD-001` | Rule 1.21 | `judgment_based` | nudity, escape is context |
 
 That matters because the whole point of these cases is the difference between those escape
-clauses, and a rule that never reaches the engine cannot be applied. TC-02 failed in exactly
+clauses, and a rule that never reaches the engine cannot be applied. TC-03 failed in exactly
 that way: the rule was in the table and the selection step dropped it.
 
 `UK-SEX-002` (Rule 1.18) was correctly **not** selected, being restricted to a service type
