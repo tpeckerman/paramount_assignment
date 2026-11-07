@@ -82,17 +82,32 @@ def check_categories(observations: dict) -> list[str]:
 
 
 def main() -> int:
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
         print(__doc__)
         print("usage: precheck.py <run1_output.json>")
+        return 0 if len(sys.argv) > 1 else 2
+
+    path = pathlib.Path(sys.argv[1])
+    if not path.is_file():
+        print(f"no such file: {path}")
         return 2
-    obs = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
+    try:
+        obs = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        print(f"{path} is not valid JSON: {e}")
+        print("RUN 1 must emit JSON only. Prose around the object is itself a defect.")
+        return 2
 
     bad = check_categories(obs)
     if bad:
-        print("CONTROLLED VOCABULARY:")
+        print("CONTROLLED VOCABULARY, this output cannot be decided on:")
         for b in bad:
             print(f"  - {b}")
+        print("\nFix the extraction and re-run. An out-of-vocabulary category does not "
+              "produce a wrong answer, it produces a complete-looking answer with the "
+              "observation missing, which is the failure mode this whole pipeline is "
+              "built against.")
+        return 2
 
     hits = check_certificate(obs)
     if hits:

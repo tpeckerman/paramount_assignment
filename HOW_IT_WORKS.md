@@ -62,6 +62,62 @@ flowchart TB
 Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
 run **once per showing**.
 
+### What happens when a rule does not pass
+
+Step 7 is not pass-or-bin. A rule that fails a check gets a **status**, and the status decides
+whether a decision may use it. Only `approved` rules are ever handed to step 12.
+
+```mermaid
+flowchart LR
+    N["A rule is written<br/>from a source document"]:::ai
+    Q{"Is the quote really<br/>in the document?"}:::det
+    V{"Is the source current,<br/>and is it the primary text?"}:::det
+    E{"Expert agrees?"}:::human
+
+    N --> Q
+    Q -- no --> FIXQ["Fix the quote<br/>or the source"]:::ai
+    FIXQ --> Q
+    Q -- yes --> V
+    V -- "source not collected" --> D["DRAFT<br/>we know the rule exists,<br/>not what it says"]:::bad
+    V -- "source is out of date" --> U["UNVERIFIED<br/>quote is real,<br/>vintage is wrong"]:::bad
+    V -- ok --> E
+    E -- no --> U
+    E -- yes --> A["APPROVED<br/>usable for decisions"]:::good
+
+    A -- "the law changes" --> S["SUPERSEDED<br/>true about the past,<br/>end-dated, kept"]:::old
+    S -.-> A2["A new APPROVED row<br/>replaces it"]:::good
+
+    D -. "source finally collected" .-> Q
+    U -. "re-checked against<br/>the current text" .-> Q
+
+    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
+    classDef human fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
+    classDef good fill:#d6eade,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef bad fill:#f6dada,stroke:#9e2b2b,stroke-width:2px,color:#411
+    classDef old fill:#f1efea,stroke:#6b6b6b,stroke-width:2px,color:#333
+```
+
+**How a rule actually ends up in each state.** Every one of these has happened here.
+
+| Status | How it happens | The real case |
+|---|---|---|
+| `draft` | You learn a rule exists from a source that **is not the rule**. You can write down that it binds, but not what it demands. | French channels each sign an individual agreement with the regulator. An enforcement decision cited those agreements, which proved they exist and bind, but the agreements themselves are not published centrally. |
+| `unverified` | Either the source could not be read yet, or it was read and something is off. The quote can be real and the document real while the **vintage** is wrong. | Two rules cited guidance from 2015 that a 2018 statement had restructured. Correct quote, correct document, superseded edition. |
+| `superseded` | The law changed. The old row is not wrong; it was correct until a date. | A 2014 amendment broadened a French category. The old wording stays, end-dated, because explaining a decision made in 2013 needs the rule as it stood in 2013. |
+| `approved` | Quote verified against the stored document, fields valid, source current, expert agreed. | 103 of 103 rules. |
+
+Two things follow from this that are easy to miss.
+
+**A rule can be correct and still unusable.** `draft` is not a complaint about quality. It is the
+table being honest that a whole layer of binding obligation exists which it cannot describe,
+so a decision for a French channel should say "check the channel's own agreement" rather than
+implying the general law is the whole answer.
+
+**Deleting a superseded rule breaks the past.** The question a regulator asks is "why did you
+clear that programme in 2013?", and answering it needs the rule as it was then, not as it is
+now.
+
 ### Why only three steps use a model
 
 The rule applied here is: **if a step can be done by comparing strings, it must not be done by
@@ -107,15 +163,15 @@ flow runs for thirty countries instead of two.
 
 | Steps | Task 1 | What Task 2 asks about them |
 |---|---|---|
-| 1, 2, 3 — fetch and validate the document | Deliverable: *sources, with links and scope* | Source collection at scale: who finds them, how you know a document is current, what happens on amendment |
-| 4 — write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country; which differences are data rather than code |
-| 5, 6 — quote and vocabulary checks | **Not asked for** | **Testing for correctness.** Task 2 asks this directly, and these are the answer |
-| 7 — expert sign-off | Not asked for | **Automate versus local expert.** The one step that cannot scale by engineering |
-| 8 — describe the content | Deliverable: *the prompt* | Shared. Same everywhere |
-| 9, 10 — vocabulary and prohibition gates | Not asked for | Shared logic, country data |
-| 11 — pick the rules | Deliverable: *the prompt* | Where "what looks shared and is not" bites |
-| 12 — decide | Deliverable: *the prompt*, plus *reasoning with rule references* | Shared. The three passes do not change per country |
-| 13, 14 — citation and clear-cut checks | Deliverable: *missing information or need for human review* | **Measurement.** The escalation rate is the metric that says whether this is working |
+| 1, 2, 3, fetch and validate the document | Deliverable: *sources, with links and scope* | Source collection at scale: who finds them, how you know a document is current, what happens on amendment |
+| 4, write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country; which differences are data rather than code |
+| 5, 6, quote and vocabulary checks | **Not asked for** | **Testing for correctness.** Task 2 asks this directly, and these are the answer |
+| 7, expert sign-off | Not asked for | **Automate versus local expert.** The one step that cannot scale by engineering |
+| 8, describe the content | Deliverable: *the prompt* | Shared. Same everywhere |
+| 9, 10, vocabulary and prohibition gates | Not asked for | Shared logic, country data |
+| 11, pick the rules | Deliverable: *the prompt* | Where "what looks shared and is not" bites |
+| 12, decide | Deliverable: *the prompt*, plus *reasoning with rule references* | Shared. The three passes do not change per country |
+| 13, 14, citation and clear-cut checks | Deliverable: *missing information or need for human review* | **Measurement.** The escalation rate is the metric that says whether this is working |
 
 Two things worth drawing out.
 
@@ -168,7 +224,7 @@ job is reading law. It runs 20 times, once per source, and again whenever a regu
 something.
 
 Each row carries a `verbatim_quote` that appears character for character in the stored file.
-**All 102 approved rules do**, and a rule without one fails the build.
+**All 103 approved rules do**, and a rule without one fails the build.
 `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
@@ -190,7 +246,20 @@ It also records what it was **not** told. `not_stated` is a deliverable, not an 
 
 Code, not a prompt: `pipeline/precheck.py` then `pipeline/run_decision.py`
 
-It picks the rules that could apply: matching country, matching service
+`precheck.py` stops the run rather than warning about it, and says which of the two gates
+stopped it:
+
+| exit | meaning |
+|---|---|
+| `0` | both gates clear, continue to the decision prompt |
+| `1` | a certificate triggers an absolute prohibition. The answer is already known, so no model is asked |
+| `2` | the extraction is unusable: a category outside the controlled list, or output that is not valid JSON. Fix and re-run |
+
+Exit `2` matters more than it looks. An out-of-vocabulary category does not cause an error. It
+causes the observation to match no rule, so the answer comes back looking complete with that
+observation silently absent, which is the failure mode this whole pipeline is built against.
+
+Then `run_decision.py` picks the rules that could apply: matching country, matching service
 type, matching content category, plus a set that is **always** included.
 
 That last part exists because of a real bug. Access-control rules describe how a programme is

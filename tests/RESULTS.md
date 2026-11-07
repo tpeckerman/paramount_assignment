@@ -25,7 +25,7 @@ audit any single claim without trusting me.
 
 ---
 
-## TC-01 — Back-test against a decided case
+## TC-01: Back-test against a decided case
 
 The one case where the right answer is not my opinion. Ofcom's published finding on *Toofan*
 (NTV, 29 May 2026, 11:30) is the benchmark.
@@ -52,7 +52,7 @@ the main outstanding work.
 
 ---
 
-## TC-02 — *Mad Max: Fury Road*, free-to-air
+## TC-02: *Mad Max: Fury Road*, free-to-air
 
 **UK:** `no_per_programme_rating`, with a scheduling verdict of not before 21:00
 (`UK-SCH-002`). The BBFC 15 feeds the judgment but is not reported as the answer. Emitting
@@ -67,7 +67,7 @@ A keyword-driven read tags this as sexual content and over-rates it.
 
 ---
 
-## TC-03 — Same film, premium service with PIN. **FAILED**
+## TC-03: Same film, premium service with PIN. **FAILED**
 
 TC-02 and TC-03 contain **identical content**. Any system deriving hours from the rating must
 answer them alike and must therefore be wrong about one.
@@ -75,7 +75,7 @@ answer them alike and must therefore be wrong about one.
 The headline came out right: in the UK the watershed is *disapplied* while mandatory daytime
 protection is in place (`UK-SCH-007`), so 14:30 is permissible. Two bugs underneath it.
 
-### Bug 1 — the rule defining the condition never arrived
+### Bug 1: the rule defining the condition never arrived
 
 `UK-ACC-001` defines mandatory restricted access as a gate that **cannot be removed by the
 user**. It never reached the decision engine.
@@ -93,7 +93,7 @@ broadcast in breach from the first frame.
 of content. The general lesson is bigger than the fix: **filtering rules by the categories
 present in the content silently removes every rule about delivery.**
 
-### Bug 2 — two spellings of one service
+### Bug 2: two spellings of one service
 
 After fixing Bug 1 the rule still did not arrive. The table used `premium_subscription` in one
 row and `premium_subscription_film` in another for the same service, with no controlled
@@ -112,7 +112,7 @@ Both were found by one case built to have **no content difference** from another
 
 ---
 
-## TC-04 — *Thriller* and its trailer
+## TC-04: *Thriller* and its trailer
 
 Two decisions, correctly separated. The video at 22:15 is post-watershed. The 30-second
 trailer in a 15:00 break is judged **in its own slot** (`UK-TRL-002`, `UK-TRL-003`) and does
@@ -129,7 +129,7 @@ The on-screen occult disclaimer was recorded as a contextual factor rather than 
 
 ---
 
-## TC-05 — Contradiction and missing information
+## TC-05: Contradiction and missing information
 
 The distributor's summary says "suitable for all audiences". The event list contains real
 footage of a fatal accident.

@@ -1,4 +1,4 @@
-# RUN 1 — Describe the content
+# RUN 1: Describe the content
 
 ## Role
 
@@ -138,19 +138,18 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    edit between them: a `+1` service re-broadcasts an hour later, so content placed while
    children are at school lands after they are home. If the description mentions one slot,
    record one transmission and put the possibility of a timeshift service in `not_stated`.
-   do not assume there isn't one.
+   Do not assume there is not one.
 10. **Always record the DATE, not only the time.** Audience composition moves with the
    calendar: school holidays, and cultural or religious festivals when families gather. A
    regulator has already treated a festival date as raising the likely child audience. A time
    without a date cannot be checked against any of that, so `date: not_stated` is itself a
    finding worth reporting.
-11. **The two asset-level flags are routers, not ratings.** `is_news_or_current_affairs`
-   matters because news is regulated under a different Code section, so getting it wrong
-   applies a harm-and-offence rule that does not bind. `is_made_primarily_for_children`
-   matters because several rules attach to the programme's intended audience rather than to
-   anything depicted in it. Set either to `not_stated` rather than inferring from genre or
-   tone. A cartoon is not automatically made for children, and a documentary is not
-   automatically news.
+11. **The two asset-level flags are routers, not ratings.** News is regulated under a
+   different Code section, so a wrong `is_news_or_current_affairs` applies a harm-and-offence
+   rule that does not bind. Several rules attach to intended audience rather than to anything
+   depicted, which is what `is_made_primarily_for_children` routes. Set either to `not_stated`
+   rather than inferring from genre or tone. A cartoon is not automatically made for children,
+   and a documentary is not automatically news.
 
 ---
 

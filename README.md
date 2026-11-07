@@ -2,9 +2,9 @@
 
 Take-home assignment, prompt engineer.
 
-**103 rules, 102 approved. 20 of 20 official sources collected.**
+**103 rules, all 103 approved. 20 of 20 official sources collected.**
 
-**All 102 approved rules carry a verbatim quote, and all 102 verify against their stored
+**All 103 approved rules carry a verbatim quote, and all 103 verify against their stored
 source with 0 failing.** Coverage is enforced: an approved rule with no quote fails the build.
 
 That was not always true. For most of this project the check reported "50 verified, 0 failed,

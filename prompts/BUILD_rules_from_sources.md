@@ -1,4 +1,4 @@
-# BUILD — Turn a source document into rules
+# BUILD: Turn a source document into rules
 
 ## Role
 
@@ -95,12 +95,10 @@ For each operative rule, capture:
 paraphrase. Not a tidied version. Not a fragment with punctuation added to make it look like a
 sentence.
 
-> **Four quotes failed this check the moment real sources arrived.** Two were paraphrases I
-> had written as quotes, "Children are people under fifteen" where the Code says "under the
-> age of fifteen years". One cited the wrong document. The fourth is the instructive one: it
-> ended `"...post-0530."` with a full stop **I had added**, cutting the sentence before the
-> words "which cannot be removed by the user", the exact words that make the rule
-> enforceable. A truncated clause dressed as a complete sentence.
+> **Four quotes failed this check the moment real sources arrived.** Two were paraphrases
+> written as quotes. One cited the wrong document. The fourth ended `"...post-0530."` with a
+> full stop **that had been added**, cutting the sentence before "which cannot be removed by
+> the user", the words that make the rule enforceable.
 >
 > None of these is findable by re-reading your own work. All four were found in seconds by an
 > automated check. **Build the checker before you trust the table.**
@@ -109,22 +107,21 @@ Keep quotes under 15 words. If it will not fit, the row needs splitting.
 
 ### Three distinctions that are easy to collapse and expensive to get wrong
 
-**Determinacy is not ambiguity.** `determinacy` describes the *rule*, is the line bright or
-is it a judgment? `ambiguity_flag` describes *your extraction*, are you sure you read it
-right? A crisp rule you are unsure you transcribed is `bright_line` + `unverified`. Merging
-them loses the ability to say "this rule is clear and I am not confident I captured it".
+**Determinacy is not ambiguity.** `determinacy` describes the *rule*: bright line or
+judgment? `ambiguity_flag` describes *your extraction*: are you sure you read it right? A
+crisp rule you are unsure you transcribed is `bright_line` + `unverified`. Merging them loses
+the ability to say "this rule is clear and I am not confident I captured it".
 
-**An age rating is not a broadcast hour.** They are separate outputs of separate rules and
-they come apart in both directions. One jurisdiction here issues **no per-programme rating for
-linear TV at all**, a scheduling answer only. In the other, the same category yields
-different hours on different service types and different weekdays.
+**An age rating is not a broadcast hour.** Separate outputs of separate rules, and they come
+apart both ways. One jurisdiction here issues **no per-programme rating for linear TV at
+all**, a scheduling answer only. In the other, the same category yields different hours on
+different service types and different weekdays.
 
-**A restriction is not always a time.** A PIN gate, on-screen signage, an audience warning, an
-adjacency limit, a quota cap: these can *substitute* for hours. One rule reads
-`any_time; requires=mandatory_daytime_protection`, permitted at any hour, including a weekday
-afternoon, provided a gate is in place. Another disapplies the watershed entirely while that
-gate is on. **If you extract only ratings and hours, you will produce answers that are wrong,
-not merely incomplete.**
+**A restriction is not always a time.** A PIN gate, signage, an audience warning, an adjacency
+limit, a quota cap: these can *substitute* for hours. One rule reads
+`any_time; requires=mandatory_daytime_protection`, permitted at any hour provided a gate is in
+place. Another disapplies the watershed entirely while that gate is on. **Extract only ratings
+and hours and your answers will be wrong, not merely incomplete.**
 
 ### Capture allowances too
 

@@ -13,8 +13,8 @@ informative part of this.
 | Scope reasoning | `SCOPE.md` |
 | Design choices and tools | this file |
 
-**Current state:** 103 rules, 102 approved, 20 of 20 sources collected. All 102 approved rules carry a verbatim
-quote and all 102 verify, 0 failing. Coverage is enforced: an approved rule with no quote
+**Current state:** 103 rules, all 103 approved, 20 of 20 sources collected. All 103 carry a verbatim
+quote and all 103 verify, 0 failing. Coverage is enforced: an approved rule with no quote
 fails the build (C-15).
 
 ---
@@ -202,19 +202,19 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **28 of 103 rules are judgment-based and uncalibrated.** One enforcement precedent collected.
-  The table can say "a human must decide"; it cannot say where the line sits. The regulator's
-  guidance notes contain worked examples that would fix this, they are among the 8
-  uncollected sources.
+- **38 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
+  table. Exactly one decided enforcement case has been collected, so the table can say "a
+  human must decide" but cannot say where the line sits. The guidance names roughly twelve
+  more enforcement bulletins; collecting them is the highest-value work left (C-07).
 - **Author equals grader.** I wrote the rules, prompts, tests and checker, and executed them.
   The failures are the trustworthy part. Bright-line rules need independent re-derivation by
-  someone who has not seen the table.
-- **Two rules sit at `unverified`** (C-14) because they cite guidance predating a 2018
-  restructure. Flagged, not used.
+  someone who has not seen the table (C-08).
 - **French rules are quoted from an official English translation** that states only the French
-  is authentic.
+  is authentic. A French-qualified reviewer has to re-check every one.
 - **Channel-level agreements not collected.** In France these can be stricter than the law.
-- **Tested only on cases I wrote**, never on a real asset.
+  One rule records that the agreements exist and bind; what they say is still unknown (C-06).
+- **The `superseded` path is untested.** The versioning mechanism is written and no rule has
+  yet travelled through it, because no source has been amended during this project.
 
 ---
 

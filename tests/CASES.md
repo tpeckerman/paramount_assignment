@@ -21,7 +21,7 @@ not my opinion.
 
 ---
 
-## TC-01 — Back-test: a real Ofcom decision
+## TC-01: Back-test against a real Ofcom decision
 
 Everything here is taken from Ofcom's published finding (Broadcast and On Demand Bulletin
 issue 553, 7 September 2026), including the clock times. **The outcome is known**, so this
@@ -56,7 +56,7 @@ wrong result here.
 
 ---
 
-## TC-02 — *Mad Max: Fury Road* (2015), free-to-air
+## TC-02: *Mad Max: Fury Road* (2015), free-to-air
 
 BBFC 15. Timecodes are indicative rather than frame-accurate; the content is as classified.
 
@@ -84,7 +84,7 @@ the subject matter, which is a distinction a keyword-driven read gets wrong.
 
 ---
 
-## TC-03 — The same film, premium service, PIN
+## TC-03: The same film, premium service, PIN
 
 ```
 As TC-02, identical content and certificate.
@@ -105,7 +105,7 @@ must answer both identically and must therefore be wrong about one.
 
 ---
 
-## TC-04 — *Thriller* (Michael Jackson, 1983) and its trailer
+## TC-04: *Thriller* (Michael Jackson, 1983) and its trailer
 
 ```
 TITLE: Thriller (music video, 13 min 42 s)
@@ -114,7 +114,7 @@ SERVICE: music channel
 SLOT: video at 22:15; 30-second trailer in a 15:00 break
 COUNTRIES: UK, FR
 
-EVENTS — music video (indicative)
+EVENTS, music video (indicative)
 00:02  A character transforms into a werewolf. Prosthetic effects, sustained close-up.
 00:05  Corpses rise from graves. Decayed faces shown in detail over an extended sequence.
 00:09  A woman is pursued and cornered by the risen figures inside a derelict house.
@@ -122,7 +122,7 @@ EVENTS — music video (indicative)
 NOTE: the work opens with an on-screen disclaimer stating it does not endorse belief in
       the occult.
 
-EVENTS — trailer (30 s)
+EVENTS, trailer (30 s)
 00:05  The graveyard sequence, decayed faces included.
 00:18  The pursuit, cut faster than in the full video.
 ```
@@ -136,7 +136,7 @@ contextual factor, not decoration.
 
 ---
 
-## TC-05 — Documentary with contradictory metadata
+## TC-05: Documentary with contradictory metadata
 
 Modelled on the true-crime and emergency-services documentaries that fill UK daytime
 schedules.
