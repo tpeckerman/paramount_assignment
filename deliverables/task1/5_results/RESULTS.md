@@ -1,5 +1,22 @@
 # Results
 
+> **Read this first: these results describe a system that has since changed.**
+>
+> Every run below was produced before four substantive fixes: the service-vocabulary mapping
+> that was silently dropping 8 French rules, the content-type fix that was dropping every
+> music-video rule, thirteen determinacy relabels, and the escalation change that separates a
+> rule relied on from a rule merely checked.
+>
+> So the headline below, 17 escalations out of 17, is a true record of what happened and is
+> **not** a measurement of the current prompts. The escalation fix in particular was written
+> to address exactly that number and has not been run against these cases.
+>
+> **TC-09, the benign control, has never been run at all.** It was added because the
+> reviewer who found the escalation problem found it with a control this set did not have.
+>
+> Re-running all nine is the first thing anyone should do. The outputs in `runs/` are kept
+> rather than deleted, because a before is only useful if you can still see it.
+
 ## How these were produced
 
 **All eight cases were run, and the outputs are in `tests/runs/`.** Every RUN 1 description,
