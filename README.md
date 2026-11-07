@@ -36,12 +36,17 @@ reading the content and applying the rules are kept apart on purpose: that separ
 lets a wrong answer be traced to one or the other.
 
 There is a third prompt, [`prompts/BUILD_rules_from_sources.md`](prompts/BUILD_rules_from_sources.md),
-which turns a legal document into rows. **It is not a Task 1 deliverable.** The brief asks
-for a table of rules, not for a method of producing one, and the table could have been
-written by hand. How you turn thirty countries' law into rows at scale is Task 2's first two
-questions, so the prompt belongs there: it is the design, not the submission. It is in the
-repo because it is how this table was actually made, and hiding that would be worse than
-listing it in the wrong place.
+which turns a legal document into rows. **It is not a deliverable for either task.**
+
+Task 1 asks for a table of rules, not for a method of producing one, and the table could have
+been typed by hand. Task 2 asks for a *design*: a diagram, a worked rule, a validation plan,
+metrics. It wants a plan for turning thirty countries' law into rows, not a working prompt
+that does it.
+
+So the BUILD prompt is **apparatus**: the thing that got the work done, like the scripts in
+`pipeline/`. It is in the repo and described because it is how this table was actually made,
+and a reader judging the rules deserves to know what produced them. That is a reason to be
+transparent about it, not a reason to count it as a deliverable.
 
 ### Task 2
 
@@ -65,12 +70,22 @@ rules bite when · `pipeline/` the tooling, explained below.
 
 ---
 
-## Is the code a deliverable? No
+## What is a deliverable, and what is apparatus
 
-Neither task asks for code. Task 1 asks for sources and rules, a prompt, test cases, results,
-design choices and tools. Task 2 asks for a diagram, a worked rule, a validation plan and
-metrics. There are sixteen Python files here anyway, so this is what each is for and which
-ones are worth your time.
+**Task 1 wants artefacts. Task 2 wants a design. Neither wants a system.**
+
+| | asked for | not asked for |
+|---|---|---|
+| Task 1 | sources, a rules table, a prompt, test cases, results, design choices, tools | how any of it was produced |
+| Task 2 | a process diagram, a worked rule, a validation plan, success metrics | anything that runs |
+
+Task 2 in particular is a **written design**. It asks how you *would* collect sources,
+organise rules, test and measure at thirty countries. A working implementation is not a
+better answer to that question, it is an answer to a different one.
+
+So everything below is **apparatus**: sixteen Python files and one prompt, which exist
+because they were how the work got done, not because the brief wanted them. This is what
+each is for and which are worth your time.
 
 **Two produce a deliverable.** `build_rules_table.py` generates the rules table, and
 `build_diagrams.py` renders the process diagram. The deliverable is the output, not the
@@ -93,7 +108,9 @@ rule from every decision, and three stale numbers sitting in prose.
 
 **The rest is plumbing**: collecting sources, importing what a browser saved, rendering the
 timeline and the answer table, closing out superseded rules, and `constants.py` holding every
-path and vocabulary in one place.
+path and vocabulary in one place. `prompts/BUILD_rules_from_sources.md` belongs in this
+category too, despite being a prompt rather than a script: it made the table, and making the
+table is not what was asked for.
 
 **The honest caveat.** Sixteen files is more code than a prompt-engineering exercise needs.
 The reason it is here is that every check added found something real, and the ones that found

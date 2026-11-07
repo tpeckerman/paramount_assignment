@@ -8,7 +8,7 @@ informative part of this.
 |---|---|
 | Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `rules/RULES_TABLE_v1.xlsx`, `rules/csv/Rules.csv` |
 | The prompt | `prompts/RUN_1_describe_content.md`, `prompts/RUN_2_decide.md` |
-| *Not a deliverable:* the prompt that builds the table | `prompts/BUILD_rules_from_sources.md`. The brief asks for a table, not for a method of making one. Producing rows at scale is Task 2 |
+| *Not a deliverable for either task:* the prompt that builds the table | `prompts/BUILD_rules_from_sources.md`. Task 1 asks for a table, not a method of making one; Task 2 asks for a design, not a working prompt. This is apparatus |
 | Test cases and results | `tests/CASES.md`, `tests/RESULTS.md` |
 | Scope reasoning | `SCOPE.md` |
 | Design choices and tools | this file |
