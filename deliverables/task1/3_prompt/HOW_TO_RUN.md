@@ -62,18 +62,10 @@ Each of those entries is there because a real run lost a rule without it. A PIN 
 content, so access-control rules vanished. A music video is not an observation, so every
 music-video rule vanished from a music video.
 
-The last three were added on 7 November 2026 after counting how many approved rules could
-ever reach a slice at all. Four could not, and had never been retrieved once:
-`FR-CV-005` and `FR-CV-006` (quantity caps and marketing conditions on category V),
-`FR-CNV-001` (the individual convention each French channel signs, which can be stricter
-than the general law) and `EU-FRM-003` (what may be done with minors' personal data). No
-content description says "commercial conditions" and step 1's vocabulary has no such value,
-so the filter dropped all four silently, every time, without erroring.
-
-**This is the same mistake five times over.** A filter built from what is IN the content
-cannot retrieve rules about what the content IS or how it is DELIVERED. Before adding a
-category to the rules table, ask which of the two kinds it is. If a content description
-would never mention it, it belongs on this list on the day it is created.
+**The lesson, which this project learned five separate times.** A filter built from what is
+IN the content cannot retrieve rules about what the content IS or how it is DELIVERED. When
+adding a category to the rules table, ask which of the two kinds it is. If a content
+description would never mention it, it belongs on this list from the day it is created.
 
 **One more trap.** Countries name their service types in their own words and the names do not
 line up: the UK has `premium_subscription_film`, France regulates `cinema_channels`. Asking
@@ -99,9 +91,9 @@ Paste `RUN_2_decide.md`, then three blocks:
 </request>
 ```
 
-Take `service_type`, `intended_slot` and `intended_date` from step 1's output when it recorded
-them. Writing `not_stated` while the description says 14:30 throws away the fact the whole
-decision turns on, and it did exactly that in an early run.
+Take `service_type`, `intended_slot` and `intended_date` from step 1's output when it
+recorded them. Writing `not_stated` over a slot the description actually gave throws away the
+fact the decision turns on.
 
 Out comes a decision per country per transmission: classification, hours, other restrictions,
 the reasoning with a `rule_id` behind every claim, what is missing, and whether a person must

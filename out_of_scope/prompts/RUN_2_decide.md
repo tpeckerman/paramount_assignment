@@ -67,9 +67,7 @@ None implies another:
   **No hours appear anywhere in this prompt, deliberately.** Every time, category and
   threshold you use must come from the `<rules>` block. If a rule you need is not in that
   block, it was not supplied, and the answer is that you cannot decide, not a figure you
-  remember. An earlier version of this prompt named two specific rules and their hours as
-  examples, which made this file look like a source of law alongside the rules block. It is
-  not one.
+  remember. This file is not a source of law; the `<rules>` block is.
 
 So run three independent passes, then check the third against the second. Never derive one
 from another.
@@ -152,10 +150,8 @@ judgement rule in the slice counts as "relied on" merely for being present, then
 decision involves a judgement, every decision escalates, and the system hands back all of its
 work.
 
-That is not hypothetical. The first full run of these prompts escalated **17 decisions out of
-17**, including a benign control: a cookery programme where someone has a plaster on a cut
-finger. Every answer was individually defensible and the system as a whole was useless,
-because it saved nobody any work.
+That is not hypothetical: a full run of these prompts once escalated **17 decisions out of
+17**, including a cookery programme with a plaster on a cut finger.
 
 So:
 
@@ -212,12 +208,10 @@ FR  classification: depends on service type   <- do not pick one
     hours: branch. General channel vs cinema/PPV differ, and the weekday moves it.
 ```
 
-**Read the `why` line carefully, because the trap is subtle.** A certificate and a time can
-appear together in a correct answer without one causing the other. If the only thing you are
-told is "BBFC 15" and the observations are empty, the honest UK answer is **not** 21:00, it
-is that there is nothing to apply a scheduling rule to and the description is inadequate.
-Deriving an hour from a certificate is the error this whole example exists to show, so do not
-reproduce it while quoting the example.
+**The trap is subtle.** A certificate and a time can appear together in a correct answer
+without one causing the other. If all you are told is "BBFC 15" and the observations are
+empty, the honest UK answer is **not** 21:00: there is nothing to apply a scheduling rule to
+and the description is inadequate.
 
 ### 2. Identical content, different answer
 
