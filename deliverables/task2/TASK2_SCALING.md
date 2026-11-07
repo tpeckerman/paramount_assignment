@@ -54,9 +54,7 @@ and black-bordered boxes are people. There are two flows.
   the binding text, and the rule built from it was wrong.
 - **Regulator decisions are a source too.** Each goes into a decisions table: what the content
   was, what the regulator ruled, and which rule it applied. A decision does not override a
-  rule. It shows where the regulator draws the line on a judgment rule. It is used twice: the
-  model sees similar past decisions when it decides, and the decision becomes a test case.
-  See sample: https://github.com/tpeckerman/paramount_assignment/blob/main/deliverables/task1/2_rules/timeline.html
+  rule. 
 - **Every rule carries a word-for-word quote, and a check compares it to the stored source.**
   If a quote stops matching, the build fails. This caught four bad rules the day real sources
   arrived.
@@ -84,9 +82,8 @@ The choices that matter:
   short code such as `not_before=22:00` (do not show before 10pm), which the program can act on.
 - **A timeline app for lookup.** A 24-hour chart, built from the table, with a country and
   channel-type selector. It shows which rules apply at which hour, and each rule shows its
-  quote. Someone can check "what applies at 21:30 on a free-to-air channel" without reading
-  the table. It is rebuilt whenever the table changes, so it cannot go stale. Task 1 has a
-  working version for two countries.
+  quote. See sample:
+  https://github.com/tpeckerman/paramount_assignment/blob/main/deliverables/task1/2_rules/timeline.html
 - **Dates on every rule.** Rules are closed with an end date, never deleted, so last year's
   decision can still be explained.
 - **"How the rule applies" and "does a person review decisions that use it" are separate
