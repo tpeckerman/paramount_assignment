@@ -69,8 +69,7 @@ None implies another:
   block, it was not supplied, and the answer is that you cannot decide, not a figure you
   remember. This file is not a source of law; the `<rules>` block is.
 
-So run three independent passes, then check the third against the second. Never derive one
-from another.
+So run three independent passes. Never derive one from another.
 
 ## Procedure
 
