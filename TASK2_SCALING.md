@@ -30,10 +30,114 @@ that finds it.**
 
 ---
 
-## How this maps onto what already exists
+## What is different in kind, not just in volume
 
-Task 2 does not introduce new steps. The fourteen steps in `HOW_IT_WORKS.md` are all Task 1, and
-each section below is a question about one of them:
+Most of this document is about running the Task 1 flow more times and catching what breaks.
+That part is necessary and it is not the interesting part. Six things at thirty countries are
+**not** bigger versions of a two-country problem. They do not exist at two countries at all,
+and four of the six have to be designed in before country three, because retrofitting them
+means re-touching every country already live.
+
+### 1. Which rules apply stops being a lookup and becomes a determination
+
+At two countries you are told the country. At thirty you have to work it out, and it is not
+the country the signal lands in.
+
+Under the EU framework a service is regulated by the member state that has **jurisdiction**
+over the provider, which is broadly where it is established, not where it is watched. So a
+channel established in one member state and broadcast into eight others answers to one
+regulator for most purposes, not eight. Get that backwards and you apply eight sets of rules
+where one applies, or one where the destination state has invoked a derogation.
+
+This is not a tidy lookup even for the regulators. The directive's own recitals say that
+establishing jurisdiction means assessing factual situations against the
+directive's criteria, and that "The assessment of such factual situations might lead to
+conflicting results." There is machinery for exactly this: ERGA can be asked for
+"non-binding opinions on jurisdiction", on derogations from freedom of
+reception, and on measures addressing circumvention of jurisdiction, and member states
+must keep records carrying "information about the criteria on which
+jurisdiction is based". There is even a named failure mode where a provider establishes
+itself somewhere "in order to circumvent the stricter rules" that
+would otherwise apply.
+
+All four quoted phrases come from `EU-D1b`, Directive (EU) 2018/1808, already on disk in
+`sources/originals/`, and all four verify character for character against it. They were
+sitting in a source this project had collected and had not fully mined.
+
+**What this means for the build:** `country` is the wrong key on a decision. The key is the
+*regime* that applies to that transmission, and resolving it is a step the Task 1 flow does
+not contain. It needs the provider's place of establishment, the service's licence, and any
+destination-state derogation in force. That is per-service data, it changes when corporate
+structure changes, and no amount of reading the content will produce it.
+
+At two countries, both of which happened to be the country of establishment for the services
+in question, this was invisible. It is the single largest thing Task 1's design does not
+account for.
+
+### 2. Experts become the binding constraint, not extraction
+
+Extraction is cheap and gets cheaper. Sign-off does not. Thirty countries means thirty people
+with the standing to say "this is what the rule means here", each needing an agreed turnaround
+on amendments. That is a recruiting and retention problem, not an engineering one, and it is
+what actually caps the country count.
+
+The schedule follows from the slowest expert, not the slowest pipeline. Plan it as a staffing
+model with named people and an amendment SLA per country, and treat an unfilled country seat
+as a blocker on going live there, not as a backlog item.
+
+### 3. Amendments stop being events and become a queue
+
+At two countries an amendment is a thing that happens and you deal with it. At thirty, with
+several instruments each, something is always being amended. That is a queue with a backlog,
+and a queue needs triage, because not every amendment blocks decisions.
+
+Triage by what the amendment touches: a change to a `bright_line` rule that decisions actually
+cite is urgent and should stop automated answers that depend on it; a change to a rule nothing
+has cited in six months can wait for the next scheduled pass. The table already records which
+rules decisions cite, so this is computable rather than a judgement call.
+
+### 4. You cannot read your own sources any more
+
+At two countries I could read both, and the one translation problem is flagged in the table.
+At thirty, most sources are in languages nobody on the team reads, in scripts that are not
+Latin, sometimes in PDFs whose text layer is wrong.
+
+The quote checker keeps working, because byte comparison does not care what language it is in.
+But that is a smaller guarantee than it looks. It proves the quote was copied correctly. It
+cannot prove the right sentence was chosen, that the clause was not negated two lines later,
+or that a term of art means what a dictionary says. **Mechanical checks survive the language
+barrier and judgement does not**, which is precisely why point 2 above is the constraint.
+
+### 5. Failure has to be containable to one country
+
+At two countries, if the table is wrong you stop. At thirty, one country's bad extraction must
+not take down the other twenty-nine, and equally must not be hidden by them. A global pass
+rate of 96% can be twenty-nine countries at 99% and one at 20%, and the aggregate will look
+healthy while one market is being answered at random.
+
+So: every metric segmented by country, never reported only in aggregate, and a per-country
+circuit breaker. If a country's golden set drops below its threshold, that country stops
+serving automated decisions and escalates everything, while the rest keep running. This has to
+be built early because it changes how results are stored.
+
+### 6. Schema changes become migrations
+
+Adding a field at two countries is an afternoon. At thirty it is a migration across thirty
+sets of rows, each of which may need its expert to re-confirm the rows that changed. The
+schema therefore has to be versioned, and rows have to record which version they were written
+against, so a change can be rolled out country by country instead of all at once.
+
+This is the real reason for the rollout advice further down: if the schema is still moving at
+country ten, every country after it inherits the flaw and every country before it needs
+revisiting.
+
+---
+
+## And then the part that is just more of the same
+
+The rest of this document is the Task 1 flow run thirty times. The fourteen steps in
+`HOW_IT_WORKS.md` do not change; what changes is which of them breaks first and what has to be
+true before country three rather than after country thirty.
 
 | This document asks about | Which steps |
 |---|---|
@@ -43,10 +147,6 @@ each section below is a question about one of them:
 | Automate versus local expert | 7, and the model-versus-code audit throughout |
 | Shared versus country-specific | 11 |
 | Measurement and diagnosis | 14 |
-
-So the honest framing is not "here is a bigger system". It is: here is the same flow run
-thirty times, here is which of them breaks first, and here is what has to be true before the
-third country is added rather than after the thirtieth.
 
 ## Process
 
@@ -383,7 +483,7 @@ hour a year per channel, not a retainer.
 
 - **Sign-off before any rule goes live.** Non-negotiable. An unreviewed extraction is a
   hypothesis.
-- **Calibrating judgment rules.** 28 of 90 current rules are judgment-based with one
+- **Calibrating judgment rules.** 38 of 103 current rules are judgment-based with one
   enforcement precedent between them. The table can say a judgment is needed; it cannot say
   where the line sits. Only someone who has argued these cases can.
 - **Unwritten regulator practice.** What a regulator tolerates is not in the text.
