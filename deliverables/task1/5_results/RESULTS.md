@@ -3,24 +3,22 @@
 Every run is saved in `runs/` as raw model output, so any claim here can be checked
 against the file.
 
-## Problem: it sent every decision to a human
+## Problem: it sent every decision to a person
 
 The first run covered eight cases, run by agents that had never seen the project or the
-expected answers. **17 of 17 decisions said "a human must check this."** None said when the
-program could be shown, including a cookery show where someone puts a plaster on a cut
-finger.
+expected answers. **17 of 17 decisions said "a person must check this."** That included a
+cookery show where someone puts a plaster on a cut finger.
 
-The cause: the prompt escalated whenever a rule it used was a judgment call. But rules that
-explain how to weigh things appear in every decision while deciding nothing themselves, so
-every decision escalated.
+The cause: every rule in the table has a flag saying whether a person must sign off on it.
+Two rules, plain definitions that apply to every program, had that flag set. So every program
+ran into them and went to a person.
 
-## Fix: only send a case to a person when it matters
+## Fix: unflag the two definitions, and tell the prompt which flag to read
 
-Added to the decision prompt (`RUN_2_decide.md`):
+The flag was cleared on the two definitions, since a definition cannot set an hour or a
+rating. The decision prompt (`RUN_2_decide.md`) now says which flag decides:
 
-In plain words: the bar for human review went up. Before, any judgment rule in view sent the
-case to a person. Now only a rule that actually changed the answer can. Two definitions in
-the rules table also stopped asking for a person.
+> `human_review_required` says **whether a person must sign it off**. Escalate on this one.
 
 ## Result: six cases re-run blind, all correct
 
