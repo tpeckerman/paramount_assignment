@@ -166,8 +166,7 @@ regulates each channel. There is no worldwide equivalent.
 **How do we build a test set with approved answers?** Per country, cover each content area,
 each channel type, each rule with an exception, and at least **two benign cases that must come
 back clear**. A set of only difficult content cannot notice a system that restricts
-everything. Task 1 ran that way until a cookery program exposed a system that sent every
-case to a person.
+everything. 
 
 **Who approves the answers?** Never the person who wrote the rules. In order of strength:
 1. **A decided enforcement case.** The regulator already ruled, so the answer is on record.
