@@ -79,8 +79,8 @@ The choices that matter:
 - **Rating, hours and conditions are stored separately.** A rule can change the hours without
   changing the rating. Example: a film may air at any time if the channel has a PIN lock, and
   not before 9pm if it does not. The answer has to carry both.
-- **A machine-readable form beside the quote.** Code acts on `not_before=22:00`. A lawyer
-  reads the sentence.
+- **Each rule is stored two ways.** The law's own sentence, for a person to check, and a
+  short code such as `not_before=22:00` (do not show before 10pm), which the program can act on.
 - **A timeline app for lookup.** A 24-hour chart, built from the table, with a country and
   channel-type selector. It shows which rules apply at which hour, and each rule shows its
   quote. Someone can check "what applies at 21:30 on a free-to-air channel" without reading
