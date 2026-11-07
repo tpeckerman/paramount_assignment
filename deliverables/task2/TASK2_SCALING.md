@@ -54,7 +54,8 @@ and black-bordered boxes are people. There are two flows.
   the binding text, and the rule built from it was wrong.
 - **Regulator decisions are a source too.** Each goes into a decisions table: what the content
   was, what the regulator ruled, and which rule it applied. A decision does not override a
-  rule. 
+  rule. It shows where the regulator draws the line on a judgment rule. It is used twice: the
+  model sees similar past decisions when it decides, and the decision becomes a test case.
 - **Every rule carries a word-for-word quote, and a check compares it to the stored source.**
   If a quote stops matching, the build fails. This caught four bad rules the day real sources
   arrived.
@@ -82,8 +83,9 @@ The choices that matter:
   short code such as `not_before=22:00` (do not show before 10pm), which the program can act on.
 - **A timeline app for lookup.** A 24-hour chart, built from the table, with a country and
   channel-type selector. It shows which rules apply at which hour, and each rule shows its
-  quote. See sample:
-  https://github.com/tpeckerman/paramount_assignment/blob/main/deliverables/task1/2_rules/timeline.html
+  quote. Someone can check "what applies at 21:30 on a free-to-air channel" without reading
+  the table. It is rebuilt whenever the table changes, so it cannot go stale. Task 1 has a
+  working version for two countries.
 - **Dates on every rule.** Rules are closed with an end date, never deleted, so last year's
   decision can still be explained.
 - **"How the rule applies" and "does a person review decisions that use it" are separate
@@ -166,13 +168,23 @@ regulates each channel. There is no worldwide equivalent.
 **How do we build a test set with approved answers?** Per country, cover each content area,
 each channel type, each rule with an exception, and at least **two benign cases that must come
 back clear**. A set of only difficult content cannot notice a system that restricts
-everything. 
+everything. Task 1 ran that way until a cookery program exposed a system that sent every
+case to a person.
+
+**Who approves the answers?** Never the person who wrote the rules. In order of strength:
+1. **A decided enforcement case.** The regulator already ruled, so the answer is on record.
+   Task 1 has exactly one, which is its biggest weakness.
+2. **A local lawyer's written answer**, written before the system runs on the case.
+3. **The broadcaster's own undisputed compliance decisions.**
 
 **How do we stop the same error landing in both the solution and the answer?** Four rules:
+- The lawyer writes the answer from the law itself, without seeing the rules table or the
+  system's output.
 - Run the cases blind: people or agents who have not seen the expected answers.
 - When the system and the answer disagree, check the source law. Do not assume either is right.
-- Use metrics like accuracy, precision, and recall.
-  
+- Have a second person re-derive the fixed rules (times, absolute bans) from the primary
+  source and compare. Any difference is a finding about both.
+
 ## 5. Measurement and diagnosis
 
 **How do we measure under-rating, over-rating and wrong hours?** Run the test set and count,
@@ -185,11 +197,13 @@ per country:
 | **Hours too early** | Cases where the earliest time is before the right time. A breach |
 | **Hours too late** | Cases where the earliest time is after the right time, and by how many minutes. Lost airtime |
 
+The UK has no rating per program, so UK answers are measured on hours and conditions only.
+
 **How do we tell a content error from a rule error?** The two steps are tested separately.
-- *Step one alone:* give it a program with a known list of events. If events are missed or
-  mislabeled, the fault is in the description.
 - *Step two alone:* give it a hand-written correct description. If the answer is still wrong,
   the fault is in the rules or the prompt.
+- *Step one alone:* give it a program with a known list of events. If events are missed or
+  mislabeled, the fault is in the description.
 
 Log every error as one of the two. A single error rate cannot tell them apart.
 
@@ -217,8 +231,8 @@ points, to be reset after the first month of real use.
 | Quote check, word lists, dates, consistency | Automated |
 | Selecting which rules could apply | Automated |
 | Applying mechanical rules | Automated |
-| Drafting rule rows from a legal document | Model, then a person |
-| Describing a program | Model, then a person if borderline |
+| Drafting rule rows from a legal document | Model, then code checks |
+| Describing a program | Model |
 | Deciding what a threshold means | Model proposes from similar past regulator decisions. Expert only when no decided case exists or confidence is low |
 | Confirming a translation is faithful | A second, different model translates the quote back and compares. Expert only when the two differ |
 | Resolving two sources that disagree | Code ranks them by authority (law, then regulator rules, then guidance). Expert only when they rank equally |

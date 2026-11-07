@@ -231,8 +231,8 @@ points, to be reset after the first month of real use.
 | Quote check, word lists, dates, consistency | Automated |
 | Selecting which rules could apply | Automated |
 | Applying mechanical rules | Automated |
-| Drafting rule rows from a legal document | Model, then a person |
-| Describing a program | Model, then a person if borderline |
+| Drafting rule rows from a legal document | Model, then code checks |
+| Describing a program | Model |
 | Deciding what a threshold means | Model proposes from similar past regulator decisions. Expert only when no decided case exists or confidence is low |
 | Confirming a translation is faithful | A second, different model translates the quote back and compares. Expert only when the two differ |
 | Resolving two sources that disagree | Code ranks them by authority (law, then regulator rules, then guidance). Expert only when they rank equally |
