@@ -9,7 +9,7 @@ Task 2 asks for a **design**, not a system: how sources would be collected and v
 | 3. Solution structure | section 3 |
 | 4. Correctness testing | section 4 |
 | 5. Measurement and diagnosis | section 5 |
-| A process diagram | `process_diagram.html`, and inline in the document |
+| A process diagram | `process_diagram.html` |
 | An example of how a single rule is represented | the deliverable section after 2 |
 | A validation plan | section 4 |
 | Success metrics | section 5 |

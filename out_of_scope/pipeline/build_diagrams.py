@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Render the process diagram in TASK2_SCALING.md to docs/ as a picture.
+"""Render the process diagram in docs/process_diagram.md to docs/ as a picture.
 
 WHY THIS EXISTS
 
 GitHub draws mermaid diagrams itself when it displays a markdown file, so the diagram is
-already visible in TASK2_SCALING.md without this script. What GitHub does not give you is a
+already visible in docs/process_diagram.md without this script. What GitHub does not give you is a
 picture you can open on its own, drop in a slide, or send to someone who is not going to
 browse the repo.
 
@@ -34,7 +34,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import constants as C
 
 CONFIG = pathlib.Path(__file__).resolve().parent / "mermaid.config.json"
-SOURCE = C.TASK2_MD
+SOURCE = C.DOCS_DIR / "process_diagram.md"
 OUT_DIR = C.DOCS_DIR
 
 
@@ -106,7 +106,7 @@ VIEWER = """<!DOCTYPE html>
       font-family: Helvetica, Arial, sans-serif !important; }}
 </style></head><body>
 <h1>How it works, diagrams</h1>
-<p class="hint">Generated from the mermaid blocks in out_of_scope/HOW_IT_WORKS.md. Each diagram scrolls
+<p class="hint">Generated from out_of_scope/docs/process_diagram.md. Each diagram scrolls
 inside its own frame. Use the buttons to change size, or just scroll.</p>
 <div class="controls">
   <button onclick="z(0.25)">Bigger</button>
