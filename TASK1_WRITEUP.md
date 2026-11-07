@@ -65,10 +65,10 @@ outcome through word choice before any rule is applied.
 
 ## Which steps this task covers
 
-All seven steps in `HOW_IT_WORKS.md` belong to Task 1. Steps 1, 2 and 4 produce the sources
-and the rule table; steps 5 to 8 are the prompt.
+All fourteen steps in `HOW_IT_WORKS.md` belong to Task 1. Steps 1 to 4 produce the sources
+and the rule table; steps 8 to 12 are the prompt.
 
-Step 3, the quote check, is the exception: nothing in Task 1 asks for it. It exists because
+The checks are the exception: nothing in Task 1 asks for them. It exists because
 Task 2 asks how you know the rules are right, and that question needs a mechanical answer
 rather than an assurance. It then paid for itself inside Task 1 by catching four defective
 quotes and a rule citing the wrong document.

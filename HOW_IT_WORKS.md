@@ -2,78 +2,132 @@
 
 How a content description becomes a decision, and where the rules come in.
 
-## The seven steps
+## The flow
 
-Steps 1 to 4 happen **once per legal document**, and again whenever a regulator changes the
-law. Steps 5 to 7 happen **once per showing**.
+Three kinds of step, and the distinction matters more than it looks:
+
+| | |
+|---|---|
+| 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
+| 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
+| 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
 
 ```mermaid
 flowchart TB
-    S1["1. Gather the official sources<br/>20 documents from Ofcom, Arcom and EU law"]
-    S2["2. Read each one and write down its rules<br/>one row per rule, with the exact words quoted"]
-    S3{"3. Check every quote<br/>is it really in the document?"}
-    S4[("4. The rules table<br/>103 rules")]
-    S1 --> S2 --> S3
-    S3 -- "no, fix it" --> S2
-    S3 -- yes --> S4
+    A1["1. Fetch the document<br/>store it, record a hash"]:::det
+    A2{"2. Is this really the document?<br/>check a phrase only it contains"}:::det
+    A3{"3. Has it been amended since?"}:::det
+    A4["4. Read it and write down its rules"]:::ai
+    A5{"5. Is every quote really in the document?"}:::det
+    A6{"6. Valid fields and vocabulary?"}:::det
+    A7["7. Expert signs the rules off"]:::human
+    A8[("The rules table")]:::store
 
-    S5["5. Read the content description<br/>what happens, and at what timecode"]
-    S6["6. Pick out the rules that could apply<br/>by country, channel type and what is shown"]
-    S7["7. Decide<br/>rating, hours, and any other conditions"]
-    S8{"Is the answer clear-cut?"}
-    S9[["Answer, with the rules it used"]]
-    S10[["Send to a person,<br/>with the rules and quotes attached"]]
-    S5 --> S6 --> S7 --> S8
-    S4 --> S6
-    S8 -- yes --> S9
-    S8 -- "no, or something was missing" --> S10
+    A1 --> A2
+    A2 -- "no, it is navigation" --> A1
+    A2 -- yes --> A3
+    A3 -- "superseded" --> A1
+    A3 -- current --> A4 --> A5
+    A5 -- "quote not found" --> A4
+    A5 -- yes --> A6 --> A7 --> A8
+
+    B1["8. Read the content description"]:::ai
+    B2{"9. Categories in the controlled list?"}:::det
+    B3{"10. Certificate triggers an<br/>outright ban?"}:::det
+    B4["11. Pick the rules that could apply"]:::det
+    B5["12. Decide: rating, hours, conditions"]:::ai
+    B6{"13. Does every claim cite a real rule?"}:::det
+    B7{"14. Clear-cut, and nothing missing?"}:::det
+    B8[["Answer, with its rules"]]:::out
+    B9[["A person decides,<br/>rule and quote attached"]]:::human
+
+    B1 --> B2
+    B2 -- "unknown category" --> B1
+    B2 -- yes --> B3
+    B3 -- "yes: R18 or refused" --> B8
+    B3 -- no --> B4 --> B5 --> B6
+    A8 --> B4
+    B6 -- "invented a rule" --> B5
+    B6 -- yes --> B7
+    B7 -- yes --> B8
+    B7 -- no --> B9
+
+    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
+    classDef human fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
+    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
+    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
 ```
 
-### What "clear-cut" means in step 8
+Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
+run **once per showing**.
 
-Some rules are a fixed line. *Category V may only air between midnight and 5am.* There is
-nothing to weigh: you either know the category or you do not, and the answer follows.
+### Why only three steps use a model
 
-Other rules ask for a judgement. *Is this violence "presented repeatedly"?* *Is this treatment
-"derogatory"?* Two experienced people can read the same scene and disagree, and the regulator
-expects a human to weigh it.
+The rule applied here is: **if a step can be done by comparing strings, it must not be done by
+a model.** A model asked a question code can answer is slower, costs more, and can be talked
+out of the right answer. Code cannot be talked out of anything.
 
-The table records which kind each rule is, so step 8 is a lookup rather than a guess. **45 of
-the 103 rules are fixed lines. 38 are judgement calls.** A decision goes to a person when it
-rests on a judgement rule, or when the description left out something the rule needed, such as
-which channel it is going out on.
+So every model step had to justify itself:
 
-The point is not to answer everything automatically. It is to answer the clear-cut majority
-and hand a person the hard ones with the rule and its exact wording already attached, so they
-start from the evidence instead of a blank page.
+| Step | Could code do it? | Why not |
+|---|---|---|
+| 4. Read a document, write down its rules | **No** | Turning prose law into structured rules needs reading comprehension. There is no pattern to match. |
+| 8. Describe the content | **No** | "Two teenagers share a cigarette, played for laughs" has to become a category, a treatment and a timecode. Nothing mechanical does that. |
+| 12. Decide | **Partly, and the part that can is not done here** | Applying a fixed time to a known category is a lookup. Weighing whether violence is "presented repeatedly" is not. Step 11 hands over only the rules that could apply, so the model is asked the narrow question and not the broad one. |
+
+And every model step is **gated by cheaper checks first**:
+
+- Step 4 never runs on a file that failed step 2. Extracting rules from a saved page of
+  website navigation costs a model call and produces confident nonsense.
+- Step 12 never runs when step 10 has already settled it. A BBFC R18 certificate is an
+  outright ban: nothing in any context lifts it, so asking a model can only introduce a chance
+  of it being argued away.
+- Step 12 is not asked about rules step 11 already excluded.
+
+### What each check catches
+
+| Check | Catches | Already caught, for real |
+|---|---|---|
+| 2. Is this the document? | A saved page that is all menus and navigation | A French source saved as 12,493 characters of pure site navigation, which passed a length test |
+| 3. Amended since? | A rule whose wording a later instrument replaced | Twice. Both times the old version was internally consistent and agreed with other sources of the same age |
+| 5. Quote really present? | Paraphrase passed off as a quotation, wrong source cited | Four quotes, including one with a full stop added that cut off the words making the rule enforceable |
+| 6. Valid vocabulary? | A value outside the list, which matches nothing and errors nowhere | Two spellings of one service type, which silently dropped a rule from every decision using the other |
+| 9. Known category? | An observation that would match no rule | Enforced before the decision step rather than discovered after |
+| 13. Claims cite real rules? | A decision citing a rule that does not exist | |
+| 14. Clear-cut? | Automating a judgement call | 38 of 103 rules are judgement calls and route to a person |
+
+Every defect in that right-hand column **looked completely fine**. None was found by rereading.
+Each was found by something mechanical comparing the work against a source outside it.
 
 ## Which steps belong to which task
 
-All seven steps are **Task 1**. Task 2 does not add steps: it asks what breaks when the same
-seven are run for thirty countries instead of two.
+All fourteen steps are **Task 1**. Task 2 adds no steps: it asks what breaks when the same
+flow runs for thirty countries instead of two.
 
-| Step | Task 1 | What Task 2 asks about it |
+| Steps | Task 1 | What Task 2 asks about them |
 |---|---|---|
-| 1. Gather the sources | Deliverable: *sources, with links and scope* | Source collection and validation at scale. Who finds them, how you know a document is current, what happens when a regulator amends one |
-| 2. Write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country, and which differences are data rather than code |
-| 3. Check every quote | Not asked for | **Testing for correctness.** Task 2 asks this directly, and this is the answer built in Task 1 |
-| 4. The rules table | Deliverable: *the table of rules* | Shared versus country-specific. The schema is shared; only the values differ |
-| 5. Read the content | Deliverable: *the prompt* | Shared. The extraction step is the same everywhere |
-| 6. Pick the rules that apply | Deliverable: *the prompt* | Shared logic, country data. This is where "what looks shared and is not" bites |
-| 7. Decide | Deliverable: *the prompt*, plus *reasoning with rule references* | Shared. The three passes do not change per country |
-| 8. Clear-cut, or a person? | Deliverable: *missing information or need for human review* | **Measurement, and automate versus local expert.** The escalation rate is the metric that tells you whether either is working |
+| 1, 2, 3 — fetch and validate the document | Deliverable: *sources, with links and scope* | Source collection at scale: who finds them, how you know a document is current, what happens on amendment |
+| 4 — write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country; which differences are data rather than code |
+| 5, 6 — quote and vocabulary checks | **Not asked for** | **Testing for correctness.** Task 2 asks this directly, and these are the answer |
+| 7 — expert sign-off | Not asked for | **Automate versus local expert.** The one step that cannot scale by engineering |
+| 8 — describe the content | Deliverable: *the prompt* | Shared. Same everywhere |
+| 9, 10 — vocabulary and prohibition gates | Not asked for | Shared logic, country data |
+| 11 — pick the rules | Deliverable: *the prompt* | Where "what looks shared and is not" bites |
+| 12 — decide | Deliverable: *the prompt*, plus *reasoning with rule references* | Shared. The three passes do not change per country |
+| 13, 14 — citation and clear-cut checks | Deliverable: *missing information or need for human review* | **Measurement.** The escalation rate is the metric that says whether this is working |
 
 Two things worth drawing out.
 
-**Step 3 was not asked for by Task 1.** Nothing in the brief requires the quotes to be
-checked. It exists because Task 2 asks how you know the rules are right, and the honest answer
-has to be something mechanical rather than care. It then earned its place in Task 1 by
-catching four defective quotes and a rule citing the wrong document, none of which was
-findable by rereading.
+**The checks were not asked for by Task 1.** Nothing in the brief requires quotes to be
+verified. They exist because Task 2 asks how you know the rules are right, and that needs a
+mechanical answer rather than an assurance. They then earned their place in Task 1 by catching
+four defective quotes, two rules citing the wrong document, a reversed rule and two silently
+dropped vocabularies.
 
-**Steps 1 to 4 run once per document; steps 5 to 8 run per showing.** That split is the whole
-architecture. Merge them and there is nothing separating "what the rule says" from "what I
-decided", so a misreading cannot be caught, and there is nothing for step 3 to check.
+**Steps 1 to 7 run per document; 8 to 14 run per showing.** That split is the architecture.
+Merge them and nothing separates "what the rule says" from "what I decided", so a misreading
+cannot be caught and the quote check has nothing to check against.
 
 ## One rule, followed all the way through
 
@@ -105,7 +159,7 @@ film, same certificate, nothing re-edited.
 
 ## The steps in more detail
 
-### Steps 1 to 4: turning documents into a table
+### Steps 1 to 7: turning documents into a table
 
 Prompt: `prompts/BUILD_rules_from_sources.md`
 
@@ -118,7 +172,7 @@ Each row carries a `verbatim_quote` that appears character for character in the 
 `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
-### Step 5: describing the content
+### Step 8: describing the content
 
 Prompt: `prompts/RUN_1_describe_content.md`
 
@@ -132,9 +186,9 @@ made, invisibly, by an adjective.
 
 It also records what it was **not** told. `not_stated` is a deliverable, not an apology.
 
-### Step 6: picking the rules that could apply
+### Steps 9 to 11: gates, then picking the rules
 
-Code, not a prompt: `pipeline/run_decision.py`
+Code, not a prompt: `pipeline/precheck.py` then `pipeline/run_decision.py`
 
 It picks the rules that could apply: matching country, matching service
 type, matching content category, plus a set that is **always** included.
@@ -145,7 +199,7 @@ category-based filter dropped them every single time. The rule defining what a P
 be never reached the decision engine, while the rule granting an any-hour permission
 *conditional on that gate* did.
 
-### Steps 7 and 8: deciding
+### Steps 12 to 14: deciding
 
 Prompt: `prompts/RUN_2_decide.md`
 
@@ -204,6 +258,7 @@ pip install openpyxl pypdf
 python pipeline/verify_rules.py --with-quotes        # does the table hold up?
 python pipeline/run_decision.py --countries UK FR \
     --service free_to_air --categories violence      # assemble a decision context
+python pipeline/precheck.py run1_output.json          # deterministic gates, before any model
 python pipeline/build_timeline.py                    # regenerate docs/timeline.html
 ```
 
