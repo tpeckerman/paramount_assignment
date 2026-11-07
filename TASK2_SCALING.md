@@ -7,7 +7,7 @@ The five questions, and the four things Task 2 asks for:
 | Question | Section |
 |---|---|
 | 1. Source collection and validation | [1. Source collection and validation](#1-source-collection-and-validation) |
-| 2. Organizing the rules | [2. Organizing the rules](#2-organizing-the-rules) |
+| 2. Organizing the rules | [2. Organizing the rules](#2-organizing-the-rules), and [2b, decided cases](#2b-learning-from-decisions-the-regulator-already-made) |
 | 3. Solution structure | [3. Solution structure](#3-solution-structure) |
 | 4. Correctness testing | [4. Correctness testing](#4-correctness-testing) |
 | 5. Measurement and diagnosis | [5. Measurement and diagnosis](#5-measurement-and-diagnosis) |
@@ -535,6 +535,107 @@ exhausted in week nine is a breach in week ten.
 **Monitor.** If reviewers keep overturning this rule, the threshold is miscalibrated.
 
 ---
+
+---
+
+## 2b. Learning from decisions the regulator already made
+
+38 of the 103 rules in this table are judgement calls. The table can say a judgement is
+needed. It cannot say **where the line is**, and that is the single biggest weakness in the
+whole thing.
+
+The only material that fixes this is decided cases. When a regulator rules on a real
+broadcast, it says: given these facts, at this hour, on this service, we landed on this side.
+That is the scale the rules themselves do not provide. The *Toofan* decision used in TC-01 is
+the one such case collected so far, and it did more for the table than any amount of re-reading
+the Code.
+
+### A decided case does not fit in a rule row, which is how it is stored today
+
+Right now the *Toofan* decision became two ordinary rule rows. That was a mistake and it is
+worth being specific about why, because it is the sort of thing that looks tidy and quietly
+destroys the value.
+
+A rule row answers **"what does the law say?"** A decision answers **"given these facts, which
+side did the regulator come down on?"** Flatten the second into the first and the facts
+disappear, and the facts *are* the calibration. Everything that made *Toofan* informative,
+a BBFC 15 film, at 11:30, on a festival date, with no warning, showing specific acts, survives
+only in the test case. The rule rows kept the conclusion and dropped the evidence.
+
+So precedent needs its own shape, sitting beside the rules rather than inside them:
+
+| field | why it is there |
+|---|---|
+| `case_id`, regulator, date, bulletin reference | so it can be found and cited |
+| service, **time of broadcast**, date context | the outcome usually turns on these more than on the content |
+| the content facts, as specifically as the decision states them | this is the calibration |
+| `rules_at_issue` | which rules the regulator actually opened the case under |
+| `outcome_per_rule` | breach, no breach, **or opened and dropped** |
+| the regulator's reasoning, quoted | so a reviewer can check it rather than trust a summary |
+| `what_made_the_difference` | the distinguishing fact, see below |
+| `valid_from` / `valid_to` | decisions age, see below |
+
+`outcome_per_rule` matters more than it looks. *Toofan* breached Rule 1.3 and the regulator
+**opened and then dropped** the Rule 2.3 limb. That second half is not a footnote, it is the
+most instructive part of the case: the same content was badly scheduled and not offensive,
+which proves those two determinations are separate.
+
+### How a case reaches a decision without becoming one
+
+Retrieval is by the things that decide outcomes: the same rule, the same content category, a
+comparable service type, a comparable time band. **Not by text similarity against the content
+description.** That is the same trap as the answer cache: two descriptions can read alike and
+sit on opposite sides of a line.
+
+Then the rule is what gets cited and the case is what calibrates. The output must say
+"restricted under Rule 1.3, and here is a decision where comparable material at a comparable
+hour was found in breach". It must never say "restricted because of bulletin 553". A decision
+binds the broadcast it was about. Treating it as the rule is how a system ends up applying
+one channel's bad afternoon to everybody.
+
+### Four ways this goes wrong
+
+**1. The corpus is one-sided, and this is structural.** Regulators publish breaches in detail
+and non-breaches barely at all. Feed a model only cases where something went wrong and it
+learns that the answer is usually "restrict", which is the over-rating failure from section 5
+arriving through the back door. **No-breach decisions have to be collected deliberately**,
+because nothing will surface them for you. Two were found while researching this project,
+including one where the regulator declined to follow its own earlier finding.
+
+**2. Decisions do not transfer by their outcome, they transfer by their reason.** In that
+same case the regulator said a previous finding was not relevant because the facts differed.
+So a row that records only "breach" is close to useless and can be actively misleading. It
+has to record **what made the difference**, which is why that field exists above.
+
+**3. Some facts are about the channel, not about the content.** *Toofan* turned partly on the
+broadcast falling during Eid al-Adha **because that channel serves a Muslim audience**. The
+identical film on the identical date on a different channel does not carry that weight. A
+precedent applied without its channel context will be wrong in both directions.
+
+**4. Decisions age out.** A finding from 2008 interprets Code wording that may since have been
+amended, and the decision does not update itself. Precedent rows need the same validity dates
+as rules, and a decision interpreting superseded wording has to drop out of retrieval the same
+way a superseded rule does.
+
+### How you would know it is working
+
+The point of precedent is to let the system answer questions it currently has to escalate. So
+the measurement is a pair, and both halves are needed:
+
+- **escalation rate falls** on the rules that gained precedent, and
+- **overturn rate does not rise**.
+
+Either number alone is meaningless. Escalation falling on its own just means the system got
+bolder. If both move the wrong way, the cases are being applied where they do not belong, and
+the retrieval is matching on resemblance rather than on the things that decide outcomes.
+
+### What it would cost
+
+Low, and that is the argument for doing it first. The decisions are published, free, and
+already written in the vocabulary of the rules. `pipeline/fetch_precedents.py` holds thirteen
+resolved URLs for the UK alone, including an official compilation carrying roughly ten
+scheduling decisions with their broadcast times. Compared with hiring a lawyer in thirty
+countries, this is the cheapest calibration available, and it is the work I would do next.
 
 ---
 
