@@ -52,7 +52,8 @@ and a category filter drops them every time:
 
 - `scheduling_general`, `definition`, `classification_scheme`, `legal_basis`, `scope`,
   `signage`, `film_carryover`, `access_control`, `audience_information`, `trailers`,
-  `human_dignity`, `serious_harm`
+  `human_dignity`, `serious_harm`, `commercial_conditions`, `channel_override`,
+  `data_protection`
 - plus every absolute prohibition, always, whatever the categories
 - plus categories implied by the asset itself: a `music_video` pulls in `music_videos`, a
   `trailer` pulls in `trailers`
@@ -60,6 +61,19 @@ and a category filter drops them every time:
 Each of those entries is there because a real run lost a rule without it. A PIN is not
 content, so access-control rules vanished. A music video is not an observation, so every
 music-video rule vanished from a music video.
+
+The last three were added on 7 November 2026 after counting how many approved rules could
+ever reach a slice at all. Four could not, and had never been retrieved once:
+`FR-CV-005` and `FR-CV-006` (quantity caps and marketing conditions on category V),
+`FR-CNV-001` (the individual convention each French channel signs, which can be stricter
+than the general law) and `EU-FRM-003` (what may be done with minors' personal data). No
+content description says "commercial conditions" and step 1's vocabulary has no such value,
+so the filter dropped all four silently, every time, without erroring.
+
+**This is the same mistake five times over.** A filter built from what is IN the content
+cannot retrieve rules about what the content IS or how it is DELIVERED. Before adding a
+category to the rules table, ask which of the two kinds it is. If a content description
+would never mention it, it belongs on this list on the day it is created.
 
 **One more trap.** Countries name their service types in their own words and the names do not
 line up: the UK has `premium_subscription_film`, France regulates `cinema_channels`. Asking
