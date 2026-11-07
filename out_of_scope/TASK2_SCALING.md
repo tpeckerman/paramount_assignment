@@ -166,25 +166,23 @@ with people or agents who have not seen the expected answers.
 
 ## 5. Success metrics
 
-The three kinds of error cost different amounts, so track them separately:
+Each metric is a number someone can compute from the test set or the logs. The targets are
+starting points, to be reset after the first month of real use.
 
-| Error | Cost |
-|---|---|
-| **Under-restricting:** cleared something the rule restricts | A regulatory breach |
-| **Over-restricting:** restricted something the rule allows | Lost airtime, and nobody complains |
-| **Escalating needlessly:** sent a clear case to a person | No work saved, and the system gets ignored |
+| Metric | How it is measured | Starting target |
+|---|---|---|
+| **Missed restrictions** | Of test cases where the right answer is "restricted," how many the system cleared. This is a regulatory breach. | 0. Any miss blocks release |
+| **Needless restrictions** | Of test cases where the right answer is "clear," how many the system restricted. This is lost airtime. | Under 5% |
+| **Cases sent to a person** | Share of all decisions that go to a reviewer, per country. Task 1's first run sent 100%. | Under 15% |
+| **Reviewer overturn rate** | Of the cases reviewers see, how many they change. Also re-check a random 2% of the cases that skipped review. | Under 5% |
+| **Wrong cache answers** | Re-decide 2% of cache hits from scratch each month and count how many answers differ. | Under 1% |
+| **Rule update time** | Days from a regulator publishing a change to the rules table and cache updating. | Under 1 business day |
+| **Stale sources** | Number of sources not checked in the last 7 days. | 0 |
+| **Test coverage** | Share of content categories with at least 2 test cases. Task 1 covers 7 of 11. | 100% |
 
-Also track:
-- **Escalation rate per country.** A country far above its neighbors usually has badly
-  extracted rules, not a stricter law.
-- **Reviewer overturn rate per rule.** The best signal for which rule to re-read.
-- **Coverage:** the share of rule areas the test set exercises. A pass rate on a third of the
-  table is not a pass rate.
-- **Time since each source was last confirmed.**
-
-To find where an error came from, give step two a hand-written correct description. If the
-answer is still wrong, the fault is in the rules or prompt. If it is right, step one described
-the program wrongly.
+When an error shows up, give step two a hand-written correct description. If the answer is
+still wrong, the fault is in the rules or prompt. If it is right, step one described the
+program wrongly.
 
 ## What can be automated, and what needs a local expert
 
