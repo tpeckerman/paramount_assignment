@@ -93,11 +93,6 @@ columns answering two different questions, and the second one governs.
      condition you found and your evidence for it, or by weighing a judgment.
    - `human_review_required` says **whether a person must sign it off**. Escalate on this one.
 
-   They do not line up. Some rules that need a condition confirmed still need a person,
-   because confirming it is an operational fact nobody here can check. Some judgment rules do
-   not need a person, because the judgment they describe feeds another rule rather than
-   deciding anything itself.
-
    Escalating on `determinacy` instead sends **everything** to a person, because rules that
    describe how to weigh things are present in every decision while deciding nothing.
 
