@@ -62,14 +62,27 @@ A single JSON object. No prose before or after it.
       "id": "t1",
       "service": "channel name, or not_stated",
       "date": "YYYY-MM-DD or not_stated",
-      "start_time": "HH:MM or not_stated",
-      "is_timeshift_of": "the id of the transmission this +1 service repeats, or null"
+      "start_time": "HH:MM, always a time of day, or not_stated",
+      "warning_or_signposting": {
+        "given": "yes | no | not_stated",
+        "quote": "the verbatim words the description used, or not_stated"
+      },
+      "calendar_context": "a festival, holiday or school break the description names, or not_stated",
+      "is_timeshift_of": "the id of the transmission this +1 service repeats, or null",
+      "access_control": {
+        "present": "yes | no | not_stated",
+        "kind": "pin | other | not_stated",
+        "on_by_default": "yes | no | not_stated",
+        "user_can_disable": "yes | no | not_stated",
+        "quote": "the verbatim words the description used, or not_stated"
+      }
     }
   ],
   "observations": [
     {
       "id": "o1",
-      "timecode": "HH:MM:SS or range or not_stated",
+      "timecode": "exactly as the description writes it. Do not pad or reformat",
+      "timecode_clock": "wall_clock | elapsed | not_stated",
       "category": "one of the controlled vocabulary below",
       "what_happens": "plain factual description, no severity adjectives of your own",
       "descriptors": ["short neutral tags lifted from or directly supported by the source"],
@@ -133,18 +146,54 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    start all feed real rules. Preserve them exactly as given; never normalise or estimate.
 8. **No empty output.** A description with no classifiable events still returns the JSON with
    an empty `observations` array and a populated `not_stated`.
-9. **A decision is about a TRANSMISSION, not about the asset.** List every showing you are
+9. **Access control is a field, not a remark.** If the description says anything about a
+   PIN, a lock, a parental gate or restricted access, fill `access_control` on the
+   transmission it applies to and quote the words used.
+
+   This rule exists because the first real run of this prompt had nowhere to put it. A case
+   describing a mandatory PIN that the subscriber cannot disable produced an output where
+   that fact appeared only in prose, inside `intended_service` and a notes field. It is the
+   single most outcome-changing fact a description can carry, because a gate of that kind is
+   what turns a restricted hour into any hour. Buried in prose, a decision step that reads
+   fields cannot see it, and the result is an answer **more permissive** than the law allows
+   with nothing flagged.
+
+   `on_by_default` and `user_can_disable` are separate questions and both matter: a gate the
+   viewer can switch off is not the same instrument as one they cannot.
+
+10. **Say which clock each timecode uses, on the observation.** `elapsed` counts from the
+   start of the programme. `wall_clock` is the time of day it went out. The digits cannot
+   tell them apart, and in a scheduling decision the difference is the whole question: 11:33
+   as a time of day is a weekday morning, and 11:33 elapsed is the middle of a long film.
+
+   `timecode_clock` sits on the **observation**, not the transmission, because the two can
+   differ in one case: a programme starting at 14:30 whose events are counted from zero has
+   a wall-clock start time and elapsed event timecodes. A single field on the transmission
+   said both and therefore said neither. `start_time` is always a time of day.
+
+   Copy a timecode exactly as written. `00:08` in a source means what that source means by
+   it, and padding it to `00:08:00` turns eight minutes into eight seconds.
+
+11. **Two more facts that change outcomes and are not events.** Both have fields, for the
+   same reason access control does: prose hides things from anything that reads fields.
+   - `warning_or_signposting`: whether viewers were told what was coming. A regulator has
+     treated its absence as making an otherwise borderline broadcast a breach.
+   - `calendar_context`: a festival, holiday or school break. Audience composition moves
+     with the calendar, and a regulator has treated a festival date as raising the likely
+     child audience.
+
+12. **A decision is about a TRANSMISSION, not about the asset.** List every showing you are
    told about, separately. The same file can be compliant on one and not on another with no
    edit between them: a `+1` service re-broadcasts an hour later, so content placed while
    children are at school lands after they are home. If the description mentions one slot,
    record one transmission and put the possibility of a timeshift service in `not_stated`.
    Do not assume there is not one.
-10. **Always record the DATE, not only the time.** Audience composition moves with the
+13. **Always record the DATE, not only the time.** Audience composition moves with the
    calendar: school holidays, and cultural or religious festivals when families gather. A
    regulator has already treated a festival date as raising the likely child audience. A time
    without a date cannot be checked against any of that, so `date: not_stated` is itself a
    finding worth reporting.
-11. **The two asset-level flags are routers, not ratings.** News is regulated under a
+14. **The two asset-level flags are routers, not ratings.** News is regulated under a
    different Code section, so a wrong `is_news_or_current_affairs` applies a harm-and-offence
    rule that does not bind. Several rules attach to intended audience rather than to anything
    depicted, which is what `is_made_primarily_for_children` routes. Set either to `not_stated`

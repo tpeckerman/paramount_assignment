@@ -1,0 +1,527 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "t1: the main service, 'general entertainment, pay TV', weekday 14:30 start, 22-minute episode, so ending about 14:52. Date 'not_stated' - only 'weekday' is given, and which weekday is unknown. This is one of two decisions on this asset: the +1 transmission (t2) is decided separately below, because each showing is its own decision and the same file reaches a different audience an hour later [UK-SCH-009]. NOTE A CONFLICT IN THE INPUT: the <request> block gives intended_slot as 'not_stated', while the observations record a stated 14:30 start for t1. I have decided against the observed time, because the observations are the record of what is proposed and a decision about a transmission needs one; the discrepancy is listed as missing information rather than silently resolved. Service branch: the service is described as general entertainment pay TV, which is NOT a premium subscription film service and NOT pay-per-view, so the 20:00 film-service watershed and the film-service any-hour permissions are not available on their own terms [UK-SCH-003, UK-FLM-004, UK-FLM-005]. Whether it is a 'scheduled channel with mandatory daytime protection' is unknown and is branched below, not assumed.",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "Ofcom Broadcasting Code - no per-programme age rating is issued for UK linear television. There is in any event no certificate on this asset: the source positively asserts 'CERTIFICATE: none'.",
+        "basis": [
+          {
+            "rule_id": "UK-LAW-001",
+            "clause_ref": "s.319(2)(a)",
+            "why": "Ofcom's statutory duty is to set standards securing that under-eighteens are protected. The instrument produced is a standards code applied at the point of scheduling, not a per-programme classification scheme, so this axis is empty by design. A number here would be an invented instrument."
+          },
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "Cited for one proposition only: the regulator's own statement that the Code has in the main dispensed with the rules relating scheduling to ratings, and that content is scheduled appropriately for the audience rather than by a label. I note that this is a film-carryover row and this asset is a series_episode with no certificate at all, so the trap the row exists to prevent - deriving an hour from a certificate - cannot arise here. That is worth stating positively: the hour below is derived from the observation and from the slot, and there is no certificate available to contaminate it even by accident."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "Branch (A), no mandatory daytime protection in place - the default assumption is NOT made either way, see below: 14:30 is NOT barred by any rule in this slice, but it is not cleared either. The watershed restricts material UNSUITABLE FOR CHILDREN [UK-SCH-002], and on what is recorded - two characters in bed under a duvet, talking, with no sexual activity shown and no nudity visible - it is doubtful that this is unsuitable for people under fifteen [UK-DEF-001]. What is engaged is the second limb of UK-SEX-004: any portrayal or discussion of sexual behaviour before the watershed must be editorially justified and appropriately limited. That is a standard, not a bar, and on the description it looks satisfiable. It cannot be confirmed, because the words of the dialogue are expressly unknown. Branch (B), mandatory daytime protection in place and validly engaged: 14:30 is permitted outright, because the watershed does not apply at all [UK-SCH-007, UK-FLM-003]. Nothing in the observations says any protection exists, and 'pay TV' does not imply it, so branch (B) is a question to be answered and not a finding.",
+        "without_technical_measure": "14:30 is not prohibited by any rule in the slice on the material recorded, and the correct output is a qualified yes rather than either a clearance or a bar. UK-SEX-004's HARD pre-watershed bar is on REPRESENTATIONS of sexual intercourse; is_depicted is false, the source states twice that nothing is shown, and the sex is established only through dialogue, so what is portrayed is the aftermath and not the act. Reading the hard bar onto a post-coital scene under a duvet would be an over-restriction, and it would bar a form of scene that is ordinary in pre-watershed drama and comedy. The softer second limb does apply and is the live question. Two further things are not satisfied and are not curable by the clock at 14:30: the appropriate-scheduling factors cannot be applied because the date and the audience composition are unknown [UK-DEF-002], and the episode must be judged on its own merits rather than on the familiarity of the series [UK-SCH-006].",
+        "with_technical_measure": "Branched, not resolved. IF mandatory daytime protection is in place on this service, the watershed is DISAPPLIED rather than relaxed [UK-SCH-007] and programmes unsuitable for children that would usually be post-watershed may be broadcast at any time of day [UK-FLM-003], which would clear 14:30 outright and make the whole of the analysis above unnecessary. That permission is conditional and nothing establishes it: the gate must be a PIN or equivalent that cannot be removed by the user [UK-ACC-001], must be on AS THE DEFAULT rather than something the viewer sets up [UK-ACC-002], and the content information and the explanation of the protection to all viewers are conditions precedent rather than housekeeping [UK-ACC-003]. UK-FLM-003 also records that WHICH SERVICES MAY USE MDP is an open question for a UK reviewer. So this is the single most useful question to put back to the broadcaster, and it must not be answered by inference from the words 'pay TV'.",
+        "basis": [
+          {
+            "rule_id": "UK-SEX-004",
+            "clause_ref": "Rule 1.20",
+            "why": "The rule that decides the shape of this case, read in two halves. Its first limb bars REPRESENTATIONS of sexual intercourse before the watershed absent a serious educational purpose: not engaged, because nothing is shown and is_depicted is false. Its second limb applies: any discussion or portrayal of sexual behaviour before the watershed must be editorially justified and appropriately limited. A post-coital scene in a sitcom is a portrayal of sexual behaviour. The editorial justification is evident on its face; whether it is 'appropriately limited' depends on the dialogue's words and the scene's length, both unstated. conditional, and the condition is unverified rather than failed."
+          },
+          {
+            "rule_id": "UK-SCH-002",
+            "clause_ref": "Rule 1.4",
+            "why": "The watershed, and the reason it does not supply an automatic bar here. It restricts material UNSUITABLE FOR CHILDREN; it is not a blanket prohibition on any reference to sex before 21:00. On the recorded material the unsuitability threshold is doubtful, so the watershed is engaged as a question rather than as an answer. bright_line as to the hours, but its trigger is a judgement."
+          },
+          {
+            "rule_id": "UK-DEF-001",
+            "clause_ref": "S1 definitions",
+            "why": "'Children' in the operative scheduling rules means people under fifteen. That is the population against whom a duvet-covered post-coital conversation must be assessed, and it is a materially higher age than the 5-to-8 band the watershed most protects."
+          },
+          {
+            "rule_id": "UK-SCH-001",
+            "clause_ref": "Rule 1.3",
+            "why": "The operative duty: children must be protected by appropriate scheduling from material unsuitable for them. This is the rule enforcement most often turns on, and it is the rule the 14:30 slot has to satisfy. judgment_based."
+          },
+          {
+            "rule_id": "UK-DEF-002",
+            "clause_ref": "S1 definitions",
+            "why": "Appropriate scheduling is judged on the nature of the content, the LIKELY NUMBER AND AGE RANGE OF CHILD VIEWERS TAKING INTO ACCOUNT SCHOOL TIME, WEEKENDS AND HOLIDAYS, the start and finish time, the nature of the channel, and audience expectation. 14:30 on a weekday is school time, which is the broadcaster's best argument - but the date is unknown, so whether it is term time or a school holiday cannot be established, and the audience composition in the slot is expressly not stated. The factor that would justify the slot is precisely the factor that is missing."
+          },
+          {
+            "rule_id": "UK-SCH-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.3-1.6",
+            "why": "Why the missing date is decisive rather than tidy. School holidays change the audience without changing the clock, so the same 14:30 slot on the same channel carries a different risk in August from the one it carries in term time. The row also records that the watershed matters most for children aged 5 to 8 - the group most likely to be at home on a weekday afternoon in a holiday period. judgment_based, human_review_required=yes."
+          },
+          {
+            "rule_id": "UK-SCH-011",
+            "clause_ref": "Bulletin issue 553, Rule 1.3 decision",
+            "why": "A cultural or religious festival raises the expected child audience within existing hours, and the relevant festivals depend on the channel's community so they cannot be inferred from a single calendar. With no date and no named channel, this check cannot be run at all. It matters more for a daytime slot than for a late-evening one, because a festival day is exactly when children are at home in the afternoon."
+          },
+          {
+            "rule_id": "UK-SCH-006",
+            "clause_ref": "UK-G1 s.1",
+            "why": "Directly applicable and easily overlooked. Each episode of a series must be scheduled on its own merits, and a long-running storyline does not itself supply context; daytime repeats need separate thought. So the fact that this is a familiar sitcom in a daytime strip supplies no justification, and the familiarity of the series is not an argument. The row also carries the +1 point that drives the second decision below."
+          },
+          {
+            "rule_id": "UK-SCH-007",
+            "clause_ref": "Rule 1.4 (meaning of the watershed)",
+            "why": "Branch (B). The watershed does not apply at all while mandatory daytime protection is in place - a disapplication, not a relaxation - and it is ranked 1, so it defeats UK-SCH-002 on conflict. Branched rather than applied, because no protection is described. bright_line, human_review_required=yes."
+          },
+          {
+            "rule_id": "UK-FLM-003",
+            "clause_ref": "Rule 1.24",
+            "why": "Branch (B) continued: where mandatory daytime protection is in place, programmes unsuitable for children that would usually be scheduled post-watershed may be broadcast at any time of day, with clear information about the content and about the protection. If this service operates such protection, 14:30 and 15:30 are both permitted and the rest of the analysis is moot. The row also records that which services may use MDP is NOT established and is an open question for a UK reviewer, so even an affirmative answer about a PIN would not close the question."
+          },
+          {
+            "rule_id": "UK-SCH-003",
+            "clause_ref": "Rule 1.4",
+            "why": "Considered and not engaged. The 20:00 watershed is for PREMIUM SUBSCRIPTION FILM services without protection. This service is described as general entertainment pay TV, not a film service, and the asset is a series_episode. Recorded so the reviewer can see that 'pay TV' was not treated as equivalent to a premium film service - the displacement is not available, and in this case it would not have helped anyway."
+          },
+          {
+            "rule_id": "UK-SCH-009",
+            "clause_ref": "+1 services guidance",
+            "why": "Cited on t1 as well as t2, because it changes how t1 should be scheduled rather than only how t2 should be judged. The row states that broadcasters may need to schedule EARLIER on the main service so the +1 transmission still concludes before children return from school. So the 14:30 placement cannot be assessed in isolation: it is the cause of the 15:30 placement, and the two must be decided together even though they are separate decisions. conditional, human_review_required=yes."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "audience_information",
+          "requirement": "If the service relies on mandatory daytime protection to hold this slot, the access control is a CONDITION OF THE HOURS and not an addition to them: it must be non-removable by the user, on by default, and clearly explained to all viewers alongside content information. If any limb fails, the any-hour permission does not exist and the slot falls back to the branch (A) analysis. The observations record no protection and no audience advisory, and expressly list as unknown whether the episode is shown with a pre-broadcast audience advisory on the pay TV service.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {
+              "rule_id": "UK-ACC-001",
+              "clause_ref": "Rule 1.18 (meaning)"
+            },
+            {
+              "rule_id": "UK-ACC-002",
+              "clause_ref": "Guidance Notes Section One, Rules 1.24-1.25"
+            },
+            {
+              "rule_id": "UK-ACC-003",
+              "clause_ref": "Rules 1.24, 1.25"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "The eight context factors are the frame for the 14:30 judgement, and three of them are unavailable: what is scheduled before and after, the likely size and composition of the audience and its expectation, and the effect on those coming across the content unawares. The last matters in a daytime strip, where a viewer arriving mid-schedule has not chosen this episode.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-DEF-003",
+              "clause_ref": "S2 'meaning of context'"
+            },
+            {
+              "rule_id": "UK-CTX-011",
+              "clause_ref": "Bulletin issue 553, footnote 2 and Rule 1.3 decision"
+            }
+          ]
+        },
+        {
+          "kind": "adjacency",
+          "requirement": "The contextual justification required rises with audience size, and a niche or small service cannot argue the reverse. The channel is not named and the audience size and age composition in the slot are expressly unstated, so this cannot be applied - but it can only ever make the 14:30 decision stricter, never looser, so its absence cannot be read in the broadcaster's favour.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-CTX-010",
+              "clause_ref": "Guidance Notes Section 2, meaning of context"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "If any warning, signpost or on-screen age label is relied on to support this daytime slot, it must be adequate rather than merely present and must convey severity rather than only presence. Whether any accompanies either transmission is recorded as unknown, so no such mitigation may be credited. Note the 22-minute runtime cuts the other way from the usual case: a single advisory at the start is more likely to be adequate for a short episode than for a feature.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-WRN-002",
+              "clause_ref": "Guidance Notes Section 2, Rule 2.3"
+            },
+            {
+              "rule_id": "UK-WRN-003",
+              "clause_ref": "Bulletin issue 553, audience research cited in the decision"
+            }
+          ]
+        },
+        {
+          "kind": "trailer",
+          "requirement": "Conditional and not triggered on the facts given: no trailer or derived asset is described. If one exists it is assessed in its own slot and does not inherit this episode's permission, and such trailers must be kept away from children's programming, family entertainment and sport. Recorded so a derived asset is not cleared by silence - and the point has teeth in a daytime strip, where the surrounding breaks are exactly where a trailer would run.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-TRL-002",
+              "clause_ref": "Guidance Notes Section One"
+            },
+            {
+              "rule_id": "UK-TRL-001",
+              "clause_ref": "UK-G1 s.1"
+            },
+            {
+              "rule_id": "UK-TRL-003",
+              "clause_ref": "Trailers guidance"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "The general duty to take all reasonable steps to protect under-eighteens informs the whole decision and is not discharged by clearing the clock. Noted because only one event in the episode is described and the description does not say it is the only one, so the reasonable-steps question cannot be answered for the episode as a whole.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-GEN-002",
+              "clause_ref": "Rule 1.2"
+            }
+          ]
+        }
+      ],
+      "axis_note": "All three axes behave unusually here and none predicts another. The classification axis is empty twice over: the UK issues no per-programme rating for linear television [UK-LAW-001], and there is not even a certificate to misread, because the source positively asserts 'CERTIFICATE: none'. So the hours cannot have been derived from a label even by accident - which is worth saying, because the usual failure mode of this system is a certificate leaking into an hour, and that failure is structurally impossible on this asset. The hours axis does not produce a bar, and that is the finding most at risk of being got wrong in the restrictive direction: UK-SEX-004's hard pre-watershed prohibition is on REPRESENTATIONS of sexual intercourse, and nothing is represented - the act is established through dialogue and the duvet-covered aftermath is what is shown. A category-driven read sees 'sexual_content' at 14:30 and produces a breach; the rules do not. What remains is a standard [UK-SEX-004 second limb] and a judgement about unsuitability [UK-SCH-001, UK-SCH-002], and both look satisfiable on the description. The restriction axis is where the real exposure sits, and it is not a content restriction at all: it is the +1 obligation [UK-SCH-009], which does not restrict this transmission but makes it the cause of a second, riskier one. A condition can also substitute for the hour entirely here - mandatory daytime protection would disapply the watershed [UK-SCH-007, UK-FLM-003] - but it has not been established and 'pay TV' does not establish it. So the honest summary is that the content is probably fine, the slot is probably fine, the DATE is the fact that could change both, and the +1 is the thing nobody asked about.",
+      "reasoning": "Routing. is_news_or_current_affairs is 'no', recorded from the stated descriptor 'sitcom', so the ordinary Section One analysis applies. Per-transmission decision. The prompt requires a decision per transmission and the observations record two: t1 on the main service at 14:30 and t2 on the +1 at 15:30. I have written two decisions. This one concerns t1 only. Absolute prohibitions first, reading what each covers rather than its label. UK-GEN-001 bars material that might SERIOUSLY impair the development of under-eighteens, a deliberately higher bar than ordinary harm. A duvet-covered post-coital conversation in a sitcom is nowhere near it; treating the two tiers as one would ban most of what the system exists to schedule. UK-SEX-001 bars material equivalent to the BBFC R18 rating at any time, and it is the prohibition most likely to be mis-fired because o1 carries the content_category 'sexual_content'. R18-equivalence turns on explicit material whose character is set by reference to the primary purpose of sexual arousal; nothing is shown, no nudity is visible, and the scene is dialogue. Not engaged, and not close. UK-FLM-001 bars films refused BBFC classification and UK-FLM-006 bars BBFC R18 films: neither is engaged, and here the reason is unusually clean - the asset is a series_episode, not a film, and the source positively asserts that no certificate exists, so there is no refused classification and no R18 rating to be found. I note the extractor's care in distinguishing an asserted absence from missing information, and I have treated it as an assertion: existing_certificates is empty because the source says 'none', not because nobody looked. No absolute prohibition bites. Classification. No per-programme age rating is issued for UK linear television [UK-LAW-001], and the regulator has itself stated that the Code dispensed with scheduling by rating [UK-FLM-010]. I emit no_per_programme_rating. Hours, as a genuinely independent pass. Service applicability first, because it could dispose of the whole question. The service is 'general entertainment, pay TV'. That is not a premium subscription film service, so the 20:00 watershed [UK-SCH-003] and the up-to-BBFC-15-from-20:00 carve-out [UK-FLM-004] do not apply on their own terms, and it is not pay-per-view, so UK-FLM-005 does not either. What it might be is a 'scheduled channel with mandatory daytime protection', and if it is, the answer is simply yes: the watershed would not apply at all [UK-SCH-007] and any time of day would be permitted [UK-FLM-003]. I have branched that rather than resolving it, because nothing in the observations records any access control and because 'pay TV' is not the same thing as a PIN gate - a subscription is a payment barrier, not a child-protection measure, and UK-ACC-001 is explicit that a control the viewer can remove is not mandatory restricted access at all. The request also gives service_type as 'not_stated', which the prompt requires me to branch and label rather than pick. Then the content. UK-SEX-004 is the rule in point and its two limbs give different answers. The first limb - representations of sexual intercourse must not occur before the watershed unless there is a serious educational purpose - is NOT engaged. is_depicted is false; the source states twice that no sexual activity is shown and no nudity is visible; the sex is established only through dialogue. What is shown is the aftermath. This is the central judgement in the decision and I want to be explicit about both why I have made it and why it is not certain. Why I have made it: a post-coital scene under a duvet is not a representation of intercourse in any ordinary sense, and reading it as one would bar a form of scene that appears routinely in pre-watershed drama and comedy, which is the over-restriction the prompt warns about. Why it is not certain: the extractor itself flags that the aftermath IS shown and that a reviewer may read is_depicted differently, and no rule in this slice distinguishes depicting an act from depicting its immediate aftermath. The second limb of UK-SEX-004 does apply: any discussion or PORTRAYAL of sexual behaviour before the watershed must be editorially justified and appropriately limited. The editorial justification is evident. Whether it is appropriately limited depends on facts I do not have: the scene's duration is unstated, and - more importantly - whether the dialogue refers to sexual acts in explicit terms, and in what words, is expressly unstated. That is the fact most likely to change this answer, because an allusive post-coital exchange and an explicit one are different compliance questions at 14:30. Next, unsuitability. UK-SCH-002 restricts material unsuitable for CHILDREN, which means under-fifteens [UK-DEF-001]. It is not a blanket bar on sexual reference before 21:00, and on the recorded material I doubt the unsuitability threshold is reached for an under-fifteen audience. So the watershed is engaged as a question and answered, provisionally, in the broadcaster's favour. Then appropriate scheduling, where the decision runs out of facts. UK-DEF-002 makes the likely number and age range of child viewers - TAKING INTO ACCOUNT SCHOOL TIME, WEEKENDS AND HOLIDAYS - an express factor. 14:30 on a weekday in term time is the broadcaster's strongest argument: children are at school. But the date is not stated, only 'weekday', and UK-SCH-010 records that school holidays change the audience without changing the clock, so the identical slot in August is a different decision. The audience size and age composition in the slot are also expressly unstated. The one factor that would justify this slot is the one factor missing, and that is why this decision is reported as a qualified yes rather than a clearance. UK-SCH-006 removes an argument the broadcaster might otherwise reach for: each episode of a series must be scheduled on its own merits, a long-running storyline does not itself supply context, and daytime repeats need separate thought. The familiarity of a well-known sitcom in a daytime strip is not a justification. Finally, and this is the most consequential point in the whole decision, UK-SCH-009 applies to t1 and not only to t2: the row states that broadcasters may need to schedule EARLIER on the main service so that the +1 transmission still concludes before children return from school. So the 14:30 placement is not a self-contained choice. It is the cause of a 15:30 placement that lands when children are home, and the risk runs in the counter-intuitive direction the rule exists to flag - content placed while children are at school arrives an hour later, when they are not. A reviewer assessing 14:30 on its own would miss this entirely, which is why the +1 is given its own decision below rather than a footnote here. Restrictions, as a third pass, checked against the hours. Nothing here is a content restriction that the clock cures; the live items are the unverified UK-SEX-004 condition, the missing context factors [UK-DEF-003], and the access-control branch which, if established, would be a substitute for the hour rather than an addition to it. No warning is described, so none may be credited. Nothing in the observations purports to clear the asset, so there is no embedded-instruction problem in this case.",
+      "confidence": "medium",
+      "human_review_required": true,
+      "review_reasons": [
+        "The decisive fact is missing and it is not the content: the broadcast DATE. 14:30 on a weekday is defensible because children are at school, and that argument collapses entirely in a school holiday, when the 5-to-8 group the watershed most protects is at home in the afternoon [UK-DEF-002, UK-SCH-010]. Only 'weekday' is given, and which weekday is also unknown. A person must supply the date before this slot is cleared.",
+        "Whether the dialogue in the 00:11:40 scene refers to sexual acts in explicit terms, and in what words, is expressly unstated. UK-SEX-004's second limb requires a pre-watershed portrayal of sexual behaviour to be 'appropriately limited', and that is exactly what the unknown words would decide.",
+        "The is_depicted judgement is contestable and the extractor says so: the act is not shown but the aftermath is, and a reviewer may read is_depicted differently. If a reviewer treats a post-coital scene as a representation of intercourse, UK-SEX-004's first limb becomes a hard bar at 14:30 and the answer reverses. No rule in the slice distinguishes an act from its aftermath.",
+        "Only one event in the episode is described and the description does not say it is the only one. Whether strong language occurs anywhere in the episode is expressly unknown - and the rule slice supplied contains no language rule of any kind, so the system could not answer that question even if told.",
+        "service_type is 'not_stated' in the request, and the observations describe 'general entertainment, pay TV'. Whether the service operates mandatory daytime protection is unknown and would be dispositive: if it does, the watershed does not apply at all and 14:30 is permitted outright [UK-SCH-007, UK-FLM-003]. 'Pay TV' must not be read as implying a child-protection gate.",
+        "UK-FLM-003 records that WHICH SERVICES MAY USE MDP is not established and is an open question for a UK reviewer, so even confirmation that a PIN exists would not close branch (B).",
+        "The decision rests on judgment_based rules, several marked human_review_required=yes: UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-FLM-010, UK-SCH-004 and UK-SCH-008 (transition), plus UK-SCH-007 and UK-SCH-009, and the judgment_based UK-SCH-001, UK-DEF-002, UK-DEF-003, UK-SCH-006, UK-GEN-001, UK-GEN-002, UK-SEX-001, UK-WRN-002 and UK-WRN-003.",
+        "The input is internally inconsistent: the <request> block gives intended_slot as 'not_stated' while the observations record a 14:30 start for t1 and the derivation of 15:30 for t2. I have decided against the observations and flagged the conflict rather than resolving it, and a person should confirm which record governs.",
+        "The 15:30 start time for the +1 transmission is DERIVED from the '+1' label and is not stated in the source. The second decision below rests on that derivation."
+      ],
+      "missing_information": [
+        {
+          "field": "intended_date, including whether the transmission falls in term time or a school holiday, and which weekday",
+          "why_it_matters": "This is the fact the whole decision turns on. Appropriate scheduling expressly takes school time, weekends and holidays into account [UK-DEF-002], and school holidays change the audience without changing the clock [UK-SCH-010]. A cultural or religious festival does the same [UK-SCH-011].",
+          "what_changes_if_answered": "A term-time weekday at 14:30 is defensible on the recorded material. The same slot in a school holiday is not, because the argument that children are at school disappears - and it would also make the 15:30 +1 transmission substantially worse."
+        },
+        {
+          "field": "whether the service operates mandatory daytime protection, and if so whether it is non-removable by the user, on by default, and explained to all viewers",
+          "why_it_matters": "If it does, the watershed does not apply at all [UK-SCH-007] and any time of day is permitted [UK-FLM-003], which disposes of both transmissions. If it does not, the branch (A) analysis governs. The conditions are set by UK-ACC-001, UK-ACC-002 and UK-ACC-003.",
+          "what_changes_if_answered": "This is the single question most likely to make the rest of the analysis unnecessary. It must be answered rather than inferred from 'pay TV': a subscription is a payment barrier, not a child-protection measure."
+        },
+        {
+          "field": "whether the dialogue in the 00:11:40 scene refers to sexual acts in explicit terms, and in what words",
+          "why_it_matters": "UK-SEX-004's second limb requires a pre-watershed portrayal or discussion of sexual behaviour to be editorially justified and APPROPRIATELY LIMITED. The words are the test.",
+          "what_changes_if_answered": "An allusive exchange supports the 14:30 slot. An explicit one would not, and would likely put the episode past the watershed regardless of the fact that nothing is shown."
+        },
+        {
+          "field": "the duration of the 00:11:40 scene",
+          "why_it_matters": "Also bears on 'appropriately limited' under UK-SEX-004, and on how much of a 22-minute episode the material occupies.",
+          "what_changes_if_answered": "A brief exchange is easier to justify than a sustained one. Currently unstated."
+        },
+        {
+          "field": "whether any other events occur in the episode, and in particular whether strong language occurs anywhere in it",
+          "why_it_matters": "Only one event is listed and the description does not say it is exhaustive. The whole permissive reading rests on the recorded material being the whole of it.",
+          "what_changes_if_answered": "Further material could put the episode past the watershed. Note that if the answer is strong language, this rule slice contains no language rule at all and the question could not be decided from the table given - a reviewer would need the full Code."
+        },
+        {
+          "field": "the expected or measured size and age composition of the audience in each slot",
+          "why_it_matters": "Expressly listed as unstated. It is an appropriate-scheduling factor [UK-DEF-002] and an express context factor [UK-DEF-003], and audience size can make the decision stricter but never looser [UK-CTX-010].",
+          "what_changes_if_answered": "Measured child viewing in the 14:30 and 15:30 slots would settle the question that the date is currently standing in for."
+        },
+        {
+          "field": "the name and nature of the service and of its +1 channel",
+          "why_it_matters": "The nature of the channel and audience expectation for it at that time and day are express scheduling factors [UK-DEF-002], and the service type determines which permissions are even available.",
+          "what_changes_if_answered": "Identifies whether the service is one of the types for which the access-control permissions exist, and supplies the audience-expectation factor currently missing."
+        },
+        {
+          "field": "what is scheduled immediately before and after each transmission",
+          "why_it_matters": "An express context factor [UK-DEF-003], and in a daytime strip it is also how one establishes whether the episode sits next to children's or family programming - which bears on both transmissions and on any trailer [UK-TRL-003].",
+          "what_changes_if_answered": "Adjacency to children's programming would weigh heavily against both slots, and would be decisive for a trailer."
+        },
+        {
+          "field": "whether any warning, signposting or on-screen age label accompanies either transmission, and whether a pre-broadcast audience advisory is used on the pay TV service",
+          "why_it_matters": "Both are expressly listed as unknown. A signpost is one of the main ways a broadcaster earns a slot, and it must be adequate and convey severity to count [UK-WRN-002, UK-WRN-003].",
+          "what_changes_if_answered": "An adequate advisory strengthens a daytime placement; for a 22-minute episode a single message at the start is more likely to suffice than it would for a feature. Its absence means no such mitigation may be credited."
+        },
+        {
+          "field": "whether the episode was edited for broadcast, and whether any pre-broadcast compliance edit was applied",
+          "why_it_matters": "The material assessed must be the version transmitted, and the guidance notes that some content remains unsuitable regardless of editing and that frequent bleeping has a cumulative effect [UK-SCH-006].",
+          "what_changes_if_answered": "A compliance edit of the 00:11:40 dialogue could settle the 'appropriately limited' question in the broadcaster's favour."
+        },
+        {
+          "field": "whether further transmissions or repeats of this episode are planned",
+          "why_it_matters": "Expressly listed as unknown. Each showing is its own decision, and daytime repeats need separate thought [UK-SCH-006, UK-SCH-009].",
+          "what_changes_if_answered": "Each further slot would need its own decision; none has been made beyond t1 and t2."
+        },
+        {
+          "field": "which record governs the slot - the <request> block's 'not_stated' or the observations' 14:30 and derived 15:30",
+          "why_it_matters": "The two inputs disagree. I have decided against the observations because a transmission decision needs a time, but the conflict is in the input and should not be resolved silently.",
+          "what_changes_if_answered": "If no slot is in fact proposed, both of these decisions should be read as branch analyses rather than as assessments of a planned transmission."
+        }
+      ],
+      "coverage_gaps": [
+        "THE ACT VERSUS ITS AFTERMATH. UK-SEX-004 speaks of 'representations of sexual intercourse' and of the 'portrayal of sexual behaviour', and no rule in the slice distinguishes depicting a sexual act from depicting its immediate aftermath. That distinction is the entire basis on which this transmission is not barred at 14:30, and the table gives it nowhere to live except inside the judgement. The extractor flagged the same ambiguity from the other direction, recording that the aftermath IS shown and that a reviewer may read is_depicted differently. This is the most load-bearing gap in the decision.",
+        "LANGUAGE. The slice contains no rule of any kind about offensive or strong language, while the not_stated list records that whether strong language occurs anywhere in the episode is unknown. For a daytime placement of a sitcom that is a realistic risk, and the table as supplied cannot decide it.",
+        "SEXUAL REFERENCE SHORT OF DEPICTION, IN DIALOGUE. The slice's sexual-content rules address R18-equivalent material [UK-SEX-001], adult sex material on access-controlled services [UK-SEX-002], strong or explicit sexual images and language post-watershed [UK-SEX-003], and representations of intercourse and the portrayal of sexual behaviour pre-watershed [UK-SEX-004]. A scene whose sexual content exists only in what characters say about what has already happened falls between these, and has to be routed through UK-SEX-004's second limb as the nearest fit rather than a rule written for it.",
+        "DAYTIME STRIP SCHEDULING OF ACQUIRED SERIES. UK-SCH-006 covers family viewing shows, soaps and post-watershed content edited for daytime, but nothing in the slice addresses the ordinary case of an adult-audience sitcom stripped across weekday afternoons, which is what this transmission is. The soap guidance - each episode on its own merits, a long-running storyline supplying no context - is the closest analogue and I have applied it as such, but it is an analogy.",
+        "The +1 start time has no rule-based derivation. UK-SCH-009 establishes that the effective slot moves by an hour, and the observations derive 15:30 from the '+1' label; nothing in the slice or the source states it. The second decision below rests on a derivation the extractor itself flagged for confirmation."
+      ]
+    },
+    {
+      "country": "UK",
+      "transmission": "t2: the +1 timeshift channel of the same general entertainment pay TV service, start time 15:30 (DERIVED from the '+1' label and not stated in the source), 22-minute episode, so ending about 15:52. Date 'not_stated'; 'weekday' only. This is a separate decision from t1 by design: the same file is transmitted an hour later to a different audience, and the prompt requires a decision per transmission. Service branch as for t1: general entertainment pay TV, not a premium subscription film service and not pay-per-view; whether it is a scheduled channel with mandatory daytime protection is unknown and branched, not assumed.",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "Ofcom Broadcasting Code - no per-programme age rating is issued for UK linear television. No certificate exists on this asset; the source positively asserts 'CERTIFICATE: none'.",
+        "basis": [
+          {
+            "rule_id": "UK-LAW-001",
+            "clause_ref": "s.319(2)(a)",
+            "why": "As for t1. The statutory duty is a standards duty discharged at the point of scheduling, not a classification scheme, so this axis is empty by design. It is also worth noting what this means for the +1: because there is no label, there is nothing about the asset that could be pointed to as carrying its permission from one service to the other. The permission is a property of the transmission, not of the file."
+          },
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.22-1.26",
+            "why": "Cited for the single proposition that content is scheduled appropriately for the audience rather than by reference to a rating. On a +1 that proposition does real work: if the hour came from a label, both transmissions of the same file would get the same answer, and they do not."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "Branch (A), no mandatory daytime protection: 15:30 CANNOT be cleared on this record, and it is materially more exposed than the 14:30 transmission even though the file is identical and nothing has been edited. The reason is audience, not content: a 22-minute episode starting at 15:30 ends about 15:52, which is around or after the time children return from school, whereas the 14:30 transmission concludes about 14:52, within school hours. UK-SCH-009 identifies this exact risk and notes it runs in the counter-intuitive direction. On the recorded material I do not think the content is unsuitable for under-fifteens [UK-SCH-002, UK-DEF-001], so this is not a finding of breach - it is a finding that the one argument supporting the 14:30 slot is weaker here and that the facts needed to test it are absent. Branch (B), mandatory daytime protection in place and validly engaged: 15:30 is permitted outright, because the watershed does not apply at all [UK-SCH-007, UK-FLM-003]. Not established.",
+        "without_technical_measure": "Not cleared. The analysis of the content is identical to t1 - UK-SEX-004's hard first limb is not engaged because nothing is shown, and its second limb applies and is unverified for want of the dialogue's words - but the scheduling analysis is different and worse. 15:30 is closer to the after-school audience, and UK-SCH-010 records that audience composition before 21:00 is not uniform and that the youngest children are the ones the watershed most protects. If the date falls in a school holiday, the distinction between 14:30 and 15:30 largely disappears and both become afternoon slots with children at home, so the missing date degrades this decision in a different way from t1: for t1 it removes the justification, and for t2 it removes even the partial justification.",
+        "with_technical_measure": "Branched, not resolved, on the same terms as t1. If mandatory daytime protection is in place on the +1 channel specifically, the watershed is disapplied [UK-SCH-007] and any time of day is permitted [UK-FLM-003], subject to the gate being non-removable by the user [UK-ACC-001], on by default [UK-ACC-002] and explained to all viewers with content information [UK-ACC-003]. One point specific to this transmission: protection on the main service does not establish protection on its +1. They are separate services carrying separate transmissions, and the question must be answered for the channel that actually carries the showing.",
+        "basis": [
+          {
+            "rule_id": "UK-SCH-009",
+            "clause_ref": "+1 services guidance",
+            "why": "The rule this decision exists to apply, and the reason it is a separate decision. Where the same content is broadcast an hour later on a +1 service, the LATER TRANSMISSION MUST ITSELF BE SUITABLE FOR THE AUDIENCE IT WILL THEN REACH, and broadcasters may need to schedule earlier on the main service so the +1 still concludes before children return from school. The row records that the same file can be compliant on one service and in breach on the other with no editorial change whatsoever, and that the risk runs the counter-intuitive way: content placed while children are at school lands an hour later, when they are home. A 14:30 placement producing a 15:30 +1 is precisely the shape it describes. conditional, human_review_required=yes."
+          },
+          {
+            "rule_id": "UK-SCH-010",
+            "clause_ref": "Guidance Notes Section One, Rules 1.3-1.6",
+            "why": "Why 15:30 is not simply 14:30 plus an hour of indifference. Audience composition before 21:00 is not uniform; the watershed matters most for children aged 5 to 8, and school holidays change the audience without changing the clock. The 15:30 slot sits closer to the after-school audience, and in a holiday period both slots sit squarely in it."
+          },
+          {
+            "rule_id": "UK-SCH-006",
+            "clause_ref": "UK-G1 s.1",
+            "why": "The row carries the +1 point in terms - a 21:00 broadcast becomes 22:00 on +1, but a 20:00 broadcast becomes 21:00 - and makes the general point that each episode is scheduled on its own merits and that daytime repeats need separate thought. A +1 showing is the clearest case of a transmission needing separate thought."
+          },
+          {
+            "rule_id": "UK-SCH-002",
+            "clause_ref": "Rule 1.4",
+            "why": "The watershed restricts material unsuitable for children, and on the recorded material the unsuitability threshold is doubtful. So the 15:30 position is 'not cleared for want of facts', not 'prohibited'. Reporting it as a bar would over-restrict."
+          },
+          {
+            "rule_id": "UK-SCH-001",
+            "clause_ref": "Rule 1.3",
+            "why": "The duty this transmission has to satisfy: children must be protected by appropriate scheduling from material unsuitable for them. It is applied to the audience this showing will reach, not to the audience the main service's showing reached."
+          },
+          {
+            "rule_id": "UK-DEF-001",
+            "clause_ref": "S1 definitions",
+            "why": "'Children' means people under fifteen in the operative rules - the relevant population for the after-school audience this transmission reaches."
+          },
+          {
+            "rule_id": "UK-DEF-002",
+            "clause_ref": "S1 definitions",
+            "why": "Appropriate scheduling turns on the likely number and age range of child viewers taking into account school time, weekends and holidays, and on the programme's START AND FINISH TIME. The finish time is what distinguishes this transmission from t1: about 15:52 against about 14:52. Both the date and the audience composition are unstated, so the factor cannot be applied."
+          },
+          {
+            "rule_id": "UK-SEX-004",
+            "clause_ref": "Rule 1.20",
+            "why": "Identical content analysis to t1: the hard first limb is not engaged because nothing is shown and is_depicted is false, and the second limb applies and requires the portrayal to be editorially justified and appropriately limited. Unverified for want of the dialogue's words. The content analysis does not change between the two transmissions - only the audience does, which is the whole point."
+          },
+          {
+            "rule_id": "UK-SCH-011",
+            "clause_ref": "Bulletin issue 553, Rule 1.3 decision",
+            "why": "A cultural or religious festival raises the expected child audience within existing hours, and cannot be inferred from a single calendar without knowing the channel's community. With no date and no named channel this cannot be run, and it bears on an after-school afternoon slot more than on an evening one."
+          },
+          {
+            "rule_id": "UK-SCH-007",
+            "clause_ref": "Rule 1.4 (meaning of the watershed)",
+            "why": "Branch (B). The watershed does not apply at all while mandatory daytime protection is in place, and it is ranked 1 so it defeats UK-SCH-002 on conflict. Branched, because no protection is described - and the question must be answered for the +1 channel itself, not for the main service."
+          },
+          {
+            "rule_id": "UK-FLM-003",
+            "clause_ref": "Rule 1.24",
+            "why": "Branch (B) continued: with mandatory daytime protection in place, any time of day is permitted. If this applies to the +1 channel, 15:30 is fine and the audience analysis above is unnecessary. The row records that which services may use MDP is itself an open question for a UK reviewer."
+          },
+          {
+            "rule_id": "UK-SCH-003",
+            "clause_ref": "Rule 1.4",
+            "why": "Considered and not engaged, as for t1: the 20:00 watershed is for premium subscription film services, and this is a general entertainment service carrying a series episode. Recorded so that 'pay TV' is visibly not being treated as a film service."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "access_control",
+          "requirement": "If mandatory daytime protection is relied on to hold this slot, it is a condition of the hours and must be established FOR THE +1 CHANNEL, not for the main service: the gate must be non-removable by the user, on by default, and clearly explained to all viewers alongside content information. Nothing in the observations records any protection on either channel.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {
+              "rule_id": "UK-ACC-001",
+              "clause_ref": "Rule 1.18 (meaning)"
+            },
+            {
+              "rule_id": "UK-ACC-002",
+              "clause_ref": "Guidance Notes Section One, Rules 1.24-1.25"
+            },
+            {
+              "rule_id": "UK-ACC-003",
+              "clause_ref": "Rules 1.24, 1.25"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "The context factors must be applied to the audience THIS transmission reaches: the time of broadcast, what is scheduled before and after on the +1 channel, the likely size and composition of the audience and its expectation, and the effect on those coming across the content unawares. None of the schedule or audience information is supplied for either channel. The last factor is sharper on a +1, where viewers are often watching because they missed the original and are arriving mid-schedule.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-DEF-003",
+              "clause_ref": "S2 'meaning of context'"
+            },
+            {
+              "rule_id": "UK-CTX-011",
+              "clause_ref": "Bulletin issue 553, footnote 2 and Rule 1.3 decision"
+            }
+          ]
+        },
+        {
+          "kind": "adjacency",
+          "requirement": "Contextual justification rises with audience size and a niche channel cannot argue the reverse. A +1 channel typically has a smaller audience than its main service, and that argument is expressly not available: the obligation applies to all programmes regardless of reach, and audience size can only make the decision stricter. This is worth recording because the reverse argument is the obvious one for a timeshift channel.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-CTX-010",
+              "clause_ref": "Guidance Notes Section 2, meaning of context"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "No warning, signpost or on-screen age label is recorded for either transmission, so none may be credited as mitigation for this slot; if one is used it must be adequate in frequency and positioning and must convey severity rather than only presence. A signpost on the main service does not travel to the +1 unless it is in the transmitted file.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-WRN-002",
+              "clause_ref": "Guidance Notes Section 2, Rule 2.3"
+            },
+            {
+              "rule_id": "UK-WRN-003",
+              "clause_ref": "Bulletin issue 553, audience research cited in the decision"
+            }
+          ]
+        },
+        {
+          "kind": "trailer",
+          "requirement": "Conditional and not triggered: no trailer or derived asset is described. If one exists it is assessed in the slot it occupies on the channel it occupies, inherits nothing from either transmission of the feature, and must be kept away from children's programming, family entertainment and sport.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-TRL-002",
+              "clause_ref": "Guidance Notes Section One"
+            },
+            {
+              "rule_id": "UK-TRL-001",
+              "clause_ref": "UK-G1 s.1"
+            },
+            {
+              "rule_id": "UK-TRL-003",
+              "clause_ref": "Trailers guidance"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "The general duty to take all reasonable steps to protect under-eighteens applies to this transmission in its own right. It is the duty that makes the +1 question the broadcaster's to ask: scheduling 14:30 on the main service without considering where the +1 lands is not a reasonable step, even if the 14:30 showing is itself compliant.",
+          "is_condition_of_the_hours": false,
+          "basis": [
+            {
+              "rule_id": "UK-GEN-002",
+              "clause_ref": "Rule 1.2"
+            }
+          ]
+        }
+      ],
+      "axis_note": "This decision exists to show that the axes are properties of a TRANSMISSION and not of a file. The classification axis is identical to t1 and empty - no per-programme rating is issued and no certificate exists - so nothing on that axis could explain any difference between the two showings. The content analysis is also identical: the same file, the same single observation, the same conclusion that UK-SEX-004's hard limb is not engaged because nothing is shown. And yet the hours answer is not the same, because the audience is not the same: a 22-minute episode at 14:30 concludes within school hours and the same episode at 15:30 concludes at about 15:52, around or after children return from school [UK-SCH-009]. A system keyed to the asset rather than to the transmission cannot represent this at all, and a system that resolved the content question once and reused it would give both showings the same answer and be wrong about one of them. The restriction axis is where the substitution lives, and it is unresolved in the same way for both: mandatory daytime protection would disapply the watershed entirely [UK-SCH-007, UK-FLM-003], but it must be established for THIS channel, because protection on a main service says nothing about its +1. Finally, the thing that makes both transmissions uncertain is a single absent field - the date - and it degrades them differently: for t1 it removes the justification (children at school), and for t2 it removes what was only ever a partial justification. In a school holiday the difference between the two slots largely collapses and both are afternoon slots with children at home.",
+      "reasoning": "This is the second of two decisions on the same asset, required because the observations record two transmissions and the prompt directs that each showing is its own decision. Routing, prohibitions and classification are identical to t1 and I will not restate them at length: is_news_or_current_affairs is 'no'; none of UK-GEN-001, UK-SEX-001, UK-FLM-001 or UK-FLM-006 is engaged, the last two because the asset is a series_episode and the source positively asserts that no certificate exists; and the UK issues no per-programme rating, so the classification axis is empty [UK-LAW-001, UK-FLM-010]. The content analysis is also identical, and that identity is the point. UK-SEX-004's first limb - representations of sexual intercourse before the watershed - is not engaged, because is_depicted is false, the source states twice that nothing is shown and no nudity is visible, and the sex is established only through dialogue; what is shown is the duvet-covered aftermath. Its second limb applies and requires the portrayal of sexual behaviour to be editorially justified and appropriately limited, which cannot be confirmed because the words of the dialogue and the scene's duration are both unstated. Nothing about that changes between 14:30 and 15:30. What changes is the audience, and it changes the answer. UK-SCH-009 is directly in point and states the principle twice over: the later transmission must itself be suitable for the audience IT WILL THEN REACH, and broadcasters may need to schedule earlier on the main service so that the +1 transmission still concludes before children return from school. The arithmetic matters here. A 22-minute episode starting at 14:30 ends about 14:52, comfortably inside school hours. The same episode on the +1 starts at 15:30 and ends about 15:52, which is around or after the point at which children are home. So the single argument that supports the 14:30 placement - that the child audience is at school - is weaker for this transmission and may not hold at all. The row's own note that the risk runs the counter-intuitive way describes this case exactly: content placed while children are at school lands an hour later, when they are not. I want to be careful not to over-correct. On the recorded material I do not think this content is unsuitable for people under fifteen [UK-SCH-002, UK-DEF-001] - a post-coital conversation under a duvet with nothing shown is not strong material - so this is not a finding that the 15:30 transmission breaches. It is a finding that it cannot be cleared, which is a different output and the honest one. The facts that would settle it are absent: the date, and therefore whether this is term time or a school holiday [UK-DEF-002, UK-SCH-010]; the audience size and age composition in the slot, which the observations expressly list as unstated; and whether the episode contains anything beyond the single recorded event. The date does the most work, and it degrades this transmission differently from t1. For t1 the date decides whether there is any justification at all. For t2 the justification was only ever partial, and in a school holiday the distinction between a 14:30 and a 15:30 afternoon slot largely disappears - both land in front of children who are at home. UK-SCH-006 supplies two further points. It carries the +1 arithmetic in terms, and it directs that each episode of a series is scheduled on its own merits with daytime repeats needing separate thought; a +1 showing is the clearest possible case of a transmission requiring separate thought rather than inheriting a verdict. Service applicability, finally, and one point specific to this transmission. As with t1, the service is general entertainment pay TV, which is neither a premium subscription film service nor pay-per-view, so UK-SCH-003, UK-FLM-004 and UK-FLM-005 are not available on their own terms. If mandatory daytime protection is in place, the watershed is disapplied [UK-SCH-007] and any hour is permitted [UK-FLM-003], which would dispose of this transmission as it would t1. But the question must be answered for the +1 CHANNEL. A +1 is a separate service carrying a separate transmission, and protection on the main service establishes nothing about it. I have branched rather than assumed, both because the request gives service_type as 'not_stated' and because 'pay TV' is a payment barrier rather than a child-protection measure - UK-ACC-001 is explicit that a control the user can remove is not mandatory restricted access at all. Restrictions, checked against the hours. Nothing here is cured by the clock. The access-control branch is a substitute for the hour if established; everything else - the context factors [UK-DEF-003], the audience-size asymmetry [UK-CTX-010], the warning adequacy standards [UK-WRN-002, UK-WRN-003] - sits on top of whatever hour is chosen. I note the audience-size point specifically for a +1, because the obvious argument from a timeshift channel is that fewer people watch it, and UK-CTX-010 removes that argument: audience size can make a decision stricter and never looser. One procedural caution to close. The 15:30 start time is DERIVED from the '+1' label and is not stated in the source; the extractor flagged the derivation for confirmation and listed it in not_stated. This entire decision rests on that derived time. If the +1 channel offsets by something other than an hour, or if it does not carry this episode at all, the decision must be re-run.",
+      "confidence": "low",
+      "human_review_required": true,
+      "review_reasons": [
+        "This transmission is the risk in the asset and nobody asked about it. The +1 showing at about 15:30-15:52 reaches an audience that includes children returning from school, while the main service's showing concludes about 14:52 inside school hours. UK-SCH-009 identifies exactly this, is conditional, and carries human_review_required=yes. The same file is involved with no editorial change whatsoever.",
+        "The start time this decision rests on is DERIVED, not stated. The source gives '+1' and the extractor derived 15:30, flagging the derivation. If the offset differs, or the +1 does not carry this episode, the decision must be re-run.",
+        "intended_date is 'not_stated' and only 'weekday' is given. In a school holiday the distinction between the 14:30 and 15:30 slots largely collapses and both become afternoon slots with children at home [UK-DEF-002, UK-SCH-010]. Which weekday is also unknown.",
+        "The audience size and age composition in each slot are expressly unstated, and they are the facts that would settle this rather than the date standing in for them [UK-DEF-002, UK-DEF-003, UK-CTX-010].",
+        "Whether mandatory daytime protection is in place ON THE +1 CHANNEL is unknown and would be dispositive [UK-SCH-007, UK-FLM-003]. Protection on the main service establishes nothing about its +1, and 'pay TV' establishes nothing about protection at all. UK-FLM-003 also records that which services may use MDP is an open question for a UK reviewer.",
+        "The content analysis carries the same two uncertainties as t1: the is_depicted judgement is contestable, with the extractor noting that the aftermath IS shown and that a reviewer may read it differently, and the words of the dialogue at 00:11:40 are unstated while UK-SEX-004's second limb turns on whether the portrayal is 'appropriately limited'.",
+        "Only one event in the episode is described and it is not stated to be the only one; whether strong language occurs anywhere is unknown, and the rule slice contains no language rule to decide it.",
+        "The decision rests on judgment_based and conditional rules marked human_review_required=yes: UK-SCH-009, UK-SCH-010, UK-SCH-011, UK-CTX-010, UK-CTX-011, UK-SCH-007, UK-FLM-010, UK-ACC-003, UK-TRL-003, UK-WRN-002 and UK-WRN-003, alongside the judgment_based UK-SCH-001, UK-SCH-006, UK-DEF-002, UK-DEF-003, UK-GEN-001, UK-GEN-002 and UK-SEX-001.",
+        "The input is internally inconsistent: the <request> block gives intended_slot as 'not_stated' while the observations record a slot for t1 and a derived slot for t2. Flagged rather than resolved."
+      ],
+      "missing_information": [
+        {
+          "field": "confirmation of the +1 channel's actual offset and that it carries this episode",
+          "why_it_matters": "The 15:30 start is derived from the '+1' label and is not stated in the source. The whole of this decision rests on it, and the extractor flagged the derivation for confirmation.",
+          "what_changes_if_answered": "A different offset moves the finish time relative to the after-school audience and could change the answer either way. If the +1 does not carry the episode, this decision falls away entirely."
+        },
+        {
+          "field": "intended_date, including whether it falls in term time or a school holiday, and which weekday",
+          "why_it_matters": "School holidays change the audience without changing the clock [UK-SCH-010], and appropriate scheduling expressly takes school time, weekends and holidays into account [UK-DEF-002]. The only argument available for an afternoon slot is that children are at school.",
+          "what_changes_if_answered": "In term time the 15:30 slot is arguable, with the finish time around the point children arrive home. In a school holiday the argument is unavailable for both transmissions and a later slot or a different placement is likely required."
+        },
+        {
+          "field": "the expected or measured size and age composition of the audience at 15:30 on the +1 channel",
+          "why_it_matters": "Expressly unstated, and it is the direct evidence the date is otherwise standing in for [UK-DEF-002, UK-DEF-003]. Audience size can make the decision stricter but never looser [UK-CTX-010].",
+          "what_changes_if_answered": "Measured child viewing in the slot would settle this transmission without needing to reason from school hours at all."
+        },
+        {
+          "field": "whether mandatory daytime protection is in place on the +1 channel specifically, and whether it is non-removable by the user, on by default and explained to all viewers",
+          "why_it_matters": "If it is, the watershed does not apply at all and any hour is permitted [UK-SCH-007, UK-FLM-003], subject to UK-ACC-001, UK-ACC-002 and UK-ACC-003. If it is not, the audience analysis governs.",
+          "what_changes_if_answered": "Would dispose of this transmission and t1 together. It must be answered for the +1 channel, not inferred from the main service or from the words 'pay TV'."
+        },
+        {
+          "field": "whether the dialogue in the 00:11:40 scene refers to sexual acts in explicit terms, and in what words; and the scene's duration",
+          "why_it_matters": "UK-SEX-004's second limb requires a pre-watershed portrayal of sexual behaviour to be editorially justified and APPROPRIATELY LIMITED. Both facts are unstated.",
+          "what_changes_if_answered": "Explicit dialogue would put this episode past the watershed on both transmissions regardless of the fact that nothing is shown."
+        },
+        {
+          "field": "whether any other events occur in the episode, and whether strong language occurs anywhere in it",
+          "why_it_matters": "Only one event is listed and the description does not say it is exhaustive. For an afternoon slot this is a live risk.",
+          "what_changes_if_answered": "Further material could put both transmissions past the watershed. If the answer involves language, this rule slice has no rule to decide it and a reviewer would need the full Code."
+        },
+        {
+          "field": "what is scheduled immediately before and after the 15:30 transmission on the +1 channel",
+          "why_it_matters": "An express context factor [UK-DEF-003]. On an afternoon schedule it also establishes whether the episode sits next to children's or family programming, which would weigh heavily against the slot.",
+          "what_changes_if_answered": "Adjacency to children's or family programming would be close to decisive against this placement, and would also constrain any trailer [UK-TRL-003]."
+        },
+        {
+          "field": "whether any warning, signposting or on-screen age label accompanies this transmission",
+          "why_it_matters": "Expressly unknown, and a signpost on the main service does not travel to the +1 unless it is in the transmitted file. It must be adequate and convey severity to count [UK-WRN-002, UK-WRN-003].",
+          "what_changes_if_answered": "An adequate advisory strengthens the placement; for a 22-minute episode a single message at the start is more likely to suffice than for a feature. Its absence means no mitigation may be credited."
+        },
+        {
+          "field": "the name and nature of the +1 channel and its audience expectation",
+          "why_it_matters": "The nature of the channel and audience expectation for it at that time and day are express appropriate-scheduling factors [UK-DEF-002], and the channel's community bears on the festival factor [UK-SCH-011].",
+          "what_changes_if_answered": "Supplies two factors currently missing, and would allow the cultural and religious calendar check to be attempted at all."
+        },
+        {
+          "field": "whether the episode was edited for broadcast, and whether a compliance edit was applied to the version carried on the +1",
+          "why_it_matters": "The material assessed must be the version transmitted, and the two channels could in principle carry different versions.",
+          "what_changes_if_answered": "An edited version could resolve the 'appropriately limited' question. Different versions on the two channels would mean the content analysis is not in fact identical, which this decision assumes."
+        },
+        {
+          "field": "whether further transmissions or repeats are planned on either channel",
+          "why_it_matters": "Expressly unknown. Each showing is its own decision, and daytime repeats need separate thought [UK-SCH-006, UK-SCH-009].",
+          "what_changes_if_answered": "Each further slot would need its own decision; only t1 and t2 have been decided."
+        }
+      ],
+      "coverage_gaps": [
+        "THE +1 OFFSET HAS NO RULE-BASED SOURCE. UK-SCH-009 and UK-SCH-006 both establish that the effective slot moves by an hour on a +1 service, but nothing in the slice or in the source states the actual start time of this transmission; 15:30 is the extractor's derivation from the label. The slice gives the consequence of a timeshift without any means of establishing the timeshift itself for a particular service.",
+        "WHEN CHILDREN RETURN FROM SCHOOL IS NOT DEFINED ANYWHERE. UK-SCH-009 turns on whether the +1 transmission 'concludes before children return from school' and UK-SCH-010 on proximity to 19:30 and on school holidays, but no rule in the slice gives a time, a range or a method for the end of the school day - and it varies by nation, by area and by school. So the single most important threshold in this decision has to be supplied by the reviewer from outside the table. I have reasoned that a 15:52 finish is 'around or after' that point and have deliberately not asserted a figure.",
+        "THE ACT VERSUS ITS AFTERMATH, as for t1. UK-SEX-004 speaks of 'representations of sexual intercourse' and the 'portrayal of sexual behaviour', and no rule in the slice distinguishes depicting a sexual act from depicting its immediate aftermath. That distinction is what keeps this episode out of the hard pre-watershed bar on both transmissions.",
+        "LANGUAGE. The slice contains no rule about offensive or strong language, while whether strong language occurs anywhere in the episode is expressly unknown. Neither transmission can be cleared on that axis from the table supplied.",
+        "PROTECTION ON A MAIN SERVICE VERSUS ITS +1. UK-ACC-001, UK-ACC-002, UK-ACC-003 and UK-FLM-003 are written about a service, and nothing in the slice addresses whether a main channel and its timeshift are one service or two for the purposes of mandatory daytime protection. I have taken the conservative reading - they are separate transmissions on separate channels, so protection must be established for the one that carries the showing - but the table does not settle it, and UK-FLM-003 already records service eligibility for MDP as an open question.",
+        "SEXUAL REFERENCE SHORT OF DEPICTION, IN DIALOGUE, has no rule written for it in the slice; it has to be routed through UK-SEX-004's second limb as the nearest fit."
+      ]
+    }
+  ],
+  "cross_country_note": "No cross-country comparison is offered, and the reason is a property of the request rather than an omission: the <request> block names only the UK, so France was not asked about and no French rule slice was supplied. The rules block contains UK rows exclusively. I have therefore made no French determination of any kind, and the absence of one must not be read as a finding that the asset is acceptable in France - a French decision would need the French rule slice and a separate transmission record for a French service, and would turn on a classification the editor's own commission de visionnage would have to assign, which is a determination that has no UK counterpart. The divergence worth recording instead is the one INSIDE the United Kingdom, between the two transmissions of this single file. Both decisions above are UK decisions on identical content with an identical classification axis - empty, because no per-programme rating is issued for linear television and the source positively asserts that no certificate exists - and they reach different answers. The 14:30 transmission on the main service is a qualified yes: a 22-minute episode concluding about 14:52, inside school hours, carrying a duvet-covered post-coital conversation with nothing shown, which does not engage UK-SEX-004's hard pre-watershed bar on representations of sexual intercourse and probably is not unsuitable for under-fifteens. The 15:30 transmission on the +1 cannot be cleared: it concludes about 15:52, around or after children return from school, and UK-SCH-009 requires the later showing to be suitable for the audience it will then reach, noting that the same file can be compliant on one service and in breach on the other with no editorial change at all. That is the finding this asset exists to produce, and it is the finding a pipeline keyed to the asset rather than to the transmission cannot reach. Two further observations for whoever reviews this. First, the whole pair turns on one absent field, the date: in term time the school-hours argument carries the 14:30 slot and partly carries the 15:30 one, while in a school holiday it carries neither and the distinction between the two slots largely collapses. Second, one unanswered question would dispose of both: whether the service and its +1 operate mandatory daytime protection, because if they do the watershed is disapplied rather than relaxed and every hour is available [UK-SCH-007, UK-FLM-003]. 'Pay TV' is not an answer to that question - a subscription is a payment barrier, not a child-protection gate - and protection on a main service says nothing about its timeshift. I also record that the input is internally inconsistent on the slot, the <request> block giving 'not_stated' while the observations record 14:30 and a derived 15:30, and that the 15:30 figure is the extractor's derivation from the '+1' label rather than a stated fact. I have decided against the observations and flagged both points rather than resolving either silently."
+}

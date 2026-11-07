@@ -1,0 +1,149 @@
+{
+  "asset": {
+    "title": "Toofan",
+    "runtime_minutes": "not_stated",
+    "content_type": "film",
+    "existing_certificates": [
+      {"body": "BBFC", "rating": "15", "scope": "not_stated"}
+    ],
+    "intended_service": "NTV, free-to-air satellite",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "not_stated",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "NTV",
+      "date": "2026-05-29",
+      "start_time": "11:30",
+      "clock": "wall_clock",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "11:33",
+      "category": "violence",
+      "what_happens": "A mass shooting. A character uses a large machine gun to kill multiple people.",
+      "descriptors": ["mass shooting", "machine gun", "multiple people killed", "firearm"],
+      "duration_or_frequency": "the description states this scene is repeated at 13:41",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A mass shooting. A character uses a large machine gun to kill multiple people.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "13:41",
+      "category": "violence",
+      "what_happens": "The mass shooting scene from 11:33 is shown again: a character uses a large machine gun to kill multiple people.",
+      "descriptors": ["repeat of earlier scene", "mass shooting", "machine gun", "multiple people killed"],
+      "duration_or_frequency": "second showing of the same scene; two occurrences in total per the description",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "This scene is repeated at 13:41.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o3",
+      "timecode": "12:24",
+      "category": "violence",
+      "what_happens": "A man is stabbed to death. Another man is beheaded with a machete, and the decapitated head is then shown being carried by the killer.",
+      "descriptors": ["stabbing", "death", "beheading", "machete", "decapitated head shown", "head carried by killer"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is stabbed to death. Another is beheaded with a machete, followed by a shot of the decapitated head being carried by the killer.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "12:24",
+      "category": "human_dignity",
+      "what_happens": "A decapitated human head is shown being carried by the killer after the beheading.",
+      "descriptors": ["decapitated head shown", "body part carried", "corpse of a victim on screen"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "followed by a shot of the decapitated head being carried by the killer",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o5",
+      "timecode": "13:28",
+      "category": "violence",
+      "what_happens": "A man is choked to death during a wrestling match.",
+      "descriptors": ["choking", "death", "wrestling match", "unarmed fighting"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is choked to death during a wrestling match.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o6",
+      "timecode": "13:28",
+      "category": "imitable_behaviour",
+      "what_happens": "A fatal choke is applied to a person during a wrestling match, i.e. a hold applied by one person to another using the body rather than a weapon.",
+      "descriptors": ["choking a person", "wrestling hold", "no technique detail given in the description"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "A man is choked to death during a wrestling match.",
+      "extraction_confidence": "low"
+    },
+    {
+      "id": "o7",
+      "timecode": "13:44",
+      "category": "violence",
+      "what_happens": "Multiple people are assassinated.",
+      "descriptors": ["assassination", "multiple deaths"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "fictional",
+      "evidence": "Multiple people are assassinated.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o8",
+      "timecode": "not_stated",
+      "category": "offence_general",
+      "what_happens": "The description states that no warning or signposting was given before or during the broadcast. This is a statement about how the transmission was presented, not an on-screen event.",
+      "descriptors": ["no warning given", "no signposting", "before or during the broadcast"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "not_stated",
+      "evidence": "NO WARNING OR SIGNPOSTING was given before or during the broadcast.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "Total runtime of the asset in minutes.",
+    "The scope of the BBFC 15 certificate (cinema, video or tv) - the certificate line gives a level but no scope.",
+    "Whether the version broadcast was the certificated version or an edited/cut version for television.",
+    "Whether a timeshift service (for example a +1 channel) also carried this asset, and at what time; only one slot is described, so a second, later showing cannot be ruled out.",
+    "The intended service type beyond the words 'free-to-air satellite' (for example whether NTV is a general entertainment, film or community service, and its expected audience).",
+    "The end time of the transmission and therefore its scheduled duration; the event timecodes run from 11:33 to 13:44 but no finish time is given.",
+    "Duration of each violent scene and the total screen time given to violence.",
+    "Whether any of the people depicted or participating are under 18, and whether any under-18s took part in the production.",
+    "Whether the asset is news or current affairs (recorded as not_stated rather than inferred from the 'action' genre label).",
+    "Whether the asset was made primarily for children (recorded as not_stated rather than inferred from genre).",
+    "Whether any access control applies on this service: nothing is said about a PIN, a lock, a parental gate or any restriction on access.",
+    "Production origin / country of production. 'COUNTRIES: UK' is given but it is not said whether that is the production origin, the broadcast territory, or the regulator's jurisdiction.",
+    "The language presentation as broadcast (original Bengali, dubbed or subtitled), and whether any strong language occurs - no language events are listed at all.",
+    "Whether any other content categories (sexual content, nudity, drugs or alcohol, suicide or self-harm, discriminatory content) occur anywhere in the asset; the event list covers violence only and is not said to be exhaustive.",
+    "Whether the listed events are the complete set of events or only those the regulator recorded.",
+    "The likely or measured child audience for this slot, and any audience data for the service.",
+    "Whether the Eid-ul-Adha date context was known to or acted on by the broadcaster in scheduling."
+  ],
+  "extractor_notes": "1. CLOCK: the event list is headed 'EVENTS (clock times during transmission, as recorded by the regulator)', so the event timecodes are times of day, not elapsed programme time. transmissions[0].clock is set to wall_clock on that basis. They are consistent with the stated 11:30 start.\n2. TIMECODE FORMAT: the source gives timecodes as HH:MM (11:33, 12:24, 13:28, 13:41, 13:44), not the HH:MM:SS the schema shows. They are reproduced exactly as given and not padded, per the instruction not to normalise. Seconds are therefore unknown.\n3. REPEATED SCENE: the 11:33 entry says the scene 'is repeated at 13:41'. Recorded as two observations (o1, o2) so that both positions in the schedule survive, with the repetition also noted in duration_or_frequency. Treat them as one scene shown twice, not two different scenes.\n4. CLUSTERING: four of the five event times fall in the second half of the slot (13:28, 13:41, 13:44 within sixteen minutes), and the first event is three minutes after the stated 11:30 start.\n5. DECAPITATED HEAD: o4 (human_dignity) is a second observation over the same words as o3 because the shot of the severed head being carried is an element distinct from the killing itself. Confidence is medium because the source does not use any dignity-related language; the categorisation is mine, the facts are the source's.\n6. CHOKING AS IMITABLE: o6 is recorded at low confidence. The source says only 'choked to death during a wrestling match' and gives no detail of how the choke is applied, so whether any technique is shown is not stated. I have split it out rather than drop it, but it rests on inference, not on quoted detail.\n7. NO WARNING: the line about warning and signposting is not a depicted event and fits none of the controlled categories. It is recorded as o8 under offence_general, with is_depicted false and timecode not_stated, so that a field-reading decision step can still see it. Flagged here as instructed.\n8. DATE CONTEXT: the description adds 'during the three-day Eid-ul-Adha celebrations' against the 29 May 2026 transmission date. The schema has no field for calendar or festival context, so it is recorded only here and the date field itself carries 2026-05-29. The three-day span means the festival period is not confined to the transmission date.\n9. TREATMENT: no event carries any framing word in the source (nothing is called realistic, stylised or comedic). 'fictional' is used for the dramatic events on the strength of the header 'feature film, Bengali-language action' alone. If the grader expects treatment to be driven only by explicit framing language, these should read not_stated.\n10. ASSET FLAGS: is_news_or_current_affairs and is_made_primarily_for_children are both not_stated. The asset is labelled a feature film, which makes news unlikely, but the instruction is to set these rather than infer from genre, so neither is answered.\n11. 'COUNTRIES: UK' is ambiguous between production origin, broadcast territory and regulatory jurisdiction; production_origin is left not_stated and the ambiguity is listed in not_stated.\n12. NO CONTRADICTIONS: the description contains no summary line conflicting with the event list, so nothing needed to be left unreconciled."
+}

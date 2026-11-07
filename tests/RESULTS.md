@@ -1,37 +1,148 @@
-# Results and failure analysis
+# Results
 
-## Discount these appropriately
+## How these were produced
 
-I wrote the rules, the prompts and the test cases, and I executed them. Four roles that should
-belong to at least two parties. A system graded by its own author passes.
+**All eight cases were run, and the outputs are in `tests/runs/`.** Every RUN 1 description,
+every assembled decision context, and every RUN 2 decision is committed, so any claim below
+can be checked against the actual output rather than taken on my word.
 
-So the trustworthy parts below are the **failures** and **TC-01**, because the failures
-survived my bias rather than being produced by it, and TC-01 has an answer set by a regulator
-rather than by me.
+They were run **blind**. Agents that had never seen this file or `CASES.md` were given the
+prompt and the input and nothing else, and were explicitly barred from reading the expected
+answers or, during RUN 1, the rules. An author running their own tests cannot find certain
+defects, because they already know what the output should say.
 
-What limits the bias a little: every decision cites a `rule_id` resolving to a row with a
-clause reference and a quote mechanically checked against the stored document. A reviewer can
-audit any single claim without trusting me.
+**What that does and does not fix.** It removes one half of the correlated-error problem: the
+outputs were not produced by someone who knew the intended result. It does not remove the
+other half. I wrote the rules they applied, so a misreading in the table is still a
+misreading they would faithfully reproduce. That remains C-08 and only an independent
+re-derivation closes it.
 
-## Summary
+## The headline result: it escalates everything
 
-| Case | Result | What it showed |
-|---|---|---|
-| TC-01 *Toofan* | **Pass, against a real finding** | Reproduced the regulator's outcome including the part that is counter-intuitive |
-| TC-02 *Fury Road* free-to-air | Pass | Correct "no UK rating"; refused a single French answer |
-| TC-03 same film, PIN | **Failed, then fixed** | Two real pipeline bugs. The valuable result |
-| TC-04 *Thriller* + trailer | Pass | Separated the trailer from the parent asset |
-| TC-05 summary contradicts the programme | Pass | Surfaced the clash instead of resolving it |
-| TC-06 *Step Brothers* | **Not run** | Rule selection verified; the decision has not been made |
-| TC-07 *40-Year-Old Virgin* | **Not run** | As above. The TC-06 and TC-07 pair is the real measurement |
-| TC-08 *Friends* at 14:30 | **Not run** | As above, and predicted to fail. See the end of this file |
+| case | decisions | escalated | rules cited | coverage gaps | missing info |
+|---|---|---|---|---|---|
+| TC-01 | 1 | 1 | 10 | 3 | 13 |
+| TC-02 | 2 | 2 | 20 | 10 | 19 |
+| TC-03 | 2 | 2 | 19 | 11 | 20 |
+| TC-04 | 4 | 4 | 27 | 23 | 30 |
+| TC-05 | 2 | 2 | 24 | 7 | 24 |
+| TC-06 | 2 | 2 | 23 | 8 | 23 |
+| TC-07 | 2 | 2 | 23 | 10 | 25 |
+| TC-08 | 2 | 2 | 14 | 11 | 23 |
+| **total** | **17** | **17** | | **83** | **177** |
 
-The last three were added after the first five, because all five fail in the same direction:
-each catches the system being too permissive. None of them can catch **over-rating**, where
-the system is stricter than the law and nobody complains. TC-08 exists for that, and it is
-the one I expect to fail.
+**Escalation rate: 17 of 17. One hundred per cent.** All eight pass `postcheck.py`, every
+cited rule resolves to an approved row, no rule was invented. On its own terms the system is
+working. It is also, at this calibration, **useless**: it saves nobody any work, because it
+hands back every single decision.
+
+`TASK2_SCALING.md` sets a target band of 15 to 30% and says too high means nobody is saved
+work. 100% is not near that band, it is the degenerate case.
+
+**Why.** 45 of 103 rules are `judgment_based`, and `postcheck.py` requires escalation
+whenever a decision rests on one. Almost every real description touches at least one. So the
+escalation is correct rule by rule and worthless in aggregate, and the cause is C-07: nothing
+is calibrated, so everything is a judgement.
+
+That is the single most useful number this project produced, and no amount of reading would
+have produced it.
+
+## What each case did
+
+**TC-01, the back-test.** Reached the regulator's answer: the 11:30 transmission is not
+permitted, citing `UK-SCH-001`, which is Rule 1.3. That matches Ofcom's published finding.
+
+**TC-02 and TC-03.** The UK answer is `no_per_programme_rating`, not "15", on both. France
+branched rather than picking one category. The pair did not collapse into one answer.
+
+**TC-05.** Refused to resolve the contradiction between the supplied summary and the event
+list, and refused to answer France without a service type. Both correct.
+
+**TC-06, the comedy case.** **Not before 21:00, citing `UK-SEX-004` first**, which is Rule
+1.20. The comedy did not excuse it. This is the case designed to catch a system that treats
+"comedic" as a modifier applied to all sexual content, and it held.
+
+**TC-07, and the pair test that was the real measurement.** TC-06 and TC-07 are both BBFC 15
+comedies with explicit sexual content and no sexual nudity. A system treating "comedic" as
+one modifier applied to all sexual content answers them alike and is therefore wrong about
+one. **They were answered differently, for the stated reason.** TC-06 is a hard 21:00 because
+intercourse is depicted and Rule 1.20's escape is a serious educational purpose. TC-07 is
+asymmetric, post-watershed clear and daytime not clearable, because nothing is depicted so
+only the softer limb applies. France went the other way round between the two, more
+restrictive on TC-06 and more permissive on TC-07.
+
+The agent also reported resisting a pull toward 21:00 on both TC-07 and TC-08, and said in
+each `axis_note` why. That is the over-rating pressure this test set was built to expose,
+visible in the output rather than inferred.
+
+**TC-08, and a prediction I got wrong.** Before running, I recorded in this file that I
+expected TC-08 to fail by pushing a 14:30 slot to 21:00, because every other case rewards
+caution. **It did not.** It found 14:30 not barred, and separately flagged the 15:30 `+1`
+transmission as more exposed and not clearable on the record. That is the `+1` rule firing
+correctly on a case built to test over-rating, and it is a better result than I predicted.
+
+The prediction is left in the history rather than quietly deleted. A prediction only counts
+if it is recorded before the run and kept afterwards.
+
+## 83 coverage gaps, which are findings not noise
+
+Across 17 decisions the system reported 83 observations that matched **no rule**. Three
+examples from TC-01, in its own words:
+
+- the shot of a decapitated head being carried maps to `human_dignity`, and the UK slice has
+  no rule addressed to human dignity as a distinct ground. France has one; the UK table does
+  not.
+- the same killing shown twice in one transmission has no rule on intra-programme
+  repetition. The nearest rules cover cumulative effect across programmes.
+- nothing in the table handles an asset whose transmission **end** time is unknown.
+
+A coverage gap is not a wrong answer. It is the table saying it has nothing to say, which is
+the honest output and also a list of rules to go and collect.
+
+Three more the runs surfaced, each a real hole in the table rather than in the content:
+
+- **No offensive-language rule reached any slice.** TC-07 and TC-08 both flagged that they
+  could not tell whether words spoken were expletives, and that this is plausibly the
+  decisive pre-watershed question in both. `strong_language` has four rules in the table and
+  none of them arrived. `verify_cases.py` already reports that no test case exercises that
+  category; the runs show the selection step does not deliver it either.
+- **No French rule states which programmes fall into category IV (-16).** Its hours exist and
+  its trailer rule exists, but nothing defines the threshold, so TC-06's French answer is a
+  range between III and IV rather than an answer.
+- **`UK-SCH-009` turns on "when children return from school" and nothing defines it.** The
+  agent refused to invent a clock figure, which is right, and the rule is unusable until
+  someone supplies one.
+
+One more worth separating out, because it is a defect in the assembler rather than the table:
+TC-08's decision context said `intended_slot: not_stated` while its observations recorded a
+stated 14:30. That is the `run_decision.py` bug the external reviewer found. These contexts
+were assembled before the fix, so the runs above are evidence the bug was real and had reached
+the model.
+
+## Defects in the prompts, found by running them
+
+Eight schema defects, recorded in `tests/PROMPT_DEFECTS.md`, and the fix for the worst two is
+written up as the demonstrated improvement in `TASK1_WRITEUP.md`. The short version: the
+prompts were careful about how to reason and loose about where to put the answer, so facts
+that decide outcomes had nowhere to live and survived as prose.
+
+## What is still not tested
+
+- **No independent re-derivation of the rules.** C-08 stands.
+- **One live model, one run each.** No variance measurement, so nothing here says what
+  happens on a second attempt with the same input.
+- **Five of eleven content categories have no case at all**, which `verify_cases.py` prints
+  with its denominator on every run.
+- **45 judgement rules, one decided case between them.** The escalation result above is a
+  direct consequence.
 
 ---
+
+## The earlier run, kept as history
+
+These are the author-run results that preceded the blind runs above. They are
+kept because the two bugs TC-03 exposed are still the clearest worked example of
+a silent failure in this repo.
 
 ## TC-01: Back-test against a decided case
 

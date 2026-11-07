@@ -167,10 +167,60 @@ unqualified French answer is almost always wrong.
 
 ---
 
-## Failure analysis, and the improvement I can demonstrate
+## Failure analysis, and the improvements I can demonstrate
 
-Five test cases. One failed, and finding **two** bugs from one case is the result I would
-most want a reviewer to look at.
+Two rounds of this. The first came from the rule-selection code, the second from running the
+prompts for real against all eight cases.
+
+### Improvement 2, from running the prompts: a fact with nowhere to live
+
+The eight cases were run by agents that had **never seen the expected answers**. They were
+given the prompt and the input and nothing else. That matters, because an author running
+their own tests cannot find this class of defect: they already know what the output should
+say, so prose that happens to contain the right words looks like success.
+
+**What the first run exposed.** TC-03 describes `mandatory PIN, enabled by default, cannot
+be disabled by the subscriber`. The RUN 1 output schema had **nowhere to put it**. Not on
+the asset, not on the transmission. So it survived only as prose, folded into
+`intended_service` and a notes field.
+
+That is the most outcome-changing fact a description can carry. A gate of that kind is what
+turns `not before 21:00` into `any time` under `UK-FLM-003`. Buried in prose, a decision step
+that reads fields cannot see it, and the answer comes back **more permissive than the law
+allows** with nothing flagged. It is the only defect found in this whole project that fails
+in that direction.
+
+The same run found a second one: TC-01's timecodes are times of day, taken from a
+regulator's finding about a broadcast, while the schema implies elapsed time from the start
+of the programme. Nothing recorded which. In TC-01 that distinction is the entire case.
+
+**The change.** `prompts/RUN_1_describe_content.md` gained an `access_control` block on the
+transmission with five fields, a `clock` field, and the two rules explaining why each exists.
+
+**The re-run, which found my fix was half wrong.** A second blind agent reported that
+`access_control` now worked, and that `clock` did not: it sat on the transmission but
+described timecodes, and in TC-03 the two differ. The events are elapsed, the 14:30 start is
+a time of day, and one field cannot say both. It also noted that padding `00:08` to
+`00:08:00` turns eight minutes into eight seconds.
+
+**The second change.** `timecode_clock` moved onto the observation where it belongs,
+`start_time` is now defined as always a time of day, timecodes are copied exactly as
+written, and two more field-less facts got fields: `warning_or_signposting` and
+`calendar_context`. Both were in the same category as the PIN, both outcome-bearing, and
+both had been surviving in a notes field.
+
+**The third run confirmed it.** On TC-01 every observation carries `wall_clock`; on TC-03
+they carry `elapsed` beside a 14:30 wall-clock start; the PIN is in fields and nowhere else;
+the absent warning and the Eid date are both captured; and `00:08` is stored unpadded. The
+agent's words were that the schema expressed both cases "correctly and without strain".
+
+**What the pattern says.** Every defect in this round was a container problem, not a
+reasoning problem: a field that could not hold what the content said, or two facts sharing
+one slot. The prompts were careful about *how to think* and loose about *where to put the
+answer*. Reading them again would never have found it. Running them found it immediately,
+and the full list is in `tests/PROMPT_DEFECTS.md`.
+
+### Improvement 1, from rule selection: two bugs from one case
 
 TC-01 and TC-02 are the same film with **identical content** on different services. Any
 system deriving hours from the rating must answer both alike, and must therefore be wrong
