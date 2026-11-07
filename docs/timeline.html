@@ -51,8 +51,10 @@ code{background:#f1efea;padding:1px 4px;border-radius:3px;font-size:12px}
 <h1>When each rule bites, over 24 hours</h1>
 <p class="sub">Built from the rule table, not drawn by hand. <strong>Every bar means the same
 thing: the content may be transmitted then.</strong> A prohibition is shown as the hours that
-remain, so there is one reading of the chart rather than two. The day runs <strong>05:30 to
-05:30</strong> rather than midnight to midnight, because the UK watershed is 21:00 to 05:30 and
+remain, so there is one reading of the chart rather than two. Choosing what is depicted
+narrows to the rules for that content <em>plus</em> the framework that applies whatever is on
+screen, marked <em>applies to all content</em>: the watershed, the definitions it rests on,
+and the access controls that can lift it. The day runs <strong>05:30 to 05:30</strong> rather than midnight to midnight, because the UK watershed is 21:00 to 05:30 and
 a midnight axis splits it into two fragments at opposite edges that read as two separate
 permissions. Rules that permit no hour at all, and rules whose restriction is not a time, are
 listed underneath rather than drawn at an invented position.</p>
@@ -60,7 +62,7 @@ listed underneath rather than drawn at an invented position.</p>
 <div class="controls">
   <div><label for="c">Country</label><select id="c"></select></div>
   <div><label for="s">Service type</label><select id="s"></select></div>
-  <div><label for="g">Category</label><select id="g"></select></div>
+  <div><label for="g">What is depicted</label><select id="g"></select></div>
 </div>
 
 <div class="wrap">
@@ -106,28 +108,25 @@ function fill(sel, vals, allLabel){
     vals.map(v => `<option value="${esc(v)}">${esc(pretty(v))}</option>`).join('');
 }
 
-// Which categories describe DEPICTED CONTENT. The rest describe the kind of rule, and
-// presenting them in one flat list implies they are alternatives to each other.
+// The dropdown offers only what can actually be DEPICTED in a programme. The other
+// categories - scheduling_general, definition, signage, access_control and the rest - do not
+// describe content at all; they apply whatever is on screen. Offering them as filter options
+// put "Definition" beside "Violence" as though you would choose between them.
+//
+// So they are never filtered out. Pick "Violence" and you get the violence rules PLUS the
+// framework that always applies: the watershed, the definitions it depends on, the access
+// controls that can lift it. That matches how the decision engine selects rules, where these
+// same categories are force-included.
 const DEPICTED = new Set(['violence','sexual_content','nudity','strong_language',
   'drugs_alcohol_smoking','suicide_self_harm','imitable_behaviour','fear_distress',
   'hatred_discrimination','occult_paranormal','religion','human_dignity','serious_harm',
   'participant_welfare','offence_general','music_videos']);
 
-function fillGrouped(sel, vals){
-  const a = vals.filter(v => DEPICTED.has(v)), b = vals.filter(v => !DEPICTED.has(v));
-  const opts = g => g.map(v => `<option value="${esc(v)}">${esc(pretty(v))}</option>`).join('');
-  sel.innerHTML = '<option value="">All categories</option>'
-    + (a.length ? `<optgroup label="What is depicted">${opts(a)}</optgroup>` : '')
-    + (b.length ? `<optgroup label="Kind of rule">${opts(b)}</optgroup>` : '');
-}
-fill($('#c'), uniq(D.timed.concat(D.untimed).map(r => r.country)), 'All countries');
-fill($('#s'), svcList(), 'Any service type');
-fillGrouped($('#g'), uniq(D.timed.concat(D.untimed).map(r => r.cat)));
-
 function match(r){
   const c = $('#c').value, s = $('#s').value, g = $('#g').value;
   if (c && r.country !== c) return false;
-  if (g && r.cat !== g) return false;
+  // a rule that does not describe depicted content always applies, so it is never filtered out
+  if (g && r.cat !== g && DEPICTED.has(r.cat)) return false;
   if (s){
     const toks = r.svc.split(';').map(t => t.trim());
     const anyScope = toks.some(t => ['all_linear_tv','all_avms'].includes(t));
@@ -149,7 +148,8 @@ function draw(){
       + ((r.open && b===1440) ? '<span class="cont">&rsaquo;</span>' : '') + `</div>`).join('');
     h += `<tr><td class="lbl"><span class="rid">${r.id}</span>`
       + `${r.hr ? '<span class="hr">R</span>' : ''}`
-      + `<br><span class="meta">${esc(pretty(r.cat))}`
+      + `<br><span class="meta">${DEPICTED.has(r.cat) ? '' : '<em>applies to all content</em> &middot; '}`
+      + `${esc(pretty(r.cat))}`
       + `${r.cls && r.cls !== 'n/a' ? ' &middot; ' + esc(pretty(r.cls)) : ''}</span></td>`
       + `<td><div class="track" title="${esc(r.clause)}\n${esc(r.tok)}\n\n${esc(r.text)}\n\n&ldquo;${esc(r.quote)}&rdquo;">`
       + `<div class="ws" style="left:64.58%"></div>${bars}</div></td></tr>`;
