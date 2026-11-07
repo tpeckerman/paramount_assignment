@@ -69,6 +69,33 @@ def category_coverage() -> tuple[set[str], set[str], dict[str, int]]:
     return used & with_rules, with_rules - used, counts
 
 
+def doc_count_claims() -> list[str]:
+    """Numbers asserted in prose that no longer match the table.
+
+    A count written into a sentence goes stale the moment a rule is added, and prose is
+    exactly where nobody looks. Three were stale when this check was written.
+    """
+    with C.RULES_CSV.open(newline="", encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    live = {
+        "judgment-based": sum(1 for r in rows if r["determinacy"] == C.JUDGMENT_DETERMINACY),
+        "bright lines": sum(1 for r in rows if r["determinacy"] == "bright_line"),
+    }
+    total = len(rows)
+    wrong = []
+    for doc in sorted(C.ROOT.rglob("*.md")):
+        if "originals" in str(doc):
+            continue
+        text = doc.read_text(encoding="utf-8")
+        for phrase, want in live.items():
+            for m in re.finditer(rf"(\d+) of (\d+) rules are ([a-z -]*{re.escape(phrase)})",
+                                 text):
+                if int(m.group(1)) != want or int(m.group(2)) != total:
+                    wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, "
+                                 f"table says {want} of {total}")
+    return wrong
+
+
 def main() -> int:
     if "--help" in sys.argv or "-h" in sys.argv:
         print(__doc__)
@@ -97,6 +124,15 @@ def main() -> int:
           f"stored sources.")
     print("This checks the OUTCOME is quoted correctly. It does not check that the case "
           "description matches the content the regulator actually saw.")
+
+    stale = doc_count_claims()
+    if stale:
+        print("\nSTALE NUMBERS IN THE DOCUMENTS:")
+        for s in stale:
+            print(f"  - {s}")
+        print("  A count written into prose goes stale the moment a rule is added, and prose "
+              "is where nobody looks.")
+        return 1
 
     covered, untested, counts = category_coverage()
     total = len(covered) + len(untested)

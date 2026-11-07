@@ -157,7 +157,7 @@ should belong to at least two parties. The trustworthy results are the **failure
 those survived the bias rather than being produced by it. Bright-line rules need independent
 re-derivation by someone who has not seen this table, which is conflict C-08.
 
-The weakest part of the table is calibration: 35 of 103 rules are judgment-based and exactly
+The weakest part of the table is calibration: 38 of 103 rules are judgment-based and exactly
 one decided case has been collected. That is an anchor, not a scale.
 
 ## Sources in scope

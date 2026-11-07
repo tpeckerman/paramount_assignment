@@ -195,7 +195,7 @@ misattribution, which only became visible once the quote existed to be checked.
 
 ## Limits
 
-- **35 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
+- **38 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
   not a scale. The guidance names about a dozen more; collecting them is the highest-value
   work left.
 - **Author equals grader**, except for TC-01, which is itself not a clean hold-out.
