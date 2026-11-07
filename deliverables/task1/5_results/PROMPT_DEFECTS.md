@@ -1,114 +1,150 @@
-# Defects found by actually running the prompts
+# Defects found by running the prompts
 
-These came out of running the prompts against all eight test cases, by agents that had never
-seen the expected answers. Reading a prompt does not find these. Nothing here was visible to
-the person who wrote it.
+These came out of running the prompts against the test cases, by agents that had never seen
+the expected answers. Reading a prompt does not find these. None was visible to the person who
+wrote it.
 
-The runs are in `runs/`. The ones that affect a decision are listed first.
+The runs are in `runs/`.
 
-## 1. There is no field for access control, and it decides the answer
+**Five of nine are fixed.** Each entry says what went wrong, and either what the fix was or
+why it has been left alone.
 
-**The worst one.** TC-03 states `ACCESS CONTROL: mandatory PIN, enabled by default, cannot be
-disabled by the subscriber`. The RUN 1 output schema has nowhere to put that. Not on the
-asset, not on the transmission.
+Background, for anyone who has not read the prompts: the work happens in two steps. Step one
+reads the programme and writes down what happens in it, as a structured list. Step two takes
+that list, applies the rules, and decides. Step one never sees the rules, so it cannot shade
+its description toward an answer it expects. Most defects below are **container** problems in
+step one: a box that cannot hold what the programme actually contains.
 
-So the PIN survived only as prose, folded into `intended_service` and `extractor_notes`. Look
-in `tests/runs/TC-03_run1.json`: the words are there, but no structured field holds them.
+---
 
-That matters because a PIN is exactly what turns `not before 21:00` into `any time` under
-`UK-FLM-003`. The fact the whole case turns on reaches the decision step as free text, and a
-decision engine that filters on structured fields can never see it. The schema is missing the
-field that unlocks the most permissive answer in the system.
+## 1. Nowhere to record a PIN lock. FIXED.
 
-## 2. `treatment` carries two different questions at once
+**What went wrong.** One test case says the channel has a PIN that is on by default and that
+the viewer cannot switch off. Step one had no box for it, so the fact survived only as a
+sentence in a notes field.
 
-> **FIXED 7 Nov 2026.** `reported_not_shown` is removed from the `treatment` vocabulary.
-> `is_depicted` already answers "was it shown", so the value was both redundant and in
-> conflict with it. `treatment` is now framing only, and rules 2 and 3 were rewritten to
-> state one question each. TC-07's banter is now `is_depicted: false` with
-> `treatment: comedic`, which was the combination the old vocabulary could not express.
+That is the most dangerous kind of miss. A lock like that is what turns "not before 9pm" into
+"any time of day", so losing it produces an answer *more* permissive than the law allows, with
+nothing flagged.
 
-The field holds both *whether something was shown* (`reported_not_shown`) and *how it was
-framed* (`comedic`, `stylised`, `realistic`, `documentary`). TC-07's dialogue is both comic
-**and** only spoken about, and only one value fits. Information has to be dropped, and which
-piece gets dropped is left to the extractor.
+**The fix.** Step one now has a dedicated section recording whether a lock exists, what kind,
+whether it is on by default, whether the viewer can turn it off, and the exact words used. The
+last two are separate questions on purpose: a lock the viewer can switch off is not the same
+protection as one they cannot, and only the second counts.
 
-The prompt's own rules collide here: rule 2 says the field is for marking spoken-only events,
-rule 3 says it is for framing. Both cannot be satisfied.
+## 2. One box asked two questions at once. FIXED.
 
-## 3. Wall-clock and elapsed timecodes are indistinguishable
+**What went wrong.** A field called `treatment` was used both for *was this shown on screen*
+and for *how was it played*. One test case has characters joking explicitly about sex without
+anything being shown. It is both comic and not shown, and only one value fits. Information had
+to be thrown away and the prompt left the choice to chance.
 
-TC-01's timecodes are wall-clock, because they came from a regulator's finding about a
-broadcast. The schema's `timecode: HH:MM:SS` implies elapsed time from the start of the
-programme. Nothing in the output says which.
+The prompt contradicted itself: one instruction said the field marks things only spoken about,
+the next said it records framing.
 
-In TC-01 that distinction is the entire case. The decision turns on material airing at 11:33
-and 13:41 on a particular morning, not 11 and 13 hours into a film.
+**The fix.** There was already a separate yes/no field for whether something was shown, so the
+"not shown" value was duplicated as well as conflicting. Removed it. `treatment` now records
+framing only, and the two instructions each own one question.
 
-## 4. `content_type` has no value for a documentary, but `treatment` does
+## 3. No way to tell a time of day from a running time. FIXED.
 
-> **FIXED 7 Nov 2026.** `documentary` added to `content_type`, and removed from `treatment`
-> where it had been a framing value. One vocabulary now owns the question.
+**What went wrong.** `00:11:33` can mean eleven hours into a film, or half past eleven in the
+morning. Nothing recorded which.
 
-`content_type` offers `film | series_episode | trailer | music_video | live | other |
-not_stated`. TC-05 is a documentary, so it became `other`. Meanwhile `treatment` *does* have
-`documentary`. The two vocabularies disagree about whether documentary is a kind of thing.
+For the real enforcement case in the test set, that distinction is the entire question. The
+regulator ruled on violence going out at 11:33 on a weekday morning, not eleven hours into a
+movie.
 
-The escape hatch the prompt provides for an unknown value covers `category` only, so the
-extractor had to invent what to do.
+**The fix.** Every recorded event now says which clock it uses. The field sits on the event
+rather than on the broadcast, because the two genuinely differ: a programme starting at 14:30
+whose scenes are counted from zero has a clock start time and running-time scene markers. The
+prompt also now forbids padding a timecode, because turning `00:08` into `00:08:00` silently
+converts eight minutes into eight seconds.
 
-## 5. An observation cannot say which transmission it belongs to
+## 4. Two lists disagreed about what a documentary is. FIXED.
 
-TC-04 is a music video at 22:15 and a trailer cut from it at 15:00: two assets, two slots,
-two different answers. `observations` have no transmission id, so the join exists only in
-prose. The prompt insists decisions are per transmission; the schema cannot express which
-transmission an observation came from.
+**What went wrong.** The list of programme types had no entry for a documentary, so one became
+"other". The framing list *did* have "documentary". The two disagreed about whether documentary
+is a kind of programme or a way of filming.
 
-The trailer's timecodes also collide numerically with the video's, since both start at 00:00.
+**The fix.** It is a kind of programme. Added to the programme-type list, removed from the
+framing list.
 
-## 6. Rule 9 and rule 7 contradict each other on a `+1` service
+## 5. A repeat channel invited arithmetic the prompt elsewhere forbids. FIXED.
 
-Rule 9 says a `+1` service re-broadcasts an hour later, which invites computing 15:30 from
-14:30 in TC-08. Rule 7 says never normalise or estimate a timecode. Both apply, and they
-point opposite ways on the exact case rule 9 exists for.
+**What went wrong.** Some channels rebroadcast everything an hour later. One instruction
+mentioned this, which invited step one to work out that 14:30 becomes 15:30. Another said
+never to adjust a time. Both applied and they pointed opposite ways.
 
-## 7. "Asserted absent" and "not stated" are the same value
+**The fix.** Step one records the broadcast exactly as given and notes that a repeat channel
+may exist. Working out what the later slot means is step two's job, where there is a rule for
+it. Step one no longer does arithmetic.
 
-`CERTIFICATE: none` is a claim. `SERVICE: not stated` is a gap. The schema records both as
-absence, so a positively asserted "there is no certificate" is indistinguishable from "nobody
-mentioned a certificate". Rule 4 says every `not_stated` entry is a question for a human,
-which is wrong for the first case and right for the second.
+---
 
-## 8. Rule 11 contradicts itself on genre
+# Left alone, and why
 
-It says do not infer `is_news_or_current_affairs` from genre, then says a documentary is not
-automatically news, which treats genre as evidence. Both runs hit this and resolved it
-differently. For "comedy feature" one agent answered `no` and flagged that it may have broken
-the rule by doing so.
+## 6. An event cannot say which broadcast it belongs to. NOT FIXED.
 
-## 9. Smaller ones, recorded because they cost real accuracy
+One test case is a music video at 22:15 plus a 30-second trailer cut from it going out at
+15:00. Two slots, two different answers. Events carry no marker saying which they came from,
+so the link exists only in prose. Their timecodes collide too, because both start at 00:00.
 
-- `existing_certificates.scope` is single-valued, but "BBFC 15 (cinema and home video)" is one
-  certificate with two scopes. The extractor emitted two entries, which would double-count
-  under any rule that counts certificates.
-- `runtime_minutes` is an integer, but TC-04 is 13 min 42 s. Rounding is forced by the schema
-  and forbidden by rule 7.
-- `COUNTRIES: UK, FR` could mean transmission territory, production origin or rights. Nothing
-  says which, and `production_origin` is a routing field.
-- TC-01's `NO WARNING OR SIGNPOSTING was given` is an asserted absence that is not an
-  observation and not a gap. It has no home, so it went in `extractor_notes`, which is doing
-  a lot of load-bearing work across every case.
-- The inputs themselves contain severity words ("sustained", "prolonged", "graphic"). Rule 1
-  bans the extractor's own severity adjectives; rule 5 demands verbatim evidence. Stripping
-  them would have destroyed the only duration signal in the input.
-- Pain played for comedy (TC-07's waxing) matches no category. It became `offence_general`.
+**Why not.** One extra field would do it. But exactly one case out of nine has two broadcasts,
+and reshaping the output to suit a single example is how a system gets tuned to its own test
+set instead of to the job. This wants two or three more multi-broadcast cases first, so the
+field is designed against a pattern rather than one instance.
+
+## 7. "There is none" and "nobody said" are stored the same way. NOT FIXED.
+
+"Certificate: none" is someone answering the question. "Service: not stated" is nobody
+answering it. Both end up recorded as absence, so the system asks a human about a question
+that has already been answered.
+
+**Why not.** Low cost and low risk, but it touches several fields at once and every one feeds
+the decision step. Worth doing deliberately rather than squeezing it in beside changes that
+affect whether answers come out right.
+
+## 8. Step one is forbidden from using obvious evidence. NOT FIXED, ON PURPOSE.
+
+Step one must never work out whether a programme is news, or made for children, from its
+genre. So a cookery show records "unknown" for both, and step two then has to branch or flag a
+question nobody would seriously ask.
+
+**Why not.** The ban exists for a good reason and removing it is riskier than it looks. The
+whole value of step one is that it describes without judging. Let it reason from genre and it
+will start shading descriptions toward the answer it expects, which is the failure the two-step
+design exists to prevent, and it would be invisible when it happened.
+
+The right fix is narrow: allow it only where the answer is genuinely not in doubt. That line
+needs drawing carefully, and drawing it hastily to make one test case pass would trade a
+visible nuisance for an invisible bias. Left as is deliberately.
+
+## 9. Small ones that still cost accuracy. NOT FIXED.
+
+- One certificate covering both cinema and home video has to be entered twice, because the
+  field holds one scope. Anything counting certificates would double-count it.
+- Running time is a whole number of minutes, but one case is 13 minutes 42 seconds. Rounding
+  is forced by the shape and forbidden by the instructions.
+- "Countries: UK, FR" could mean where it is shown, where it was made, or where the rights
+  sit. Nothing says which.
+- "No warning was given" is someone positively answering a question. Not an event, not a gap,
+  so it has nowhere to go and lands in a notes field.
+- The source descriptions use words like "sustained" and "prolonged". Step one is banned from
+  adding its own severity words but required to quote exactly. Stripping them would destroy
+  the only signal about how long something lasts.
+- Two things match no category: a minor injury, and pain played for laughs. Both land in the
+  catch-all. Step two handles them correctly, but only because the catch-all rule happens to
+  cover them.
+
+---
 
 ## What this says about the prompts
 
-The prompts are careful about the *reasoning* and loose about the *schema*. Almost every
-defect above is a container problem: a field that cannot hold what the content says, or two
-facts sharing one slot. None of it was visible from reading, and all of it surfaced in the
-first run.
+The prompts are careful about the **reasoning** and were loose about the **containers**.
+Almost every defect here is a box that cannot hold what the programme contains, or two facts
+sharing one box. None was visible from reading. All of it surfaced on the first run.
 
-Defect 1 is the one to fix before anything else, because it is the only one that silently
-produces a **more permissive** answer than the law allows.
+Defect 1 was the one to fix before anything else, because it is the only one that silently
+produces an answer more permissive than the law allows. The four still open cost accuracy, and
+none unlocks a wrongly permissive answer, which is why they rank below the ones that are done.

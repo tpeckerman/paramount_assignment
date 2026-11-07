@@ -1,0 +1,80 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "free-to-air, slot not stated (t1)",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "UK linear television issues no per-programme age rating.",
+        "basis": [{"rule_id": "UK-FLM-010", "clause_ref": "Guidance Notes Section One", "why": "The BBFC 15 is evidence, not the slot."}]
+      },
+      "hours": {
+        "permitted": "not before 21:00 on the provisional view. Whether the comedy framing justifies an earlier slot is a live argument and is the judgement referred below.",
+        "without_technical_measure": "not before 21:00, provisional",
+        "with_technical_measure": "n/a, free-to-air",
+        "basis": [
+          {"rule_id": "UK-SEX-003", "clause_ref": "Rule 1.19", "why": "Explicit sexual language that is not adult sex material must be justified by the context. o1 records sustained explicit sexual dialogue. This rule bends to context, and comic treatment is a genuine contextual argument here rather than a way round the rule."}
+        ]
+      },
+      "other_restrictions": [],
+      "axis_note": "This case and TC-06 look alike and are not. There the act was depicted, which engages a rule admitting only one exception, and comedy is irrelevant to it. Here nothing is depicted, so that rule never starts, and the rule that does apply is one that genuinely weighs context. The same comedy argument wins here and loses there.",
+      "reasoning": "UK-SEX-004 does NOT fire, and this is the pivot of the case. It bars representations of sexual intercourse before the watershed. o1 records sexual acts being DESCRIBED, with is_depicted false and nothing shown on screen. A description is not a representation, so the rule is not reached and its narrow exception never has to be argued.\n\nUK-SEX-003 is the operative rule. It covers strong or explicit sexual language that is not adult sex material, and requires justification by context. The dialogue is explicit and sustained, so the rule is engaged. Unlike UK-SEX-004 it bends to context, and the treatment is recorded as comedic, which is a real argument. The provisional view is that a 21:00 bar applies and that the comedy argument is strong but not mine to settle.\n\nUK-NUD-001 does not fire. o2 records a bare male chest during a waxing scene played for comedy. A bare chest in a non-sexual comic context is not the nudity this rule is about, and reading it as such would restrict a large amount of ordinary daytime television.\n\nUK-SEX-002 does not fire: nothing is broadcast for the primary purpose of sexual arousal. UK-OFF-001 covers material which may cause offence; the waxing scene is the only candidate and the comic framing justifies it.",
+      "confidence": "medium",
+      "rules_checked_not_triggered": [
+        {"rule_id": "UK-SEX-004", "why_not": "Nothing is depicted. Sexual acts are described in dialogue, and the rule is about representations of intercourse."},
+        {"rule_id": "UK-NUD-001", "why_not": "A bare male chest in a comic waxing scene is not sexual nudity."},
+        {"rule_id": "UK-SEX-002", "why_not": "Not adult sex material; nothing is for the primary purpose of sexual arousal."},
+        {"rule_id": "UK-SEX-001", "why_not": "Nothing R18-equivalent."},
+        {"rule_id": "UK-GEN-001", "why_not": "Explicit comic dialogue does not approach 'seriously impair'."},
+        {"rule_id": "UK-OFF-001", "why_not": "The waxing scene could cause offence but is justified by its comic context."},
+        {"rule_id": "UK-LNG-001", "why_not": "The dialogue is explicit about sex but no observation records the most offensive language."}
+      ],
+      "human_review_required": true,
+      "review_reasons": [
+        "UK-SEX-003 is a judgement rule carrying a review requirement, and it is the rule the whole case turns on. Whether sustained explicit sexual dialogue is justified by comic context before 21:00 is precisely the kind of call the rule reserves for a person. A provisional 21:00 bar is given above; it is not settled."
+      ],
+      "missing_information": [
+        {"field": "intended_slot", "why_it_matters": "No slot is stated, so the output is a bar rather than a verdict on a transmission.", "what_changes_if_answered": "A post-21:00 slot removes the question entirely. A pre-watershed slot is where the UK-SEX-003 context argument has to be settled."}
+      ],
+      "coverage_gaps": []
+    },
+    {
+      "country": "FR",
+      "transmission": "free-to-air, slot not stated (t1)",
+      "classification": {
+        "value": "Category II (-10), provisional",
+        "scheme": "French five-category scheme. Category II covers programmes some scenes of which are liable to shock under-tens.",
+        "basis": [{"rule_id": "FR-CLS-002", "clause_ref": "art. 2", "why": "Sustained explicit sexual dialogue is liable to shock under-tens. Category III requires material liable to DISTURB under-twelves, which is a higher bar and is not clearly met by dialogue alone with nothing shown."}]
+      },
+      "hours": {
+        "permitted": "editor's discretion, but not within programmes aimed at young audiences",
+        "without_technical_measure": "editor's discretion",
+        "with_technical_measure": "n/a",
+        "basis": [
+          {"rule_id": "FR-SCH-001", "clause_ref": "art. 3", "why": "Category II timing is left to the editor's discretion, with the single restriction that such programmes may not be placed within children's programming."}
+        ]
+      },
+      "other_restrictions": [],
+      "axis_note": "The two countries land in different places on the same facts, and it is worth being explicit about why: the UK rule is triggered by the explicit LANGUAGE, and France classifies on whether a child would be shocked by what is on screen. Dialogue carries less weight in the French assessment than it does in the UK one.",
+      "reasoning": "FR-LAW-001 does not bite: comic dialogue about sex is not liable to seriously harm (nuire gravement). FR-PRO-001 and FR-PRO-003 need pornography or an offence to human dignity; neither is recorded.\n\nOn category, the question is whether explicit dialogue with nothing shown reaches category III. FR-CLS-003 needs material liable to disturb under-twelves, and the French scheme assesses scenes. Nothing is depicted, so the provisional placement is category II, where FR-SCH-001 leaves the hour to the editor subject to not placing it inside children's programming.\n\nThis is the weakest reasoning in the case. A French reviewer might well put sustained explicit sexual dialogue in category III, which would move the bar to 22:00 on this service under FR-SCH-002. Both readings are recorded rather than one being presented as settled.",
+      "confidence": "low",
+      "rules_checked_not_triggered": [
+        {"rule_id": "FR-LAW-001", "why_not": "Does not approach 'nuire gravement'."},
+        {"rule_id": "FR-CLS-003", "why_not": "Provisionally not reached, because nothing is depicted. Flagged for review: this is arguable and the alternative reading moves the hour to 22:00."},
+        {"rule_id": "FR-SCH-002", "why_not": "Attaches to category III, which is not the provisional category. Would set 22:00 if the category moves."},
+        {"rule_id": "FR-SCH-005", "why_not": "Category IV requires material for a warned audience. Not reached."},
+        {"rule_id": "FR-CV-003", "why_not": "Category V. Not reached."}
+      ],
+      "human_review_required": true,
+      "review_reasons": [
+        "FR-CLS-002 and FR-CLS-003 are both judgement rules, and the case sits on the line between them. The difference is not academic: category II leaves the hour to the editor, category III bars the programme before 22:00 on this service. The category decides the hour, so an unsettled category means an unsettled hour.",
+        "In France the editor makes the classification determination, and the editor's determination is the operative one."
+      ],
+      "missing_information": [
+        {"field": "the editor's own classification determination", "why_it_matters": "The editor classifies, and every French hour restriction hangs off the category.", "what_changes_if_answered": "A category II determination leaves the hour open. A category III determination bars the programme before 22:00 on this service."}
+      ],
+      "coverage_gaps": []
+    }
+  ],
+  "cross_country_note": "The UK answer is driven by explicit language and is provisionally a 21:00 bar; the French answer is driven by whether a child would be shocked by what is shown, and with nothing shown it provisionally sits in the least restrictive category that is not category I. Both escalate, and for the same underlying reason in different clothing: each country's operative rule weighs context, and context is what a person is for."
+}

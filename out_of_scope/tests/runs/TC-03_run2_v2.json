@@ -1,0 +1,207 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "premium subscription film service, 14:30 Wednesday, date not stated (t1)",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "UK linear television issues no per-programme age rating. The BBFC 15 is a cinema and video certificate.",
+        "basis": [
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One",
+            "why": "The certificate is evidence of unsuitability for under-fifteens, not the slot."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "any time, INCLUDING 14:30, but only while the PIN lock is in place. Without it, not before 21:00.",
+        "without_technical_measure": "not before 21:00",
+        "with_technical_measure": "any time, including the stated 14:30 Wednesday slot",
+        "basis": [
+          {
+            "rule_id": "UK-SCH-007",
+            "clause_ref": "Rule 1.4 (meaning of the watershed)",
+            "why": "The watershed does not apply at all to a channel while mandatory daytime protection is in place. This is a disapplication, not a relaxation: the time question is removed rather than moved."
+          },
+          {
+            "rule_id": "UK-ACC-002",
+            "clause_ref": "Rule 1.24 (meaning)",
+            "why": "The protection must be on by default. The transmission records on_by_default: yes."
+          },
+          {
+            "rule_id": "UK-ACC-001",
+            "clause_ref": "Rule 1.18 (meaning)",
+            "why": "The protection must be one the user cannot remove. The transmission records user_can_disable: no. Had the subscriber been able to switch it off, this would not be mandatory protection and the 21:00 bar would stand."
+          },
+          {
+            "rule_id": "UK-FLM-003",
+            "clause_ref": "Rule 1.24",
+            "why": "Where mandatory daytime protection is in place, films up to BBFC 18 may be broadcast at any time of day, with clear information provided about the content and about the protection."
+          }
+        ]
+      },
+      "other_restrictions": [
+        {
+          "kind": "access_control",
+          "requirement": "The PIN lock must be in place, on by default, and not removable by the subscriber, at the moment of transmission. The permission to transmit at 14:30 exists only while all three hold.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {
+              "rule_id": "UK-ACC-001",
+              "clause_ref": "Rule 1.18 (meaning)"
+            },
+            {
+              "rule_id": "UK-ACC-002",
+              "clause_ref": "Rule 1.24 (meaning)"
+            },
+            {
+              "rule_id": "UK-SCH-007",
+              "clause_ref": "Rule 1.4"
+            }
+          ]
+        },
+        {
+          "kind": "audience_information",
+          "requirement": "Clear information must be provided about the content and about the protection in place.",
+          "is_condition_of_the_hours": true,
+          "basis": [
+            {
+              "rule_id": "UK-FLM-003",
+              "clause_ref": "Rule 1.24"
+            }
+          ]
+        }
+      ],
+      "axis_note": "THIS IS THE ANSWER MOST DANGEROUS TO REPORT CARELESSLY. 'Any time' is correct and is wrong on its own. The hour is bought entirely by the lock, and the lock only counts because it is on by default and cannot be switched off by the subscriber. Strip the condition and the same four words describe a 14:30 transmission that would breach. The classification axis is unchanged from the free-to-air version of this case; only the delivery changed, and it moved the hour from barred to unrestricted.",
+      "reasoning": "Same film as TC-02, opposite answer, and nothing about the content changed. What changed is how it is delivered.\n\nAbsolute prohibitions first. UK-GEN-001 bars material that might seriously impair the development of under-eighteens, a higher bar than ordinary harm. Fictional action violence in a certificated feature is schedulable material, not prohibited material. UK-SEX-001 and UK-FLM-006 require R18-equivalent content; o8 records sexual slavery REFERRED TO with nothing shown, so neither is reached. UK-FLM-001 needs a refused classification; this film holds a BBFC 15.\n\nWithout the lock the answer would be a 21:00 bar, on UK-SCH-002 and UK-VIO-001, exactly as in TC-02. The observations record sustained and prolonged violence including branding, people restrained and bled, and multiple deaths.\n\nThe lock changes it. UK-SCH-007 disapplies the watershed entirely while mandatory daytime protection is in place, and UK-FLM-003 permits films up to BBFC 18 at any time of day on that basis. But 'mandatory daytime protection' is a defined thing and the definition has two limbs that must both hold. UK-ACC-002 requires it on by default and UK-ACC-001 requires that the user cannot remove it. The transmission satisfies both: on_by_default yes, user_can_disable no.\n\nThis is why the description step needs those as separate fields. A PIN the subscriber can switch off satisfies neither limb, and a decision step reading only 'a PIN exists' would reach the same permissive answer on facts that do not support it.\n\nUK-FLM-004 is checked and set aside: it permits films up to BBFC 15 from 20:00 on a premium film service WITHOUT protection. Protection is present here, so the more permissive route applies and this row does not constrain.",
+      "confidence": "medium",
+      "rules_checked_not_triggered": [
+        {
+          "rule_id": "UK-GEN-001",
+          "why_not": "Fictional action violence in a certificated feature does not reach 'seriously impair'."
+        },
+        {
+          "rule_id": "UK-SEX-001",
+          "why_not": "Sexual slavery is referred to, not depicted. Nothing R18-equivalent."
+        },
+        {
+          "rule_id": "UK-FLM-006",
+          "why_not": "Not an R18-rated film."
+        },
+        {
+          "rule_id": "UK-FLM-001",
+          "why_not": "Holds a BBFC 15; not refused classification."
+        },
+        {
+          "rule_id": "UK-SCH-002",
+          "why_not": "Would set a 21:00 bar, but the watershed is disapplied entirely by UK-SCH-007 while the protection is in place. This row is the reason the answer collapses to 21:00 the moment the lock fails."
+        },
+        {
+          "rule_id": "UK-FLM-004",
+          "why_not": "Covers premium film services WITHOUT protection, permitting BBFC 15 from 20:00. Protection is present, so the UK-FLM-003 route governs and is more permissive."
+        },
+        {
+          "rule_id": "UK-FLM-002",
+          "why_not": "Applies to BBFC 18 films. This is a 15."
+        },
+        {
+          "rule_id": "UK-SEX-004",
+          "why_not": "No representation of sexual intercourse; o8 is a reference only."
+        },
+        {
+          "rule_id": "UK-SCH-009",
+          "why_not": "No timeshift service is stated for this transmission."
+        }
+      ],
+      "human_review_required": true,
+      "review_reasons": [
+        "UK-SCH-007 carries a review requirement despite being a bright line, and reasonably so: it is the rule that removes the time question altogether, and confirming that the protection genuinely is mandatory daytime protection at the moment of transmission is an operational fact, not a reading of the description. The permission stands or falls on it."
+      ],
+      "missing_information": [
+        {
+          "field": "whether the clear content and protection information required by UK-FLM-003 is actually given",
+          "why_it_matters": "It is a condition of the any-time permission, not an optional extra.",
+          "what_changes_if_answered": "If it is not given, the any-time permission is not satisfied even with the lock working."
+        }
+      ],
+      "coverage_gaps": []
+    },
+    {
+      "country": "FR",
+      "transmission": "premium subscription film service, 14:30 Wednesday, date not stated (t1)",
+      "classification": {
+        "value": "Category III (-12) at minimum, category IV (-16) arguable",
+        "scheme": "French five-category scheme. The category is not settled and both readings are reported rather than one being chosen.",
+        "basis": [
+          {
+            "rule_id": "FR-CLS-003",
+            "clause_ref": "art. 2",
+            "why": "Category III covers works banned to under-twelves in cinemas and programmes liable to disturb under-twelves. Sustained violence, branding, people restrained and bled and multiple deaths clears that bar. Whether the captivity and forced-reproduction themes push it to category IV is a live question."
+          }
+        ]
+      },
+      "hours": {
+        "permitted": "NOT at 14:30 Wednesday. Not before 20:30 on this service, on either category reading.",
+        "without_technical_measure": "not before 20:30",
+        "with_technical_measure": "not before 20:30. The PIN does not buy an earlier hour in France the way it does in the UK.",
+        "basis": [
+          {
+            "rule_id": "FR-SCH-003",
+            "clause_ref": "art. 3",
+            "why": "Category III on cinema channels and pay-per-view services must not be broadcast on Wednesdays before 20:30. The stated slot is 14:30 on a Wednesday, so it is barred by the rule's own terms."
+          },
+          {
+            "rule_id": "FR-SCH-006",
+            "clause_ref": "art. 3",
+            "why": "If the category is IV rather than III, the bar on this service type is 20:30 as well. Both readings converge on the same hour, so the unsettled category does not leave the hour unsettled."
+          }
+        ]
+      },
+      "other_restrictions": [],
+      "axis_note": "The same transmission is permitted in the UK and barred in France, and the PIN is the reason for the divergence. The UK treats a mandatory lock as removing the time question altogether. The French rows supplied contain no equivalent mechanism: the hour follows the category and the day, and an access control does not displace it. Anyone reading only the UK answer would reach the wrong conclusion about the French one.",
+      "reasoning": "FR-LAW-001 does not bite: certificated fictional action violence is not liable to seriously harm (nuire gravement) in the sense that rule reserves for an absolute ban. FR-PRO-001 and FR-PRO-003 need pornography or an offence to human dignity as a prohibited class; o3 and o7 record degrading treatment as narrative subject matter in a fiction, which is not the same thing, though it is the closest call in this case.\n\nOn category, the observations clear the category III bar comfortably. Whether they reach category IV is arguable and is left open, because both readings produce the same hour on this service type: FR-SCH-003 bars category III on a Wednesday before 20:30 and FR-SCH-006 bars category IV before 20:30. The slot is 14:30 Wednesday and is barred either way.\n\nThe Wednesday point is worth stating plainly because it is easy to miss: the French rule for these services singles Wednesday out, and the stated slot is a Wednesday. On another weekday the category III analysis would run differently.\n\nThe PIN does nothing here. No French row supplied makes an access control a substitute for the hour. Importing the UK's reasoning would produce a confidently wrong French answer, and it is the kind of error that looks reasonable on its face.",
+      "confidence": "medium",
+      "rules_checked_not_triggered": [
+        {
+          "rule_id": "FR-LAW-001",
+          "why_not": "Certificated fictional violence does not reach 'nuire gravement'."
+        },
+        {
+          "rule_id": "FR-CLS-002",
+          "why_not": "Category II understates sustained violence, branding and multiple deaths."
+        },
+        {
+          "rule_id": "FR-SCH-002",
+          "why_not": "Sets 22:00 for category III on services OTHER THAN cinema channels and pay-per-view. This is a premium film service, so FR-SCH-003 is the applicable row."
+        },
+        {
+          "rule_id": "FR-SCH-004",
+          "why_not": "The category III derogation applies to the general-service rule, not to the Wednesday rule for these services."
+        },
+        {
+          "rule_id": "FR-CV-001",
+          "why_not": "The category V eligibility gate is not reached; the content is not category V."
+        },
+        {
+          "rule_id": "FR-CV-003",
+          "why_not": "Category V. Not reached."
+        }
+      ],
+      "human_review_required": true,
+      "review_reasons": [
+        "FR-CLS-003 is a judgement rule carrying a review requirement. The category III versus IV question is genuinely open on these facts, even though both readings happen to give the same hour on this service.",
+        "FR-PRO-003 (offence to human dignity) deserves a person's eye rather than mine. o3 records human beings used as blood donors, restrained and bled, and o7 records captivity and forced reproduction. These are narrative subject matter in a fiction and my reading is that the prohibition is not engaged, but that prohibition admits no exception, so a wrong clearance here is not recoverable later."
+      ],
+      "missing_information": [
+        {
+          "field": "intended_date",
+          "why_it_matters": "The slot says Wednesday but gives no date, and the Wednesday restriction is what bars this transmission.",
+          "what_changes_if_answered": "Nothing for this slot: Wednesday is stated and that is the operative fact. A date would matter if the slot moved to another day, where the category III analysis runs differently."
+        }
+      ],
+      "coverage_gaps": []
+    }
+  ],
+  "cross_country_note": "The headline is that the same film on the same service at the same moment is PERMITTED in the UK and BARRED in France, and the PIN is why. The UK treats a mandatory lock that is on by default and cannot be disabled as disapplying the watershed entirely, so 14:30 becomes available. France sets the hour from the category and the day of the week, and no supplied French rule lets an access control move it; 14:30 on a Wednesday is barred on either category reading. A single answer covering both countries would be wrong in one of them, and reporting the UK permission without its condition would be wrong in both."
+}

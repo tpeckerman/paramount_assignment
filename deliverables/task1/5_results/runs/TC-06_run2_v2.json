@@ -6,34 +6,57 @@
       "classification": {
         "value": "no_per_programme_rating",
         "scheme": "UK linear television issues no per-programme age rating. The BBFC 15 is a cinema and video certificate.",
-        "basis": [{"rule_id": "UK-FLM-010", "clause_ref": "Guidance Notes Section One", "why": "The certificate is evidence, not the slot."}]
+        "basis": [
+          {
+            "rule_id": "UK-FLM-010",
+            "clause_ref": "Guidance Notes Section One",
+            "why": "The certificate is evidence, not the slot."
+          }
+        ]
       },
       "hours": {
         "permitted": "not before 21:00",
         "without_technical_measure": "not before 21:00",
         "with_technical_measure": "n/a, free-to-air, no access control available",
         "basis": [
-          {"rule_id": "UK-SEX-004", "clause_ref": "Rule 1.20", "why": "Representations of sexual intercourse must not occur before the watershed unless there is a serious educational purpose. The observation records intercourse clearly depicted. The only exception this rule admits is serious educational purpose, and a comedy feature has none, so the bar applies."}
+          {
+            "rule_id": "UK-SEX-004",
+            "clause_ref": "Rule 1.20",
+            "why": "Representations of sexual intercourse must not occur before the watershed unless there is a serious educational purpose. The observation records intercourse clearly depicted. The only exception this rule admits is serious educational purpose, and a comedy feature has none, so the bar applies."
+          }
         ]
       },
       "other_restrictions": [],
       "axis_note": "The comedy framing is the trap here. It is a real argument under some rules and irrelevant under this one: UK-SEX-004 admits one exception only, and it is not comedy. A read that weighs 'broad, unrealistic, scored for laughs, no nudity' and clears the scene is applying the wrong rule's exception.",
-      "reasoning": "UK-SEX-004 is the operative rule and it is conditional, not a judgement: it bars representations of sexual intercourse before the watershed unless there is a serious educational purpose. Intercourse is clearly depicted (o1). No serious educational purpose exists in a comedy feature. The condition is not met, so the bar stands and the hour is settled mechanically at 21:00.\n\nUK-NUD-001 does not fire. It bars unjustified nudity before the watershed and the observation records that no nudity is shown. There is nothing for it to justify.\n\nUK-SEX-002 does not fire. Adult sex material means material broadcast for the primary purpose of sexual arousal. A comedy scene scored for laughs and intercut with reaction shots is not that, and reading it as adult sex material would wrongly demand a premium service with restricted access.\n\nUK-SEX-003 is engaged but only for the position AFTER 21:00: explicit sexual images that are not adult sex material must be justified by the context. Comedy is a live argument there, because 1.19 bends to context in a way 1.20 does not. That is the judgement in this case and it is why a person is needed, but it does not disturb the 21:00 bar, which stands either way.",
+      "reasoning": "UK-SEX-004 is the operative rule and it is conditional, not a judgement: it bars representations of sexual intercourse before the watershed unless there is a serious educational purpose. Intercourse is clearly depicted (o1). No serious educational purpose exists in a comedy feature. The condition is not met, so the bar stands and the hour is settled mechanically at 21:00.\n\nUK-NUD-001 does not fire. It bars unjustified nudity before the watershed and the observation records that no nudity is shown. There is nothing for it to justify.\n\nUK-SEX-002 does not fire. Adult sex material means material broadcast for the primary purpose of sexual arousal. A comedy scene scored for laughs and intercut with reaction shots is not that, and reading it as adult sex material would wrongly demand a premium service with restricted access.\n\nUK-SEX-003 is engaged but only for the position AFTER 21:00: explicit sexual images that are not adult sex material must be justified by the context. Comedy is a live argument there, because 1.19 bends to context in a way 1.20 does not. That is the judgement in this case and it is why a person is needed, but it does not disturb the 21:00 bar, which stands either way.\n\nNo slot is stated and that does not make the answer incomplete. The output is a bar, 'not before 21:00', which is the full answer to the question asked and holds whatever slot is later chosen.",
       "confidence": "high",
       "rules_checked_not_triggered": [
-        {"rule_id": "UK-NUD-001", "why_not": "No nudity is shown, so there is nothing to justify."},
-        {"rule_id": "UK-SEX-002", "why_not": "Not adult sex material: the scene is comedic, not broadcast for the primary purpose of sexual arousal."},
-        {"rule_id": "UK-SEX-001", "why_not": "Nothing R18-equivalent is recorded."},
-        {"rule_id": "UK-GEN-001", "why_not": "A comic sex scene with no nudity does not approach 'seriously impair'."},
-        {"rule_id": "UK-SCH-002", "why_not": "Reaches the same 21:00 bar by the general route. UK-SEX-004 is the specific rule and carries the decision."}
+        {
+          "rule_id": "UK-NUD-001",
+          "why_not": "No nudity is shown, so there is nothing to justify."
+        },
+        {
+          "rule_id": "UK-SEX-002",
+          "why_not": "Not adult sex material: the scene is comedic, not broadcast for the primary purpose of sexual arousal."
+        },
+        {
+          "rule_id": "UK-SEX-001",
+          "why_not": "Nothing R18-equivalent is recorded."
+        },
+        {
+          "rule_id": "UK-GEN-001",
+          "why_not": "A comic sex scene with no nudity does not approach 'seriously impair'."
+        },
+        {
+          "rule_id": "UK-SCH-002",
+          "why_not": "Reaches the same 21:00 bar by the general route. UK-SEX-004 is the specific rule and carries the decision."
+        }
       ],
       "human_review_required": true,
       "review_reasons": [
         "UK-SEX-003 governs whether the scene is acceptable AFTER 21:00, turning on whether the comedy framing justifies it by context. That is a judgement and the rule carries a review requirement. It does not affect the 21:00 bar, which is settled."
       ],
-      "missing_information": [
-        {"field": "intended_slot", "why_it_matters": "The description states no slot, so the answer is a bar rather than a verdict on a specific transmission.", "what_changes_if_answered": "A slot at or after 21:00 would be permitted subject to the UK-SEX-003 judgement. Any slot before 21:00 is barred."}
-      ],
+      "missing_information": [],
       "coverage_gaps": []
     },
     {
@@ -42,14 +65,24 @@
       "classification": {
         "value": "Category III (-12), provisional",
         "scheme": "French five-category scheme. Category III covers programmes liable to disturb under-twelves.",
-        "basis": [{"rule_id": "FR-CLS-003", "clause_ref": "art. 2", "why": "Intercourse clearly depicted is liable to disturb under-twelves. Category II is too low: this is not a matter of certain scenes shocking under-tens. The category is provisional because the threshold is a matter of judgement and the editor makes the determination."}]
+        "basis": [
+          {
+            "rule_id": "FR-CLS-003",
+            "clause_ref": "art. 2",
+            "why": "Intercourse clearly depicted is liable to disturb under-twelves. Category II is too low: this is not a matter of certain scenes shocking under-tens. The category is provisional because the threshold is a matter of judgement and the editor makes the determination."
+          }
+        ]
       },
       "hours": {
         "permitted": "not before 22:00 on this service, if the category III view holds",
         "without_technical_measure": "not before 22:00",
         "with_technical_measure": "n/a",
         "basis": [
-          {"rule_id": "FR-SCH-002", "clause_ref": "art. 3", "why": "Category III on services other than cinema channels and pay-per-view must not be broadcast before 22:00. The stated service is free-to-air, so this is the applicable row and it is a bright line once the category is fixed."}
+          {
+            "rule_id": "FR-SCH-002",
+            "clause_ref": "art. 3",
+            "why": "Category III on services other than cinema channels and pay-per-view must not be broadcast before 22:00. The stated service is free-to-air, so this is the applicable row and it is a bright line once the category is fixed."
+          }
         ]
       },
       "other_restrictions": [],
@@ -57,19 +90,41 @@
       "reasoning": "FR-LAW-001 does not bite: a comic sex scene with no nudity is not liable to seriously harm (nuire gravement). FR-PRO-001 and FR-PRO-003 require pornography or an offence to human dignity; neither is recorded.\n\nThe operative question is the category. FR-CLS-002 (category II) covers certain scenes liable to shock under-tens, which understates clearly depicted intercourse. FR-CLS-003 (category III) covers material liable to disturb under-twelves, which fits. On that view FR-SCH-002 sets the bar at 22:00 for this service, mechanically.\n\nThe comedy framing does not move the French category the way it argues under UK rule 1.19. Nothing in the French rows supplied makes comic treatment an exception.",
       "confidence": "medium",
       "rules_checked_not_triggered": [
-        {"rule_id": "FR-LAW-001", "why_not": "Does not approach 'nuire gravement'."},
-        {"rule_id": "FR-CLS-002", "why_not": "Category II understates clearly depicted intercourse."},
-        {"rule_id": "FR-SCH-003", "why_not": "Applies to cinema channels and pay-per-view. The service is free-to-air."},
-        {"rule_id": "FR-SCH-004", "why_not": "The category III derogation after 20:30 is capped, day-restricted and date-dependent. No date is stated, so it cannot be relied on; it is noted as available rather than applied."},
-        {"rule_id": "FR-SCH-005", "why_not": "Category IV requires material reserved for a warned audience. Not reached on these facts."},
-        {"rule_id": "FR-CV-003", "why_not": "Category V. Not reached."}
+        {
+          "rule_id": "FR-LAW-001",
+          "why_not": "Does not approach 'nuire gravement'."
+        },
+        {
+          "rule_id": "FR-CLS-002",
+          "why_not": "Category II understates clearly depicted intercourse."
+        },
+        {
+          "rule_id": "FR-SCH-003",
+          "why_not": "Applies to cinema channels and pay-per-view. The service is free-to-air."
+        },
+        {
+          "rule_id": "FR-SCH-004",
+          "why_not": "The category III derogation after 20:30 is capped, day-restricted and date-dependent. No date is stated, so it cannot be relied on; it is noted as available rather than applied."
+        },
+        {
+          "rule_id": "FR-SCH-005",
+          "why_not": "Category IV requires material reserved for a warned audience. Not reached on these facts."
+        },
+        {
+          "rule_id": "FR-CV-003",
+          "why_not": "Category V. Not reached."
+        }
       ],
       "human_review_required": true,
       "review_reasons": [
         "FR-CLS-003 is a judgement rule carrying a review requirement, and in France the editor makes the classification determination. The category drives the hour here, so the hour is only as settled as the category."
       ],
       "missing_information": [
-        {"field": "intended_date", "why_it_matters": "FR-SCH-004 allows category III after 20:30 on a capped number of occasions, excluding Tuesdays, Fridays, Saturdays, holiday eves and school holidays.", "what_changes_if_answered": "A permitted date could move the bar from 22:00 to 20:30, within the annual quota. Without a date the derogation cannot be claimed."}
+        {
+          "field": "intended_date",
+          "why_it_matters": "FR-SCH-004 allows category III after 20:30 on a capped number of occasions, excluding Tuesdays, Fridays, Saturdays, holiday eves and school holidays.",
+          "what_changes_if_answered": "A permitted date could move the bar from 22:00 to 20:30, within the annual quota. Without a date the derogation cannot be claimed."
+        }
       ],
       "coverage_gaps": []
     }
