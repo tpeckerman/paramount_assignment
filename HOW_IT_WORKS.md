@@ -4,6 +4,14 @@ How a content description becomes a decision, and where the rules come in.
 
 ## The flow
 
+**The process diagram lives in [`TASK2_SCALING.md`](TASK2_SCALING.md#process)**, where it is a
+required deliverable. Task 1 asks for sources, rules, a prompt, test cases and results, and
+not for a diagram, so there is only one in this repo rather than two that have to be kept in
+step with each other. `docs/diagrams.html` renders it large and scrollable.
+
+This file is the written walkthrough of the same process: what each step does, what it
+catches, and why it sits where it does.
+
 Three kinds of step, and the distinction matters more than it looks:
 
 | | |
@@ -11,118 +19,7 @@ Three kinds of step, and the distinction matters more than it looks:
 | 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
 | 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
 | 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
-| 🟦 **Dashed blue** | Built and working, but it answers **Task 2**, not Task 1. Task 1 asked for the sources to be located once, not for a system that keeps re-fetching them. |
-| ⬜ **Dashed grey** | Not built and not done here. Drawn because the flow does not make sense without it. |
-
-Every solid box corresponds to a prompt or a script in this repo that you can run.
-
-### Stage 1: from a legal document to rules in a table
-
-Runs once per source document, and again whenever a regulator changes one.
-
-Steps 1 to 3 are **dashed because automating them is Task 2, not Task 1**. Task 1 asks for
-the sources to be located and the rules presented, which was done once. A system that keeps
-re-fetching and watching for amendments is the Task 2 answer.
-
-```mermaid
-flowchart LR
-    A1["1. Fetch it<br/>store it, hash it"]:::task2
-    A2{"2. Is this really<br/>the document?"}:::task2
-    A3{"3. Amended<br/>since?"}:::task2
-    A4["4. Read it,<br/>write down its rules"]:::ai
-    A5{"5. Is every quote<br/>really in it?"}:::det
-    A6{"6. Valid fields<br/>and vocabulary?"}:::det
-    A7["7. A country expert<br/>signs it off"]:::scope
-    A8[("The rules table")]:::store
-
-    A1 --> A2
-    A2 -- "no: we saved<br/>the menus" --> A1
-    A2 -- yes --> A3
-    A3 -- "superseded" --> A1
-    A3 -- current --> A4 --> A5
-    A5 -- "not found" --> A4
-    A5 -- yes --> A6
-    A6 -- "bad field or<br/>unknown value" --> A4
-    A6 -- "yes" --> A8
-    A8 -. "should go<br/>to an expert" .-> A7
-    A7 -. "marks it<br/>approved" .-> A8
-
-    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
-    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
-    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
-```
-
-### Stage 2: from a programme to a checked description
-
-Runs once per asset. The dotted boxes are not built.
-
-```mermaid
-flowchart LR
-    B0["0. Someone watches it<br/>and writes down<br/>what happens"]:::scope
-    C1["0b. Turn it into<br/>an embedding"]:::scope
-    C2{"0c. Answered<br/>this before?"}:::scope
-    C3[["Serve the<br/>stored answer"]]:::scope
-    C5[("Stored answers")]:::scope
-    B1["8. Read the<br/>description"]:::ai
-    B2{"9. Categories in<br/>the controlled list?"}:::det
-    B2a["9b. A person adds<br/>the new category"]:::scope
-    B3{"10. Does a rating<br/>ban it outright?"}:::det
-    OUT[["To stage 3"]]:::out
-    STOP[["Prohibited,<br/>decided in code"]]:::out
-
-    B0 -.-> C1 -.-> C2
-    C5 -.-> C2
-    C2 -. hit .-> C3
-    C2 -. miss .-> B1
-    B1 --> B2
-    B2 -- "just a<br/>wording slip" --> B1
-    B2 -. "the list<br/>lacks it" .-> B2a
-    B2 -- yes --> B3
-    B3 -- "yes: R18 or<br/>refused" --> STOP
-    B3 -- no --> OUT
-
-    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
-    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
-    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
-```
-
-### Stage 3: from rules plus description to an answer
-
-```mermaid
-flowchart LR
-    IN[["From stage 2"]]:::out
-    A8[("The rules table")]:::store
-    B4["11. Pick the rules<br/>that could apply"]:::det
-    B5["12. Decide: rating,<br/>hours, conditions"]:::ai
-    B6{"13. Does every claim<br/>cite a real rule?"}:::det
-    B7{"14. Clear-cut, and<br/>nothing missing?"}:::det
-    B8[["Answer,<br/>with its rules"]]:::out
-    B9[["Escalation, with the<br/>rule and quote"]]:::out
-    B10[["A person decides"]]:::scope
-    C5[("Stored answers")]:::scope
-
-    IN --> B4
-    A8 -- "approved<br/>rows only" --> B4
-    B4 --> B5 --> B6
-    B6 -- "invented<br/>a rule" --> B5
-    B6 -- yes --> B7
-    B7 -- yes --> B8
-    B7 -- no --> B9 -.-> B10
-    B8 -. "only if every rule<br/>was a bright line" .-> C5
-
-    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
-    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
-    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
-```
+| ⬜ **Dashed** | Not built in this project. |
 
 Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
 run **once per showing**.
@@ -131,37 +28,6 @@ run **once per showing**.
 
 Step 7 is not pass-or-bin. A rule that fails a check gets a **status**, and the status decides
 whether a decision may use it. Only `approved` rules are ever handed to step 12.
-
-```mermaid
-flowchart LR
-    N["A rule is written<br/>from a source document"]:::ai
-    Q{"Is the quote really<br/>in the document?"}:::det
-    V{"Is the source current,<br/>and is it the primary text?"}:::det
-    E{"Expert agrees?"}:::human
-
-    N --> Q
-    Q -- no --> FIXQ["Fix the quote<br/>or the source"]:::ai
-    FIXQ --> Q
-    Q -- yes --> V
-    V -- "source not collected" --> D["DRAFT<br/>we know the rule exists,<br/>not what it says"]:::bad
-    V -- "source is out of date" --> U["UNVERIFIED<br/>quote is real,<br/>vintage is wrong"]:::bad
-    V -- ok --> E
-    E -- no --> U
-    E -- yes --> A["APPROVED<br/>usable for decisions"]:::good
-
-    A -- "the law changes" --> S["SUPERSEDED<br/>true about the past,<br/>end-dated, kept"]:::old
-    S -.-> A2["A new APPROVED row<br/>replaces it"]:::good
-
-    D -. "source finally collected" .-> Q
-    U -. "re-checked against<br/>the current text" .-> Q
-
-    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef human fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
-    classDef good fill:#d6eade,stroke:#2f7d55,stroke-width:2px,color:#143
-    classDef bad fill:#f6dada,stroke:#9e2b2b,stroke-width:2px,color:#411
-    classDef old fill:#f1efea,stroke:#6b6b6b,stroke-width:2px,color:#333
-```
 
 **How a rule actually ends up in each state.** Every one of these has happened here.
 
@@ -265,19 +131,6 @@ cannot be caught and the quote check has nothing to check against.
 
 A real example. The same film, on two different channels.
 
-```mermaid
-flowchart LR
-    A["Ofcom rulebook<br/>Section One, rule 1.24"] --> B["Stored as one row<br/>'any time, IF a PIN<br/>gate is in place'"]
-    B --> C["A film is checked<br/>for a paid film channel"]
-    C --> D["Rating<br/>the UK gives none"]
-    C --> E["Hours<br/>any time"]
-    C --> F["Other conditions<br/>PIN, on by default"]
-    E --> G{"Do the conditions<br/>change the hours?"}
-    F --> G
-    G --> H["Yes. With the PIN in place<br/>the 9pm watershed<br/>does not apply at all"]
-    H --> I["Answer: it may run at 2:30pm,<br/>but ONLY because of the PIN"]
-```
-
 The thing to notice is the question in the middle. The hours and the PIN are worked out
 **separately** and then checked against each other, because the PIN changes the hours.
 
@@ -322,7 +175,7 @@ no lookup. Two real bugs in this project were exactly that.
 **Step 7 is a gate on being used, not a gate on being stored.** A rule can reach the table
 without anyone signing it off. It arrives as `draft` or `unverified` instead of `approved`,
 and the decision engine only ever reads `approved` rows, which is the `approved rows only`
-arrow on the diagram. So the honest answer to "can a rule get into the table without an
+arrow in the process diagram. So the honest answer to "can a rule get into the table without an
 expert?" is yes, and it will be ignored until one looks at it. That is deliberate. The
 alternative is that a rule nobody has reviewed yet has nowhere to live, so it gets held
 outside the system in someone's notes, and then it is not quoted, not checked and not
@@ -432,7 +285,7 @@ observation silently absent, which is the failure mode this whole pipeline is bu
 of categories is closed, but nothing physically stops the model from writing a word that is
 not on it. Almost always this is a wording problem rather than a real one: `self-harm` for
 `self_harm`, `drugs` for `drug_use`, a plural, a synonym. The fix is to run step 8 again, and
-that is the loop on the diagram.
+that is the loop back to step 8 in the process diagram.
 
 **But sometimes the list really is missing something**, and that is the case the old diagram
 got wrong. If a description contains a kind of content the vocabulary has no slot for, running
@@ -510,19 +363,18 @@ it reads the content or weighs a threshold. A decision can pass every check in t
 still be wrong. These checks establish that it is well-formed, honestly sourced and correctly
 routed, which is a floor and not a verdict.
 
-### What is drawn but not built
+### What is designed but not built
 
-Everything solid is a prompt or a script in this repo. Six things are dashed, and the
-difference between "designed" and "done" is where this sort of project usually oversells
-itself, so each one says which it is. The first is blue because it is built and simply
-belongs to the other task; the rest are grey because they do not exist.
+Most of this process is a prompt or a script in this repo that you can run. These parts are
+not, and the difference between "designed" and "done" is where this sort of project usually
+oversells itself.
 
 | Dashed | Why |
 |---|---|
-| 1, 2, 3, fetching and re-checking sources | **Blue, because this one is built.** Task 1 asked for the sources to be located and presented, which was done once. Automating the re-fetch and the amendment watch is Task 2's first question |
+| Automated re-fetching and amendment watching | **Built, but it answers Task 2.** Task 1 asked for the sources to be located and presented, which was done once. A system that keeps re-checking them is Task 2's first question |
 | 0, someone watches the content | The assignment starts from a description, so producing one is outside it. Also the weakest link in the chain |
 | 0b, 0c, 0d, the answer cache | A cost idea for scale, belonging to Task 2. Nothing is built |
-| 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. Every row is `approved` because the author approved it, which is conflict C-08 and the reason the diagram shows a dotted line going round step 7 |
+| 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. Every row is `approved` because the author approved it, which is conflict C-08 |
 | 9b, a person adds a new category | There is a branch for it and a message telling you to take it, but no process behind it |
 | A person decides, after escalation | Producing the escalation **is** in scope and is a required deliverable. What the person then does with it is not |
 

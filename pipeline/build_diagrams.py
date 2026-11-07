@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Render the diagrams in HOW_IT_WORKS.md to docs/ as pictures.
+"""Render the process diagram in TASK2_SCALING.md to docs/ as a picture.
 
 WHY THIS EXISTS
 
-GitHub draws mermaid diagrams itself when it displays a markdown file, so the diagrams are
-already visible in HOW_IT_WORKS.md without this script. What GitHub does not give you is a
+GitHub draws mermaid diagrams itself when it displays a markdown file, so the diagram is
+already visible in TASK2_SCALING.md without this script. What GitHub does not give you is a
 picture you can open on its own, drop in a slide, or send to someone who is not going to
 browse the repo.
 
@@ -34,7 +34,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import constants as C
 
 CONFIG = pathlib.Path(__file__).resolve().parent / "mermaid.config.json"
-SOURCE = C.HOW_IT_WORKS_MD
+SOURCE = C.TASK2_MD
 OUT_DIR = C.DOCS_DIR
 
 
@@ -155,7 +155,8 @@ def main() -> int:
     check_only = "--check" in sys.argv
     found = blocks(SOURCE.read_text(encoding="utf-8"))
     if not found:
-        print(f"no mermaid blocks in {SOURCE.name}, which is itself suspicious")
+        print(f"no mermaid blocks in {SOURCE.name}. Task 2 asks for a process diagram, so "
+              f"its absence is a missing deliverable, not a style choice.")
         return 1
 
     if not check_only:

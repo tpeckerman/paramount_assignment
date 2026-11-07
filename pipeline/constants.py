@@ -56,6 +56,7 @@ TESTS_DIR = ROOT / "tests"
 CASES_MD = TESTS_DIR / "CASES.md"
 
 HOW_IT_WORKS_MD = ROOT / "HOW_IT_WORKS.md"
+TASK2_MD = ROOT / "TASK2_SCALING.md"
 
 # --------------------------------------------------------------------------------------
 # Controlled vocabularies. A value outside these does not error, it silently matches

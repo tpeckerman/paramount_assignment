@@ -41,13 +41,15 @@ it with diagrams.
 | Asked for | Where |
 |---|---|
 | The five questions, each as a numbered section | [`TASK2_SCALING.md`](TASK2_SCALING.md) |
-| A process diagram | [`TASK2_SCALING.md`](TASK2_SCALING.md), "Process" |
+| A process diagram | [`TASK2_SCALING.md`](TASK2_SCALING.md#process), rendered large and scrollable in [`docs/diagrams.html`](docs/diagrams.html) |
 | An example of how a single rule is represented | [`TASK2_SCALING.md`](TASK2_SCALING.md), "Deliverable: how a single rule is represented" |
 | A validation plan | [`TASK2_SCALING.md`](TASK2_SCALING.md), section 4 |
 | Success metrics | [`TASK2_SCALING.md`](TASK2_SCALING.md), section 5 |
 
-**New to the repo?** [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md) has the diagrams and explains how a
-content description becomes a decision.
+**New to the repo?** [`HOW_IT_WORKS.md`](HOW_IT_WORKS.md) walks through how a content
+description becomes a decision. The process diagram itself is in
+[`TASK2_SCALING.md`](TASK2_SCALING.md#process), where Task 2 asks for it, and renders
+large and scrollable in [`docs/diagrams.html`](docs/diagrams.html).
 
 **Supporting:** [`SCOPE.md`](SCOPE.md) why the boundary sits where it does ·
 [`sources/99_EXTRACTION_NOTES_AND_LIMITS.md`](sources/99_EXTRACTION_NOTES_AND_LIMITS.md) the

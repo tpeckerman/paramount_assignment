@@ -285,40 +285,100 @@ true before country three rather than after country thirty.
 
 ## Process
 
+The process at thirty countries, end to end. Colours say **who or what does each step**, which
+matters more than the order: every purple box costs money per asset and can be argued with,
+every green box is free and cannot.
+
+| | |
+|---|---|
+| 🟩 Code | Deterministic. Same input, same output. Costs nothing, cannot be argued with |
+| 🟪 Model | Needs reading or weighing. Used only where code genuinely cannot do the job |
+| 🟧 Person | A judgement with consequences |
+| ⬜ Dashed | Not built in this project |
+
 ```mermaid
 flowchart TB
-    subgraph PC ["Per country: runs once, then on amendment"]
-        A1[Identify instruments<br/>enumerate escape clauses] --> A2[Collect sources<br/>primary first]
-        A2 --> A3{Currency gate<br/>amended by?}
-        A3 -- superseded --> A2
-        A3 -- current --> A4[Extract rules<br/>the BUILD prompt prompt]
-        A4 --> A5{Quote check<br/>verbatim in source?}
-        A5 -- fail --> A4
-        A5 -- pass --> A6{Local expert<br/>sign-off}
-        A6 -- rejected --> A4
-        A6 -- signed --> A7[(Rules table<br/>status=approved)]
+    subgraph PC ["ONCE PER COUNTRY, and again whenever the law changes"]
+        direction LR
+        A1["Identify the instruments<br/>and their escape clauses"]:::person
+        A2["Collect the sources,<br/>primary first"]:::det
+        A3{"Is this really<br/>the document?"}:::det
+        A4{"Amended<br/>since?"}:::det
+        A5["Extract the rules<br/>BUILD prompt"]:::ai
+        A6{"Is every quote<br/>really in the source?"}:::det
+        A7{"Valid fields and<br/>vocabulary?"}:::det
+        A8["Local expert<br/>signs it off"]:::person
+        A1 --> A2 --> A3
+        A3 -- "no: we saved<br/>the menus" --> A2
+        A3 -- yes --> A4
+        A4 -- superseded --> A2
+        A4 -- current --> A5 --> A6
+        A6 -- "not found" --> A5
+        A6 -- pass --> A7
+        A7 -- "unknown value" --> A5
+        A7 -- pass --> A8
     end
 
-    subgraph PD ["Per asset: runs thousands of times"]
-        B1[Content description] --> B2[RUN 1<br/>extract observations<br/>BLIND to rules]
-        B2 --> B3[Select rule slice<br/>country + service + category]
-        A7 --> B3
-        B3 --> B4[RUN 2<br/>3 independent passes]
-        B4 --> B5{Confident<br/>and bright-line?}
-        B5 -- yes --> B6[Decision + rule_ids]
-        B5 -- no --> B7[Human review queue]
-        B7 --> B6
+    DB[("Rules table<br/>approved rows only")]:::store
+    A8 --> DB
+
+    subgraph PD ["PER ASSET, thousands of times"]
+        direction LR
+        B0["Someone describes<br/>the content"]:::scope
+        B1{"Answered this<br/>one before?"}:::scope
+        B2["Describe the content<br/>RUN 1, blind to the rules"]:::ai
+        B3{"Categories in the<br/>controlled list?"}:::det
+        B4{"Does a rating ban<br/>it outright?"}:::det
+        B5["Pick the rules<br/>that could apply"]:::det
+        B6["Decide<br/>RUN 2, three passes"]:::ai
+        B7{"Does every claim<br/>cite a real rule?"}:::det
+        B8{"Clear-cut, and<br/>nothing missing?"}:::det
+        B0 -.-> B1
+        B1 -. miss .-> B2
+        B2 --> B3
+        B3 -- "wording slip" --> B2
+        B3 -- pass --> B4
+        B4 -- no --> B5 --> B6 --> B7
+        B7 -- "invented a rule" --> B6
+        B7 -- pass --> B8
     end
 
-    B7 -.disagreements.-> M[Measurement]
-    B6 -.sampled audit.-> M
-    M -.which country, which rule.-> A4
+    DB --> B5
+    OUT[["Answer, with<br/>its rules"]]:::out
+    HUM["Human review<br/>queue"]:::person
+    B4 -- "yes: R18<br/>or refused" --> OUT
+    B8 -- yes --> OUT
+    B8 -- no --> HUM
+    B1 -. hit .-> OUT
+
+    M["Measurement<br/>per country, per rule"]:::det
+    OUT -. "sampled audit" .-> M
+    HUM -. "what reviewers<br/>overturned" .-> M
+    M -. "which country,<br/>which rule" .-> A5
+
+    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
+    classDef person fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
+    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
+    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
 ```
 
-Two loops at different speeds. The left runs once per country and again whenever the law
-changes. The right runs per asset. **They must not be merged**, a system that reads
-regulation and applies it in one step has nothing separating "what the rule says" from "what
-I decided", so a misreading is unfalsifiable.
+**Two loops at very different speeds.** The top runs once per country and again whenever the
+law changes. The bottom runs per asset, thousands of times. **They must not be merged.** A
+system that reads regulation and applies it in one step has nothing separating *what the rule
+says* from *what I decided*, so a misreading cannot be falsified: there is no stored claim to
+check against the source.
+
+**Every model step is gated by cheaper checks.** The two purple boxes are the only places that
+cost money per run and the only places that can be reasoned out of a right answer. So nothing
+reaches them that code could have settled: a rule is never extracted from a file that failed
+the identity check, and a decision is never requested when the certificate already prohibits
+the broadcast outright.
+
+**The measurement loop closes back onto extraction, not onto the model.** Because every
+decision carries `rule_id`s, an overturn points at a rule in a country rather than at "the
+model", which is the difference between a fix and a complaint.
 
 ---
 
