@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Download the original regulatory source documents listed in MANIFEST.csv.
 
-    python pipeline/fetch_originals.py                 # fetch required + recommended
-    python pipeline/fetch_originals.py --tier required # fetch only the required set
-    python pipeline/fetch_originals.py --check         # verify what is already on disk
-    python pipeline/fetch_originals.py --only FR-R1 FR-A2b
+    python out_of_scope/pipeline/fetch_originals.py                 # fetch required + recommended
+    python out_of_scope/pipeline/fetch_originals.py --tier required # fetch only the required set
+    python out_of_scope/pipeline/fetch_originals.py --check         # verify what is already on disk
+    python out_of_scope/pipeline/fetch_originals.py --only FR-R1 FR-A2b
 
 By default only the CURRENT version of each document is fetched - that is what the
 rules are decided against. Superseded originals and amending instruments are fetched
@@ -327,7 +327,7 @@ def main() -> int:
                   "is the common case here. Diff the file before concluding the law moved. "
                   "If it genuinely changed at source: "
                   "Re-extract the affected rules and close out the old ones with "
-                  "pipeline/supersede.py, which never deletes a row.")
+                  "out_of_scope/pipeline/supersede.py, which never deletes a row.")
         return 1 if (absent or drift) else 0
 
     failures: list[tuple[str, str, str]] = []
@@ -373,7 +373,7 @@ def main() -> int:
               "'Telecharger' PDF link instead and update MANIFEST.csv.")
         return 1
 
-    print("\nAll fetched. Next: python pipeline/verify_rules.py --with-quotes")
+    print("\nAll fetched. Next: python out_of_scope/pipeline/verify_rules.py --with-quotes")
     return 0
 
 

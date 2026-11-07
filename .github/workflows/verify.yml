@@ -20,7 +20,7 @@ jobs:
         run: pip install openpyxl pypdf
 
       - name: Schema and consistency checks
-        run: python pipeline/verify_rules.py
+        run: python out_of_scope/pipeline/verify_rules.py
 
       - name: Confirm the workbook matches the build script
         run: |
@@ -28,9 +28,9 @@ jobs:
           # Rebuild it and fail if the regenerated CSV mirrors differ from what
           # is committed - that is what makes a rule change reviewable in a PR.
           cp rules/csv/Rules.csv /tmp/Rules.committed.csv
-          python pipeline/build_rules_table.py
+          python out_of_scope/pipeline/build_rules_table.py
           if ! diff -q /tmp/Rules.committed.csv rules/csv/Rules.csv; then
-            echo "::error::rules/csv is out of date - re-run pipeline/build_rules_table.py and commit the result"
+            echo "::error::rules/csv is out of date - re-run out_of_scope/pipeline/build_rules_table.py and commit the result"
             diff /tmp/Rules.committed.csv rules/csv/Rules.csv | head -40
             exit 1
           fi
@@ -42,10 +42,10 @@ jobs:
           # Genuinely informational: reports link health and drift, which depend on
           # the network and on publishers, so a red build here would mean someone
           # else's website changed rather than this repo being wrong.
-          python pipeline/fetch_originals.py --check || true
+          python out_of_scope/pipeline/fetch_originals.py --check || true
 
       - name: Inventory is current
-        run: python pipeline/build_inventory.py --check
+        run: python out_of_scope/pipeline/build_inventory.py --check
 
       - name: Quote integrity
         # BLOCKING. This used to carry continue-on-error AND `|| true`, dating from
@@ -54,10 +54,10 @@ jobs:
         # non-blocking meant three documents claimed a rule without a quote "fails
         # the build" while nothing of the sort happened. A reviewer blanked a quote
         # and CI stayed green.
-        run: python pipeline/verify_rules.py --with-quotes
+        run: python out_of_scope/pipeline/verify_rules.py --with-quotes
 
       - name: Test-case claims and stale numbers in prose
-        run: python pipeline/verify_cases.py
+        run: python out_of_scope/pipeline/verify_cases.py
 
       - name: Process diagram renders
-        run: python pipeline/build_diagrams.py --check
+        run: python out_of_scope/pipeline/build_diagrams.py --check

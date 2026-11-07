@@ -4,10 +4,10 @@ How a content description becomes a decision, and where the rules come in.
 
 ## The flow
 
-**The process diagram lives in [`TASK2_SCALING.md`](TASK2_SCALING.md#process)**, where it is a
+**The process diagram lives in [`TASK2_SCALING.md`](../TASK2_SCALING.md#process)**, where it is a
 required deliverable. Task 1 asks for sources, rules, a prompt, test cases and results, and
 not for a diagram, so there is only one in this repo rather than two that have to be kept in
-step with each other. `docs/diagrams.html` renders it large and scrollable.
+step with each other. `out_of_scope/docs/diagrams.html` renders it large and scrollable.
 
 This file is the written walkthrough of the same process: what each step does, what it
 catches, and why it sits where it does.
@@ -83,7 +83,7 @@ And every model step is **gated by cheaper checks first**:
 | 6. Valid vocabulary? | A value outside the list, which matches nothing and errors nowhere | Two spellings of one service type, which silently dropped a rule from every decision using the other |
 | 9. Known category? | An observation that would match no rule | Enforced before the decision step rather than discovered after |
 | 13. Claims cite real rules? | A decision citing a rule that does not exist | |
-| 14. Clear-cut? | Automating a judgement call | 38 of 103 rules are judgement calls and route to a person |
+| 14. Clear-cut? | Automating a judgement call | 43 of 103 rules are judgement calls and route to a person |
 
 Every defect in that right-hand column **looked completely fine**. None was found by rereading.
 Each was found by something mechanical comparing the work against a source outside it.
@@ -146,14 +146,14 @@ film, same certificate, nothing re-edited.
 
 ### Steps 1 to 7: turning documents into a table
 
-Prompt: `prompts/BUILD_rules_from_sources.md`
+Prompt: `out_of_scope/BUILD_rules_from_sources.md`
 
 **None of this is a deliverable for either task.** Task 1 asks for the sources and a table of
 rules, not for a method of producing one. Task 2 asks for a design, meaning a diagram, a
 worked rule, a validation plan and metrics; it wants a plan for doing this at scale, not a
 working prompt that does it.
 
-So this prompt is apparatus, in the same category as everything in `pipeline/`. It is
+So this prompt is apparatus, in the same category as everything in `out_of_scope/pipeline/`. It is
 described here because it is how this table was actually built, and a reader who wants to
 judge the rules deserves to know what produced them.
 
@@ -163,7 +163,7 @@ something.
 
 Each row carries a `verbatim_quote` that appears character for character in the stored file.
 **All 103 approved rules do**, and a rule without one fails the build.
-`pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
+`out_of_scope/pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
 **Step 2 is asking whether the file we saved is the law or just the website around it.** When
@@ -275,7 +275,7 @@ It also records what it was **not** told. `not_stated` is a deliverable, not an 
 
 ### Steps 9 to 11: gates, then picking the rules
 
-Code, not a prompt: `pipeline/precheck.py` then `pipeline/run_decision.py`
+Code, not a prompt: `out_of_scope/pipeline/precheck.py` then `out_of_scope/pipeline/run_decision.py`
 
 `precheck.py` stops the run rather than warning about it, and says which of the two gates
 stopped it:
@@ -344,7 +344,7 @@ It runs three passes that are deliberately independent: classification, hours, o
 restrictions. Then it compares them, because in these two countries they come apart in both
 directions.
 
-**Steps 13 and 14 are code, not the model grading itself:** `pipeline/postcheck.py`.
+**Steps 13 and 14 are code, not the model grading itself:** `out_of_scope/pipeline/postcheck.py`.
 
 Step 13 asks whether every cited `rule_id` actually resolves. The worst failure a tool like
 this can have is not a wrong answer, it is **a wrong answer wearing a citation**. "Prohibited
@@ -432,19 +432,19 @@ are we sure we read it right? A crisp rule nobody is sure was transcribed correc
 ```bash
 pip install openpyxl pypdf
 
-python pipeline/verify_rules.py --with-quotes        # does the table hold up?
-python pipeline/run_decision.py --countries UK FR \
+python out_of_scope/pipeline/verify_rules.py --with-quotes        # does the table hold up?
+python out_of_scope/pipeline/run_decision.py --countries UK FR \
     --service free_to_air --categories violence      # assemble a decision context
-python pipeline/precheck.py run1_output.json         # gates BEFORE the deciding model runs
-python pipeline/postcheck.py run2_output.json        # citation and escalation checks AFTER
-python pipeline/verify_cases.py                      # do the test cases' claimed outcomes hold up?
-python pipeline/render_answer.py decision.json        # the country-by-country answer table
-python pipeline/build_timeline.py                    # regenerate docs/timeline.html
-python pipeline/build_diagrams.py                    # redraw the diagrams into docs/
-python pipeline/supersede.py <source_doc>            # close out rules from a replaced document
+python out_of_scope/pipeline/precheck.py run1_output.json         # gates BEFORE the deciding model runs
+python out_of_scope/pipeline/postcheck.py run2_output.json        # citation and escalation checks AFTER
+python out_of_scope/pipeline/verify_cases.py                      # do the test cases' claimed outcomes hold up?
+python out_of_scope/pipeline/render_answer.py decision.json        # the country-by-country answer table
+python out_of_scope/pipeline/build_timeline.py                    # regenerate out_of_scope/docs/timeline.html
+python out_of_scope/pipeline/build_diagrams.py                    # redraw the diagrams into docs/
+python out_of_scope/pipeline/supersede.py <source_doc>            # close out rules from a replaced document
 ```
 
-Every path, vocabulary and limit the scripts use lives in `pipeline/constants.py`, so moving
+Every path, vocabulary and limit the scripts use lives in `out_of_scope/pipeline/constants.py`, so moving
 a file or adding a status is a one-line change in one place. Legal thresholds deliberately
 do **not** live there: a constant holding `21:00` would be a rule hiding in a config file,
 and rules belong in the table with a quote from the law behind them.
@@ -452,7 +452,7 @@ and rules belong in the table with a quote from the law behind them.
 ```bash
 ```
 
-`docs/timeline.html` shows, for a chosen country and service, which rules bite at which hour
+`out_of_scope/docs/timeline.html` shows, for a chosen country and service, which rules bite at which hour
 across a 24-hour day. It is built from the table, so a rule appears only if its token encodes
 a real clock time. Rules whose restriction is not a time are listed separately rather than
 drawn at an invented hour.

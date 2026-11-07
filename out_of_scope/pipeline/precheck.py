@@ -48,9 +48,16 @@ CERT_PROHIBITIONS = (
      "UK-FLM-001", "No film refused classification by the BBFC may be broadcast."),
 )
 
-# The six that genuinely need the content read, kept here so the split is visible rather than
-# implied. Every one turns on a threshold a person or a model has to weigh.
-JUDGEMENT_PROHIBITIONS = {
+# The prohibitions that cannot be settled from a stated certificate, kept here so the split
+# is visible rather than implied.
+#
+# NAMED CAREFULLY, because an earlier name conflated two different things. "Needs the content
+# read" is not the same as "is a judgement". FR-PRO-002 turns on whether the performers are
+# minors, which is a FACT, and once established the bar is absolute: the rule is a bright
+# line that happens to need someone to look at the content. A checker that required every
+# entry here to be judgment_based was therefore enforcing the wrong property, and said the
+# table was wrong when the checker was.
+PROHIBITIONS_NEEDING_CONTENT = {
     "UK-GEN-001": "'seriously impair' is a threshold, not a fact",
     "UK-SEX-001": "'R18-equivalent' requires judging the material, not reading a certificate",
     "FR-LAW-001": "'nuire gravement' is a threshold",
@@ -144,7 +151,7 @@ def main() -> int:
         return 1
 
     print("No certificate-triggered prohibition. "
-          f"{len(JUDGEMENT_PROHIBITIONS)} other prohibitions need the content read and stay "
+          f"{len(PROHIBITIONS_NEEDING_CONTENT)} other prohibitions need the content read and stay "
           f"with the model.")
     return 0
 

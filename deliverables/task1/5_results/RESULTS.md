@@ -19,7 +19,7 @@
 
 ## How these were produced
 
-**All eight cases were run, and the outputs are in `tests/runs/`.** Every RUN 1 description,
+**All eight cases were run, and the outputs are in `runs/`.** Every RUN 1 description,
 every assembled decision context, and every RUN 2 decision is committed, so any claim below
 can be checked against the actual output rather than taken on my word.
 
@@ -48,15 +48,15 @@ re-derivation closes it.
 | TC-08 | 2 | 2 | 14 | 11 | 23 |
 | **total** | **17** | **17** | | **83** | **177** |
 
-**Escalation rate: 17 of 17. One hundred per cent.** All eight pass `postcheck.py`, every
+**Escalation rate: 17 of 17. One hundred per cent.** All eight pass the decision checker, every
 cited rule resolves to an approved row, no rule was invented. On its own terms the system is
 working. It is also, at this calibration, **useless**: it saves nobody any work, because it
 hands back every single decision.
 
-`TASK2_SCALING.md` sets a target band of 15 to 30% and says too high means nobody is saved
+the Task 2 proposal, in `deliverables/task2/` sets a target band of 15 to 30% and says too high means nobody is saved
 work. 100% is not near that band, it is the degenerate case.
 
-**Why.** 45 of 103 rules are `judgment_based`, and `postcheck.py` requires escalation
+**Why.** 43 of 103 rules are `judgment_based`, and the decision checker requires escalation
 whenever a decision rests on one. Almost every real description touches at least one. So the
 escalation is correct rule by rule and worthless in aggregate, and the cause is C-07: nothing
 is calibrated, so everything is a judgement.
@@ -145,7 +145,7 @@ Three more the runs surfaced, each a real hole in the table rather than in the c
 - **No offensive-language rule reached any slice.** TC-07 and TC-08 both flagged that they
   could not tell whether words spoken were expletives, and that this is plausibly the
   decisive pre-watershed question in both. `strong_language` has four rules in the table and
-  none of them arrived. `verify_cases.py` already reports that no test case exercises that
+  none of them arrived. the test-claim checker already reports that no test case exercises that
   category; the runs show the selection step does not deliver it either.
 - **No French rule states which programmes fall into category IV (-16).** Its hours exist and
   its trailer rule exists, but nothing defines the threshold, so TC-06's French answer is a
@@ -156,13 +156,13 @@ Three more the runs surfaced, each a real hole in the table rather than in the c
 
 One more worth separating out, because it is a defect in the assembler rather than the table:
 TC-08's decision context said `intended_slot: not_stated` while its observations recorded a
-stated 14:30. That is the `run_decision.py` bug the external reviewer found. These contexts
+stated 14:30. That is the the prompt assembler bug the external reviewer found. These contexts
 were assembled before the fix, so the runs above are evidence the bug was real and had reached
 the model.
 
 ## Defects in the prompts, found by running them
 
-Eight schema defects, recorded in `tests/PROMPT_DEFECTS.md`, and the fix for the worst two is
+Eight schema defects, recorded in `PROMPT_DEFECTS.md`, and the fix for the worst two is
 written up as the demonstrated improvement in `TASK1_WRITEUP.md`. The short version: the
 prompts were careful about how to reason and loose about where to put the answer, so facts
 that decide outcomes had nowhere to live and survived as prose.
@@ -186,10 +186,10 @@ Three causes, none of them a rule being wrong:
    time, so "the slot is not stated" appeared as a review reason in every single run. Pure
    noise, inflating every escalation.
 
-**What changed.** Cause 3 is fixed in `run_decision.py`. Cause 2 is fixed in the prompt
+**What changed.** Cause 3 is fixed in the prompt assembler. Cause 2 is fixed in the prompt
 rather than the code, which is the right place: `RUN_2_decide.md` now distinguishes `basis`,
 meaning a rule that changed the answer, from `rules_checked_not_triggered`, meaning a rule
-read and set aside, and `postcheck.py` escalates only on the former. The prompt also now has
+read and set aside, and the decision checker escalates only on the former. The prompt also now has
 an explicit path for "no rule is engaged", because refusing to say that is how a compliance
 tool becomes something people route around.
 
@@ -225,7 +225,7 @@ Every other example was checked and none matches a case in this set.
 - **No independent re-derivation of the rules.** C-08 stands.
 - **One live model, one run each.** No variance measurement, so nothing here says what
   happens on a second attempt with the same input.
-- **Five of eleven content categories have no case at all**, which `verify_cases.py` prints
+- **Five of eleven content categories have no case at all**, which the test-claim checker prints
   with its denominator on every run.
 - **45 judgement rules, one decided case between them.** The escalation result above is a
   direct consequence.
@@ -312,7 +312,7 @@ After fixing Bug 1 the rule still did not arrive. The table used `premium_subscr
 row and `premium_subscription_film` in another for the same service, with no controlled
 vocabulary, so the mismatch dropped it silently.
 
-**Fix:** vocabulary normalised, and `verify_rules.py` now **fails** on any `service_type`
+**Fix:** vocabulary normalised, and the quote checker now **fails** on any `service_type`
 outside a controlled list.
 
 ### Why this is the result worth reading
@@ -362,7 +362,7 @@ whether it picked up the interview as a separate trigger, and I cannot tell afte
 
 That is a reporting defect rather than a system one. The result was written as prose, so it
 can only be re-read, not re-examined. A result that recorded the `rule_id`s actually cited
-would have answered this in a second, which is part of why `pipeline/postcheck.py` now exists.
+would have answered this in a second, which is part of why the decision checker (repository only) now exists.
 
 ---
 
@@ -400,7 +400,7 @@ misattribution, which only became visible once the quote existed to be checked.
 
 ## Limits
 
-- **47 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
+- **43 of 103 rules are judgment-based and barely calibrated.** One decided case is an anchor,
   not a scale. The guidance names about a dozen more; collecting them is the highest-value
   work left.
 - **Author equals grader**, except for TC-01, which is itself not a clean hold-out.
@@ -418,7 +418,7 @@ exactly the failure the rest of this file is about.
 
 ### What was actually run
 
-`pipeline/run_decision.py` was executed for the UK, free-to-air, with the content categories
+the prompt assembler (repository only) was executed for the UK, free-to-air, with the content categories
 these cases produce. That is step 11, rule selection, and it is deterministic, so the result
 is a real result and not a judgement.
 
@@ -460,7 +460,7 @@ I expect **TC-08 to be the one that fails**, and for the system to push it to 21
 Every example in the prompts, and four of the first five test cases, are about content being
 less suitable than it looks. Nothing in the material so far rewards clearing something. If
 that prediction is right, the fix is not a prompt tweak but a test-set problem, and it is the
-one described in section 5 of `TASK2_SCALING.md`: over-rating generates no complaints, so
+one described in section 5 of the Task 2 proposal, in `deliverables/task2/`: over-rating generates no complaints, so
 nothing catches it unless a test is built to.
 
 Recording the prediction first is deliberate. A prediction written after seeing the result is

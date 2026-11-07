@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic checks on a decision, AFTER the model has produced one.
 
-These are steps 13 and 14 of the flow in HOW_IT_WORKS.md. Both used to be drawn as code and
+These are steps 13 and 14 of the flow in out_of_scope/HOW_IT_WORKS.md. Both used to be drawn as code and
 were not code: step 13 was a property asserted in a docstring, and step 14 was left to the
 model's own sense of whether it was sure. Neither is a judgement call, so neither should have
 been.

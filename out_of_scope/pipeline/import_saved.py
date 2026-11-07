@@ -7,7 +7,7 @@
          Cmd/Ctrl+P  -> "Save as PDF"
        The filename does not matter.
     3. drop the file(s) in  sources/originals/incoming/
-    4. python pipeline/import_saved.py
+    4. python out_of_scope/pipeline/import_saved.py
 
 This script works out which manifest row each file belongs to, converts HTML to
 text, copies PDFs through, renames to the manifest's target_filename, updates
@@ -15,8 +15,8 @@ text, copies PDFs through, renames to the manifest's target_filename, updates
 lockfile, and refuses anything that does not contain its document's `expect`
 string - so a saved cookie banner or error page cannot slip in as a source copy.
 
-    python pipeline/import_saved.py --dry-run     # report, change nothing
-    python pipeline/import_saved.py --doc UK-S1   # force a file to one doc id
+    python out_of_scope/pipeline/import_saved.py --dry-run     # report, change nothing
+    python out_of_scope/pipeline/import_saved.py --doc UK-S1   # force a file to one doc id
 """
 from __future__ import annotations
 
@@ -231,7 +231,7 @@ def main() -> int:
     print(f"\n{verb} {len(claimed)}, rejected {len(rejected)}, unmatched {len(unmatched)}")
     if claimed and not args.dry_run:
         print("\nNext:")
-        print("  python pipeline/verify_rules.py --with-quotes")
+        print("  python out_of_scope/pipeline/verify_rules.py --with-quotes")
     return 1 if (rejected or unmatched) else 0
 
 

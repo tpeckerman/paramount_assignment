@@ -30,7 +30,7 @@ Two of these are worth more than the eleven named ones and are included first:
 RUN IT WHERE THE NETWORK ALLOWS IT. This workspace reaches package registries only, so
 ofcom.org.uk is refused at the proxy with a 403. Run this on your own machine:
 
-    python pipeline/fetch_precedents.py sources/originals/incoming
+    python out_of_scope/pipeline/fetch_precedents.py sources/originals/incoming
 
 Anything it cannot get, it reports with the URL so the page can be saved from a browser.
 

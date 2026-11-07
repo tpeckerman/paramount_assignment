@@ -6,11 +6,11 @@ informative part of this.
 
 | Deliverable | Where |
 |---|---|
-| Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `rules/RULES_TABLE_v1.xlsx`, `rules/csv/Rules.csv` |
+| Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `2_rules/RULES_TABLE_v1.xlsx`, `2_rules/Rules.csv` |
 | The prompt | `prompts/RUN_1_describe_content.md`, `prompts/RUN_2_decide.md` |
-| *Not a deliverable for either task:* the prompt that builds the table | `prompts/BUILD_rules_from_sources.md`. Task 1 asks for a table, not a method of making one; Task 2 asks for a design, not a working prompt. This is apparatus |
-| Test cases and results | `tests/CASES.md`, `tests/RESULTS.md` |
-| Scope reasoning | `SCOPE.md` |
+| *Not a deliverable for either task:* the prompt that builds the table | the rule-building prompt (repository only; not a deliverable). Task 1 asks for a table, not a method of making one; Task 2 asks for a design, not a working prompt. This is apparatus |
+| Test cases and results | `CASES.md`, `RESULTS.md` |
+| Scope reasoning | the scope note in Task 1's design-choices folder |
 | Design choices and tools | this file |
 
 **Current state:** 103 rules, all 103 approved, 20 of 20 sources collected. All 103 carry a verbatim
@@ -49,7 +49,7 @@ part. It is closer to the reverse.
 | | Deterministic? | Example |
 |---|---|---|
 | Deciding **what is in** the content | **No.** This is where the judgment lives. | Is this violence "presented repeatedly"? Is this treatment "derogatory"? Is the method "easily imitable"? |
-| Applying rules **once that is settled** | **Largely yes.** 32 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
+| Applying rules **once that is settled** | **Largely yes.** 33 of 103 rules are bright lines. | Category V airs 00:00 to 05:00. R18 never airs. The watershed is 21:00, or 20:00 on an unprotected premium film service. |
 
 The rule-application half is close to a lookup, which is why most of the effort here went into
 making the table correct and checkable rather than into prompt wording.
@@ -65,7 +65,7 @@ outcome through word choice before any rule is applied.
 
 ## Which steps this task covers
 
-All fourteen steps in `HOW_IT_WORKS.md` belong to Task 1. Steps 1 to 4 produce the sources
+All fourteen steps in the repository walkthrough belong to Task 1. Steps 1 to 4 produce the sources
 and the rule table; steps 8 to 12 are the prompt.
 
 The checks are the exception: nothing in Task 1 asks for them. It exists because
@@ -218,7 +218,7 @@ agent's words were that the schema expressed both cases "correctly and without s
 reasoning problem: a field that could not hold what the content said, or two facts sharing
 one slot. The prompts were careful about *how to think* and loose about *where to put the
 answer*. Reading them again would never have found it. Running them found it immediately,
-and the full list is in `tests/PROMPT_DEFECTS.md`.
+and the full list is in `PROMPT_DEFECTS.md`.
 
 ### Improvement 1, from rule selection: two bugs from one case
 
@@ -252,7 +252,7 @@ indistinguishable from correct output until someone is in front of a regulator.
 
 ## Known weaknesses
 
-- **47 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
+- **43 of 103 rules are judgment-based and uncalibrated.** This is the weakest part of the
   table. Exactly one decided enforcement case has been collected, so the table can say "a
   human must decide" but cannot say where the line sits. The guidance names roughly twelve
   more enforcement bulletins; collecting them is the highest-value work left (C-07).
@@ -268,7 +268,7 @@ indistinguishable from correct output until someone is in front of a regulator.
   countries here decide that in opposite ways: France by where the company is based, the UK
   mainly by where the service is available. No rule in the table is wrong because of this,
   but the table assumes a precondition it never states. Recorded as C-16, and the boundary is
-  now written down in `SCOPE.md`.
+  now written down in the scope note in Task 1's design-choices folder.
 - **The `superseded` path is untested.** The versioning mechanism is written and no rule has
   yet travelled through it, because no source has been amended during this project.
 
@@ -283,18 +283,34 @@ specifically because my own substring matching had already produced two false po
 **Python 3**, `openpyxl` (table), `pypdf` (PDF extraction), `csv`/`json`, `unicodedata` for
 the accent and ligature folding the French quote checks need.
 
-**Pipeline** (`pipeline/`): `build_rules_table.py`, `verify_rules.py` (integrity + quote
-check + vocabulary), `fetch_originals.py`, `fetch_with_browser.py` (Playwright),
-`import_saved.py`, `run_decision.py`, `build_inventory.py`, `build_timeline.py`.
+**Scripts I wrote to do the work.** These are not a deliverable and are not in the
+deliverables folders; they live in the repository. Described by what they do rather than by
+filename, since the filenames are not the point:
 
-**GitHub Actions**, CI runs the verifier, the quote check and a regenerate-and-diff of the
-CSV mirrors so the binary table cannot drift unnoticed. One workflow, `verify.yml`; an earlier claim here that a second workflow fetches sources was wrong, there is no such workflow.
+- a **table builder**, so the rules are generated from one source rather than hand-edited in
+  a spreadsheet where a change leaves no diff
+- a **quote checker**, which compares every rule's quote against the stored document
+  character for character, and now also compares the hours in a row against the hours its
+  quote contains. It found four defective quotes the day real sources arrived
+- **gates either side of the decision**: one that stops the run before a model is asked
+  anything it cannot settle, one that rejects a citation to a rule that does not resolve or
+  was never supplied
+- a **prompt assembler**, which filters the table to the rules that could apply and wraps
+  them in the delimiters the decision prompt declares
+- **fetchers** for the source documents, including a Playwright one for pages drawn by
+  JavaScript, and an importer for pages a person saved from a browser
+- **renderers** for the source inventory, the 24-hour chart and the process diagram
+
+**GitHub Actions**, running the schema check, the quote check, the test-claim check, the
+diagram render, and a regenerate-and-diff of the CSV so the binary table cannot drift
+unnoticed. One workflow; an earlier claim here that a second one fetches sources was wrong,
+and there is no such workflow.
 
 **Removed:** a Colab notebook that converted the table to a Google Sheet. Its integrity
-checks had become a weaker, drifting copy of `verify_rules.py`, it still referred to rule
-statuses that no longer occur, nothing ran it so nothing caught the drift, and it carried a
-hardcoded Drive folder id. Its one idea worth keeping, closing out rules from a replaced
-document, is now real code in `pipeline/supersede.py`.
+checks had become a weaker, drifting copy of the quote checker, it referred to rule statuses
+that no longer occur, nothing ran it so nothing caught the drift, and it carried a hardcoded
+Drive folder id. Its one idea worth keeping, closing out rules from a replaced document, is
+now real code.
 
 **Not used, deliberately:** no attempt to defeat Cloudflare or AWS WAF challenges. Blocked
 documents were listed for manual retrieval instead, with a console snippet that verifies each

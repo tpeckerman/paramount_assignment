@@ -16,7 +16,7 @@ Run it from the repo root:
 
     pip install playwright
     playwright install chromium
-    python3 pipeline/fetch_with_browser.py
+    python3 out_of_scope/pipeline/fetch_with_browser.py
 
 Useful flags:
     --only UK-S1 FR-R2      just these documents
@@ -25,7 +25,7 @@ Useful flags:
 
 Files land in sources/originals/incoming/. Then run:
 
-    python3 pipeline/import_saved.py
+    python3 out_of_scope/pipeline/import_saved.py
 
 which identifies each file by content rather than filename, re-checks `expect`, records a
 sha256 and updates the manifest. So the verification happens twice and a wrong filename here
@@ -187,7 +187,7 @@ def main() -> int:
             print(f"     {d:<8}{why}")
         print("\n  For these, use DOWNLOAD_SNIPPET.md and save them by hand.")
     if ok:
-        print(f"\nNext:  python3 pipeline/import_saved.py")
+        print(f"\nNext:  python3 out_of_scope/pipeline/import_saved.py")
     return 0
 
 

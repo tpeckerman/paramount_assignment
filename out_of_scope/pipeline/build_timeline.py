@@ -6,7 +6,7 @@ invented: a rule appears only if its token actually encodes a clock time, and ru
 restriction is not a time at all are listed separately rather than being drawn at a made-up
 hour, because drawing them would imply a precision the rule does not have.
 
-Output: docs/timeline.html, self-contained, with a country and service-type selector.
+Output: out_of_scope/docs/timeline.html, self-contained, with a country and service-type selector.
 """
 from __future__ import annotations
 

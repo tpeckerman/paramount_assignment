@@ -100,7 +100,7 @@ two countries and I wrote earlier that it only appears with thirty. That was wro
 
 **No rule in the table is affected.** Every row is about content and timing, not about who
 regulates whom. What is missing is a precondition the table never states, now written down in
-`SCOPE.md` and tracked as open conflict C-16.
+the scope note in Task 1's design-choices folder and tracked as open conflict C-16.
 
 **The sketch, for version 2.** Two tables, and the second is the one people get wrong:
 
@@ -182,7 +182,7 @@ set by testing against content with known findings rather than by what looks rea
 thousand pieces. Sampling frames from each and transcribing the audio is real money per title,
 paid again on every re-run. That is the strongest argument for storing answers and
 reusing them, described under the amendment problem in section 1 and sketched as steps 0b to
-0d in `HOW_IT_WORKS.md`. The expensive part is describing the film, and the description
+0d in the repository walkthrough. The expensive part is describing the film, and the description
 does not change when the law does, so an amendment should invalidate the decision and
 keep the description.
 
@@ -276,7 +276,7 @@ every country added before it has to be revisited.
 ## And then the part that is just more of the same
 
 The rest of this document is the Task 1 flow run thirty times. The fourteen steps in
-`HOW_IT_WORKS.md` do not change; what changes is which of them breaks first and what has to be
+the repository walkthrough do not change; what changes is which of them breaks first and what has to be
 true before country three rather than after country thirty.
 
 | This document asks about | Which steps |
@@ -422,7 +422,7 @@ an amendment drops exactly the answers that cite a rule from the amended documen
 the rest alone. A blanket flush on any amendment anywhere means that at thirty countries the
 cache is cold almost all the time and was never worth building. The cache design, including
 why the key cannot be the content alone and why a similarity threshold has to be validated on
-adversarial pairs rather than random ones, is in `HOW_IT_WORKS.md` under steps 0b to 0d.
+adversarial pairs rather than random ones, is in the repository walkthrough under steps 0b to 0d.
 
 **And an amendment is free information about itself.** When an amendment drops a set of stored
 answers, keep a sample and re-decide those from scratch under the new rules, then compare them
@@ -697,7 +697,7 @@ the retrieval is matching on resemblance rather than on the things that decide o
 ### What it would cost
 
 Low, and that is the argument for doing it first. The decisions are published, free, and
-already written in the vocabulary of the rules. `pipeline/fetch_precedents.py` holds thirteen
+already written in the vocabulary of the rules. the precedent fetcher (repository only) holds thirteen
 resolved URLs for the UK alone, including an official compilation carrying roughly ten
 scheduling decisions with their broadcast times. Compared with hiring a lawyer in thirty
 countries, this is the cheapest calibration available, and it is the work I would do next.
@@ -707,7 +707,7 @@ countries, this is the cheapest calibration available, and it is the work I woul
 ## Deliverable: what comes out at the end
 
 Everything in this document exists to make one table trustworthy. This is it, and it is built
-by `pipeline/render_answer.py` from a decision, so it is a real output rather than a sketch.
+by the answer-table renderer (repository only) from a decision, so it is a real output rather than a sketch.
 
 | Country | Verdict | Age rating | Permitted hours | Conditions | Rules relied on |
 |---|---|---|---|---|---|
@@ -968,7 +968,7 @@ hour a year per channel, not a retainer.
 
 - **Sign-off before any rule goes live.** Non-negotiable. An unreviewed extraction is a
   hypothesis.
-- **Calibrating judgment rules.** 38 of 103 current rules are judgment-based with one
+- **Calibrating judgment rules.** 43 of 103 current rules are judgment-based with one
   enforcement precedent between them. The table can say a judgment is needed; it cannot say
   where the line sits. Only someone who has argued these cases can.
 - **Unwritten regulator practice.** What a regulator tolerates is not in the text.

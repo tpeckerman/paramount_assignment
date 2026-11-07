@@ -17,7 +17,7 @@ why anything stateful in this repo is generated rather than written by hand.
 | `originals.lock.json` | A sha256 per document, so a later change at source is detectable. |
 | `*.txt`, `*.pdf` | The documents. |
 | `unused/` | Collected in good faith, then set aside. Has its own README saying why. |
-| `incoming/` | Drop-box for manually saved files, emptied by `pipeline/import_saved.py`. |
+| `incoming/` | Drop-box for manually saved files, emptied by `out_of_scope/pipeline/import_saved.py`. |
 
 ## How these were collected, and why it took three routes
 
@@ -76,7 +76,7 @@ address.
 ## Re-checking later
 
 ```bash
-python3 pipeline/fetch_originals.py --check
+python3 out_of_scope/pipeline/fetch_originals.py --check
 ```
 
 Compares every file against its recorded hash and its expect phrase. A `CHANGED` result means

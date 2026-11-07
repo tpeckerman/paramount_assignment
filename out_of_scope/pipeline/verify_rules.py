@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Integrity checks on the rule table. Run this before trusting it as ground truth.
 
-    python pipeline/verify_rules.py
-    python pipeline/verify_rules.py --with-quotes   # also check every verbatim_quote
+    python out_of_scope/pipeline/verify_rules.py
+    python out_of_scope/pipeline/verify_rules.py --with-quotes   # also check every verbatim_quote
                                                    # against the downloaded originals
 
 Exit code 0 = clean, 1 = problems found. Safe to run in CI.
@@ -12,7 +12,7 @@ verbatim quote that provably occurs in its stored source document. Without it,
 extraction errors are silent, and a wrong row becomes ground truth. It needs
 sources/originals/ populated first:
 
-    python pipeline/fetch_originals.py
+    python out_of_scope/pipeline/fetch_originals.py
 """
 
 from __future__ import annotations
@@ -272,7 +272,7 @@ def check_quotes(rows: list[dict]) -> list[str]:
     for line in inconclusive:
         print(f"    inconclusive: {line}")
     if skipped and not checked:
-        print("  -> run  python pipeline/fetch_originals.py  first "
+        print("  -> run  python out_of_scope/pipeline/fetch_originals.py  first "
               "(see conflict C-04 in sources/99_EXTRACTION_NOTES_AND_LIMITS.md)")
     return bad
 
@@ -359,13 +359,13 @@ def check_precheck_agrees(rows: list[dict]) -> list[str]:
 
     by_id = {r["rule_id"]: r for r in rows}
     bad = []
-    for rid in getattr(mod, "JUDGEMENT_PROHIBITIONS", {}):
+    for rid in getattr(mod, "PROHIBITIONS_NEEDING_CONTENT", {}):
         row = by_id.get(rid)
         if row is None:
-            bad.append(f"{rid}: precheck.py names it, the table does not have it")
-        elif row["determinacy"] != C.JUDGMENT_DETERMINACY:
-            bad.append(f"{rid}: precheck.py treats it as needing judgement, the table "
-                       f"says determinacy={row['determinacy']!r}. One of them is wrong.")
+            bad.append(f"{rid}: the gate names it, the table does not have it")
+        elif "prohibited" not in (row["time_rule_machine"] or "").lower():
+            bad.append(f"{rid}: the gate treats it as an absolute prohibition, the table "
+                       f"says time_rule_machine={row['time_rule_machine']!r}. One is wrong.")
     return bad
 
 
@@ -411,14 +411,24 @@ def check_sources_tab(rows):
     The tab also lists sources considered and rejected, which is useful context, so this is
     one-directional. It exists because the two lists drifted: the tab carried nine documents
     that had been removed from the manifest and was missing four that had been added.
+
+    READS THE WORKBOOK, NOT A CSV MIRROR. It used to read rules/csv/Sources.csv, and only
+    two of the six tabs are ever mirrored to CSV, so that file has never existed. The check
+    opened with `if not src.exists(): return []` and therefore passed silently every single
+    run, from the commit that added it onward. The drift it was written to catch could have
+    come straight back without anything going red.
     """
-    import csv as _csv, pathlib as _pl
-    base = _pl.Path(__file__).resolve().parent.parent
-    src = C.SOURCES_CSV
+    import csv as _csv
     man = C.MANIFEST_CSV
-    if not (src.exists() and man.exists()):
+    if not man.exists():
         return []
-    have = {r["source_id"] for r in _csv.DictReader(src.open(encoding="utf-8"))}
+    wb = openpyxl.load_workbook(WORKBOOK, read_only=True, data_only=True)
+    if "Sources" not in wb.sheetnames:
+        return ["the workbook has no Sources tab"]
+    ws = wb["Sources"]
+    head = [c.value for c in next(ws.iter_rows(min_row=1, max_row=1))]
+    col = head.index("source_id")
+    have = {r[col].value for r in ws.iter_rows(min_row=2) if r[col].value}
     need = {r["doc_id"] for r in _csv.DictReader(man.open(encoding="utf-8"))}
     return sorted(need - have)
 

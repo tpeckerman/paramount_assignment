@@ -81,7 +81,7 @@ ALWAYS_RULE_IDS = {
 
 def load_rules() -> list[dict]:
     if not RULES.exists():
-        sys.exit(f"missing {RULES} - run pipeline/build_rules_table.py first")
+        sys.exit(f"missing {RULES} - run out_of_scope/pipeline/build_rules_table.py first")
     with RULES.open(newline="", encoding="utf-8") as fh:
         return list(csv.DictReader(fh))
 

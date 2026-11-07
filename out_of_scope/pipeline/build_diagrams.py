@@ -15,8 +15,8 @@ fails the build. It is the same idea as the quote checker: the thing that silent
 is the thing worth testing.
 
 usage:
-  python pipeline/build_diagrams.py            write docs/diagram_<n>_<slug>.svg
-  python pipeline/build_diagrams.py --check    render only, write nothing, fail on a broken one
+  python out_of_scope/pipeline/build_diagrams.py            write out_of_scope/docs/diagram_<n>_<slug>.svg
+  python out_of_scope/pipeline/build_diagrams.py --check    render only, write nothing, fail on a broken one
 
 Needs mermaid-cli, which comes from npm:  npx @mermaid-js/mermaid-cli
 """
@@ -106,7 +106,7 @@ VIEWER = """<!DOCTYPE html>
       font-family: Helvetica, Arial, sans-serif !important; }}
 </style></head><body>
 <h1>How it works, diagrams</h1>
-<p class="hint">Generated from the mermaid blocks in HOW_IT_WORKS.md. Each diagram scrolls
+<p class="hint">Generated from the mermaid blocks in out_of_scope/HOW_IT_WORKS.md. Each diagram scrolls
 inside its own frame. Use the buttons to change size, or just scroll.</p>
 <div class="controls">
   <button onclick="z(0.25)">Bigger</button>

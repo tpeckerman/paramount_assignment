@@ -31,8 +31,8 @@ building it would quietly throw away most of what the system worked out:
    checked by the person who has to defend it.
 
 usage:
-  python pipeline/render_answer.py decision.json             markdown to stdout
-  python pipeline/render_answer.py decision.json --html out.html
+  python out_of_scope/pipeline/render_answer.py decision.json             markdown to stdout
+  python out_of_scope/pipeline/render_answer.py decision.json --html out.html
 """
 from __future__ import annotations
 

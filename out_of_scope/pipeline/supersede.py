@@ -20,9 +20,9 @@ that path is real code with a dry run and a test, rather than a paragraph in a d
 claiming the system supports versioning.
 
 usage:
-  python pipeline/supersede.py FR-R2                 show what would change, write nothing
-  python pipeline/supersede.py FR-R2 --apply         write it
-  python pipeline/supersede.py FR-R2 --apply --as-of 2026-03-01
+  python out_of_scope/pipeline/supersede.py FR-R2                 show what would change, write nothing
+  python out_of_scope/pipeline/supersede.py FR-R2 --apply         write it
+  python out_of_scope/pipeline/supersede.py FR-R2 --apply --as-of 2026-03-01
 """
 from __future__ import annotations
 
@@ -108,7 +108,7 @@ def main() -> int:
     print(f"\nwrote {C.relative(C.RULES_CSV)}: {len(closed)} row(s) superseded.")
     print("The spreadsheet is generated from build_rules_table.py, so update its source "
           "rows there too, or the next build will undo this.")
-    print("Then run: python pipeline/verify_rules.py --with-quotes")
+    print("Then run: python out_of_scope/pipeline/verify_rules.py --with-quotes")
     return 0
 
 

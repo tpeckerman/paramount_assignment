@@ -4,7 +4,7 @@ These came out of running the prompts against all eight test cases, by agents th
 seen the expected answers. Reading a prompt does not find these. Nothing here was visible to
 the person who wrote it.
 
-The runs are in `tests/runs/`. The ones that affect a decision are listed first.
+The runs are in `runs/`. The ones that affect a decision are listed first.
 
 ## 1. There is no field for access control, and it decides the answer
 

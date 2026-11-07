@@ -21,7 +21,7 @@ conflicts.
 
 ## The limit that matters most: judgment rules are barely calibrated
 
-**38 of 103 rules are `judgment_based`**, and exactly **one** decided case has been collected.
+**43 of 103 rules are `judgment_based`**, and exactly **one** decided case has been collected.
 
 One case is an anchor, not a scale. It tells you that a BBFC 15 film with sustained graphic
 violence at 11:30 in the morning breached, which is useful, but it does not tell you where the
@@ -83,7 +83,7 @@ Per-source detail is in `sources/originals/NOTES.md`.
 - **Overseas France.**
 - **Everything outside the age and time decision.** Impartiality, fairness, privacy and
   commercial references are excluded by a deliberate scope choice, set out in
-  `SCOPE.md`. Note that the news section genuinely **binds** this broadcaster, since
+  `out_of_scope/SCOPE.md`. Note that the news section genuinely **binds** this broadcaster, since
   a commercial PSB licence carries news obligations. It is out of scope because it yields no
   rating and no hour, not because it does not apply.
 

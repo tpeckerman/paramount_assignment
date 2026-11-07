@@ -43,7 +43,7 @@ Eleven categories describe things that appear in content. These cases exercise s
 Four of the five are judgement calls, so the gap sits on top of the table's known weak spot.
 
 A pass rate over six of eleven categories is a pass rate **on the six**. Same shape as the
-quote-coverage defect in `RESULTS.md`. `pipeline/verify_cases.py` prints this denominator on
+quote-coverage defect in `RESULTS.md`. the test-claim checker (repository only) prints this denominator on
 every run so it cannot go stale.
 
 ---
@@ -75,13 +75,13 @@ NO WARNING OR SIGNPOSTING was given before or during the broadcast.
 **Known outcome:** breach of Rule 1.3. Ofcom also opened the case under Rule 2.3 (offence)
 and **dropped that limb**, finding the violence contextually justified within the film.
 
-> **Source.** `UK-P1_ofcom_decision_toofan.pdf` in `sources/originals/`, Ofcom bulletin issue
+> **Source.** `UK-P1_ofcom_decision_toofan.pdf` in `1_sources/originals/`, Ofcom bulletin issue
 > 553, 7 September 2026
 > ([original](https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf)).
 > Verbatim: `"Breach of Rule 1.3 of the Code."` and, on the dropped limb, Ofcom
 > `"did not pursue the investigation further under Rule 2.3"` having found the material
 > `"sufficiently contextualised within the film"`.
-> `pipeline/verify_cases.py` checks all three against the PDF, so the claim fails the build
+> the test-claim checker (repository only) checks all three against the PDF, so the claim fails the build
 > if it drifts.
 
 **What the system must get right.** The breach, on Rule 1.3. The absence of a warning as an
@@ -280,7 +280,7 @@ explicit language, and here the comedy **is** a live argument because 1.19 bends
 Rule 1.20 does not fire: nothing is depicted. The waxing is not sexual nudity.
 
 The system should escalate, cite Rule 1.19, and set the context argument out rather than
-settle it. That rule is `judgment_based`, and `pipeline/postcheck.py` fails any answer
+settle it. That rule is `judgment_based`, and the decision checker (repository only) fails any answer
 leaning on a judgement rule without flagging it.
 
 **The pair is the real test.** Two comedies, both BBFC 15, both explicit, neither with sexual

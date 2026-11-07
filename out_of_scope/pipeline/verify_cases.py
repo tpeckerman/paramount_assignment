@@ -9,7 +9,7 @@ So the claim is treated the same way as a rule. Quote the source, store the sour
 the quote mechanically. This is the same check `verify_rules.py --with-quotes` runs over the
 rules table, pointed at the test cases instead.
 
-usage: python pipeline/verify_cases.py
+usage: python out_of_scope/pipeline/verify_cases.py
 """
 from __future__ import annotations
 
@@ -107,25 +107,78 @@ def doc_count_claims() -> list[str]:
     # A file count in prose drifts the first time a script is added or deleted.
     words = {13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen",
              17: "seventeen", 18: "eighteen", 19: "nineteen", 20: "twenty"}
-    n_py = len(list((C.ROOT / "pipeline").glob("*.py")))
+    n_py = len(list(C.PIPELINE_DIR.glob("*.py")))
     readme = C.ROOT / "README.md"
     if readme.is_file():
         text = readme.read_text(encoding="utf-8")
         for n, word in words.items():
             if n != n_py and re.search(rf"\b{word} Python files\b", text, re.I):
-                wrong.append(f"README.md: says {word!r} Python files, pipeline/ holds "
+                wrong.append(f"README.md: says {word!r} Python files, out_of_scope/pipeline/ holds "
                              f"{n_py}")
+    # The N-of-M scan used to miss three real stale counts, each by a different dodge:
+    #   "38 of 103 current rules are judgment-based"  - a filler word before "rules"
+    #   "38 of 103 rules are `judgment_based`"        - backticks and an underscore
+    #   "38 of 103 rules are judgement calls"         - British spelling, different noun
+    # So normalise the prose before matching rather than widening the pattern each time a
+    # new phrasing turns up. A check that only catches the spelling I happened to use is
+    # the same bug as no check at all.
+    def normalise(s: str) -> str:
+        s = s.replace("`", "").replace("_", "-")
+        s = re.sub(r"\bjudgement\b", "judgment", s, flags=re.I)
+        s = re.sub(r"\bjudgment(?:-based| calls?| rules?)\b", "judgment-based", s, flags=re.I)
+        s = re.sub(r"\bbright(?:-| )lines?\b", "bright-line", s, flags=re.I)
+        return s
+
     for doc in sorted(C.ROOT.rglob("*.md")):
         if "originals" in str(doc):
             continue
-        text = doc.read_text(encoding="utf-8")
+        text = normalise(doc.read_text(encoding="utf-8"))
         for phrase, want in live.items():
-            for m in re.finditer(rf"(\d+) of (\d+) rules are ([a-z -]*{re.escape(phrase)})",
-                                 text):
+            key = normalise(phrase)
+            # (\d+) of (\d+) [optional adjectives] rules are [optional words] <phrase>
+            for m in re.finditer(
+                    rf"(\d+) of (\d+)(?: [a-z]+){{0,2}} rules are(?: [a-z]+){{0,2}}[ -]*"
+                    rf"{re.escape(key)}", text):
                 if int(m.group(1)) != want or int(m.group(2)) != total:
                     wrong.append(f"{C.relative(doc)}: says {m.group(0)!r}, "
                                  f"table says {want} of {total}")
     return wrong
+
+
+def dead_links() -> list[str]:
+    """Every relative markdown link must point at a file that exists.
+
+    This exists because reorganising folders rewrote link LABELS and left the TARGETS
+    behind, so a line read `[out_of_scope/SCOPE.md](SCOPE.md)` and looked correct while
+    pointing nowhere. It also guards the harder requirement: a deliverable folder has to
+    stand on its own, so a copy that still links back to a file left outside the folder is
+    a broken handover even though the link works in the full repo.
+    """
+    import urllib.parse
+    bad = []
+    for md in sorted(C.ROOT.rglob("*.md")):
+        if ".git/" in str(md):
+            continue
+        for m in re.finditer(r"\[([^\]]*)\]\(([^)\s]+)\)", md.read_text(encoding="utf-8")):
+            target = m.group(2)
+            if target.startswith(("http://", "https://", "mailto:", "#")):
+                continue
+            rel = urllib.parse.unquote(target.split("#")[0])
+            if not rel:
+                continue
+            resolved = (md.parent / rel).resolve()
+            if not resolved.exists():
+                bad.append(f"{C.relative(md)}: [{m.group(1)[:40]}] points at {target!r}, "
+                           f"which is not there")
+                continue
+            # A deliverable folder is handed over on its own, so a link that resolves only
+            # because the rest of the repository happens to sit around it is still broken
+            # for whoever receives just the folder.
+            for box in (C.ROOT / "deliverables" / "task1", C.ROOT / "deliverables" / "task2"):
+                if box in md.parents and box not in resolved.parents and resolved != box:
+                    bad.append(f"{C.relative(md)}: [{m.group(1)[:40]}] points at {target!r}, "
+                               f"which is outside {box.name}/ and would not travel with it")
+    return bad
 
 
 def main() -> int:
@@ -164,6 +217,15 @@ def main() -> int:
             print(f"  - {s}")
         print("  A count written into prose goes stale the moment a rule is added, and prose "
               "is where nobody looks.")
+        return 1
+
+    broken = dead_links()
+    if broken:
+        print("\nLINKS THAT POINT AT NOTHING:")
+        for b in broken:
+            print(f"  - {b}")
+        print("  A deliverable folder has to stand on its own. A link to a file that is not "
+              "there is a dead end for whoever opens it.")
         return 1
 
     covered, untested, counts = category_coverage()

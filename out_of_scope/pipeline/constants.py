@@ -29,12 +29,17 @@ import re
 # --------------------------------------------------------------------------------------
 # Where things live. Everything is derived from ROOT so the checkout can sit anywhere.
 # --------------------------------------------------------------------------------------
-ROOT = pathlib.Path(__file__).resolve().parent.parent
+# out_of_scope/pipeline/ sits inside out_of_scope/, so ROOT is three levels up, not two. This is the
+# only line that knows where the pipeline lives relative to the repo root.
+ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
+PIPELINE_DIR = ROOT / "out_of_scope" / "pipeline"
 
 RULES_DIR = ROOT / "rules"
 RULES_XLSX = RULES_DIR / "RULES_TABLE_v1.xlsx"
 RULES_CSV = RULES_DIR / "csv" / "Rules.csv"
-SOURCES_CSV = RULES_DIR / "csv" / "Sources.csv"
+# NOTE: there is deliberately no SOURCES_CSV. Only Rules and Open_Questions are
+# mirrored to CSV. A constant pointing at rules/csv/Sources.csv existed for a while
+# and silently disabled check_sources_tab, which now reads the workbook instead.
 OPEN_QUESTIONS_CSV = RULES_DIR / "csv" / "Open_Questions.csv"
 
 SOURCES_DIR = ROOT / "sources"
@@ -45,7 +50,7 @@ EXPECT_JSON = ORIGINALS_DIR / "expect.json"
 LOCKFILE = ORIGINALS_DIR / "originals.lock.json"
 SOURCE_INVENTORY_MD = SOURCES_DIR / "00_SOURCE_INVENTORY.md"
 
-DOCS_DIR = ROOT / "docs"
+DOCS_DIR = ROOT / "out_of_scope" / "docs"
 TIMELINE_HTML = DOCS_DIR / "timeline.html"
 DIAGRAMS_HTML = DOCS_DIR / "diagrams.html"
 
@@ -55,7 +60,8 @@ DECISION_PROMPT = PROMPTS_DIR / "RUN_2_decide.md"
 TESTS_DIR = ROOT / "tests"
 CASES_MD = TESTS_DIR / "CASES.md"
 
-HOW_IT_WORKS_MD = ROOT / "HOW_IT_WORKS.md"
+HOW_IT_WORKS_MD = ROOT / "out_of_scope" / "HOW_IT_WORKS.md"
+SCOPE_MD = ROOT / "out_of_scope" / "SCOPE.md"
 TASK2_MD = ROOT / "TASK2_SCALING.md"
 
 # --------------------------------------------------------------------------------------
