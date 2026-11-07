@@ -233,14 +233,15 @@ points, to be reset after the first month of real use.
 | Applying mechanical rules | Automated |
 | Drafting rule rows from a legal document | Model, then code checks |
 | Describing a program | Model |
-| Deciding what a threshold means | Model proposes from similar past regulator decisions. Expert only when no decided case exists or confidence is low |
-| Confirming a translation is faithful | A second, different model translates the quote back and compares. Expert only when the two differ |
+| Deciding what a threshold means | Score the case against past regulator decisions for similarity (cosine and ROUGE-L). A close match gets that decision's outcome. Expert only when no decision is close |
+| Confirming a translation is faithful | Machine-translate the original-language text and score it against the English quote (BLEU and ROUGE). Expert only when the score is low |
 | Resolving two sources that disagree | Code ranks them by authority (law, then regulator rules, then guidance). Expert only when they rank equally |
-| Confirming which regulator covers a channel | Code looks it up in the MAVISE database. A model reads regulator registers elsewhere. Expert only when sources disagree or none is found |
+| Confirming which regulator covers a channel | Code looks it up in the MAVISE database. Expert only when it has no record or the records disagree |
 | Final call on anything the system escalated | Compliance reviewer |
 
-A person is needed where there is nothing to check a model against: a judgment rule with no
-decided cases (Task 1 has 45 judgment rules and one decided case), or two sources of equal
-rank that disagree. Models checking models share blind spots, so the checking model should be
-a different one from the model that did the first pass. Finding qualified reviewers in each
-country is still the real constraint, so start hiring before the engineering.
+BLEU and ROUGE are standard scores for how closely two texts match. They flag, they do not
+judge: a high score means the texts agree, not that the law is read correctly. A person is
+needed where there is nothing to compare against, such as a judgment rule with no decided
+case (Task 1 has 45 judgment rules and one decided case), or two sources of equal rank that
+disagree. Finding qualified reviewers in each country is still the real constraint, so start
+hiring before the engineering.
