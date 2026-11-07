@@ -90,7 +90,7 @@ That is only correct if the country you hand it is the country whose regulator a
 the channel. Those are not always the same thing. A channel can be run from one country and
 watched in several others, and countries differ on who gets to regulate it. Some say the
 rules of the country where the **company** is based apply, and receiving countries must accept
-that. Others say any channel watched on their territory needs their licence and follows their
+that. Others say any channel watched on their territory needs their license and follows their
 rules.
 
 **It is already live in Task 1, which I missed.** The two countries here do it in opposite
@@ -133,7 +133,7 @@ most expensive part of the whole operation, so the question is what a model can 
 
 **It cannot be done in one pass.** You cannot hand a model a two-hour film and ask for a
 timecoded list of everything that matters. The things that matter are often two seconds long,
-and anything reading the film as a whole will summarise the plot rather than catalogue the
+and anything reading the film as a whole will summarize the plot rather than catalog the
 moments.
 
 **Cutting it into pieces is the easy part, and it is not a model's job.** Finding where the
@@ -153,7 +153,7 @@ well as the pictures, because a whole category of rules is about **language**, a
 of frames will catch a word.
 
 *Pass two, over all the pieces at once:* this one takes the output of pass one, not the video.
-It exists because several of the most important judgements **cannot be made from one piece**:
+It exists because several of the most important judgments **cannot be made from one piece**:
 
 - Rules ask whether something is *sustained*, *repeated*, or *dwelt on*. One cut cannot tell
   you. Counting across the whole film can.
@@ -236,7 +236,7 @@ either is in.
 The bad news is that this guarantee is smaller than it sounds. It proves the quote was copied
 correctly. It cannot prove we picked the right sentence, or that two lines later the law says
 "except when...", or that a word with a special legal meaning means what a dictionary says it
-means. **The automatic checks survive the language barrier. Human judgement does not.** That
+means. **The automatic checks survive the language barrier. Human judgment does not.** That
 is exactly why point 2 above, finding experts, is the real limit.
 
 ### 6. One country going wrong must not take down the rest
@@ -290,7 +290,7 @@ true before country three rather than after country thirty.
 
 ## Process
 
-The process at thirty countries, end to end. Colours say **who or what does each step**, which
+The process at thirty countries, end to end. Colors say **who or what does each step**, which
 matters more than the order: every purple box costs money per asset and can be argued with,
 every green box is free and cannot.
 
@@ -298,7 +298,7 @@ every green box is free and cannot.
 |---|---|
 | 🟩 Code | Deterministic. Same input, same output. Costs nothing, cannot be argued with |
 | 🟪 Model | Needs reading or weighing. Used only where code genuinely cannot do the job |
-| 🟧 Person | A judgement with consequences |
+| 🟧 Person | A judgment with consequences |
 | ⬜ Dashed | Not built in this project |
 
 ```mermaid
@@ -464,7 +464,7 @@ people get wrong. There are three different situations and they are not intercha
 | situation | what it means | what to do |
 |---|---|---|
 | The document does not mention it | The law is genuinely silent | Do not write a rule. Silence is not permission and it is not prohibition. Log it as a question for the local expert |
-| The document mentions it but is vague | The law leaves it to judgement | Write the rule, mark it as needing judgement, and route it to a person every time |
+| The document mentions it but is vague | The law leaves it to judgment | Write the rule, mark it as needing judgment, and route it to a person every time |
 | We could not read it properly | Our problem, not the law's | Mark the row unverified and do not let it reach a decision until someone has read it |
 
 Writing a confident rule for any of the three is worse than writing none, because a rule in
@@ -519,7 +519,7 @@ Every row carries the date its wording took effect (`valid_from`) and, once repl
 it stopped applying (`valid_to`) with its status set to `superseded`.
 
 **Rows are never deleted.** That is the whole point. If a regulator asks in two years why a
-programme was scheduled the way it was, the answer has to be the rule as it stood *on the day
+program was scheduled the way it was, the answer has to be the rule as it stood *on the day
 it was broadcast*, not the rule as it stands now. Delete the old row and that question becomes
 unanswerable. Keep it, and a decision from last year can be replayed exactly.
 
@@ -605,7 +605,7 @@ exhausted in week nine is a breach in week ten.
 
 ## 2b. Learning from decisions the regulator already made
 
-38 of the 103 rules in this table are judgement calls. The table can say a judgement is
+38 of the 103 rules in this table are judgment calls. The table can say a judgment is
 needed. It cannot say **where the line is**, and that is the single biggest weakness in the
 whole thing.
 
@@ -722,7 +722,7 @@ is visible in the three rows above:
 1. **One country issues no age rating for broadcast at all.** A rating column that must be
    filled will be filled with something invented, so the cell has to be able to say "this
    country does not do that".
-2. **Hours depend on the service, so the key is country *and* service.** The same programme
+2. **Hours depend on the service, so the key is country *and* service.** The same program
    is 21:00 on one UK service and any-time on another. One row per country cannot hold that,
    and a request that did not name a service gets a row per plausible service rather than a
    guess.
@@ -730,7 +730,7 @@ is visible in the three rows above:
    22:00" can both be true. Report the hours without the condition and the answer is wrong in
    a way that costs money; report a bar without the available condition and it is wrong in a
    way that loses a slot. Both belong in the row.
-4. **"Ask a person" is an answer, not a blank.** It gets its own colour, because a table where
+4. **"Ask a person" is an answer, not a blank.** It gets its own color, because a table where
    every cell looks equally settled hides its own uncertainty, and the France row here is a
    worked example: no service type was given, so there is no honest number to print.
 5. **Every cell carries the rules behind it.** A time with no `rule_id` next to it cannot be
@@ -792,10 +792,10 @@ be stricter than the general law. The same shape, arrived at from a different di
 - *"The watershed is a time."* It is 21:00, or 20:00 on unprotected premium film services, or
   disapplied entirely behind a gate.
 - *"Hours depend on the rating."* In France they depend on service type and weekday.
-- *"A decision is about a programme."* It is not. It is about **a transmission**. A +1
+- *"A decision is about a program."* It is not. It is about **a transmission**. A +1
   service re-broadcasts the same file an hour later, so content placed while children are at
   school lands after they are home, identical file, identical channel brand, different
-  answer. One programme shown four times is four decisions. A data model keyed to the asset
+  answer. One program shown four times is four decisions. A data model keyed to the asset
   cannot represent this at all, and the error is invisible because the asset passed.
 - *"Scope is obvious."* I scoped the Code by one phrase and wrongly excluded a whole section
   that enters through a different door, a context clause that imports time of broadcast.
@@ -849,7 +849,7 @@ breached, because the trigger was *treatment*. A test set of obviously-spicy con
 miss an entire rule class.
 
 **Independent re-derivation.** For bright-line rules, have someone who has **not seen the
-table** derive them from sources and diff. This is the only defence against correlated error,
+table** derive them from sources and diff. This is the only defense against correlated error,
 where the extractor and the checker share a misreading and agree with each other.
 
 **Back-testing.** Replay past enforcement decisions. If the system clears something a
@@ -883,7 +883,7 @@ cost completely different things, so they get separate numbers and separate targ
 
 | how it is wrong | what it means | what it costs | target |
 |---|---|---|---|
-| **Under-rating** | The system was more permissive than the rule. It cleared something for an earlier slot or a wider audience than it should have | A possible breach. Fines, on-air apologies, licence trouble. This is the one that ends careers | **under 0.5%, and every single one reviewed individually** |
+| **Under-rating** | The system was more permissive than the rule. It cleared something for an earlier slot or a wider audience than it should have | A possible breach. Fines, on-air apologies, license trouble. This is the one that ends careers | **under 0.5%, and every single one reviewed individually** |
 | **Over-rating** | The system was stricter than the rule. It pushed something later or added a condition that was not required | Lost audience and lost money, quietly. Nobody complains, so nobody finds out | under 5% |
 | **Wrong hours** | The rating was right but the permitted times were not | Either of the above depending on direction, and this is the most common one in practice because hours depend on things the rating does not | under 2%, split by direction |
 
@@ -895,7 +895,7 @@ never does.
 
 Wrong hours gets its own line because of something Task 1 found the hard way: the rating does
 not predict the hours. The same rating gives different times on different service types and
-different weekdays, and one country issues no per-programme rating at all. A system can get
+different weekdays, and one country issues no per-program rating at all. A system can get
 the rating exactly right and the hours completely wrong, and measuring only "accuracy" hides
 that entirely.
 
@@ -988,7 +988,7 @@ quote already attached, so the expert starts from evidence instead of a blank pa
 
 **Countries 3-5: deliberately slow.** The goal is not coverage, it is discovering which
 assumptions were UK/France-specific. Pick maximally different frameworks, one with a real
-per-programme rating, one with no watershed, one non-EU, because similar countries will
+per-program rating, one with no watershed, one non-EU, because similar countries will
 confirm wrong assumptions rather than expose them.
 
 **Countries 6-15:** the schema should be stable. Each new country should cost extraction plus

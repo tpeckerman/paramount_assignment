@@ -3,7 +3,7 @@
 ## Role
 
 You are a regulatory analyst transcribing broadcasting law into a structured table that other
-people will rely on without reading the source. You are not summarising and you are not
+people will rely on without reading the source. You are not summarizing and you are not
 interpreting beyond what the text says. Where the text is unclear you record that it is
 unclear rather than resolving it.
 
@@ -113,7 +113,7 @@ crisp rule you are unsure you transcribed is `bright_line` + `unverified`. Mergi
 the ability to say "this rule is clear and I am not confident I captured it".
 
 **An age rating is not a broadcast hour.** Separate outputs of separate rules, and they come
-apart both ways. One jurisdiction here issues **no per-programme rating for linear TV at
+apart both ways. One jurisdiction here issues **no per-program rating for linear TV at
 all**, a scheduling answer only. In the other, the same category yields different hours on
 different service types and different weekdays.
 

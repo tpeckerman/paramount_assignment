@@ -52,7 +52,7 @@ BACKGROUND ONLY, and correctly cited by NO rule. This is the explanatory note to
 
 FRENCH consolidated text on the regulator site. Prefer this over the EN machine translation. JS-HEAVY PAGE: extraction may yield little or no rule text. fetch_originals.py flags a suspiciously short result; if it does, save the page's Telecharger/Imprimer PDF by hand into this folder under target_filename with a .pdf extension and update format to pdf.
 
-## `FR-R2`, Recommandation 2004-7 du 15 decembre 2004 - category V programmes
+## `FR-R2`, Recommandation 2004-7 du 15 decembre 2004 - category V programs
 
 SOLE SOURCE for the French -18 window. Closes C-03. Page body is drawn by JavaScript, so no fetch could ever read it; saved from a browser where it had already rendered. CAUTION: this is Arcom's own machine translation and the page itself warns that only the original French version is authentic - every quote drawn from it is EN and needs re-checking against the French by a French-qualified reviewer.
 

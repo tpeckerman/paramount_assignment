@@ -46,7 +46,7 @@ of these hold:
    see without saying so.
 4. `content_category` is one that step 1 observed, **or** is in the always-keep list below.
 
-**The always-keep list, and why it exists.** Some rules describe how a programme is
+**The always-keep list, and why it exists.** Some rules describe how a program is
 *delivered* or what it *is*, not what is in it, so no content description ever mentions them
 and a category filter drops them every time:
 
@@ -103,7 +103,7 @@ look at it.
 
 - **Three outputs, not two.** The classification, the hours, and any other restriction. They
   can substitute for each other and they can stack, and one country here issues no
-  per-programme rating at all, so `no_per_programme_rating` is a real answer rather than a
+  per-program rating at all, so `no_per_programme_rating` is a real answer rather than a
   gap.
 - **Every claim carries a `rule_id`.** Follow it into the table to find the clause and the
   quote from the law. A time with no rule beside it cannot be defended by whoever has to

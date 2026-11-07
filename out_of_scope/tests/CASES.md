@@ -40,7 +40,7 @@ Eleven categories describe things that appear in content. These cases exercise s
 | `drugs_alcohol_smoking` | 1 | Turns on glamorisation, not depiction |
 | `religion` | 1 | Section Four exists; nothing here goes near it |
 
-Four of the five are judgement calls, so the gap sits on top of the table's known weak spot.
+Four of the five are judgment calls, so the gap sits on top of the table's known weak spot.
 
 A pass rate over six of eleven categories is a pass rate **on the six**. Same shape as the
 quote-coverage defect in `RESULTS.md`. `out_of_scope/pipeline/verify_cases.py` prints this denominator on
@@ -172,10 +172,10 @@ contextual factor, not decoration.
 
 ---
 
-## TC-05: a documentary where the paperwork disagrees with the programme
+## TC-05: a documentary where the paperwork disagrees with the program
 
-A programme arrives from a distributor with a short written summary of what is in it. The
-scheduler reads the summary, not the programme. It is the cheapest thing in the process and
+A program arrives from a distributor with a short written summary of what is in it. The
+scheduler reads the summary, not the program. It is the cheapest thing in the process and
 usually right. This case is what happens when it is not.
 
 ```
@@ -197,10 +197,10 @@ relative, and an instruction to copy something dangerous at home. Both arrived i
 package and they cannot both be true.
 
 **Why the summary exists, and why believing it is dangerous.** Whoever wrote it wanted the
-programme scheduled. Not dishonesty, just a description written for a buyer rather than an
+program scheduled. Not dishonesty, just a description written for a buyer rather than an
 audit against a regulator's rules. The trap is that it is far easier to read than the event
 list, because it already contains a conclusion. So the right move is not to pick the more
-trustworthy source but to **record that they disagree and stop**: a programme whose
+trustworthy source but to **record that they disagree and stop**: a program whose
 description does not match its contents needs a person, whatever the content answer is.
 
 **Four things it tests:**
@@ -281,10 +281,10 @@ Rule 1.20 does not fire: nothing is depicted. The waxing is not sexual nudity.
 
 The system should escalate, cite Rule 1.19, and set the context argument out rather than
 settle it. That rule is `judgment_based`, and `out_of_scope/pipeline/postcheck.py` fails any answer
-leaning on a judgement rule without flagging it.
+leaning on a judgment rule without flagging it.
 
 **The pair is the real test.** Two comedies, both BBFC 15, both explicit, neither with sexual
-nudity. One is a hard 21:00 where comedy counts for nothing; the other a judgement call where
+nudity. One is a hard 21:00 where comedy counts for nothing; the other a judgment call where
 it counts for a lot. A system treating "comedic" as one modifier applied to all sexual content
 answers both alike, and is wrong about one.
 
@@ -326,7 +326,7 @@ Every other case here is content with something in it. That is a test set that c
 measure one thing: whether the system restricts enough. It cannot notice a system that
 restricts everything, because nothing in it should come back clear.
 
-An external reviewer ran exactly this gap and found it: a cookery programme with a plaster on
+An external reviewer ran exactly this gap and found it: a cookery program with a plaster on
 a cut finger escalated in both countries, alongside four deliberately hostile inputs. Five out
 of five. At that point the escalation rate stops being a number about content and becomes a
 number about the system.
@@ -348,13 +348,13 @@ EVENTS
 **Right answer.** Permitted at 11:00 in both countries, with no condition and no escalation.
 
 **What it tests, which nothing else here does.** The system has rules about injury, about
-imitable behaviour in a setting a viewer could reproduce, and about alcohol. All three are in
+imitable behavior in a setting a viewer could reproduce, and about alcohol. All three are in
 the slice. **All three should be read and set aside**, and the answer should say so rather
-than escalating because a judgement rule was present.
+than escalating because a judgment rule was present.
 
 **Why the first run failed it.** The reviewer found that the description step forced the cut
 finger into `serious_harm`, because the closed category list has no value for a minor injury.
-Then the decision step saw a judgement rule in its slice and escalated, as it was built to do.
+Then the decision step saw a judgment rule in its slice and escalated, as it was built to do.
 Neither step did anything wrong on its own terms.
 
 **This is the case that would catch the escalation fix going too far.** If a later change

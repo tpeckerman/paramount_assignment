@@ -30,12 +30,12 @@ Used to resolve contradictions between sources. Lower number wins.
 | id | Document | Rank | Rules | Status | URL |
 |---|---|---|---|---|---|
 | `UK-S1` | Broadcasting Code Section One - Protecting the Under-Eighteens | req | 33 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-one-protecting-under-eighteens |
-| `UK-S2` | Broadcasting Code Section Two - Harm and Offence | req | 4 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offence |
+| `UK-S2` | Broadcasting Code Section Two - Harm and Offence | req | 4 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-two-harm-offense |
 | `UK-S3` | Ofcom Broadcasting Code Section Three - Crime, Disorder, Hatred and Abuse | req | 2 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-three-crime-disorder-hatred-abuse |
 | `UK-S4` | Ofcom Broadcasting Code, Section Four: Religion | req | 1 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/section-four-religion |
-| `UK-G1` | Guidance - Observing the watershed on television and music videos | req | 10 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/watershed-on-tv.pdf?v=335370 |
-| `UK-G2` | Guidance Notes Section One | rec | 5 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section1.pdf?v=328674 |
-| `UK-G3` | Guidance Notes Section Two | rec | 2 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/programme-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622 |
+| `UK-G1` | Guidance - Observing the watershed on television and music videos | req | 10 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/program-guidance/broadcast-code-guidance/watershed-on-tv.pdf?v=335370 |
+| `UK-G2` | Guidance Notes Section One | rec | 5 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/program-guidance/broadcast-code-guidance/section1.pdf?v=328674 |
+| `UK-G3` | Guidance Notes Section Two | rec | 2 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/tv-radio-and-on-demand/broadcast-guidance/program-guidance/broadcast-code-guidance/section-2-guidance-notes.pdf?v=322622 |
 | `UK-M1` | Statement - Review of the mandatory daytime protection rules | req | 3 | verified | https://www.ofcom.org.uk/tv-radio-and-on-demand/broadcast-standards/mandatory-daytime-protection |
 | `UK-P1` | Enforcement decision - Toofan NTV 29 May 2026 (Rule 1.3 breach) | rec | 4 | verified | https://www.ofcom.org.uk/siteassets/resources/documents/about-ofcom/bulletins/broadcast-bulletins/2026/553/toofan-ntv-29-may-2026-11.30.pdf |
 | `UK-L1` | Communications Act 2003 section 319 | req | 1 | verified | https://www.legislation.gov.uk/ukpga/2003/21/section/319 |
@@ -45,8 +45,8 @@ Used to resolve contradictions between sources. Lower number wins.
 
 | id | Document | Rank | Rules | Status | URL |
 |---|---|---|---|---|---|
-| `FR-R1c` | Recommandation 2005-5 consolidated (Arcom French text) | req | 27 | verified | https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programmes |
-| `FR-R2` | Recommandation 2004-7 du 15 decembre 2004 - category V programmes | req | 9 | verified | https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france |
+| `FR-R1c` | Recommandation 2005-5 consolidated (Arcom French text) | req | 27 | verified | https://www.arcom.fr/se-documenter/espace-juridique/textes-juridiques/recommandation-du-7-juin-2005-aux-editeurs-de-services-de-television-concernant-la-signaletique-jeunesse-et-la-classification-des-programs |
+| `FR-R2` | Recommandation 2004-7 du 15 decembre 2004 - category V programs | req | 9 | verified | https://www.arcom.fr/en/find-out-more/legal-area/legal-resources/december-15-2004-notice-television-service-editors-and-distributors-showing-category-v-programs-mainland-france-and-overseas-france |
 | `FR-S1c` | La signaletique jeunesse (CSA/Arcom FRENCH public page) | rec | _none_ | verified | https://www.arcom.fr/en/find-out-more/educational-resources/protection-young-people-and-persons-under-18 |
 | `FR-S2` | solidarites.gouv.fr - Classification et signaletique de la television | req | 1 | verified | https://solidarites.gouv.fr/classification-et-signaletique-de-la-television |
 | `FR-L1` | Loi 86-1067 du 30 septembre 1986 (arts. 1 and 15) | req | 2 | verified | https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000512205 |

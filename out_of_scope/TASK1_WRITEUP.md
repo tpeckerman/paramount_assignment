@@ -192,7 +192,7 @@ in that direction.
 
 The same run found a second one: TC-01's timecodes are times of day, taken from a
 regulator's finding about a broadcast, while the schema implies elapsed time from the start
-of the programme. Nothing recorded which. In TC-01 that distinction is the entire case.
+of the program. Nothing recorded which. In TC-01 that distinction is the entire case.
 
 **The change.** `prompts/RUN_1_describe_content.md` gained an `access_control` block on the
 transmission with five fields, a `clock` field, and the two rules explaining why each exists.
@@ -242,7 +242,7 @@ silently removes every rule about delivery.**
 `premium_subscription` in one row, `premium_subscription_film` in another, no controlled
 vocabulary, rule silently dropped.
 
-*Fix:* vocabulary normalised, and the verifier now **fails** on any unknown `service_type`.
+*Fix:* vocabulary normalized, and the verifier now **fails** on any unknown `service_type`.
 
 **Why this matters more than a passing test:** neither bug errored. Neither produced a
 visibly wrong answer. Both produced complete-looking output with a rule missing, which is

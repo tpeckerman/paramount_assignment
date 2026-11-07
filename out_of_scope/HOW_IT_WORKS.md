@@ -17,8 +17,8 @@ Three kinds of step, and the distinction matters more than it looks:
 | | |
 |---|---|
 | 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
-| 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
-| 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
+| 🟪 **Model** | Needs reading, weighing or judgment. Used only where code genuinely cannot do the job. |
+| 🟧 **Person** | A judgment with consequences, or a decision nobody should automate. |
 | ⬜ **Dashed** | Not built in this project. |
 
 Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
@@ -46,7 +46,7 @@ so a decision for a French channel should say "check the channel's own agreement
 implying the general law is the whole answer.
 
 **Deleting a superseded rule breaks the past.** The question a regulator asks is "why did you
-clear that programme in 2013?", and answering it needs the rule as it was then, not as it is
+clear that program in 2013?", and answering it needs the rule as it was then, not as it is
 now.
 
 ### Why only three steps use a model
@@ -83,7 +83,7 @@ And every model step is **gated by cheaper checks first**:
 | 6. Valid vocabulary? | A value outside the list, which matches nothing and errors nowhere | Two spellings of one service type, which silently dropped a rule from every decision using the other |
 | 9. Known category? | An observation that would match no rule | Enforced before the decision step rather than discovered after |
 | 13. Claims cite real rules? | A decision citing a rule that does not exist | |
-| 14. Clear-cut? | Automating a judgement call | 43 of 103 rules are judgement calls and route to a person |
+| 14. Clear-cut? | Automating a judgment call | 43 of 103 rules are judgment calls and route to a person |
 
 Every defect in that right-hand column **looked completely fine**. None was found by rereading.
 Each was found by something mechanical comparing the work against a source outside it.
@@ -195,7 +195,7 @@ counted. Better in the table and visibly unusable.
 **This is outside the project and is drawn with a dotted border for that reason.** The
 assignment starts from a content description that includes events and timecodes. Something
 has to produce that description, and in a real system it is either a person watching the
-programme or a vision model doing it, but neither is built here and neither is specified.
+program or a vision model doing it, but neither is built here and neither is specified.
 
 It is worth being blunt about this, because it is the weakest link in the whole chain. Every
 careful thing downstream rests on the description being accurate and complete. If the
@@ -239,11 +239,11 @@ chosen to be adversarial, differing by one clause, by a negation, by a timecode.
 validated on randomly drawn pairs will look excellent and tell you nothing, because random
 pairs are easy.
 
-**Do not store judgement.** On the diagram the arrow into storage is conditional: an answer is
+**Do not store judgment.** On the diagram the arrow into storage is conditional: an answer is
 only kept if every rule it cited was a bright line. A `judgment_based` rule routes to a person
 precisely because the answer depends on weighing this material in this context, and that
 weighing is not transferable to the next piece of content that happens to be worded similarly.
-Caching a human's judgement and replaying it automatically converts a careful decision into an
+Caching a human's judgment and replaying it automatically converts a careful decision into an
 unreviewed one, which defeats the reason it went to a human.
 
 **Invalidation is the part this repo is already set up for.** Step 3 asks whether a source has
@@ -307,8 +307,8 @@ This is rarer than the wording case, but it is not hypothetical. The categories 
 from the content two regulators thought worth writing rules about by a particular date.
 Deepfakes, AI-generated likenesses and self-harm challenge content all arrived after rules
 elsewhere already existed for them. A closed list has to be able to grow, and the decision to
-grow it is a judgement about what the regulator would consider a distinct kind of harm, which
-is exactly the sort of judgement that should not be automated.
+grow it is a judgment about what the regulator would consider a distinct kind of harm, which
+is exactly the sort of judgment that should not be automated.
 
 **Step 10, "does an existing age rating ban this outright?"** This means a rating the content
 already carries from somewhere else, before any broadcast question is asked. A film released
@@ -327,7 +327,7 @@ those two specific outcomes are absolute.
 Then `run_decision.py` picks the rules that could apply: matching country, matching service
 type, matching content category, plus a set that is **always** included.
 
-That last part exists because of a real bug. Access-control rules describe how a programme is
+That last part exists because of a real bug. Access-control rules describe how a program is
 *delivered*, not what is in it, so no content description ever mentions them, so a
 category-based filter dropped them every single time. The rule defining what a PIN gate must
 be never reached the decision engine, while the rule granting an any-hour permission
@@ -355,7 +355,7 @@ because the id resolves and the citation looks sound, and a citation to a rule b
 the other country.
 
 Step 14 asks whether the decision routed itself to a person when it had to. Part of that is a
-judgement, but a large part is not, and the part that is not belongs here:
+judgment, but a large part is not, and the part that is not belongs here:
 
 - if any rule relied on is `judgment_based`, a person has to see it. That is a property of
   the rule recorded in the table, not a matter of how confident the answer sounds

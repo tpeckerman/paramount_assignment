@@ -148,7 +148,7 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    and then lists a fight at 00:14:22, record both and flag it in `extractor_notes`. RUN 2
    and the human reviewer need to see the conflict, not your tidied-up version of it.
 7. **Timecodes matter beyond ordering.** Clustering, total screen time and proximity to the
-   start all feed real rules. Preserve them exactly as given; never normalise or estimate.
+   start all feed real rules. Preserve them exactly as given; never normalize or estimate.
 8. **No empty output.** A description with no classifiable events still returns the JSON with
    an empty `observations` array and a populated `not_stated`.
 9. **Access control is a field, not a remark.** If the description says anything about a
@@ -164,12 +164,12 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    viewer can switch off is not the same instrument as one they cannot.
 
 10. **Say which clock each timecode uses, on the observation.** `elapsed` counts from the
-   start of the programme. `wall_clock` is the time of day it went out. The digits cannot
+   start of the program. `wall_clock` is the time of day it went out. The digits cannot
    tell them apart, and in a scheduling decision the difference is the whole question: 11:33
    as a time of day is a weekday morning, and 11:33 elapsed is the middle of a long film.
 
    `timecode_clock` sits on the **observation**, not the transmission, because the two can
-   differ: a programme starting at 14:30 whose events are counted from zero has a wall-clock
+   differ: a program starting at 14:30 whose events are counted from zero has a wall-clock
    start time and elapsed event timecodes. `start_time` is always a time of day.
 
    Copy a timecode exactly as written. `00:08` in a source means what that source means by
@@ -191,7 +191,7 @@ technique is shown. Splitting it is correct; merging it loses a rule hit.
    record one transmission and put the possibility of a timeshift service in `not_stated`.
    Do not assume there is not one.
 13. **The two asset-level flags are routers, not ratings.** News is regulated under a
-   different Code section, so a wrong `is_news_or_current_affairs` applies a harm-and-offence
+   different Code section, so a wrong `is_news_or_current_affairs` applies a harm-and-offense
    rule that does not bind. Several rules attach to intended audience rather than to anything
    depicted, which is what `is_made_primarily_for_children` routes. Set either to `not_stated`
    rather than inferring from genre or tone. A cartoon is not automatically made for children,

@@ -26,14 +26,14 @@ Both pass. The system now discriminates. That is the first time it has done so: 
 run escalated 17 of 17 and could not have told these two cases apart.
 
 TC-01 also gets the hard part right. Ofcom opened that case under both the scheduling rule and
-the offence rule, then dropped the offence limb, finding the violence justified within the
+the offense rule, then dropped the offense limb, finding the violence justified within the
 film while the 11:30 slot was not. The decision reaches the same split, and reaches it the
 same way: the two questions are run separately and the justification found on one is not
 allowed to discharge the other.
 
 **What fixed it.** Not a change to the prompt's escalation logic, which already forbade
 escalating on a rule merely present in the slice. Two rows of the rules table were forcing it
-structurally. `UK-CTX-010` (audience size) and `UK-CTX-011` (decide offence and scheduling
+structurally. `UK-CTX-010` (audience size) and `UK-CTX-011` (decide offense and scheduling
 separately) are both definitions with no operative outcome, and both carried
 `human_review_required=yes`. A definition applies to every decision in its country, so a
 review flag on one escalates every decision by construction regardless of content.
@@ -93,7 +93,7 @@ work. 100% is not near that band, it is the degenerate case.
 **Why.** 43 of 103 rules are `judgment_based`, and the decision checker requires escalation
 whenever a decision rests on one. Almost every real description touches at least one. So the
 escalation is correct rule by rule and worthless in aggregate, and the cause is C-07: nothing
-is calibrated, so everything is a judgement.
+is calibrated, so everything is a judgment.
 
 That is the single most useful number this project produced, and no amount of reading would
 have produced it.
@@ -167,8 +167,8 @@ examples from TC-01, in its own words:
 - the shot of a decapitated head being carried maps to `human_dignity`, and the UK slice has
   no rule addressed to human dignity as a distinct ground. France has one; the UK table does
   not.
-- the same killing shown twice in one transmission has no rule on intra-programme
-  repetition. The nearest rules cover cumulative effect across programmes.
+- the same killing shown twice in one transmission has no rule on intra-program
+  repetition. The nearest rules cover cumulative effect across programs.
 - nothing in the table handles an asset whose transmission **end** time is unknown.
 
 A coverage gap is not a wrong answer. It is the table saying it has nothing to say, which is
@@ -181,7 +181,7 @@ Three more the runs surfaced, each a real hole in the table rather than in the c
   decisive pre-watershed question in both. `strong_language` has four rules in the table and
   none of them arrived. the test-claim checker already reports that no test case exercises that
   category; the runs show the selection step does not deliver it either.
-- **No French rule states which programmes fall into category IV (-16).** Its hours exist and
+- **No French rule states which programs fall into category IV (-16).** Its hours exist and
   its trailer rule exists, but nothing defines the threshold, so TC-06's French answer is a
   range between III and IV rather than an answer.
 - **`UK-SCH-009` turns on "when children return from school" and nothing defines it.** The
@@ -206,7 +206,7 @@ that decide outcomes had nowhere to live and survived as prose.
 The 17 of 17 above is real, and the reviewer found that two thirds of the cause was not the
 content.
 
-**A benign control escalated too.** A cookery programme with a plaster on a cut finger, in
+**A benign control escalated too.** A cookery program with a plaster on a cut finger, in
 both countries. Five out of five including the hostile inputs. At that point the number
 stops describing content and starts describing the system.
 
@@ -214,7 +214,7 @@ Three causes, none of them a rule being wrong:
 
 1. **The description step had no value for a minor injury**, so a nicked finger became
    `serious_harm`. The closed category list has no middle.
-2. **A judgement rule in the slice counted as a judgement made.** Any rule the model read was
+2. **A judgment rule in the slice counted as a judgment made.** Any rule the model read was
    treated as relied upon, so a rule it ruled out still forced escalation.
 3. **The assembler hardcoded `intended_slot: not_stated`** even when the observations gave a
    time, so "the slot is not stated" appeared as a review reason in every single run. Pure
@@ -228,8 +228,8 @@ an explicit path for "no rule is engaged", because refusing to say that is how a
 tool becomes something people route around.
 
 **What deliberately did not change.** Escalation itself was not loosened. The fix stops the
-system miscounting what a judgement rule is being used for; it does not let it skip one that
-is doing work. `postcheck` still fails any decision resting on a judgement rule without the
+system miscounting what a judgment rule is being used for; it does not let it skip one that
+is doing work. `postcheck` still fails any decision resting on a judgment rule without the
 flag, which was confirmed by test after the change.
 
 **TC-09 exists to keep this honest.** It is a benign control, and the rule is that if a
@@ -261,7 +261,7 @@ Every other example was checked and none matches a case in this set.
   happens on a second attempt with the same input.
 - **Five of eleven content categories have no case at all**, which the test-claim checker prints
   with its denominator on every run.
-- **45 judgement rules, one decided case between them.** The escalation result above is a
+- **45 judgment rules, one decided case between them.** The escalation result above is a
   direct consequence.
 
 ---
@@ -282,7 +282,7 @@ The one case where the right answer is not my opinion. Ofcom's published finding
 likely child audience on the festival date via `UK-SCH-011`, and treated the BBFC 15
 certificate as evidence rather than as the answer via `UK-FLM-010`.
 
-**It also got the part that is easy to miss.** Ofcom opened under the offence rule as well,
+**It also got the part that is easy to miss.** Ofcom opened under the offense rule as well,
 then dropped it: the violence was sufficiently contextualised within the film. The content was
 defensible *as content*; only the slot was not. The system reported the same split, citing
 `UK-CTX-011`.
@@ -346,7 +346,7 @@ After fixing Bug 1 the rule still did not arrive. The table used `premium_subscr
 row and `premium_subscription_film` in another for the same service, with no controlled
 vocabulary, so the mismatch dropped it silently.
 
-**Fix:** vocabulary normalised, and the quote checker now **fails** on any `service_type`
+**Fix:** vocabulary normalized, and the quote checker now **fails** on any `service_type`
 outside a controlled list.
 
 ### Why this is the result worth reading
@@ -384,7 +384,7 @@ footage of a fatal accident.
 The system reported the contradiction rather than resolving it, refused to answer France
 without a service type and listed what each type would yield, and distinguished real footage
 of death from dramatised violence. The "easy to copy at home" line was caught as an
-imitable-behaviour trigger.
+imitable-behavior trigger.
 
 A confident answer here would be a failure even if the rating happened to be right.
 
@@ -454,7 +454,7 @@ exactly the failure the rest of this file is about.
 
 the prompt assembler (repository only) was executed for the UK, free-to-air, with the content categories
 these cases produce. That is step 11, rule selection, and it is deterministic, so the result
-is a real result and not a judgement.
+is a real result and not a judgment.
 
 It selected 31 of 103 rules, and all three rules these cases turn on were among them:
 

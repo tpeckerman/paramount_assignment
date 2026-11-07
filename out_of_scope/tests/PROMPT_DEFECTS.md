@@ -10,10 +10,10 @@ The runs are in `tests/runs/`.
 why it has been left alone.
 
 Background, for anyone who has not read the prompts: the work happens in two steps. Step one
-reads the programme and writes down what happens in it, as a structured list. Step two takes
+reads the program and writes down what happens in it, as a structured list. Step two takes
 that list, applies the rules, and decides. Step one never sees the rules, so it cannot shade
 its description toward an answer it expects. Most defects below are **container** problems in
-step one: a box that cannot hold what the programme actually contains.
+step one: a box that cannot hold what the program actually contains.
 
 ---
 
@@ -59,16 +59,16 @@ movie.
 on the wall: the watershed is 9pm, not "ninety minutes in".
 
 **So why record both.** Because the describing step is given whichever the source used, and
-descriptions usually count from the start of the programme. You cannot get to the time of day
-without knowing which kind of number you were handed, plus what time the programme starts.
+descriptions usually count from the start of the program. You cannot get to the time of day
+without knowing which kind of number you were handed, plus what time the program starts.
 
 **The fix, in two halves.** Step one now marks every event as either a time of day or a
 running time, and copies the number exactly as given. It does no arithmetic, deliberately: it
 is the step that must not interpret anything.
 
 Step two then converts. It adds a running time to the start time to get the time of day, and
-applies the rules to that. A scene 90 minutes into a programme starting at 8pm goes out at
-9:30pm, on the far side of the watershed from the programme's own start. If the start time is
+applies the rules to that. A scene 90 minutes into a program starting at 8pm goes out at
+9:30pm, on the far side of the watershed from the program's own start. If the start time is
 unknown the conversion is impossible, and that is reported as missing information rather than
 guessed.
 
@@ -83,11 +83,11 @@ silently converts eight minutes into eight seconds.
 
 ## 4. Two lists disagreed about what a documentary is. FIXED.
 
-**What went wrong.** The list of programme types had no entry for a documentary, so one became
+**What went wrong.** The list of program types had no entry for a documentary, so one became
 "other". The framing list *did* have "documentary". The two disagreed about whether documentary
-is a kind of programme or a way of filming.
+is a kind of program or a way of filming.
 
-**The fix.** It is a kind of programme. Added to the programme-type list, removed from the
+**The fix.** It is a kind of program. Added to the program-type list, removed from the
 framing list.
 
 ## 5. A repeat channel invited arithmetic the prompt elsewhere forbids. FIXED.
@@ -127,7 +127,7 @@ affect whether answers come out right.
 
 ## 8. Step one is forbidden from using obvious evidence. NOT FIXED, ON PURPOSE.
 
-Step one must never work out whether a programme is news, or made for children, from its
+Step one must never work out whether a program is news, or made for children, from its
 genre. So a cookery show records "unknown" for both, and step two then has to branch or flag a
 question nobody would seriously ask.
 
@@ -162,7 +162,7 @@ visible nuisance for an invisible bias. Left as is deliberately.
 ## What this says about the prompts
 
 The prompts are careful about the **reasoning** and were loose about the **containers**.
-Almost every defect here is a box that cannot hold what the programme contains, or two facts
+Almost every defect here is a box that cannot hold what the program contains, or two facts
 sharing one box. None was visible from reading. All of it surfaced on the first run.
 
 Defect 1 was the one to fix before anything else, because it is the only one that silently

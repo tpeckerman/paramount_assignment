@@ -35,7 +35,7 @@ of nine cases run, with the saved model output for each.
 ### [`deliverables/task2/`](deliverables/task2/)
 
 A written plan for scaling this to dozens of countries: collecting and validating sources,
-organising the rules, the shape of the solution, testing correctness, and measuring quality.
+organizing the rules, the shape of the solution, testing correctness, and measuring quality.
 It includes the process diagram, a worked example of a single rule, the validation plan, the
 success metrics, and which steps can be automated against which need a local expert.
 
@@ -71,10 +71,10 @@ GitHub stops running it. It is scaffolding like the rest, and it runs the script
 The rules table is the strong part: every rule is traceable to a quote from an official
 document, and the build fails if a quote stops matching its source.
 
-The weak part is judgement. 43 of the 103 rules turn on a threshold a person has to weigh,
+The weak part is judgment. 43 of the 103 rules turn on a threshold a person has to weigh,
 such as whether something is justified by context, and only one decided case has been
 collected to calibrate against. The prompt is built to send those to a human rather than
-guess, which is the right behaviour but is not the same as being right.
+guess, which is the right behavior but is not the same as being right.
 
 `out_of_scope/SCOPE.md` says where else the boundary sits, including jurisdiction, which is
 a real gap and a deliberate one.
