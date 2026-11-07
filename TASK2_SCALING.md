@@ -18,6 +18,7 @@ The five questions, and the four things Task 2 asks for:
 | An example of how a single rule is represented | [Deliverable: how a single rule is represented](#deliverable-how-a-single-rule-is-represented) |
 | A validation plan | [4. Correctness testing](#4-correctness-testing) |
 | Success metrics | [5. Measurement and diagnosis](#5-measurement-and-diagnosis) |
+| What comes out at the end | [Deliverable: what comes out at the end](#deliverable-what-comes-out-at-the-end) |
 
 Two sections sit outside that list because the brief also asks what needs a local expert, and
 because the order countries are added in turns out to matter:
@@ -119,7 +120,72 @@ per-channel table above. There is no worldwide equivalent and no international b
 settles disagreements, so outside Europe this is lawyer work from the start. That difference
 is the real cost of the feature, which is part of why it is version 2 and not version 1.
 
-### 2. Finding enough experts is what actually limits you
+### 2. Getting a description out of a two-hour film
+
+The system starts from a written description of what happens, with timecodes. Something has to
+produce that. With a handful of titles a person watches and takes notes. At scale that is the
+most expensive part of the whole operation, so the question is what a model can take over.
+
+**It cannot be done in one pass.** You cannot hand a model a two-hour film and ask for a
+timecoded list of everything that matters. The things that matter are often two seconds long,
+and anything reading the film as a whole will summarise the plot rather than catalogue the
+moments.
+
+**Cutting it into pieces is the easy part, and it is not a model's job.** Finding where the
+shots change in a video is a solved problem that ordinary software has done for years by
+comparing consecutive frames. It needs no model, it is cheap, and it is repeatable, which by
+this project's own rule means a model should not be doing it.
+
+What you get out is camera cuts, not story scenes. For our purpose that is fine. We are not
+trying to find where a scene begins dramatically, only to get pieces small enough that
+nothing hides inside one.
+
+**Then two passes over the pieces, and the second is the one people forget.**
+
+*Pass one, per piece:* give the model the frames from that piece plus the words spoken in it,
+and ask what happens. This is the part a vision model can genuinely do. It needs the audio as
+well as the pictures, because a whole category of rules is about **language**, and no number
+of frames will catch a word.
+
+*Pass two, over all the pieces at once:* this one takes the output of pass one, not the video.
+It exists because several of the most important judgements **cannot be made from one piece**:
+
+- Rules ask whether something is *sustained*, *repeated*, or *dwelt on*. One cut cannot tell
+  you. Counting across the whole film can.
+- Rules ask whether violence is *glamorised* or *presented as a solution*. That is about how
+  the film treats the act afterwards, which is in a different piece.
+- **Context lives somewhere else in the film.** Whether something is comedic, fictional or
+  historical is usually established long before or after the moment in question. A model
+  looking at thirty seconds in isolation cannot see it, and will tend to describe a comedy
+  as though it were real.
+
+That second pass maps onto something the extraction prompt already has: the whole-asset flags
+and the running totals, as opposed to the per-moment observations.
+
+**What this is likely to get wrong, which decides where the money goes.**
+
+The dangerous failure is a **missed moment**, not a misjudged one. If the model never mentions
+the stabbing, no rule about stabbing fires, and the answer comes back clean with full
+citations. Nothing downstream can catch it, because nothing downstream has seen the video.
+Sampling too few frames is how this happens, and a brief shot is exactly the kind of thing a
+regulator cares about.
+
+So the sampling rate is a compliance decision, not a performance tuning knob, and it should be
+set by testing against content with known findings rather than by what looks reasonable.
+
+**A rough sense of cost.** A two-hour film cut at every camera change produces well over a
+thousand pieces. Sampling frames from each and transcribing the audio is real money per title,
+paid again on every re-run. That is the strongest argument for storing answers and
+reusing them, described under the amendment problem in section 1 and sketched as steps 0b to
+0d in `HOW_IT_WORKS.md`. The expensive part is describing the film, and the description
+does not change when the law does, so an amendment should invalidate the decision and
+keep the description.
+
+**What stays with a person.** Deciding the sampling rate. Reviewing anything the model marked
+uncertain. And spot-checking cleared titles against the video, because a missed moment is
+invisible from the paperwork and the paperwork is all anyone else ever sees.
+
+### 3. Finding enough experts is what actually limits you
 
 Reading a law and writing down its rules is the cheap part, and it keeps getting cheaper.
 Having someone qualified confirm that you read it correctly does not get cheaper.
@@ -135,7 +201,7 @@ a country cannot go live until someone has signed off its rules. So plan it as a
 list with real names against each country, and treat an empty seat as a reason not to launch
 there rather than as a task for later.
 
-### 3. Legal changes go from being events to being a constant stream
+### 4. Legal changes go from being events to being a constant stream
 
 With two countries, a law changing is an event. It happens, you notice, you deal with it.
 
@@ -149,7 +215,7 @@ answers that depend on that rule until it is updated. If it changes a rule that 
 has used in six months, it can wait for the next scheduled review. The system already records
 which rules each decision used, so a computer can do this sorting. Nobody has to judge it.
 
-### 4. You stop being able to read your own sources
+### 5. You stop being able to read your own sources
 
 With two countries I could read both. The one place where I had to rely on a translation is
 flagged in the table as a known weakness.
@@ -168,7 +234,7 @@ correctly. It cannot prove we picked the right sentence, or that two lines later
 means. **The automatic checks survive the language barrier. Human judgement does not.** That
 is exactly why point 2 above, finding experts, is the real limit.
 
-### 5. One country going wrong must not take down the rest
+### 6. One country going wrong must not take down the rest
 
 With two countries, if the table is wrong you stop and fix it.
 
@@ -183,7 +249,7 @@ below an agreed level, that country stops giving automatic answers and sends eve
 person, while the other countries carry on as normal. This has to be designed in early,
 because it changes how results are stored.
 
-### 6. Changing the shape of the table stops being easy
+### 7. Changing the shape of the table stops being easy
 
 The rules table has a fixed set of columns. Adding a new column, or changing what one means,
 is an afternoon's work when there are two countries in it.
@@ -469,6 +535,49 @@ exhausted in week nine is a breach in week ten.
 **Monitor.** If reviewers keep overturning this rule, the threshold is miscalibrated.
 
 ---
+
+---
+
+## Deliverable: what comes out at the end
+
+Everything in this document exists to make one table trustworthy. This is it, and it is built
+by `pipeline/render_answer.py` from a decision, so it is a real output rather than a sketch.
+
+| Country | Verdict | Age rating | Permitted hours | Conditions | Rules relied on |
+|---|---|---|---|---|---|
+| UK, free-to-air | ANSWERED BY THE RULES | none issued for broadcast | not before 21:00 | none | `UK-DEF-001`, `UK-SEX-004` |
+| UK, premium film service | ANSWERED BY THE RULES | none issued for broadcast | any time if the gate is on | a PIN the viewer cannot switch off (this is what the hours depend on) | `UK-ACC-001`, `UK-FLM-003` |
+| FR, service not stated | A PERSON MUST DECIDE | III (-12) | not determined | on-screen age pictogram | `FR-SCH-003`, `FR-SIG-001` |
+
+The obvious design is one row per country with a time in it. That design is wrong, and
+building it would throw away most of what the system worked out. Five reasons, each of which
+is visible in the three rows above:
+
+1. **One country issues no age rating for broadcast at all.** A rating column that must be
+   filled will be filled with something invented, so the cell has to be able to say "this
+   country does not do that".
+2. **Hours depend on the service, so the key is country *and* service.** The same programme
+   is 21:00 on one UK service and any-time on another. One row per country cannot hold that,
+   and a request that did not name a service gets a row per plausible service rather than a
+   guess.
+3. **Hours and conditions trade against each other.** "Any time behind a PIN" and "not before
+   22:00" can both be true. Report the hours without the condition and the answer is wrong in
+   a way that costs money; report a bar without the available condition and it is wrong in a
+   way that loses a slot. Both belong in the row.
+4. **"Ask a person" is an answer, not a blank.** It gets its own colour, because a table where
+   every cell looks equally settled hides its own uncertainty, and the France row here is a
+   worked example: no service type was given, so there is no honest number to print.
+5. **Every cell carries the rules behind it.** A time with no `rule_id` next to it cannot be
+   checked by whoever has to defend it.
+
+One piece of wording matters. The verdict says **answered by the rules**, not *cleared* or
+*approved*. A row reading "cleared" beside "not before 21:00" for a 14:30 request would read
+as permission for 14:30, which it is not. The verdict says the rules produced a determinate
+answer; the hours column says what that answer is.
+
+And the footer of the real output says the thing the table cannot: this says what the rules
+permit, it does not say the content was described correctly, **and nothing downstream of the
+description can tell**. That is the step 0 problem from section 2 arriving at the far end.
 
 ---
 
