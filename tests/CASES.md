@@ -17,7 +17,7 @@ TC-08 is content that has demonstrably aired in UK daytime for decades.
 | TC-02 | *Mad Max: Fury Road*, free-to-air | `violence`, `film_carryover` | rating does not give hours | Emitting "15" as the UK answer |
 | TC-03 | *The same film*, premium + PIN | `violence`, `access_control` | the third axis | Saying "any time" and dropping the PIN |
 | TC-04 | *Thriller*, music channel, plus its trailer | `fear_distress`, `occult_paranormal`, `trailers`, `music_videos` | derived assets | Judging the trailer by the video's slot |
-| TC-05 | Documentary with contradictory metadata | `fear_distress`, `imitable_behaviour` | missing information | Resolving the contradiction silently |
+| TC-05 | Documentary whose supplied summary contradicts it | `fear_distress`, `imitable_behaviour` | believing the paperwork | Trusting the summary, or resolving the clash silently |
 | TC-06 | *Step Brothers*, comic sex scene, no nudity | `sexual_content` | comedy is not an escape from every rule | Clearing it because it is funny and has no nudity |
 | TC-07 | *The 40-Year-Old Virgin*, explicit talk | `sexual_content`, `nudity` | where comedy **is** a live argument | Answering it the same way as TC-06 |
 | TC-08 | *Friends*, an after-sex scene at 14:30 | `sexual_content` | **over-rating**, the failure nobody reports | Pushing it to 21:00 and nobody noticing |
@@ -184,14 +184,17 @@ contextual factor, not decoration.
 
 ---
 
-## TC-05: Documentary with contradictory metadata
+## TC-05: a documentary where the paperwork disagrees with the programme
 
-Modelled on the true-crime and emergency-services documentaries that fill UK daytime
-schedules.
+When a programme arrives from a distributor it comes with a short written summary of what is
+in it. A scheduler reads that summary, not the programme. It is the cheapest thing in the
+process and most of the time it is right.
+
+This case is about what happens when it is wrong.
 
 ```
 TITLE: Coastal Rescue (documentary, 48 min)
-DISTRIBUTOR SUMMARY: "Suitable for all audiences. No content of concern."
+SUPPLIED SUMMARY: "Suitable for all audiences. No content of concern."
 SERVICE: not stated
 SLOT: not stated
 COUNTRIES: UK, FR
@@ -203,10 +206,48 @@ EVENTS
           "easy to copy at home".
 ```
 
-**Right answer.** The summary **contradicts** the event list; the system must surface that
-rather than believe either side. Service type is absent, and in France that single gap makes
-the hours unanswerable. Real footage of death engages rules that dramatised violence does not.
-And "easy to copy at home" is an imitable-behaviour trigger that reads as harmless.
+The summary says there is nothing to worry about. The list of what actually happens includes
+a real death, a grieving relative in distress, and an instruction to copy something dangerous
+at home. **Both of those came in the same package and they cannot both be true.**
+
+### Why a summary like that exists, and why believing it is dangerous
+
+Whoever wrote the summary wanted the programme scheduled. That is not dishonesty, it is just
+what they were doing. They were describing the programme for a buyer, not auditing it against
+a regulator's rules, and the two produce different descriptions of the same 48 minutes.
+
+The trap is that the summary is **much easier to read than the event list**. A system handed
+both will be tempted to take the sentence that already contains a conclusion. The event list
+has no conclusion in it; it has to be worked through.
+
+So the right behaviour is not to pick the more trustworthy one. It is to **record that they
+disagree and stop**, because the disagreement is itself the most useful thing in the input.
+A programme whose supplied description does not match its contents is one a person should
+look at, whatever the right answer about the content turns out to be.
+
+### The four things this case tests
+
+**1. The contradiction.** Surface it. Do not resolve it, and above all do not resolve it
+silently by preferring one and never mentioning the other.
+
+**2. A missing fact that makes the answer impossible.** Service type is not given. In France
+the permitted hours depend on it, so without it there is no honest French answer, only a
+guess. The case is built so the correct French output is a question rather than a time.
+
+**3. Real death is not dramatised death.** A fatal accident in a drama and real footage of
+someone dying are different things under the rules, even if a description of the pictures
+would read similarly. The French rule here (`FR-VIO-003`) is the sharper one, because it
+covers `"images difficilement soutenables ou des témoignages"`, hard-to-watch images **or
+testimony**. The grieving relative at 00:32:18 is the testimony limb. A reader coming from
+the UK rules would likely treat a person talking to camera as harmless, and in France it is
+named explicitly.
+
+**4. The most dangerous line reads as the friendliest.** `"easy to copy at home"` sounds like
+a helpful note for viewers. It is the trigger for the imitable-behaviour rules, `UK-IMI-001`
+and `UK-IMI-010`, where the test is whether the behaviour is **easily imitable** and in a
+setting a viewer could reproduce. A kitchen or a back garden counts; a mountaineering
+expedition does not. A system scanning for violence, sex, drugs and language finds nothing
+objectionable in that line at all.
 
 **A confident answer here is a failure, even if the rating happens to be right.**
 

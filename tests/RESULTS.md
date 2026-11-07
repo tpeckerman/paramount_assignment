@@ -21,7 +21,7 @@ audit any single claim without trusting me.
 | TC-02 *Fury Road* free-to-air | Pass | Correct "no UK rating"; refused a single French answer |
 | TC-03 same film, PIN | **Failed, then fixed** | Two real pipeline bugs. The valuable result |
 | TC-04 *Thriller* + trailer | Pass | Separated the trailer from the parent asset |
-| TC-05 contradictory doc | Pass | Surfaced the contradiction instead of resolving it |
+| TC-05 summary contradicts the programme | Pass | Surfaced the clash instead of resolving it |
 | TC-06 *Step Brothers* | **Not run** | Rule selection verified; the decision has not been made |
 | TC-07 *40-Year-Old Virgin* | **Not run** | As above. The TC-06 and TC-07 pair is the real measurement |
 | TC-08 *Friends* at 14:30 | **Not run** | As above, and predicted to fail. See the end of this file |
@@ -148,6 +148,16 @@ of death from dramatised violence. The "easy to copy at home" line was caught as
 imitable-behaviour trigger.
 
 A confident answer here would be a failure even if the rating happened to be right.
+
+**One thing this run did not check, noticed later.** The French rule in play, `FR-VIO-003`,
+covers `"images difficilement soutenables ou des témoignages"`, which is hard-to-watch images
+**or testimony**. The bereaved relative at 00:32:18 is the testimony limb. The recorded run
+says the system distinguished real footage from dramatised violence; it says nothing about
+whether it picked up the interview as a separate trigger, and I cannot tell after the fact.
+
+That is a reporting defect rather than a system one. The result was written as prose, so it
+can only be re-read, not re-examined. A result that recorded the `rule_id`s actually cited
+would have answered this in a second, which is part of why `pipeline/postcheck.py` now exists.
 
 ---
 
