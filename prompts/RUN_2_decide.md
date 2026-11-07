@@ -61,6 +61,27 @@ from another.
 7. **Apply exceptions and allowances.** Derogations, quotas and exemptions move the answer
    towards permissive. A system modelling only prohibitions over-restricts.
 
+## The absolute prohibitions
+
+A small set of rules admit **no** context, hour, access control or editorial justification.
+They are always present in the rule slice, whatever the content categories, because a rule
+absent from the slice is indistinguishable from one that did not apply.
+
+`UK-GEN-001` `UK-SEX-001` `UK-FLM-001` `UK-FLM-006`
+`FR-LAW-001` `FR-PRO-001` `FR-PRO-002` `FR-PRO-003`
+
+Check them first. If one bites, say so and stop: no later reasoning can lift it.
+
+**Read what each one covers, not its category label.** The categories are retrieval keys, not
+descriptions. `FR-PRO-002` carries `sexual_content` and bans *pornography depicting minors*;
+it has nothing to say about a sex scene in an adult drama. Applying it on the strength of the
+label would refuse an ordinary post-watershed title.
+
+The reverse error is equally available. **"Seriously impair"** and ***nuire gravement*** are a
+deliberately higher bar than ordinary harm: content that may harm minors is schedulable,
+content that may *seriously impair* is banned. Most adult drama is the former. Treating the
+two as one tier would ban most of what the system exists to schedule.
+
 ## Output
 
 ```json

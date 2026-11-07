@@ -127,7 +127,8 @@ def main() -> None:
             "cat": r["content_category"], "svc": r["service_type"],
             "cls": r["classification"], "det": r["determinacy"],
             "clause": r["clause_ref"], "tok": r["time_rule_machine"],
-            "text": r["threshold_description"][:260],
+            "text": r["threshold_description"][:300],
+            "quote": r["verbatim_quote"],
             "hr": r["human_review_required"] == "yes",
         }
         rec["never"] = flags["never"]
@@ -201,6 +202,9 @@ margin-right:6px}
 border-radius:10px;font-size:13px;max-width:92ch}
 .note h2{font-size:14px;margin:0 0 8px}
 .note ul{margin:6px 0 0;padding-left:18px}
+.note li{margin:0 0 9px}
+.what{color:var(--ink)}
+.q{color:var(--mut);font-style:italic;font-size:12px}
 .hr{color:var(--no);font-size:10.5px;margin-left:5px}
 .empty{color:var(--mut);padding:18px 0}
 code{background:#f1efea;padding:1px 4px;border-radius:3px;font-size:12px}
@@ -241,6 +245,8 @@ listed underneath rather than drawn at an invented position.</p>
 <script>
 const D = __DATA__;
 const $ = s => document.querySelector(s);
+const esc = t => String(t == null ? '' : t)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const uniq = a => [...new Set(a)].sort();
 
 function svcList(){
@@ -282,7 +288,7 @@ function draw(){
     h += `<tr><td class="lbl"><span class="rid">${r.id}</span>`
       + `${r.hr ? '<span class="hr">R</span>' : ''}`
       + `<br><span class="meta">${r.cat} &middot; ${r.cls}</span></td>`
-      + `<td><div class="track" title="${r.tok.replace(/"/g,'')}\n${r.clause}">`
+      + `<td><div class="track" title="${esc(r.clause)}\n${esc(r.tok)}\n\n${esc(r.text)}\n\n&ldquo;${esc(r.quote)}&rdquo;">`
       + `<div class="ws" style="left:64.58%"></div>${bars}</div></td></tr>`;
   }
   chart.innerHTML = h + '</table>';
@@ -301,19 +307,26 @@ function untimed(){
   let h = '';
   if (never.length){
     h += `<h2>Never permitted, at any hour (${never.length})</h2>`
-      + '<p>No bar can be drawn for these because no hour is permitted. They are listed '
-      + 'rather than shown as an empty row, since an empty row looks like missing data.</p><ul>'
-      + never.map(r => `<li><code>${r.id}</code> ${r.cat}`
-          + `${r.hr ? '<span class="hr">R</span>' : ''}</li>`).join('')
+      + '<p>No bar can be drawn because no hour is permitted. <strong>Read what each one '
+      + 'actually covers, not its category label.</strong> The categories are retrieval keys, '
+      + 'not descriptions: a ban on pornography depicting minors and a sex scene in a drama '
+      + 'both sit under <code>sexual_content</code>, and the label alone makes the first look '
+      + 'like a ban on the second.</p><ul>'
+      + never.map(r => `<li><code>${r.id}</code>`
+          + `${r.hr ? '<span class="hr">R</span>' : ''}<br>`
+          + `<span class="what">${esc(r.text)}</span>`
+          + (r.quote ? `<br><span class="q">&ldquo;${esc(r.quote)}&rdquo;</span>` : '')
+          + `</li>`).join('')
       + '</ul>';
   }
   h += `<h2>Rules that restrict something other than the hour (${other.length})</h2>`
     + '<p>These have no clock time to draw, which does not make them lesser. Several '
     + '<em>change</em> the bars above: an access control can disapply the watershed '
     + 'entirely, so a gap in this chart can be filled by a rule in this list.</p><ul>'
-    + other.slice(0,40).map(r => `<li><code>${r.id}</code> ${r.cat}`
-        + (r.tok && r.tok !== 'n/a' ? ` &mdash; <code>${r.tok.slice(0,70)}</code>` : '')
-        + `${r.hr ? '<span class="hr">R</span>' : ''}</li>`).join('')
+    + other.slice(0,40).map(r => `<li><code>${r.id}</code>`
+        + (r.tok && r.tok !== 'n/a' ? ` <code>${esc(r.tok.slice(0,70))}</code>` : '')
+        + `${r.hr ? '<span class="hr">R</span>' : ''}<br>`
+        + `<span class="what">${esc(r.text)}</span></li>`).join('')
     + '</ul>' + (other.length > 40 ? `<p>and ${other.length-40} more.</p>` : '');
   $('#untimed').innerHTML = h;
 }

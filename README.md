@@ -117,7 +117,11 @@ in [`SCOPE.md`](SCOPE.md).
     trailer or a music video. When one is missing and a rule depends on it, the correct output
     is a missing-information flag, not an assumption.
 
-11. **Absolute prohibitions belong in code, not prompt reasoning.** `UK-GEN-001`,
+11. **Absolute prohibitions are force-included in every decision slice**, whatever the
+    content categories, and are checked first. They were being filtered by category like
+    ordinary rules, so the extreme-violence ban only arrived if the content happened to be
+    tagged `violence`. A rule absent from the slice is indistinguishable from one that did
+    not apply. `UK-GEN-001`,
     `UK-SEX-001`, `UK-FLM-001`, `UK-FLM-006`, `FR-LAW-001`, `FR-PRO-001/002/003`.
 
 ## The honest caveat

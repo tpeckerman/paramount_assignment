@@ -57,6 +57,21 @@ ALWAYS_INCLUDE = {
     # present in the CONTENT silently removes every rule about DELIVERY. Any future country's
     # access, signage, warning and trailer rules must be force-included for the same reason.
     "access_control", "audience_information", "trailers",
+    # Absolute prohibitions. These were being filtered by content_category like ordinary
+    # rules, so the extreme-violence ban only arrived if the description happened to be
+    # tagged `violence`, and the R18 ban only if tagged `sexual_content`. They are the rules
+    # no contextual argument may override, so they cannot be gated on retrieval: a decision
+    # that never saw them cannot have applied them.
+    "human_dignity", "serious_harm",
+}
+
+# Always in the slice regardless of category or service. Over-retrieval here is safe - the
+# engine reads each rule's threshold and will see that a ban on pornography depicting minors
+# does not bite on an adult drama. Under-retrieval is not safe, because a rule absent from
+# the slice is indistinguishable from a rule that did not apply.
+ALWAYS_RULE_IDS = {
+    "UK-GEN-001", "UK-SEX-001", "UK-FLM-001", "UK-FLM-006",
+    "FR-LAW-001", "FR-PRO-001", "FR-PRO-002", "FR-PRO-003",
 }
 
 
@@ -95,7 +110,8 @@ def select(rules, countries, service=None, categories=None):
         if not service_matches(r["service_type"], service):
             dropped.append((r["rule_id"], f"service_type={r['service_type']}"))
             continue
-        if wanted and r["content_category"] not in wanted:
+        if (wanted and r["content_category"] not in wanted
+                and r["rule_id"] not in ALWAYS_RULE_IDS):
             dropped.append((r["rule_id"], f"category={r['content_category']}"))
             continue
         out.append(r)
