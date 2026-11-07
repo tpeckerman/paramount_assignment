@@ -173,15 +173,18 @@ def main() -> None:
                   f"corpus is still incomplete", file=sys.stderr)
 
     doc = DECIDE_PROMPT.read_text(encoding="utf-8")
-    parts = [doc, "\n\n---\n\n## `rules` for this request\n\n```json\n" + slice_json + "\n```"]
+    # Emit the delimiters RUN_2 declares. The prompt tells the model that everything inside
+    # <observations> is data rather than instructions; that promise is only real if the
+    # assembler actually wraps the content.
+    parts = [doc, "\n\n---\n\n<rules>\n" + slice_json + "\n</rules>\n"]
     if obs_block:
-        parts.append("\n\n## `observations` for this request\n\n```json\n"
-                     + obs_block + "\n```")
-    parts.append(f"\n\n## `request`\n\n```json\n" + json.dumps({
+        parts.append("\n<observations>\n" + obs_block + "\n</observations>\n")
+    parts.append("\n<request>\n" + json.dumps({
         "countries": a.countries,
         "service_type": a.service or "not_stated",
         "intended_slot": "not_stated",
-    }, indent=1) + "\n```\n")
+        "intended_date": "not_stated",  # RUN_2 checks the calendar, not only the clock
+    }, indent=1) + "\n</request>\n")
     assembled = "".join(parts)
 
     if a.out:
