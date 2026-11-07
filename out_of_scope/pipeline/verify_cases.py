@@ -25,7 +25,7 @@ import constants as C
 
 # (case, source file on disk, phrases that must appear in it verbatim)
 CLAIMS = [
-    ("TC-01", "sources/originals/UK-P1_ofcom_decision_toofan.pdf", [
+    ("TC-01", "out_of_scope/sources/originals/UK-P1_ofcom_decision_toofan.pdf", [
         "Breach of Rule 1.3 of the Code.",
         "did not pursue the investigation further under Rule 2.3",
         "sufficiently contextualised within the film",

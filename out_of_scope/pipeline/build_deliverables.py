@@ -65,11 +65,11 @@ TASK1: list[tuple[pathlib.Path, str, str]] = [
      "the raw model outputs, so the results can be checked rather than believed"),
     (C.TESTS_DIR / "PROMPT_DEFECTS.md", "5_results/PROMPT_DEFECTS.md",
      "what running the prompts exposed, which the improvement in the write-up refers to"),
-    (C.ROOT / "TASK1_WRITEUP.md", "6_design_choices/TASK1_WRITEUP.md",
+    (C.TASK1_MD, "6_design_choices/TASK1_WRITEUP.md",
      "deliverables 5 and 6: design choices, and the models and tools used"),
     (C.SCOPE_MD, "6_design_choices/SCOPE.md",
      "where the boundary sits, which deliverable 1 asks for as scope of applicability"),
-    (C.TIMELINE_HTML, "7_extra/timeline.html",
+    (C.TIMELINE_HTML, "2_rules/timeline.html",
      "not asked for: a 24-hour view of which rules bite when, built from the table"),
 ]
 
@@ -93,9 +93,9 @@ REWRITES: list[tuple[str, str]] = [
     # paths that exist in the folder, under a different name
     ("`tests/runs/`", "`runs/`"),
     ("`tests/runs`", "`runs/`"),
-    ("tests/CASES.md", "CASES.md"),
-    ("tests/RESULTS.md", "RESULTS.md"),
-    ("tests/PROMPT_DEFECTS.md", "PROMPT_DEFECTS.md"),
+    ("out_of_scope/tests/CASES.md", "CASES.md"),
+    ("out_of_scope/tests/RESULTS.md", "RESULTS.md"),
+    ("out_of_scope/tests/PROMPT_DEFECTS.md", "PROMPT_DEFECTS.md"),
     ("`rules/RULES_TABLE_v1.xlsx`", "`2_rules/RULES_TABLE_v1.xlsx`"),
     ("`rules/csv/Rules.csv`", "`2_rules/RULES_TABLE_v1.xlsx`"),
     ("`sources/originals/`", "`1_sources/originals/`"),
@@ -151,7 +151,7 @@ REWRITES: list[tuple[str, str]] = [
     ("[`out_of_scope/SCOPE.md`](SCOPE.md)", "`out_of_scope/SCOPE.md`"),
     ("`out_of_scope/SCOPE.md`", "the scope note in Task 1's design-choices folder"),
     ("`tests/`", "this folder"),
-    ("`out_of_scope/docs/timeline.html`", "`7_extra/timeline.html`"),
+    ("`out_of_scope/docs/timeline.html`", "`2_rules/timeline.html`"),
     ("`out_of_scope/docs/diagrams.html`", "`process_diagram.html`"),
 ]
 

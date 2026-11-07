@@ -9,7 +9,7 @@ informative part of this.
 | Sources and rule table | `sources/00_SOURCE_INVENTORY.md`, `2_rules/RULES_TABLE_v1.xlsx`, `2_rules/RULES_TABLE_v1.xlsx` |
 | The prompt | `prompts/RUN_1_describe_content.md`, `prompts/RUN_2_decide.md` |
 | *Not a deliverable for either task:* the prompt that builds the table | the rule-building prompt (repository only; not a deliverable). Task 1 asks for a table, not a method of making one; Task 2 asks for a design, not a working prompt. This is apparatus |
-| Test cases and results | `CASES.md`, `RESULTS.md` |
+| Test cases and results | `tests/CASES.md`, `tests/RESULTS.md` |
 | Scope reasoning | the scope note in Task 1's design-choices folder |
 | Design choices and tools | this file |
 
@@ -218,7 +218,7 @@ agent's words were that the schema expressed both cases "correctly and without s
 reasoning problem: a field that could not hold what the content said, or two facts sharing
 one slot. The prompts were careful about *how to think* and loose about *where to put the
 answer*. Reading them again would never have found it. Running them found it immediately,
-and the full list is in `PROMPT_DEFECTS.md`.
+and the full list is in `tests/PROMPT_DEFECTS.md`.
 
 ### Improvement 1, from rule selection: two bugs from one case
 

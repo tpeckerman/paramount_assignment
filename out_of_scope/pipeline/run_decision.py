@@ -243,8 +243,8 @@ def main() -> None:
               "on general knowledge.", file=sys.stderr)
 
     if a.measure:
-        corpus = sum(f.stat().st_size for f in (ROOT / "sources/originals").glob("*.txt"))
-        corpus += sum(f.stat().st_size for f in (ROOT / "sources/originals").glob("*.pdf"))
+        corpus = sum(f.stat().st_size for f in (C.ORIGINALS_DIR).glob("*.txt"))
+        corpus += sum(f.stat().st_size for f in (C.ORIGINALS_DIR).glob("*.pdf"))
         print(f"\n  rule slice     : {len(slice_json):>9,} bytes", file=sys.stderr)
         print(f"  source corpus  : {corpus:>9,} bytes (downloaded so far, "
               f"of 20 documents)", file=sys.stderr)

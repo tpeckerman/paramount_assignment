@@ -162,7 +162,7 @@ the model.
 
 ## Defects in the prompts, found by running them
 
-Eight schema defects, recorded in `PROMPT_DEFECTS.md`, and the fix for the worst two is
+Eight schema defects, recorded in `tests/PROMPT_DEFECTS.md`, and the fix for the worst two is
 written up as the demonstrated improvement in `TASK1_WRITEUP.md`. The short version: the
 prompts were careful about how to reason and loose about where to put the answer, so facts
 that decide outcomes had nowhere to live and survived as prose.

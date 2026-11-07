@@ -15,6 +15,8 @@ nothing in `deliverables/` depends on reading any of it.
 
 | Item | What it is | Why it is out of scope |
 |---|---|---|
+| `prompts/`, `rules/`, `sources/`, `tests/` | The originals that `deliverables/` is generated from: the two prompts, the rules table, the 20 source documents, and the test cases with their saved runs | These ARE the deliverables, but the copies in `deliverables/` are the handover. These are the working originals, kept so the build can regenerate the copies and so the checks have something to check. |
+| `TASK1_WRITEUP.md`, `TASK2_SCALING.md` | The originals of the two write-ups | Same reason. The copies that get read live in `deliverables/`. |
 | `pipeline/` | 17 Python scripts that build the rules table, check it, and run a decision end to end | The assignment asked for a prompt, not a program. These scripts build and test the thing that was asked for. They are not the thing that was asked for. |
 | `BUILD_rules_from_sources.md` | A prompt that turns a legal document into draft table rows | This is how I made the rules table. The table is a deliverable; the tool that produced it is not. Task 2 describes this step as part of a design, which is all the brief asked for. |
 | `docs/` | Generated pictures: the Task 2 process diagram, a rules timeline, a diagram index | These are generated from files that are deliverables. The copies that reviewers need are already inside `deliverables/`. |

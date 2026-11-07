@@ -4,7 +4,7 @@ How a content description becomes a decision, and where the rules come in.
 
 ## The flow
 
-**The process diagram lives in [`TASK2_SCALING.md`](../TASK2_SCALING.md#process)**, where it is a
+**The process diagram lives in [`TASK2_SCALING.md`](TASK2_SCALING.md#process)**, where it is a
 required deliverable. Task 1 asks for sources, rules, a prompt, test cases and results, and
 not for a diagram, so there is only one in this repo rather than two that have to be kept in
 step with each other. `out_of_scope/docs/diagrams.html` renders it large and scrollable.
