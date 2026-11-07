@@ -33,6 +33,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import constants as C
 
+CONFIG = pathlib.Path(__file__).resolve().parent / "mermaid.config.json"
 SOURCE = C.HOW_IT_WORKS_MD
 OUT_DIR = C.DOCS_DIR
 
@@ -54,8 +55,15 @@ def render(body: str, dest: pathlib.Path | None) -> tuple[bool, str]:
         src = pathlib.Path(td) / "d.mmd"
         src.write_text(body, encoding="utf-8")
         out = pathlib.Path(td) / "d.svg"
+        # htmlLabels:false is the important one. With HTML labels mermaid puts the text in
+        # a <foreignObject>, so the browser re-lays it out at display time using whatever
+        # font it has. If that differs at all from the font used when the box was measured,
+        # the text overflows a box sized for different metrics and gets clipped, usually by
+        # a character or two at the end of a line. Real SVG <text> is measured and
+        # positioned once, at render time, and cannot drift afterwards.
         proc = subprocess.run(
-            ["npx", "--yes", "@mermaid-js/mermaid-cli", "-i", str(src), "-o", str(out)],
+            ["npx", "--yes", "@mermaid-js/mermaid-cli",
+             "-i", str(src), "-o", str(out), "-c", str(CONFIG)],
             capture_output=True, text=True, timeout=C.RENDER_TIMEOUT_SECONDS)
         if proc.returncode != 0 or not out.exists():
             return False, (proc.stderr or proc.stdout or "no output").strip()[-400:]
@@ -85,6 +93,17 @@ VIEWER = """<!DOCTYPE html>
             background: #fcfcfb; padding: 1rem; }}
   .frame svg {{ height: auto !important; max-width: none !important;
                 width: calc(100% * var(--zoom, 1)); display: block; }}
+  /* Most labels render as real SVG text. Mermaid still emits one HTML label per diagram
+     inside a foreignObject, sized to the font it measured with. If the viewing font differs
+     even slightly the text overflows a box cut to the old metrics and loses its last
+     character. Pinning the same font and letting the box overflow removes both halves of
+     that: the metrics match, and nothing is clipped if they ever stop matching. */
+  .frame foreignObject {{ overflow: visible; }}
+  .frame foreignObject div, .frame foreignObject span {{
+      font-family: Helvetica, Arial, sans-serif !important;
+      overflow: visible !important; }}
+  .frame svg text, .frame svg tspan {{
+      font-family: Helvetica, Arial, sans-serif !important; }}
 </style></head><body>
 <h1>How it works, diagrams</h1>
 <p class="hint">Generated from the mermaid blocks in HOW_IT_WORKS.md. Each diagram scrolls
@@ -138,6 +157,12 @@ def main() -> int:
     if not found:
         print(f"no mermaid blocks in {SOURCE.name}, which is itself suspicious")
         return 1
+
+    if not check_only:
+        # Diagram files are named after their heading, so renaming a heading would
+        # otherwise leave the old file sitting in docs/ looking current.
+        for stale in OUT_DIR.glob("diagram_*.svg"):
+            stale.unlink()
 
     failures = []
     rendered: list[tuple[str, str]] = []

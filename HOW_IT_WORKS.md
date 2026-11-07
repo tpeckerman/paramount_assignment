@@ -11,80 +11,117 @@ Three kinds of step, and the distinction matters more than it looks:
 | 🟩 **Code** | Deterministic. Same input, same output, every time. Costs nothing, cannot be argued with. |
 | 🟪 **Model** | Needs reading, weighing or judgement. Used only where code genuinely cannot do the job. |
 | 🟧 **Person** | A judgement with consequences, or a decision nobody should automate. |
-| ⬜ **Dotted** | Not built and not done here. Drawn because the flow does not make sense without it. Every solid box corresponds to a prompt or a script in this repo that you can run. |
+| 🟦 **Dashed blue** | Built and working, but it answers **Task 2**, not Task 1. Task 1 asked for the sources to be located once, not for a system that keeps re-fetching them. |
+| ⬜ **Dashed grey** | Not built and not done here. Drawn because the flow does not make sense without it. |
+
+Every solid box corresponds to a prompt or a script in this repo that you can run.
+
+### Stage 1: from a legal document to rules in a table
+
+Runs once per source document, and again whenever a regulator changes one.
+
+Steps 1 to 3 are **dashed because automating them is Task 2, not Task 1**. Task 1 asks for
+the sources to be located and the rules presented, which was done once. A system that keeps
+re-fetching and watching for amendments is the Task 2 answer.
 
 ```mermaid
-flowchart TB
-    A1["1. Fetch the document<br/>store it, record a hash"]:::det
-    A2{"2. Is this really the document?<br/>check for a phrase only it contains"}:::det
-    A3{"3. Has it been amended since?"}:::det
-    A4["4. Read it and write down its rules"]:::ai
-    A5{"5. Is every quote really in the document?"}:::det
-    A6{"6. Valid fields and vocabulary?"}:::det
-    A7["7. A country expert signs<br/>the rule off"]:::scope
+flowchart LR
+    A1["1. Fetch it<br/>store it, hash it"]:::task2
+    A2{"2. Is this really<br/>the document?"}:::task2
+    A3{"3. Amended<br/>since?"}:::task2
+    A4["4. Read it,<br/>write down its rules"]:::ai
+    A5{"5. Is every quote<br/>really in it?"}:::det
+    A6{"6. Valid fields<br/>and vocabulary?"}:::det
+    A7["7. A country expert<br/>signs it off"]:::scope
     A8[("The rules table")]:::store
 
     A1 --> A2
-    A2 -- "no: we saved the website's<br/>menus and headings,<br/>not the law" --> A1
+    A2 -- "no: we saved<br/>the menus" --> A1
     A2 -- yes --> A3
     A3 -- "superseded" --> A1
     A3 -- current --> A4 --> A5
-    A5 -- "quote not found" --> A4
+    A5 -- "not found" --> A4
     A5 -- yes --> A6
-    A6 -- "no: bad field or<br/>unknown vocabulary" --> A4
-    A6 -- "yes: the row enters<br/>the table" --> A8
-    A8 -. "should go to an expert" .-> A7
-    A7 -. "marks it approved" .-> A8
-    A6 -. "here, the author set the<br/>status with no expert.<br/>That is conflict C-08" .-> A8
-
-    B0["0. Someone watches the content<br/>and writes down what happens,<br/>with timecodes"]:::scope
-    C1["0b. Turn the description<br/>into an embedding"]:::scope
-    C2{"0c. Have we answered this before?<br/>same country, service, slot<br/>AND similar enough text"}:::scope
-    C3[["Serve the stored answer"]]:::scope
-    C4["0d. A source was amended:<br/>drop every stored answer<br/>that cites a rule from it"]:::scope
-    C5[("Stored answers")]:::scope
-
-    B1["8. Read the content description"]:::ai
-    B2{"9. Categories in the controlled list?"}:::det
-    B2a["9b. A person adds the new<br/>category, or rejects it"]:::scope
-    B3{"10. Does an existing age rating<br/>ban this outright?<br/>(BBFC R18, or refused a rating)"}:::det
-    B4["11. Pick the rules that could apply"]:::det
-    B5["12. Decide: rating, hours, conditions"]:::ai
-    B6{"13. Does every claim cite a real rule?"}:::det
-    B7{"14. Clear-cut, and nothing missing?"}:::det
-    B8[["Answer, with its rules"]]:::out
-    B9[["Escalation: handed to a person<br/>with the rule and quote attached"]]:::out
-    B10[["A person decides"]]:::scope
-
-    B0 -.-> C1
-    C1 -.-> C2
-    C5 -.-> C2
-    C2 -. "hit" .-> C3
-    C2 -. "miss, or judgement<br/>was involved" .-> B1
-    A3 -. "superseded" .-> C4
-    C4 -.-> C5
-    B8 -. "only if every rule it cited<br/>was a bright line" .-> C5
-
-    B1 --> B2
-    B2 -- "a word for a<br/>category we have" --> B1
-    B2 -. "a kind of content<br/>the list lacks" .-> B2a
-    B2a -. "added" .-> A4
-    B2 -- yes --> B3
-    B3 -- "yes" --> B8
-    B3 -- no --> B4 --> B5 --> B6
-    A8 -- "approved rows only" --> B4
-    B6 -- "invented a rule" --> B5
-    B6 -- yes --> B7
-    B7 -- yes --> B8
-    B7 -- no --> B9
-    B9 -.-> B10
+    A6 -- "bad field or<br/>unknown value" --> A4
+    A6 -- "yes" --> A8
+    A8 -. "should go<br/>to an expert" .-> A7
+    A7 -. "marks it<br/>approved" .-> A8
 
     classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
     classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
-    classDef human fill:#fdf0e3,stroke:#b4690e,stroke-width:2px,color:#331
     classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
     classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
     classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
+    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
+```
+
+### Stage 2: from a programme to a checked description
+
+Runs once per asset. The dotted boxes are not built.
+
+```mermaid
+flowchart LR
+    B0["0. Someone watches it<br/>and writes down<br/>what happens"]:::scope
+    C1["0b. Turn it into<br/>an embedding"]:::scope
+    C2{"0c. Answered<br/>this before?"}:::scope
+    C3[["Serve the<br/>stored answer"]]:::scope
+    C5[("Stored answers")]:::scope
+    B1["8. Read the<br/>description"]:::ai
+    B2{"9. Categories in<br/>the controlled list?"}:::det
+    B2a["9b. A person adds<br/>the new category"]:::scope
+    B3{"10. Does a rating<br/>ban it outright?"}:::det
+    OUT[["To stage 3"]]:::out
+    STOP[["Prohibited,<br/>decided in code"]]:::out
+
+    B0 -.-> C1 -.-> C2
+    C5 -.-> C2
+    C2 -. hit .-> C3
+    C2 -. miss .-> B1
+    B1 --> B2
+    B2 -- "just a<br/>wording slip" --> B1
+    B2 -. "the list<br/>lacks it" .-> B2a
+    B2 -- yes --> B3
+    B3 -- "yes: R18 or<br/>refused" --> STOP
+    B3 -- no --> OUT
+
+    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
+    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
+    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
+    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
+```
+
+### Stage 3: from rules plus description to an answer
+
+```mermaid
+flowchart LR
+    IN[["From stage 2"]]:::out
+    A8[("The rules table")]:::store
+    B4["11. Pick the rules<br/>that could apply"]:::det
+    B5["12. Decide: rating,<br/>hours, conditions"]:::ai
+    B6{"13. Does every claim<br/>cite a real rule?"}:::det
+    B7{"14. Clear-cut, and<br/>nothing missing?"}:::det
+    B8[["Answer,<br/>with its rules"]]:::out
+    B9[["Escalation, with the<br/>rule and quote"]]:::out
+    B10[["A person decides"]]:::scope
+    C5[("Stored answers")]:::scope
+
+    IN --> B4
+    A8 -- "approved<br/>rows only" --> B4
+    B4 --> B5 --> B6
+    B6 -- "invented<br/>a rule" --> B5
+    B6 -- yes --> B7
+    B7 -- yes --> B8
+    B7 -- no --> B9 -.-> B10
+    B8 -. "only if every rule<br/>was a bright line" .-> C5
+
+    classDef det fill:#e9f5ec,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef ai fill:#efeaf7,stroke:#5e42a6,stroke-width:2px,color:#231
+    classDef store fill:#f1efea,stroke:#6b6b6b,stroke-width:1px,color:#222
+    classDef out fill:#fff,stroke:#2f7d55,stroke-width:2px,color:#143
+    classDef scope fill:#fafafa,stroke:#9a9a9a,stroke-width:2px,stroke-dasharray:5 4,color:#555
+    classDef task2 fill:#eef3fa,stroke:#3a6ea5,stroke-width:2px,stroke-dasharray:6 3,color:#123
 ```
 
 Steps 1 to 7 run **once per legal document**, and again when the law changes. Steps 8 to 14
@@ -187,15 +224,22 @@ Each was found by something mechanical comparing the work against a source outsi
 
 ## Which steps belong to which task
 
-All fourteen numbered steps are **Task 1**. Task 2 adds no steps: it asks what breaks when
-the same flow runs for thirty countries instead of two. The dotted boxes are in neither, and
-are drawn only because the flow does not make sense without them.
+Task 1 asks for four things: **locate official sources and present the rules, with links and
+scope**; **a prompt**; **test cases**; **results**. Everything else in this diagram is either
+Task 2's territory or out of scope, and is dashed.
+
+**Steps 1 to 3 are dashed, and that is a correction.** Locating the sources is Task 1 and it
+was done: twenty documents, collected, with links and scope recorded. But an *automated
+system that re-fetches them and watches for amendments* is not a Task 1 deliverable. It is the
+answer to Task 2's first question. For Task 1 these steps happened **once**, by hand and with
+one-off scripts; the diagram dashes them because what is drawn is the repeating automated
+version, which belongs to Task 2.
 
 | Steps | Task 1 | What Task 2 asks about them |
 |---|---|---|
 | 0, someone watches the content | Out of scope. The assignment starts from a description | Out of scope, and the weakest link in the chain |
 | 0b, 0c, 0d, answer from stored answers | Out of scope | Cost per decision, and what an amendment has to invalidate |
-| 1, 2, 3, fetch and validate the document | Deliverable: *sources, with links and scope* | Source collection at scale: who finds them, how you know a document is current, what happens on amendment |
+| 1, 2, 3, fetch and re-check the document | Collecting them, yes. **Automating it, no** | **Task 2's first question.** Who finds them, how you know a document is current, what happens on amendment |
 | 4, write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country; which differences are data rather than code |
 | 5, 6, quote and vocabulary checks | **Not asked for** | **Testing for correctness.** Task 2 asks this directly, and these are the answer |
 | 7, expert sign-off | Not asked for | **Automate versus local expert.** The one step that cannot scale by engineering |
@@ -468,12 +512,14 @@ routed, which is a floor and not a verdict.
 
 ### What is drawn but not built
 
-Everything solid on the diagram is a prompt or a script in this repo. Five things are dotted,
-and it is worth being explicit about why, because the difference between "designed" and "done"
-is where this sort of project usually oversells itself.
+Everything solid is a prompt or a script in this repo. Six things are dashed, and the
+difference between "designed" and "done" is where this sort of project usually oversells
+itself, so each one says which it is. The first is blue because it is built and simply
+belongs to the other task; the rest are grey because they do not exist.
 
-| Dotted | Why |
+| Dashed | Why |
 |---|---|
+| 1, 2, 3, fetching and re-checking sources | **Blue, because this one is built.** Task 1 asked for the sources to be located and presented, which was done once. Automating the re-fetch and the amendment watch is Task 2's first question |
 | 0, someone watches the content | The assignment starts from a description, so producing one is outside it. Also the weakest link in the chain |
 | 0b, 0c, 0d, the answer cache | A cost idea for scale, belonging to Task 2. Nothing is built |
 | 7, a country expert signs the rule off | **The one that matters.** No expert signed anything off here. Every row is `approved` because the author approved it, which is conflict C-08 and the reason the diagram shows a dotted line going round step 7 |
