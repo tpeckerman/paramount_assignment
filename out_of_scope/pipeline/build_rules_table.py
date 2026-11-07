@@ -1324,7 +1324,11 @@ add("FR-CV-007", "FR", "Arcom", "regulator_binding", 2, "yes",
     "article 227-22 of the French penal code", "EN", "high")
 
 add("FR-CNV-001", "FR", "Arcom", "regulator_binding", 2, "yes",
-    "per_channel", "channel_override", "n/a",
+    # service_type was "per_channel", which is not a service type at all: it is a marker
+    # meaning "applies to each channel individually". Sitting in the service column it failed
+    # every service test, so the row dropped out of every slice ever built. Every conventionnee
+    # channel signs a convention, so the rule binds all French linear television.
+    "all_linear_tv", "channel_override", "n/a",
     "CHANNEL CONVENTIONS: every conventionnee channel signs an individual convention with Arcom containing its own protection-of-minors articles, which CAN BE STRICTER than the general recommendation. Enforcement cites the convention alongside the recommendation (e.g. the C8 decision cites convention arts. 2-3-7, 2-4, 4-2-1 with reco. 2005-5 arts. 2 and 4).",
     "Channel-specific; may tighten any rule above.", "override=channel_specific",
     "Parliamentary material notes conventions have LOWERED the category III limit to 22:00 'or less, with permanent signage' for particular channels.",

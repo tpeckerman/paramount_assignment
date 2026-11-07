@@ -82,9 +82,20 @@ from another.
    free-to-air. If service type is `not_stated`, **branch and label**, never pick one.
 4. **Resolve conflicts by `authority_rank`**, lowest wins. Equal rank and conflicting: emit
    both, flag for review.
-5. **Respect `determinacy`.** `bright_line` applies mechanically. `conditional` requires
-   stating which condition you found and the evidence. `judgment_based` may carry a
-   provisional view but **must** be flagged for human review.
+5. **Respect `determinacy`, but escalate on `human_review_required`.** These are two
+   different columns answering two different questions, and the second governs.
+   - `determinacy` says how the rule applies: `bright_line` mechanically, `conditional`
+     only once you state which condition you found and the evidence for it,
+     `judgment_based` by weighing a threshold.
+   - `human_review_required` says whether a person must sign it off. Escalate on this.
+
+   They do not line up, and assuming they do breaks the system in both directions. Some
+   `conditional` rules carry `yes` because confirming the condition is an operational fact
+   nobody here can check. Some `judgment_based` rules carry `no` because the judgement they
+   describe informs another rule rather than deciding anything itself.
+
+   Escalating on `judgment_based` instead escalates everything, because judgement rules that
+   decide nothing are present in every slice.
 6. **Work out the time of day each event goes out, before applying any hour rule.** The
    rules are written about the time of day. An event's timecode may not be one: step 1 marks
    each observation `wall_clock` or `elapsed`.
