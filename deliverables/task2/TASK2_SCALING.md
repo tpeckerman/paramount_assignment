@@ -82,6 +82,11 @@ Four choices matter:
   ignoring the lock costs the broadcaster a slot.
 - **A machine-readable form beside the quote.** Code acts on `not_before=22:00`. A lawyer
   reads the sentence.
+- **A timeline app for lookup.** A 24-hour chart, built from the table, with a country and
+  channel-type selector. It shows which rules apply at which hour, and each rule shows its
+  quote. Someone can check "what applies at 21:30 on a free-to-air channel" without reading
+  the table. It is rebuilt whenever the table changes, so it cannot go stale. Task 1 has a
+  working version for two countries.
 - **Dates on every rule.** Rules are closed with an end date, never deleted, so last year's
   decision can still be explained.
 - **"How the rule applies" and "does a person review decisions that use it" are separate columns.** Merging
