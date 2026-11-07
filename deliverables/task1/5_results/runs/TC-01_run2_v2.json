@@ -1,0 +1,54 @@
+{
+  "decisions": [
+    {
+      "country": "UK",
+      "transmission": "NTV, free-to-air satellite, 2026-05-29, 11:30 (t1)",
+      "classification": {
+        "value": "no_per_programme_rating",
+        "scheme": "UK linear television issues no per-programme age rating. The BBFC 15 recorded on the asset is a certificate of unstated scope, not a broadcast classification.",
+        "basis": [
+          {"rule_id": "UK-FLM-010", "clause_ref": "Guidance Notes Section One", "why": "A BBFC certificate does not set the slot. The 15 is evidence that the work was judged unsuitable for under-fifteens, and it feeds the scheduling question rather than answering it."},
+          {"rule_id": "UK-DEF-001", "clause_ref": "S1 definitions", "why": "'Children' means people under fifteen, so a BBFC 15 maps onto exactly the group the scheduling rules protect."}
+        ]
+      },
+      "hours": {
+        "permitted": "not before 21:00. The 11:30 transmission as broadcast was not permitted.",
+        "without_technical_measure": "not before 21:00",
+        "with_technical_measure": "n/a. No access control is recorded on this transmission, and none was available on a free-to-air satellite service.",
+        "basis": [
+          {"rule_id": "UK-SCH-002", "clause_ref": "Rule 1.4", "why": "Material unsuitable for children must not in general be shown before 21:00. The observations record seven acts of lethal violence across a two-hour window, including a beheading with the severed head then carried on screen (o3, o4), placed at 11:30 on a weekday morning."},
+          {"rule_id": "UK-VIO-001", "clause_ref": "Rule 1.11", "why": "Violence must be appropriately limited before the watershed and justified by the context. Repetition is recorded: the mass shooting at 11:33 is shown again at 13:41 (o1, o2). That is the opposite of appropriately limited."},
+          {"rule_id": "UK-SCH-001", "clause_ref": "Rule 1.3", "why": "Children must be protected by appropriate scheduling from material unsuitable for them. This is the rule the breach sits on."}
+        ]
+      },
+      "other_restrictions": [
+        {"kind": "audience_information", "requirement": "A warning conveying the nature and severity of the content was required before and during a broadcast of this material and none was given.", "is_condition_of_the_hours": false, "basis": [{"rule_id": "UK-WRN-002", "clause_ref": "Guidance Notes Section One"}, {"rule_id": "UK-WRN-003", "clause_ref": "Guidance Notes Section One"}]}
+      ],
+      "axis_note": "The classification axis and the hours axis point in the same direction here but neither causes the other. The hour is barred because the OBSERVATIONS record material unsuitable for children, not because the certificate reads 15. Had the certificate been absent, the same observations would bar the same hour.",
+      "reasoning": "Absolute prohibitions first. UK-GEN-001 bars material that might SERIOUSLY impair the development of under-eighteens, a bar deliberately higher than ordinary harm. Violent action cinema of this kind is content that may harm and must be scheduled, not content that is banned outright. UK-GEN-001 does not bite, and saying so matters: treating the two tiers as one would ban a film that is lawful after 21:00.\n\nThe scheduling question. UK-SCH-002 sets the watershed at 21:00 for material unsuitable for children, and UK-DEF-001 fixes children as under-fifteens. The observations record a mass shooting with a machine gun (o1), the same scene repeated two hours later (o2), a fatal stabbing and a beheading (o3), the severed head carried on screen (o4), a man choked to death (o5, o6) and multiple assassinations (o7). The transmission was 11:30 on a weekday morning. The material is unsuitable for children and it was placed well inside the protected window, so UK-SCH-002 and UK-SCH-001 are both engaged.\n\nThree factors aggravate rather than excuse. UK-WRN-002 and UK-WRN-003 require a warning to be adequate and to convey severity; RUN 1 records that no warning or signposting was given at all. UK-SCH-011 treats a cultural or religious festival as raising the likely child audience, and the transmission fell during the three-day Eid-ul-Adha celebrations when families gather. UK-SCH-010 adds that audience composition before 21:00 is not uniform and that the watershed matters most for the youngest children.\n\nUK-PRE-010 is a decided case on closely comparable facts: a BBFC 15 action film with frequent graphic violence, including a beheading with the head carried on screen and a man choked to death, broadcast at 11:30 without warning, breached Rule 1.3. The present facts are not merely similar to that precedent, they are the same shape.\n\nNow the limb that a careless system gets wrong. UK-CTX-011 requires the offence question and the scheduling question to be run SEPARATELY, and forbids a finding of editorial justification on one from discharging the other. Run separately: on offence, the violence is contextualised within a narrative feature film, and the offence limb does not hold. On scheduling, that contextual justification does nothing whatever for the hour, because the objection is not that the violence is gratuitous but that children were foreseeably watching at 11:30. The content was justified; the slot was not. A system that resolves 'justified by context' once and reuses the answer would clear this transmission and would be wrong.\n\nConclusion: the 11:30 transmission was not permitted. The film may be transmitted from 21:00, subject to the judgement rules below being settled by a person.",
+      "confidence": "medium",
+      "rules_checked_not_triggered": [
+        {"rule_id": "UK-GEN-001", "why_not": "The 'seriously impair' bar is higher than ordinary harm. Violent narrative cinema is schedulable material, not prohibited material."},
+        {"rule_id": "UK-SEX-001", "why_not": "No sexual content is recorded."},
+        {"rule_id": "UK-FLM-001", "why_not": "The film holds a BBFC 15; it was not refused classification."},
+        {"rule_id": "UK-FLM-002", "why_not": "Applies to BBFC 18 films. This is a 15."},
+        {"rule_id": "UK-SCH-007", "why_not": "The watershed is disapplied only while mandatory daytime protection is in place. This is free-to-air satellite with no access control recorded."},
+        {"rule_id": "UK-SCH-008", "why_not": "Concerns the ramp in strength after the watershed. This transmission never reached the watershed; it ran from 11:30."},
+        {"rule_id": "UK-SCH-009", "why_not": "No timeshift service is stated for this transmission."},
+        {"rule_id": "UK-OFF-001", "why_not": "Checked and set aside on its own terms, not borrowed from the scheduling finding. The violence is contextualised within a narrative feature film, which is the same conclusion the regulator reached when it dropped the offence limb."},
+        {"rule_id": "UK-CTX-010", "why_not": "Audience size would raise the contextual justification required, but the scheduling breach is established without it and the channel's audience size is not recorded."}
+      ],
+      "human_review_required": true,
+      "review_reasons": [
+        "The operative finding rests on judgement rules that carry a review requirement: UK-FLM-010 (how much weight the BBFC 15 carries as evidence), UK-SCH-010 (how far the pre-watershed audience composition aggravates), UK-SCH-011 (how far the Eid festival date raises the likely child audience), UK-WRN-002 and UK-WRN-003 (whether a warning would have been adequate and what it needed to convey).",
+        "UK-VIO-001 asks whether the violence was appropriately limited and justified by the context. A provisional view is given above, that repetition of the mass shooting at 13:41 defeats 'appropriately limited', but the threshold is a matter of judgement and is not settled here.",
+        "UK-PRE-010 is a single decided case. It anchors this decision but one case cannot calibrate a threshold, and a person should confirm the facts are as close as they appear."
+      ],
+      "missing_information": [
+        {"field": "the channel's typical audience size and profile", "why_it_matters": "UK-CTX-010 raises the contextual justification required on a larger audience, and expressly does not lower it for a small broadcaster.", "what_changes_if_answered": "It can only make the finding stronger. The breach does not depend on it."}
+      ],
+      "coverage_gaps": []
+    }
+  ],
+  "cross_country_note": "UK only was requested for this case, so no comparison is drawn."
+}

@@ -34,7 +34,12 @@ This is the only step that is not just pasting. Take the rules table and keep a 
 of these hold:
 
 1. `status` is `approved`. Nothing else may reach a decision.
-2. `country` is one of the countries asked about.
+2. `country` matches a country you want an answer for. The table holds UK and French rules
+   together. You decide which countries you are asking about and you write them into the
+   `<request>` block in step 3. Keep the rows for those countries and drop the rest: if you
+   only want a UK answer, the French rows do not belong in the slice. Most content
+   descriptions name the countries at the top, as the test cases do with `COUNTRIES: UK, FR`,
+   so that line is usually what you copy.
 3. `service_type` names the service, **or** is service-agnostic (`all_linear_tv`,
    `all_avms`), **or** the service was not stated. When the service is unknown, keep
    everything: the decision step branches, and withholding rows narrows the branches it can

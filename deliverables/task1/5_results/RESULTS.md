@@ -10,6 +10,40 @@
 > So the headline below, 17 escalations out of 17, is a true record of what happened and is
 > **not** a measurement of the current prompts. The escalation fix in particular was written
 > to address exactly that number and has not been run against these cases.
+
+## Retest, 7 November 2026: the escalation problem is fixed
+
+Two cases have now been re-run against the current prompts and the current rules table. They
+were chosen because together they answer the only question that matters: can the system tell
+the difference between content that needs restricting and content that does not?
+
+| Case | What it is | Expected | Result |
+|---|---|---|---|
+| TC-09 | Cookery show, plaster on a cut finger, 11:00 | Clear in both countries, no escalation | **Clear in both, no escalation** |
+| TC-01 | Real Ofcom case: BBFC 15 action film, beheading on screen, 11:30, no warning, Eid | Breach, escalate | **Not permitted before 21:00, escalates** |
+
+Both pass. The system now discriminates. That is the first time it has done so: the previous
+run escalated 17 of 17 and could not have told these two cases apart.
+
+TC-01 also gets the hard part right. Ofcom opened that case under both the scheduling rule and
+the offence rule, then dropped the offence limb, finding the violence justified within the
+film while the 11:30 slot was not. The decision reaches the same split, and reaches it the
+same way: the two questions are run separately and the justification found on one is not
+allowed to discharge the other.
+
+**What fixed it.** Not a change to the prompt's escalation logic, which already forbade
+escalating on a rule merely present in the slice. Two rows of the rules table were forcing it
+structurally. `UK-CTX-010` (audience size) and `UK-CTX-011` (decide offence and scheduling
+separately) are both definitions with no operative outcome, and both carried
+`human_review_required=yes`. A definition applies to every decision in its country, so a
+review flag on one escalates every decision by construction regardless of content.
+`UK-CTX-010` appeared in 9 of the 17 escalation reasons while being incapable of changing any
+of them.
+
+**What this does not show.** Seven of the nine cases have not been re-run. Two cases is enough
+to prove the system can discriminate and not nearly enough to measure how well. The escalation
+rate below, 17 of 17, is the old number and should not be quoted as current.
+
 >
 > **TC-09, the benign control, has never been run at all.** It was added because the
 > reviewer who found the escalation problem found it with a control this set did not have.
