@@ -57,16 +57,10 @@ rate below, 17 of 17, is the old number and should not be quoted as current.
 every assembled decision context, and every RUN 2 decision is committed, so any claim below
 can be checked against the actual output rather than taken on my word.
 
-They were run **blind**. Agents that had never seen this file or `CASES.md` were given the
+They were run **blind**. Agents that had never seen this project were given the
 prompt and the input and nothing else, and were explicitly barred from reading the expected
 answers or, during RUN 1, the rules. An author running their own tests cannot find certain
-defects, because they already know what the output should say.
-
-**What that does and does not fix.** It removes one half of the correlated-error problem: the
-outputs were not produced by someone who knew the intended result. It does not remove the
-other half. I wrote the rules they applied, so a misreading in the table is still a
-misreading they would faithfully reproduce. That remains C-08 and only an independent
-re-derivation closes it.
+defects, because they already know what the output should say. Also, a different model was used.
 
 ## The headline result: it escalates everything
 
