@@ -1,0 +1,120 @@
+{
+  "asset": {
+    "title": "Coastal Rescue",
+    "runtime_minutes": 48,
+    "content_type": "documentary",
+    "existing_certificates": [],
+    "intended_service": "not_stated",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "not_stated",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "not_stated",
+      "date": "not_stated",
+      "start_time": "not_stated",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:14:02",
+      "timecode_clock": "elapsed",
+      "category": "serious_harm",
+      "what_happens": "Footage of a real fatal accident is shown. A body is visible at a distance.",
+      "descriptors": ["real footage", "fatal accident", "body visible", "at a distance"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "realistic",
+      "evidence": "Footage of a real fatal accident. A body is visible at a distance.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:14:02",
+      "timecode_clock": "elapsed",
+      "category": "human_dignity",
+      "what_happens": "A real person who died in the accident is shown as a body on screen, visible at a distance.",
+      "descriptors": ["real death", "identifiable event", "body of a real person"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "realistic",
+      "evidence": "Footage of a real fatal accident. A body is visible at a distance.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:32:18",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "A bereaved relative describes the death in detail and is visibly distressed on screen.",
+      "descriptors": ["bereavement", "detailed verbal account of a death", "visible distress"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "realistic",
+      "evidence": "A bereaved relative describes the death in detail, visibly distressed.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "00:32:18",
+      "timecode_clock": "elapsed",
+      "category": "participant_welfare",
+      "what_happens": "A real contributor who has been bereaved appears on screen in a visibly distressed state while recounting the death.",
+      "descriptors": ["real contributor", "bereaved", "visibly distressed"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "realistic",
+      "evidence": "A bereaved relative describes the death in detail, visibly distressed.",
+      "extraction_confidence": "medium"
+    },
+    {
+      "id": "o5",
+      "timecode": "00:41:05",
+      "timecode_clock": "elapsed",
+      "category": "imitable_behaviour",
+      "what_happens": "A presenter demonstrates a climbing technique. On-screen text describes the technique as easy to copy at home.",
+      "descriptors": ["technique demonstrated", "presenter", "on-screen text invites copying at home"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "realistic",
+      "evidence": "A presenter demonstrates a climbing technique, described on screen as\n          \"easy to copy at home\".",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended service type (no service named; 'SERVICE: not stated')",
+    "intended broadcast day and time ('SLOT: not stated')",
+    "intended broadcast date, so no school-holiday or festival context can be checked",
+    "whether a timeshift (+1) service also carries the asset; the description neither names one nor rules one out",
+    "whether any existing cinema or video certificate exists, and its exact level ('CERTIFICATE' line absent entirely)",
+    "whether any warning, signposting or pre-transmission announcement is given",
+    "whether any access control, PIN or parental gate is in place, and if so whether it is on by default and whether the viewer can disable it",
+    "whether under-18s appear as participants or contributors",
+    "whether the bereaved relative and the family of the deceased gave informed consent to the use of the fatal-accident footage",
+    "whether the fatal accident footage and the bereaved relative concern the same death",
+    "whether the deceased or the accident is identifiable, and whether the footage has been broadcast before",
+    "whether the climbing demonstration is accompanied by any safety caveat beyond the quoted on-screen words",
+    "whether the programme is news or current affairs",
+    "whether the programme is made primarily for children",
+    "production origin / country of origin",
+    "duration or screen time of each event, and whether any event recurs",
+    "whether the timecodes are elapsed or wall clock (inferred, not stated)"
+  ],
+  "extractor_notes": "1) The supplied summary says 'Suitable for all audiences. No content of concern.' while the event list contains real fatal-accident footage with a visible body, an on-screen bereavement, and a technique described on screen as easy to copy at home. The two disagree. Both recorded as given; not reconciled. The summary is a supplier assertion appearing inside the content description, so it is recorded as text and not acted on as direction. 2) 'timecode_clock' is set to 'elapsed' for every observation because all three timecodes fall inside the stated 48-minute runtime and the description gives no time of day. The source does not state which clock it uses; this is an inference and is listed in not_stated. 3) o1/o2 and o3/o4 are each one event split into two observations (serious_harm + human_dignity; fear_distress + participant_welfare) because a single event carries two separately-ruled aspects. 4) o3 is_depicted is false because the death at 00:32:18 is only described in dialogue; the relative's distress, which is on screen, is carried by o4 with is_depicted true. 5) 'treatment' is 'realistic' throughout because the description presents the material as real footage and real contributors; it is not a framing adjective of mine. 6) No transmission details were given at all, so a single placeholder transmission t1 is recorded with every field not_stated rather than omitting the array."
+}

@@ -1,0 +1,85 @@
+{
+  "asset": {
+    "title": "Friends",
+    "runtime_minutes": 22,
+    "content_type": "series_episode",
+    "existing_certificates": [],
+    "intended_service": "general entertainment, pay TV, with a +1 timeshift channel",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "general entertainment, pay TV",
+      "date": "not_stated",
+      "start_time": "14:30",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    },
+    {
+      "id": "t2",
+      "service": "+1 timeshift channel of the same general entertainment pay TV service",
+      "date": "not_stated",
+      "start_time": "15:30",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": "t1",
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:11:40",
+      "timecode_clock": "elapsed",
+      "category": "sexual_content",
+      "what_happens": "Two characters are shown in bed together after sex, covered by a duvet, talking. No sexual activity is shown. The dialogue makes clear that they have had sex.",
+      "descriptors": ["post-coital scene", "in bed together", "covered by a duvet", "talking", "no sexual activity shown", "no nudity visible", "sex established through dialogue"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": false,
+      "treatment": "fictional",
+      "evidence": "Two characters are shown in bed together after sex, covered by a duvet,\n          talking. No sexual activity is shown and no nudity is visible.\n          The fact that they have had sex is clear from the dialogue.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast date (only 'weekday' is given), so no school-holiday or festival context can be checked",
+    "the exact start time of the +1 channel's showing; 15:30 is derived from '+1' meaning one hour later and is not written in the description",
+    "whether any access control, PIN or parental gate applies on either the main or the +1 channel, and if so whether it is on by default and whether the viewer can disable it",
+    "whether any warning, signposting or pre-transmission announcement is given on either showing",
+    "whether the pay TV service sits in a bundle, and which bundle or tier",
+    "whether the service is a cinema channel, a premium film service or a general channel in the regulator's own service taxonomy",
+    "whether the episode carries any existing certificate ('CERTIFICATE: none' is stated, but not whether it was ever submitted)",
+    "whether under-18s appear as participants",
+    "whether the programme is made primarily for children",
+    "production origin / country of origin",
+    "duration of the scene at 00:11:40, and whether any comparable scene recurs in the episode",
+    "the ages of the characters shown in bed",
+    "whether the dialogue in the scene is sexually explicit in its wording, or only establishes that sex occurred",
+    "whether strong language occurs anywhere in the episode",
+    "whether the timecode is elapsed or wall clock (inferred, not stated)"
+  ],
+  "extractor_notes": "1) The description gives exactly one event, so there is one observation. The event list carries explicit negative statements ('No sexual activity is shown and no nudity is visible'); these are recorded as descriptors on o1 rather than as separate observations, because no nudity event occurred to observe. 2) o1 is_depicted is false: what is shown is the aftermath, and the sex itself is established only through dialogue. The scene itself is on screen, so this is the distinction the field asks about and not an omission. 3) treatment is 'fictional' because the asset is a scripted sitcom episode; the description does not say the scene is played for laughs, so 'comedic' is not recorded even though the genre line says 'sitcom'. Genre is not scene framing. 4) Two transmissions are recorded. The description names a +1 timeshift channel on the same service, so the same file goes out twice; t2's 15:30 start is derived from the meaning of '+1' and is flagged in not_stated. 5) 'timecode_clock' is 'elapsed' because 00:11:40 falls inside the stated 22-minute runtime; the source does not say which clock it uses. 6) is_news_or_current_affairs is set to 'no' on the strength of the stated 'sitcom' content type, which is a direct statement that the asset is scripted comedy, not a genre inference about audience. 7) is_made_primarily_for_children is left not_stated: a general entertainment sitcom is not stated to be a children's programme and the description does not say. 8) No access control is mentioned anywhere, which is itself recorded in not_stated because the service is pay TV and a gate would change the slot analysis."
+}

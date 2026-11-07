@@ -1,0 +1,217 @@
+{
+  "asset": {
+    "title": "Thriller",
+    "runtime_minutes": 13,
+    "content_type": "music_video",
+    "existing_certificates": [],
+    "intended_service": "music channel",
+    "production_origin": "not_stated",
+    "is_news_or_current_affairs": "no",
+    "is_made_primarily_for_children": "not_stated"
+  },
+  "transmissions": [
+    {
+      "id": "t1",
+      "service": "music channel",
+      "date": "not_stated",
+      "start_time": "22:15",
+      "warning_or_signposting": {
+        "given": "yes",
+        "quote": "the work opens with an on-screen disclaimer stating it does not endorse belief in\n      the occult."
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    },
+    {
+      "id": "t2",
+      "service": "music channel",
+      "date": "not_stated",
+      "start_time": "15:00",
+      "warning_or_signposting": {
+        "given": "not_stated",
+        "quote": "not_stated"
+      },
+      "calendar_context": "not_stated",
+      "is_timeshift_of": null,
+      "access_control": {
+        "present": "not_stated",
+        "kind": "not_stated",
+        "on_by_default": "not_stated",
+        "user_can_disable": "not_stated",
+        "quote": "not_stated"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "o1",
+      "timecode": "00:02",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "A character's body changes into that of a werewolf. The change is achieved with prosthetic effects and is held in close-up without cutting away.",
+      "descriptors": ["transformation", "werewolf", "prosthetic effects", "sustained close-up"],
+      "duration_or_frequency": "sustained close-up; no length given",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A character transforms into a werewolf. Prosthetic effects, sustained close-up.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o2",
+      "timecode": "00:02",
+      "timecode_clock": "elapsed",
+      "category": "occult_paranormal",
+      "what_happens": "A human character becomes a non-human creature on screen, a supernatural transformation.",
+      "descriptors": ["supernatural transformation", "werewolf", "non-human creature"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A character transforms into a werewolf.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o3",
+      "timecode": "00:05",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "Dead bodies come up out of graves. Their decayed faces are shown with detail, across a sequence described as extended.",
+      "descriptors": ["corpses", "graveyard", "decayed faces", "shown in detail", "extended sequence"],
+      "duration_or_frequency": "extended sequence; no length given",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "Corpses rise from graves. Decayed faces shown in detail over an extended sequence.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o4",
+      "timecode": "00:05",
+      "timecode_clock": "elapsed",
+      "category": "occult_paranormal",
+      "what_happens": "The dead return to animate life from their graves.",
+      "descriptors": ["reanimated dead", "graves", "supernatural"],
+      "duration_or_frequency": "extended sequence; no length given",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "Corpses rise from graves.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o5",
+      "timecode": "00:09",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "A woman is chased by the risen figures and is cornered by them inside a derelict house.",
+      "descriptors": ["pursuit", "woman cornered", "risen figures", "derelict house"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A woman is pursued and cornered by the risen figures inside a derelict house.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o6",
+      "timecode": "00:09",
+      "timecode_clock": "elapsed",
+      "category": "violence",
+      "what_happens": "A woman is pursued and trapped by a group of figures. The description does not state that she is struck, injured or otherwise physically harmed.",
+      "descriptors": ["pursuit", "threat", "cornered", "no injury stated"],
+      "duration_or_frequency": "not_stated",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A woman is pursued and cornered by the risen figures inside a derelict house.",
+      "extraction_confidence": "low"
+    },
+    {
+      "id": "o7",
+      "timecode": "00:13",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "The closing shot shows the lead performer's eyes in a form that is not human.",
+      "descriptors": ["final shot", "non-human eyes", "lead performer"],
+      "duration_or_frequency": "a single shot",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A final shot of the lead's eyes in a non-human form.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o8",
+      "timecode": "00:13",
+      "timecode_clock": "elapsed",
+      "category": "occult_paranormal",
+      "what_happens": "The lead performer is shown in a non-human form in the closing shot, so the supernatural state is left standing at the end of the work.",
+      "descriptors": ["non-human form", "closing image", "supernatural"],
+      "duration_or_frequency": "a single shot",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "A final shot of the lead's eyes in a non-human form.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o9",
+      "timecode": "00:05",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "In the 30-second trailer, the graveyard sequence is used, with the decayed faces included.",
+      "descriptors": ["trailer", "graveyard sequence", "decayed faces included"],
+      "duration_or_frequency": "within a 30-second trailer; no length given for the shot",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "The graveyard sequence, decayed faces included.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o10",
+      "timecode": "00:18",
+      "timecode_clock": "elapsed",
+      "category": "fear_distress",
+      "what_happens": "In the 30-second trailer, the pursuit sequence is used, edited with faster cutting than in the full music video.",
+      "descriptors": ["trailer", "pursuit", "faster cutting than full version"],
+      "duration_or_frequency": "within a 30-second trailer; no length given for the shot",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "The pursuit, cut faster than in the full video.",
+      "extraction_confidence": "high"
+    },
+    {
+      "id": "o11",
+      "timecode": "00:00",
+      "timecode_clock": "elapsed",
+      "category": "occult_paranormal",
+      "what_happens": "An on-screen disclaimer at the opening of the work states that the work does not endorse belief in the occult. The description does not say the disclaimer appears in the trailer.",
+      "descriptors": ["on-screen disclaimer", "statement of non-endorsement", "occult"],
+      "duration_or_frequency": "once, at the opening of the music video",
+      "is_depicted": true,
+      "treatment": "not_stated",
+      "evidence": "the work opens with an on-screen disclaimer stating it does not endorse belief in\n      the occult.",
+      "extraction_confidence": "high"
+    }
+  ],
+  "not_stated": [
+    "intended broadcast date for either showing, so no school holiday or festival check is possible",
+    "the day of the week of either showing",
+    "whether the 15:00 break showing and the 22:15 showing are on the same day",
+    "the programme the 15:00 trailer break sits inside, and what that surrounding programme is",
+    "whether a timeshift (+1) service also carries either showing",
+    "whether any warning, signposting or announcement precedes the 22:15 showing, beyond the in-work disclaimer",
+    "whether the opening disclaimer is carried in the 30-second trailer as well as in the full video",
+    "whether any access control, PIN or parental gate applies on this music channel",
+    "whether an existing cinema or video certificate exists; the CERTIFICATE line says 'none'",
+    "whether under-18s appear as participants or performers",
+    "whether the work is made primarily for children (not stated; genre and tone not relied on)",
+    "the name of the specific music channel, and whether it is a children's or general music service",
+    "production origin and year",
+    "the exact end time of the 22:15 showing (start time plus 13 min 42 s is implied, not stated)",
+    "whether any blood, injury or death is shown in the pursuit sequence",
+    "the number of times the trailer is scheduled, and whether 15:00 is its only break",
+    "the clock basis of the event timecodes (no label is given; see extractor_notes)"
+  ],
+  "extractor_notes": "1. The SLOT line gives two separate showings of two different assets: 'video at 22:15; 30-second trailer in a 15:00 break'. Both are recorded as transmissions (t1 the full music video, t2 the trailer) because they are separate showings with separate start times. Neither is described as a timeshift of the other, so is_timeshift_of is null on both; the possibility of a +1 service is listed in not_stated.\n2. Timecode reading is ambiguous and I have not resolved it. The runtime is 13 min 42 s and the music-video events run 00:02 to 00:13, which is consistent with mm:ss only if the whole work were under a minute, and consistent with minutes-into-the-work if read as mm:ss-less 'minute' values. The trailer is 30 seconds long yet its events are written 00:05 and 00:18, which can only be seconds into the trailer. So the two EVENTS blocks appear to use different units under the same notation: minutes for the video, seconds for the trailer. Timecodes are recorded exactly as written and timecode_clock is 'elapsed' for all, but the unit question is a real unresolved conflict in the source.\n3. Both EVENTS headers say 'indicative', so neither list may be exhaustive.\n4. The trailer events (o9, o10) are recorded as observations in their own right rather than folded into the music-video events, because they belong to a separately scheduled asset. o9 and o10 describe the trailer; o1 to o8 and o11 describe the full video.\n5. The on-screen disclaimer is recorded in two places on purpose: as warning_or_signposting on t1, because it is information given to the viewer, and as observation o11, because it is also a thing that happens on screen at the start of the work. It is NOT recorded on t2: the description does not say the trailer carries it.\n6. Whether the disclaimer counts as a warning about the content, as opposed to a statement about belief, is a judgement I have not made. Its verbatim words are quoted so the next step can weigh it. It says nothing about frightening imagery.\n7. No 'treatment' value is supported anywhere in the description. It uses no word indicating realism, stylisation or comedy; 'prosthetic effects' describes how an effect was made, not how the scene is framed, so treatment is 'not_stated' throughout rather than upgraded or downgraded.\n8. o6 (violence) is flagged low confidence. The source says a woman is pursued and cornered and stops there; it does not state that she is harmed. It is split out so a rule about threat or violence can be evaluated rather than silently missed.\n9. runtime_minutes is recorded as 13, the whole-minute part of '13 min 42 s', because the schema takes an integer. The 42 seconds are lost by that field and the full figure is given here.\n10. The CERTIFICATE line reads 'none'; existing_certificates is therefore an empty list, which records an absence rather than a failure to look."
+}

@@ -55,11 +55,31 @@ For the real enforcement case in the test set, that distinction is the entire qu
 regulator ruled on violence going out at 11:33 on a weekday morning, not eleven hours into a
 movie.
 
-**The fix.** Every recorded event now says which clock it uses. The field sits on the event
-rather than on the broadcast, because the two genuinely differ: a programme starting at 14:30
-whose scenes are counted from zero has a clock start time and running-time scene markers. The
-prompt also now forbids padding a timecode, because turning `00:08` into `00:08:00` silently
-converts eight minutes into eight seconds.
+**Which one actually matters.** The time of day. Every hour rule is written about the clock
+on the wall: the watershed is 9pm, not "ninety minutes in".
+
+**So why record both.** Because the describing step is given whichever the source used, and
+descriptions usually count from the start of the programme. You cannot get to the time of day
+without knowing which kind of number you were handed, plus what time the programme starts.
+
+**The fix, in two halves.** Step one now marks every event as either a time of day or a
+running time, and copies the number exactly as given. It does no arithmetic, deliberately: it
+is the step that must not interpret anything.
+
+Step two then converts. It adds a running time to the start time to get the time of day, and
+applies the rules to that. A scene 90 minutes into a programme starting at 8pm goes out at
+9:30pm, on the far side of the watershed from the programme's own start. If the start time is
+unknown the conversion is impossible, and that is reported as missing information rather than
+guessed.
+
+**This was caught late.** The first version of the fix only did the first half. Step one
+recorded the distinction carefully and step two never looked at it, so the information was
+collected and then ignored. It happened to work on the one real enforcement case because that
+case's timecodes were already times of day. On a case counted from zero it would have applied
+an hour rule to the wrong number.
+
+The prompt also now forbids padding a timecode, because turning `00:08` into `00:08:00`
+silently converts eight minutes into eight seconds.
 
 ## 4. Two lists disagreed about what a documentary is. FIXED.
 

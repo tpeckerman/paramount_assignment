@@ -85,9 +85,23 @@ from another.
 5. **Respect `determinacy`.** `bright_line` applies mechanically. `conditional` requires
    stating which condition you found and the evidence. `judgment_based` may carry a
    provisional view but **must** be flagged for human review.
-6. **Check the date**, not just the time. School holidays and cultural or religious festivals
+6. **Work out the time of day each event goes out, before applying any hour rule.** The
+   rules are written about the time of day. An event's timecode may not be one: step 1 marks
+   each observation `wall_clock` or `elapsed`.
+   - `wall_clock`: it is already a time of day. Use it.
+   - `elapsed`: add it to the transmission's `start_time`. A scene 01:30 into a programme
+     starting at 20:00 goes out at 21:30, which is on the other side of the watershed from
+     the programme's own start.
+   - If `start_time` is `not_stated`, you cannot convert, and that is missing information
+     that bears on the result rather than a detail. Say so.
+
+   Do this before anything else about hours. A programme can begin before a threshold and
+   carry its strongest material after it, or begin safely and cross into a protected window;
+   neither is visible from the start time alone, and a rule applied to a running time instead
+   of a time of day is being applied to the wrong number.
+7. **Check the date**, not just the time. School holidays and cultural or religious festivals
    raise the likely child audience without changing the hour.
-7. **Apply exceptions and allowances.** Derogations, quotas and exemptions move the answer
+8. **Apply exceptions and allowances.** Derogations, quotas and exemptions move the answer
    towards permissive. A system modelling only prohibitions over-restricts.
 
 ## The absolute prohibitions
