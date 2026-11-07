@@ -116,6 +116,14 @@ At thirty countries this is the single highest-volume failure. Requirements:
   `needs_recheck` automatically
 - consolidated text only. Original-publication URLs belong on superseded rows
 
+An amendment also has to reach anything that **stored** an answer. If decisions are cached to
+keep the cost per title down, every stored answer must record the `rule_id`s it relied on, so
+an amendment drops exactly the answers that cite a rule from the amended document and leaves
+the rest alone. A blanket flush on any amendment anywhere means that at thirty countries the
+cache is cold almost all the time and was never worth building. The cache design, including
+why the key cannot be the content alone and why a similarity threshold has to be validated on
+adversarial pairs rather than random ones, is in `HOW_IT_WORKS.md` under steps 0b to 0d.
+
 ### Link health, honestly
 
 Three URLs failed in three different ways and I had labelled all three "bot-blocked". From
@@ -128,7 +136,7 @@ means the law may have moved.
 
 ### Verify the file is the document
 
-A saved page can be entirely navigation and still look plausible by size, one was 12,493
+A saved page can hold nothing but the website's menus, headings and links and still look plausible by size, one was 12,493
 characters of menus and passed a length check. Every source carries an `expect` phrase that
 only the real document contains, checked on save and on import.
 

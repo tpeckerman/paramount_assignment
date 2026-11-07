@@ -16,7 +16,7 @@ Three kinds of step, and the distinction matters more than it looks:
 ```mermaid
 flowchart TB
     A1["1. Fetch the document<br/>store it, record a hash"]:::det
-    A2{"2. Is this really the document?<br/>check a phrase only it contains"}:::det
+    A2{"2. Is this really the document?<br/>check for a phrase only it contains"}:::det
     A3{"3. Has it been amended since?"}:::det
     A4["4. Read it and write down its rules"]:::ai
     A5{"5. Is every quote really in the document?"}:::det
@@ -25,7 +25,7 @@ flowchart TB
     A8[("The rules table")]:::store
 
     A1 --> A2
-    A2 -- "no, it is navigation" --> A1
+    A2 -- "no: we saved the website's<br/>menus and headings,<br/>not the law" --> A1
     A2 -- yes --> A3
     A3 -- "superseded" --> A1
     A3 -- current --> A4 --> A5
@@ -37,6 +37,12 @@ flowchart TB
     A7 -- "not yet looked at" --> A8
 
     B0["0. Someone watches the content<br/>and writes down what happens,<br/>with timecodes"]:::scope
+    C1["0b. Turn the description<br/>into an embedding"]:::scope
+    C2{"0c. Have we answered this before?<br/>same country, service, slot<br/>AND similar enough text"}:::scope
+    C3[["Serve the stored answer"]]:::scope
+    C4["0d. A source was amended:<br/>drop every stored answer<br/>that cites a rule from it"]:::scope
+    C5[("Stored answers")]:::scope
+
     B1["8. Read the content description"]:::ai
     B2{"9. Categories in the controlled list?"}:::det
     B2a["9b. A person adds the new<br/>category, or rejects it"]:::human
@@ -48,7 +54,15 @@ flowchart TB
     B8[["Answer, with its rules"]]:::out
     B9[["A person decides,<br/>rule and quote attached"]]:::human
 
-    B0 -.-> B1
+    B0 -.-> C1
+    C1 -.-> C2
+    C5 -.-> C2
+    C2 -. "hit" .-> C3
+    C2 -. "miss, or judgement<br/>was involved" .-> B1
+    A3 -. "superseded" .-> C4
+    C4 -.-> C5
+    B8 -. "only if every rule it cited<br/>was a bright line" .-> C5
+
     B1 --> B2
     B2 -- "a word for a<br/>category we have" --> B1
     B2 -- "a kind of content<br/>the list lacks" --> B2a
@@ -145,8 +159,9 @@ So every model step had to justify itself:
 
 And every model step is **gated by cheaper checks first**:
 
-- Step 4 never runs on a file that failed step 2. Extracting rules from a saved page of
-  website navigation costs a model call and produces confident nonsense.
+- Step 4 never runs on a file that failed step 2. Asking a model to extract rules from a
+  file that turned out to hold the website's menus, not the law, costs a model call and
+  produces confident nonsense.
 - Step 12 never runs when step 10 has already settled it. A BBFC R18 certificate is an
   outright ban: nothing in any context lifts it, so asking a model can only introduce a chance
   of it being argued away.
@@ -156,7 +171,7 @@ And every model step is **gated by cheaper checks first**:
 
 | Check | Catches | Already caught, for real |
 |---|---|---|
-| 2. Is this the document? | A saved page that is all menus and navigation | A French source saved as 12,493 characters of pure site navigation, which passed a length test |
+| 2. Is this the document? | A saved file that holds the website around the document rather than the document | A French source saved as 12,493 characters of menus, headings and links with none of the law in it. It passed a length test, because it was long |
 | 3. Amended since? | A rule whose wording a later instrument replaced | Twice. Both times the old version was internally consistent and agreed with other sources of the same age |
 | 5. Quote really present? | Paraphrase passed off as a quotation, wrong source cited | Four quotes, including one with a full stop added that cut off the words making the rule enforceable |
 | 6. Valid vocabulary? | A value outside the list, which matches nothing and errors nowhere | Two spellings of one service type, which silently dropped a rule from every decision using the other |
@@ -169,11 +184,14 @@ Each was found by something mechanical comparing the work against a source outsi
 
 ## Which steps belong to which task
 
-All fourteen steps are **Task 1**. Task 2 adds no steps: it asks what breaks when the same
-flow runs for thirty countries instead of two.
+All fourteen numbered steps are **Task 1**. Task 2 adds no steps: it asks what breaks when
+the same flow runs for thirty countries instead of two. The dotted boxes are in neither, and
+are drawn only because the flow does not make sense without them.
 
 | Steps | Task 1 | What Task 2 asks about them |
 |---|---|---|
+| 0, someone watches the content | Out of scope. The assignment starts from a description | Out of scope, and the weakest link in the chain |
+| 0b, 0c, 0d, answer from stored answers | Out of scope | Cost per decision, and what an amendment has to invalidate |
 | 1, 2, 3, fetch and validate the document | Deliverable: *sources, with links and scope* | Source collection at scale: who finds them, how you know a document is current, what happens on amendment |
 | 4, write down the rules | Deliverable: *the table of rules* | Rule representation. One schema for every country; which differences are data rather than code |
 | 5, 6, quote and vocabulary checks | **Not asked for** | **Testing for correctness.** Task 2 asks this directly, and these are the answer |
@@ -239,6 +257,15 @@ Each row carries a `verbatim_quote` that appears character for character in the 
 `pipeline/verify_rules.py --with-quotes` checks every one mechanically. A row that fails
 does not ship.
 
+**Step 2 is asking whether the file we saved is the law or just the website around it.** When
+you save a page, you can end up with the menus, the headings, the cookie banner and the links
+down the side, and none of the actual text, because some sites draw the text with JavaScript
+after the page arrives. That happened here: one French source saved as 12,493 characters of
+menus and links with not a word of the law in it. It passed a length check, because it was
+long. So the test is not "is this file big enough", it is "does this file contain a phrase
+that could only appear in this particular document". If not, it goes back to step 1 to be
+fetched a different way.
+
 **If step 6 says no**, the row goes back to step 4 to be written again. Step 6 is checking
 two different things. One is a field that is empty or impossible, a `service_type` left
 blank, an `authority_rank` of 11. The other is a value outside the controlled list, which is
@@ -266,6 +293,62 @@ careful thing downstream rests on the description being accurate and complete. I
 description misses a stabbing, no rule fires on a stabbing, and the system will answer
 confidently and be wrong, with a full citation trail behind the wrong answer. Nothing in the
 pipeline can detect that, because the pipeline never sees the video.
+
+### Steps 0b to 0d: answering from stored answers
+
+**Also dotted, also not built.** This is a cost idea, so it belongs to the scaling question
+rather than to Task 1. The same content gets asked about repeatedly: a film goes out, goes out
+again on the timeshift service, goes out again next quarter, goes out on a sister channel.
+Running the whole chain each time pays for an answer that has not changed.
+
+The shape is: embed the description, look for a stored answer that is close enough, and serve
+it instead of deciding again. What follows is what would have to be true for that to be safe,
+because a wrong cached answer is worse than a slow one. It arrives with the same confident
+citations as a fresh answer and nothing downstream re-examines it.
+
+**The key cannot be the content alone.** This system decides about a *transmission*, not
+about an asset. Country is necessary and nowhere near sufficient. Test cases TC-01 and TC-02
+in this repo are the same film with identical content on different services and they get
+different answers, so a cache keyed on content and country would serve one of them the other's
+answer. The key has to carry everything the decision actually turned on: country, service
+type, intended slot, the date, and the version of the rules in force. Anything the decision
+depended on and the key omits is a wrong answer waiting to be served.
+
+**Similarity thresholds fail in the dangerous direction.** Cosine similarity and ROUGE-L both
+reward overlapping wording. Two descriptions that overlap almost entirely can have opposite
+legal outcomes, and the differences that flip an outcome are short. "A man is stabbed" and
+"a man is stabbed, blood is visible" score very close together and sit on opposite sides of a
+real threshold. Negation is worse still: embeddings are famously weak at it, so "no drug use
+is shown" and "drug use is shown" can land nearer each other than either lands to an unrelated
+description. The expensive error here is not a missed hit, it is a near-miss served as a hit.
+
+Which means the threshold is not something to set by eye and tune later. The question to
+answer with data is not "how similar are these two descriptions", it is **"of all the pairs
+this threshold would call a match, what fraction had a different answer?"** That number has to
+be zero on a labelled set before anything is served, and the set has to be built from pairs
+chosen to be adversarial, differing by one clause, by a negation, by a timecode. A threshold
+validated on randomly drawn pairs will look excellent and tell you nothing, because random
+pairs are easy.
+
+**Do not store judgement.** On the diagram the arrow into storage is conditional: an answer is
+only kept if every rule it cited was a bright line. A `judgment_based` rule routes to a person
+precisely because the answer depends on weighing this material in this context, and that
+weighing is not transferable to the next piece of content that happens to be worded similarly.
+Caching a human's judgement and replaying it automatically converts a careful decision into an
+unreviewed one, which defeats the reason it went to a human.
+
+**Invalidation is the part this repo is already set up for.** Step 3 asks whether a source has
+been amended; that check is the trigger. The useful version is not a blanket flush. Every
+stored answer records the `rule_id`s it relied on, so an amendment only has to drop the
+answers that cite a rule from the amended document. A French amendment leaves the UK answers
+alone, and an amendment to one Code section leaves answers that never touched it alone. That
+matters at thirty countries, where a blanket flush on any amendment anywhere means the cache
+is almost always cold and was never worth building.
+
+One more thing an amendment should do: keep a sample of what it dropped and re-decide those
+from scratch, then compare. If the answers come back identical, the amendment did not touch
+anything that mattered, and that is worth knowing. If they differ, the cache was serving stale
+law, and you now know for exactly how long and to whom.
 
 ### Step 8: describing the content
 
