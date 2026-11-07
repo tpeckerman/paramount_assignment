@@ -206,6 +206,10 @@ border-radius:10px;font-size:13px;max-width:92ch}
 .what{color:var(--ink)}
 .q{color:var(--mut);font-style:italic;font-size:12px}
 .hr{color:var(--no);font-size:10.5px;margin-left:5px}
+.tag{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;margin-right:5px;
+vertical-align:1px}
+.tag.univ{background:#eceae5;color:#6b6b6b}
+.tag.spec{background:#e4efe8;color:#2f7d55;font-weight:600}
 .empty{color:var(--mut);padding:18px 0}
 code{background:#f1efea;padding:1px 4px;border-radius:3px;font-size:12px}
 </style></head><body>
@@ -225,6 +229,8 @@ listed underneath rather than drawn at an invented position.</p>
   <div><label for="s">Service type</label><select id="s"></select></div>
   <div><label for="g">What is depicted</label><select id="g"></select></div>
 </div>
+
+<p id="count" class="sub" style="margin:0 0 10px"></p>
 
 <div class="wrap">
   <div id="chart"></div>
@@ -283,6 +289,20 @@ const DEPICTED = new Set(['violence','sexual_content','nudity','strong_language'
   'hatred_discrimination','occult_paranormal','religion','human_dignity','serious_harm',
   'participant_welfare','offence_general','music_videos']);
 
+const UNIVERSAL = new Set(['all_linear_tv','all_avms']);
+const scopes = r => r.svc.split(';').map(t => t.trim()).filter(Boolean);
+const isUniversal = r => scopes(r).some(t => UNIVERSAL.has(t));
+
+// Why is this row here? Either it binds every service, or it is specific to the one chosen.
+// Without this the filter looks inert: 27 of 37 rules are scoped all_linear_tv, so switching
+// service moves only a couple of rows in a long list and nothing says which.
+function svcTag(r){
+  const s = $('#s').value;
+  if (isUniversal(r)) return '<span class="tag univ">any service</span>';
+  if (s) return `<span class="tag spec">only ${esc(pretty(s))}</span>`;
+  return `<span class="tag spec">${esc(scopes(r).map(pretty).join(', '))}</span>`;
+}
+
 function match(r){
   const c = $('#c').value, s = $('#s').value, g = $('#g').value;
   if (c && r.country !== c) return false;
@@ -310,12 +330,20 @@ function draw(){
     h += `<tr><td class="lbl"><span class="rid">${r.id}</span>`
       + `${r.hr ? '<span class="hr">R</span>' : ''}`
       + `<br><span class="meta">${DEPICTED.has(r.cat) ? '' : '<em>applies to all content</em> &middot; '}`
-      + `${esc(pretty(r.cat))}`
+      + `${svcTag(r)}${esc(pretty(r.cat))}`
       + `${r.cls && r.cls !== 'n/a' ? ' &middot; ' + esc(pretty(r.cls)) : ''}</span></td>`
       + `<td><div class="track" title="${esc(r.clause)}\n${esc(r.tok)}\n\n${esc(r.text)}\n\n&ldquo;${esc(r.quote)}&rdquo;">`
       + `<div class="ws" style="left:64.58%"></div>${bars}</div></td></tr>`;
   }
   chart.innerHTML = h + '</table>';
+  const sv = $('#s').value;
+  const spec = rows.filter(r => !isUniversal(r)).length;
+  $('#count').innerHTML = `<strong>${rows.length}</strong> rules with a permitted window`
+    + (sv ? ` on <strong>${esc(pretty(sv))}</strong>, of which <strong>${spec}</strong> `
+          + `${spec === 1 ? 'is specific to it' : 'are specific to it'}; the rest bind every `
+          + `service`
+          : `, across all service types`)
+    + '.';
   $('#axis').innerHTML = Array.from({length:8}, (_,i) => {
     const m = (330 + i*180) % 1440;
     return `<span>${String(Math.floor(m/60)).padStart(2,'0')}:`
