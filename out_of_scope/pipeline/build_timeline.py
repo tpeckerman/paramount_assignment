@@ -155,6 +155,11 @@ def main() -> int:
             and not re.fullmatch(r"--[a-z]+:#[0-9a-fA-F]{3,8}", d.strip())]
     if _bad:
         raise SystemExit(f"malformed CSS colour value(s): {_bad}")
+    # The dropdowns are filled by script. An edit once removed those calls and shipped three
+    # empty dropdowns, with nothing failing. Refuse to build without them.
+    for sel in ("#c", "#s", "#g"):
+        if f"fill($('{sel}')" not in HTML:
+            raise SystemExit(f"timeline would ship with an empty {sel} dropdown")
     OUT.parent.mkdir(exist_ok=True)
     rendered = HTML.replace("__DATA__", data)
 
@@ -407,6 +412,10 @@ function untimed(){
   $('#untimed').innerHTML = h;
 }
 
+fill($('#c'), uniq(D.timed.concat(D.untimed).map(r => r.country)), 'All countries');
+fill($('#s'), svcList(), 'Any service type');
+fill($('#g'), uniq(D.timed.concat(D.untimed).map(r => r.cat)).filter(c => DEPICTED.has(c)),
+     'Anything depicted');
 ['#c','#s','#g'].forEach(s => $(s).addEventListener('change', draw));
 draw();
 </script></body></html>

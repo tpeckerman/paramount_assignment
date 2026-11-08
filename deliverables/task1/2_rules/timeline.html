@@ -222,6 +222,10 @@ function untimed(){
   $('#untimed').innerHTML = h;
 }
 
+fill($('#c'), uniq(D.timed.concat(D.untimed).map(r => r.country)), 'All countries');
+fill($('#s'), svcList(), 'Any service type');
+fill($('#g'), uniq(D.timed.concat(D.untimed).map(r => r.cat)).filter(c => DEPICTED.has(c)),
+     'Anything depicted');
 ['#c','#s','#g'].forEach(s => $(s).addEventListener('change', draw));
 draw();
 </script></body></html>
